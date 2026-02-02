@@ -8,13 +8,14 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies (including devDependencies for ts-node)
-RUN npm install
+# Install ONLY production dependencies
+RUN npm install --omit=dev
 
 # Copy source code
 COPY . .
 
-# Build the frontend
-RUN npm run build
+# Copy built assets
+COPY dist ./dist
 
 # Expose the application port
 EXPOSE 5005
