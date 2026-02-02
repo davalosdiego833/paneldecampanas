@@ -1,0 +1,20 @@
+{
+  "id": "junio_cierre",
+  "nombre": "Junio: Enfoque y Cierre de Semestre",
+  "colores": {
+    "fondo": "#012a4a",
+    "tarjetas": "#013a63",
+    "acentos": "#4cc9f0",
+    "texto_titulos": "#FFFFFF",
+    "barras_progreso": "linear-gradient(90deg, #4361ee, #4cc9f0)"
+  },
+  "efecto": "ninguno",
+  "config_home": {
+    "frase_inspiracional": "'El éxito es la suma de pequeños esfuerzos repetidos día tras día.'",
+    "avisos_activos": [
+      "📈 ¡Cierre de Semestre! Es momento de consolidar tus metas de mitad de año.",
+      "📊 Revisa tu avance acumulado para las convenciones anuales.",
+      "🚀 Junio es el mes para asegurar un excelente segundo semestre."
+    ]
+  }
+}

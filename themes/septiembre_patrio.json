@@ -1,0 +1,15 @@
+{
+  "id": "septiembre_patrio",
+  "nombre": "Septiembre: Orgullo Mexicano",
+  "colores": {
+    "fondo": "linear-gradient(135deg, #064E3B 0%, #111827 100%)",
+    "tarjetas": "rgba(255, 255, 255, 0.1)",
+    "acentos": "#FFFFFF",
+    "texto_titulos": "#FFFFFF",
+    "texto_interfaz": "#FFFFFF",
+    "texto_resultados": "#FFFFFF",
+    "dropdown_fondo": "#000000",
+    "barras_progreso": "linear-gradient(90deg, #059669, #FFFFFF, #DC2626)"
+  },
+  "efecto": "fuegos_artificiales"
+}

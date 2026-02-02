@@ -1,0 +1,21 @@
+{
+    "id": "abril",
+    "nombre": "Modo Diversión (Abril)",
+    "efecto": "confeti",
+    "colores": {
+        "fondo": "#101820",
+        "tarjetas": "#1A2530",
+        "acentos": "#FFD700",
+        "texto_titulos": "#00FFC8",
+        "barras_progreso": "linear-gradient(90deg, #FFD700, #FF5733)"
+    },
+    "config_home": {
+        "subtitulo": "¡Un mes para celebrar el éxito con la alegría de un niño!",
+        "icono": "🎈",
+        "avisos_activos": [
+            "¡Abril es mes de festejos! Mantén tu energía y alegría en cada venta.",
+            "Recordatorio: 36 pólizas para Graduación y 48 para Honores.",
+            "La meta de MDRT sigue en marcha. ¡No te detengas!"
+        ]
+    }
+}

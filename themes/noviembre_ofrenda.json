@@ -1,0 +1,22 @@
+{
+  "id": "noviembre_ofrenda",
+  "nombre": "Noviembre: Tradición de Éxito",
+  "colores": {
+    "fondo": "linear-gradient(180deg, #2D0040 0%, #000000 100%)",
+    "tarjetas": "rgba(45, 0, 64, 0.7)",
+    "acentos": "#FF8C00",
+    "texto_titulos": "#FF8C00",
+    "texto_interfaz": "#FFFFFF",
+    "dropdown_fondo": "#1A1A1A",
+    "barras_progreso": "linear-gradient(90deg, #FF8C00, #FFD700, #FF8C00)"
+  },
+  "efecto": "petalos_cempasuchil",
+  "config_home": {
+    "frase_inspiracional": "'Honramos el pasado, aseguramos el futuro.'",
+    "avisos_activos": [
+      "🌼 ¡Mes de Tradiciones! Honremos nuestro legado con excelencia.",
+      "🕯️ Una luz por cada meta alcanzada este mes.",
+      "💀 En Ambriz Asesores, el éxito vive para siempre."
+    ]
+  }
+}

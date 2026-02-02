@@ -1,0 +1,19 @@
+{
+  "id": "enero_2026",
+  "nombre": "Enero: Arranque de Año",
+  "colores": {
+    "fondo": "#0D1B2A",
+    "tarjetas": "#1B263B",
+    "acentos": "#415A77",
+    "texto_titulos": "#E0E1DD",
+    "barras_progreso": "linear-gradient(90deg, #778DA9, #E0E1DD)"
+  },
+  "config_home": {
+    "bienvenida": "¡Hola!",
+    "avisos_activos": [
+      "✨ ¡Feliz Año Nuevo! Momento de planear tus cierres.",
+      "📊 Recordatorio: Algunas campañas inician de 0, otras siguen corriendo. ¡Checa tu estatus!",
+      "🎓 Candidatos a Graduación: Mantengan el ritmo para el evento de agosto."
+    ]
+  }
+}

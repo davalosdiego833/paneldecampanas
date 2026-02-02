@@ -1,0 +1,16 @@
+{
+  "id": "julio_verano_sol",
+  "nombre": "Julio: Sol de Verano",
+  "colores": {
+    "fondo": "linear-gradient(135deg, #0077B6 0%, #00B4D8 100%)",
+    "tarjetas": "rgba(255, 250, 224, 0.9)",
+    "acentos": "#FFD60A",
+    "texto_titulos": "#FFFFFF",
+    "dropdown_fondo": "#000000",
+    "barras_progreso": "linear-gradient(90deg, #FFD60A, #FF7B00)"
+  },
+  "efecto": "helice_con_sol_radiante",
+  "config_home": {
+    "sol_posicion": "top-right"
+  }
+}

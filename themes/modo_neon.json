@@ -1,0 +1,20 @@
+{
+  "id": "neon",
+  "nombre": "Modo Neón (Estándar)",
+  "colores": {
+    "fondo": "#0E1117",
+    "tarjetas": "#1B1E23",
+    "acentos": "#00FFC8",
+    "texto_titulos": "#D4AF37",
+    "barras_progreso": "linear-gradient(90deg, #00FFC8, #D4AF37)"
+  },
+  "config_home": {
+    "subtitulo": "Tu camino hacia el éxito financiero comienza aquí.",
+    "icono": "🚀",
+    "avisos_activos": [
+      "Recuerda que para Graduación Normal vas por 36 pólizas y para Honores por 48.",
+      "La meta de MDRT sigue vigente: $1,698,400 PA.",
+      "Consulta los dashboards de persecución para ver tu avance en tiempo real."
+    ]
+  }
+}

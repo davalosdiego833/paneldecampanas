@@ -1,0 +1,20 @@
+{
+    "id": "junio",
+    "nombre": "Modo Cierre de Semestre (Junio)",
+    "colores": {
+        "fondo": "#0F172A",
+        "tarjetas": "#1E293B",
+        "acentos": "#38BDF8",
+        "texto_titulos": "#F8FAFC",
+        "barras_progreso": "linear-gradient(90deg, #38BDF8, #818CF8)"
+    },
+    "config_home": {
+        "subtitulo": "Cierre de semestre: Concentración total en tus metas trimestrales.",
+        "icono": "📈",
+        "avisos_activos": [
+            "¡Junio es mes de cierre! Asegura tus folios y bonos del semestre.",
+            "Recordatorio: 36 pólizas para Graduación Normal | 48 para Honores.",
+            "Revisa tu PA acumulada para calificar a MDRT a tiempo."
+        ]
+    }
+}

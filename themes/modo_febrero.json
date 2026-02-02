@@ -1,0 +1,21 @@
+{
+    "id": "febrero",
+    "nombre": "Modo San Valentín (Febrero)",
+    "efecto": "corazones",
+    "colores": {
+        "fondo": "#1A0F14",
+        "tarjetas": "#2D1B22",
+        "acentos": "#FF4D6D",
+        "texto_titulos": "#FFB3C1",
+        "barras_progreso": "linear-gradient(90deg, #FF4D6D, #FFB3C1)"
+    },
+    "config_home": {
+        "subtitulo": "Un mes para enfocarte en tus metas y resultados.",
+        "icono": "❤️",
+        "avisos_activos": [
+            "Las metas de Graduación siguen activas: 36 (Normal) y 48 (Honores).",
+            "No pierdas de vista tu meta de MDRT para calificar a tiempo.",
+            "Mantén la consistencia operativa en todos tus cierres de mes."
+        ]
+    }
+}

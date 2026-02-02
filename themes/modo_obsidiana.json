@@ -1,0 +1,20 @@
+{
+    "id": "obsidiana",
+    "nombre": "Modo Obsidiana (Dark)",
+    "colores": {
+        "fondo": "#05070A",
+        "tarjetas": "#10141D",
+        "acentos": "#E0E0E0",
+        "texto_titulos": "#FFFFFF",
+        "barras_progreso": "linear-gradient(90deg, #333333, #E0E0E0)"
+    },
+    "config_home": {
+        "subtitulo": "Control total, elegancia pura, resultados de élite.",
+        "icono": "💎",
+        "avisos_activos": [
+            "Meta de Graduación: 36 (Normal) / 48 (Honores).",
+            "Enero es clave para el arranque de año. ¡Asegura tu primera póliza!",
+            "La excelencia se mide en constancia, no solo en volumen."
+        ]
+    }
+}

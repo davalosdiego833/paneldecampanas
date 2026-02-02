@@ -1,0 +1,20 @@
+services:
+  app:
+    build: .
+    container_name: panel_campanas
+    restart: always
+    ports:
+      - "5005:5005"
+    volumes:
+      # Mount data directories so Excel files can be updated without rebuilding
+      - ./mdrt:/app/mdrt
+      - ./legion_centurion:/app/legion_centurion
+      - ./convenciones:/app/convenciones
+      - ./camino_cumbre:/app/camino_cumbre
+      - ./graduacion:/app/graduacion
+      # Mount assets if you add more logos
+      - ./public/assets:/app/public/assets
+      # Persist theme settings
+      - ./themes:/app/themes
+    environment:
+      - PORT=5005

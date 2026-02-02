@@ -1,0 +1,20 @@
+{
+  "id": "abril_ninos",
+  "nombre": "Abril: Energía y Alegría",
+  "colores": {
+    "fondo": "#001219",
+    "tarjetas": "#005F73",
+    "acentos": "#EE9B00",
+    "texto_titulos": "#FFFFFF",
+    "barras_progreso": "linear-gradient(90deg, #94D2BD, #E9D8A6)"
+  },
+  "efecto": "confeti",
+  "config_home": {
+    "frase_inspiracional": "'Nunca pierdas el entusiasmo de aprender y crecer como cuando eras niño.'",
+    "avisos_activos": [
+      "🎈 ¡Mes de la Niñez! Un momento para renovar nuestra energía.",
+      "📊 Recordatorio: Estamos en el segundo trimestre, revisa tus avances anuales.",
+      "🚀 ¡Mantén el enfoque en tus metas de abril!"
+    ]
+  }
+}

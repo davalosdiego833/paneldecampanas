@@ -1,0 +1,20 @@
+{
+  "id": "julio_verano_vibrante",
+  "nombre": "Julio: Verano Brillante",
+  "colores": {
+    "fondo": "#FF9F1C",
+    "tarjetas": "#FFBF69",
+    "acentos": "#FFFFFF",
+    "texto_titulos": "#2D2327",
+    "barras_progreso": "linear-gradient(90deg, #FFD60A, #FF7B00)"
+  },
+  "efecto": "destellos_oro",
+  "config_home": {
+    "frase_inspiracional": "'¡Que tu éxito brille más que el sol de verano!'",
+    "avisos_activos": [
+      "☀️ ¡Vibra de Verano! Energía máxima para este inicio de trimestre.",
+      "🏖️ ¡Logra tus metas y disfruta la recompensa!",
+      "🔥 Mantén el calor en tus ventas: ¡Nada nos detiene!"
+    ]
+  }
+}

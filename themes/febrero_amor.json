@@ -1,0 +1,20 @@
+{
+  "id": "febrero_amor",
+  "nombre": "Febrero: Amor y Amistad",
+  "colores": {
+    "fondo": "#1A0A0D",
+    "tarjetas": "#2D1418",
+    "acentos": "#E63946",
+    "texto_titulos": "#F1FAEE",
+    "barras_progreso": "linear-gradient(90deg, #E63946, #A8201A)"
+  },
+  "efecto": "corazones",
+  "config_home": {
+    "frase_inspiracional": "'La excelencia no es un acto, sino un hábito.'",
+    "avisos_activos": [
+      "❤️ ¡Mes de la Amistad! El éxito es mejor cuando se comparte en equipo.",
+      "📊 Recordatorio: Las campañas anuales siguen vigentes. ¡No bajes el ritmo!",
+      "🚀 Mantente enfocado en tus metas de este trimestre."
+    ]
+  }
+}

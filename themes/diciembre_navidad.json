@@ -1,0 +1,19 @@
+{
+  "id": "diciembre_nieve_total_v3",
+  "nombre": "Diciembre: Nevada Permanente",
+  "colores": {
+    "fondo": "#064E3B",
+    "tarjetas": "rgba(255, 255, 255, 0.1)",
+    "acentos": "#FFFFFF",
+    "texto_titulos": "#FFFFFF",
+    "texto_interfaz": "#FFFFFF",
+    "dropdown_fondo": "#000000",
+    "dropdown_texto": "#FFFFFF",
+    "barras_progreso": "linear-gradient(90deg, #FFFFFF, #064E3B)"
+  },
+  "efecto": "nevada_extrema_persistente",
+  "config_home": {
+    "suelo_fijo": true,
+    "nieve_densidad": 100
+  }
+}

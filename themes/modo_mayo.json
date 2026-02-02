@@ -1,0 +1,20 @@
+{
+    "id": "mayo",
+    "nombre": "Modo Prestigio (Mayo)",
+    "colores": {
+        "fondo": "#F4F1F0",
+        "tarjetas": "#FFFFFF",
+        "acentos": "#967BB6",
+        "texto_titulos": "#4A3B4F",
+        "barras_progreso": "linear-gradient(90deg, #967BB6, #B29DD9)"
+    },
+    "config_home": {
+        "subtitulo": "Serenidad y resultados: un mes de éxito absoluto.",
+        "icono": "🌸",
+        "avisos_activos": [
+            "Mayo: El mes para consolidar tu prestigio profesional.",
+            "Las metas de Graduación siguen vigentes: 36 (Normal) y 48 (Honores).",
+            "Consulta tus dashboards para mantener el ritmo de cierre."
+        ]
+    }
+}

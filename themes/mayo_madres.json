@@ -1,0 +1,20 @@
+{
+  "id": "mayo_elegancia",
+  "nombre": "Mayo: Productividad y Elegancia",
+  "colores": {
+    "fondo": "#2D2327",
+    "tarjetas": "#3D3238",
+    "acentos": "#B5A4A3",
+    "texto_titulos": "#F5F5F5",
+    "barras_progreso": "linear-gradient(90deg, #A288A6, #BB9BB0)"
+  },
+  "efecto": "estatico",
+  "config_home": {
+    "frase_inspiracional": "'La perseverancia es la base de todos los triunfos.'",
+    "avisos_activos": [
+      "🌸 ¡Mes de Mayo! Un reconocimiento especial a todas las madres de nuestro equipo.",
+      "📊 Enfoque en el cierre del mes: Revisa tus compromisos pendientes.",
+      "🚀 Calidad sobre cantidad: Asegura la excelencia en cada asesoría."
+    ]
+  }
+}
