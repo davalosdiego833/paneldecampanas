@@ -1,27 +1,19 @@
-# Base Node image
+# Usa una imagen de Node ligera para correr la app, no para compilarla
 FROM node:20-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Copy package files
+# Copiamos SOLO lo necesario para ejecutar
 COPY package*.json ./
-
-# Install dependencies (including devDependencies for ts-node)
-# Install ONLY production dependencies
 RUN npm install --omit=dev
 
-# Copy source code
-COPY . .
-
-# Copy built assets
+# Copiamos la carpeta 'dist' que ya construiste en tu Mac
 COPY dist ./dist
+# Si tu servidor backend está en una carpeta 'server', cópiala también
+COPY server ./server
 
-# Expose the application port
+# Exponemos el puerto de tu panel de campañas
 EXPOSE 5005
 
-# Start the application
-# We use the same command as dev for now because we rely on ts-node, 
-# but in a container environment 'dev' script works fine or we can call node directly.
-# Using 'node --loader...' directly is safer to avoid concurrent frontend start which is already built.
-CMD ["node", "--loader", "ts-node/esm", "server/index.ts"]
+# Ejecutamos directamente con Node (sin ts-node ni cargadores pesados)
+CMD ["node", "dist/server/index.js"]
