@@ -16,7 +16,7 @@ export interface ThemeConfig {
     efecto?: string;
 }
 
-export type Page = 'welcome' | 'campaign_selector' | 'dashboard';
+export type Page = 'login' | 'welcome' | 'campaign_selector' | 'dashboard' | 'admin_home' | 'admin_dashboard' | 'resumen_promotoria' | 'gerencia_eduardo' | 'gerencia_karen';
 
 export interface AdvisorData {
     Asesor: string;

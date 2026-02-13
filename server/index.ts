@@ -152,8 +152,145 @@ app.post('/api/active-theme', (req, res) => {
 });
 
 
+// Admin endpoint: get ALL data for ALL campaigns
+app.get('/api/admin/summary', (req, res) => {
+    try {
+        const campaignFolders = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion'];
+        const result: Record<string, any[]> = {};
+
+        campaignFolders.forEach(folder => {
+            const data = readExcelData(folder);
+            if (data) {
+                result[folder] = data as any[];
+            } else {
+                result[folder] = [];
+            }
+        });
+
+        res.json(result);
+    } catch (error) {
+        console.error('Error building admin summary:', error);
+        res.status(500).json({ error: 'Could not build admin summary' });
+    }
+});
+
+// Resumen General endpoint: reads resumen_general.xlsx with all 4 sheets
+app.get('/api/resumen-general', (req, res) => {
+    try {
+        const filePath = path.join(BASE_PATH, 'resumen_general.xlsx');
+        if (!fs.existsSync(filePath)) {
+            return res.status(404).json({ error: 'resumen_general.xlsx not found' });
+        }
+
+        const workbook = XLSX.readFile(filePath);
+        const result: Record<string, any> = {};
+
+        // Extract cut-off date from cell A1 of the first sheet
+        const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+        const cellA1 = firstSheet?.['A1'];
+        let fechaCorte = '';
+        if (cellA1) {
+            if (cellA1.w) {
+                // Use the formatted value from Excel (e.g. "Feb-06")
+                fechaCorte = cellA1.w;
+            } else if (cellA1.v) {
+                // Fallback: convert serial to date
+                const d = XLSX.SSF.parse_date_code(cellA1.v);
+                if (d) {
+                    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+                    // Excel 2-digit year: if < 30 assume 2000s, else 1900s
+                    const year = d.y < 100 ? (d.y < 30 ? 2000 + d.y : 1900 + d.y) : d.y;
+                    fechaCorte = `${months[d.m - 1]} ${year}`;
+                }
+            }
+        }
+        result['fecha_corte'] = fechaCorte;
+
+        // All sheets have a date in row 1, real headers in row 2, data from row 3
+        const sheetConfigs: Record<string, string> = {
+            'pagado_pendiente': 'pagad_pendiente',
+            'asesores_sin_emision': 'asesores_sin_emision_prom',
+            'proactivos': 'proactivos',
+            'comparativo_vida': 'comparativo_vida'
+        };
+
+        for (const [key, sheetName] of Object.entries(sheetConfigs)) {
+            const worksheet = workbook.Sheets[sheetName];
+            if (!worksheet) {
+                result[key] = [];
+                continue;
+            }
+
+            const allData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }) as any[][];
+
+            if (allData.length < 2) {
+                result[key] = [];
+                continue;
+            }
+
+            const headers = allData[1] as string[];
+            const dataRows = allData.slice(2);
+
+            if (key === 'asesores_sin_emision') {
+                const individualHeaders = headers.slice(0, 12);
+                const summaryHeaders = headers.slice(13, 25);
+                const individuals: any[] = [];
+                const summaryBySucursal: any[] = [];
+
+                dataRows.forEach((row: any[]) => {
+                    if (row[0] != null) {
+                        const obj: any = {};
+                        individualHeaders.forEach((h, i) => { if (h) obj[h] = row[i] ?? null; });
+                        individuals.push(obj);
+                    }
+                    if (row[13] != null) {
+                        const obj: any = {};
+                        summaryHeaders.forEach((h, i) => { if (h) obj[h] = row[13 + i] ?? null; });
+                        summaryBySucursal.push(obj);
+                    }
+                });
+                result[key] = { individuals, summaryBySucursal };
+            } else if (key === 'comparativo_vida') {
+                const individualHeaders = headers.slice(0, 10);
+                const summaryHeaders = headers.slice(12, 28);
+                const individuals: any[] = [];
+                let generalSummary: any = null;
+
+                dataRows.forEach((row: any[]) => {
+                    if (row[0] != null) {
+                        const obj: any = {};
+                        individualHeaders.forEach((h, i) => { if (h) obj[h] = row[i] ?? null; });
+                        individuals.push(obj);
+                    }
+                    if (row[12] != null && !generalSummary) {
+                        const obj: any = {};
+                        summaryHeaders.forEach((h, i) => { if (h) obj[h] = row[12 + i] ?? null; });
+                        generalSummary = obj;
+                    }
+                });
+                result[key] = { individuals, generalSummary };
+            } else {
+                const items: any[] = [];
+                dataRows.forEach((row: any[]) => {
+                    if (row[0] != null) {
+                        const obj: any = {};
+                        headers.forEach((h, i) => { if (h) obj[h] = row[i] ?? null; });
+                        items.push(obj);
+                    }
+                });
+                result[key] = items;
+            }
+        }
+
+        res.json(result);
+    } catch (error) {
+        console.error('Error reading resumen general:', error);
+        res.status(500).json({ error: 'Could not read resumen general data' });
+    }
+});
+
 // SPA Fallback
-app.get('*', (req, res) => {
+app.get(/(.*)/, (req, res) => {
     if (req.path.startsWith('/api')) {
         return res.status(404).json({ error: 'API endpoint not found' });
     }

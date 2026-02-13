@@ -12,9 +12,10 @@ interface Props {
     selectedCampaign: string | null;
     themeMode: 'dark' | 'light';
     toggleTheme: () => void;
+    onLogout?: () => void;
 }
 
-const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, selectedCampaign, themeMode, toggleTheme }) => {
+const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, selectedCampaign, themeMode, toggleTheme, onLogout }) => {
     const [showAdminLogin, setShowAdminLogin] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     const [password, setPassword] = useState('');
@@ -36,7 +37,7 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
                     <img
                         src="/assets/logos/empresa/ambriz_logo.png"
                         alt="Ambriz"
-                        style={{ maxWidth: '160px', width: '100%', filter: themeMode === 'dark' ? 'brightness(1.1)' : 'invert(1)' }}
+                        style={{ maxWidth: '160px', width: '100%', filter: 'brightness(1.1)' }}
                     />
                 </div>
 
@@ -101,6 +102,27 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
                                 <LogOut size={16} className="nav-icon" /> Cerrar Sesión
                             </button>
                         </div>
+                    )}
+
+                    {/* Botón Toggle Tema */}
+                    <button
+                        onClick={toggleTheme}
+                        className="nav-item"
+                        style={{ fontSize: '0.85rem', justifyContent: 'center', marginTop: '4px' }}
+                    >
+                        {themeMode === 'dark' ? <Sun size={16} className="nav-icon" /> : <Moon size={16} className="nav-icon" />}
+                        <span>{themeMode === 'dark' ? 'Modo Claro' : 'Modo Oscuro'}</span>
+                    </button>
+
+                    {/* Botón Cerrar Sesión - regresa al Login */}
+                    {onLogout && (
+                        <button
+                            onClick={onLogout}
+                            className="nav-item"
+                            style={{ color: 'var(--text-secondary)', justifyContent: 'center', fontSize: '0.85rem', marginTop: '8px' }}
+                        >
+                            <LogOut size={16} className="nav-icon" /> Cerrar Sesión
+                        </button>
                     )}
                 </div>
             </aside>

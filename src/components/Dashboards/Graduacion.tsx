@@ -9,12 +9,40 @@ interface Props {
 const formatCurrency = (val: number) =>
     new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(val);
 
+const MESES_ES = [
+    'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+];
+
+/** Convert an Excel serial date number (days since 1900-01-01) to a readable Spanish date */
+const formatExcelDate = (raw: any): string => {
+    if (raw == null || raw === '' || raw === 0) return 'No disponible';
+
+    const num = Number(raw);
+    if (!isNaN(num) && num > 30000 && num < 100000) {
+        const excelEpoch = new Date(Date.UTC(1899, 11, 30));
+        const date = new Date(excelEpoch.getTime() + num * 86400000);
+        const month = MESES_ES[date.getUTCMonth()];
+        const year = date.getUTCFullYear();
+        return `${month.charAt(0).toUpperCase() + month.slice(1)} ${year}`;
+    }
+
+    const parsed = new Date(String(raw));
+    if (!isNaN(parsed.getTime())) {
+        const month = MESES_ES[parsed.getMonth()];
+        const year = parsed.getFullYear();
+        return `${month.charAt(0).toUpperCase() + month.slice(1)} ${year}`;
+    }
+
+    return String(raw);
+};
+
 const Graduacion: React.FC<Props> = ({ data }) => {
     const mes_asesor = Math.floor(Number(data.Mes_Asesor || 1));
     const polizas_totales = Number(data.Polizas_Totales || 0);
     const comisiones = Number(data.Comisones || 0);
     const produccion_mes = Number(data.Produccion_Mes || data.Polizas_Mes || 0);
-    const fecha_limite = String(data.Limite_Logro_Meta || 'No disponible');
+    const fecha_limite = formatExcelDate(data.Limite_Logro_Meta);
 
     const currentMonth = new Date().getMonth() + 1;
     const monthsTo12 = 12 - mes_asesor;

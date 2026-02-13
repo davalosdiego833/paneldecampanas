@@ -46,7 +46,7 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                 />
             </div>
 
-            <h2 style={{ fontSize: '1.8rem', fontWeight: 300, color: theme?.colores.texto_titulos || 'var(--text-primary)' }}>
+            <h2 style={{ fontSize: '1.8rem', fontWeight: 300, color: 'var(--text-primary)' }}>
                 Bienvenido al Portal de Seguimiento
             </h2>
 

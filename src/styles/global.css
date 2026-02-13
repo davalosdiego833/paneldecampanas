@@ -37,14 +37,85 @@
 }
 
 [data-theme="light"] {
-  --bg-dark: #f3f4f6;
+  --bg-dark: #f0f2f5;
   --bg-secondary: #ffffff;
-  --text-primary: #111827;
-  --text-secondary: #4b5563;
-  --glass-bg: rgba(255, 255, 255, 0.6);
-  --glass-border: rgba(0, 0, 0, 0.05);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a5568;
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   --accent-gold: #b38f1d;
+  --accent-gold-glow: rgba(179, 143, 29, 0.25);
+  --primary-blue: #0066DD;
+  --success-green: #0d9e4f;
+  --danger-red: #d32f2f;
+}
+
+[data-theme="light"] .app-layout {
+  background: linear-gradient(135deg, #e8ecf1 0%, #f0f2f5 40%, #f8f9fb 100%);
+  color: #1a1a2e;
+}
+
+body[data-theme="light"] {
+  background-color: #f0f2f5;
+  color: #1a1a2e;
+}
+
+[data-theme="light"] .sidebar {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 2px 0 16px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .glass-card:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .nav-item {
+  color: #4a5568;
+}
+
+[data-theme="light"] .nav-item:hover,
+[data-theme="light"] .nav-item.active {
+  background: rgba(0, 0, 0, 0.06);
+  color: #1a1a2e;
+}
+
+[data-theme="light"] .input-modern {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #1a1a2e;
+}
+
+[data-theme="light"] .input-modern:focus {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: var(--accent-gold);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="light"] .btn-primary {
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(179, 143, 29, 0.3);
+}
+
+[data-theme="light"] .text-gradient {
+  background: linear-gradient(135deg, #1a1a2e 0%, #4a5568 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Reset & Base */
