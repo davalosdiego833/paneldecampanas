@@ -7,7 +7,7 @@
     "dev:client": "vite",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "start": "node dist/server/index.js",
-    "build": "tsc && vite build && tsc -p tsconfig.server.json",
+    "build": "tsc && vite build && tsc -p tsconfig.server.json && rm -f index.html",
     "preview": "vite preview"
   },
   "keywords": [],
