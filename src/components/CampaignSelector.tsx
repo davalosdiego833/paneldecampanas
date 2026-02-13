@@ -8,6 +8,7 @@ interface Props {
 
 const CampaignSelector: React.FC<Props> = ({ advisor, onCampaignSelect }) => {
     const [campaigns, setCampaigns] = useState<string[]>([]);
+    const [dates, setDates] = useState<Record<string, string>>({});
 
     const campaignOrder = ["legion_centurion", "mdrt", "convenciones", "camino_cumbre", "graduacion"];
 
@@ -23,12 +24,16 @@ const CampaignSelector: React.FC<Props> = ({ advisor, onCampaignSelect }) => {
         fetch('/api/campaigns')
             .then(res => res.json())
             .then(data => {
-                // Sort based on campaignOrder
                 const sorted = data.sort((a: string, b: string) => {
                     return campaignOrder.indexOf(a) - campaignOrder.indexOf(b);
                 });
                 setCampaigns(sorted);
             });
+
+        fetch('/api/campaigns/dates')
+            .then(res => res.json())
+            .then(data => setDates(data))
+            .catch(err => console.error('Error fetching campaign dates:', err));
     }, []);
 
     return (
@@ -69,13 +74,35 @@ const CampaignSelector: React.FC<Props> = ({ advisor, onCampaignSelect }) => {
                         }}
                         onClick={() => onCampaignSelect(camp)}
                     >
+                        {/* Fecha de corte badge */}
+                        {dates[camp] && (
+                            <div style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '6px',
+                                padding: '5px 14px',
+                                background: 'rgba(212, 175, 55, 0.12)',
+                                border: '1px solid rgba(212, 175, 55, 0.25)',
+                                borderRadius: '20px',
+                                fontSize: '0.78rem',
+                                color: 'var(--accent-gold, #d4af37)',
+                                fontWeight: 500,
+                                marginBottom: '12px',
+                                letterSpacing: '0.02em'
+                            }}>
+                                <span>📅</span>
+                                <span>Corte: <strong>{dates[camp]}</strong></span>
+                            </div>
+                        )}
+
                         <div style={{
                             height: '160px',
                             width: '100%',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            marginBottom: '24px'
+                            marginBottom: '24px',
+                            flex: 1
                         }}>
                             <img
                                 src={logoMapping[camp] || '/assets/logos/campanas/generic.png'}

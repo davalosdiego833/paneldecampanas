@@ -58,7 +58,7 @@ const readExcelData = (folderName: string) => {
 
 // Endpoints
 app.get('/api/campaigns', (req, res) => {
-    const exclude = ['assets', 'themes', 'server', 'node_modules', 'src', 'public', '.git', 'dist', '.conda'];
+    const exclude = ['assets', 'themes', 'server', 'node_modules', 'src', 'public', '.git', 'dist', '.conda', 'administrador'];
     try {
         const folders = fs.readdirSync(BASE_PATH, { withFileTypes: true })
             .filter(dirent => dirent.isDirectory() && !exclude.includes(dirent.name) && !dirent.name.startsWith('.'))
@@ -71,7 +71,7 @@ app.get('/api/campaigns', (req, res) => {
 
 app.get('/api/advisors', (req, res) => {
     try {
-        const exclude = ['assets', 'themes', 'server', 'node_modules', 'src', 'public', '.git', 'dist', '.conda'];
+        const exclude = ['assets', 'themes', 'server', 'node_modules', 'src', 'public', '.git', 'dist', '.conda', 'administrador'];
         const folders = fs.readdirSync(BASE_PATH, { withFileTypes: true })
             .filter(dirent => dirent.isDirectory() && !exclude.includes(dirent.name) && !dirent.name.startsWith('.'))
             .map(dirent => dirent.name);
@@ -174,10 +174,48 @@ app.get('/api/admin/summary', (req, res) => {
     }
 });
 
+// Campaign cut-off dates endpoint
+app.get('/api/campaigns/dates', (req, res) => {
+    try {
+        const campaignFolders = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion'];
+        const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+        const formatExcelDate = (serial: number): string => {
+            const excelEpoch = new Date(Date.UTC(1899, 11, 30));
+            const dt = new Date(excelEpoch.getTime() + serial * 86400000);
+            const day = dt.getUTCDate();
+            const month = meses[dt.getUTCMonth()];
+            const year = dt.getUTCFullYear();
+            return `${day} de ${month} de ${year}`;
+        };
+
+        const result: Record<string, string> = {};
+
+        campaignFolders.forEach(folder => {
+            const data = readExcelData(folder) as any[];
+            if (data && data.length > 0 && data[0].Fecha_Corte != null) {
+                const raw = data[0].Fecha_Corte;
+                if (typeof raw === 'number' && raw > 30000) {
+                    result[folder] = formatExcelDate(raw);
+                } else {
+                    result[folder] = String(raw);
+                }
+            } else {
+                result[folder] = '';
+            }
+        });
+
+        res.json(result);
+    } catch (error) {
+        console.error('Error reading campaign dates:', error);
+        res.status(500).json({ error: 'Could not read campaign dates' });
+    }
+});
+
 // Resumen General endpoint: reads resumen_general.xlsx with all 4 sheets
 app.get('/api/resumen-general', (req, res) => {
     try {
-        const filePath = path.join(BASE_PATH, 'resumen_general.xlsx');
+        const filePath = path.join(BASE_PATH, 'administrador', 'resumen_general.xlsx');
         if (!fs.existsSync(filePath)) {
             return res.status(404).json({ error: 'resumen_general.xlsx not found' });
         }
@@ -208,8 +246,8 @@ app.get('/api/resumen-general', (req, res) => {
 
         // All sheets have a date in row 1, real headers in row 2, data from row 3
         const sheetConfigs: Record<string, string> = {
-            'pagado_pendiente': 'pagad_pendiente',
-            'asesores_sin_emision': 'asesores_sin_emision_prom',
+            'pagado_pendiente': 'pagado_pendiente',
+            'asesores_sin_emision': 'asesores_sin_emision',
             'proactivos': 'proactivos',
             'comparativo_vida': 'comparativo_vida'
         };
