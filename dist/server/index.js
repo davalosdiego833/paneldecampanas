@@ -17,11 +17,34 @@ const ASSETS_PATH = path.join(BASE_PATH, 'assets');
 const THEMES_PATH = path.join(BASE_PATH, 'themes');
 app.use(cors());
 app.use(express.json());
+// Explicitly set correct MIME types (Hostinger fix)
+const mimeTypes = {
+    '.js': 'application/javascript',
+    '.mjs': 'application/javascript',
+    '.css': 'text/css',
+    '.html': 'text/html',
+    '.json': 'application/json',
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.gif': 'image/gif',
+    '.svg': 'image/svg+xml',
+    '.ico': 'image/x-icon',
+    '.woff': 'font/woff',
+    '.woff2': 'font/woff2',
+    '.ttf': 'font/ttf',
+};
+const setMimeHeaders = (res, filePath) => {
+    const ext = path.extname(filePath).toLowerCase();
+    if (mimeTypes[ext]) {
+        res.setHeader('Content-Type', mimeTypes[ext]);
+    }
+};
 // Serve static assets
-app.use('/assets', express.static(ASSETS_PATH));
+app.use('/assets', express.static(ASSETS_PATH, { setHeaders: setMimeHeaders }));
 // Serve Frontend Build
 const DIST_PATH = path.join(BASE_PATH, 'dist');
-app.use(express.static(DIST_PATH));
+app.use(express.static(DIST_PATH, { setHeaders: setMimeHeaders }));
 // Helper to read Excel
 const readExcelData = (folderName) => {
     const folderPath = path.join(BASE_PATH, folderName);
@@ -309,13 +332,18 @@ app.get('/api/resumen-general', (req, res) => {
         res.status(500).json({ error: 'Could not read resumen general data' });
     }
 });
-// SPA Fallback
-app.get(/(.*)/, (req, res) => {
+// SPA Fallback — only for routes without file extensions (not static assets)
+app.get('*', (req, res) => {
     if (req.path.startsWith('/api')) {
         return res.status(404).json({ error: 'API endpoint not found' });
     }
+    // Skip requests that look like static files (have an extension)
+    if (path.extname(req.path)) {
+        return res.status(404).send('Not found');
+    }
     const indexPath = path.join(DIST_PATH, 'index.html');
     if (fs.existsSync(indexPath)) {
+        res.setHeader('Content-Type', 'text/html');
         res.sendFile(indexPath);
     }
     else {
