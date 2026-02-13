@@ -332,8 +332,8 @@ app.get('/api/resumen-general', (req, res) => {
         res.status(500).json({ error: 'Could not read resumen general data' });
     }
 });
-// SPA Fallback — only for routes without file extensions (not static assets)
-app.get('*', (req, res) => {
+// SPA Fallback — catch all unmatched routes and serve index.html
+app.use((req, res) => {
     if (req.path.startsWith('/api')) {
         return res.status(404).json({ error: 'API endpoint not found' });
     }
