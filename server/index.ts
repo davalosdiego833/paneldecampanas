@@ -83,7 +83,7 @@ const readExcelData = (folderName: string) => {
 
 // Endpoints
 app.get('/api/campaigns', (req, res) => {
-    const exclude = ['assets', 'themes', 'server', 'node_modules', 'src', 'public', '.git', 'dist', '.conda', 'administrador'];
+    const exclude = ['assets', 'themes', 'server', 'node_modules', 'src', 'public', '.git', 'dist', '.conda', 'administrador', 'tmp', '.cache', '.npm'];
     try {
         const folders = fs.readdirSync(BASE_PATH, { withFileTypes: true })
             .filter(dirent => dirent.isDirectory() && !exclude.includes(dirent.name) && !dirent.name.startsWith('.'))
@@ -96,7 +96,7 @@ app.get('/api/campaigns', (req, res) => {
 
 app.get('/api/advisors', (req, res) => {
     try {
-        const exclude = ['assets', 'themes', 'server', 'node_modules', 'src', 'public', '.git', 'dist', '.conda', 'administrador'];
+        const exclude = ['assets', 'themes', 'server', 'node_modules', 'src', 'public', '.git', 'dist', '.conda', 'administrador', 'tmp', '.cache', '.npm'];
         const folders = fs.readdirSync(BASE_PATH, { withFileTypes: true })
             .filter(dirent => dirent.isDirectory() && !exclude.includes(dirent.name) && !dirent.name.startsWith('.'))
             .map(dirent => dirent.name);
@@ -237,6 +237,18 @@ app.get('/api/campaigns/dates', (req, res) => {
     }
 });
 
+// Admin Password Verification
+app.post('/api/admin/verify-password', (req, res) => {
+    const { password } = req.body;
+    const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'Panel2043';
+
+    if (password === ADMIN_PASS) {
+        res.json({ success: true });
+    } else {
+        res.status(401).json({ success: false, error: 'Contraseña incorrecta' });
+    }
+});
+
 // Resumen General endpoint: reads resumen_general.xlsx with all 4 sheets
 app.get('/api/resumen-general', (req, res) => {
     try {
@@ -263,7 +275,7 @@ app.get('/api/resumen-general', (req, res) => {
                     const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
                     // Excel 2-digit year: if < 30 assume 2000s, else 1900s
                     const year = d.y < 100 ? (d.y < 30 ? 2000 + d.y : 1900 + d.y) : d.y;
-                    fechaCorte = `${months[d.m - 1]} ${year}`;
+                    fechaCorte = `${d.d} de ${months[d.m - 1]} de ${year}`;
                 }
             }
         }
