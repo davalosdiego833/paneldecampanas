@@ -141,17 +141,19 @@ const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggl
         { key: 'comparativo_vida', label: 'Comparativo de Vida', icon: <TrendingUp size={18} /> },
     ];
 
-    const fechaCorte = data?.fecha_corte || '';
     const sidebarLabel = gerenciaName || 'RESUMEN PROMOTORÍA';
 
     const renderContent = () => {
         if (loading) return <div style={{ textAlign: 'center', padding: '80px', color: 'var(--text-secondary)' }}>Cargando datos...</div>;
         if (!data) return <div style={{ textAlign: 'center', padding: '80px', color: 'var(--danger-red)' }}>Error al cargar datos</div>;
+
+        const sectionFecha = data.fechas_corte?.[section] || '';
+
         switch (section) {
-            case 'pagado_pendiente': return <PagadoPendiente data={filterData(data.pagado_pendiente)} fechaCorte={fechaCorte} />;
-            case 'asesores_sin_emision': return <AsesoresSinEmision data={filterData(data.asesores_sin_emision)} fechaCorte={fechaCorte} />;
-            case 'proactivos': return <Proactivos data={filterData(data.proactivos)} fechaCorte={fechaCorte} />;
-            case 'comparativo_vida': return <ComparativoVida data={filterData(data.comparativo_vida)} fechaCorte={fechaCorte} isGerencia={!!sucursalFilter && sucursalFilter.length > 0} />;
+            case 'pagado_pendiente': return <PagadoPendiente data={filterData(data.pagado_pendiente)} fechaCorte={sectionFecha} />;
+            case 'asesores_sin_emision': return <AsesoresSinEmision data={filterData(data.asesores_sin_emision)} fechaCorte={sectionFecha} />;
+            case 'proactivos': return <Proactivos data={filterData(data.proactivos)} fechaCorte={sectionFecha} />;
+            case 'comparativo_vida': return <ComparativoVida data={filterData(data.comparativo_vida)} fechaCorte={sectionFecha} isGerencia={!!sucursalFilter && sucursalFilter.length > 0} />;
         }
     };
 

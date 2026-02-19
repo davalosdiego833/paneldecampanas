@@ -239,28 +239,25 @@ app.get('/api/resumen-general', (req, res) => {
             return res.status(404).json({ error: 'resumen_general.xlsx not found' });
         }
         const workbook = XLSX.readFile(filePath);
-        const result = {};
-        // Extract cut-off date from cell A1 of the first sheet
-        const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-        const cellA1 = firstSheet?.['A1'];
-        let fechaCorte = '';
-        if (cellA1) {
-            if (cellA1.w) {
-                // Use the formatted value from Excel (e.g. "Feb-06")
-                fechaCorte = cellA1.w;
-            }
-            else if (cellA1.v) {
-                // Fallback: convert serial to date
-                const d = XLSX.SSF.parse_date_code(cellA1.v);
+        const result = { fechas_corte: {} };
+        const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        const formatA1Date = (worksheet) => {
+            const cellA1 = worksheet?.['A1'];
+            if (!cellA1)
+                return '';
+            const val = cellA1.v;
+            if (typeof val === 'number') {
+                const d = XLSX.SSF.parse_date_code(val);
                 if (d) {
-                    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-                    // Excel 2-digit year: if < 30 assume 2000s, else 1900s
                     const year = d.y < 100 ? (d.y < 30 ? 2000 + d.y : 1900 + d.y) : d.y;
-                    fechaCorte = `${d.d} de ${months[d.m - 1]} de ${year}`;
+                    return `${d.d} de ${months[d.m - 1]} de ${year}`;
                 }
             }
-        }
-        result['fecha_corte'] = fechaCorte;
+            else if (cellA1.w) {
+                return cellA1.w;
+            }
+            return String(val || '');
+        };
         // All sheets have a date in row 1, real headers in row 2, data from row 3
         const sheetConfigs = {
             'pagado_pendiente': 'pagado_pendiente',
@@ -272,8 +269,11 @@ app.get('/api/resumen-general', (req, res) => {
             const worksheet = workbook.Sheets[sheetName];
             if (!worksheet) {
                 result[key] = [];
+                result.fechas_corte[key] = '';
                 continue;
             }
+            // Extract date for this specific sheet
+            result.fechas_corte[key] = formatA1Date(worksheet);
             const allData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
             if (allData.length < 2) {
                 result[key] = [];
