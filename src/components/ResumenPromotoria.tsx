@@ -253,30 +253,30 @@ const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string }> = ({ data, 
 
     // Only count positive values as activity
     const totalPagadas = data.reduce((s: number, r: any) => s + Math.max(Number(r.Pólizas_Pagado) || 0, 0), 0);
-    const totalRIPagado = data.reduce((s: number, r: any) => { const v = Number(r.Recibo_Inicial_Pagado) || 0; return s + (v > 0 ? v : 0); }, 0);
+    const totalMontoPagado = data.reduce((s: number, r: any) => { const v = Number(r.Total_Pagado) || 0; return s + (v > 0 ? v : 0); }, 0);
     const totalPendientes = data.reduce((s: number, r: any) => s + Math.max(Number(r.Pólizas_Pendiente) || 0, 0), 0);
-    const totalRIPendiente = data.reduce((s: number, r: any) => { const v = Number(r.Recibo_Inicial_Pendiente) || 0; return s + (v > 0 ? v : 0); }, 0);
-    const asesoresConPago = data.filter((r: any) => Number(r.Pólizas_Pagado) > 0 || Number(r.Recibo_Inicial_Pagado) > 0).length;
-    const asesoresConPendiente = data.filter((r: any) => Number(r.Pólizas_Pendiente) > 0 || Number(r.Recibo_Inicial_Pendiente) > 0).length;
+    const totalMontoPendiente = data.reduce((s: number, r: any) => { const v = Number(r.Total_Pendiente) || 0; return s + (v > 0 ? v : 0); }, 0);
+    const asesoresConPago = data.filter((r: any) => Number(r.Pólizas_Pagado) > 0 || Number(r.Total_Pagado) > 0).length;
+    const asesoresConPendiente = data.filter((r: any) => Number(r.Pólizas_Pendiente) > 0 || Number(r.Total_Pendiente) > 0).length;
 
     const chartData = [
-        { name: 'Pagado', value: totalRIPagado, fill: CHART_COLORS.green },
-        { name: 'Pendiente', value: totalRIPendiente, fill: CHART_COLORS.yellow },
+        { name: 'Pagado', value: totalMontoPagado, fill: CHART_COLORS.green },
+        { name: 'Pendiente', value: totalMontoPendiente, fill: CHART_COLORS.yellow },
     ];
 
-    const topPendientes = [...data].filter((r: any) => Number(r.Recibo_Inicial_Pendiente) > 0).sort((a: any, b: any) => Number(b.Recibo_Inicial_Pendiente) - Number(a.Recibo_Inicial_Pendiente));
+    const topPendientes = [...data].filter((r: any) => Number(r.Total_Pendiente) > 0).sort((a: any, b: any) => Number(b.Total_Pendiente) - Number(a.Total_Pendiente));
 
-    const headers = ['#', 'Asesor', 'Suc', 'Pólizas Pagadas', 'RI Pagado', 'Pólizas Pendientes', 'RI Pendiente'];
-    // Only show positive activity (exclude negative RI values)
-    const rows = data.filter((r: any) => Number(r.Pólizas_Pagado) > 0 || Number(r.Pólizas_Pendiente) > 0 || Number(r.Recibo_Inicial_Pagado) > 0 || Number(r.Recibo_Inicial_Pendiente) > 0)
-        .sort((a: any, b: any) => Number(b.Recibo_Inicial_Pendiente) - Number(a.Recibo_Inicial_Pendiente))
+    const headers = ['#', 'Asesor', 'Suc', 'Pólizas Pagadas', 'Total Pagado', 'Pólizas Pendientes', 'Total Pendiente'];
+    // Only show positive activity
+    const rows = data.filter((r: any) => Number(r.Pólizas_Pagado) > 0 || Number(r.Pólizas_Pendiente) > 0 || Number(r.Total_Pagado) > 0 || Number(r.Total_Pendiente) > 0)
+        .sort((a: any, b: any) => Number(b.Total_Pendiente) - Number(a.Total_Pendiente))
         .map((r: any, i: number) => [
             i + 1, r['Nombre Asesor'] || r.Asesor, r.Sucursal,
-            fmtNum(r.Pólizas_Pagado), fmt(r.Recibo_Inicial_Pagado),
-            fmtNum(r.Pólizas_Pendiente), fmt(r.Recibo_Inicial_Pendiente),
+            fmtNum(r.Pólizas_Pagado), fmt(r.Total_Pagado),
+            fmtNum(r.Pólizas_Pendiente), fmt(r.Total_Pendiente),
         ]);
 
-    const zeroRows = data.filter((r: any) => Number(r.Pólizas_Pagado) === 0 && Number(r.Pólizas_Pendiente) === 0 && (Number(r.Recibo_Inicial_Pagado) || 0) <= 0 && (Number(r.Recibo_Inicial_Pendiente) || 0) <= 0)
+    const zeroRows = data.filter((r: any) => Number(r.Pólizas_Pagado) === 0 && Number(r.Pólizas_Pendiente) === 0 && (Number(r.Total_Pagado) || 0) <= 0 && (Number(r.Total_Pendiente) || 0) <= 0)
         .map((r: any, i: number) => [
             i + 1, r['Nombre Asesor'] || r.Asesor, r.Sucursal, '0', '$0', '0', '$0',
         ]);
@@ -293,13 +293,13 @@ const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string }> = ({ data, 
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
                 <KPICard title="Pólizas Pagadas" value={String(totalPagadas)} subtitle={`${asesoresConPago} asesores con pago`} color="#00E676" icon={<CheckCircle size={24} color="#00E676" />} />
-                <KPICard title="RI Pagado Total" value={fmt(totalRIPagado)} color="#00E676" icon={<DollarSign size={24} color="#00E676" />} />
+                <KPICard title="Total Pagado" value={fmt(totalMontoPagado)} color="#00E676" icon={<DollarSign size={24} color="#00E676" />} />
                 <KPICard title="Pólizas Pendientes" value={String(totalPendientes)} subtitle={`${asesoresConPendiente} asesores con pendiente`} color="#FFD93D" icon={<AlertTriangle size={24} color="#FFD93D" />} />
-                <KPICard title="RI Pendiente Total" value={fmt(totalRIPendiente)} color="#FF6B6B" icon={<DollarSign size={24} color="#FF6B6B" />} />
+                <KPICard title="Total Pendiente" value={fmt(totalMontoPendiente)} color="#FF6B6B" icon={<DollarSign size={24} color="#FF6B6B" />} />
             </div>
 
             <div className="glass-card" style={{ padding: '24px' }}>
-                <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '16px', color: 'var(--text-primary)' }}>📊 Distribución de Recibo Inicial</h3>
+                <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '16px', color: 'var(--text-primary)' }}>📊 Distribución Pagado vs Pendiente</h3>
                 <div style={{ display: 'flex', gap: '32px', alignItems: 'center', flexWrap: 'wrap' }}>
                     <div style={{ width: '260px', height: '260px' }}>
                         <ResponsiveContainer>
@@ -312,7 +312,7 @@ const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string }> = ({ data, 
                             {topPendientes.slice(0, 5).map((r: any, i: number) => (
                                 <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--glass-border)', fontSize: '0.85rem' }}>
                                     <span style={{ color: 'var(--text-primary)' }}>{r['Nombre Asesor']}</span>
-                                    <span style={{ fontWeight: 700, color: '#FF6B6B' }}>{fmt(r.Recibo_Inicial_Pendiente)}</span>
+                                    <span style={{ fontWeight: 700, color: '#FF6B6B' }}>{fmt(r.Total_Pendiente)}</span>
                                 </div>
                             ))}
                         </div>
