@@ -248,80 +248,144 @@ const SearchableTable: React.FC<{ title: string; headers: string[]; rows: any[][
 };
 
 /* ========== SECTION 1: PAGADO / PENDIENTE ========== */
+const SectionHeader: React.FC<{ label: string; color: string; icon: string }> = ({ label, color, icon }) => (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+        <span style={{ fontSize: '1.1rem' }}>{icon}</span>
+        <span style={{ fontSize: '0.85rem', fontWeight: 700, color, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label}</span>
+        <div style={{ flex: 1, height: '1px', background: color, opacity: 0.25 }} />
+    </div>
+);
+
 const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string }> = ({ data, fechaCorte }) => {
     if (!data || !data.length) return <div>No hay datos</div>;
 
-    // Only count positive values as activity
-    const totalPagadas = data.reduce((s: number, r: any) => s + Math.max(Number(r.Pólizas_Pagado) || 0, 0), 0);
-    const totalMontoPagado = data.reduce((s: number, r: any) => { const v = Number(r.Total_Pagado) || 0; return s + (v > 0 ? v : 0); }, 0);
-    const totalPendientes = data.reduce((s: number, r: any) => s + Math.max(Number(r.Pólizas_Pendiente) || 0, 0), 0);
-    const totalMontoPendiente = data.reduce((s: number, r: any) => { const v = Number(r.Total_Pendiente) || 0; return s + (v > 0 ? v : 0); }, 0);
-    const asesoresConPago = data.filter((r: any) => Number(r.Pólizas_Pagado) > 0 || Number(r.Total_Pagado) > 0).length;
-    const asesoresConPendiente = data.filter((r: any) => Number(r.Pólizas_Pendiente) > 0 || Number(r.Total_Pendiente) > 0).length;
+    // Column accessors (matching exact Excel column names including typos)
+    const get = (r: any, key: string) => Number(r[key]) || 0;
+    const polPag = (r: any) => get(r, 'Pólizas-Pagadas');
+    const riPag = (r: any) => get(r, 'Recibo_Inicial_Pagado');
+    const roPag = (r: any) => get(r, 'Recibo_Ordinario_Pagado');
+    const totalPag = (r: any) => get(r, 'Total _Prima_Pagada');
+    const polPend = (r: any) => get(r, 'Pólizas_Pendinetes');
+    const riPend = (r: any) => get(r, 'Recibo_Inicial_Pendiente');
+    const roPend = (r: any) => get(r, 'Recibo_Ordinario_Pendiente');
+    const totalPend = (r: any) => get(r, 'Total _Prima_Pendiente');
 
-    const chartData = [
-        { name: 'Pagado', value: totalMontoPagado, fill: CHART_COLORS.green },
-        { name: 'Pendiente', value: totalMontoPendiente, fill: CHART_COLORS.yellow },
+    // Totals
+    const sumPolPag = data.reduce((s, r) => s + Math.max(polPag(r), 0), 0);
+    const sumRiPag = data.reduce((s, r) => s + Math.max(riPag(r), 0), 0);
+    const sumRoPag = data.reduce((s, r) => s + Math.max(roPag(r), 0), 0);
+    const sumTotalPag = data.reduce((s, r) => s + Math.max(totalPag(r), 0), 0);
+
+    const sumPolPend = data.reduce((s, r) => s + Math.max(polPend(r), 0), 0);
+    const sumRiPend = data.reduce((s, r) => s + Math.max(riPend(r), 0), 0);
+    const sumRoPend = data.reduce((s, r) => s + Math.max(roPend(r), 0), 0);
+    const sumTotalPend = data.reduce((s, r) => s + Math.max(totalPend(r), 0), 0);
+
+    const asesoresConPago = data.filter(r => polPag(r) > 0 || totalPag(r) > 0).length;
+    const asesoresConPendiente = data.filter(r => polPend(r) > 0 || totalPend(r) > 0).length;
+
+    // Charts
+    const pieInicial = [
+        { name: 'Pagado', value: sumRiPag, fill: CHART_COLORS.green },
+        { name: 'Pendiente', value: sumRiPend, fill: CHART_COLORS.red },
+    ];
+    const pieOrdinario = [
+        { name: 'Pagado', value: sumRoPag, fill: CHART_COLORS.green },
+        { name: 'Pendiente', value: sumRoPend, fill: CHART_COLORS.yellow },
     ];
 
-    const topPendientes = [...data].filter((r: any) => Number(r.Total_Pendiente) > 0).sort((a: any, b: any) => Number(b.Total_Pendiente) - Number(a.Total_Pendiente));
+    // Top Pendientes by Recibo Inicial
+    const topPendientes = [...data].filter(r => riPend(r) > 0).sort((a, b) => riPend(b) - riPend(a));
 
-    const headers = ['#', 'Asesor', 'Suc', 'Pólizas Pagadas', 'Total Pagado', 'Pólizas Pendientes', 'Total Pendiente'];
-    // Only show positive activity
-    const rows = data.filter((r: any) => Number(r.Pólizas_Pagado) > 0 || Number(r.Pólizas_Pendiente) > 0 || Number(r.Total_Pagado) > 0 || Number(r.Total_Pendiente) > 0)
-        .sort((a: any, b: any) => Number(b.Total_Pendiente) - Number(a.Total_Pendiente))
-        .map((r: any, i: number) => [
-            i + 1, r['Nombre Asesor'] || r.Asesor, r.Sucursal,
-            fmtNum(r.Pólizas_Pagado), fmt(r.Total_Pagado),
-            fmtNum(r.Pólizas_Pendiente), fmt(r.Total_Pendiente),
-        ]);
+    // Tables
+    const pendHeaders = ['#', 'Asesor', 'Suc', 'Pólizas Pendientes', 'Recibo Inicial Pendiente'];
+    const pendRows = data.filter(r => polPend(r) > 0 || riPend(r) > 0)
+        .sort((a, b) => riPend(b) - riPend(a))
+        .map((r, i) => [i + 1, r['Nombre Asesor'], r.Sucursal, fmtNum(polPend(r)), fmt(riPend(r))]);
 
-    const zeroRows = data.filter((r: any) => Number(r.Pólizas_Pagado) === 0 && Number(r.Pólizas_Pendiente) === 0 && (Number(r.Total_Pagado) || 0) <= 0 && (Number(r.Total_Pendiente) || 0) <= 0)
-        .map((r: any, i: number) => [
-            i + 1, r['Nombre Asesor'] || r.Asesor, r.Sucursal, '0', '$0', '0', '$0',
-        ]);
+    const pagHeaders = ['#', 'Asesor', 'Suc', 'Pólizas Pagadas', 'Recibo Inicial Pagado'];
+    const pagRows = data.filter(r => polPag(r) > 0 || riPag(r) > 0)
+        .sort((a, b) => riPag(b) - riPag(a))
+        .map((r, i) => [i + 1, r['Nombre Asesor'], r.Sucursal, fmtNum(polPag(r)), fmt(riPag(r))]);
 
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+            {/* Header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px' }}>
                 <div>
                     <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '4px' }}>💰 Pagado / Pendiente</h2>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Resumen de pólizas pagadas y pendientes de la promotoría</p>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Desglose de recibos iniciales, ordinarios y totales</p>
                 </div>
                 <FechaCorte fecha={fechaCorte} />
             </div>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
-                <KPICard title="Pólizas Pagadas" value={String(totalPagadas)} subtitle={`${asesoresConPago} asesores con pago`} color="#00E676" icon={<CheckCircle size={24} color="#00E676" />} />
-                <KPICard title="Total Pagado" value={fmt(totalMontoPagado)} color="#00E676" icon={<DollarSign size={24} color="#00E676" />} />
-                <KPICard title="Pólizas Pendientes" value={String(totalPendientes)} subtitle={`${asesoresConPendiente} asesores con pendiente`} color="#FFD93D" icon={<AlertTriangle size={24} color="#FFD93D" />} />
-                <KPICard title="Total Pendiente" value={fmt(totalMontoPendiente)} color="#FF6B6B" icon={<DollarSign size={24} color="#FF6B6B" />} />
-            </div>
-
-            <div className="glass-card" style={{ padding: '24px' }}>
-                <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '16px', color: 'var(--text-primary)' }}>📊 Distribución Pagado vs Pendiente</h3>
-                <div style={{ display: 'flex', gap: '32px', alignItems: 'center', flexWrap: 'wrap' }}>
-                    <div style={{ width: '260px', height: '260px' }}>
-                        <ResponsiveContainer>
-                            <PieChart><Pie data={chartData} dataKey="value" cx="50%" cy="50%" outerRadius={100} strokeWidth={2}>{chartData.map((entry, i) => <Cell key={i} fill={entry.fill} />)}</Pie><Tooltip formatter={(v: any) => fmt(v)} /><Legend /></PieChart>
-                        </ResponsiveContainer>
-                    </div>
-                    {topPendientes.length > 0 && (
-                        <div style={{ flex: 1, minWidth: '250px' }}>
-                            <h4 style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: '12px' }}>🔴 Top Pendientes</h4>
-                            {topPendientes.slice(0, 5).map((r: any, i: number) => (
-                                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--glass-border)', fontSize: '0.85rem' }}>
-                                    <span style={{ color: 'var(--text-primary)' }}>{r['Nombre Asesor']}</span>
-                                    <span style={{ fontWeight: 700, color: '#FF6B6B' }}>{fmt(r.Total_Pendiente)}</span>
-                                </div>
-                            ))}
-                        </div>
-                    )}
+            {/* ── SECCIÓN PAGADO ── */}
+            <div className="glass-card" style={{ padding: '24px', borderLeft: '4px solid #00E676' }}>
+                <SectionHeader label="Pagado" color="#00E676" icon="✅" />
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
+                    <KPICard title="Pólizas Pagadas" value={String(sumPolPag)} subtitle={`${asesoresConPago} asesores`} color="#00E676" icon={<CheckCircle size={22} color="#00E676" />} />
+                    <KPICard title="Recibo Inicial" value={fmt(sumRiPag)} color="#00E676" icon={<DollarSign size={22} color="#00E676" />} />
+                    <KPICard title="Recibo Ordinario" value={fmt(sumRoPag)} color="#42A5F5" icon={<TrendingUp size={22} color="#42A5F5" />} />
+                    <KPICard title="Total Prima Pagada" value={fmt(sumTotalPag)} color="#00E676" icon={<DollarSign size={22} color="#00E676" />} />
                 </div>
             </div>
 
-            {rows.length > 0 && <SearchableTable title="📋 Asesores con Actividad" headers={headers} rows={rows} />}
-            {zeroRows.length > 0 && <SearchableTable title={`⚪ Asesores sin Actividad (${zeroRows.length})`} headers={headers} rows={zeroRows} />}
+            {/* ── SECCIÓN PENDIENTE ── */}
+            <div className="glass-card" style={{ padding: '24px', borderLeft: '4px solid #FF6B6B' }}>
+                <SectionHeader label="Pendiente" color="#FF6B6B" icon="⚠️" />
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
+                    <KPICard title="Pólizas Pendientes" value={String(sumPolPend)} subtitle={`${asesoresConPendiente} asesores`} color="#FF6B6B" icon={<AlertTriangle size={22} color="#FF6B6B" />} />
+                    <KPICard title="Recibo Inicial" value={fmt(sumRiPend)} color="#FF6B6B" icon={<DollarSign size={22} color="#FF6B6B" />} />
+                    <KPICard title="Recibo Ordinario" value={fmt(sumRoPend)} color="#FFD93D" icon={<TrendingUp size={22} color="#FFD93D" />} />
+                    <KPICard title="Total Prima Pendiente" value={fmt(sumTotalPend)} color="#FF6B6B" icon={<DollarSign size={22} color="#FF6B6B" />} />
+                </div>
+            </div>
+
+            {/* ── GRÁFICAS ── */}
+            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+                {/* Pie Recibo Inicial */}
+                <div className="glass-card" style={{ padding: '24px', flex: '1 1 320px' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '12px', color: 'var(--text-primary)' }}>📊 Recibo Inicial — Pagado vs Pendiente</h3>
+                    <div style={{ height: '260px' }}>
+                        <ResponsiveContainer>
+                            <PieChart><Pie data={pieInicial} dataKey="value" cx="50%" cy="50%" outerRadius={95} strokeWidth={2}>{pieInicial.map((e, i) => <Cell key={i} fill={e.fill} />)}</Pie><Tooltip formatter={(v: any) => fmt(v)} /><Legend /></PieChart>
+                        </ResponsiveContainer>
+                    </div>
+                </div>
+                {/* Pie Recibo Ordinario */}
+                <div className="glass-card" style={{ padding: '24px', flex: '1 1 320px' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '12px', color: 'var(--text-primary)' }}>📊 Recibo Ordinario — Pagado vs Pendiente</h3>
+                    <div style={{ height: '260px' }}>
+                        <ResponsiveContainer>
+                            <PieChart><Pie data={pieOrdinario} dataKey="value" cx="50%" cy="50%" outerRadius={95} strokeWidth={2}>{pieOrdinario.map((e, i) => <Cell key={i} fill={e.fill} />)}</Pie><Tooltip formatter={(v: any) => fmt(v)} /><Legend /></PieChart>
+                        </ResponsiveContainer>
+                    </div>
+                </div>
+            </div>
+
+            {/* ── TOP 5 PENDIENTES (Recibo Inicial) ── */}
+            {topPendientes.length > 0 && (
+                <div className="glass-card" style={{ padding: '24px' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '16px', color: 'var(--text-primary)' }}>🔴 Top 5 — Mayor Recibo Inicial Pendiente</h3>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+                        {topPendientes.slice(0, 5).map((r: any, i: number) => (
+                            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px', borderBottom: '1px solid var(--glass-border)', fontSize: '0.9rem' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                    <span style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'rgba(255,107,107,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 800, color: '#FF6B6B' }}>{i + 1}</span>
+                                    <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>{r['Nombre Asesor']}</span>
+                                </div>
+                                <span style={{ fontWeight: 700, color: '#FF6B6B', fontSize: '1rem' }}>{fmt(riPend(r))}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {/* ── TABLA: Asesores con Pólizas Pendientes ── */}
+            {pendRows.length > 0 && <SearchableTable title={`⚠️ Asesores con Pólizas Pendientes (${pendRows.length})`} headers={pendHeaders} rows={pendRows} />}
+
+            {/* ── TABLA: Asesores con Pólizas Pagadas ── */}
+            {pagRows.length > 0 && <SearchableTable title={`✅ Asesores con Pólizas Pagadas (${pagRows.length})`} headers={pagHeaders} rows={pagRows} />}
         </motion.div>
     );
 };
