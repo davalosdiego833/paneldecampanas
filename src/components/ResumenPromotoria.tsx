@@ -386,6 +386,15 @@ const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string }> = ({ data, 
 
             {/* ── TABLA: Asesores con Pólizas Pagadas ── */}
             {pagRows.length > 0 && <SearchableTable title={`✅ Asesores con Pólizas Pagadas (${pagRows.length})`} headers={pagHeaders} rows={pagRows} />}
+
+            {/* ── TABLA: Asesores sin Actividad ── */}
+            {(() => {
+                const sinActRows = data.filter(r => polPag(r) <= 0 && polPend(r) <= 0 && riPag(r) <= 0 && riPend(r) <= 0)
+                    .map((r, i) => [i + 1, r['Nombre Asesor'], r.Sucursal]);
+                return sinActRows.length > 0 ? (
+                    <SearchableTable title={`⚪ Asesores sin Actividad (${sinActRows.length})`} headers={['#', 'Asesor', 'Suc']} rows={sinActRows} />
+                ) : null;
+            })()}
         </motion.div>
     );
 };
