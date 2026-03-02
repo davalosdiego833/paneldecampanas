@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Sun, Moon, LogOut, ArrowLeft, DollarSign, Users, TrendingUp, Activity, AlertTriangle, CheckCircle, XCircle, Search, Calendar } from 'lucide-react';
+import { Sun, Moon, LogOut, ArrowLeft, DollarSign, Users, TrendingUp, Activity, AlertTriangle, CheckCircle, XCircle, Search, Calendar, Shield } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
+import EstatusPolizasContent from './EstatusPolizas';
 
 interface Props {
     onBack: () => void;
@@ -12,7 +13,7 @@ interface Props {
     gerenciaName?: string;
 }
 
-type Section = 'pagado_pendiente' | 'asesores_sin_emision' | 'proactivos' | 'comparativo_vida';
+type Section = 'pagado_pendiente' | 'asesores_sin_emision' | 'proactivos' | 'comparativo_vida' | 'estatus_polizas';
 
 const fmt = (n: number | null | undefined) => {
     if (n == null || isNaN(Number(n))) return '$0';
@@ -139,11 +140,15 @@ const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggl
         { key: 'asesores_sin_emision', label: 'Asesores sin Emisión', icon: <AlertTriangle size={18} /> },
         { key: 'proactivos', label: 'Proactivos', icon: <Activity size={18} /> },
         { key: 'comparativo_vida', label: 'Comparativo de Vida', icon: <TrendingUp size={18} /> },
+        { key: 'estatus_polizas', label: 'Estatus Pólizas', icon: <Shield size={18} /> },
     ];
 
     const sidebarLabel = gerenciaName || 'RESUMEN PROMOTORÍA';
 
     const renderContent = () => {
+        // Estatus Pólizas manages its own data loading, render it independently
+        if (section === 'estatus_polizas') return <EstatusPolizasContent />;
+
         if (loading) return <div style={{ textAlign: 'center', padding: '80px', color: 'var(--text-secondary)' }}>Cargando datos...</div>;
         if (!data) return <div style={{ textAlign: 'center', padding: '80px', color: 'var(--danger-red)' }}>Error al cargar datos</div>;
 

@@ -1,0 +1,1615 @@
+{
+    "fecha_extraccion": "2026-03-02",
+    "asesores": [
+        {
+            "nombre": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+            "clave": "47116",
+            "total_polizas": 229,
+            "polizas": [
+                {
+                    "poliza": "VI0002926466",
+                    "contratante": "AARON MUÑOZ FLORES",
+                    "asegurado": "AARON MUÑOZ FLORES",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000665828",
+                    "contratante": "ADELMA ANGELICA LARA SALAZAR",
+                    "asegurado": "ADELMA ANGELICA LARA SALAZAR",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000619690",
+                    "contratante": "ADRIANA AMILETH GALLEGOS AQUINO",
+                    "asegurado": "ADRIANA AMILETH GALLEGOS AQUINO",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002766657",
+                    "contratante": "ADRIANA AMILETH GALLEGOS AQUINO",
+                    "asegurado": "ADRIANA AMILETH GALLEGOS AQUINO",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002676188",
+                    "contratante": "ADRIANA AMILETH GALLEGOS AQUINO",
+                    "asegurado": "ADRIANA AMILETH GALLEGOS AQUINO",
+                    "producto": "VIDA MUJER",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002676109",
+                    "contratante": "AIDEE FABIOLA QUINTERO LARA",
+                    "asegurado": "AIDEE FABIOLA QUINTERO LARA",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002972217",
+                    "contratante": "AIDEE FABIOLA QUINTERO LARA",
+                    "asegurado": "AIDEE FABIOLA QUINTERO LARA",
+                    "producto": "IMAGINA SER 65 PAGOS LIMITADOS 15",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002634401",
+                    "contratante": "AIDEE FABIOLA QUINTERO LARA",
+                    "asegurado": "AIDEE FABIOLA QUINTERO LARA",
+                    "producto": "VIDA MUJER",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000687972",
+                    "contratante": "AILEEN AIDEE QUINTAL MOO",
+                    "asegurado": "AILEEN AIDEE QUINTAL MOO",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002886544",
+                    "contratante": "AILEEN AIDEE QUINTAL MOO",
+                    "asegurado": "AILEEN AIDEE QUINTAL MOO",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000731266",
+                    "contratante": "ALAN HERNANDEZ GUERRERO",
+                    "asegurado": "ALAN HERNANDEZ GUERRERO",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000591449",
+                    "contratante": "ALEJANDRINA DE JESUS DIAZ FUENTE",
+                    "asegurado": "ALEJANDRINA DE JESUS DIAZ FUENTE",
+                    "producto": "INTEGRO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002781313",
+                    "contratante": "ALEJANDRO ABDI MEDINA DE LA ROSA",
+                    "asegurado": "ALEJANDRO ABDI MEDINA DE LA ROSA",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000647006",
+                    "contratante": "ALEJANDRO ADONAI VELEZ BERROA",
+                    "asegurado": "ALEJANDRO ADONAI VELEZ BERROA",
+                    "producto": "ALFA MEDICAL FLEX A",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002725549",
+                    "contratante": "ALEJANDRO GABRIEL ROSAS SUAREZ",
+                    "asegurado": "ALEJANDRO GABRIEL ROSAS SUAREZ",
+                    "producto": "TEMPORAL 5 RENOVABLE STAR NUEVO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002895971",
+                    "contratante": "ALEJANDRO GABRIEL ROSAS SUAREZ",
+                    "asegurado": "ALEJANDRO GABRIEL ROSAS SUAREZ",
+                    "producto": "TEMPORAL 5 RENOVABLE STAR NUEVO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002895754",
+                    "contratante": "ALEJANDRO GABRIEL ROSAS SUAREZ",
+                    "asegurado": "ALEJANDRO GABRIEL ROSAS SUAREZ",
+                    "producto": "TEMPORAL 5 RENOVABLE STAR NUEVO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000470769",
+                    "contratante": "ALEJANDRO RODRIGO ALEMAN NAVA",
+                    "asegurado": "ALEJANDRO RODRIGO ALEMAN NAVA",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002878284",
+                    "contratante": "ALEJANDRO RODRIGO ALEMAN NAVA",
+                    "asegurado": "PAULO ALEMAN CURIEL",
+                    "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002568437",
+                    "contratante": "ALEJANDRO RODRIGO ALEMAN NAVA",
+                    "asegurado": "ALEJANDRO RODRIGO ALEMAN NAVA",
+                    "producto": "SE ADAPTA",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002651418",
+                    "contratante": "ALEJANDRO RODRIGO ALEMAN NAVA",
+                    "asegurado": "ALEJANDRO RODRIGO ALEMAN NAVA",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000125190",
+                    "contratante": "ALMA ROSA NOVELO TREJO",
+                    "asegurado": "ANDREA RODRIGUEZ NOVELO",
+                    "producto": "PRACTICO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000720527",
+                    "contratante": "ALMA ROSA NOVELO TREJO",
+                    "asegurado": "ERIKA GISELLE RODRIGUEZ NOVELO",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000720334",
+                    "contratante": "ALMA ROSA NOVELO TREJO",
+                    "asegurado": "VANESSA RODRIGUEZ NOVELO",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000655253",
+                    "contratante": "AMSY LORENA VALDEZ MARTINEZ",
+                    "asegurado": "AMSY LORENA VALDEZ MARTINEZ",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002825741",
+                    "contratante": "ANA DIANEL DE LA FUENTE LOPEZ",
+                    "asegurado": "ANA DIANEL DE LA FUENTE LOPEZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000652159",
+                    "contratante": "ANA DIANEL DE LA FUENTE LOPEZ",
+                    "asegurado": "ANA DIANEL DE LA FUENTE LOPEZ",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002644688",
+                    "contratante": "ANDREA GEORGINA CEDILLO FUENTE",
+                    "asegurado": "ANDREA GEORGINA CEDILLO FUENTE",
+                    "producto": "VIDA MUJER",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000621855",
+                    "contratante": "ANDREA GEORGINA CEDILLO FUENTE",
+                    "asegurado": "ANDREA GEORGINA CEDILLO FUENTE",
+                    "producto": "INTEGRO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002708107",
+                    "contratante": "ANDREA TORNERO JIMENEZ",
+                    "asegurado": "ANDREA TORNERO JIMENEZ",
+                    "producto": "VIDA MUJER",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000546275",
+                    "contratante": "ANDRES SUAREZ BAQUEDANO",
+                    "asegurado": "ANDRES SUAREZ BAQUEDANO",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000671121",
+                    "contratante": "ANEL GARCIA GUTIERREZ",
+                    "asegurado": "ANEL GARCIA GUTIERREZ",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000668551",
+                    "contratante": "ANEL MARCELA MADRUEÑO CUADROS",
+                    "asegurado": "ANEL MARCELA MADRUEÑO CUADROS",
+                    "producto": "PRACTICO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002808726",
+                    "contratante": "ANGEL LOPEZ MONTIEL",
+                    "asegurado": "ANGEL LOPEZ MONTIEL",
+                    "producto": "IMAGINA SER 60",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000739189",
+                    "contratante": "ANGEL OMAR VELASCO REYES",
+                    "asegurado": "ANGEL OMAR VELASCO REYES",
+                    "producto": "PRACTICO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000654925",
+                    "contratante": "ANGELINA INGRID ROBLEDO MARTINEZ",
+                    "asegurado": "ANGELINA INGRID ROBLEDO MARTINEZ",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002905749",
+                    "contratante": "ANGELINA INGRID ROBLEDO MARTINEZ",
+                    "asegurado": "ANGELINA INGRID ROBLEDO MARTINEZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000643100",
+                    "contratante": "ANTONIO CAMARA PECH",
+                    "asegurado": "ANTONIO CAMARA PECH",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002936152",
+                    "contratante": "ANTONIO MANUEL ORTEGA GUERRERO",
+                    "asegurado": "ANTONIO MANUEL ORTEGA GUERRERO",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000609536",
+                    "contratante": "ARANTZA YESIRANI MATA ULIN",
+                    "asegurado": "ARANTZA YESIRANI MATA ULIN",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002843670",
+                    "contratante": "ARANTZA YESIRANI MATA ULIN",
+                    "asegurado": "ARANTZA YESIRANI MATA ULIN",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002923639",
+                    "contratante": "ARANTZAZU ALEJANDRA MARTINEZ TRUJILLO",
+                    "asegurado": "ARANTZAZU ALEJANDRA MARTINEZ TRUJILLO",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000708085",
+                    "contratante": "ARANTZAZU ALEJANDRA MARTINEZ TRUJILLO",
+                    "asegurado": "ARANTZAZU ALEJANDRA MARTINEZ TRUJILLO",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002940027",
+                    "contratante": "ARIANA ARCOS RODRIGUEZ",
+                    "asegurado": "ARIANA ARCOS RODRIGUEZ",
+                    "producto": "IMAGINA SER 65 PAGOS LIMITADOS 15",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000670229",
+                    "contratante": "ARIANA ARCOS RODRIGUEZ",
+                    "asegurado": "ARIANA ARCOS RODRIGUEZ",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002940016",
+                    "contratante": "ARIANA ARCOS RODRIGUEZ",
+                    "asegurado": "ARIANA ARCOS RODRIGUEZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000673694",
+                    "contratante": "ARTURO ALEJANDRO JIMENEZ RODRIGUEZ",
+                    "asegurado": "ARTURO ALEJANDRO JIMENEZ RODRIGUEZ",
+                    "producto": "PLENO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000677460",
+                    "contratante": "ARTURO ALEJANDRO JIMENEZ RODRIGUEZ",
+                    "asegurado": "ABIGAIL CANUL GARCIA",
+                    "producto": "PLENO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000617604",
+                    "contratante": "ARTURO GERARDO MACIAS ESCAMILLA",
+                    "asegurado": "ARTURO GERARDO MACIAS ESCAMILLA",
+                    "producto": "INTEGRO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000655780",
+                    "contratante": "BLANCA GUADALUPE TREJO JIMENEZ",
+                    "asegurado": "BLANCA GUADALUPE TREJO JIMENEZ",
+                    "producto": "INTEGRO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002830164",
+                    "contratante": "BLANCA GUADALUPE TREJO JIMENEZ",
+                    "asegurado": "BLANCA GUADALUPE TREJO JIMENEZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000651986",
+                    "contratante": "BRENDA ODILIA SALAZAR SAENZ",
+                    "asegurado": "BRENDA ODILIA SALAZAR SAENZ",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000680495",
+                    "contratante": "CARLOS PEDRO PENICHE ROSADO",
+                    "asegurado": "ANDREA GUADALUPE CACERES RAMON",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002693748",
+                    "contratante": "CAROLINA KU EK",
+                    "asegurado": "CAROLINA KU EK",
+                    "producto": "ORVI 99-20 PAGOS UDIS",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002891882",
+                    "contratante": "CHRISTIAN ADOLFO AVALOS URIBE",
+                    "asegurado": "CHRISTIAN ADOLFO AVALOS URIBE",
+                    "producto": "TEMPORAL 5 RENOVABLE STAR NUEVO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000643248",
+                    "contratante": "CHRISTIAN ADOLFO AVALOS URIBE",
+                    "asegurado": "DANIELA JEREZANO GOMEZ",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000617712",
+                    "contratante": "CHRISTIAN ADOLFO AVALOS URIBE",
+                    "asegurado": "CHRISTIAN ADOLFO AVALOS URIBE",
+                    "producto": "INTEGRO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000671414",
+                    "contratante": "CHRISTIAN EDUARDO AGUILAR GUTIERREZ",
+                    "asegurado": "CHRISTIAN EDUARDO AGUILAR GUTIERREZ",
+                    "producto": "INTEGRO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000730124",
+                    "contratante": "CITLALLI TAPETILLO DIAZ",
+                    "asegurado": "CITLALLI TAPETILLO DIAZ",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002956730",
+                    "contratante": "CITLALLI TAPETILLO DIAZ",
+                    "asegurado": "CITLALLI TAPETILLO DIAZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000578214",
+                    "contratante": "CORPORATIVO EMPRENDEDOR YAWA SA DE CV",
+                    "asegurado": "ENRIQUE ALEJANDRO ALVAREZ GONZALEZ",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000577555",
+                    "contratante": "CORPORATIVO EMPRENDEDOR YAWA SA DE CV",
+                    "asegurado": "LUZ KARIME ALMANZA BARON",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002946590",
+                    "contratante": "CRISTINA ESTHER LOPEZ RAMON",
+                    "asegurado": "CRISTINA ESTHER LOPEZ RAMON",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000717826",
+                    "contratante": "CRISTINA ESTHER LOPEZ RAMON",
+                    "asegurado": "CRISTINA ESTHER LOPEZ RAMON",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002767347",
+                    "contratante": "DAFNE MEDINA LATORRE",
+                    "asegurado": "DAFNE MEDINA LATORRE",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000591526",
+                    "contratante": "DANIEL DIAZ ESPINOSA",
+                    "asegurado": "DANIEL DIAZ ESPINOSA",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000655083",
+                    "contratante": "DANIEL FERNANDEZ DIAZ",
+                    "asegurado": "DANIEL FERNANDEZ DIAZ",
+                    "producto": "PRACTICO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002742921",
+                    "contratante": "DANIEL QUINTAL GUTIERREZ",
+                    "asegurado": "DANIEL QUINTAL GUTIERREZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000659063",
+                    "contratante": "DANIELA JEREZANO GOMEZ",
+                    "asegurado": "JOSE EDUARDO JEREZANO GOMEZ",
+                    "producto": "INTEGRO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000587680",
+                    "contratante": "DAVID ERNESTO BACELIS EUAN",
+                    "asegurado": "DAVID ERNESTO BACELIS EUAN",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002710131",
+                    "contratante": "DAVID ERNESTO BACELIS EUAN",
+                    "asegurado": "DAVID ERNESTO BACELIS EUAN",
+                    "producto": "NUEVO PLENITUD 60",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000684743",
+                    "contratante": "DAVID GONZALEZ SANTIESTEBAN",
+                    "asegurado": "SARA GUTIERREZ PLATA",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000665047",
+                    "contratante": "DIANA ESTEFANI BASTIAN SIFRI",
+                    "asegurado": "DIANA ESTEFANI BASTIAN SIFRI",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002718131",
+                    "contratante": "DIANA MONTSERRAT DEL RIO GOMEZ",
+                    "asegurado": "DIANA MONTSERRAT DEL RIO GOMEZ",
+                    "producto": "VIDA MUJER",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000732112",
+                    "contratante": "DIEGO AUGUSTO AMARO LEAL",
+                    "asegurado": "DIEGO AUGUSTO AMARO LEAL",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002961672",
+                    "contratante": "DIEGO AUGUSTO AMARO LEAL",
+                    "asegurado": "DIEGO AUGUSTO AMARO LEAL",
+                    "producto": "IMAGINA SER 65 PAGOS LIMITADOS 15",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002961653",
+                    "contratante": "DIEGO AUGUSTO AMARO LEAL",
+                    "asegurado": "DIEGO AUGUSTO AMARO LEAL",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000688066",
+                    "contratante": "DIEGO EMMANUEL HUCHIN HERRERA",
+                    "asegurado": "DIEGO EMMANUEL HUCHIN HERRERA",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002886607",
+                    "contratante": "DIEGO EMMANUEL HUCHIN HERRERA",
+                    "asegurado": "DIEGO EMMANUEL HUCHIN HERRERA",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002668715",
+                    "contratante": "DISTRIBUIDORA DEL MAR NAVIR S DE RL DE CV",
+                    "asegurado": "DAVID VIRGEN CARRILLO",
+                    "producto": "ORVI 99 10 UDIS",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000706049",
+                    "contratante": "EDGAR EDUARDO VILLAFUERTE LOPEZ",
+                    "asegurado": "EDGAR EDUARDO VILLAFUERTE LOPEZ",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002914718",
+                    "contratante": "EDGAR EDUARDO VILLAFUERTE LOPEZ",
+                    "asegurado": "EDGAR EDUARDO VILLAFUERTE LOPEZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000583174",
+                    "contratante": "ELISA BEATRIZ BAQUEDANO ARCE",
+                    "asegurado": "ELISA BEATRIZ BAQUEDANO ARCE",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002832199",
+                    "contratante": "ELIZABETH ROSAS PARRA",
+                    "asegurado": "ELIZABETH ROSAS PARRA",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000722267",
+                    "contratante": "EMMANUEL JIMENEZ COLMENERO",
+                    "asegurado": "EMMANUEL JIMENEZ COLMENERO",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000618792",
+                    "contratante": "EMMANUEL JIMENEZ COLMENERO",
+                    "asegurado": "EMMANUEL JIMENEZ COLMENERO",
+                    "producto": "PLENO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002682322",
+                    "contratante": "ENRIQUE ALEJANDRO ALVAREZ GONZALEZ",
+                    "asegurado": "ENRIQUE ALEJANDRO ALVAREZ GONZALEZ",
+                    "producto": "ORVI 99 15 PAGOS",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000597303",
+                    "contratante": "ERIKA GUZMAN MAYORAL",
+                    "asegurado": "ERIKA GUZMAN MAYORAL",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000651183",
+                    "contratante": "ESMERALDA DE LOS MILAGROS JEREZANO GOMEZ",
+                    "asegurado": "ESMERALDA DE LOS MILAGROS JEREZANO GOMEZ",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002920352",
+                    "contratante": "ESTEFANY OMILU TORAYA FUENTE",
+                    "asegurado": "ESTEFANY OMILU TORAYA FUENTE",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000364701",
+                    "contratante": "ESTEFANY OMILU TORAYA FUENTE",
+                    "asegurado": "ESTEFANY OMILU TORAYA FUENTE",
+                    "producto": "ALFA MEDICAL FLEX A",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000620382",
+                    "contratante": "FABIAN MISAEL GOMEZ VALDEZ",
+                    "asegurado": "FABIAN MISAEL GOMEZ VALDEZ",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000667592",
+                    "contratante": "FELIPE ERNESTO BASTIAN SIFRI",
+                    "asegurado": "FELIPE ERNESTO BASTIAN SIFRI",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000600710",
+                    "contratante": "FELIPE NAVA VAZQUEZ",
+                    "asegurado": "FELIPE NAVA VAZQUEZ",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000640306",
+                    "contratante": "FERNANDO RODRIGUEZ SOLANA",
+                    "asegurado": "FERNANDO RODRIGUEZ SOLANA",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002861766",
+                    "contratante": "FERNANDO RODRIGUEZ SOLANA",
+                    "asegurado": "FERNANDO RODRIGUEZ SOLANA",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000637840",
+                    "contratante": "FILIBERTO LUCIANO LARA",
+                    "asegurado": "FILIBERTO LUCIANO LARA",
+                    "producto": "PLENO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000591502",
+                    "contratante": "FLOR DE MARIA ESPINOSA ESCOBEDO",
+                    "asegurado": "FLOR DE MARIA ESPINOSA ESCOBEDO",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000659940",
+                    "contratante": "FRANCISCO JAVIER MATA LEAL",
+                    "asegurado": "DANA KARENA MATA ULIN",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000659976",
+                    "contratante": "FRANCISCO JAVIER MATA LEAL",
+                    "asegurado": "FRANCISCO JAVIER MATA LEAL",
+                    "producto": "PLENO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000642117",
+                    "contratante": "GENNY DEL ROCIO CAMARA EK",
+                    "asegurado": "GENNY DEL ROCIO CAMARA EK",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002802248",
+                    "contratante": "GENNY DEL ROCIO CAMARA EK",
+                    "asegurado": "GENNY DEL ROCIO CAMARA EK",
+                    "producto": "VIDA MUJER",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000698938",
+                    "contratante": "GERARDO LOPEZ NAJERA",
+                    "asegurado": "GERARDO LOPEZ NAJERA",
+                    "producto": "PRACTICO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002949291",
+                    "contratante": "GERMAN ENRIQUE ALEMAN NAVA",
+                    "asegurado": "GERMAN ENRIQUE ALEMAN NAVA",
+                    "producto": "IMAGINA SER 65 PAGOS LIMITADOS 15",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000618756",
+                    "contratante": "GERMAN ENRIQUE ALEMAN NAVA",
+                    "asegurado": "ANGELICA DIAZ GUZMAN",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002706880",
+                    "contratante": "GISELA GARCIA SANCHEZ",
+                    "asegurado": "GISELA GARCIA SANCHEZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000597938",
+                    "contratante": "GISELLE CAROLINA HERRERA RODRIGUEZ",
+                    "asegurado": "GISELLE CAROLINA HERRERA RODRIGUEZ",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002756592",
+                    "contratante": "GISELLE CAROLINA HERRERA RODRIGUEZ",
+                    "asegurado": "GISELLE CAROLINA HERRERA RODRIGUEZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002668637",
+                    "contratante": "GUADALUPE MONSERAT VIRGEN GALLARDO",
+                    "asegurado": "GUADALUPE MONSERAT VIRGEN GALLARDO",
+                    "producto": "NUEVO PLENITUD 55 15",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000714097",
+                    "contratante": "GUILLERMO ALBERTO BARBOSA GONZALEZ",
+                    "asegurado": "JESSICA VALERIA GONZALEZ BARBOSA",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000740148",
+                    "contratante": "GUILLERMO TRUJILLO VALLEJO",
+                    "asegurado": "IVANNA SOPHIA TRUJILLO MENDOZA",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000620266",
+                    "contratante": "HECTOR ALBERTO EUAN UICAB",
+                    "asegurado": "HECTOR ALBERTO EUAN UICAB",
+                    "producto": "PLENO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000656210",
+                    "contratante": "HECTOR OMAR ORTIZ GARCIA",
+                    "asegurado": "HECTOR OMAR ORTIZ GARCIA",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002872560",
+                    "contratante": "HECTOR VALENCIA ALVARADO",
+                    "asegurado": "NATALIA VALENCIA ROSALES",
+                    "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002917578",
+                    "contratante": "HECTOR VALENCIA ALVARADO",
+                    "asegurado": "HECTOR VALENCIA ALVARADO",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000705339",
+                    "contratante": "HUGO ZEFERINO MORALES",
+                    "asegurado": "FERNANDA ZEFERINO RIVERA",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002920695",
+                    "contratante": "HUGO ZEFERINO MORALES",
+                    "asegurado": "HUGO ZEFERINO MORALES",
+                    "producto": "ORVI 99 15 PAGOS",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002917360",
+                    "contratante": "HUGO ZEFERINO MORALES",
+                    "asegurado": "HUGO ZEFERINO MORALES",
+                    "producto": "ORVI 99 15 PAGOS",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000718432",
+                    "contratante": "ILSE YERENDI HERNANDEZ CRUZ",
+                    "asegurado": "ILSE YERENDI HERNANDEZ CRUZ",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000717605",
+                    "contratante": "ILSE YERENDI HERNANDEZ CRUZ",
+                    "asegurado": "ILSE YERENDI HERNANDEZ CRUZ",
+                    "producto": "PLENO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002920662",
+                    "contratante": "INDRA YANIRA HERNANDEZ GOMEZ",
+                    "asegurado": "INDRA YANIRA HERNANDEZ GOMEZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000404496",
+                    "contratante": "ITZAYANI LOMELI PARTIDA",
+                    "asegurado": "ITZAYANI LOMELI PARTIDA",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002844594",
+                    "contratante": "ITZEL ARELI HERNANDEZ CRUZ",
+                    "asegurado": "ITZEL ARELI HERNANDEZ CRUZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000666207",
+                    "contratante": "ITZEL ARELI HERNANDEZ CRUZ",
+                    "asegurado": "ITZEL ARELI HERNANDEZ CRUZ",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000646515",
+                    "contratante": "ITZEL GUADALUPE CAMPOS VALENCIA",
+                    "asegurado": "ITZEL GUADALUPE CAMPOS VALENCIA",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000627332",
+                    "contratante": "JESSICA ALINE ORTIZ MIRANDA",
+                    "asegurado": "JESSICA ALINE ORTIZ MIRANDA",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002921492",
+                    "contratante": "JORGE ANDRES AGUIRRE ROSALES",
+                    "asegurado": "JORGE ANDRES AGUIRRE ROSALES",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000709492",
+                    "contratante": "JORGE ANDRES AGUIRRE ROSALES",
+                    "asegurado": "JORGE ANDRES AGUIRRE ROSALES",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000702144",
+                    "contratante": "JORGE ARMANDO BETANCOURT GARCIA",
+                    "asegurado": "JORGE ARMANDO BETANCOURT GARCIA",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002861710",
+                    "contratante": "JORGE ARTURO PERALES OLIVA",
+                    "asegurado": "JORGE ARTURO PERALES OLIVA",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000721572",
+                    "contratante": "JORGE RAUL MENDOZA CONTRERAS",
+                    "asegurado": "JORGE RAUL MENDOZA CONTRERAS",
+                    "producto": "PRACTICO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000732895",
+                    "contratante": "JOSE DE JESUS GONZALEZ MORAN",
+                    "asegurado": "JOSE DE JESUS GONZALEZ MORAN",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000621925",
+                    "contratante": "JOSE MANUEL CABRERA ROJAS",
+                    "asegurado": "JOSE MANUEL CABRERA ROJAS",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002639705",
+                    "contratante": "JOSE MANUEL CABRERA ROJAS",
+                    "asegurado": "JOSE MANUEL CABRERA ROJAS",
+                    "producto": "NUEVO PLENITUD 55 15",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000565691",
+                    "contratante": "JOSE MANUEL CABRERA ROJAS",
+                    "asegurado": "JOSE MANUEL CABRERA ROJAS",
+                    "producto": "INTEGRO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002710096",
+                    "contratante": "JOSE RODRIGO PIÑA GONGORA",
+                    "asegurado": "RODRIGO JEREMIAS PIÑA CABRERA",
+                    "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000588022",
+                    "contratante": "JOSE RODRIGO PIÑA GONGORA",
+                    "asegurado": "JOSE RODRIGO PIÑA GONGORA",
+                    "producto": "PLENO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000588587",
+                    "contratante": "JOSE RODRIGO PIÑA GONGORA",
+                    "asegurado": "JOSE RODRIGO PIÑA GONGORA",
+                    "producto": "INTEGRO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000670057",
+                    "contratante": "JOSUE ISRAEL MENDOZA MUJICA",
+                    "asegurado": "JOSUE ISRAEL MENDOZA MUJICA",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002770606",
+                    "contratante": "JOSUE ISRAEL MENDOZA MUJICA",
+                    "asegurado": "JOSUE ISRAEL MENDOZA MUJICA",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002851363",
+                    "contratante": "JUAN CARLOS RODRIGUEZ LANDA",
+                    "asegurado": "JUAN CARLOS RODRIGUEZ LANDA",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000564389",
+                    "contratante": "KAREM LIZZETH JUAREZ DOMINGUEZ",
+                    "asegurado": "KAREM LIZZETH JUAREZ DOMINGUEZ",
+                    "producto": "ALFA MEDICAL FLEX A",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002700731",
+                    "contratante": "KAREM LIZZETH JUAREZ DOMINGUEZ",
+                    "asegurado": "KAREM LIZZETH JUAREZ DOMINGUEZ",
+                    "producto": "NUEVO PLENITUD 55",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002854013",
+                    "contratante": "KAREN AMAYRANI MEZQUITA SANCHEZ",
+                    "asegurado": "KAREN AMAYRANI MEZQUITA SANCHEZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002855319",
+                    "contratante": "KARENN RAFAELLA SERRANO ALVAREZ",
+                    "asegurado": "KARENN RAFAELLA SERRANO ALVAREZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000670075",
+                    "contratante": "KARENN RAFAELLA SERRANO ALVAREZ",
+                    "asegurado": "KARENN RAFAELLA SERRANO ALVAREZ",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000591555",
+                    "contratante": "KATIA JACQUELINE DIAZ ESPINOSA",
+                    "asegurado": "KATIA JACQUELINE DIAZ ESPINOSA",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000649462",
+                    "contratante": "LEO FRANCISCO SANCHEZ GARCIA",
+                    "asegurado": "LEO FRANCISCO SANCHEZ GARCIA",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002949694",
+                    "contratante": "LEYDI ELISA TORRES CAUICH",
+                    "asegurado": "AURORA ELIZABETH AKE TORRES",
+                    "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002818175",
+                    "contratante": "LEYDI ELISA TORRES CAUICH",
+                    "asegurado": "LEYDI ELISA TORRES CAUICH",
+                    "producto": "VIDA MUJER",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002949485",
+                    "contratante": "LEYDI ELISA TORRES CAUICH",
+                    "asegurado": "ALVARO RODRIGO AKE TORRES",
+                    "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002728865",
+                    "contratante": "LUIS FERNANDO ESPARZA RODRIGUEZ",
+                    "asegurado": "LUIS FERNANDO ESPARZA RODRIGUEZ",
+                    "producto": "TEMPORAL 5 RENOVABLE STAR NUEVO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002906000",
+                    "contratante": "LUIS FERNANDO FRANCO SCHILLING",
+                    "asegurado": "LUIS FERNANDO FRANCO SCHILLING",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000648743",
+                    "contratante": "LUIS FERNANDO FRANCO SCHILLING",
+                    "asegurado": "LUIS FERNANDO FRANCO SCHILLING",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000667744",
+                    "contratante": "LUISA FERNANDA LUGO LOPEZ",
+                    "asegurado": "LUISA FERNANDA LUGO LOPEZ",
+                    "producto": "INTEGRO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002685333",
+                    "contratante": "LUZ KARIME ALMANZA BARON",
+                    "asegurado": "LUZ KARIME ALMANZA BARON",
+                    "producto": "ORVI 99 15 PAGOS",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000732427",
+                    "contratante": "MARA ALEXIA FAJARDO HUIZAR",
+                    "asegurado": "MARA ALEXIA FAJARDO HUIZAR",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002960571",
+                    "contratante": "MARA ALEXIA FAJARDO HUIZAR",
+                    "asegurado": "MARA ALEXIA FAJARDO HUIZAR",
+                    "producto": "IMAGINA SER 65 PAGOS LIMITADOS 15",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002764596",
+                    "contratante": "MARA PAULINA ZAPATA QUIROZ",
+                    "asegurado": "MARA PAULINA ZAPATA QUIROZ",
+                    "producto": "VIDA MUJER",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000550225",
+                    "contratante": "MARIA LORENA DE LA TORRE CORTES",
+                    "asegurado": "MARIA LORENA DE LA TORRE CORTES",
+                    "producto": "INTEGRO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000683662",
+                    "contratante": "MARIANA MARGARITA LOPEZ SOLIS",
+                    "asegurado": "CECILIA PALOMA LOPEZ SOLIS",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000639610",
+                    "contratante": "MARIANA MARGARITA LOPEZ SOLIS",
+                    "asegurado": "CECILIA PALOMA LOPEZ SOLIS",
+                    "producto": "PLENO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002816466",
+                    "contratante": "MARIANA RUIZ FRAUSTO",
+                    "asegurado": "MARIANA RUIZ FRAUSTO",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000687526",
+                    "contratante": "MARIELBA DEL MAR TORAYA FUENTE",
+                    "asegurado": "MARIELBA DEL MAR TORAYA FUENTE",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002404559",
+                    "contratante": "MARTHA GUADALUPE BACELIS EUAN",
+                    "asegurado": "MARTHA GUADALUPE BACELIS EUAN",
+                    "producto": "VIDA MUJER",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002829013",
+                    "contratante": "MARTHA GUADALUPE BACELIS EUAN",
+                    "asegurado": "MARTHA GUADALUPE BACELIS EUAN",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000630201",
+                    "contratante": "MARTHA GUADALUPE BACELIS EUAN",
+                    "asegurado": "MARTHA GUADALUPE BACELIS EUAN",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002830054",
+                    "contratante": "MATILDE ALEJANDRA ANDRADE GUERRA",
+                    "asegurado": "MATILDE ALEJANDRA ANDRADE GUERRA",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000600711",
+                    "contratante": "MAURICIO GONZALEZ GONZALEZ",
+                    "asegurado": "MAURICIO GONZALEZ GONZALEZ",
+                    "producto": "PLENO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002673812",
+                    "contratante": "MELY JENNY RAMON VARGAS",
+                    "asegurado": "MELY JENNY RAMON VARGAS",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002673819",
+                    "contratante": "MELY JENNY RAMON VARGAS",
+                    "asegurado": "MELY JENNY RAMON VARGAS",
+                    "producto": "IMAGINA SER 55",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000621953",
+                    "contratante": "MIGUEL ANGEL FRAGOSO FRANCO",
+                    "asegurado": "MIGUEL ANGEL FRAGOSO FRANCO",
+                    "producto": "PLENO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000615653",
+                    "contratante": "MIGUEL ANGEL FRAGOSO GONZALEZ",
+                    "asegurado": "MIGUEL ANGEL FRAGOSO GONZALEZ",
+                    "producto": "INTEGRO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002853729",
+                    "contratante": "MIGUEL ANGEL LARA SALAZAR",
+                    "asegurado": "MIGUEL ANGEL LARA SALAZAR",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000577501",
+                    "contratante": "MIREN DANIELA LOPEZ CONRADO",
+                    "asegurado": "MIREN DANIELA LOPEZ CONRADO",
+                    "producto": "PLENO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000549605",
+                    "contratante": "MIRIAM ELIZABETH LOPEZ ORTIZ",
+                    "asegurado": "MIRIAM ELIZABETH LOPEZ ORTIZ",
+                    "producto": "INTEGRO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000730913",
+                    "contratante": "NELLY MARIANA BOLAÑOS CERRUD",
+                    "asegurado": "NELLY MARIANA BOLAÑOS CERRUD",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002661610",
+                    "contratante": "NORMA ALEJANDRA RODRIGUEZ JIMENEZ",
+                    "asegurado": "NORMA ALEJANDRA RODRIGUEZ JIMENEZ",
+                    "producto": "VIDA MUJER",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002942113",
+                    "contratante": "OMAR MORENO LANDA",
+                    "asegurado": "OMAR MORENO LANDA",
+                    "producto": "IMAGINA SER 65 PAGOS LIMITADOS 15",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002941877",
+                    "contratante": "OMAR MORENO LANDA",
+                    "asegurado": "OMAR MORENO LANDA",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000686047",
+                    "contratante": "OMAR PEREZ MAYORGA",
+                    "asegurado": "OMAR PEREZ MAYORGA",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000720767",
+                    "contratante": "ORLANDO PAREDES HAMSHO",
+                    "asegurado": "ORLANDO PAREDES HAMSHO",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000661514",
+                    "contratante": "OSCAR LEONARDO RIOS GARCIA",
+                    "asegurado": "OSCAR LEONARDO RIOS GARCIA",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000622607",
+                    "contratante": "OSVALDO MISSAEL GONZALEZ FRIAS",
+                    "asegurado": "OSVALDO MISSAEL GONZALEZ FRIAS",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002774442",
+                    "contratante": "OSVALDO MISSAEL GONZALEZ FRIAS",
+                    "asegurado": "ARIANNA GONZALEZ SIORDIA",
+                    "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002774448",
+                    "contratante": "OSVALDO MISSAEL GONZALEZ FRIAS",
+                    "asegurado": "OSVALDO MISSAEL GONZALEZ FRIAS",
+                    "producto": "ORVI 99-20 PAGOS UDIS",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002734722",
+                    "contratante": "OSWALDO SAMUEL HERNANDEZ HERRERA",
+                    "asegurado": "OSWALDO SAMUEL HERNANDEZ HERRERA",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002876313",
+                    "contratante": "OSWALDO SAMUEL HERNANDEZ HERRERA",
+                    "asegurado": "SANTIAGO ANTONIO HERNANDEZ HERMOSO",
+                    "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000571426",
+                    "contratante": "PAMELA DURAN GARCIA",
+                    "asegurado": "PAMELA DURAN GARCIA",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000655333",
+                    "contratante": "PAOLA ALEJANDRA RAMIREZ PATIÑO",
+                    "asegurado": "FABIAN ALEJANDRO RAMIREZ PATIÑO",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000643695",
+                    "contratante": "PAOLA ALEJANDRA RAMIREZ PATIÑO",
+                    "asegurado": "PAOLA ALEJANDRA RAMIREZ PATIÑO",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002881594",
+                    "contratante": "PAULINA SAMANTHA RODRIGUEZ SOLANA",
+                    "asegurado": "PAULINA SAMANTHA RODRIGUEZ SOLANA",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000546261",
+                    "contratante": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+                    "asegurado": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002698695",
+                    "contratante": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+                    "asegurado": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+                    "producto": "NUEVO PLENITUD 60",
+                    "estatus": "Vigor Prorrogado"
+                },
+                {
+                    "poliza": "GM0000644773",
+                    "contratante": "RAUL CEDILLO ZARAGOZA",
+                    "asegurado": "RAUL CEDILLO ZARAGOZA",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002813145",
+                    "contratante": "RAUL CEDILLO ZARAGOZA",
+                    "asegurado": "RAUL CEDILLO ZARAGOZA",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002881866",
+                    "contratante": "RAUL CEDILLO ZARAGOZA",
+                    "asegurado": "RAUL CEDILLO ZARAGOZA",
+                    "producto": "ORVI 99 10 UDIS",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002675633",
+                    "contratante": "ROBERTO CAMILO GOMEZ VERGARA",
+                    "asegurado": "ROBERTO CAMILO GOMEZ VERGARA",
+                    "producto": "IMAGINA SER 60",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000568979",
+                    "contratante": "ROBERTO CAMILO GOMEZ VERGARA",
+                    "asegurado": "ROBERTO CAMILO GOMEZ VERGARA",
+                    "producto": "PLENO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000621565",
+                    "contratante": "ROBERTO SUAREZ BAQUEDANO",
+                    "asegurado": "ROBERTO SUAREZ BAQUEDANO",
+                    "producto": "INTEGRO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000726062",
+                    "contratante": "ROCIO GUADALUPE CHAVEZ ORTEGA",
+                    "asegurado": "ROCIO GUADALUPE CHAVEZ ORTEGA",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002842522",
+                    "contratante": "ROCIO GUADALUPE CHAVEZ ORTEGA",
+                    "asegurado": "ROCIO GUADALUPE CHAVEZ ORTEGA",
+                    "producto": "VIDA MUJER",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000665366",
+                    "contratante": "ROCIO GUADALUPE CHAVEZ ORTEGA",
+                    "asegurado": "MIGUEL ANGEL CHAVEZ ORTEGA",
+                    "producto": "PLENO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000662142",
+                    "contratante": "ROCIO GUADALUPE CHAVEZ ORTEGA",
+                    "asegurado": "ROCIO GUADALUPE CHAVEZ ORTEGA",
+                    "producto": "PLENO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000669234",
+                    "contratante": "ROSA ITZEL RODRIGUEZ MORALES",
+                    "asegurado": "ROSA ITZEL RODRIGUEZ MORALES",
+                    "producto": "INTEGRO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002853349",
+                    "contratante": "ROSA ITZEL RODRIGUEZ MORALES",
+                    "asegurado": "ROSA ITZEL RODRIGUEZ MORALES",
+                    "producto": "VIDA MUJER",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002905353",
+                    "contratante": "RUBEN DIAZ JUAREZ",
+                    "asegurado": "RUBEN DIAZ JUAREZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000577182",
+                    "contratante": "SALVADOR ALBERTO ABDALA IZA VALDEZ",
+                    "asegurado": "IAN SALVADOR ABDALA IZA ALVAREZ",
+                    "producto": "PRACTICO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000586026",
+                    "contratante": "SALVADOR ALBERTO ABDALA IZA VALDEZ",
+                    "asegurado": "IAN SALVADOR ABDALA IZA ALVAREZ",
+                    "producto": "PRACTICO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002532499",
+                    "contratante": "SANDRA PUEBLA LOPEZ",
+                    "asegurado": "SANDRA PUEBLA LOPEZ",
+                    "producto": "VIDA MUJER",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002739592",
+                    "contratante": "SANDRA PUEBLA LOPEZ",
+                    "asegurado": "SANDRA PUEBLA LOPEZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002943060",
+                    "contratante": "SANDRA PUEBLA LOPEZ",
+                    "asegurado": "SANDRA PUEBLA LOPEZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002943074",
+                    "contratante": "SANDRA PUEBLA LOPEZ",
+                    "asegurado": "SANDRA PUEBLA LOPEZ",
+                    "producto": "IMAGINA SER 65 PAGOS LIMITADOS 15",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000604990",
+                    "contratante": "SANDRA PUEBLA LOPEZ",
+                    "asegurado": "SANDRA PUEBLA LOPEZ",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002755365",
+                    "contratante": "SARA LUZ ROCHA VARGAS",
+                    "asegurado": "SARA LUZ ROCHA VARGAS",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002925232",
+                    "contratante": "SARA NAOMI CHAIREZ RAMIREZ",
+                    "asegurado": "SARA NAOMI CHAIREZ RAMIREZ",
+                    "producto": "VIDA MUJER",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002972038",
+                    "contratante": "SHANTAL YADIRA GONZALEZ BARBOSA",
+                    "asegurado": "SHANTAL YADIRA GONZALEZ BARBOSA",
+                    "producto": "IMAGINA SER 65 PAGOS LIMITADOS 15",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000686512",
+                    "contratante": "TERESA ANGELICA FUENTE KU",
+                    "asegurado": "ANDREA GEORGINA CEDILLO FUENTE",
+                    "producto": "PLENO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "GM0000550243",
+                    "contratante": "TLALLI BAUTISTA PEREZ",
+                    "asegurado": "TLALLI BAUTISTA PEREZ",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002635503",
+                    "contratante": "TLALLI BAUTISTA PEREZ",
+                    "asegurado": "TLALLI BAUTISTA PEREZ",
+                    "producto": "VIDA MUJER",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000473348",
+                    "contratante": "VANESSA YULYETT CURIEL VALENCIA",
+                    "asegurado": "VANESSA YULYETT CURIEL VALENCIA",
+                    "producto": "PLENO",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000665792",
+                    "contratante": "VIANEY ABIGAIL OSORIO MONROY",
+                    "asegurado": "VIANEY ABIGAIL OSORIO MONROY",
+                    "producto": "INTEGRO",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002788681",
+                    "contratante": "VICTOR HUGO DE LA CRUZ HERNANDEZ",
+                    "asegurado": "VICTOR HUGO DE LA CRUZ HERNANDEZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "Anulada"
+                },
+                {
+                    "poliza": "VI0002816812",
+                    "contratante": "VIRIDIANA LETICIA CEDILLO ZARAGOZA",
+                    "asegurado": "VIRIDIANA LETICIA CEDILLO ZARAGOZA",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002837924",
+                    "contratante": "WILMA AYLIN ARRAZOLA HAU",
+                    "asegurado": "WILMA AYLIN ARRAZOLA HAU",
+                    "producto": "VIDA MUJER",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002941652",
+                    "contratante": "YOLOTZIN ESTEFANIA SALMORAN DIAZ",
+                    "asegurado": "YOLOTZIN ESTEFANIA SALMORAN DIAZ",
+                    "producto": "IMAGINA SER 65 PAGOS LIMITADOS 15",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002941651",
+                    "contratante": "YOLOTZIN ESTEFANIA SALMORAN DIAZ",
+                    "asegurado": "YOLOTZIN ESTEFANIA SALMORAN DIAZ",
+                    "producto": "IMAGINA SER 65",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "VI0002593737",
+                    "contratante": "ZUNNET SOFIA EK SILVA",
+                    "asegurado": "ZUNNET SOFIA EK SILVA",
+                    "producto": "ORVI 99 10 UDIS",
+                    "estatus": "En Vigor"
+                },
+                {
+                    "poliza": "GM0000530165",
+                    "contratante": "ZUNNET SOFIA EK SILVA",
+                    "asegurado": "ZUNNET SOFIA EK SILVA",
+                    "producto": "ALFA MEDICAL FLEX B",
+                    "estatus": "En Vigor"
+                }
+            ]
+        }
+    ]
+}

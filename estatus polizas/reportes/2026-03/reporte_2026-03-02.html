@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte de Estatus de Pólizas - 2 de Marzo 2026</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            font-weight: 300;
+        }
+
+        .header .date {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 4px;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .summary-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .summary-card .value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .summary-card .label {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card-total .value { color: #f1f5f9; }
+        .card-vigor .value { color: #4ade80; }
+        .card-anulada .value { color: #f87171; }
+        .card-prorrogado .value { color: #fbbf24; }
+        .card-sinpago .value { color: #fb923c; }
+
+        .table-container {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .table-title {
+            padding: 20px 24px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead th {
+            background: rgba(15, 23, 42, 0.5);
+            padding: 14px 16px;
+            text-align: left;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #94a3b8;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        thead th:not(:first-child) {
+            text-align: center;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid rgba(148, 163, 184, 0.05);
+            transition: background 0.15s;
+        }
+
+        tbody tr:hover {
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        tbody td {
+            padding: 12px 16px;
+            font-size: 0.9rem;
+        }
+
+        tbody td:not(:first-child):not(:nth-child(2)) {
+            text-align: center;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .advisor-name {
+            font-weight: 500;
+            color: #f1f5f9;
+        }
+
+        .advisor-code {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 400;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-vigor { background: rgba(74, 222, 128, 0.15); color: #4ade80; }
+        .badge-anulada { background: rgba(248, 113, 113, 0.15); color: #f87171; }
+        .badge-prorrogado { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+        .badge-sinpago { background: rgba(251, 146, 60, 0.15); color: #fb923c; }
+        .badge-total { background: rgba(148, 163, 184, 0.15); color: #e2e8f0; }
+
+        .zero { color: #475569; }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(148, 163, 184, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+
+        .progress-vigor { background: linear-gradient(90deg, #22c55e, #4ade80); }
+
+        .row-empty td { opacity: 0.4; }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #475569;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 900px) {
+            .summary-cards { grid-template-columns: repeat(2, 1fr); }
+            body { padding: 16px; }
+            .header h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 Reporte de Estatus de Pólizas</h1>
+        <div class="subtitle">Ambriz & Asociados — Seguros Monterrey</div>
+        <div class="date">📅 Domingo 2 de Marzo, 2026 — Reporte Inicial (Línea Base)</div>
+    </div>
+
+    <div class="summary-cards">
+        <div class="summary-card card-total">
+            <div class="value">2,939</div>
+            <div class="label">Total Pólizas</div>
+        </div>
+        <div class="summary-card card-vigor">
+            <div class="value">1,917</div>
+            <div class="label">En Vigor</div>
+        </div>
+        <div class="summary-card card-anulada">
+            <div class="value">911</div>
+            <div class="label">Anuladas</div>
+        </div>
+        <div class="summary-card card-prorrogado">
+            <div class="value">78</div>
+            <div class="label">Vigor Prorrogado</div>
+        </div>
+        <div class="summary-card card-sinpago">
+            <div class="value">33</div>
+            <div class="label">En Vigor s/Pago</div>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <div class="table-title">Desglose por Asesor</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 30%">Asesor</th>
+                    <th>Total</th>
+                    <th>En Vigor ✅</th>
+                    <th>Anulada ❌</th>
+                    <th>Vigor Prorrog. ⏳</th>
+                    <th>En Vigor s/Pago ⚠️</th>
+                    <th style="width: 15%">% En Vigor</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        Generado automáticamente — Extracción desde portal Línea Monterrey
+    </div>
+
+    <script>
+        const data = [
+            {c:"87538",n:"MONICA ANDREA AMBRIZ GOMEZ",t:488,ev:317,an:161,vp:7,esp:3},
+            {c:"80122",n:"DESIREE DE LA PEÑA OROZCO",t:373,ev:272,an:96,vp:5,esp:0},
+            {c:"90355",n:"DARINKA UREÑA CASILLAS",t:273,ev:203,an:64,vp:6,esp:0},
+            {c:"47116",n:"RAFAEL ALBERTO SUAREZ BAQUEDANO",t:229,ev:175,an:53,vp:1,esp:0},
+            {c:"106893",n:"MONICA ANDREA AMBRIZ GOMEZ",t:166,ev:120,an:22,vp:4,esp:20},
+            {c:"80925",n:"MARICELA ARREOLA LOPEZ",t:156,ev:99,an:50,vp:6,esp:1},
+            {c:"64502",n:"ALEJANDRA GABRIELA AMBRIZ GOMEZ",t:137,ev:24,an:92,vp:14,esp:7},
+            {c:"94205",n:"JOSE ALBERTO CORONADO ROSAS",t:98,ev:36,an:52,vp:9,esp:1},
+            {c:"88234",n:"ANDREA CELESTE IBAÑEZ RINCON",t:95,ev:67,an:20,vp:8,esp:0},
+            {c:"90177",n:"JOCELYN URIBE VARGAS",t:86,ev:35,an:47,vp:4,esp:0},
+            {c:"104343",n:"JORGE ALBERTO PRECIADO GONZALEZ",t:83,ev:60,an:23,vp:0,esp:0},
+            {c:"98797",n:"FERNANDO JAVIER DAVALOS FLORES",t:72,ev:44,an:24,vp:4,esp:0},
+            {c:"94156",n:"MARIA TERESA ASENCIO LOZANO",t:67,ev:49,an:13,vp:5,esp:0},
+            {c:"100677",n:"JULIANA RIASCOS VALENCIA",t:66,ev:57,an:9,vp:0,esp:0},
+            {c:"107488",n:"ORLANDA JIMENA CERVANTES NUÑEZ",t:64,ev:51,an:13,vp:0,esp:0},
+            {c:"101640",n:"SAMUEL NUÑO RIVERA",t:54,ev:31,an:23,vp:0,esp:0},
+            {c:"65046",n:"PAULINA RODRIGUEZ DE LA MORA",t:51,ev:23,an:27,vp:1,esp:0},
+            {c:"105696",n:"GABRIELA CASTAÑEDA SALAZAR",t:50,ev:47,an:3,vp:0,esp:0},
+            {c:"95148",n:"ENRIQUE ADRIAN GUTIERREZ JIMENEZ",t:50,ev:26,an:24,vp:0,esp:0},
+            {c:"81618",n:"ALEJANDRA IVETTE PEDROZA MACIAS",t:33,ev:11,an:20,vp:1,esp:1},
+            {c:"106018",n:"MIREYA LIZETTE TORRES GARCIA",t:32,ev:17,an:15,vp:0,esp:0},
+            {c:"108658",n:"ROCIO IVON RUIZ GARCIA",t:32,ev:18,an:14,vp:0,esp:0},
+            {c:"38051",n:"MONICA ANDREA AMBRIZ GOMEZ",t:26,ev:9,an:14,vp:3,esp:0},
+            {c:"110105",n:"ROCIO YANETH OCHOA IBARRA",t:25,ev:17,an:8,vp:0,esp:0},
+            {c:"109998",n:"EVELYN CAROLINA VENEGAS IÑIGUEZ",t:22,ev:18,an:4,vp:0,esp:0},
+            {c:"102825",n:"JOSE EDUARDO EZQUERRO BARQUERA",t:21,ev:21,an:0,vp:0,esp:0},
+            {c:"113312",n:"ORLANDA JIMENA CERVANTES NUÑEZ",t:19,ev:17,an:2,vp:0,esp:0},
+            {c:"109007",n:"ISAI ANTONIO ROJAS MARTINEZ",t:15,ev:7,an:8,vp:0,esp:0},
+            {c:"112083",n:"LUIS GUILLERMO OLGUIN FERNANDEZ",t:14,ev:14,an:0,vp:0,esp:0},
+            {c:"115404",n:"ANA VERONICA GONZALEZ GAYTAN",t:14,ev:14,an:0,vp:0,esp:0},
+            {c:"113076",n:"BRUNO BRAULIO MACIAS ALVAREZ",t:12,ev:12,an:0,vp:0,esp:0},
+            {c:"75456",n:"ALEJANDRA GABRIELA AMBRIZ GOMEZ",t:7,ev:0,an:7,vp:0,esp:0},
+            {c:"78408",n:"ALEJANDRA GABRIELA AMBRIZ GOMEZ",t:6,ev:3,an:3,vp:0,esp:0},
+            {c:"117678",n:"ALEJANDRA GABRIELA AMBRIZ GOMEZ",t:2,ev:2,an:0,vp:0,esp:0},
+            {c:"117440",n:"ALEJANDRA GABRIELA AMBRIZ GOMEZ",t:1,ev:1,an:0,vp:0,esp:0},
+            {c:"116795",n:"ALEJANDRA GABRIELA AMBRIZ GOMEZ",t:0,ev:0,an:0,vp:0,esp:0},
+            {c:"117352",n:"ALEJANDRA GABRIELA AMBRIZ GOMEZ",t:0,ev:0,an:0,vp:0,esp:0},
+            {c:"117710",n:"ALEJANDRA GABRIELA AMBRIZ GOMEZ",t:0,ev:0,an:0,vp:0,esp:0}
+        ];
+
+        const tbody = document.getElementById('tableBody');
+
+        data.forEach(a => {
+            const pct = a.t > 0 ? Math.round((a.ev / a.t) * 100) : 0;
+            const isEmpty = a.t === 0;
+            const tr = document.createElement('tr');
+            if (isEmpty) tr.className = 'row-empty';
+
+            tr.innerHTML = `
+                <td>
+                    <div class="advisor-name">${a.n}</div>
+                    <div class="advisor-code">Clave: ${a.c}</div>
+                </td>
+                <td><span class="badge badge-total">${a.t}</span></td>
+                <td>${a.ev > 0 ? '<span class="badge badge-vigor">'+a.ev+'</span>' : '<span class="zero">0</span>'}</td>
+                <td>${a.an > 0 ? '<span class="badge badge-anulada">'+a.an+'</span>' : '<span class="zero">0</span>'}</td>
+                <td>${a.vp > 0 ? '<span class="badge badge-prorrogado">'+a.vp+'</span>' : '<span class="zero">0</span>'}</td>
+                <td>${a.esp > 0 ? '<span class="badge badge-sinpago">'+a.esp+'</span>' : '<span class="zero">0</span>'}</td>
+                <td>
+                    <div style="font-weight:600;color:${pct >= 70 ? '#4ade80' : pct >= 50 ? '#fbbf24' : '#f87171'}">${pct}%</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar progress-vigor" style="width:${pct}%"></div>
+                    </div>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    </script>
+</body>
+</html>

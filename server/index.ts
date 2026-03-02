@@ -364,6 +364,95 @@ app.get('/api/resumen-general', (req, res) => {
     }
 });
 
+// ===================== ESTATUS DE PÓLIZAS =====================
+const POLIZAS_PATH = path.join(BASE_PATH, 'estatus polizas');
+
+// List available dates (reports)
+app.get('/api/estatus-polizas/fechas', (req, res) => {
+    try {
+        const reportesPath = path.join(POLIZAS_PATH, 'reportes');
+        if (!fs.existsSync(reportesPath)) return res.json([]);
+
+        const fechas: string[] = [];
+        const monthDirs = fs.readdirSync(reportesPath, { withFileTypes: true })
+            .filter(d => d.isDirectory() && /^\d{4}-\d{2}$/.test(d.name));
+
+        monthDirs.forEach(dir => {
+            const dirPath = path.join(reportesPath, dir.name);
+            fs.readdirSync(dirPath)
+                .filter(f => f.startsWith('reporte_') && f.endsWith('.json'))
+                .forEach(f => {
+                    const match = f.match(/reporte_(\d{4}-\d{2}-\d{2})\.json/);
+                    if (match) fechas.push(match[1]);
+                });
+        });
+
+        res.json(fechas.sort().reverse());
+    } catch (error) {
+        console.error('Error listing poliza dates:', error);
+        res.status(500).json({ error: 'Could not list dates' });
+    }
+});
+
+// Get report for a specific date
+app.get('/api/estatus-polizas/reporte/:fecha', (req, res) => {
+    try {
+        const { fecha } = req.params;
+        const month = fecha.substring(0, 7);
+        const filePath = path.join(POLIZAS_PATH, 'reportes', month, `reporte_${fecha}.json`);
+
+        if (!fs.existsSync(filePath)) {
+            return res.status(404).json({ error: `No report found for ${fecha}` });
+        }
+
+        const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+        res.json(content);
+    } catch (error) {
+        console.error('Error reading poliza report:', error);
+        res.status(500).json({ error: 'Could not read report' });
+    }
+});
+
+// Get changes for a specific date
+app.get('/api/estatus-polizas/cambios/:fecha', (req, res) => {
+    try {
+        const { fecha } = req.params;
+        const month = fecha.substring(0, 7);
+        const filePath = path.join(POLIZAS_PATH, 'cambios', month, `cambios_${fecha}.json`);
+
+        if (!fs.existsSync(filePath)) {
+            return res.json(null); // No changes file = no comparison yet
+        }
+
+        const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+        res.json(content);
+    } catch (error) {
+        console.error('Error reading poliza changes:', error);
+        res.status(500).json({ error: 'Could not read changes' });
+    }
+});
+
+// Get active follow-up tracker
+app.get('/api/estatus-polizas/seguimiento', (req, res) => {
+    try {
+        const filePath = path.join(POLIZAS_PATH, 'seguimiento', 'seguimiento_activo.json');
+
+        if (!fs.existsSync(filePath)) {
+            return res.json({
+                ultima_actualizacion: null,
+                pendientes_recuperar: [],
+                recuperadas_este_mes: []
+            });
+        }
+
+        const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+        res.json(content);
+    } catch (error) {
+        console.error('Error reading seguimiento:', error);
+        res.status(500).json({ error: 'Could not read seguimiento' });
+    }
+});
+
 // SPA Fallback — catch all unmatched routes and serve index.html
 app.use((req, res) => {
     if (req.path.startsWith('/api')) {
