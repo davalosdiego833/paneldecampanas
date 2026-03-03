@@ -83,7 +83,7 @@ const readExcelData = (folderName: string) => {
 
 // Endpoints
 app.get('/api/campaigns', (req, res) => {
-    const exclude = ['assets', 'themes', 'server', 'node_modules', 'src', 'public', '.git', 'dist', '.conda', 'administrador', 'tmp', '.cache', '.npm'];
+    const exclude = ['assets', 'themes', 'server', 'node_modules', 'src', 'public', '.git', 'dist', '.conda', 'administrador', 'tmp', '.cache', '.npm', 'estatus polizas', 'estatus_polizas'];
     try {
         const folders = fs.readdirSync(BASE_PATH, { withFileTypes: true })
             .filter(dirent => dirent.isDirectory() && !exclude.includes(dirent.name) && !dirent.name.startsWith('.'))
@@ -96,7 +96,7 @@ app.get('/api/campaigns', (req, res) => {
 
 app.get('/api/advisors', (req, res) => {
     try {
-        const exclude = ['assets', 'themes', 'server', 'node_modules', 'src', 'public', '.git', 'dist', '.conda', 'administrador', 'tmp', '.cache', '.npm'];
+        const exclude = ['assets', 'themes', 'server', 'node_modules', 'src', 'public', '.git', 'dist', '.conda', 'administrador', 'tmp', '.cache', '.npm', 'estatus polizas', 'estatus_polizas'];
         const folders = fs.readdirSync(BASE_PATH, { withFileTypes: true })
             .filter(dirent => dirent.isDirectory() && !exclude.includes(dirent.name) && !dirent.name.startsWith('.'))
             .map(dirent => dirent.name);
@@ -344,6 +344,32 @@ app.get('/api/resumen-general', (req, res) => {
                     }
                 });
                 result[key] = { individuals, generalSummary };
+            } else if (key === 'pagado_pendiente') {
+                // For pagado_pendiente, the user uses the original company format:
+                // Row 0: Date
+                // Row 1: Merge headers (Pagado/Pendiente)
+                // Row 2: Detailed headers (Asesor, Sucursal, Nombre Asesor, etc.)
+                // Row 3+: Data
+                const dataRows = allData.slice(3);
+                const items: any[] = [];
+                dataRows.forEach((row: any[]) => {
+                    // Check if 'Nombre Asesor' (col 2) is present
+                    if (row[2] != null) {
+                        items.push({
+                            'Nombre Asesor': row[2],
+                            'Sucursal': row[1],
+                            'Pólizas-Pagadas': row[5],
+                            'Recibo_Inicial_Pagado': row[6],
+                            'Recibo_Ordinario_Pagado': row[7],
+                            'Total _Prima_Pagada': row[8],
+                            'Pólizas_Pendinetes': row[9],
+                            'Recibo_Inicial_Pendiente': row[10],
+                            'Recibo_Ordinario_Pendiente': row[11],
+                            'Total _Prima_Pendiente': row[12]
+                        });
+                    }
+                });
+                result[key] = items;
             } else {
                 const items: any[] = [];
                 dataRows.forEach((row: any[]) => {
