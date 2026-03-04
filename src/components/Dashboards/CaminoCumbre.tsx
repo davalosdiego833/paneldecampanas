@@ -15,10 +15,14 @@ const CaminoCumbre: React.FC<Props> = ({ data }) => {
 
     // Alert logic
     const isAlert = mes_asesor <= 3 && Number(data[`Mes_${mes_asesor}_Prod`] || 0) === 0;
-    const status_txt = isAlert ? '⚠️ ALERTA: MES SIN ACTIVIDAD' : status_orig;
-    const isInMeta = status_orig.includes('EN META') && !isAlert;
+    const isInMeta = polizas_totales >= meta_acumulada;
 
-    const statusColor = isInMeta ? 'var(--success-green)' : 'var(--danger-red)';
+    let status_txt = isInMeta ? '✅ EN META' : '❌ POR DEBAJO';
+    if (isAlert) status_txt = '⚠️ ALERTA: SIN ACTIVIDAD';
+    if (status_orig.includes('BAJA')) status_txt = status_orig;
+
+    const statusColor = (isInMeta && !isAlert) ? 'var(--success-green)' : 'var(--danger-red)';
+    const polizas_faltantes = Math.max(0, meta_acumulada - polizas_totales);
 
     const progress_pct = Math.min(100, (polizas_totales / (meta_acumulada || 1)) * 100);
 
@@ -29,22 +33,28 @@ const CaminoCumbre: React.FC<Props> = ({ data }) => {
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 700, opacity: 0.8 }}>Información Importante</h3>
                     <div className="glass-card" style={{
                         display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
                         gap: '24px',
                         borderBottom: `4px solid ${statusColor}`,
                         padding: '32px'
                     }}>
                         <div style={{ textAlign: 'center' }}>
-                            <p style={{ fontSize: '0.8rem', opacity: 0.6, textTransform: 'uppercase', marginBottom: '8px' }}>Pólizas Totales</p>
-                            <p style={{ fontSize: '2rem', fontWeight: 700 }}>{polizas_totales.toFixed(1)}</p>
+                            <p style={{ fontSize: '0.75rem', opacity: 0.6, textTransform: 'uppercase', marginBottom: '8px' }}>Pólizas Totales</p>
+                            <p style={{ fontSize: '1.8rem', fontWeight: 700 }}>{polizas_totales.toFixed(1)}</p>
                         </div>
                         <div style={{ textAlign: 'center' }}>
-                            <p style={{ fontSize: '0.8rem', opacity: 0.6, textTransform: 'uppercase', marginBottom: '8px' }}>Estatus Actual</p>
-                            <p style={{ fontSize: '1.5rem', fontWeight: 900, color: statusColor }}>{status_txt}</p>
+                            <p style={{ fontSize: '0.75rem', opacity: 0.6, textTransform: 'uppercase', marginBottom: '8px' }}>Estatus Actual</p>
+                            <p style={{ fontSize: '1.25rem', fontWeight: 900, color: statusColor }}>{status_txt}</p>
                         </div>
                         <div style={{ textAlign: 'center' }}>
-                            <p style={{ fontSize: '0.8rem', opacity: 0.6, textTransform: 'uppercase', marginBottom: '8px' }}>Trimestre Actual</p>
-                            <p style={{ fontSize: '2rem', fontWeight: 700 }}>{trimestre}</p>
+                            <p style={{ fontSize: '0.75rem', opacity: 0.6, textTransform: 'uppercase', marginBottom: '8px' }}>Faltan para Meta</p>
+                            <p style={{ fontSize: '1.8rem', fontWeight: 700, color: polizas_faltantes > 0 ? 'var(--accent-gold)' : 'var(--success-green)' }}>
+                                {polizas_faltantes.toFixed(1)}
+                            </p>
+                        </div>
+                        <div style={{ textAlign: 'center' }}>
+                            <p style={{ fontSize: '0.75rem', opacity: 0.6, textTransform: 'uppercase', marginBottom: '8px' }}>Trimestre</p>
+                            <p style={{ fontSize: '1.8rem', fontWeight: 700 }}>{trimestre}</p>
                         </div>
                     </div>
                 </div>

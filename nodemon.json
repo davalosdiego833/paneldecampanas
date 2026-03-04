@@ -1,0 +1,17 @@
+{
+    "watch": [
+        "server",
+        ".env"
+    ],
+    "ext": "ts,json,env",
+    "ignore": [
+        "mdrt/*",
+        "legion_centurion/*",
+        "camino_cumbre/*",
+        "convenciones/*",
+        "graduacion/*",
+        "administrador/*",
+        "node_modules/*",
+        "dist/*"
+    ]
+}

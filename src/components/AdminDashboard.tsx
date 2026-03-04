@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Home, BarChart3, Users, LogOut, ChevronRight, TrendingUp, TrendingDown, Target, AlertTriangle, Trophy, Award, Star, Shield, Sun, Moon } from 'lucide-react';
+import { Home, BarChart3, Users, LogOut, ChevronRight, TrendingUp, TrendingDown, Target, AlertTriangle, Trophy, Award, Star, Shield, Sun, Moon, Search, X } from 'lucide-react';
 
 interface Props {
     onLogout: () => void;
@@ -144,32 +144,39 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
 
         else if (campaign === 'convenciones') {
             const lugar = Number(row.Lugar || 9999);
-            // Créditos del asesor = Comision_Vida + RDA (igual que en el dashboard individual)
-            const comisionVida = Number(row.Comision_Vida || 0);
+            const total = Number(row.PA_Total || 0);
+            const vida = Number(row.Comision_Vida || 0);
             const rda = Number(row.RDA || 0);
-            const creditos = comisionVida + rda;
-            const { diamante, next, faltanteNext } = getDiamante(lugar, creditos, row);
+            const polizas = Number(row.Polizas || 0);
+            const nivel = row.Nivel_Convencion || '';
+            const { diamante, next, faltanteNext } = getDiamante(lugar, total, row);
 
             const details: string[] = [];
-            if (lugar <= 480) {
-                // En meta: dentro del rango de diamantes
-                details.push(`Lugar ${lugar} · ${diamante}`);
-                details.push(`Créditos: ${formatCurrency(creditos)}`);
+            const infoLine = `Vida: ${formatCurrency(vida)} · RDA: ${formatCurrency(rda)} · Total: ${formatCurrency(total)}`;
+
+            if (lugar <= 480 && polizas >= 30 && total >= 588500) {
+                // Califica
+                details.push(`Lugar #${lugar} · ${diamante || '1 Diamante'}${nivel ? ' · ' + nivel : ''}`);
+                details.push(infoLine);
+                details.push(`Pólizas: ${polizas}`);
                 if (next) details.push(`Faltante ${next}: ${formatCurrency(faltanteNext)}`);
                 else details.push('✨ Máximo nivel');
-                ganando.push({ name, value: creditos, details, lugar });
-            } else if (faltanteNext <= 100000) {
-                // Cerca de meta: le faltan $100k o menos para 1 Diamante
-                details.push(`Lugar ${lugar}`);
-                details.push(`Créditos: ${formatCurrency(creditos)}`);
+                ganando.push({ name, value: total, details, lugar });
+            } else if (faltanteNext <= 100000 || (lugar <= 600 && total > 0)) {
+                // Cerca
+                details.push(`Lugar #${lugar}`);
+                details.push(infoLine);
+                details.push(`Pólizas: ${polizas}`);
+                if (polizas < 30) details.push(`⚠️ Faltan ${(30 - polizas).toFixed(1)} pólizas`);
+                if (total < 588500) details.push(`⚠️ Faltan ${formatCurrency(588500 - total)} en créditos`);
                 details.push(`Faltante 1 Diamante: ${formatCurrency(faltanteNext)}`);
-                cerca.push({ name, value: creditos, details, lugar, faltante: faltanteNext });
+                cerca.push({ name, value: total, details, lugar, faltante: faltanteNext });
             } else {
-                // Por debajo: le faltan más de $100k
-                details.push(`Lugar ${lugar}`);
-                details.push(`Créditos: ${formatCurrency(creditos)}`);
-                details.push(`Faltante 1 Diamante: ${formatCurrency(faltanteNext)}`);
-                lejos.push({ name, value: creditos, details, lugar, faltante: faltanteNext });
+                // Por debajo
+                details.push(`Lugar #${lugar}`);
+                details.push(infoLine);
+                details.push(`Pólizas: ${polizas} · Faltante: ${formatCurrency(faltanteNext)}`);
+                lejos.push({ name, value: total, details, lugar, faltante: faltanteNext });
             }
         }
 
@@ -200,29 +207,29 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
 
         else if (campaign === 'legion_centurion') {
             const polizas = Number(row.Total_Polizas || 0);
-            const mes = Number(row.Mes_Actual || 1);
-            const metaLC = mes * 4; // promedio mínimo 4 pólizas/mes
-            const faltanteMeta = Math.max(0, metaLC - polizas);
+            const mes = Math.floor(Number(row.Mes_Actual || 1));
+            const metaMensual = mes * 4;
+            const faltanteMeta = Math.max(0, metaMensual - polizas);
             const { nivel, next, faltanteNext } = getLegionLevel(polizas);
-            const faltanteBronce = Math.max(0, LC_BRONCE - polizas);
+            const faltanteBronce = Math.max(0, 48 - polizas);
 
-            const details: string[] = [];
+            const details: string[] = [
+                `${polizas} pólizas totales`,
+                `Faltante Meta Mes: ${faltanteMeta.toFixed(1)} pólizas`,
+                `Faltante Bronce: ${faltanteBronce.toFixed(1)} pólizas`
+            ];
+
+            if (nivel) details.push(`🏅 Nivel: ${nivel}`);
+
             if (faltanteMeta <= 0) {
-                // En meta: promedio ≥ 4 pólizas/mes
-                details.push(`${polizas} pólizas · ${nivel || 'En camino'}`);
-                if (next) details.push(`Faltante ${next}: ${faltanteNext} pólizas`);
-                else details.push('✨ Máximo nivel alcanzado');
+                // En meta
                 ganando.push({ name, value: polizas, details, nivel });
             } else if (faltanteMeta <= 5) {
-                // Cerca de meta: le faltan 5 o menos para el promedio
-                details.push(`${polizas} pólizas`);
-                details.push(`Faltante Bronce: ${faltanteBronce} pólizas`);
-                cerca.push({ name, value: polizas, details, faltante: faltanteBronce });
+                // Cerca
+                cerca.push({ name, value: polizas, details, faltante: faltanteMeta });
             } else {
-                // Por debajo: le faltan más de 5
-                details.push(`${polizas} pólizas`);
-                details.push(`Faltante Bronce: ${faltanteBronce} pólizas`);
-                lejos.push({ name, value: polizas, details, faltante: faltanteBronce });
+                // Lejos
+                lejos.push({ name, value: polizas, details, faltante: faltanteMeta });
             }
         }
     });
@@ -518,7 +525,41 @@ const DetallePorCampana: React.FC<{
     classifications: Record<string, ReturnType<typeof classifyAdvisors>>;
 }> = ({ data, classifications }) => {
     const [expandedCampaign, setExpandedCampaign] = useState<string | null>('mdrt');
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedAdvisors, setSelectedAdvisors] = useState<string[]>([]);
+    const [showSuggestions, setShowSuggestions] = useState(false);
+
     const campaigns = Object.keys(classifications);
+
+    // Get all unique advisor names from all campaigns
+    const allAdvisors = Array.from(new Set(
+        campaigns.flatMap(camp => [
+            ...classifications[camp].ganando,
+            ...classifications[camp].cerca,
+            ...classifications[camp].lejos
+        ].map(a => a.name))
+    )).sort();
+
+    const suggestions = searchTerm.length > 0
+        ? allAdvisors.filter(name =>
+            name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+            !selectedAdvisors.includes(name)
+        )
+        : [];
+
+    const handleSelectAdvisor = (name: string) => {
+        if (!selectedAdvisors.includes(name)) {
+            setSelectedAdvisors([...selectedAdvisors, name]);
+        }
+        setSearchTerm('');
+        setShowSuggestions(false);
+    };
+
+    const handleRemoveAdvisor = (name: string) => {
+        setSelectedAdvisors(selectedAdvisors.filter(a => a !== name));
+    };
+
+    const isFiltering = selectedAdvisors.length > 0;
 
     return (
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -530,6 +571,129 @@ const DetallePorCampana: React.FC<{
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginTop: '4px' }}>
                     Desglose detallado de cada asesor separado por campaña
                 </p>
+            </div>
+
+            {/* Multi-Selection Search */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <div style={{ position: 'relative' }}>
+                    <div className="glass-card" style={{ padding: '12px 20px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <Search size={20} style={{ opacity: 0.5 }} />
+                        <input
+                            type="text"
+                            placeholder="Escribe para buscar y seleccionar asesores..."
+                            value={searchTerm}
+                            onChange={(e) => {
+                                setSearchTerm(e.target.value);
+                                setShowSuggestions(true);
+                            }}
+                            onFocus={() => setShowSuggestions(true)}
+                            style={{
+                                flex: 1,
+                                background: 'none',
+                                border: 'none',
+                                color: 'var(--text-primary)',
+                                fontSize: '1rem',
+                                outline: 'none',
+                                fontFamily: 'inherit'
+                            }}
+                        />
+                        {isFiltering && (
+                            <button
+                                onClick={() => {
+                                    setSelectedAdvisors([]);
+                                    setSearchTerm('');
+                                }}
+                                style={{
+                                    fontSize: '0.75rem',
+                                    fontWeight: 700,
+                                    color: 'var(--danger-red)',
+                                    background: 'rgba(255, 107, 107, 0.1)',
+                                    border: '1px solid rgba(255, 107, 107, 0.2)',
+                                    padding: '4px 10px',
+                                    borderRadius: '6px',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                Borrar Todo
+                            </button>
+                        )}
+                    </div>
+
+                    {/* Autocomplete Suggestions */}
+                    {showSuggestions && suggestions.length > 0 && (
+                        <div style={{
+                            position: 'absolute',
+                            top: '100%',
+                            left: 0,
+                            right: 0,
+                            zIndex: 999, // Ensure it's above everything
+                            marginTop: '8px',
+                            background: '#1a1c22', // Opaque solid background
+                            border: '1px solid rgba(255, 255, 255, 0.15)',
+                            borderRadius: '12px',
+                            boxShadow: '0 15px 40px rgba(0,0,0,0.8)',
+                            maxHeight: '320px',
+                            overflowY: 'auto',
+                            padding: '8px'
+                        }}>
+                            {suggestions.map(name => (
+                                <button
+                                    key={name}
+                                    onClick={() => handleSelectAdvisor(name)}
+                                    onMouseEnter={(e) => {
+                                        (e.currentTarget as any).style.background = 'rgba(0, 122, 255, 0.2)';
+                                        (e.currentTarget as any).style.color = '#fff';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        (e.currentTarget as any).style.background = 'none';
+                                        (e.currentTarget as any).style.color = 'var(--text-primary)';
+                                    }}
+                                    style={{
+                                        width: '100%',
+                                        padding: '10px 16px',
+                                        textAlign: 'left',
+                                        background: 'none',
+                                        border: 'none',
+                                        color: 'var(--text-primary)',
+                                        cursor: 'pointer',
+                                        borderRadius: '8px',
+                                        fontSize: '0.9rem',
+                                        transition: '0.2s',
+                                        marginBottom: '2px',
+                                        display: 'block'
+                                    }}
+                                >
+                                    {name}
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+                {/* Selected Advisor Tags */}
+                {isFiltering && (
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                        {selectedAdvisors.map(name => (
+                            <div key={name} style={{
+                                display: 'flex', alignItems: 'center', gap: '6px',
+                                padding: '6px 12px', background: 'rgba(0, 122, 255, 0.15)',
+                                border: '1px solid rgba(0, 122, 255, 0.3)', borderRadius: '20px',
+                                fontSize: '0.8rem', fontWeight: 600, color: '#007AFF'
+                            }}>
+                                {name}
+                                <button
+                                    onClick={() => handleRemoveAdvisor(name)}
+                                    style={{
+                                        background: 'none', border: 'none', color: '#007AFF',
+                                        cursor: 'pointer', display: 'flex', opacity: 0.7
+                                    }}
+                                >
+                                    <X size={14} />
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
 
             {/* Campaign Accordion */}
@@ -571,38 +735,26 @@ const DetallePorCampana: React.FC<{
                                 animate={{ opacity: 1, height: 'auto' }}
                                 style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '24px' }}
                             >
-                                {/* Ganando */}
-                                {c.ganando.length > 0 && (
-                                    <AdvisorSection
-                                        title="En Meta / Ganando"
-                                        icon="✅"
-                                        color="var(--success-green)"
-                                        advisors={c.ganando}
-                                        campaign={camp}
-                                    />
-                                )}
+                                {['ganando', 'cerca', 'lejos'].map((statusKey) => {
+                                    const statusObj = (c as any)[statusKey];
+                                    const filteredAdvisors = isFiltering
+                                        ? statusObj.filter((adv: any) => selectedAdvisors.includes(adv.name))
+                                        : statusObj;
 
-                                {/* Cerca */}
-                                {c.cerca.length > 0 && (
-                                    <AdvisorSection
-                                        title="Cerca de Meta"
-                                        icon="⚠️"
-                                        color="var(--accent-gold)"
-                                        advisors={c.cerca}
-                                        campaign={camp}
-                                    />
-                                )}
+                                    if (filteredAdvisors.length === 0) return null;
 
-                                {/* Lejos */}
-                                {c.lejos.length > 0 && (
-                                    <AdvisorSection
-                                        title="Por Debajo de Meta"
-                                        icon="❌"
-                                        color="var(--danger-red)"
-                                        advisors={c.lejos}
-                                        campaign={camp}
-                                    />
-                                )}
+                                    return (
+                                        <AdvisorSection
+                                            key={statusKey}
+                                            title={statusKey === 'ganando' ? 'En Meta / Ganando' : statusKey === 'cerca' ? 'Cerca de Meta' : 'Por Debajo de Meta'}
+                                            icon={statusKey === 'ganando' ? '✅' : statusKey === 'cerca' ? '⚠️' : '❌'}
+                                            color={statusKey === 'ganando' ? 'var(--success-green)' : statusKey === 'cerca' ? 'var(--accent-gold)' : 'var(--danger-red)'}
+                                            advisors={filteredAdvisors}
+                                            campaign={camp}
+                                            isFiltered={isFiltering}
+                                        />
+                                    );
+                                })}
                             </motion.div>
                         )}
                     </div>
@@ -619,9 +771,10 @@ const AdvisorSection: React.FC<{
     color: string;
     advisors: any[];
     campaign: string;
-}> = ({ title, icon, color, advisors, campaign }) => {
+    isFiltered?: boolean;
+}> = ({ title, icon, color, advisors, campaign, isFiltered }) => {
     const [showAll, setShowAll] = useState(false);
-    const displayList = showAll ? advisors : advisors.slice(0, 10);
+    const displayList = (showAll || isFiltered) ? advisors : advisors.slice(0, 10);
 
     return (
         <div>
@@ -664,7 +817,7 @@ const AdvisorSection: React.FC<{
                 ))}
             </div>
 
-            {advisors.length > 10 && (
+            {advisors.length > 10 && !isFiltered && (
                 <button
                     onClick={() => setShowAll(!showAll)}
                     style={{
