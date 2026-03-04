@@ -242,17 +242,22 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
     return { ganando, cerca, lejos };
 };
 
+import HistoricalDatePicker from './HistoricalDatePicker';
+
 const AdminDashboard: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTheme }) => {
     const [view, setView] = useState<AdminView>('resumen');
     const [data, setData] = useState<CampaignData | null>(null);
     const [loading, setLoading] = useState(true);
+    const [selectedDate, setSelectedDate] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch('/api/admin/summary')
+        setLoading(true);
+        const url = `/api/admin/summary${selectedDate ? `?date=${selectedDate}` : ''}`;
+        fetch(url)
             .then(res => res.json())
             .then(d => { setData(d); setLoading(false); })
             .catch(err => { console.error(err); setLoading(false); });
-    }, []);
+    }, [selectedDate]);
 
     if (loading) {
         return (
@@ -304,6 +309,16 @@ const AdminDashboard: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTh
                 </div>
 
                 <div style={{ height: '1px', background: 'var(--glass-border)', margin: '0 0 20px 0' }} />
+
+                <div style={{ padding: '0 20px 16px 20px' }}>
+                    <HistoricalDatePicker
+                        reportId="mdrt"
+                        selectedDate={selectedDate}
+                        onDateSelect={setSelectedDate}
+                        themeMode={themeMode}
+                        label="Historial Global"
+                    />
+                </div>
 
                 <nav style={{ flex: 1 }}>
                     <button onClick={() => setView('resumen')} className={`nav-item ${view === 'resumen' ? 'active' : ''}`}>

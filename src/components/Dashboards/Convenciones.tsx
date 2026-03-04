@@ -10,17 +10,29 @@ const formatCurrency = (val: number) =>
     new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(val);
 
 const Convenciones: React.FC<Props> = ({ data }) => {
+    // Base metrics
     const comision_vida = Number(data.Comision_Vida || 0);
     const rda = Number(data.RDA || 0);
     const creditos_totales = Number(data.PA_Total || 0);
     const polizas = Number(data.Polizas || 0);
     const lugar = Number(data.Lugar || 0);
     const nivel_convencion = String(data.Nivel_Convencion || '');
-    const califica = Boolean(data.Califica);
-    const cumple_polizas = Boolean(data.Cumple_Polizas);
-    const cumple_creditos = Boolean(data.Cumple_Creditos);
 
-    const status_txt = califica ? "✅ CALIFICA" : "❌ NO CALIFICA";
+    // Qualification Logic (Smnylo specific thresholds)
+    // Use data provided by API if exists, otherwise calculate
+    const cumple_polizas = data.Cumple_Polizas !== undefined ? Boolean(data.Cumple_Polizas) : (polizas >= 30);
+    const cumple_creditos = data.Cumple_Creditos !== undefined ? Boolean(data.Cumple_Creditos) : (creditos_totales >= 588500);
+    const califica = data.Califica !== undefined ? Boolean(data.Califica) : (cumple_polizas && cumple_creditos);
+
+    let destino_alcanzado = "";
+    if (califica) {
+        if (lugar <= 28) destino_alcanzado = "A AMALFI";
+        else if (lugar <= 108) destino_alcanzado = "A PARÍS";
+        else if (lugar <= 228) destino_alcanzado = "A COSTA RICA";
+        else if (lugar <= 480) destino_alcanzado = "A CANCÚN";
+    }
+
+    const status_txt = califica ? `✅ CALIFICA ${destino_alcanzado}` : "❌ NO CALIFICA";
     const status_color = califica ? 'var(--success-green)' : 'var(--danger-red)';
 
     const targets = [

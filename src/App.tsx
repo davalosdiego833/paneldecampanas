@@ -129,6 +129,7 @@ const App: React.FC = () => {
                 <Dashboard
                     campaign={selectedCampaign!}
                     advisor={selectedAdvisor!}
+                    themeMode={themeMode}
                 />
             )}
         </Layout>

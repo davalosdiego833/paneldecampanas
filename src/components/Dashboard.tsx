@@ -7,18 +7,23 @@ import Convenciones from './Dashboards/Convenciones';
 import CaminoCumbre from './Dashboards/CaminoCumbre';
 import Graduacion from './Dashboards/Graduacion';
 
+import HistoricalDatePicker from './HistoricalDatePicker';
+
 interface Props {
     campaign: string;
     advisor: string;
+    themeMode: 'dark' | 'light';
 }
 
-const Dashboard: React.FC<Props> = ({ campaign, advisor }) => {
+const Dashboard: React.FC<Props> = ({ campaign, advisor, themeMode }) => {
     const [data, setData] = useState<AdvisorData | null>(null);
     const [loading, setLoading] = useState(true);
+    const [selectedDate, setSelectedDate] = useState<string | null>(null);
 
     useEffect(() => {
         setLoading(true);
-        fetch(`/api/campaign/${campaign}/data/${advisor}`)
+        const url = `/api/campaign/${campaign}/data/${advisor}${selectedDate ? `?date=${selectedDate}` : ''}`;
+        fetch(url)
             .then(res => res.json())
             .then(d => {
                 setData(d);
@@ -28,7 +33,7 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor }) => {
                 console.error('Error fetching dashboard data:', err);
                 setLoading(false);
             });
-    }, [campaign, advisor]);
+    }, [campaign, advisor, selectedDate]);
 
     if (loading) return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '400px', flexDirection: 'column', gap: '20px' }}>
@@ -127,12 +132,21 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor }) => {
                     <h1 style={{ fontSize: '2.5rem', fontWeight: 800, lineHeight: 1.1, textTransform: 'uppercase', marginBottom: '8px' }}>
                         {campaign.replace(/_/g, ' ')}
                     </h1>
-                    {data.Fecha_Corte && (
-                        <p style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                            <span>📅</span>
-                            <span>Actualizado al: <b>{formatDate(data.Fecha_Corte)}</b></span>
-                        </p>
-                    )}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                        {data.Fecha_Corte && (
+                            <p style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                                <span>📅</span>
+                                <span>Actualizado al: <b>{formatDate(data.Fecha_Corte)}</b></span>
+                            </p>
+                        )}
+                        <HistoricalDatePicker
+                            reportId={campaign}
+                            selectedDate={selectedDate}
+                            onDateSelect={setSelectedDate}
+                            themeMode={themeMode}
+                            label="Historial"
+                        />
+                    </div>
                 </div>
             </header>
 

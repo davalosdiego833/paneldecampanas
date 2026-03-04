@@ -68,17 +68,31 @@ const SearchInput: React.FC<{ value: string; onChange: (v: string) => void; plac
     </div>
 );
 
+import HistoricalDatePicker from './HistoricalDatePicker';
+
 const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggleTheme, sucursalFilter, gerenciaName }) => {
     const [section, setSection] = useState<Section>('pagado_pendiente');
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
+    const [historicalDates, setHistoricalDates] = useState<Record<string, string | null>>({
+        pagado_pendiente: null,
+        asesores_sin_emision: null,
+        proactivos: null,
+        comparativo_vida: null
+    });
 
     useEffect(() => {
-        fetch('/api/resumen-general')
+        setLoading(true);
+        const query = JSON.stringify(historicalDates);
+        fetch(`/api/resumen-general?dates=${encodeURIComponent(query)}`)
             .then(res => res.json())
             .then(d => { setData(d); setLoading(false); })
             .catch(err => { console.error(err); setLoading(false); });
-    }, []);
+    }, [historicalDates]);
+
+    const handleDateSelect = (sec: string, date: string | null) => {
+        setHistoricalDates(prev => ({ ...prev, [sec]: date }));
+    };
 
     // Helper: filter rows by sucursal
     const filterData = (rawData: any) => {
@@ -174,10 +188,39 @@ const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggl
         const sectionFecha = data.fechas_corte?.[section] || '';
 
         switch (section) {
-            case 'pagado_pendiente': return <PagadoPendiente data={filterData(data.pagado_pendiente)} fechaCorte={sectionFecha} />;
-            case 'asesores_sin_emision': return <AsesoresSinEmision data={filterData(data.asesores_sin_emision)} fechaCorte={sectionFecha} />;
-            case 'proactivos': return <Proactivos data={filterData(data.proactivos)} fechaCorte={sectionFecha} />;
-            case 'comparativo_vida': return <ComparativoVida data={filterData(data.comparativo_vida)} fechaCorte={sectionFecha} isGerencia={!!sucursalFilter && sucursalFilter.length > 0} />;
+            case 'pagado_pendiente':
+                return <PagadoPendiente
+                    data={filterData(data.pagado_pendiente)}
+                    fechaCorte={sectionFecha}
+                    selectedDate={historicalDates.pagado_pendiente}
+                    onDateSelect={(d: string | null) => handleDateSelect('pagado_pendiente', d)}
+                    themeMode={themeMode}
+                />;
+            case 'asesores_sin_emision':
+                return <AsesoresSinEmision
+                    data={filterData(data.asesores_sin_emision)}
+                    fechaCorte={sectionFecha}
+                    selectedDate={historicalDates.asesores_sin_emision}
+                    onDateSelect={(d: string | null) => handleDateSelect('asesores_sin_emision', d)}
+                    themeMode={themeMode}
+                />;
+            case 'proactivos':
+                return <Proactivos
+                    data={filterData(data.proactivos)}
+                    fechaCorte={sectionFecha}
+                    selectedDate={historicalDates.proactivos}
+                    onDateSelect={(d: string | null) => handleDateSelect('proactivos', d)}
+                    themeMode={themeMode}
+                />;
+            case 'comparativo_vida':
+                return <ComparativoVida
+                    data={filterData(data.comparativo_vida)}
+                    fechaCorte={sectionFecha}
+                    isGerencia={!!sucursalFilter && sucursalFilter.length > 0}
+                    selectedDate={historicalDates.comparativo_vida}
+                    onDateSelect={(d: string | null) => handleDateSelect('comparativo_vida', d)}
+                    themeMode={themeMode}
+                />;
         }
     };
 
@@ -280,7 +323,7 @@ const SectionHeader: React.FC<{ label: string; color: string; icon: string }> = 
     </div>
 );
 
-const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string }> = ({ data, fechaCorte }) => {
+const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string; selectedDate: string | null; onDateSelect: (d: string | null) => void; themeMode: 'dark' | 'light' }> = ({ data, fechaCorte, selectedDate, onDateSelect, themeMode }) => {
     if (!data || !data.length) return <div>No hay datos</div>;
 
     // Column accessors (matching exact Excel column names including typos)
@@ -340,7 +383,16 @@ const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string }> = ({ data, 
                     <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '4px' }}>💰 Pagado / Pendiente</h2>
                     <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Desglose de recibos iniciales, ordinarios y totales</p>
                 </div>
-                <FechaCorte fecha={fechaCorte} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <FechaCorte fecha={fechaCorte} />
+                    <HistoricalDatePicker
+                        reportId="pagado_pendiente"
+                        selectedDate={selectedDate}
+                        onDateSelect={onDateSelect}
+                        themeMode={themeMode}
+                        label="Corte Histórico"
+                    />
+                </div>
             </div>
 
             {/* ── SECCIÓN PAGADO ── */}
@@ -424,7 +476,7 @@ const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string }> = ({ data, 
 };
 
 /* ========== SECTION 2: ASESORES SIN EMISIÓN ========== */
-const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string }> = ({ data, fechaCorte }) => {
+const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate: string | null; onDateSelect: (d: string | null) => void; themeMode: 'dark' | 'light' }> = ({ data, fechaCorte, selectedDate, onDateSelect, themeMode }) => {
     if (!data) return <div>No hay datos</div>;
     const individuals = data.individuals || [];
     const summaryBySucursal = data.summaryBySucursal || [];
@@ -451,7 +503,16 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string }> = ({ data,
                     <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '4px' }}>⚠️ Asesores sin Emisión</h2>
                     <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Estado de emisión y producción pagada por asesor</p>
                 </div>
-                <FechaCorte fecha={fechaCorte} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <FechaCorte fecha={fechaCorte} />
+                    <HistoricalDatePicker
+                        reportId="asesores_sin_emision"
+                        selectedDate={selectedDate}
+                        onDateSelect={onDateSelect}
+                        themeMode={themeMode}
+                        label="Corte Histórico"
+                    />
+                </div>
             </div>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
@@ -520,7 +581,7 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string }> = ({ data,
 };
 
 /* ========== SECTION 3: PROACTIVOS ========== */
-const Proactivos: React.FC<{ data: any[]; fechaCorte: string }> = ({ data, fechaCorte }) => {
+const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDate: string | null; onDateSelect: (d: string | null) => void; themeMode: 'dark' | 'light' }> = ({ data, fechaCorte, selectedDate, onDateSelect, themeMode }) => {
     if (!data || !data.length) return <div>No hay datos</div>;
 
     const proactivosMes = data.filter((r: any) => r.Proactivo_al_mes === 'p').length;
@@ -548,7 +609,16 @@ const Proactivos: React.FC<{ data: any[]; fechaCorte: string }> = ({ data, fecha
                     <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '4px' }}>📊 Proactivos</h2>
                     <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Cumplimiento de mínimos de actividad por asesor</p>
                 </div>
-                <FechaCorte fecha={fechaCorte} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <FechaCorte fecha={fechaCorte} />
+                    <HistoricalDatePicker
+                        reportId="proactivos"
+                        selectedDate={selectedDate}
+                        onDateSelect={onDateSelect}
+                        themeMode={themeMode}
+                        label="Corte Histórico"
+                    />
+                </div>
             </div>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
@@ -587,7 +657,7 @@ const Proactivos: React.FC<{ data: any[]; fechaCorte: string }> = ({ data, fecha
 };
 
 /* ========== SECTION 4: COMPARATIVO DE VIDA ========== */
-const ComparativoVida: React.FC<{ data: any; fechaCorte: string; isGerencia?: boolean }> = ({ data, fechaCorte, isGerencia }) => {
+const ComparativoVida: React.FC<{ data: any; fechaCorte: string; isGerencia?: boolean; selectedDate: string | null; onDateSelect: (d: string | null) => void; themeMode: 'dark' | 'light' }> = ({ data, fechaCorte, isGerencia, selectedDate, onDateSelect, themeMode }) => {
     if (!data) return <div>No hay datos</div>;
     const individuals = data.individuals || [];
     const summary = data.generalSummary;
@@ -645,7 +715,16 @@ const ComparativoVida: React.FC<{ data: any; fechaCorte: string; isGerencia?: bo
                     <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '4px' }}>📈 Comparativo de Vida</h2>
                     <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Año anterior vs. año actual — Pólizas y prima pagada</p>
                 </div>
-                <FechaCorte fecha={fechaCorte} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <FechaCorte fecha={fechaCorte} />
+                    <HistoricalDatePicker
+                        reportId="comparativo_vida"
+                        selectedDate={selectedDate}
+                        onDateSelect={onDateSelect}
+                        themeMode={themeMode}
+                        label="Corte Histórico"
+                    />
+                </div>
             </div>
 
             {/* Top Cards */}
