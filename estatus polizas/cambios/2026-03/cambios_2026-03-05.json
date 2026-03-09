@@ -1,0 +1,71 @@
+{
+  "resumen": {
+    "fecha_anterior": "2026-03-02",
+    "fecha_nuevo": "2026-03-05",
+    "total_anterior": 2939,
+    "total_nuevo": 2941,
+    "diferencia_total": 2,
+    "cambios_estatus_general": {
+      "En Vigor": {
+        "anterior": 1917,
+        "nuevo": 1918,
+        "diferencia": 1,
+        "emoji": "🟢"
+      },
+      "Anulada": {
+        "anterior": 911,
+        "nuevo": 913,
+        "diferencia": 2,
+        "emoji": "🔴"
+      },
+      "Vigor Prorrogado": {
+        "anterior": 78,
+        "nuevo": 77,
+        "diferencia": -1,
+        "emoji": "🟢"
+      }
+    }
+  },
+  "lista_cambios": [
+    {
+      "tipo": "ALTA",
+      "asesor": "DESIREE DE LA PEÑA OROZCO",
+      "clave": "80122",
+      "poliza": "GM0000403110",
+      "contratante": "ABRAHAM CHACON CABRERA",
+      "producto": "INTEGRO",
+      "estatus_anterior": "NUEVA",
+      "estatus_nuevo": "En Vigor"
+    },
+    {
+      "tipo": "CAMBIO",
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002815858",
+      "contratante": "ALEJANDRA YAMILLI HERNANDEZ MEDINA",
+      "producto": "IMAGINA SER 60",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada"
+    },
+    {
+      "tipo": "CAMBIO",
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "106893",
+      "poliza": "VI0002794216",
+      "contratante": "CARLOS ALBERTO AMBRIZ GOMEZ",
+      "producto": "VIDA",
+      "estatus_anterior": "Vigor Prorrogado",
+      "estatus_nuevo": "Anulada"
+    },
+    {
+      "tipo": "CAMBIO",
+      "asesor": "MARIA TERESA ASENCIO LOZANO",
+      "clave": "94156",
+      "poliza": "GM0000427411",
+      "contratante": "ADRIANA MARINA HUERTA OCHOA",
+      "producto": "INTEGRO",
+      "estatus_anterior": "Vigor Prorrogado",
+      "estatus_nuevo": "En Vigor"
+    }
+  ]
+}
