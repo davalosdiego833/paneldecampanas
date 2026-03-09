@@ -90,7 +90,7 @@ const Convenciones: React.FC<Props> = ({ data }) => {
                         <p style={{ fontSize: '1.5rem', fontWeight: 600 }}>{formatCurrency(comision_vida)}</p>
                     </div>
                     <div className="glass-card" style={{ textAlign: 'center' }}>
-                        <p style={{ fontSize: '0.8rem', opacity: 0.6, marginBottom: '4px', textTransform: 'uppercase' }}>RDA (GMM)</p>
+                        <p style={{ fontSize: '0.8rem', opacity: 0.6, marginBottom: '4px', textTransform: 'uppercase' }}>RDA</p>
                         <p style={{ fontSize: '1.5rem', fontWeight: 600 }}>{formatCurrency(rda)}</p>
                     </div>
                     <div className="glass-card" style={{ textAlign: 'center', borderBottom: '4px solid var(--success-green)' }}>

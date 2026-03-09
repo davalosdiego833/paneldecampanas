@@ -7,7 +7,6 @@ import Convenciones from './Dashboards/Convenciones';
 import CaminoCumbre from './Dashboards/CaminoCumbre';
 import Graduacion from './Dashboards/Graduacion';
 
-import HistoricalDatePicker from './HistoricalDatePicker';
 
 interface Props {
     campaign: string;
@@ -139,13 +138,6 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor, themeMode }) => {
                                 <span>Actualizado al: <b>{formatDate(data.Fecha_Corte)}</b></span>
                             </p>
                         )}
-                        <HistoricalDatePicker
-                            reportId={campaign}
-                            selectedDate={selectedDate}
-                            onDateSelect={setSelectedDate}
-                            themeMode={themeMode}
-                            label="Historial"
-                        />
                     </div>
                 </div>
             </header>

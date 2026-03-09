@@ -42,7 +42,7 @@ const Graduacion: React.FC<Props> = ({ data }) => {
     const polizas_totales = Number(data.Polizas_Totales || 0);
     const comisiones = Number(data.Comisones || 0);
     const produccion_mes = Number(data.Produccion_Mes || data.Polizas_Mes || 0);
-    const fecha_limite = formatExcelDate(data.Limite_Logro_Meta);
+    const fecha_limite = String(data.Fecha_Limite_Meta || 'No disponible').replace(/^\d+\s+de\s+/gi, '');
 
     const currentMonth = new Date().getMonth() + 1;
     const monthsTo12 = 12 - mes_asesor;

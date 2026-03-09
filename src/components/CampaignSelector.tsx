@@ -7,10 +7,9 @@ interface Props {
 }
 
 const CampaignSelector: React.FC<Props> = ({ advisor, onCampaignSelect }) => {
-    const [campaigns, setCampaigns] = useState<string[]>([]);
-    const [dates, setDates] = useState<Record<string, string>>({});
-
     const campaignOrder = ["legion_centurion", "mdrt", "convenciones", "camino_cumbre", "graduacion"];
+    const [campaigns, setCampaigns] = useState<string[]>(campaignOrder);
+    const [dates, setDates] = useState<Record<string, string>>({});
 
     const logoMapping: Record<string, string> = {
         "legion_centurion": "/assets/logos/campanas/legion_centurion.png",
@@ -21,18 +20,10 @@ const CampaignSelector: React.FC<Props> = ({ advisor, onCampaignSelect }) => {
     };
 
     useEffect(() => {
-        fetch('/api/campaigns')
-            .then(res => res.json())
-            .then(data => {
-                const sorted = data.sort((a: string, b: string) => {
-                    return campaignOrder.indexOf(a) - campaignOrder.indexOf(b);
-                });
-                setCampaigns(sorted);
-            });
-
+        // Disparamos la carga de fechas sin detener la interfaz visual
         fetch('/api/campaigns/dates')
             .then(res => res.json())
-            .then(data => setDates(data))
+            .then(d => setDates(d))
             .catch(err => console.error('Error fetching campaign dates:', err));
     }, []);
 

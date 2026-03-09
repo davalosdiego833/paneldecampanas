@@ -117,28 +117,35 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
         }
 
         else if (campaign === 'camino_cumbre') {
-            const status = String(row.Estatus_meta || '').toUpperCase();
             const polizas = Number(row.Polizas_Totales || 0);
             const mes = Math.floor(Number(row.Mes_Asesor || 1));
             const metaAcum = mes * 4;
             const faltanteMeta = Math.max(0, metaAcum - polizas);
+            const isAlert = mes <= 3 && Number(row[`Mes_${mes}_Prod`] || 0) === 0;
+            const isInMeta = faltanteMeta <= 0;
+
+            let status_txt = isInMeta ? '✅ EN META' : '❌ POR DEBAJO';
+            if (isAlert) status_txt = '⚠️ ALERTA: SIN ACTIVIDAD';
+            if (String(row.Estatus_meta || '').toUpperCase().includes('BAJA')) status_txt = String(row.Estatus_meta).toUpperCase();
 
             const details: string[] = [];
-            if (faltanteMeta <= 0) {
+            if (isInMeta) {
                 // En meta: cumple o supera el promedio de 4 pólizas/mes
                 details.push(`Mes ${mes} · ${polizas} pólizas`);
-                details.push(status);
-                ganando.push({ name, value: polizas, details, status });
-            } else if (faltanteMeta <= 5) {
+                details.push(status_txt);
+                ganando.push({ name, value: polizas, details, status: status_txt });
+            } else if (faltanteMeta <= 5 && !isAlert) {
                 // Cerca de meta: le faltan 5 o menos pólizas
                 details.push(`Mes ${mes} · ${polizas} pólizas`);
                 details.push(`Faltan ${faltanteMeta.toFixed(1)} pólizas para meta`);
-                cerca.push({ name, value: polizas, details, status });
+                details.push(status_txt);
+                cerca.push({ name, value: polizas, details, status: status_txt });
             } else {
-                // Por debajo: le faltan más de 5
+                // Por debajo: le faltan más de 5 o isAlert
                 details.push(`Mes ${mes} · ${polizas} pólizas`);
                 details.push(`Faltan ${faltanteMeta.toFixed(1)} pólizas para meta`);
-                lejos.push({ name, value: polizas, details, status });
+                details.push(status_txt);
+                lejos.push({ name, value: polizas, details, status: status_txt });
             }
         }
 
@@ -156,7 +163,7 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
 
             if (lugar <= 480 && polizas >= 30 && total >= 588500) {
                 // Califica
-                details.push(`Lugar #${lugar} · ${diamante || '1 Diamante'}${nivel ? ' · ' + nivel : ''}`);
+                details.push(`🏅 Lugar #${lugar} · ${diamante || '1 Diamante'}${nivel ? ' · ' + nivel : ''}`);
                 details.push(infoLine);
                 details.push(`Pólizas: ${polizas}`);
                 if (next) details.push(`Faltante ${next}: ${formatCurrency(faltanteNext)}`);
@@ -175,7 +182,10 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
                 // Por debajo
                 details.push(`Lugar #${lugar}`);
                 details.push(infoLine);
-                details.push(`Pólizas: ${polizas} · Faltante: ${formatCurrency(faltanteNext)}`);
+                details.push(`Pólizas: ${polizas}`);
+                if (polizas < 30) details.push(`⚠️ Faltan ${(30 - polizas).toFixed(1)} pólizas`);
+                if (total < 588500) details.push(`⚠️ Faltan ${formatCurrency(588500 - total)} en créditos`);
+                details.push(`Faltante 1 Diamante: ${formatCurrency(faltanteNext)}`);
                 lejos.push({ name, value: total, details, lugar, faltante: faltanteNext });
             }
         }
@@ -207,29 +217,35 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
 
         else if (campaign === 'legion_centurion') {
             const polizas = Number(row.Total_Polizas || 0);
-            const mes = Math.floor(Number(row.Mes_Actual || 1));
-            const metaMensual = mes * 4;
-            const faltanteMeta = Math.max(0, metaMensual - polizas);
             const { nivel, next, faltanteNext } = getLegionLevel(polizas);
             const faltanteBronce = Math.max(0, 48 - polizas);
 
+            // Usar el estatus que viene del servidor (Excel) si existe
+            const estaEnMeta = row.EnMeta !== undefined ? row.EnMeta : (polizas >= (Math.floor(Number(row.Mes_Actual || 1)) * 4));
+
             const details: string[] = [
                 `${polizas} pólizas totales`,
-                `Faltante Meta Mes: ${faltanteMeta.toFixed(1)} pólizas`,
                 `Faltante Bronce: ${faltanteBronce.toFixed(1)} pólizas`
             ];
 
             if (nivel) details.push(`🏅 Nivel: ${nivel}`);
 
-            if (faltanteMeta <= 0) {
+            if (estaEnMeta) {
                 // En meta
                 ganando.push({ name, value: polizas, details, nivel });
-            } else if (faltanteMeta <= 5) {
-                // Cerca
-                cerca.push({ name, value: polizas, details, faltante: faltanteMeta });
             } else {
-                // Lejos
-                lejos.push({ name, value: polizas, details, faltante: faltanteMeta });
+                // Si no está en meta, ver si está cerca (menos de 5 pólizas para el promedio de 4/mes)
+                const mes = Math.floor(Number(row.Mes_Actual || 1));
+                const metaMensual = mes * 4;
+                const faltanteMeta = Math.max(0, metaMensual - polizas);
+
+                if (faltanteMeta <= 5) {
+                    details.push(`⚠️ Faltante Meta Mes: ${faltanteMeta.toFixed(1)} pólizas`);
+                    cerca.push({ name, value: polizas, details, faltante: faltanteMeta });
+                } else {
+                    details.push(`❌ Faltante Meta Mes: ${faltanteMeta.toFixed(1)} pólizas`);
+                    lejos.push({ name, value: polizas, details, faltante: faltanteMeta });
+                }
             }
         }
     });
@@ -242,7 +258,6 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
     return { ganando, cerca, lejos };
 };
 
-import HistoricalDatePicker from './HistoricalDatePicker';
 
 const AdminDashboard: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTheme }) => {
     const [view, setView] = useState<AdminView>('resumen');
@@ -252,12 +267,11 @@ const AdminDashboard: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTh
 
     useEffect(() => {
         setLoading(true);
-        const url = `/api/admin/summary${selectedDate ? `?date=${selectedDate}` : ''}`;
-        fetch(url)
+        fetch('/api/admin/summary')
             .then(res => res.json())
             .then(d => { setData(d); setLoading(false); })
             .catch(err => { console.error(err); setLoading(false); });
-    }, [selectedDate]);
+    }, []);
 
     if (loading) {
         return (
@@ -310,15 +324,6 @@ const AdminDashboard: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTh
 
                 <div style={{ height: '1px', background: 'var(--glass-border)', margin: '0 0 20px 0' }} />
 
-                <div style={{ padding: '0 20px 16px 20px' }}>
-                    <HistoricalDatePicker
-                        reportId="mdrt"
-                        selectedDate={selectedDate}
-                        onDateSelect={setSelectedDate}
-                        themeMode={themeMode}
-                        label="Historial Global"
-                    />
-                </div>
 
                 <nav style={{ flex: 1 }}>
                     <button onClick={() => setView('resumen')} className={`nav-item ${view === 'resumen' ? 'active' : ''}`}>

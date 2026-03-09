@@ -68,7 +68,6 @@ const SearchInput: React.FC<{ value: string; onChange: (v: string) => void; plac
     </div>
 );
 
-import HistoricalDatePicker from './HistoricalDatePicker';
 
 const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggleTheme, sucursalFilter, gerenciaName }) => {
     const [section, setSection] = useState<Section>('pagado_pendiente');
@@ -385,13 +384,6 @@ const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string; selectedDate:
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <FechaCorte fecha={fechaCorte} />
-                    <HistoricalDatePicker
-                        reportId="pagado_pendiente"
-                        selectedDate={selectedDate}
-                        onDateSelect={onDateSelect}
-                        themeMode={themeMode}
-                        label="Corte Histórico"
-                    />
                 </div>
             </div>
 
@@ -505,13 +497,6 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <FechaCorte fecha={fechaCorte} />
-                    <HistoricalDatePicker
-                        reportId="asesores_sin_emision"
-                        selectedDate={selectedDate}
-                        onDateSelect={onDateSelect}
-                        themeMode={themeMode}
-                        label="Corte Histórico"
-                    />
                 </div>
             </div>
 
@@ -611,13 +596,6 @@ const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDate: stri
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <FechaCorte fecha={fechaCorte} />
-                    <HistoricalDatePicker
-                        reportId="proactivos"
-                        selectedDate={selectedDate}
-                        onDateSelect={onDateSelect}
-                        themeMode={themeMode}
-                        label="Corte Histórico"
-                    />
                 </div>
             </div>
 
@@ -687,12 +665,28 @@ const ComparativoVida: React.FC<{ data: any; fechaCorte: string; isGerencia?: bo
     const pctCrecPol = polAnt > 0 ? ((crecPol / polAnt) * 100).toFixed(1) : '0';
     const pctCrecPrima = primaAnt > 0 ? ((crecPrima / primaAnt) * 100).toFixed(1) : '0';
 
-    const crecientes = individuals.filter((r: any) => Number(r.Crec_Prima_Pagada) > 0).length;
-    const decrecientes = individuals.filter((r: any) => Number(r.Crec_Prima_Pagada) < 0).length;
-    const sinCambio = individuals.filter((r: any) => Number(r.Polizas_Pagadas_Año_Anterior) > 0 && Number(r.Crec_Prima_Pagada) === 0).length;
+    const enhancedIndividuals = individuals.map((r: any) => {
+        const primAnt = Number(r.Prima_Pagada_Año_Anterior || 0);
+        const primAct = Number(r.Prima_Pagada_Año_Actual || r.Prima_Pagada_Añoa_Actual || 0);
+        const polAntLocal = Number(r.Polizas_Pagadas_Año_Anterior || 0);
+        const polActLocal = Number(r.Polizas_Pagadas_Año_Actual || 0);
+        const crecPrima = primAct - primAnt;
+        const crecPol = polActLocal - polAntLocal;
+        return {
+            ...r,
+            Crec_Prima_Pagada: crecPrima,
+            Crec_Polizas_Pagadas: crecPol,
+            '%_Crec_Prima_Pagada': primAnt > 0 ? (crecPrima / primAnt) * 100 : 0,
+            '%_Crec_Polizas_Pagadas': polAntLocal > 0 ? (crecPol / polAntLocal) * 100 : 0
+        };
+    });
+
+    const crecientes = enhancedIndividuals.filter((r: any) => Number(r.Crec_Prima_Pagada) > 0).length;
+    const decrecientes = enhancedIndividuals.filter((r: any) => Number(r.Crec_Prima_Pagada) < 0).length;
+    const sinCambio = enhancedIndividuals.filter((r: any) => Number(r.Polizas_Pagadas_Año_Anterior) > 0 && Number(r.Crec_Prima_Pagada) === 0).length;
     const trendPie = [{ name: 'Creciendo', value: crecientes, fill: '#00E676' }, { name: 'Decreciendo', value: decrecientes, fill: '#FF6B6B' }, { name: 'Sin cambio', value: sinCambio, fill: '#9E9E9E' }];
 
-    const sorted = [...individuals].sort((a: any, b: any) => (Number(b.Crec_Prima_Pagada) || 0) - (Number(a.Crec_Prima_Pagada) || 0));
+    const sorted = [...enhancedIndividuals].sort((a: any, b: any) => (Number(b.Crec_Prima_Pagada) || 0) - (Number(a.Crec_Prima_Pagada) || 0));
     const headers = ['#', 'Asesor', 'Suc', 'Pól. Anterior', 'Pól. Actual', 'Crec. Pól.', '% Crec. Pól.', 'Prima Anterior', 'Prima Actual', 'Crec. Prima', '% Crec. Prima'];
     const rows = sorted.map((r: any, i: number) => [
         i + 1, r['Nombre del Asesor'] || r.Asesor, r.Sucursal, fmtNum(r.Polizas_Pagadas_Año_Anterior), fmtNum(r.Polizas_Pagadas_Año_Actual), fmtNum(r.Crec_Polizas_Pagadas), pct(r['%_Crec_Polizas_Pagadas']),
@@ -717,13 +711,6 @@ const ComparativoVida: React.FC<{ data: any; fechaCorte: string; isGerencia?: bo
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <FechaCorte fecha={fechaCorte} />
-                    <HistoricalDatePicker
-                        reportId="comparativo_vida"
-                        selectedDate={selectedDate}
-                        onDateSelect={onDateSelect}
-                        themeMode={themeMode}
-                        label="Corte Histórico"
-                    />
                 </div>
             </div>
 

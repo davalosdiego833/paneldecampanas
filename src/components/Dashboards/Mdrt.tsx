@@ -16,9 +16,9 @@ const Mdrt: React.FC<Props> = ({ data }) => {
 
     const pa_acumulada = Number(data.PA_Acumulada || 0);
     const mes_actual = Number(data.Mes_Actual || 1);
-    const faltante_miembro = Math.max(0, Number(data.PA_Faltante_Miembro || 0));
-    const faltante_cot = Math.max(0, Number(data.PA_Faltante_COT || 0));
-    const faltante_tot = Math.max(0, Number(data.PA_Faltante_TOT || 0));
+    const faltante_miembro = Math.max(0, META_MEMBER - pa_acumulada);
+    const faltante_cot = Math.max(0, META_COT - pa_acumulada);
+    const faltante_tot = Math.max(0, META_TOT - pa_acumulada);
 
     const meses_restantes = Math.max(1, 12 - Math.floor(mes_actual) + 1);
     const mensual_member = faltante_miembro / meses_restantes;
