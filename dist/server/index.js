@@ -18,19 +18,43 @@ const THEMES_PATH = path.join(BASE_PATH, 'themes');
 app.use(cors());
 app.use(express.json());
 let cachedAdvisors = [];
+let cachedDirectoryMap = {};
 let lastDirectoryMtime = 0;
 const getCachedAdvisors = () => {
+    getAdvisorDirectory(); // This populates the caches if needed
+    return cachedAdvisors;
+};
+// Helper to get advisor directory
+const getAdvisorDirectory = () => {
     const filePath = path.join(BASE_PATH, 'administrador', 'directorio_asesores.xlsx');
     if (!fs.existsSync(filePath))
-        return cachedAdvisors;
-    const mtime = fs.statSync(filePath).mtimeMs;
-    if (mtime === lastDirectoryMtime && cachedAdvisors.length > 0) {
-        return cachedAdvisors;
+        return {};
+    try {
+        const mtime = fs.statSync(filePath).mtimeMs;
+        if (mtime === lastDirectoryMtime && Object.keys(cachedDirectoryMap).length > 0) {
+            return cachedDirectoryMap;
+        }
+        const workbook = XLSX.readFile(filePath);
+        const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+        const data = XLSX.utils.sheet_to_json(worksheet);
+        const directory = {};
+        data.forEach(row => {
+            const keys = Object.keys(row);
+            const claveKey = keys.find(k => k.toLowerCase().trim() === 'clave');
+            const nombreKey = keys.find(k => k.toLowerCase().trim() === 'nombre_completo' || k.toLowerCase().trim() === 'nombre completo');
+            if (claveKey && nombreKey && row[claveKey] && row[nombreKey]) {
+                directory[String(row[claveKey])] = String(row[nombreKey]).trim();
+            }
+        });
+        cachedDirectoryMap = directory;
+        cachedAdvisors = Object.values(directory).sort();
+        lastDirectoryMtime = mtime;
+        return directory;
     }
-    const directory = getAdvisorDirectory();
-    cachedAdvisors = Object.values(directory).sort();
-    lastDirectoryMtime = mtime;
-    return cachedAdvisors;
+    catch (e) {
+        console.error('Error reading director:', e);
+        return {};
+    }
 };
 // Explicitly set correct MIME types (Hostinger fix)
 const mimeTypes = {
@@ -60,31 +84,6 @@ app.use('/assets', express.static(ASSETS_PATH, { setHeaders: setMimeHeaders }));
 // Serve Frontend Build
 const DIST_PATH = path.join(BASE_PATH, 'dist');
 app.use(express.static(DIST_PATH, { setHeaders: setMimeHeaders }));
-// Helper to get advisor directory
-const getAdvisorDirectory = () => {
-    const filePath = path.join(BASE_PATH, 'administrador', 'directorio_asesores.xlsx');
-    if (!fs.existsSync(filePath))
-        return {};
-    try {
-        const workbook = XLSX.readFile(filePath);
-        const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-        const data = XLSX.utils.sheet_to_json(worksheet);
-        const directory = {};
-        data.forEach(row => {
-            const keys = Object.keys(row);
-            const claveKey = keys.find(k => k.toLowerCase().trim() === 'clave');
-            const nombreKey = keys.find(k => k.toLowerCase().trim() === 'nombre_completo' || k.toLowerCase().trim() === 'nombre completo');
-            if (claveKey && nombreKey && row[claveKey] && row[nombreKey]) {
-                directory[String(row[claveKey])] = String(row[nombreKey]).trim();
-            }
-        });
-        return directory;
-    }
-    catch (e) {
-        console.error('Error reading director:', e);
-        return {};
-    }
-};
 const MONTHS_ES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 const parseSpanishDate = (str) => {
     if (!str)
@@ -92,7 +91,11 @@ const parseSpanishDate = (str) => {
     const match = String(str).toLowerCase().match(/(\d{1,2})\s+de\s+([a-z]+)\s+de\s+(\d{4})/i);
     if (match) {
         const day = match[1].padStart(2, '0');
-        const mIdx = MONTHS_ES.indexOf(match[2].toLowerCase());
+        const monthStr = match[2].toLowerCase();
+        let mIdx = MONTHS_ES.indexOf(monthStr);
+        if (mIdx === -1) {
+            mIdx = MONTHS_ES.findIndex(m => m.startsWith(monthStr) || monthStr.startsWith(m.substring(0, 3)));
+        }
         const month = (mIdx !== -1 ? mIdx + 1 : 1).toString().padStart(2, '0');
         const year = match[3];
         return `${year}-${month}-${day}`;
@@ -169,7 +172,7 @@ const extractCutoffDate = (wb, type) => {
             if (!ws)
                 return '';
             const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
-            return parseSpanishDate(formatExcelDate(data[1]?.[2] || ""));
+            return parseSpanishDate(formatExcelDate(data[0]?.[0] || data[1]?.[2] || ""));
         }
         return '';
     }
@@ -241,44 +244,6 @@ const getCaminoDate = (worksheet) => {
     return ms ? ms[ms.length - 1] : null;
 };
 // --- Endpoints ---
-app.get('/api/admin/available-reports', (req, res) => {
-    try {
-        const adminReports = [
-            { id: 'asesores_sin_emision', path: 'administrador/asesores_sin_emision' },
-            { id: 'pagado_pendiente', path: 'administrador/pagado_emitidido' },
-            { id: 'proactivos', path: 'administrador/proactivos' },
-            { id: 'comparativo_vida', path: 'administrador/comparativo_vida' }
-        ];
-        const campaigns = ['mdrt', 'convenciones', 'camino_cumbre', 'graduacion', 'legion_centurion'];
-        const allPaths = [...adminReports, ...campaigns.map(c => ({ id: c, path: c }))];
-        const reportsInfo = {};
-        allPaths.forEach(entry => {
-            const folderPath = path.join(BASE_PATH, entry.path);
-            if (fs.existsSync(folderPath) && fs.lstatSync(folderPath).isDirectory()) {
-                const files = fs.readdirSync(folderPath).filter(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm') || f.endsWith('.xls')) && !f.startsWith('~$'));
-                const datesMap = {};
-                files.forEach(f => {
-                    const fullPath = path.join(folderPath, f);
-                    try {
-                        const wb = XLSX.readFile(fullPath, { cellFormula: false, cellStyles: false });
-                        const date = extractCutoffDate(wb, entry.id);
-                        if (date) {
-                            datesMap[date] = f;
-                        }
-                    }
-                    catch (e) { }
-                });
-                historyCache[entry.path] = datesMap;
-                reportsInfo[entry.id] = Object.keys(datesMap).sort().reverse();
-            }
-        });
-        res.json(reportsInfo);
-    }
-    catch (err) {
-        console.error('Error listing reports:', err);
-        res.status(500).json({ error: 'Could not scan reports' });
-    }
-});
 app.get('/api/campaigns', (req, res) => {
     const exclude = ['assets', 'themes', 'server', 'node_modules', 'src', 'public', '.git', 'dist', '.conda', 'administrador', 'tmp', '.cache', '.npm', 'estatus polizas', 'estatus_polizas'];
     try {
@@ -310,10 +275,12 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         if (!wb)
             return res.status(404).json({ error: 'Raw file not found' });
         const ws = wb.Sheets[wb.SheetNames[0]];
+        if (!ws._cachedJson)
+            ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 'A11:Z10000' });
+        const json = ws._cachedJson;
         const b9 = ws['B9']?.v || "";
         const mMatch = String(b9).toLowerCase().match(/(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/);
         const mIndex = mMatch ? MONTHS_ES.indexOf(mMatch[1]) + 1 : 1;
-        const json = XLSX.utils.sheet_to_json(ws, { range: 'A11:Z10000' });
         const dir = getAdvisorDirectory();
         const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
         const row = json.find(r => String(r['Matriz'] || '') === '2043' && (String(r['Asesor'] || '') === advisor || advisorKeys.includes(String(r['Asesor'] || ''))));
@@ -334,7 +301,9 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         if (!wb)
             return res.status(404).json({ error: 'Raw file not found' });
         const ws = wb.Sheets[wb.SheetNames[0]];
-        const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AI5000' });
+        if (!ws._cachedData)
+            ws._cachedData = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AI5000' });
+        const data = ws._cachedData;
         const dir = getAdvisorDirectory();
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
         const row = data.find(r => String(r[4] || '') === '2043' && (String(r[7] || '') === advisor || advisorIds.includes(String(r[7] || ''))));
@@ -371,7 +340,9 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         if (!wb)
             return res.status(404).json({ error: 'Raw file not found' });
         const ws = wb.Sheets[wb.SheetNames[0]];
-        const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 3 });
+        if (!ws._cachedData)
+            ws._cachedData = XLSX.utils.sheet_to_json(ws, { header: 1, range: 3 });
+        const data = ws._cachedData;
         const dir = getAdvisorDirectory();
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
         const row = data.find(r => String(r[3] || '') === '2043' && (String(r[5] || '') === advisor || advisorIds.includes(String(r[5] || ''))));
@@ -390,15 +361,20 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         if (!wb)
             return res.status(404).json({ error: 'Raw file not found' });
         const ws = wb.Sheets[wb.SheetNames[0]];
-        const json = XLSX.utils.sheet_to_json(ws, { range: 2 });
+        if (!ws._cachedJson)
+            ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 2 });
+        const json = ws._cachedJson;
         const dir = getAdvisorDirectory();
         const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
         const row = json.find(r => String(r['NOMBRE'] || '') === advisor || advisorKeys.includes(String(r['NOMBRE'] || '')) || String(r['ASESOR'] || '') === advisor || advisorKeys.includes(String(r['ASESOR'] || '')));
         if (!row)
             return res.status(404).json({ error: 'Advisor not found' });
+        const limitKey = Object.keys(row).find(k => k.includes('MITE P/'));
+        const fechaLimite = limitKey ? row[limitKey] : "";
         return res.json({
             'Asesor': advisor, 'Clave': row['ASESOR'] || '', 'Fecha_Corte': getMdrtDate(ws) || "",
-            'Mes_Asesor': row['MES'] || 0, 'Polizas_Totales': row['EN VIGOR'] || 0, 'Comisones': row['TOTAL2'] || 0
+            'Mes_Asesor': row['MES'] || 0, 'Polizas_Totales': row['EN VIGOR'] || 0, 'Comisones': row['TOTAL2'] || 0,
+            'Fecha_Limite_Meta': formatExcelDate(fechaLimite) || "No disponible"
         });
     }
     if (name === 'mdrt') {
@@ -406,13 +382,16 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         if (!wb)
             return res.status(404).json({ error: 'Raw file not found' });
         const ws = wb.Sheets[wb.SheetNames.find((n) => n.toUpperCase() === 'MDRT') || wb.SheetNames[0]];
-        const json = XLSX.utils.sheet_to_json(ws, { range: 3 });
+        if (!ws._cachedJson)
+            ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 3 });
+        const json = ws._cachedJson;
         const dir = getAdvisorDirectory();
         const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
         const row = json.find(r => String(r['Mat'] || '') === '2043' && (String(r['Nombre del Asesor'] || '') === advisor || advisorKeys.includes(String(r['Nombre del Asesor'] || '')) || String(r['Asesor'] || '') === advisor || advisorKeys.includes(String(r['Asesor'] || ''))));
         if (!row)
             return res.status(404).json({ error: 'Advisor not found' });
-        const pa = Number(row['Total Prima'] || 0);
+        const paKey = Object.keys(row).find(k => (k || '').trim().toLowerCase() === 'total prima');
+        const pa = paKey ? Number(row[paKey] || 0) : 0;
         const mMatches = Array.from(String(ws['A1']?.v || '').toLowerCase().matchAll(/(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/g));
         const lastM = mMatches.length > 0 ? mMatches[mMatches.length - 1][1] : "enero";
         return res.json({
@@ -476,12 +455,12 @@ app.get('/api/admin/summary', (req, res) => {
                     if (c === 'mdrt') {
                         const ws = wb.Sheets[wb.SheetNames.find((n) => n.toUpperCase() === 'MDRT') || wb.SheetNames[0]];
                         const data = XLSX.utils.sheet_to_json(ws, { range: 3 });
-                        result.mdrt = data.filter(r => String(r.Matriz || r['Mat'] || '') === '2043').map(r => ({ Asesor: resolveName(r.Asesor), Clave: r.Asesor || '', PA_Acumulada: Number(r.PA_Acumulada || r['Total Prima'] || 0) }));
+                        result.mdrt = data.filter(r => String(r.Matriz || r['Mat'] || '') === '2043').map(r => ({ Asesor: resolveName(r.Asesor || r['Nombre del Asesor']), Clave: r.Asesor || '', PA_Acumulada: Number(r.PA_Acumulada || r[' Total Prima '] || r['Total Prima'] || r['Camino Prima'] || 0) }));
                     }
                     else if (c === 'camino_cumbre') {
                         const ws = wb.Sheets[wb.SheetNames[0]];
                         const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 3 });
-                        result.camino_cumbre = data.slice(1).filter(r => String(r[3] || '') === '2043').map(r => ({ Asesor: resolveName(r[5]), Clave: r[5] || '', Mes_Asesor: Number(r[10] || 1), Polizas_Totales: Number(r[13] || 0) }));
+                        result.camino_cumbre = data.slice(1).filter(r => String(r[3] || '') === '2043').map(r => ({ Asesor: resolveName(r[5]), Clave: r[5] || '', Mes_Asesor: Number(r[10] || 1), Polizas_Totales: Number(r[13] || 0), Mes_1_Prod: Number(r[21] || 0), Mes_2_Prod: Number(r[22] || 0), Mes_3_Prod: Number(r[23] || 0) }));
                     }
                     else if (c === 'convenciones') {
                         const ws = wb.Sheets[wb.SheetNames[0]];
@@ -519,7 +498,17 @@ app.get('/api/admin/summary', (req, res) => {
                     else if (c === 'legion_centurion') {
                         const ws = wb.Sheets[wb.SheetNames[0]];
                         const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 11 });
-                        result.legion_centurion = data.slice(1).filter(r => String(r[4] || '') === '2043').map(r => ({ Asesor: resolveName(r[6]), Clave: r[6] || '', Total_Polizas: Number(r[10] || 0), Nivel: r[13] || '' }));
+                        const b9 = ws['B9']?.v || "";
+                        const mMatch = String(b9).toLowerCase().match(/(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/);
+                        const mIndex = mMatch ? MONTHS_ES.indexOf(mMatch[1]) + 1 : 1;
+                        result.legion_centurion = data.slice(1).filter(r => String(r[4] || '') === '2043').map(r => ({
+                            Asesor: resolveName(r[6]),
+                            Clave: r[6] || '',
+                            Total_Polizas: Number(r[10] || 0),
+                            Mes_Actual: mIndex,
+                            Nivel: r[13] || '',
+                            EnMeta: String(r[12] || '').toLowerCase() === 'p'
+                        }));
                     }
                 }
                 else
@@ -578,11 +567,11 @@ app.get('/api/resumen-general', (req, res) => {
             result.asesores_sin_emision = { summaryBySucursal: [], individuals: [] };
             if (wsP) {
                 const dat = XLSX.utils.sheet_to_json(wsP, { header: 1, range: 3 });
-                result.asesores_sin_emision.summaryBySucursal = dat.filter((r) => String(r[3] || '') === '2043').map((r) => ({ Sucursal: r[5] || 'Descon', Suc: r[4], Agentes: Number(r[6] || 0), Asesores_con_Emisión_Vida: Number(r[7] || 0), '%_Asesores_con_Emisión_Vida': Number(r[8] || 0), Asesores_con_pol_Pagada_Vida: Number(r[11] || 0), Prima_Pagada_Vida: Number(r[15] || 0) }));
+                result.asesores_sin_emision.summaryBySucursal = dat.filter((r) => String(r[3] || '') === '2043').map((r) => ({ Sucursal: r[5] || 'Descon', Suc: r[4], Agentes: Number(r[6] || 0), Asesores_con_Emisión_Vida: Number(r[7] || 0), '%_Asesores_con_Emisión_Vida': Number(r[8] || 0), Asesores_con_Emisión_GMM: Number(r[9] || 0), '%_Asesores_con_Emisión_GMM': Number(r[10] || 0), Asesores_con_pol_Pagada_Vida: Number(r[11] || 0), '%_Asesores_con_pol_Pagada_Vida': Number(r[12] || 0), Asesores_con_pol_Pagada_GMM: Number(r[13] || 0), '%_Asesores_con_pol_Pagada_GMM': Number(r[14] || 0), Prima_Pagada_Vida: Number(r[15] || 0), Prima_Pagada_GMM: Number(r[16] || 0) }));
             }
             if (wsA) {
                 const dat = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 4 });
-                result.asesores_sin_emision.individuals = dat.filter((r) => String(r[3] || '') === '2043').map((r) => ({ Asesor: r[7] || 'Descon', Clave: r[6] || '', Sucursal: r[5] || 'General', Suc: r[4], Emitido_Vida: Number(r[10] || 0), Pagado_Vida: Number(r[12] || 0), Prima_Pagada_Vida: Number(r[14] || 0), Sin_Emisión_Vida: r[16] || '' }));
+                result.asesores_sin_emision.individuals = dat.filter((r) => String(r[3] || '') === '2043').map((r) => ({ Asesor: r[7] || 'Descon', Clave: r[6] || '', Sucursal: r[5] || 'General', Suc: r[4], Emitido_Vida: Number(r[10] || 0), Emitido_GMM: Number(r[11] || 0), Pagado_Vida: Number(r[12] || 0), Pagado_GMM: Number(r[13] || 0), Prima_Pagada_Vida: Number(r[14] || 0), Prima_Pagada_GMM: Number(r[15] || 0), Sin_Emisión_Vida: r[16] || '', Sin_Emisión_GMM: r[17] || '', '3_Meses_Sin_Emisión_Vida': r[18] || '', '3_Meses_Sin_Emisión_GMM': r[19] || '' }));
             }
         }
         const pagPath = 'administrador/pagado_emitidido';
@@ -590,7 +579,10 @@ app.get('/api/resumen-general', (req, res) => {
         if (wbPag) {
             const data = XLSX.utils.sheet_to_json(wbPag.Sheets[wbPag.SheetNames[0]], { header: 1 });
             result.fechas_corte['pagado_pendiente'] = formatExcelDate(extractCutoffDate(wbPag, 'pagado_pendiente'));
-            result.pagado_pendiente = data.slice(3).filter(r => r[2] != null).map(r => ({ 'Nombre Asesor': r[2], 'Sucursal': r[1], 'Pólizas-Pagadas': Number(r[5] || 0), 'Total _Prima_Pagada': Number(r[8] || 0), 'Pólizas_Pendinetes': Number(r[9] || 0), 'Total _Prima_Pendiente': Number(r[12] || 0) }));
+            const validSucursales = ['2043', '2692', '2856', '2511'];
+            result.pagado_pendiente = data.slice(3)
+                .filter(r => r[2] != null && validSucursales.includes(String(r[1])))
+                .map(r => ({ 'Nombre Asesor': r[2], 'Sucursal': r[1], 'Pólizas-Pagadas': Number(r[5] || 0), 'Recibo_Inicial_Pagado': Number(r[6] || 0), 'Recibo_Ordinario_Pagado': Number(r[7] || 0), 'Total _Prima_Pagada': Number(r[8] || 0), 'Pólizas_Pendinetes': Number(r[9] || 0), 'Recibo_Inicial_Pendiente': Number(r[10] || 0), 'Recibo_Ordinario_Pendiente': Number(r[11] || 0), 'Total _Prima_Pendiente': Number(r[12] || 0) }));
         }
         const dir = getAdvisorDirectory();
         const proPath = 'administrador/proactivos';
@@ -610,10 +602,59 @@ app.get('/api/resumen-general', (req, res) => {
             result.fechas_corte['comparativo_vida'] = formatExcelDate(extractCutoffDate(wbComp, 'comparativo_vida'));
             let sum = null;
             if (wsP) {
-                const d = XLSX.utils.sheet_to_json(wsP, { range: 2 })[0] || {};
-                sum = { Polizas_Pagadas_Año_Anterior: Number(d['Polizas Pagadas Año Anterior'] || d[0] || 0), Polizas_Pagadas_Año_Actual: Number(d['Polizas Pagadas Año Actual'] || d[1] || 0), Prima_Pagada_Año_Anterior: Number(d['Prima Pagada Año Anterior'] || d[4] || 0), Prima_Pagada_Año_Actual: Number(d['Prima Pagada Año Actual'] || d[5] || 0) };
+                const rawP = XLSX.utils.sheet_to_json(wsP, { header: 1 });
+                if (rawP.length > 2) {
+                    // Try to find the data row. Usually index 2 if there's an empty line at 1.
+                    const dataRow = rawP.find((row, idx) => idx > 0 && row.length > 4 && typeof row[0] === 'number');
+                    if (dataRow) {
+                        sum = {
+                            Polizas_Pagadas_Año_Anterior: Number(dataRow[0] || 0),
+                            Polizas_Pagadas_Año_Actual: Number(dataRow[1] || 0),
+                            Prima_Pagada_Año_Anterior: Number(dataRow[4] || 0),
+                            Prima_Pagada_Año_Actual: Number(dataRow[5] || 0),
+                            Recluta_Año_Anterior: Number(dataRow[8] || 0),
+                            Recluta_Año_Actual: Number(dataRow[9] || 0),
+                            Prima_Pagada_Reclutas_Año_Anterior: Number(dataRow[12] || 0),
+                            Prima_Pagada_Reclutas_Año_Actual: Number(dataRow[13] || 0)
+                        };
+                    }
+                }
+                if (!sum) {
+                    const d = XLSX.utils.sheet_to_json(wsP, { range: 2 })[0] || {};
+                    sum = {
+                        Polizas_Pagadas_Año_Anterior: Number(d['Polizas Pagadas Año Anterior'] || d[0] || 0),
+                        Polizas_Pagadas_Año_Actual: Number(d['Polizas Pagadas Año Actual'] || d[1] || 0),
+                        Prima_Pagada_Año_Anterior: Number(d['Prima Pagada Año Anterior'] || d[4] || 0),
+                        Prima_Pagada_Año_Actual: Number(d['Prima Pagada Año Actual'] || d[5] || 0)
+                    };
+                }
             }
-            let inds = wsA ? XLSX.utils.sheet_to_json(wsA, { range: 1 }).filter((r) => String(r['MAT'] || '') === '2043').map((r) => ({ 'Nombre del Asesor': r['Nombre'], 'Sucursal': r['Sucursal'], 'Polizas_Pagadas_Año_Anterior': Number(r['Pzs Pag Ant'] || 0), 'Polizas_Pagadas_Año_Actual': Number(r['Pzs Pag Act'] || 0), 'Prima_Pagada_Año_Anterior': Number(r['Pri Pag Ant'] || 0), 'Prima_Pagada_Año_Actual': Number(r['Pri Pag Act'] || 0) })) : [];
+            let inds = [];
+            if (wsA) {
+                const rawFormat = XLSX.utils.sheet_to_json(wsA, { header: 1 });
+                if (rawFormat.length > 2 && rawFormat[2][2] === 'Mat') {
+                    // Nuevo formato complejo (Comparativo Vida original)
+                    inds = rawFormat.slice(3).filter((r) => String(r[2] || '') === '2043').map((r) => ({
+                        'Nombre del Asesor': r[6] || r[5],
+                        'Sucursal': r[3],
+                        'Polizas_Pagadas_Año_Anterior': Number(r[15] || 0),
+                        'Polizas_Pagadas_Año_Actual': Number(r[16] || 0),
+                        'Prima_Pagada_Año_Anterior': Number(r[23] || 0),
+                        'Prima_Pagada_Año_Actual': Number(r[24] || 0)
+                    }));
+                }
+                else {
+                    // Formato antiguo limpio
+                    inds = XLSX.utils.sheet_to_json(wsA, { range: 1 }).filter((r) => String(r['MAT'] || '') === '2043').map((r) => ({
+                        'Nombre del Asesor': r['Nombre'],
+                        'Sucursal': r['Sucursal'],
+                        'Polizas_Pagadas_Año_Anterior': Number(r['Pzs Pag Ant'] || 0),
+                        'Polizas_Pagadas_Año_Actual': Number(r['Pzs Pag Act'] || 0),
+                        'Prima_Pagada_Año_Anterior': Number(r['Pri Pag Ant'] || 0),
+                        'Prima_Pagada_Año_Actual': Number(r['Pri Pag Act'] || 0)
+                    }));
+                }
+            }
             result.comparativo_vida = { individuals: inds, generalSummary: sum };
         }
         res.json(result);
@@ -646,9 +687,16 @@ app.get('/api/estatus-polizas/fechas', (req, res) => {
 app.get('/api/estatus-polizas/reporte/:fecha', (req, res) => {
     try {
         const { fecha } = req.params;
-        const p = path.join(POLIZAS_PATH, 'reportes', fecha.substring(0, 7), `reporte_${fecha}.json`);
-        if (!fs.existsSync(p))
-            return res.status(404).json({ error: 'Not found' });
+        const { summary } = req.query;
+        const suffix = summary === 'true' ? '_summary.json' : '.json';
+        const p = path.join(POLIZAS_PATH, 'reportes', fecha.substring(0, 7), `reporte_${fecha}${suffix}`);
+        if (!fs.existsSync(p)) {
+            // Fallback to full if summary doesn't exist
+            const fullP = path.join(POLIZAS_PATH, 'reportes', fecha.substring(0, 7), `reporte_${fecha}.json`);
+            if (!fs.existsSync(fullP))
+                return res.status(404).json({ error: 'Not found' });
+            return res.json(JSON.parse(fs.readFileSync(fullP, 'utf-8')));
+        }
         res.json(JSON.parse(fs.readFileSync(p, 'utf-8')));
     }
     catch (e) {
@@ -691,4 +739,56 @@ app.use((req, res) => {
     else
         res.status(404).send('Frontend not built.');
 });
-app.listen(PORT, '0.0.0.0', () => console.log(`Server running at http://0.0.0.0:${PORT}`));
+const preloadCampaigns = () => {
+    console.log('[CACHE WARMER] Inicializando precarga de campañas en segundo plano para máxima velocidad...');
+    getCachedAdvisors(); // Precarga instántanea de asesores en memoria
+    const campaigns = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion'];
+    let idx = 0;
+    const loadNext = () => {
+        if (idx >= campaigns.length) {
+            console.log('[CACHE WARMER] 🚀 Todas las campañas han sido precargadas exitosamente. El panel será ultra rápido.');
+            return;
+        }
+        const c = campaigns[idx];
+        try {
+            const wb = readExcelData(c, { skipJson: true });
+            if (wb && wb.Sheets) {
+                if (c === 'convenciones') {
+                    const ws = wb.Sheets[wb.SheetNames[0]];
+                    if (!ws._cachedData)
+                        ws._cachedData = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AI5000' });
+                }
+                else if (c === 'camino_cumbre') {
+                    const ws = wb.Sheets[wb.SheetNames[0]];
+                    if (!ws._cachedData)
+                        ws._cachedData = XLSX.utils.sheet_to_json(ws, { header: 1, range: 3 });
+                }
+                else if (c === 'graduacion') {
+                    const ws = wb.Sheets[wb.SheetNames[0]];
+                    if (!ws._cachedJson)
+                        ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 2 });
+                }
+                else if (c === 'mdrt') {
+                    const ws = wb.Sheets[wb.SheetNames.find((n) => n.toUpperCase() === 'MDRT') || wb.SheetNames[0]];
+                    if (ws && !ws._cachedJson)
+                        ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 3 });
+                }
+                else if (c === 'legion_centurion') {
+                    const ws = wb.Sheets[wb.SheetNames[0]];
+                    if (!ws._cachedJson)
+                        ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 'A11:Z10000' });
+                }
+            }
+        }
+        catch (e) {
+            console.error(`[CACHE WARMER] Error al precargar ${c}:`, e);
+        }
+        idx++;
+        setTimeout(loadNext, 1000); // Wait 1 second before doing the next one
+    };
+    setTimeout(loadNext, 2000); // Start preloading 2 seconds after boot
+};
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running at http://0.0.0.0:${PORT}`);
+    preloadCampaigns();
+});
