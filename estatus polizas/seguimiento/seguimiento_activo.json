@@ -1,5 +1,50 @@
 {
-  "ultima_actualizacion": "2026-03-09",
-  "pendientes_recuperar": [],
+  "ultima_actualizacion": "2026-03-10",
+  "pendientes_recuperar": [
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002973602",
+      "contratante": "JUAN CARLOS MARTINEZ MEDINA",
+      "producto": "ORVI 99 UDIS",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-10",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "GM0000554734",
+      "contratante": "NELLY SANCHEZ ROMERO",
+      "producto": "INTEGRO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-10",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MARIA TERESA ASENCIO LOZANO",
+      "clave": "94156",
+      "poliza": "GM0000508609",
+      "contratante": "DANIEL RIOS SANDOVAL",
+      "producto": "PLENO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-10",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "106893",
+      "poliza": "GM0000082544",
+      "contratante": "GUADALUPE GOMEZ ZU�IGA",
+      "producto": "ALFA MEDICAL FLEX B",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-10",
+      "tipo": "CAMBIO"
+    }
+  ],
   "recuperadas_este_mes": []
 }

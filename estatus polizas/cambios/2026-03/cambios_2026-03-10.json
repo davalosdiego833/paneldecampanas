@@ -1,0 +1,125 @@
+{
+  "resumen": {
+    "fecha_anterior": "2026-03-06",
+    "fecha_nuevo": "2026-03-10",
+    "total_anterior": 2941,
+    "total_nuevo": 2943,
+    "diferencia_total": 2,
+    "cambios_estatus_general": {
+      "En Vigor": {
+        "anterior": 1918,
+        "nuevo": 1918,
+        "diferencia": 0,
+        "emoji": "⚪"
+      },
+      "Vigor Prorrogado": {
+        "anterior": 77,
+        "nuevo": 75,
+        "diferencia": -2,
+        "emoji": "🔴"
+      },
+      "Anulada": {
+        "anterior": 913,
+        "nuevo": 917,
+        "diferencia": 4,
+        "emoji": "🟢"
+      },
+      "En Vigor sin Pago de Primas": {
+        "anterior": 33,
+        "nuevo": 33,
+        "diferencia": 0,
+        "emoji": "⚪"
+      }
+    }
+  },
+  "lista_cambios": [
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002976525",
+      "contratante": "JUAN CARLOS MARTINEZ MEDINA",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-10",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002973602",
+      "contratante": "JUAN CARLOS MARTINEZ MEDINA",
+      "producto": "ORVI 99 UDIS",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-10",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "GM0000554734",
+      "contratante": "NELLY SANCHEZ ROMERO",
+      "producto": "INTEGRO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-10",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "JOCELYN URIBE VARGAS",
+      "clave": "90177",
+      "poliza": "VI0002531837",
+      "contratante": "JAQUELINE ZEPEDA NAVA",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "Vigor Prorrogado",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-10",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MARIA TERESA ASENCIO LOZANO",
+      "clave": "94156",
+      "poliza": "GM0000508609",
+      "contratante": "DANIEL RIOS SANDOVAL",
+      "producto": "PLENO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-10",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MARIA TERESA ASENCIO LOZANO",
+      "clave": "94156",
+      "poliza": "VI0002687246",
+      "contratante": "EVER EDUARDO CUETO GARCIA",
+      "producto": "NUEVO PLENITUD 60 15",
+      "estatus_anterior": "Vigor Prorrogado",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-10",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MARIA TERESA ASENCIO LOZANO",
+      "clave": "94156",
+      "poliza": "GM0000744460",
+      "contratante": "GLORIA ESTEFANIA CABRALES ALBA",
+      "producto": "INTEGRO",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-10",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "106893",
+      "poliza": "GM0000082544",
+      "contratante": "GUADALUPE GOMEZ ZU�IGA",
+      "producto": "ALFA MEDICAL FLEX B",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-10",
+      "tipo": "CAMBIO"
+    }
+  ]
+}
