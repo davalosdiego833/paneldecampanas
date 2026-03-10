@@ -1,0 +1,264 @@
+<form method="post" action="PolizasAgente.aspx" id="ctl00">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="
+__VIEWSTATE" value="" />
+</div>
+<div>
+	<table cellspacing="0" cellpadding="4" rules="rows" border="1" id="ctl00_ContentPlaceHolder1_GVPolList" style="color:#333333;font-family:Arial;font-size:Small;width:100%;border-collapse:collapse;">
+		<tr class="GridHeaderHidden">
+			<th scope="col">No. Póliza</th><th scope="col">Contratante</th><th scope="col">Asegurado Principal</th><th scope="col">Producto</th><th scope="col">Estatus</th><th scope="col">&nbsp;</th><th scope="col">&nbsp;</th><th scope="col">&nbsp;</th><th scope="col">&nbsp;</th><th scope="col">&nbsp;</th><th scope="col">&nbsp;</th><th scope="col">&nbsp;</th>
+		</tr><tr class="GridRow">
+			<td align="left" style="width:15%;">
+                                <a id="GVPolList_ctl15_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl15$lnkPoliza','')">VI0002894189</a>
+                                <input name="GVPolList$ctl15$numpoliza" type="text" value="VI0002894189" id="GVPolList_ctl15_numpoliza" name="numpoliza" style="display: none;" />
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl15_lblContratante">CHRISTIAN ALEJANDRO FERNANDEZ GONZALEZ</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl15_lblAseguradoPrincipal">NICOLE ISABELLA FERNANDEZ RIVERA</span>
+                            </td><td align="left" style="width:25%;">
+                                <span id="GVPolList_ctl15_lblProducto">SEGUBECA 18 UDI PRIMA CONSTANTE</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl15_lblEstatus">Anulada</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl15_lblCorreoMail" name="lblCorreoMail" style="display: none;"></span>
+                                <input name="GVPolList$ctl15$email" type="text" id="GVPolList_ctl15_email" name="email" class="email" style="display: none;" />
+                            </td><td>
+                                
+                            </td><td>
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    <input name="GVPolList$ctl15$UltimaReno" type="text" value="2025" id="GVPolList_ctl15_UltimaReno" name="UltimaReno" style="display: none;" />
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td>
+		</tr><tr class="GridRow" style="background-color:AliceBlue;">
+			<td align="left" style="width:15%;">
+                                <a id="GVPolList_ctl16_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl16$lnkPoliza','')">VI0002848359</a>
+                                <input name="GVPolList$ctl16$numpoliza" type="text" value="VI0002848359" id="GVPolList_ctl16_numpoliza" name="numpoliza" style="display: none;" />
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl16_lblContratante">FERNANDO ALVAREZ FLORES</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl16_lblAseguradoPrincipal">FERNANDO ALVAREZ FLORES</span>
+                            </td><td align="left" style="width:25%;">
+                                <span id="GVPolList_ctl16_lblProducto">ORVI 99 10 UDIS</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl16_lblEstatus">En Vigor</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl16_lblCorreoMail" name="lblCorreoMail" style="display: none;"></span>
+                                <input name="GVPolList$ctl16$email" type="text" id="GVPolList_ctl16_email" name="email" class="email" style="display: none;" />
+                            </td><td>
+                                <input type="submit" name="GVPolList$ctl16$btnMailOder" value="Mail Order" id="GVPolList_ctl16_btnMailOder" class="boton" />
+                            </td><td>
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    <input name="GVPolList$ctl16$UltimaReno" type="text" value="2025" id="GVPolList_ctl16_UltimaReno" name="UltimaReno" style="display: none;" />
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td>
+		</tr><tr class="GridRow">
+			<td align="left" style="width:15%;">
+                                <a id="GVPolList_ctl17_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl17$lnkPoliza','')">VI0002833037</a>
+                                <input name="GVPolList$ctl17$numpoliza" type="text" value="VI0002833037" id="GVPolList_ctl17_numpoliza" name="numpoliza" style="display: none;" />
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl17_lblContratante">GUILLERMO RICARDO TELLEZ OLMOS</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl17_lblAseguradoPrincipal">GUILLERMO RICARDO TELLEZ OLMOS</span>
+                            </td><td align="left" style="width:25%;">
+                                <span id="GVPolList_ctl17_lblProducto">IMAGINA SER 65</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl17_lblEstatus">Anulada</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl17_lblCorreoMail" name="lblCorreoMail" style="display: none;"></span>
+                                <input name="GVPolList$ctl17$email" type="text" id="GVPolList_ctl17_email" name="email" class="email" style="display: none;" />
+                            </td><td>
+                                
+                            </td><td>
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    <input name="GVPolList$ctl17$UltimaReno" type="text" value="2024" id="GVPolList_ctl17_UltimaReno" name="UltimaReno" style="display: none;" />
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td>
+		</tr><tr class="GridRow" style="background-color:AliceBlue;">
+			<td align="left" style="width:15%;">
+                                <a id="GVPolList_ctl18_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl18$lnkPoliza','')">VI0002894752</a>
+                                <input name="GVPolList$ctl18$numpoliza" type="text" value="VI0002894752" id="GVPolList_ctl18_numpoliza" name="numpoliza" style="display: none;" />
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl18_lblContratante">IRVING RAFAEL CANDIA HERNANDEZ</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl18_lblAseguradoPrincipal">IRVING RAFAEL CANDIA HERNANDEZ</span>
+                            </td><td align="left" style="width:25%;">
+                                <span id="GVPolList_ctl18_lblProducto">ORVI 99 10 UDIS</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl18_lblEstatus">Anulada</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl18_lblCorreoMail" name="lblCorreoMail" style="display: none;"></span>
+                                <input name="GVPolList$ctl18$email" type="text" id="GVPolList_ctl18_email" name="email" class="email" style="display: none;" />
+                            </td><td>
+                                
+                            </td><td>
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    <input name="GVPolList$ctl18$UltimaReno" type="text" value="2026" id="GVPolList_ctl18_UltimaReno" name="UltimaReno" style="display: none;" />
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td>
+		</tr><tr class="GridRow">
+			<td align="left" style="width:15%;">
+                                <a id="GVPolList_ctl19_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl19$lnkPoliza','')">VI0002851005</a>
+                                <input name="GVPolList$ctl19$numpoliza" type="text" value="VI0002851005" id="GVPolList_ctl19_numpoliza" name="numpoliza" style="display: none;" />
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl19_lblContratante">IRVING RAFAEL CANDIA HERNANDEZ</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl19_lblAseguradoPrincipal">IRVING RAFAEL CANDIA HERNANDEZ</span>
+                            </td><td align="left" style="width:25%;">
+                                <span id="GVPolList_ctl19_lblProducto">ORVI 99 10 UDIS</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl19_lblEstatus">Anulada</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl19_lblCorreoMail" name="lblCorreoMail" style="display: none;"></span>
+                                <input name="GVPolList$ctl19$email" type="text" id="GVPolList_ctl19_email" name="email" class="email" style="display: none;" />
+                            </td><td>
+                                
+                            </td><td>
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    <input name="GVPolList$ctl19$UltimaReno" type="text" value="2024" id="GVPolList_ctl19_UltimaReno" name="UltimaReno" style="display: none;" />
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td>
+		</tr><tr class="GridRow" style="background-color:AliceBlue;">
+			<td align="left" style="width:15%;">
+                                <a id="GVPolList_ctl20_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl20$lnkPoliza','')">VI0002847195</a>
+                                <input name="GVPolList$ctl20$numpoliza" type="text" value="VI0002847195" id="GVPolList_ctl20_numpoliza" name="numpoliza" style="display: none;" />
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl20_lblContratante">JOAQUIN ALEJANDRO CHAVEZ ROJAS</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl20_lblAseguradoPrincipal">JOAQUIN ALEJANDRO CHAVEZ ROJAS</span>
+                            </td><td align="left" style="width:25%;">
+                                <span id="GVPolList_ctl20_lblProducto">IMAGINA SER 65</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl20_lblEstatus">Anulada</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl20_lblCorreoMail" name="lblCorreoMail" style="display: none;"></span>
+                                <input name="GVPolList$ctl20$email" type="text" id="GVPolList_ctl20_email" name="email" class="email" style="display: none;" />
+                            </td><td>
+                                
+                            </td><td>
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    <input name="GVPolList$ctl20$UltimaReno" type="text" value="2025" id="GVPolList_ctl20_UltimaReno" name="UltimaReno" style="display: none;" />
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td>
+		</tr><tr class="GridRow">
+			<td align="left" style="width:15%;">
+                                <a id="GVPolList_ctl21_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl21$lnkPoliza','')">VI0002894442</a>
+                                <input name="GVPolList$ctl21$numpoliza" type="text" value="VI0002894442" id="GVPolList_ctl21_numpoliza" name="numpoliza" style="display: none;" />
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl21_lblContratante">JOSE ALEJANDRO PIMENTEL SANTIVAÑEZ</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl21_lblAseguradoPrincipal">JOSE ALEJANDRO PIMENTEL SANTIVAÑEZ</span>
+                            </td><td align="left" style="width:25%;">
+                                <span id="GVPolList_ctl21_lblProducto">IMAGINA SER 65</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl21_lblEstatus">En Vigor</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl21_lblCorreoMail" name="lblCorreoMail" style="display: none;"></span>
+                                <input name="GVPolList$ctl21$email" type="text" id="GVPolList_ctl21_email" name="email" class="email" style="display: none;" />
+                            </td><td>
+                                <input type="submit" name="GVPolList$ctl21$btnMailOder" value="Mail Order" id="GVPolList_ctl21_btnMailOder" class="boton" />
+                            </td><td>
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    <input name="GVPolList$ctl21$UltimaReno" type="text" value="2026" id="GVPolList_ctl21_UltimaReno" name="UltimaReno" style="display: none;" />
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td>
+		</tr><tr class="GridRow" style="background-color:AliceBlue;">
+			<td align="left" style="width:15%;">
+                                <a id="GVPolList_ctl22_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl22$lnkPoliza','')">VI0002869045</a>
+                                <input name="GVPolList$ctl22$numpoliza" type="text" value="VI0002869045" id="GVPolList_ctl22_numpoliza" name="numpoliza" style="display: none;" />
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl22_lblContratante">JUAN JOSE QUISTIAN HERNANDEZ</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl22_lblAseguradoPrincipal">JUAN JOSE QUISTIAN HERNANDEZ</span>
+                            </td><td align="left" style="width:25%;">
+                                <span id="GVPolList_ctl22_lblProducto">ORVI 99 10 UDIS</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl22_lblEstatus">En Vigor</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl22_lblCorreoMail" name="lblCorreoMail" style="display: none;"></span>
+                                <input name="GVPolList$ctl22$email" type="text" id="GVPolList_ctl22_email" name="email" class="email" style="display: none;" />
+                            </td><td>
+                                <input type="submit" name="GVPolList$ctl22$btnMailOder" value="Mail Order" id="GVPolList_ctl22_btnMailOder" class="boton" />
+                            </td><td>
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    <input name="GVPolList$ctl22$UltimaReno" type="text" value="2025" id="GVPolList_ctl22_UltimaReno" name="UltimaReno" style="display: none;" />
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td>
+		</tr><tr class="GridRow">
+			<td align="left" style="width:15%;">
+                                <a id="GVPolList_ctl23_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl23$lnkPoliza','')">VI0002831021</a>
+                                <input name="GVPolList$ctl23$numpoliza" type="text" value="VI0002831021" id="GVPolList_ctl23_numpoliza" name="numpoliza" style="display: none;" />
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl23_lblContratante">MARELVY LOPEZ GUERRERO</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl23_lblAseguradoPrincipal">MARELVY LOPEZ GUERRERO</span>
+                            </td><td align="left" style="width:25%;">
+                                <span id="GVPolList_ctl23_lblProducto">IMAGINA SER 65</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl23_lblEstatus">En Vigor</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="GVPolList_ctl23_lblCorreoMail" name="lblCorreoMail" style="display: none;"></span>
+                                <input name="GVPolList$ctl23$email" type="text" id="GVPolList_ctl23_email" name="email" class="email" style="display: none;" />
+                            </td><td>
+                                <input type="submit" name="GVPolList$ctl23$btnMailOder" value="Mail Order" id="GVPolList_ctl23_btnMailOder" class="boton" />
+                            </td><td>
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    <input name="GVPolList$ctl23$UltimaReno" type="text" value="2025" id="GVPolList_ctl23_UltimaReno" name="UltimaReno" style="display: none;" />
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td><td align="left" style="width:20%;">
+                                    
+                                </td>
+		</tr>
+	</table>
+</div></form>
