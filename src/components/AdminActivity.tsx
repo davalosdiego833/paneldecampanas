@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { LogOut, ArrowLeft, RefreshCw, Users, Activity, Clock, LogIn } from 'lucide-react';
+import { LogOut, ArrowLeft, RefreshCw, Users, Activity, Clock, LogIn, Shield } from 'lucide-react';
 
 interface Props {
     onLogout: () => void;
@@ -21,7 +21,7 @@ interface ActivityEvent {
 const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTheme }) => {
     const [activities, setActivities] = useState<ActivityEvent[]>([]);
     const [loading, setLoading] = useState(true);
-    const [activeTab, setActiveTab] = useState<'accesos' | 'campanas'>('accesos');
+    const [activeTab, setActiveTab] = useState<'accesos' | 'campanas' | 'admin'>('accesos');
 
     const fetchActivity = async () => {
         setLoading(true);
@@ -60,6 +60,21 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
     const topCampaigns = Object.entries(campaignCounts)
         .sort((a, b) => b[1] - a[1]) // highest first
         .slice(0, 5); // top 5
+
+    // Metricas basicas - Admin
+    const adminActivities = activities.filter(a => a.accion.startsWith('Consultó Reporte Admin:'));
+    const todaysAdminClicks = adminActivities.filter(a => a.fecha === today).length;
+
+    // Ranking de Reportes Admin
+    const adminCounts = adminActivities.reduce((acc, curr) => {
+        const reportName = curr.accion.replace('Consultó Reporte Admin: ', '');
+        acc[reportName] = (acc[reportName] || 0) + 1;
+        return acc;
+    }, {} as Record<string, number>);
+
+    const topAdminReports = Object.entries(adminCounts)
+        .sort((a, b) => b[1] - a[1]) // highest first
+        .slice(0, 4); // top 4 (since there's only 4 reports currently)
 
     return (
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -107,6 +122,16 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
                             }}
                         >
                             Campañas
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('admin')}
+                            style={{
+                                padding: '6px 16px', borderRadius: '8px', border: 'none', cursor: 'pointer', fontSize: '0.9rem', fontWeight: 600, transition: '0.2s',
+                                background: activeTab === 'admin' ? 'rgba(108, 92, 231, 0.15)' : 'transparent',
+                                color: activeTab === 'admin' ? '#a29bfe' : 'var(--text-secondary)'
+                            }}
+                        >
+                            Admin
                         </button>
                     </div>
 
@@ -337,6 +362,136 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
                                                         <td style={{ padding: '16px 24px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
                                                             <div style={{ display: 'inline-block', padding: '4px 10px', background: 'rgba(108, 92, 231, 0.1)', color: '#a29bfe', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 600 }}>
                                                                 {campName}
+                                                            </div>
+                                                        </td>
+                                                    </motion.tr>
+                                                );
+                                            })
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+
+                {/* ----------------- TAB: ADMIN ----------------- */}
+                {activeTab === 'admin' && (
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', marginBottom: '32px' }}>
+                            {/* Admin Clics Hoy */}
+                            <div className="glass-card" style={{ display: 'flex', alignItems: 'center', gap: '20px', borderTop: '3px solid #00B8D9' }}>
+                                <div style={{ width: '56px', height: '56px', borderRadius: '16px', background: 'rgba(0, 184, 217, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <Shield size={28} color="#00B8D9" />
+                                </div>
+                                <div>
+                                    <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Visitas a Reportes Hoy</p>
+                                    <h2 style={{ margin: '4px 0 0 0', fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)' }}>{todaysAdminClicks}</h2>
+                                </div>
+                            </div>
+
+                            {/* Total Admin Clics */}
+                            <div className="glass-card" style={{ display: 'flex', alignItems: 'center', gap: '20px', borderTop: '3px solid #6C5CE7' }}>
+                                <div style={{ width: '56px', height: '56px', borderRadius: '16px', background: 'rgba(108, 92, 231, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <Activity size={28} color="#6C5CE7" />
+                                </div>
+                                <div>
+                                    <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Total Consultas Históricas (Admin)</p>
+                                    <h2 style={{ margin: '4px 0 0 0', fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)' }}>{adminActivities.length}</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Ranking Top 4 Reportes Admin */}
+                        <div className="glass-card" style={{ padding: '24px', marginBottom: '32px' }}>
+                            <h3 style={{ margin: '0 0 20px 0', fontSize: '1.2rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                🏆 Ranking: Reportes Más Consultados
+                            </h3>
+                            {topAdminReports.length === 0 ? (
+                                <p style={{ color: 'var(--text-secondary)', margin: 0 }}>No hay visitas a reportes registradas todavía.</p>
+                            ) : (
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                    {topAdminReports.map(([report, count], idx) => {
+                                        // Simple percentage bar (relative to the #1 report)
+                                        const maxCount = topAdminReports[0][1];
+                                        const widthPct = Math.max((count / maxCount) * 100, 2); // At least 2% width
+
+                                        return (
+                                            <div key={report} style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                                                <div style={{ width: '24px', fontWeight: 700, color: idx === 0 ? '#D4AF37' : 'var(--text-secondary)' }}>
+                                                    #{idx + 1}
+                                                </div>
+                                                <div style={{ width: '200px', fontSize: '0.9rem', fontWeight: 600 }}>
+                                                    {report}
+                                                </div>
+                                                <div style={{ flex: 1, background: 'rgba(255,255,255,0.05)', height: '8px', borderRadius: '4px', overflow: 'hidden' }}>
+                                                    <motion.div
+                                                        initial={{ width: 0 }}
+                                                        animate={{ width: `${widthPct}%` }}
+                                                        transition={{ duration: 1, delay: idx * 0.1 }}
+                                                        style={{ height: '100%', background: idx === 0 ? 'linear-gradient(90deg, #D4AF37, #F3E5AB)' : 'linear-gradient(90deg, #00B8D9, #0097A7)', borderRadius: '4px' }}
+                                                    />
+                                                </div>
+                                                <div style={{ width: '60px', textAlign: 'right', fontWeight: 700, color: 'var(--text-primary)' }}>
+                                                    {count} {count === 1 ? 'visita' : 'visitas'}
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Recent Admin Log */}
+                        <div className="glass-card" style={{ padding: '0', overflow: 'hidden' }}>
+                            <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--glass-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                    <Clock size={20} color="#a29bfe" />
+                                    Registro de Supervisión Reciente
+                                </h3>
+                            </div>
+
+                            <div style={{ overflowX: 'auto' }}>
+                                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                                    <thead>
+                                        <tr style={{ background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid var(--glass-border)' }}>
+                                            <th style={{ padding: '16px 24px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Fecha y Hora</th>
+                                            <th style={{ padding: '16px 24px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Usuario</th>
+                                            <th style={{ padding: '16px 24px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Reporte Consultado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {loading && adminActivities.length === 0 ? (
+                                            <tr>
+                                                <td colSpan={3} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>Cargando registros...</td>
+                                            </tr>
+                                        ) : adminActivities.length === 0 ? (
+                                            <tr>
+                                                <td colSpan={3} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>No hay visitas administrativas registradas aún.</td>
+                                            </tr>
+                                        ) : (
+                                            adminActivities.slice(0, 50).map((act, idx) => {
+                                                const reportName = act.accion.replace('Consultó Reporte Admin: ', '');
+                                                return (
+                                                    <motion.tr
+                                                        key={act.id}
+                                                        initial={{ opacity: 0, y: 10 }}
+                                                        animate={{ opacity: 1, y: 0 }}
+                                                        transition={{ delay: idx * 0.01 }}
+                                                        style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', transition: 'background 0.2s' }}
+                                                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.03)'}
+                                                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                                                    >
+                                                        <td style={{ padding: '16px 24px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                                                            <div style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{act.fecha}</div>
+                                                            <div style={{ fontSize: '0.8rem' }}>{act.hora}</div>
+                                                        </td>
+                                                        <td style={{ padding: '16px 24px', fontWeight: 600, color: '#D4AF37' }}>
+                                                            {act.asesor}
+                                                        </td>
+                                                        <td style={{ padding: '16px 24px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                                                            <div style={{ display: 'inline-block', padding: '4px 10px', background: 'rgba(0, 184, 217, 0.1)', color: '#00B8D9', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 600 }}>
+                                                                {reportName}
                                                             </div>
                                                         </td>
                                                     </motion.tr>

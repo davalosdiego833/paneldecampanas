@@ -106,7 +106,17 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                     <motion.button
                         whileHover={{ scale: 1.02, y: -2 }}
                         whileTap={{ scale: 0.98 }}
-                        onClick={() => onSelectOption('asesores')}
+                        onClick={() => {
+                            fetch('/api/activity', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    asesor: "Administrador",
+                                    accion: "Consultó Reporte Admin: Resumen de Asesores"
+                                })
+                            }).catch(e => console.error('Error', e));
+                            onSelectOption('asesores');
+                        }}
                         style={{
                             width: '100%',
                             padding: '20px 24px',
@@ -142,7 +152,17 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                     <motion.button
                         whileHover={{ scale: 1.02, y: -2 }}
                         whileTap={{ scale: 0.98 }}
-                        onClick={() => onSelectOption('promotoria')}
+                        onClick={() => {
+                            fetch('/api/activity', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    asesor: "Administrador",
+                                    accion: "Consultó Reporte Admin: Resumen de Promotoría"
+                                })
+                            }).catch(e => console.error('Error', e));
+                            onSelectOption('promotoria');
+                        }}
                         style={{
                             width: '100%',
                             padding: '20px 24px',
@@ -178,7 +198,17 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                     <motion.button
                         whileHover={{ scale: 1.02, y: -2 }}
                         whileTap={{ scale: 0.98 }}
-                        onClick={() => onSelectOption('eduardo')}
+                        onClick={() => {
+                            fetch('/api/activity', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    asesor: "Administrador",
+                                    accion: "Consultó Reporte Admin: Gerencia Eduardo"
+                                })
+                            }).catch(e => console.error('Error', e));
+                            onSelectOption('eduardo');
+                        }}
                         style={{
                             width: '100%',
                             padding: '20px 24px',
@@ -214,7 +244,17 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                     <motion.button
                         whileHover={{ scale: 1.02, y: -2 }}
                         whileTap={{ scale: 0.98 }}
-                        onClick={() => onSelectOption('karen')}
+                        onClick={() => {
+                            fetch('/api/activity', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    asesor: "Administrador",
+                                    accion: "Consultó Reporte Admin: Gerencia Karen"
+                                })
+                            }).catch(e => console.error('Error', e));
+                            onSelectOption('karen');
+                        }}
                         style={{
                             width: '100%',
                             padding: '20px 24px',
@@ -268,18 +308,20 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                     position: 'absolute',
                     top: '24px',
                     right: '24px',
-                    width: '40px',
-                    height: '40px',
+                    padding: '8px 16px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     background: 'rgba(255, 255, 255, 0.05)',
                     border: '1px solid rgba(255, 255, 255, 0.1)',
-                    borderRadius: '50%',
+                    borderRadius: '20px',
                     color: '#9ca3af',
                     cursor: 'pointer',
                     zIndex: 20,
                     transition: 'all 0.2s ease',
+                    fontSize: '0.8rem',
+                    fontWeight: 600,
+                    letterSpacing: '0.05em',
                 }}
                 title="Log de Actividad"
                 onMouseEnter={(e) => {
@@ -293,7 +335,7 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                     e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
                 }}
             >
-                <span style={{ fontSize: '18px' }}>👁️</span>
+                ACTIVIDAD PÁGINA
             </button>
         </div>
     );
