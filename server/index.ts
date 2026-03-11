@@ -703,6 +703,30 @@ app.get('/api/activity', (req, res) => {
     }
 });
 
+app.delete('/api/activity/:id', (req, res) => {
+    try {
+        const { id } = req.params;
+        if (fs.existsSync(ACTIVITY_PATH)) {
+            const data = fs.readFileSync(ACTIVITY_PATH, 'utf8');
+            let activities = JSON.parse(data);
+
+            const initialLength = activities.length;
+            activities = activities.filter((a: any) => a.id !== id);
+
+            if (activities.length < initialLength) {
+                fs.writeFileSync(ACTIVITY_PATH, JSON.stringify(activities, null, 2), 'utf8');
+                return res.json({ success: true, message: 'Record deleted successfully' });
+            } else {
+                return res.status(404).json({ error: 'Record not found' });
+            }
+        }
+        res.status(404).json({ error: 'Activity log not found' });
+    } catch (e) {
+        console.error('Error deleting activity:', e);
+        res.status(500).json({ error: 'Error modifying activity log' });
+    }
+});
+
 // ===================== ESTATUS DE PÓLIZAS =====================
 const POLIZAS_PATH = path.join(BASE_PATH, 'estatus polizas');
 
