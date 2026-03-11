@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useTheme } from '../hooks/useTheme';
 import { LogOut, ArrowLeft, RefreshCw, Users, Activity, Clock, LogIn } from 'lucide-react';
 
 interface Props {
@@ -20,7 +19,6 @@ interface ActivityEvent {
 }
 
 const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTheme }) => {
-    const { theme } = useTheme();
     const [activities, setActivities] = useState<ActivityEvent[]>([]);
     const [loading, setLoading] = useState(true);
 
