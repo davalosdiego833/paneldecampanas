@@ -246,41 +246,6 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                         <span style={{ fontSize: '1.2rem', color: '#00B8D9', opacity: 0.7 }}>→</span>
                     </motion.button>
 
-                    {/* Actividad en la Pagina */}
-                    <motion.button
-                        whileHover={{ scale: 1.02, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => onSelectOption('actividad')}
-                        style={{
-                            width: '100%',
-                            padding: '20px 24px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '16px',
-                            background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(212, 175, 55, 0.04) 100%)',
-                            border: '1px solid rgba(212, 175, 55, 0.2)',
-                            borderRadius: '12px',
-                            cursor: 'pointer',
-                            color: '#ffffff',
-                            fontFamily: 'inherit',
-                        }}
-                    >
-                        <div style={{
-                            width: '48px', height: '48px', borderRadius: '12px',
-                            background: 'linear-gradient(135deg, #D4AF37 0%, #b8962e 100%)',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            flexShrink: 0, boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)',
-                        }}>
-                            <span style={{ fontSize: '24px' }}>👁️</span>
-                        </div>
-                        <div style={{ textAlign: 'left', flex: 1 }}>
-                            <div style={{ fontSize: '1.1rem', fontWeight: 700 }}>Actividad en la Página</div>
-                            <div style={{ fontSize: '0.8rem', color: '#9ca3af', marginTop: '2px' }}>
-                                Monitorea accesos y vistas de asesores
-                            </div>
-                        </div>
-                        <span style={{ fontSize: '1.2rem', color: '#D4AF37', opacity: 0.7 }}>→</span>
-                    </motion.button>
                 </div>
 
                 {/* Back link */}
@@ -295,6 +260,41 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                     ← Volver al inicio
                 </button>
             </motion.div>
+
+            {/* Discreet Activity Tracker Button */}
+            <button
+                onClick={() => onSelectOption('actividad')}
+                style={{
+                    position: 'absolute',
+                    top: '24px',
+                    right: '24px',
+                    width: '40px',
+                    height: '40px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '50%',
+                    color: '#9ca3af',
+                    cursor: 'pointer',
+                    zIndex: 20,
+                    transition: 'all 0.2s ease',
+                }}
+                title="Log de Actividad"
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(212, 175, 55, 0.1)';
+                    e.currentTarget.style.color = '#D4AF37';
+                    e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                    e.currentTarget.style.color = '#9ca3af';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                }}
+            >
+                <span style={{ fontSize: '18px' }}>👁️</span>
+            </button>
         </div>
     );
 };

@@ -63,7 +63,19 @@ const CampaignSelector: React.FC<Props> = ({ advisor, onCampaignSelect }) => {
                             minHeight: '320px',
                             padding: '32px'
                         }}
-                        onClick={() => onCampaignSelect(camp)}
+                        onClick={() => {
+                            // Registra la actividad de qué campaña seleccionó
+                            fetch('/api/activity', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    asesor: advisor,
+                                    accion: `Consultó Campaña: ${camp.replace(/_/g, ' ').toUpperCase()}`
+                                })
+                            }).catch(e => console.error('Error logueando actividad', e));
+
+                            onCampaignSelect(camp);
+                        }}
                     >
                         {/* Fecha de corte badge */}
                         {dates[camp] && (
