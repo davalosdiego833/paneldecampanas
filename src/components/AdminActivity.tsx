@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { LogOut, ArrowLeft, RefreshCw, Users, Activity, Clock, LogIn, Shield } from 'lucide-react';
+import { LogOut, ArrowLeft, RefreshCw, Users, Activity, Clock, LogIn, Shield, Trash2 } from 'lucide-react';
 
 interface Props {
     onLogout: () => void;
@@ -33,6 +33,22 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
             console.error('Error fetching activity logs:', err);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleDelete = async (id: string) => {
+        if (!window.confirm('¿Estás seguro de querer eliminar este registro de actividad? Esto descontará los números estadísticos en tiempo real.')) return;
+
+        try {
+            const res = await fetch(`/api/activity/${id}`, { method: 'DELETE' });
+            if (res.ok) {
+                // Refresh data to automatically update all charts and metrics
+                fetchActivity();
+            } else {
+                alert('No se pudo eliminar el registro.');
+            }
+        } catch (e) {
+            console.error('Error al borrar registro:', e);
         }
     };
 
@@ -201,16 +217,17 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
                                             <th style={{ padding: '16px 24px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Fecha y Hora</th>
                                             <th style={{ padding: '16px 24px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Nombre del Asesor</th>
                                             <th style={{ padding: '16px 24px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Acción</th>
+                                            <th style={{ padding: '16px 24px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'right' }}>Eliminar</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {loading && loginActivities.length === 0 ? (
                                             <tr>
-                                                <td colSpan={3} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>Cargando registros...</td>
+                                                <td colSpan={4} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>Cargando registros...</td>
                                             </tr>
                                         ) : loginActivities.length === 0 ? (
                                             <tr>
-                                                <td colSpan={3} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>No hay actividad registrada aún.</td>
+                                                <td colSpan={4} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>No hay actividad registrada aún.</td>
                                             </tr>
                                         ) : (
                                             loginActivities.slice(0, 50).map((act, idx) => (
@@ -234,6 +251,17 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
                                                         <div style={{ display: 'inline-block', padding: '4px 10px', background: 'rgba(0, 122, 255, 0.1)', color: '#007AFF', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 600 }}>
                                                             {act.accion}
                                                         </div>
+                                                    </td>
+                                                    <td style={{ padding: '16px 24px', textAlign: 'right' }}>
+                                                        <button
+                                                            onClick={() => handleDelete(act.id)}
+                                                            style={{ background: 'none', border: 'none', color: '#EF4444', cursor: 'pointer', padding: '6px', borderRadius: '8px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', transition: '0.2s' }}
+                                                            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)'}
+                                                            onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                                                            title="Eliminar registro permanentemente"
+                                                        >
+                                                            <Trash2 size={18} />
+                                                        </button>
                                                     </td>
                                                 </motion.tr>
                                             ))
@@ -328,16 +356,17 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
                                             <th style={{ padding: '16px 24px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Fecha y Hora</th>
                                             <th style={{ padding: '16px 24px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Asesor</th>
                                             <th style={{ padding: '16px 24px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Campaña</th>
+                                            <th style={{ padding: '16px 24px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'right' }}>Eliminar</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {loading && campaignActivities.length === 0 ? (
                                             <tr>
-                                                <td colSpan={3} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>Cargando registros...</td>
+                                                <td colSpan={4} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>Cargando registros...</td>
                                             </tr>
                                         ) : campaignActivities.length === 0 ? (
                                             <tr>
-                                                <td colSpan={3} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>No hay clics en campañas registrados aún.</td>
+                                                <td colSpan={4} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>No hay clics en campañas registrados aún.</td>
                                             </tr>
                                         ) : (
                                             campaignActivities.slice(0, 50).map((act, idx) => {
@@ -363,6 +392,17 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
                                                             <div style={{ display: 'inline-block', padding: '4px 10px', background: 'rgba(108, 92, 231, 0.1)', color: '#a29bfe', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 600 }}>
                                                                 {campName}
                                                             </div>
+                                                        </td>
+                                                        <td style={{ padding: '16px 24px', textAlign: 'right' }}>
+                                                            <button
+                                                                onClick={() => handleDelete(act.id)}
+                                                                style={{ background: 'none', border: 'none', color: '#EF4444', cursor: 'pointer', padding: '6px', borderRadius: '8px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', transition: '0.2s' }}
+                                                                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)'}
+                                                                onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                                                                title="Eliminar clic en campaña"
+                                                            >
+                                                                <Trash2 size={18} />
+                                                            </button>
                                                         </td>
                                                     </motion.tr>
                                                 );
@@ -458,16 +498,17 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
                                             <th style={{ padding: '16px 24px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Fecha y Hora</th>
                                             <th style={{ padding: '16px 24px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Usuario</th>
                                             <th style={{ padding: '16px 24px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Reporte Consultado</th>
+                                            <th style={{ padding: '16px 24px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'right' }}>Eliminar</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {loading && adminActivities.length === 0 ? (
                                             <tr>
-                                                <td colSpan={3} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>Cargando registros...</td>
+                                                <td colSpan={4} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>Cargando registros...</td>
                                             </tr>
                                         ) : adminActivities.length === 0 ? (
                                             <tr>
-                                                <td colSpan={3} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>No hay visitas administrativas registradas aún.</td>
+                                                <td colSpan={4} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>No hay visitas administrativas registradas aún.</td>
                                             </tr>
                                         ) : (
                                             adminActivities.slice(0, 50).map((act, idx) => {
@@ -493,6 +534,17 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
                                                             <div style={{ display: 'inline-block', padding: '4px 10px', background: 'rgba(0, 184, 217, 0.1)', color: '#00B8D9', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 600 }}>
                                                                 {reportName}
                                                             </div>
+                                                        </td>
+                                                        <td style={{ padding: '16px 24px', textAlign: 'right' }}>
+                                                            <button
+                                                                onClick={() => handleDelete(act.id)}
+                                                                style={{ background: 'none', border: 'none', color: '#EF4444', cursor: 'pointer', padding: '6px', borderRadius: '8px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', transition: '0.2s' }}
+                                                                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)'}
+                                                                onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                                                                title="Eliminar visita de Admin"
+                                                            >
+                                                                <Trash2 size={18} />
+                                                            </button>
                                                         </td>
                                                     </motion.tr>
                                                 );
