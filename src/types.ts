@@ -15,9 +15,7 @@ export interface ThemeConfig {
     };
     efecto?: string;
 }
-
-export type Page = 'login' | 'welcome' | 'campaign_selector' | 'dashboard' | 'admin_home' | 'admin_dashboard' | 'resumen_promotoria' | 'gerencia_eduardo' | 'gerencia_karen';
-
+export type Page = 'login' | 'welcome' | 'campaign_selector' | 'dashboard' | 'admin_home' | 'admin_dashboard' | 'resumen_promotoria' | 'gerencia_eduardo' | 'gerencia_karen' | 'admin_actividad';
 export interface AdvisorData {
     Asesor: string;
     [key: string]: any;

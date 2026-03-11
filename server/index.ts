@@ -651,6 +651,58 @@ app.get('/api/resumen-general', (req, res) => {
     } catch (e) { res.status(500).json({ error: 'Could not read summary data' }); }
 });
 
+// ===================== LOG DE ACTIVIDAD =====================
+const ACTIVITY_PATH = path.join(BASE_PATH, 'db', 'actividad.json');
+
+app.post('/api/activity', (req, res) => {
+    try {
+        const { asesor, accion } = req.body;
+        if (!asesor || !accion) return res.status(400).json({ error: 'Faltan datos' });
+
+        const now = new Date();
+        const event = {
+            id: Date.now().toString(),
+            asesor,
+            accion,
+            fecha: now.toISOString().split('T')[0],
+            hora: now.toTimeString().split(' ')[0],
+            timestamp: now.getTime()
+        };
+
+        let activities: any[] = [];
+        if (fs.existsSync(ACTIVITY_PATH)) {
+            try {
+                const data = fs.readFileSync(ACTIVITY_PATH, 'utf-8');
+                activities = JSON.parse(data);
+            } catch (e) { console.error('Error parsing activity json, resetting array'); }
+        }
+
+        activities.unshift(event); // Add to the beginning (newest first)
+
+        // Keep only the last 5000 events to prevent the file from growing infinitely
+        if (activities.length > 5000) {
+            activities = activities.slice(0, 5000);
+        }
+
+        fs.writeFileSync(ACTIVITY_PATH, JSON.stringify(activities, null, 2));
+        res.json({ success: true });
+    } catch (e) {
+        console.error('Error al guardar actividad:', e);
+        res.status(500).json({ error: 'Could not save activity' });
+    }
+});
+
+app.get('/api/activity', (req, res) => {
+    try {
+        if (!fs.existsSync(ACTIVITY_PATH)) return res.json([]);
+        const data = fs.readFileSync(ACTIVITY_PATH, 'utf-8');
+        res.json(JSON.parse(data));
+    } catch (e) {
+        console.error('Error al leer actividad:', e);
+        res.status(500).json({ error: 'Could not read activity' });
+    }
+});
+
 // ===================== ESTATUS DE PÓLIZAS =====================
 const POLIZAS_PATH = path.join(BASE_PATH, 'estatus polizas');
 

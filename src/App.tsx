@@ -9,6 +9,8 @@ import Welcome from './components/Welcome';
 import CampaignSelector from './components/CampaignSelector';
 import Dashboard from './components/Dashboard';
 
+import AdminActivity from './components/AdminActivity';
+
 const App: React.FC = () => {
     const [page, setPage] = useState<Page>('login');
     const [theme, setTheme] = useState<ThemeConfig | null>(null);
@@ -49,7 +51,7 @@ const App: React.FC = () => {
         }
     };
 
-    const handleAdminOption = (option: 'asesores' | 'promotoria' | 'eduardo' | 'karen') => {
+    const handleAdminOption = (option: 'asesores' | 'promotoria' | 'eduardo' | 'karen' | 'actividad') => {
         if (option === 'asesores') {
             setPage('admin_dashboard');
         } else if (option === 'promotoria') {
@@ -58,6 +60,8 @@ const App: React.FC = () => {
             setPage('gerencia_eduardo');
         } else if (option === 'karen') {
             setPage('gerencia_karen');
+        } else if (option === 'actividad') {
+            setPage('admin_actividad');
         }
     };
 
@@ -102,6 +106,11 @@ const App: React.FC = () => {
     // Gerencia Karen — filtered by sucursal 2856
     if (page === 'gerencia_karen') {
         return <ResumenPromotoria onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} sucursalFilter={[2856]} gerenciaName="GERENCIA KAREN" />;
+    }
+
+    // Admin Activity Tracker
+    if (page === 'admin_actividad') {
+        return <AdminActivity onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} />;
     }
 
     // Advisor flow: uses regular Layout

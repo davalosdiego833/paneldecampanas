@@ -195,7 +195,19 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                     <motion.button
                         initial={{ scale: 0.9, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        onClick={() => onAdvisorSelect(selectedName)}
+                        onClick={() => {
+                            // Register activity
+                            fetch('/api/activity', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    asesor: selectedName,
+                                    accion: 'Inició Sesión / Entró al Dashboard'
+                                })
+                            }).catch(e => console.error('Error logueando actividad', e));
+
+                            onAdvisorSelect(selectedName);
+                        }}
                         className="btn-primary"
                         style={{ width: '100%', padding: '16px', borderRadius: '12px', fontWeight: 700, fontSize: '1rem', cursor: 'pointer' }}
                     >
