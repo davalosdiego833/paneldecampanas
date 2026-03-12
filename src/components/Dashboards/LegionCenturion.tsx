@@ -46,7 +46,7 @@ const LegionCenturion: React.FC<Props> = ({ data }) => {
             </section>
 
             <section>
-                <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '16px', opacity: 0.8 }}>¿Cuánto me hace falta para mi siguiente nivel?</h3>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '16px', opacity: 0.8 }}>¿Cuánto me hace falta para ir en meta este mes?</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '24px' }}>
                     {['Bronce', 'Plata', 'Oro', 'Platino'].map(lvl => (
                         <div key={lvl} className="glass-card" style={{ textAlign: 'center' }}>
@@ -79,7 +79,7 @@ const LegionCenturion: React.FC<Props> = ({ data }) => {
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingTop: '16px' }}>
-                    <p style={{ fontSize: '0.85rem', fontWeight: 700, opacity: 0.8 }}>Tu Avance en el Tiempo</p>
+                    <p style={{ fontSize: '0.85rem', fontWeight: 700, opacity: 0.8 }}>Tiempo restante de la campaña</p>
                     <div style={{ height: '8px', background: 'rgba(255,255,255,0.05)', borderRadius: '999px', overflow: 'hidden' }}>
                         <motion.div
                             initial={{ width: 0 }}
