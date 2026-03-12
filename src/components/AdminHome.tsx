@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Shield } from 'lucide-react';
 
 interface Props {
     onSelectOption: (option: 'asesores' | 'promotoria' | 'eduardo' | 'karen' | 'actividad') => void;
@@ -7,6 +8,40 @@ interface Props {
 }
 
 const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
+    const [snapshotStatus, setSnapshotStatus] = useState<{ exists: boolean, updatedAt?: string } | null>(null);
+    const [loading, setLoading] = useState(false);
+
+    const checkSnapshotStatus = async () => {
+        try {
+            const res = await fetch('/api/admin/snapshot-status');
+            const d = await res.json();
+            setSnapshotStatus(d);
+        } catch (e) { console.error(e); }
+    };
+
+    useEffect(() => {
+        checkSnapshotStatus();
+    }, []);
+
+    const handleFreeze = async () => {
+        if (!window.confirm('¿Deseas actualizar y "congelar" los datos actuales? \n\nEsto creará una captura instantánea de todos los reportes externos para que la página cargue mucho más rápido. Se recomienda hacerlo después de cada actualización de archivos Excel.')) return;
+
+        setLoading(true);
+        try {
+            const res = await fetch('/api/admin/snapshot', { method: 'POST' });
+            if (res.ok) {
+                await checkSnapshotStatus();
+                alert('¡Datos actualizados y congelados con éxito!');
+            } else {
+                alert('No se pudo crear la captura de datos.');
+            }
+        } catch (e) {
+            console.error(e);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div
             style={{
@@ -301,45 +336,90 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                 </button>
             </motion.div>
 
-            {/* Discreet Activity Tracker Button */}
-            <button
-                onClick={() => onSelectOption('actividad')}
-                style={{
-                    position: 'absolute',
-                    top: '24px',
-                    right: '24px',
-                    padding: '8px 16px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    borderRadius: '20px',
-                    color: '#9ca3af',
-                    cursor: 'pointer',
-                    zIndex: 20,
-                    transition: 'all 0.2s ease',
-                    fontSize: '0.8rem',
-                    fontWeight: 600,
-                    letterSpacing: '0.05em',
-                }}
-                title="Log de Actividad"
-                onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(212, 175, 55, 0.1)';
-                    e.currentTarget.style.color = '#D4AF37';
-                    e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
-                }}
-                onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                    e.currentTarget.style.color = '#9ca3af';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                }}
-            >
-                ACTIVIDAD PÁGINA
-            </button>
+            {/* Admin Controls Layer */}
+            <div style={{
+                position: 'absolute',
+                top: '24px',
+                right: '24px',
+                display: 'flex',
+                gap: '12px',
+                alignItems: 'flex-start',
+                zIndex: 20
+            }}>
+                {/* Snapshot Indicator & Trigger */}
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px' }}>
+                    <button
+                        onClick={handleFreeze}
+                        disabled={loading}
+                        style={{
+                            padding: '8px 16px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '8px',
+                            background: 'rgba(0, 122, 255, 0.1)',
+                            border: '1px solid rgba(0, 122, 255, 0.2)',
+                            borderRadius: '20px',
+                            color: '#007AFF',
+                            cursor: loading ? 'wait' : 'pointer',
+                            transition: 'all 0.2s ease',
+                            fontSize: '0.8rem',
+                            fontWeight: 700,
+                            letterSpacing: '0.05em',
+                            opacity: loading ? 0.7 : 1,
+                        }}
+                        onMouseEnter={(e) => {
+                            if (!loading) e.currentTarget.style.background = 'rgba(0, 122, 255, 0.2)';
+                        }}
+                        onMouseLeave={(e) => {
+                            if (!loading) e.currentTarget.style.background = 'rgba(0, 122, 255, 0.1)';
+                        }}
+                    >
+                        <Shield size={16} />
+                        {loading ? 'PROCESANDO...' : 'ACTUALIZAR Y CONGELAR'}
+                    </button>
+                    {snapshotStatus?.exists && (
+                        <div style={{ fontSize: '0.65rem', color: '#00E676', fontWeight: 600, padding: '0 8px' }}>
+                            ❄️ Captura: {snapshotStatus.updatedAt}
+                        </div>
+                    )}
+                </div>
+
+                {/* Discreet Activity Tracker Button */}
+                <button
+                    onClick={() => onSelectOption('actividad')}
+                    style={{
+                        padding: '8px 16px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        borderRadius: '20px',
+                        color: '#9ca3af',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        fontSize: '0.8rem',
+                        fontWeight: 600,
+                        letterSpacing: '0.05em',
+                    }}
+                    title="Log de Actividad"
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(212, 175, 55, 0.1)';
+                        e.currentTarget.style.color = '#D4AF37';
+                        e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                        e.currentTarget.style.color = '#9ca3af';
+                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    }}
+                >
+                    ACTIVIDAD PÁGINA
+                </button>
+            </div>
         </div>
     );
 };
 
 export default AdminHome;
-

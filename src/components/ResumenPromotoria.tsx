@@ -82,11 +82,27 @@ const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggl
 
     useEffect(() => {
         setLoading(true);
-        const query = JSON.stringify(historicalDates);
-        fetch(`/api/resumen-general?dates=${encodeURIComponent(query)}`)
-            .then(res => res.json())
-            .then(d => { setData(d); setLoading(false); })
-            .catch(err => { console.error(err); setLoading(false); });
+
+        const fetchData = async () => {
+            try {
+                // First check if a snapshot exists to optimize speed
+                const snapRes = await fetch('/api/admin/snapshot-status');
+                const snapStatus = await snapRes.json();
+
+                const query = JSON.stringify(historicalDates);
+                const useSnapshot = snapStatus.exists && !historicalDates.pagado_pendiente && !historicalDates.asesores_sin_emision && !historicalDates.proactivos && !historicalDates.comparativo_vida;
+
+                const res = await fetch(`/api/resumen-general?dates=${encodeURIComponent(query)}&useSnapshot=${useSnapshot}`);
+                const d = await res.json();
+                setData(d);
+                setLoading(false);
+            } catch (err) {
+                console.error(err);
+                setLoading(false);
+            }
+        };
+
+        fetchData();
     }, [historicalDates]);
 
     const handleDateSelect = (sec: string, date: string | null) => {

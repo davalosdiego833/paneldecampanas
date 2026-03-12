@@ -1,11 +1,35 @@
 [
   {
-    "id": "1773248292167",
+    "id": "1773342765852",
     "asesor": "Administrador",
-    "accion": "Consultó Reporte Admin: Resumen de Promotoría",
-    "fecha": "2026-03-11",
-    "hora": "10:58:12",
-    "timestamp": 1773248292167
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-03-12",
+    "hora": "13:12:45",
+    "timestamp": 1773342765851
+  },
+  {
+    "id": "1773342739076",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-03-12",
+    "hora": "13:12:19",
+    "timestamp": 1773342739076
+  },
+  {
+    "id": "1773342053771",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-03-12",
+    "hora": "13:00:53",
+    "timestamp": 1773342053771
+  },
+  {
+    "id": "1773329119935",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-03-12",
+    "hora": "09:25:19",
+    "timestamp": 1773329119935
   },
   {
     "id": "1773247160410",
@@ -14,13 +38,5 @@
     "fecha": "2026-03-11",
     "hora": "10:39:20",
     "timestamp": 1773247160410
-  },
-  {
-    "id": "1773246017073",
-    "asesor": "Abraham Chacón",
-    "accion": "Inició Sesión / Entró al Dashboard",
-    "fecha": "2026-03-11",
-    "hora": "10:20:17",
-    "timestamp": 1773246017072
   }
 ]

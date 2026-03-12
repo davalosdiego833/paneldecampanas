@@ -450,8 +450,15 @@ app.post('/api/active-theme', (req, res) => {
 
 app.get('/api/admin/summary', (req, res) => {
     try {
-        const { date } = req.query;
-        const result: Record<string, any[]> = {};
+        const { date, useSnapshot } = req.query;
+
+        // Performance optimization: check for frozen snapshot
+        if (useSnapshot === 'true' && fs.existsSync(SNAPSHOT_PATH)) {
+            const snapshotData = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
+            return res.json(snapshotData.data || snapshotData); // Fallback for old snapshot format
+        }
+
+        const result: Record<string, any> = { dates: {} };
         const dir = getAdvisorDirectory();
         const resolveName = (cl: any) => dir[String(cl)] || `Asesor ${cl}`;
 
@@ -463,7 +470,15 @@ app.get('/api/admin/summary', (req, res) => {
                     if (c === 'mdrt') {
                         const ws = wb.Sheets[wb.SheetNames.find((n: string) => n.toUpperCase() === 'MDRT') || wb.SheetNames[0]];
                         const data: any[] = XLSX.utils.sheet_to_json(ws, { range: 3 });
-                        result.mdrt = data.filter(r => String(r.Matriz || r['Mat'] || '') === '2043').map(r => ({ Asesor: resolveName(r.Asesor || r['Nombre del Asesor']), Clave: r.Asesor || '', PA_Acumulada: Number(r.PA_Acumulada || r[' Total Prima '] || r['Total Prima'] || r['Camino Prima'] || 0) }));
+                        result.mdrt = data.filter(r => String(r.Matriz || r['Mat'] || '') === '2043').map(r => {
+                            // Find PA column (some Excels have leading/trailing spaces)
+                            const paKey = Object.keys(r).find(k => k.trim().toLowerCase() === 'total prima' || k.trim().toLowerCase() === 'camino prima');
+                            return {
+                                Asesor: resolveName(r.Asesor || r['Nombre del Asesor']),
+                                Clave: r.Asesor || '',
+                                PA_Acumulada: Number(r[paKey!] || 0)
+                            };
+                        });
                     } else if (c === 'camino_cumbre') {
                         const ws = wb.Sheets[wb.SheetNames[0]];
                         const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 3 });
@@ -476,6 +491,12 @@ app.get('/api/admin/summary', (req, res) => {
                         let c480 = 0, c228 = 0, c108 = 0, c28 = 0;
                         allRows.forEach(r => {
                             const l = Number(r[32]);
+                            if (l === 480) c480 = Number(r[24] || 0);
+                            if (l === 228) c228 = Number(r[24] || 0);
+                            if (l === 108) c108 = Number(r[108] || r[24] || 0); // fallback or specific col if needed
+                            if (l === 228) c228 = Number(r[228] || r[24] || 0);
+
+                            // Re-calculate exactly like the advisor dashboard
                             if (l === 480) c480 = Number(r[24] || 0);
                             if (l === 228) c228 = Number(r[24] || 0);
                             if (l === 108) c108 = Number(r[24] || 0);
@@ -511,10 +532,188 @@ app.get('/api/admin/summary', (req, res) => {
                         }));
                     }
                 } else result[c] = [];
-            } catch { result[c] = []; }
+
+                // Extract cutoff date
+                if (wb) {
+                    const iso = extractCutoffDate(wb, c);
+                    if (iso) {
+                        const d = iso.split('-');
+                        result.dates[c] = `${d[2]} de ${MONTHS_ES[Number(d[1]) - 1]} de ${d[0]}`;
+                    } else result.dates[c] = "";
+                } else result.dates[c] = "";
+
+            } catch { result[c] = []; result.dates[c] = ""; }
         });
         res.json(result);
     } catch (e) { res.status(500).json({ error: 'Could not build admin summary' }); }
+});
+
+app.get('/api/admin/snapshot-status', (req, res) => {
+    if (fs.existsSync(SNAPSHOT_PATH)) {
+        const stats = fs.statSync(SNAPSHOT_PATH);
+        const data = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
+        return res.json({
+            exists: true,
+            updatedAt: data.updatedAt,
+            mtime: stats.mtime
+        });
+    }
+    res.json({ exists: false });
+});
+
+app.post('/api/admin/snapshot', async (req, res) => {
+    try {
+        // We reuse the logic from /api/admin/summary but save it
+        // Simulating a fetch or just calling the internal logic would be best
+        // To keep it simple and clean, let's just use the current data state
+        const dir = getAdvisorDirectory();
+        const resolveName = (cl: any) => dir[String(cl)] || `Asesor ${cl}`;
+        const result: Record<string, any> = { dates: {} };
+        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion'];
+
+        for (const c of cams) {
+            const wb = readExcelData(c, { skipJson: true });
+            if (wb) {
+                if (c === 'mdrt') {
+                    const ws = wb.Sheets[wb.SheetNames.find((n: string) => n.toUpperCase() === 'MDRT') || wb.SheetNames[0]];
+                    const data: any[] = XLSX.utils.sheet_to_json(ws, { range: 3 });
+                    result.mdrt = data.filter(r => String(r.Matriz || r['Mat'] || '') === '2043').map(r => {
+                        const paKey = Object.keys(r).find(k => k.trim().toLowerCase() === 'total prima' || k.trim().toLowerCase() === 'camino prima');
+                        return { Asesor: resolveName(r.Asesor || r['Nombre del Asesor']), Clave: r.Asesor || '', PA_Acumulada: Number(r[paKey!] || 0) };
+                    });
+                } else if (c === 'camino_cumbre') {
+                    const ws = wb.Sheets[wb.SheetNames[0]];
+                    const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 3 });
+                    result.camino_cumbre = data.slice(1).filter(r => String(r[3] || '') === '2043').map(r => ({ Asesor: resolveName(r[5]), Clave: r[5] || '', Mes_Asesor: Number(r[10] || 1), Polizas_Totales: Number(r[13] || 0), Mes_1_Prod: Number(r[21] || 0), Mes_2_Prod: Number(r[22] || 0), Mes_3_Prod: Number(r[23] || 0) }));
+                } else if (c === 'convenciones') {
+                    const ws = wb.Sheets[wb.SheetNames[0]];
+                    const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AI5000' });
+                    const allRows = data.slice(1);
+                    let c480 = 0, c228 = 0, c108 = 0, c28 = 0;
+                    allRows.forEach(r => {
+                        const l = Number(r[32]);
+                        if (l === 480) c480 = Number(r[24] || 0);
+                        if (l === 228) c228 = Number(r[24] || 0);
+                        if (l === 108) c108 = Number(r[24] || 0);
+                        if (l === 28) c28 = Number(r[24] || 0);
+                    });
+                    result.convenciones = allRows.filter(r => String(r[4] || '') === '2043').map(r => ({
+                        Asesor: resolveName(r[7]), Clave: r[7] || '', Comision_Vida: Number(r[11] || 0), RDA: Number(r[18] || 0), PA_Total: Number(r[24] || 0), Polizas: Number(r[28] || 0),
+                        Lugar: Number(r[32] || 9999), Lugar_480: c480, Lugar_228: c228, Lugar_108: c108, Lugar_28: c28
+                    }));
+                } else if (c === 'graduacion') {
+                    const ws = wb.Sheets[wb.SheetNames[0]];
+                    const data: any[] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 2 });
+                    result.graduacion = data.slice(1).filter(r => String(r[3] || '') === '2043').map(r => ({ Asesor: r[7] ? String(r[7]) : resolveName(r[6]), Clave: r[6] || '', Mes_Asesor: Number(r[8] || 1), Polizas_Totales: Number(r[16] || 0) }));
+                } else if (c === 'legion_centurion') {
+                    const ws = wb.Sheets[wb.SheetNames[0]];
+                    const data: any[] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 11 });
+                    const b9 = ws['B9']?.v || "";
+                    const mMatch = String(b9).toLowerCase().match(/(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/);
+                    const mIndex = mMatch ? MONTHS_ES.indexOf(mMatch[1]) + 1 : 1;
+                    result.legion_centurion = data.slice(1).filter(r => String(r[4] || '') === '2043').map(r => ({
+                        Asesor: resolveName(r[6]), Clave: r[6] || '', Total_Polizas: Number(r[10] || 0), Mes_Actual: mIndex, Nivel: r[13] || '', EnMeta: String(r[12] || '').toLowerCase() === 'p'
+                    }));
+                }
+            }
+        }
+
+        const snapshot = {
+            updatedAt: new Date().toLocaleString('es-MX'),
+            data: {
+                ...result,
+                resumen_general: {} // Placeholder to be filled below
+            }
+        };
+
+        // INTEGRATE RESUMEN GENERAL LOGIC INTO SNAPSHOT
+        try {
+            const rg: Record<string, any> = { fechas_corte: {} };
+            const sinEmPath = 'administrador/asesores_sin_emision';
+            const wbSin = readExcelData(sinEmPath, { skipJson: true });
+            if (wbSin) {
+                const wsP = wbSin.Sheets['Promotores'], wsA = wbSin.Sheets['Asesores'];
+                rg.fechas_corte['asesores_sin_emision'] = formatExcelDate(extractCutoffDate(wbSin, 'asesores_sin_emision'));
+                rg.asesores_sin_emision = { summaryBySucursal: [], individuals: [] };
+                if (wsP) {
+                    const dat = XLSX.utils.sheet_to_json(wsP, { header: 1, range: 3 });
+                    rg.asesores_sin_emision.summaryBySucursal = dat.filter((r: any) => String(r[3] || '') === '2043').map((r: any) => ({ Sucursal: r[5] || 'Descon', Suc: r[4], Agentes: Number(r[6] || 0), Asesores_con_Emisión_Vida: Number(r[7] || 0), '%_Asesores_con_Emisión_Vida': Number(r[8] || 0), Asesores_con_Emisión_GMM: Number(r[9] || 0), '%_Asesores_con_Emisión_GMM': Number(r[10] || 0), Asesores_con_pol_Pagada_Vida: Number(r[11] || 0), '%_Asesores_con_pol_Pagada_Vida': Number(r[12] || 0), Asesores_con_pol_Pagada_GMM: Number(r[13] || 0), '%_Asesores_con_pol_Pagada_GMM': Number(r[14] || 0), Prima_Pagada_Vida: Number(r[15] || 0), Prima_Pagada_GMM: Number(r[16] || 0) }));
+                }
+                if (wsA) {
+                    const dat = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 4 });
+                    rg.asesores_sin_emision.individuals = dat.filter((r: any) => String(r[3] || '') === '2043').map((r: any) => ({ Asesor: r[7] || 'Descon', Clave: r[6] || '', Sucursal: r[5] || 'General', Suc: r[4], Emitido_Vida: Number(r[10] || 0), Emitido_GMM: Number(r[11] || 0), Pagado_Vida: Number(r[12] || 0), Pagado_GMM: Number(r[13] || 0), Prima_Pagada_Vida: Number(r[14] || 0), Prima_Pagada_GMM: Number(r[15] || 0), Sin_Emisión_Vida: r[16] || '', Sin_Emisión_GMM: r[17] || '', '3_Meses_Sin_Emisión_Vida': r[18] || '', '3_Meses_Sin_Emisión_GMM': r[19] || '' }));
+                }
+            }
+
+            const pagPath = 'administrador/pagado_emitidido';
+            const wbPag = readExcelData(pagPath, { skipJson: true });
+            if (wbPag) {
+                const data: any[][] = XLSX.utils.sheet_to_json(wbPag.Sheets[wbPag.SheetNames[0]], { header: 1 });
+                rg.fechas_corte['pagado_pendiente'] = formatExcelDate(extractCutoffDate(wbPag, 'pagado_pendiente'));
+                const validSucursales = ['2043', '2692', '2856', '2511'];
+                rg.pagado_pendiente = data.slice(3)
+                    .filter(r => r[2] != null && validSucursales.includes(String(r[1])))
+                    .map(r => ({ 'Nombre Asesor': r[2], 'Sucursal': r[1], 'Pólizas-Pagadas': Number(r[5] || 0), 'Recibo_Inicial_Pagado': Number(r[6] || 0), 'Recibo_Ordinario_Pagado': Number(r[7] || 0), 'Total _Prima_Pagada': Number(r[8] || 0), 'Pólizas_Pendinetes': Number(r[9] || 0), 'Recibo_Inicial_Pendiente': Number(r[10] || 0), 'Recibo_Ordinario_Pendiente': Number(r[11] || 0), 'Total _Prima_Pendiente': Number(r[12] || 0) }));
+            }
+
+            const proPath = 'administrador/proactivos';
+            const wbPro = readExcelData(proPath, { skipJson: true });
+            if (wbPro) {
+                const ws = wbPro.Sheets['Detalle Asesores'];
+                if (ws) {
+                    const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1 });
+                    rg.fechas_corte['proactivos'] = formatExcelDate(extractCutoffDate(wbPro, 'proactivos'));
+                    rg.proactivos = data.slice(7).filter(r => String(r[2] || '') === '2043').map(r => ({ 'ASESOR': dir[String(r[4])] || `Asesor ${r[4]}`, 'SUC': r[3], 'Polizas_Acumuladas_Mes_Ant.': Number(r[9] || 0), 'Polizas_Del_mes': Number(r[10] || 0), 'Polizas_Acumuladas_Total': Number(r[11] || 0), 'Proactivo_al_mes': r[12] || '', 'Pólizas_Faltantes': Number(r[13] || 0) }));
+                }
+            }
+
+            const compPath = 'administrador/comparativo_vida';
+            const wbComp = readExcelData(compPath, { skipJson: true });
+            if (wbComp) {
+                const wsP = wbComp.Sheets['promotoria'], wsA = wbComp.Sheets['asesores'];
+                rg.fechas_corte['comparativo_vida'] = formatExcelDate(extractCutoffDate(wbComp, 'comparativo_vida'));
+                let sum: any = null;
+                if (wsP) {
+                    const rawP = XLSX.utils.sheet_to_json(wsP, { header: 1 }) as any[][];
+                    const dataRow = rawP.find((row, idx) => idx > 0 && row.length > 4 && typeof row[0] === 'number');
+                    if (dataRow) {
+                        sum = {
+                            Polizas_Pagadas_Año_Anterior: Number(dataRow[0] || 0),
+                            Polizas_Pagadas_Año_Actual: Number(dataRow[1] || 0),
+                            Prima_Pagada_Año_Anterior: Number(dataRow[4] || 0),
+                            Prima_Pagada_Año_Actual: Number(dataRow[5] || 0),
+                            Recluta_Año_Anterior: Number(dataRow[8] || 0),
+                            Recluta_Año_Actual: Number(dataRow[9] || 0),
+                            Prima_Pagada_Reclutas_Año_Anterior: Number(dataRow[12] || 0),
+                            Prima_Pagada_Reclutas_Año_Actual: Number(dataRow[13] || 0)
+                        };
+                    }
+                }
+                let inds: any[] = [];
+                if (wsA) {
+                    const rawFormat = XLSX.utils.sheet_to_json(wsA, { header: 1 }) as any[][];
+                    if (rawFormat.length > 2 && rawFormat[2][2] === 'Mat') {
+                        inds = rawFormat.slice(3).filter((r: any) => String(r[2] || '') === '2043').map((r: any) => ({ 'Nombre del Asesor': r[6] || r[5], 'Sucursal': r[3], 'Polizas_Pagadas_Año_Anterior': Number(r[15] || 0), 'Polizas_Pagadas_Año_Actual': Number(r[16] || 0), 'Prima_Pagada_Año_Anterior': Number(r[23] || 0), 'Prima_Pagada_Año_Actual': Number(r[24] || 0) }));
+                    } else {
+                        inds = XLSX.utils.sheet_to_json(wsA, { range: 1 }).filter((r: any) => String(r['MAT'] || '') === '2043').map((r: any) => ({ 'Nombre del Asesor': r['Nombre'], 'Sucursal': r['Sucursal'], 'Polizas_Pagadas_Año_Anterior': Number(r['Pzs Pag Ant'] || 0), 'Polizas_Pagadas_Año_Actual': Number(r['Pzs Pag Act'] || 0), 'Prima_Pagada_Año_Anterior': Number(r['Pri Pag Ant'] || 0), 'Prima_Pagada_Año_Actual': Number(r['Pri Pag Act'] || 0) }));
+                    }
+                }
+                rg.comparativo_vida = { individuals: inds, generalSummary: sum };
+            }
+            snapshot.data.resumen_general = rg;
+        } catch (rgError) {
+            console.error('Error during snapshot resumen_general:', rgError);
+        }
+
+        const dbDir = path.join(BASE_PATH, 'db');
+        if (!fs.existsSync(dbDir)) fs.mkdirSync(dbDir);
+
+        fs.writeFileSync(SNAPSHOT_PATH, JSON.stringify(snapshot, null, 2));
+        res.json({ success: true, updatedAt: snapshot.updatedAt });
+    } catch (e) {
+        console.error('Snapshot Error:', e);
+        res.status(500).json({ error: 'Failed to create snapshot' });
+    }
 });
 
 app.get('/api/campaigns/dates', (req, res) => {
@@ -542,7 +741,16 @@ app.post('/api/admin/verify-password', (req, res) => {
 
 app.get('/api/resumen-general', (req, res) => {
     try {
-        const { dates } = req.query;
+        const { dates, useSnapshot } = req.query;
+
+        // Performance optimization: check for frozen snapshot
+        if (useSnapshot === 'true' && fs.existsSync(SNAPSHOT_PATH)) {
+            const snapshotData = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
+            if (snapshotData.data?.resumen_general) {
+                return res.json(snapshotData.data.resumen_general);
+            }
+        }
+
         const selectedDates = dates ? JSON.parse(dates as string) : {};
         const result: Record<string, any> = { fechas_corte: {} };
 
@@ -653,6 +861,7 @@ app.get('/api/resumen-general', (req, res) => {
 
 // ===================== LOG DE ACTIVIDAD =====================
 const ACTIVITY_PATH = path.join(BASE_PATH, 'db', 'actividad.json');
+const SNAPSHOT_PATH = path.join(BASE_PATH, 'db', 'resumen_snapshot.json');
 
 app.post('/api/activity', (req, res) => {
     try {

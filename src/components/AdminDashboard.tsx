@@ -12,7 +12,8 @@ interface Props {
 type AdminView = 'resumen' | 'detalle';
 
 interface CampaignData {
-    [key: string]: any[];
+    dates: Record<string, string>;
+    [key: string]: any[] | Record<string, string>;
 }
 
 const formatCurrency = (val: number) =>
@@ -263,14 +264,27 @@ const AdminDashboard: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTh
     const [view, setView] = useState<AdminView>('resumen');
     const [data, setData] = useState<CampaignData | null>(null);
     const [loading, setLoading] = useState(true);
-    const [selectedDate, setSelectedDate] = useState<string | null>(null);
+
+    const fetchData = async (useSnapshot: boolean = true) => {
+        setLoading(true);
+        try {
+            const res = await fetch(`/api/admin/summary?useSnapshot=${useSnapshot}`);
+            const d = await res.json();
+            setData(d);
+            setLoading(false);
+        } catch (err) {
+            console.error(err);
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-        setLoading(true);
-        fetch('/api/admin/summary')
-            .then(res => res.json())
-            .then(d => { setData(d); setLoading(false); })
-            .catch(err => { console.error(err); setLoading(false); });
+        const checkAndFetch = async () => {
+            const res = await fetch('/api/admin/snapshot-status');
+            const status = await res.json();
+            fetchData(status?.exists || false);
+        };
+        checkAndFetch();
     }, []);
 
     if (loading) {
@@ -286,12 +300,12 @@ const AdminDashboard: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTh
 
     if (!data) return <div style={{ color: 'white', padding: '40px' }}>Error cargando datos.</div>;
 
-    const campaigns = Object.keys(data);
-    const totalAdvisors = new Set(campaigns.flatMap(c => data[c].map((r: any) => r.Asesor))).size;
+    const campaigns = Object.keys(data).filter(k => k !== 'dates');
+    const totalAdvisors = new Set(campaigns.flatMap(c => (data[c] as any[]).map((r: any) => r.Asesor))).size;
 
     // Build classifications for each campaign
     const classifications = campaigns.reduce((acc, camp) => {
-        acc[camp] = classifyAdvisors(camp, data[camp]);
+        acc[camp] = classifyAdvisors(camp, data[camp] as any[]);
         return acc;
     }, {} as Record<string, ReturnType<typeof classifyAdvisors>>);
 
@@ -495,13 +509,13 @@ const ResumenGeneral: React.FC<{
             <div>
                 <h2 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '16px' }}>🌟 Top Asesores Destacados</h2>
                 <div className="glass-card">
-                    {data.mdrt && data.mdrt.length > 0 && (
+                    {data.mdrt && (data.mdrt as any[]).length > 0 && (
                         <div>
                             <h3 style={{ fontSize: '0.85rem', fontWeight: 700, color: CAMPAIGN_COLORS.mdrt, marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                                 🏆 Top 5 MDRT — Mayor Producción
                             </h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                                {[...data.mdrt]
+                                {[...(data.mdrt as any[])]
                                     .sort((a: any, b: any) => Number(b.PA_Acumulada || 0) - Number(a.PA_Acumulada || 0))
                                     .slice(0, 5)
                                     .map((row: any, i: number) => {
@@ -739,6 +753,11 @@ const DetallePorCampana: React.FC<{
                                 <div style={{ textAlign: 'left' }}>
                                     <div style={{ fontSize: '1.1rem', fontWeight: 700, color: CAMPAIGN_COLORS[camp] }}>
                                         {CAMPAIGN_LABELS[camp]}
+                                        {data.dates && data.dates[camp] && (
+                                            <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', fontWeight: 400, marginLeft: '8px' }}>
+                                                ({data.dates[camp]})
+                                            </span>
+                                        )}
                                     </div>
                                     <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                                         {total} asesores • ✅ {c.ganando.length} ganando • ⚠️ {c.cerca.length} cerca • ❌ {c.lejos.length} por debajo
