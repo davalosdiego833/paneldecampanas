@@ -139,6 +139,14 @@ const excelCache: Record<string, { mtime: number, workbook: any, json?: any }> =
 // Cache for historical dates mapping: { folderPath: { "YYYY-MM-DD": "filename.xlsx" } }
 const historyCache: Record<string, Record<string, string>> = {};
 
+// Helper to get Mexico City time
+const getMexicoTime = () => {
+    return new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Mexico_City' }));
+};
+const formatMexicoTimestamp = (date: Date = getMexicoTime()) => {
+    return date.toLocaleString('es-MX', { timeZone: 'America/Mexico_City' });
+};
+
 // Helper to get cutoff date from any worksheet based on common locations
 const extractCutoffDate = (wb: any, type: string): string => {
     try {
@@ -563,6 +571,10 @@ app.get('/api/admin/snapshot-status', (req, res) => {
 
 app.post('/api/admin/snapshot', async (req, res) => {
     try {
+        // PERFORMANCE FIX: Clear Excel cache to force reading new files
+        Object.keys(excelCache).forEach(k => delete excelCache[k]);
+        console.log('[DEBUG] Clearing Excel cache for fresh snapshot');
+
         // We reuse the logic from /api/admin/summary but save it
         // Simulating a fetch or just calling the internal logic would be best
         // To keep it simple and clean, let's just use the current data state
@@ -619,7 +631,7 @@ app.post('/api/admin/snapshot', async (req, res) => {
         }
 
         const snapshot = {
-            updatedAt: new Date().toLocaleString('es-MX'),
+            updatedAt: formatMexicoTimestamp(),
             data: {
                 ...result,
                 resumen_general: {} // Placeholder to be filled below
@@ -868,12 +880,12 @@ app.post('/api/activity', (req, res) => {
         const { asesor, accion } = req.body;
         if (!asesor || !accion) return res.status(400).json({ error: 'Faltan datos' });
 
-        const now = new Date();
+        const now = getMexicoTime();
         const event = {
             id: Date.now().toString(),
             asesor,
             accion,
-            fecha: now.toISOString().split('T')[0],
+            fecha: now.toLocaleDateString('en-CA'), // YYYY-MM-DD
             hora: now.toTimeString().split(' ')[0],
             timestamp: now.getTime()
         };
