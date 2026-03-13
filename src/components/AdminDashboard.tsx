@@ -162,7 +162,12 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
             const details: string[] = [];
             const infoLine = `Vida: ${formatCurrency(vida)} · RDA: ${formatCurrency(rda)} · Total: ${formatCurrency(total)}`;
 
-            if (lugar <= 480 && polizas >= 30 && total >= 588500) {
+            const missingPol = Math.max(0, 30 - polizas);
+            const missingCred = Math.max(0, 588500 - total);
+            const hasCandados = missingPol <= 0 && missingCred <= 0;
+            const isQualified = lugar <= 480 && hasCandados;
+
+            if (isQualified) {
                 // Califica
                 details.push(`🏅 Lugar #${lugar} · ${diamante || '1 Diamante'}${nivel ? ' · ' + nivel : ''}`);
                 details.push(infoLine);
@@ -170,24 +175,29 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
                 if (next) details.push(`Faltante ${next}: ${formatCurrency(faltanteNext)}`);
                 else details.push('✨ Máximo nivel');
                 ganando.push({ name, value: total, details, lugar });
-            } else if (faltanteNext <= 100000 || (lugar <= 600 && total > 0)) {
-                // Cerca
-                details.push(`Lugar #${lugar}`);
-                details.push(infoLine);
-                details.push(`Pólizas: ${polizas}`);
-                if (polizas < 30) details.push(`⚠️ Faltan ${(30 - polizas).toFixed(1)} pólizas`);
-                if (total < 588500) details.push(`⚠️ Faltan ${formatCurrency(588500 - total)} en créditos`);
-                details.push(`Faltante 1 Diamante: ${formatCurrency(faltanteNext)}`);
-                cerca.push({ name, value: total, details, lugar, faltante: faltanteNext });
             } else {
-                // Por debajo
+                // No califica aún o está cerca
                 details.push(`Lugar #${lugar}`);
                 details.push(infoLine);
                 details.push(`Pólizas: ${polizas}`);
-                if (polizas < 30) details.push(`⚠️ Faltan ${(30 - polizas).toFixed(1)} pólizas`);
-                if (total < 588500) details.push(`⚠️ Faltan ${formatCurrency(588500 - total)} en créditos`);
-                details.push(`Faltante 1 Diamante: ${formatCurrency(faltanteNext)}`);
-                lejos.push({ name, value: total, details, lugar, faltante: faltanteNext });
+
+                if (missingPol > 0) details.push(`⚠️ Faltan ${missingPol.toFixed(1)} pólizas`);
+                if (missingCred > 0) details.push(`⚠️ Faltan ${formatCurrency(missingCred)} en créditos (Mínimo $588.5k)`);
+
+                // Si ya pasó los créditos del último lugar de 1 Diamante pero le faltan candados (como Rafael)
+                // getDiamante ya regresó '2 Diamantes' como next. Usamos eso.
+                if (next) {
+                    details.push(`Faltante ${next}: ${formatCurrency(faltanteNext)}`);
+                }
+
+                // Decidir si ponerlo en cerca o lejos
+                // Cerca si le falta poco para 1 Diamante o está en lugar competitivo
+                const isNear = faltanteNext <= 150000 || (lugar <= 600 && total > 0);
+                if (isNear) {
+                    cerca.push({ name, value: total, details, lugar, faltante: faltanteNext });
+                } else {
+                    lejos.push({ name, value: total, details, lugar, faltante: faltanteNext });
+                }
             }
         }
 
