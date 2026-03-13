@@ -627,6 +627,15 @@ app.post('/api/admin/snapshot', async (req, res) => {
                         Asesor: resolveName(r[6]), Clave: r[6] || '', Total_Polizas: Number(r[10] || 0), Mes_Actual: mIndex, Nivel: r[13] || '', EnMeta: String(r[12] || '').toLowerCase() === 'p'
                     }));
                 }
+
+                // Extract cutoff date for snapshot
+                if (wb) {
+                    const iso = extractCutoffDate(wb, c);
+                    if (iso) {
+                        const d = iso.split('-');
+                        result.dates[c] = `${d[2]} de ${MONTHS_ES[Number(d[1]) - 1]} de ${d[0]}`;
+                    } else result.dates[c] = "";
+                } else result.dates[c] = "";
             }
         }
 
