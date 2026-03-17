@@ -25,6 +25,8 @@ const CAMPAIGN_LABELS: Record<string, string> = {
     convenciones: 'Convenciones',
     graduacion: 'Graduación',
     legion_centurion: 'Legión Centurión',
+    fanfest: 'Fan Fest SMNYL',
+    vive_tu_pasion: 'Vive Tu Pasión',
 };
 
 const CAMPAIGN_ICONS: Record<string, string> = {
@@ -33,6 +35,8 @@ const CAMPAIGN_ICONS: Record<string, string> = {
     convenciones: '✈️',
     graduacion: '🎓',
     legion_centurion: '🛡️',
+    fanfest: '⚽',
+    vive_tu_pasion: '🔥',
 };
 
 const CAMPAIGN_COLORS: Record<string, string> = {
@@ -41,6 +45,8 @@ const CAMPAIGN_COLORS: Record<string, string> = {
     convenciones: '#007AFF',
     graduacion: '#FF6B35',
     legion_centurion: '#9C27B0',
+    fanfest: '#007AFF', // Blue/Green theme
+    vive_tu_pasion: '#00E676', // Passionate Green/Gold
 };
 
 // Classify advisors by status per campaign with enriched detail lines
@@ -257,6 +263,50 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
                     details.push(`❌ Faltante Meta Mes: ${faltanteMeta.toFixed(1)} pólizas`);
                     lejos.push({ name, value: polizas, details, faltante: faltanteMeta });
                 }
+            }
+        }
+
+        else if (campaign === 'fanfest') {
+            const total = Number(row.Total_Polizas || 0);
+            const condicion = !!row.Condicion;
+            const premio = String(row.Premio || 'Pendiente');
+            const ene = Number(row.Enero || 0);
+            const feb = Number(row.Febrero || 0);
+            const mar = Number(row.Marzo || 0);
+            const abr = Number(row.Abril || 0);
+
+            const details: string[] = [
+                `Total: ${total} Pólizas · ${condicion ? 'Condición OK' : 'Falta Condición Mar-Abr'}`,
+                `Ene: ${ene} · Feb: ${feb} · Mar: ${mar} · Abr: ${abr}`,
+                `Estatus: ${premio}`
+            ];
+
+            if (total >= 6 && condicion) {
+                ganando.push({ name, value: total, details });
+            } else if (total >= 4) {
+                cerca.push({ name, value: total, details });
+            } else {
+                lejos.push({ name, value: total, details });
+            }
+        }
+
+        else if (campaign === 'vive_tu_pasion') {
+            const pols = Number(row.Polizas || 0);
+            const coms = Number(row.Comisiones || 0);
+            const premio = String(row.Premio || 'Sin premio aún');
+
+            const details: string[] = [
+                `${pols} Pólizas · ${formatCurrency(coms)} en Comisiones`,
+                `Premio Actual: ${premio}`
+            ];
+
+            // Nivel 1: 5 pols & 15k coms
+            if (pols >= 5 && coms >= 15000) {
+                ganando.push({ name, value: pols, details });
+            } else if (pols >= 3) {
+                cerca.push({ name, value: pols, details });
+            } else {
+                lejos.push({ name, value: pols, details });
             }
         }
     });

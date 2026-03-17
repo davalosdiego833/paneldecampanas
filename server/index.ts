@@ -615,7 +615,12 @@ app.get('/api/admin/summary', (req, res) => {
                             Asesor: resolveName(r[6]),
                             Clave: r[6] || '',
                             Total_Polizas: Number(r[13] || 0),
-                            Premio: String(r[14] || '').toLowerCase() === 'p'
+                            Enero: Number(r[8] || 0),
+                            Febrero: Number(r[9] || 0),
+                            Marzo: Number(r[10] || 0),
+                            Abril: Number(r[11] || 0),
+                            Condicion: String(r[12] || '').toLowerCase() === 'p',
+                            Premio: String(r[14] || '').toLowerCase() === 'p' ? "GANADO 🏆" : "PENDIENTE ⏳"
                         }));
                     } else if (c === 'vive_tu_pasion') {
                         const ws = wb.Sheets[wb.SheetNames[0]];
