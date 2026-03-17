@@ -147,6 +147,14 @@ const formatMexicoTimestamp = (date: Date = getMexicoTime()) => {
     return date.toLocaleString('es-MX', { timeZone: 'America/Mexico_City' });
 };
 
+// Helper: case-insensitive sheet lookup
+const findSheet = (wb: any, name: string) => {
+    const exact = wb.Sheets[name];
+    if (exact) return exact;
+    const match = wb.SheetNames.find((n: string) => n.toLowerCase() === name.toLowerCase());
+    return match ? wb.Sheets[match] : null;
+};
+
 // Helper to get cutoff date from any worksheet based on common locations
 const extractCutoffDate = (wb: any, type: string): string => {
     try {
@@ -196,7 +204,7 @@ const extractCutoffDate = (wb: any, type: string): string => {
             return parseSpanishDate(formatExcelDate(data[1]?.[0] || data[0]?.[0] || ""));
         }
         if (type === 'comparativo_vida') {
-            const ws = wb.Sheets['asesores'];
+            const ws = findSheet(wb, 'asesores');
             if (!ws) return '';
             const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1 });
             return parseSpanishDate(formatExcelDate(data[0]?.[0] || data[1]?.[2] || ""));
@@ -714,7 +722,8 @@ app.post('/api/admin/snapshot', async (req, res) => {
                 const compPath = 'administrador/comparativo_vida';
                 const wbComp = readExcelData(compPath, { skipJson: true });
                 if (wbComp) {
-                    const wsP = wbComp.Sheets['promotoria'], wsA = wbComp.Sheets['asesores'];
+                    const wsP = findSheet(wbComp, 'promotoria'), wsA = findSheet(wbComp, 'asesores');
+                    console.log('[SNAPSHOT] comparativo_vida sheets found:', { promotoria: !!wsP, asesores: !!wsA, available: wbComp.SheetNames });
                     rg.fechas_corte['comparativo_vida'] = formatExcelDate(extractCutoffDate(wbComp, 'comparativo_vida'));
                     let sum: any = null;
                     if (wsP) {
@@ -849,7 +858,7 @@ app.get('/api/resumen-general', (req, res) => {
         const compPath = 'administrador/comparativo_vida';
         const wbComp = readExcelData(compPath, { skipJson: true, date: selectedDates.comparativo_vida });
         if (wbComp) {
-            const wsP = wbComp.Sheets['promotoria'], wsA = wbComp.Sheets['asesores'];
+            const wsP = findSheet(wbComp, 'promotoria'), wsA = findSheet(wbComp, 'asesores');
             result.fechas_corte['comparativo_vida'] = formatExcelDate(extractCutoffDate(wbComp, 'comparativo_vida'));
             let sum: any = null;
             if (wsP) {
