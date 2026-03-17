@@ -139,12 +139,19 @@ const excelCache: Record<string, { mtime: number, workbook: any, json?: any }> =
 // Cache for historical dates mapping: { folderPath: { "YYYY-MM-DD": "filename.xlsx" } }
 const historyCache: Record<string, Record<string, string>> = {};
 
-// Helper to get Mexico City time
-const getMexicoTime = () => {
-    return new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Mexico_City' }));
-};
-const formatMexicoTimestamp = (date: Date = getMexicoTime()) => {
-    return date.toLocaleString('es-MX', { timeZone: 'America/Mexico_City' });
+// Helper to get Mexico City time — reliable method using Intl
+const formatMexicoTimestamp = () => {
+    const now = new Date();
+    // Use Intl.DateTimeFormat to get each component in Mexico City timezone
+    const fmt = (opts: Intl.DateTimeFormatOptions) =>
+        new Intl.DateTimeFormat('es-MX', { ...opts, timeZone: 'America/Mexico_City' }).format(now);
+    const day = fmt({ day: 'numeric' });
+    const month = fmt({ month: 'numeric' });
+    const year = fmt({ year: 'numeric' });
+    const hour = fmt({ hour: 'numeric', hour12: false });
+    const minute = fmt({ minute: 'numeric' });
+    const second = fmt({ second: 'numeric' });
+    return `${day}/${month}/${year}, ${hour.padStart(2, '0')}:${minute.padStart(2, '0')}:${second.padStart(2, '0')}`;
 };
 
 // Helper: case-insensitive sheet lookup
@@ -930,13 +937,21 @@ app.post('/api/activity', (req, res) => {
         const { asesor, accion } = req.body;
         if (!asesor || !accion) return res.status(400).json({ error: 'Faltan datos' });
 
-        const now = getMexicoTime();
+        const now = new Date();
+        const fmtMx = (opts: Intl.DateTimeFormatOptions) =>
+            new Intl.DateTimeFormat('es-MX', { ...opts, timeZone: 'America/Mexico_City' }).format(now);
+        const mxDay = fmtMx({ day: '2-digit' });
+        const mxMonth = fmtMx({ month: '2-digit' });
+        const mxYear = fmtMx({ year: 'numeric' });
+        const mxHour = fmtMx({ hour: '2-digit', hour12: false });
+        const mxMinute = fmtMx({ minute: '2-digit' });
+        const mxSecond = fmtMx({ second: '2-digit' });
         const event = {
             id: Date.now().toString(),
             asesor,
             accion,
-            fecha: now.toLocaleDateString('en-CA'), // YYYY-MM-DD
-            hora: now.toTimeString().split(' ')[0],
+            fecha: `${mxYear}-${mxMonth}-${mxDay}`,
+            hora: `${mxHour.padStart(2, '0')}:${mxMinute.padStart(2, '0')}:${mxSecond.padStart(2, '0')}`,
             timestamp: now.getTime()
         };
 
