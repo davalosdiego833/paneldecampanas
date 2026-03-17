@@ -675,7 +675,7 @@ app.post('/api/admin/snapshot', async (req, res) => {
         const dir = getAdvisorDirectory();
         const resolveName = (cl: any) => dir[String(cl)] || `Asesor ${cl}`;
         const result: Record<string, any> = { dates: {} };
-        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion'];
+        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion'];
 
         for (const c of cams) {
             const wb = readExcelData(c, { skipJson: true });
@@ -719,6 +719,18 @@ app.post('/api/admin/snapshot', async (req, res) => {
                     const mIndex = mMatch ? MONTHS_ES.indexOf(mMatch[1]) + 1 : 1;
                     result.legion_centurion = data.slice(1).filter(r => String(r[4] || '') === '2043').map(r => ({
                         Asesor: resolveName(r[6]), Clave: r[6] || '', Total_Polizas: Number(r[10] || 0), Mes_Actual: mIndex, Nivel: r[13] || '', EnMeta: String(r[12] || '').toLowerCase() === 'p'
+                    }));
+                } else if (c === 'fanfest') {
+                    const ws = wb.Sheets[wb.SheetNames[0]];
+                    const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
+                    result.fanfest = data.slice(1).filter(r => String(r[4] || '') === '2043').map(r => ({
+                        Asesor: resolveName(r[6]), Clave: r[6] || '', Total_Polizas: Number(r[13] || 0), Enero: Number(r[8] || 0), Febrero: Number(r[9] || 0), Marzo: Number(r[10] || 0), Abril: Number(r[11] || 0), Condicion: String(r[12] || '').toLowerCase() === 'p', Premio: String(r[14] || '').toLowerCase() === 'p' ? "GANADO 🏆" : "PENDIENTE ⏳"
+                    }));
+                } else if (c === 'vive_tu_pasion') {
+                    const ws = wb.Sheets[wb.SheetNames[0]];
+                    const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
+                    result.vive_tu_pasion = data.slice(1).filter(r => String(r[4] || '') === '2043').map(r => ({
+                        Asesor: resolveName(r[6]), Clave: r[6] || '', Polizas: Number(r[8] || 0), Comisiones: Number(r[9] || 0), Premio: r[10] || ""
                     }));
                 }
 
