@@ -230,6 +230,16 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                 </h4>
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '0.95rem', color: 'var(--text-secondary)' }}>
                     <li>
+                        <span style={{ marginRight: '10px' }}>⚽</span>
+                        <strong style={{ color: 'var(--text-primary)' }}>Campaña Fan Fest (Ene - Abr)</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>¡Vive la pasión del Mundial! Vende <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>6 pólizas</span> y gana un **Pase al Evento** y un **Jersey Exclusivo de SMNYL**.</div>
+                    </li>
+                    <li>
+                        <span style={{ marginRight: '10px' }}>🔥</span>
+                        <strong style={{ color: 'var(--text-primary)' }}>Vive Tu Pasión (Mar - May)</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>¡4 niveles de premios esperándote! Cumple con tus metas de pólizas y comisiones para ganar desde **Tecnología SONOS** hasta una **TV de 65"**.</div>
+                    </li>
+                    <li>
                         <span style={{ marginRight: '10px' }}>🛡️</span>
                         <strong style={{ color: 'var(--text-primary)' }}>Legión Centurión — ¡Objetivo Marzo!</strong>
                         <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>La meta para este mes es de <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>12 pólizas acumuladas</span>. ¿Ya sabes cuánto te falta para blindar tu lugar? ¡No bajes la guardia!</div>

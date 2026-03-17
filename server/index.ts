@@ -106,7 +106,8 @@ const MONTHS_ES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio
 
 const parseSpanishDate = (str: string): string => {
     if (!str) return '';
-    const match = String(str).toLowerCase().match(/(\d{1,2})\s+de\s+([a-z]+)\s+de\s+(\d{4})/i);
+    // Use a regex that allows optional "de" before the year
+    const match = String(str).toLowerCase().match(/(\d{1,2})\s+de\s+([a-z]+)(\s+de)?\s+(\d{4})/i);
     if (match) {
         const day = match[1].padStart(2, '0');
         const monthStr = match[2].toLowerCase();
@@ -115,7 +116,7 @@ const parseSpanishDate = (str: string): string => {
             mIdx = MONTHS_ES.findIndex(m => m.startsWith(monthStr) || monthStr.startsWith(m.substring(0, 3)));
         }
         const month = (mIdx !== -1 ? mIdx + 1 : 1).toString().padStart(2, '0');
-        const year = match[3];
+        const year = match[4]; // index changed because of optional group
         return `${year}-${month}-${day}`;
     }
     return '';
@@ -215,6 +216,13 @@ const extractCutoffDate = (wb: any, type: string): string => {
             if (!ws) return '';
             const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1 });
             return parseSpanishDate(formatExcelDate(data[0]?.[0] || data[1]?.[2] || ""));
+        }
+        if (type === 'fanfest' || type === 'vive_tu_pasion') {
+            const ws = wb.Sheets[wb.SheetNames[0]];
+            const v = ws?.['A6']?.v || "";
+            // regex updated to have optional "de" before year
+            const m = String(v).match(/\d{1,2}\s+de\s+[a-z]+(\s+de)?\s+(\d{4})/i);
+            return m ? parseSpanishDate(m[0]) : '';
         }
         return '';
     } catch (e) {
@@ -415,6 +423,53 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         });
     }
 
+    if (name === 'fanfest') {
+        const wb = readExcelData(name, { skipJson: true, date: date as string });
+        if (!wb) return res.status(404).json({ error: 'Raw file not found' });
+        const ws = wb.Sheets[wb.SheetNames[0]];
+        const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 }); // Headers on Row 8
+        const dir = getAdvisorDirectory();
+        const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
+
+        // E (idx 4) is Mat, G (idx 6) is Clave
+        const row = data.find(r => String(r[4] || '') === '2043' && (String(r[6] || '') === advisor || advisorIds.includes(String(r[6] || ''))));
+        if (!row) return res.status(404).json({ error: 'Advisor not found' });
+
+        return res.json({
+            'Asesor': advisor,
+            'Clave': row[6] || '',
+            'Fecha_Corte': extractCutoffDate(wb, 'fanfest'),
+            'Enero': Number(row[8] || 0),
+            'Febrero': Number(row[9] || 0),
+            'Marzo': Number(row[10] || 0),
+            'Abril': Number(row[11] || 0),
+            'Condicion': String(row[12] || '').toLowerCase() === 'p',
+            'Total_Polizas': Number(row[13] || 0),
+            'Premio': String(row[14] || '').toLowerCase() === 'p' ? "GANADO 🏆" : "PENDIENTE ⏳"
+        });
+    }
+
+    if (name === 'vive_tu_pasion') {
+        const wb = readExcelData(name, { skipJson: true, date: date as string });
+        if (!wb) return res.status(404).json({ error: 'Raw file not found' });
+        const ws = wb.Sheets[wb.SheetNames[0]];
+        const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
+        const dir = getAdvisorDirectory();
+        const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
+
+        const row = data.find(r => String(r[4] || '') === '2043' && (String(r[6] || '') === advisor || advisorIds.includes(String(r[6] || ''))));
+        if (!row) return res.status(404).json({ error: 'Advisor not found' });
+
+        return res.json({
+            'Asesor': advisor,
+            'Clave': row[6] || '',
+            'Fecha_Corte': extractCutoffDate(wb, 'vive_tu_pasion'),
+            'Polizas': Number(row[8] || 0),
+            'Comisiones': Number(row[9] || 0),
+            'Premio_Actual': row[10] || "Ninguno aún"
+        });
+    }
+
     if (name === 'mdrt') {
         const wb = readExcelData(name, { skipJson: true, date: date as string });
         if (!wb) return res.status(404).json({ error: 'Raw file not found' });
@@ -485,7 +540,7 @@ app.get('/api/admin/summary', (req, res) => {
         const dir = getAdvisorDirectory();
         const resolveName = (cl: any) => dir[String(cl)] || `Asesor ${cl}`;
 
-        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion'];
+        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion'];
         cams.forEach(c => {
             try {
                 const wb = readExcelData(c, { skipJson: true, date: date as string });
@@ -552,6 +607,25 @@ app.get('/api/admin/summary', (req, res) => {
                             Mes_Actual: mIndex,
                             Nivel: r[13] || '',
                             EnMeta: String(r[12] || '').toLowerCase() === 'p'
+                        }));
+                    } else if (c === 'fanfest') {
+                        const ws = wb.Sheets[wb.SheetNames[0]];
+                        const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
+                        result.fanfest = data.slice(1).filter(r => String(r[4] || '') === '2043').map(r => ({
+                            Asesor: resolveName(r[6]),
+                            Clave: r[6] || '',
+                            Total_Polizas: Number(r[13] || 0),
+                            Premio: String(r[14] || '').toLowerCase() === 'p'
+                        }));
+                    } else if (c === 'vive_tu_pasion') {
+                        const ws = wb.Sheets[wb.SheetNames[0]];
+                        const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
+                        result.vive_tu_pasion = data.slice(1).filter(r => String(r[4] || '') === '2043').map(r => ({
+                            Asesor: resolveName(r[6]),
+                            Clave: r[6] || '',
+                            Polizas: Number(r[8] || 0),
+                            Comisiones: Number(r[9] || 0),
+                            Premio: r[10] || ""
                         }));
                     }
                 } else result[c] = [];
@@ -787,7 +861,7 @@ app.post('/api/admin/snapshot', async (req, res) => {
 
 app.get('/api/campaigns/dates', (req, res) => {
     try {
-        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion'];
+        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion'];
         const result: Record<string, string> = {};
         cams.forEach(c => {
             const wb = readExcelData(c, { skipJson: true });

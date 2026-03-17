@@ -7,7 +7,7 @@ interface Props {
 }
 
 const CampaignSelector: React.FC<Props> = ({ advisor, onCampaignSelect }) => {
-    const campaignOrder = ["legion_centurion", "mdrt", "convenciones", "camino_cumbre", "graduacion"];
+    const campaignOrder = ["fanfest", "vive_tu_pasion", "legion_centurion", "mdrt", "convenciones", "camino_cumbre", "graduacion"];
     const [campaigns, setCampaigns] = useState<string[]>(campaignOrder);
     const [dates, setDates] = useState<Record<string, string>>({});
 
@@ -16,7 +16,9 @@ const CampaignSelector: React.FC<Props> = ({ advisor, onCampaignSelect }) => {
         "mdrt": "/assets/logos/campanas/mdrt.png",
         "convenciones": "/assets/logos/campanas/convenciones.png",
         "camino_cumbre": "/assets/logos/campanas/camino_cumbre.png",
-        "graduacion": "/assets/logos/campanas/graduacion.png"
+        "graduacion": "/assets/logos/campanas/graduacion.png",
+        "fanfest": "/assets/logos/campanas/fanfest.png",
+        "vive_tu_pasion": "/assets/logos/campanas/vive_tu_pasion.png"
     };
 
     useEffect(() => {

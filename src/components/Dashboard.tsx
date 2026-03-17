@@ -6,6 +6,8 @@ import LegionCenturion from './Dashboards/LegionCenturion';
 import Convenciones from './Dashboards/Convenciones';
 import CaminoCumbre from './Dashboards/CaminoCumbre';
 import Graduacion from './Dashboards/Graduacion';
+import FanFest from './Dashboards/FanFest';
+import ViveTuPasion from './Dashboards/ViveTuPasion';
 
 
 interface Props {
@@ -55,6 +57,8 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor, themeMode }) => {
             case 'convenciones': return <Convenciones data={data} />;
             case 'camino_cumbre': return <CaminoCumbre data={data} />;
             case 'graduacion': return <Graduacion data={data} />;
+            case 'fanfest': return <FanFest data={data} />;
+            case 'vive_tu_pasion': return <ViveTuPasion data={data} />;
             default: return (
                 <div style={{
                     display: 'grid',
@@ -84,9 +88,16 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor, themeMode }) => {
             return dt.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' });
         }
 
-        // Handle string date
+        // Handle ISO string date (YYYY-MM-DD) to avoid timezone shifts
+        if (typeof date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(date)) {
+            const [y, m, d] = date.split('-').map(Number);
+            const dt = new Date(y, m - 1, d); // Local time date
+            return dt.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' });
+        }
+
+        // Handle other string dates
         const dt = new Date(date);
-        if (isNaN(dt.getTime())) return String(date); // Return as is if invalid date
+        if (isNaN(dt.getTime())) return String(date);
 
         return dt.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' });
     };
