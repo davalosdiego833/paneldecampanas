@@ -650,77 +650,109 @@ app.post('/api/admin/snapshot', async (req, res) => {
         // INTEGRATE RESUMEN GENERAL LOGIC INTO SNAPSHOT
         try {
             const rg: Record<string, any> = { fechas_corte: {} };
-            const sinEmPath = 'administrador/asesores_sin_emision';
-            const wbSin = readExcelData(sinEmPath, { skipJson: true });
-            if (wbSin) {
-                const wsP = wbSin.Sheets['Promotores'], wsA = wbSin.Sheets['Asesores'];
-                rg.fechas_corte['asesores_sin_emision'] = formatExcelDate(extractCutoffDate(wbSin, 'asesores_sin_emision'));
-                rg.asesores_sin_emision = { summaryBySucursal: [], individuals: [] };
-                if (wsP) {
-                    const dat = XLSX.utils.sheet_to_json(wsP, { header: 1, range: 3 });
-                    rg.asesores_sin_emision.summaryBySucursal = dat.filter((r: any) => String(r[3] || '') === '2043').map((r: any) => ({ Sucursal: r[5] || 'Descon', Suc: r[4], Agentes: Number(r[6] || 0), Asesores_con_Emisión_Vida: Number(r[7] || 0), '%_Asesores_con_Emisión_Vida': Number(r[8] || 0), Asesores_con_Emisión_GMM: Number(r[9] || 0), '%_Asesores_con_Emisión_GMM': Number(r[10] || 0), Asesores_con_pol_Pagada_Vida: Number(r[11] || 0), '%_Asesores_con_pol_Pagada_Vida': Number(r[12] || 0), Asesores_con_pol_Pagada_GMM: Number(r[13] || 0), '%_Asesores_con_pol_Pagada_GMM': Number(r[14] || 0), Prima_Pagada_Vida: Number(r[15] || 0), Prima_Pagada_GMM: Number(r[16] || 0) }));
-                }
-                if (wsA) {
-                    const dat = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 4 });
-                    rg.asesores_sin_emision.individuals = dat.filter((r: any) => String(r[3] || '') === '2043').map((r: any) => ({ Asesor: r[7] || 'Descon', Clave: r[6] || '', Sucursal: r[5] || 'General', Suc: r[4], Emitido_Vida: Number(r[10] || 0), Emitido_GMM: Number(r[11] || 0), Pagado_Vida: Number(r[12] || 0), Pagado_GMM: Number(r[13] || 0), Prima_Pagada_Vida: Number(r[14] || 0), Prima_Pagada_GMM: Number(r[15] || 0), Sin_Emisión_Vida: r[16] || '', Sin_Emisión_GMM: r[17] || '', '3_Meses_Sin_Emisión_Vida': r[18] || '', '3_Meses_Sin_Emisión_GMM': r[19] || '' }));
-                }
-            }
 
-            const pagPath = 'administrador/pagado_emitidido';
-            const wbPag = readExcelData(pagPath, { skipJson: true });
-            if (wbPag) {
-                const data: any[][] = XLSX.utils.sheet_to_json(wbPag.Sheets[wbPag.SheetNames[0]], { header: 1 });
-                rg.fechas_corte['pagado_pendiente'] = formatExcelDate(extractCutoffDate(wbPag, 'pagado_pendiente'));
-                const validSucursales = ['2043', '2692', '2856', '2511'];
-                rg.pagado_pendiente = data.slice(3)
-                    .filter(r => r[2] != null && validSucursales.includes(String(r[1])))
-                    .map(r => ({ 'Nombre Asesor': r[2], 'Sucursal': r[1], 'Pólizas-Pagadas': Number(r[5] || 0), 'Recibo_Inicial_Pagado': Number(r[6] || 0), 'Recibo_Ordinario_Pagado': Number(r[7] || 0), 'Total _Prima_Pagada': Number(r[8] || 0), 'Pólizas_Pendinetes': Number(r[9] || 0), 'Recibo_Inicial_Pendiente': Number(r[10] || 0), 'Recibo_Ordinario_Pendiente': Number(r[11] || 0), 'Total _Prima_Pendiente': Number(r[12] || 0) }));
-            }
-
-            const proPath = 'administrador/proactivos';
-            const wbPro = readExcelData(proPath, { skipJson: true });
-            if (wbPro) {
-                const ws = wbPro.Sheets['Detalle Asesores'];
-                if (ws) {
-                    const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1 });
-                    rg.fechas_corte['proactivos'] = formatExcelDate(extractCutoffDate(wbPro, 'proactivos'));
-                    rg.proactivos = data.slice(7).filter(r => String(r[2] || '') === '2043').map(r => ({ 'ASESOR': dir[String(r[4])] || `Asesor ${r[4]}`, 'SUC': r[3], 'Polizas_Acumuladas_Mes_Ant.': Number(r[9] || 0), 'Polizas_Del_mes': Number(r[10] || 0), 'Polizas_Acumuladas_Total': Number(r[11] || 0), 'Proactivo_al_mes': r[12] || '', 'Pólizas_Faltantes': Number(r[13] || 0) }));
-                }
-            }
-
-            const compPath = 'administrador/comparativo_vida';
-            const wbComp = readExcelData(compPath, { skipJson: true });
-            if (wbComp) {
-                const wsP = wbComp.Sheets['promotoria'], wsA = wbComp.Sheets['asesores'];
-                rg.fechas_corte['comparativo_vida'] = formatExcelDate(extractCutoffDate(wbComp, 'comparativo_vida'));
-                let sum: any = null;
-                if (wsP) {
-                    const rawP = XLSX.utils.sheet_to_json(wsP, { header: 1 }) as any[][];
-                    const dataRow = rawP.find((row, idx) => idx > 0 && row.length > 4 && typeof row[0] === 'number');
-                    if (dataRow) {
-                        sum = {
-                            Polizas_Pagadas_Año_Anterior: Number(dataRow[0] || 0),
-                            Polizas_Pagadas_Año_Actual: Number(dataRow[1] || 0),
-                            Prima_Pagada_Año_Anterior: Number(dataRow[4] || 0),
-                            Prima_Pagada_Año_Actual: Number(dataRow[5] || 0),
-                            Recluta_Año_Anterior: Number(dataRow[8] || 0),
-                            Recluta_Año_Actual: Number(dataRow[9] || 0),
-                            Prima_Pagada_Reclutas_Año_Anterior: Number(dataRow[12] || 0),
-                            Prima_Pagada_Reclutas_Año_Actual: Number(dataRow[13] || 0)
-                        };
+            // --- Asesores sin Emisión ---
+            try {
+                const sinEmPath = 'administrador/asesores_sin_emision';
+                const wbSin = readExcelData(sinEmPath, { skipJson: true });
+                if (wbSin) {
+                    const wsP = wbSin.Sheets['Promotores'], wsA = wbSin.Sheets['Asesores'];
+                    rg.fechas_corte['asesores_sin_emision'] = formatExcelDate(extractCutoffDate(wbSin, 'asesores_sin_emision'));
+                    rg.asesores_sin_emision = { summaryBySucursal: [], individuals: [] };
+                    if (wsP) {
+                        const dat = XLSX.utils.sheet_to_json(wsP, { header: 1, range: 3 });
+                        rg.asesores_sin_emision.summaryBySucursal = dat.filter((r: any) => String(r[3] || '') === '2043').map((r: any) => ({ Sucursal: r[5] || 'Descon', Suc: r[4], Agentes: Number(r[6] || 0), Asesores_con_Emisión_Vida: Number(r[7] || 0), '%_Asesores_con_Emisión_Vida': Number(r[8] || 0), Asesores_con_Emisión_GMM: Number(r[9] || 0), '%_Asesores_con_Emisión_GMM': Number(r[10] || 0), Asesores_con_pol_Pagada_Vida: Number(r[11] || 0), '%_Asesores_con_pol_Pagada_Vida': Number(r[12] || 0), Asesores_con_pol_Pagada_GMM: Number(r[13] || 0), '%_Asesores_con_pol_Pagada_GMM': Number(r[14] || 0), Prima_Pagada_Vida: Number(r[15] || 0), Prima_Pagada_GMM: Number(r[16] || 0) }));
                     }
+                    if (wsA) {
+                        const dat = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 4 });
+                        rg.asesores_sin_emision.individuals = dat.filter((r: any) => String(r[3] || '') === '2043').map((r: any) => ({ Asesor: r[7] || 'Descon', Clave: r[6] || '', Sucursal: r[5] || 'General', Suc: r[4], Emitido_Vida: Number(r[10] || 0), Emitido_GMM: Number(r[11] || 0), Pagado_Vida: Number(r[12] || 0), Pagado_GMM: Number(r[13] || 0), Prima_Pagada_Vida: Number(r[14] || 0), Prima_Pagada_GMM: Number(r[15] || 0), Sin_Emisión_Vida: r[16] || '', Sin_Emisión_GMM: r[17] || '', '3_Meses_Sin_Emisión_Vida': r[18] || '', '3_Meses_Sin_Emisión_GMM': r[19] || '' }));
+                    }
+                    console.log(`[SNAPSHOT] asesores_sin_emision: ${rg.asesores_sin_emision.individuals.length} individuals`);
+                } else {
+                    console.warn('[SNAPSHOT] asesores_sin_emision: No workbook found');
                 }
-                let inds: any[] = [];
-                if (wsA) {
-                    const rawFormat = XLSX.utils.sheet_to_json(wsA, { header: 1 }) as any[][];
-                    if (rawFormat.length > 2 && rawFormat[2][2] === 'Mat') {
-                        inds = rawFormat.slice(3).filter((r: any) => String(r[2] || '') === '2043').map((r: any) => ({ 'Nombre del Asesor': r[6] || r[5], 'Sucursal': r[3], 'Polizas_Pagadas_Año_Anterior': Number(r[15] || 0), 'Polizas_Pagadas_Año_Actual': Number(r[16] || 0), 'Prima_Pagada_Año_Anterior': Number(r[23] || 0), 'Prima_Pagada_Año_Actual': Number(r[24] || 0) }));
+            } catch (e) { console.error('[SNAPSHOT] Error reading asesores_sin_emision:', e); }
+
+            // --- Pagado y Emitido ---
+            try {
+                const pagPath = 'administrador/pagado_emitidido';
+                const wbPag = readExcelData(pagPath, { skipJson: true });
+                if (wbPag) {
+                    const data: any[][] = XLSX.utils.sheet_to_json(wbPag.Sheets[wbPag.SheetNames[0]], { header: 1 });
+                    rg.fechas_corte['pagado_pendiente'] = formatExcelDate(extractCutoffDate(wbPag, 'pagado_pendiente'));
+                    const validSucursales = ['2043', '2692', '2856', '2511'];
+                    rg.pagado_pendiente = data.slice(3)
+                        .filter(r => r[2] != null && validSucursales.includes(String(r[1])))
+                        .map(r => ({ 'Nombre Asesor': r[2], 'Sucursal': r[1], 'Pólizas-Pagadas': Number(r[5] || 0), 'Recibo_Inicial_Pagado': Number(r[6] || 0), 'Recibo_Ordinario_Pagado': Number(r[7] || 0), 'Total _Prima_Pagada': Number(r[8] || 0), 'Pólizas_Pendinetes': Number(r[9] || 0), 'Recibo_Inicial_Pendiente': Number(r[10] || 0), 'Recibo_Ordinario_Pendiente': Number(r[11] || 0), 'Total _Prima_Pendiente': Number(r[12] || 0) }));
+                    console.log(`[SNAPSHOT] pagado_pendiente: ${rg.pagado_pendiente.length} rows`);
+                } else {
+                    console.warn('[SNAPSHOT] pagado_emitidido: No workbook found');
+                }
+            } catch (e) { console.error('[SNAPSHOT] Error reading pagado_emitidido:', e); }
+
+            // --- Proactivos ---
+            try {
+                const proPath = 'administrador/proactivos';
+                const wbPro = readExcelData(proPath, { skipJson: true });
+                if (wbPro) {
+                    const ws = wbPro.Sheets['Detalle Asesores'];
+                    if (ws) {
+                        const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1 });
+                        rg.fechas_corte['proactivos'] = formatExcelDate(extractCutoffDate(wbPro, 'proactivos'));
+                        rg.proactivos = data.slice(7).filter(r => String(r[2] || '') === '2043').map(r => ({ 'ASESOR': dir[String(r[4])] || `Asesor ${r[4]}`, 'SUC': r[3], 'Polizas_Acumuladas_Mes_Ant.': Number(r[9] || 0), 'Polizas_Del_mes': Number(r[10] || 0), 'Polizas_Acumuladas_Total': Number(r[11] || 0), 'Proactivo_al_mes': r[12] || '', 'Pólizas_Faltantes': Number(r[13] || 0) }));
+                        console.log(`[SNAPSHOT] proactivos: ${rg.proactivos.length} rows`);
                     } else {
-                        inds = XLSX.utils.sheet_to_json(wsA, { range: 1 }).filter((r: any) => String(r['MAT'] || '') === '2043').map((r: any) => ({ 'Nombre del Asesor': r['Nombre'], 'Sucursal': r['Sucursal'], 'Polizas_Pagadas_Año_Anterior': Number(r['Pzs Pag Ant'] || 0), 'Polizas_Pagadas_Año_Actual': Number(r['Pzs Pag Act'] || 0), 'Prima_Pagada_Año_Anterior': Number(r['Pri Pag Ant'] || 0), 'Prima_Pagada_Año_Actual': Number(r['Pri Pag Act'] || 0) }));
+                        console.warn('[SNAPSHOT] proactivos: Sheet "Detalle Asesores" NOT found. Available sheets:', wbPro.SheetNames);
                     }
+                } else {
+                    console.warn('[SNAPSHOT] proactivos: No workbook found');
                 }
-                rg.comparativo_vida = { individuals: inds, generalSummary: sum };
-            }
+            } catch (e) { console.error('[SNAPSHOT] Error reading proactivos:', e); }
+
+            // --- Comparativo de Vida ---
+            try {
+                const compPath = 'administrador/comparativo_vida';
+                const wbComp = readExcelData(compPath, { skipJson: true });
+                if (wbComp) {
+                    const wsP = wbComp.Sheets['promotoria'], wsA = wbComp.Sheets['asesores'];
+                    rg.fechas_corte['comparativo_vida'] = formatExcelDate(extractCutoffDate(wbComp, 'comparativo_vida'));
+                    let sum: any = null;
+                    if (wsP) {
+                        const rawP = XLSX.utils.sheet_to_json(wsP, { header: 1 }) as any[][];
+                        const dataRow = rawP.find((row, idx) => idx > 0 && row.length > 4 && typeof row[0] === 'number');
+                        if (dataRow) {
+                            sum = {
+                                Polizas_Pagadas_Año_Anterior: Number(dataRow[0] || 0),
+                                Polizas_Pagadas_Año_Actual: Number(dataRow[1] || 0),
+                                Prima_Pagada_Año_Anterior: Number(dataRow[4] || 0),
+                                Prima_Pagada_Año_Actual: Number(dataRow[5] || 0),
+                                Recluta_Año_Anterior: Number(dataRow[8] || 0),
+                                Recluta_Año_Actual: Number(dataRow[9] || 0),
+                                Prima_Pagada_Reclutas_Año_Anterior: Number(dataRow[12] || 0),
+                                Prima_Pagada_Reclutas_Año_Actual: Number(dataRow[13] || 0)
+                            };
+                        }
+                    } else {
+                        console.warn('[SNAPSHOT] comparativo_vida: Sheet "promotoria" NOT found. Available sheets:', wbComp.SheetNames);
+                    }
+                    let inds: any[] = [];
+                    if (wsA) {
+                        const rawFormat = XLSX.utils.sheet_to_json(wsA, { header: 1 }) as any[][];
+                        if (rawFormat.length > 2 && rawFormat[2][2] === 'Mat') {
+                            inds = rawFormat.slice(3).filter((r: any) => String(r[2] || '') === '2043').map((r: any) => ({ 'Nombre del Asesor': r[6] || r[5], 'Sucursal': r[3], 'Polizas_Pagadas_Año_Anterior': Number(r[15] || 0), 'Polizas_Pagadas_Año_Actual': Number(r[16] || 0), 'Prima_Pagada_Año_Anterior': Number(r[23] || 0), 'Prima_Pagada_Año_Actual': Number(r[24] || 0) }));
+                        } else {
+                            inds = XLSX.utils.sheet_to_json(wsA, { range: 1 }).filter((r: any) => String(r['MAT'] || '') === '2043').map((r: any) => ({ 'Nombre del Asesor': r['Nombre'], 'Sucursal': r['Sucursal'], 'Polizas_Pagadas_Año_Anterior': Number(r['Pzs Pag Ant'] || 0), 'Polizas_Pagadas_Año_Actual': Number(r['Pzs Pag Act'] || 0), 'Prima_Pagada_Año_Anterior': Number(r['Pri Pag Ant'] || 0), 'Prima_Pagada_Año_Actual': Number(r['Pri Pag Act'] || 0) }));
+                        }
+                    } else {
+                        console.warn('[SNAPSHOT] comparativo_vida: Sheet "asesores" NOT found. Available sheets:', wbComp.SheetNames);
+                    }
+                    rg.comparativo_vida = { individuals: inds, generalSummary: sum };
+                    console.log(`[SNAPSHOT] comparativo_vida: ${inds.length} individuals`);
+                } else {
+                    console.warn('[SNAPSHOT] comparativo_vida: No workbook found');
+                }
+            } catch (e) { console.error('[SNAPSHOT] Error reading comparativo_vida:', e); }
+
             snapshot.data.resumen_general = rg;
         } catch (rgError) {
             console.error('Error during snapshot resumen_general:', rgError);
