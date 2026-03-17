@@ -7,19 +7,6 @@ node_modules
 *.log
 ~$*
 
-# Admin report Excel files (uploaded directly on server, do NOT overwrite)
-administrador/pagado_emitidido/
-administrador/asesores_sin_emision/
-administrador/proactivos/
-administrador/comparativo_vida/
-
-# Campaign Excel files (uploaded directly on server)
-mdrt/
-convenciones/
-graduacion/
-legion_centurion/
-camino_cumbre/
-
 # Database files (generated on server)
 db/actividad.json
 db/resumen_snapshot.json
