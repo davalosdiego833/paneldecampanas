@@ -1,50 +1,216 @@
 {
-  "ultima_actualizacion": "2026-03-10",
+  "ultima_actualizacion": "2026-03-18",
   "pendientes_recuperar": [
     {
-      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-      "clave": "87538",
-      "poliza": "VI0002973602",
-      "contratante": "JUAN CARLOS MARTINEZ MEDINA",
-      "producto": "ORVI 99 UDIS",
+      "asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "64502",
+      "poliza": "GM0000451430",
+      "contratante": "FERNANDO SOLIS GARCIA",
+      "producto": "PLENO",
       "estatus_anterior": "En Vigor",
       "estatus_nuevo": "Anulada",
-      "fecha": "2026-03-10",
+      "fecha": "2026-03-18",
       "tipo": "CAMBIO"
     },
     {
       "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
       "clave": "87538",
-      "poliza": "GM0000554734",
+      "poliza": "VI0002977781",
+      "contratante": "LUIS RONALDO NAJERA REYNA",
+      "producto": "ORVI 99 UDIS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002604760",
+      "contratante": "MICHAEL PERRY VILLASENOR",
+      "producto": "TEMPORAL 5 RENOVABLE STAR NUEVO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "GM0000555426",
       "contratante": "NELLY SANCHEZ ROMERO",
       "producto": "INTEGRO",
       "estatus_anterior": "En Vigor",
       "estatus_nuevo": "Anulada",
-      "fecha": "2026-03-10",
+      "fecha": "2026-03-18",
       "tipo": "CAMBIO"
     },
     {
-      "asesor": "MARIA TERESA ASENCIO LOZANO",
-      "clave": "94156",
-      "poliza": "GM0000508609",
-      "contratante": "DANIEL RIOS SANDOVAL",
-      "producto": "PLENO",
+      "asesor": "ANDREA CELESTE IBAÑEZ RINCON",
+      "clave": "88234",
+      "poliza": "GM0000687971",
+      "contratante": "EDUARDO YEVERINO PALOMARES",
+      "producto": "INTEGRO",
       "estatus_anterior": "En Vigor",
       "estatus_nuevo": "Anulada",
-      "fecha": "2026-03-10",
+      "fecha": "2026-03-18",
       "tipo": "CAMBIO"
     },
     {
-      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-      "clave": "106893",
-      "poliza": "GM0000082544",
-      "contratante": "GUADALUPE GOMEZ ZU�IGA",
-      "producto": "ALFA MEDICAL FLEX B",
+      "asesor": "DARINKA UREÑA CASILLAS",
+      "clave": "90355",
+      "poliza": "VI0002969026",
+      "contratante": "RACHELL ISABELLA NAVARRO SANCHEZ",
+      "producto": "ORVI 99 10 UDIS",
       "estatus_anterior": "En Vigor",
       "estatus_nuevo": "Anulada",
-      "fecha": "2026-03-10",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "JULIANA RIASCOS VALENCIA",
+      "clave": "100677",
+      "poliza": "VI0002968497",
+      "contratante": "CITLALLI QUINTANA MEZA",
+      "producto": "VIDA MUJER",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "VI0002786389",
+      "contratante": "ANA SOFIA RIOS KARAM",
+      "producto": "NUEVO PLENITUD 60",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "VI0002759285",
+      "contratante": "CAMILLA BERNAL GURZA",
+      "producto": "VIDA MUJER",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "VI0002778559",
+      "contratante": "CYNTHIA VERONICA MARLENE LIMON ESCOBEDO",
+      "producto": "NUEVO PLENITUD 60 15",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "GM0000635728",
+      "contratante": "FERNANDO ALEJANDRO FRANCO REYES",
+      "producto": "INTEGRO",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "VI0002797490",
+      "contratante": "FERNANDO ALEJANDRO FRANCO REYES",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "GM0000623138",
+      "contratante": "JUAN PABLO VILLEGAS CARDENAS",
+      "producto": "INTEGRO",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "VI0002758104",
+      "contratante": "JUANA KARINA MEDINA VILLA",
+      "producto": "DOTAL 15 STAR 95",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "VI0002770371",
+      "contratante": "PAULINA DE LARA DOMINGUEZ",
+      "producto": "VIDA MUJER",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "VI0002754983",
+      "contratante": "SALMA DANIELA AGUIRRE ISAIS",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
+      "clave": "107488",
+      "poliza": "GM0000687900",
+      "contratante": "AMBAR GABRIELA ROMERO CALDERON",
+      "producto": "PRACTICO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
+      "clave": "113312",
+      "poliza": "GM0000635904",
+      "contratante": "CLAUDIA YANETH GALLEGOS VELASCO",
+      "producto": "PRACTICO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
       "tipo": "CAMBIO"
     }
   ],
-  "recuperadas_este_mes": []
+  "recuperadas_este_mes": [
+    {
+      "asesor": "PAULINA RODRIGUEZ DE LA MORA",
+      "clave": "65046",
+      "poliza": "GM0000638097",
+      "contratante": "INDIRA DAYANA MARTINEZ SOSA",
+      "producto": "INTEGRO",
+      "estatus_anterior": "Anulada",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    }
+  ]
 }

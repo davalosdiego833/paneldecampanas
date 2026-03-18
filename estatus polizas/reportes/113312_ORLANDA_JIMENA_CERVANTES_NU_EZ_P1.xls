@@ -186,12 +186,12 @@ __VIEWSTATE" value="" />
                             </td><td align="left" style="width:25%;">
                                 <span id="GVPolList_ctl31_lblProducto">PRACTICO</span>
                             </td><td align="left" style="width:20%;">
-                                <span id="GVPolList_ctl31_lblEstatus">En Vigor</span>
+                                <span id="GVPolList_ctl31_lblEstatus">Anulada</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl31_lblCorreoMail" name="lblCorreoMail" style="display: none;"></span>
                                 <input name="GVPolList$ctl31$email" type="text" id="GVPolList_ctl31_email" name="email" class="email" style="display: none;" />
                             </td><td>
-                                <input type="submit" name="GVPolList$ctl31$btnMailOder" value="Mail Order" id="GVPolList_ctl31_btnMailOder" class="boton" />
+                                
                             </td><td>
                                     
                                 </td><td align="left" style="width:20%;">

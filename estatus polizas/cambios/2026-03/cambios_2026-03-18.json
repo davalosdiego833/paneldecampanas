@@ -1,0 +1,494 @@
+{
+  "resumen": {
+    "fecha_anterior": "2026-03-10",
+    "fecha_nuevo": "2026-03-18",
+    "total_anterior": 2943,
+    "total_nuevo": 2968,
+    "diferencia_total": 25,
+    "cambios_estatus_general": {
+      "En Vigor": {
+        "anterior": 1918,
+        "nuevo": 1921,
+        "diferencia": 3,
+        "emoji": "🟢"
+      },
+      "Vigor Prorrogado": {
+        "anterior": 75,
+        "nuevo": 79,
+        "diferencia": 4,
+        "emoji": "🟢"
+      },
+      "Anulada": {
+        "anterior": 917,
+        "nuevo": 934,
+        "diferencia": 17,
+        "emoji": "🟢"
+      },
+      "En Vigor sin Pago de Primas": {
+        "anterior": 33,
+        "nuevo": 33,
+        "diferencia": 0,
+        "emoji": "⚪"
+      },
+      "DESAPARECIDA": {
+        "anterior": 0,
+        "nuevo": 1,
+        "diferencia": 1,
+        "emoji": "🟢"
+      }
+    }
+  },
+  "lista_cambios": [
+    {
+      "asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "64502",
+      "poliza": "GM0000451430",
+      "contratante": "FERNANDO SOLIS GARCIA",
+      "producto": "PLENO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "PAULINA RODRIGUEZ DE LA MORA",
+      "clave": "65046",
+      "poliza": "GM0000638097",
+      "contratante": "INDIRA DAYANA MARTINEZ SOSA",
+      "producto": "INTEGRO",
+      "estatus_anterior": "Anulada",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "PAULINA RODRIGUEZ DE LA MORA",
+      "clave": "65046",
+      "poliza": "VI0002978315",
+      "contratante": "LUIS OMAR AGUIRRE STAUFERT",
+      "producto": "IMAGINA SER 65",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "DESIREE DE LA PEÑA OROZCO",
+      "clave": "80122",
+      "poliza": "GM0000098248",
+      "contratante": "J. GUADALUPE GONZALEZ TAVARES",
+      "producto": "SL ALFA MEDICAL FLEX",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002977956",
+      "contratante": "LUIS RONALDO NAJERA REYNA",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002977781",
+      "contratante": "LUIS RONALDO NAJERA REYNA",
+      "producto": "ORVI 99 UDIS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002660900",
+      "contratante": "MARIA EVELIA TALAVERA DIAZ",
+      "producto": "DOTAL 10 UDIS",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Vigor Prorrogado",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002648392",
+      "contratante": "MARIA GUADALUPE QUEZADA MARTINEZ",
+      "producto": "IMAGINA SER 65",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002648983",
+      "contratante": "MARIA GUADALUPE QUEZADA MARTINEZ",
+      "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002604760",
+      "contratante": "MICHAEL PERRY VILLASENOR",
+      "producto": "TEMPORAL 5 RENOVABLE STAR NUEVO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "GM0000555426",
+      "contratante": "NELLY SANCHEZ ROMERO",
+      "producto": "INTEGRO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002568218",
+      "contratante": "SALVADOR DE LA TORRE SANTIBA�EZ",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Vigor Prorrogado",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "ANDREA CELESTE IBAÑEZ RINCON",
+      "clave": "88234",
+      "poliza": "VI0002521349",
+      "contratante": "DULCE ALEJANDRA MARTINEZ SUAREZ",
+      "producto": "VIDA MUJER",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Vigor Prorrogado",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "ANDREA CELESTE IBAÑEZ RINCON",
+      "clave": "88234",
+      "poliza": "GM0000687971",
+      "contratante": "EDUARDO YEVERINO PALOMARES",
+      "producto": "INTEGRO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "DARINKA UREÑA CASILLAS",
+      "clave": "90355",
+      "poliza": "VI0002969026",
+      "contratante": "RACHELL ISABELLA NAVARRO SANCHEZ",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "FERNANDO JAVIER DAVALOS FLORES",
+      "clave": "98797",
+      "poliza": "VI0002358369",
+      "contratante": "ALEXIS CRISTINA NAVARRO FLORES",
+      "producto": "DOTAL 20 UDIS",
+      "estatus_anterior": "Vigor Prorrogado",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "FERNANDO JAVIER DAVALOS FLORES",
+      "clave": "98797",
+      "poliza": "VI0002841836",
+      "contratante": "CARLOS GUSTAVO REYES PACHECO",
+      "producto": "IMAGINA SER 65",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "JULIANA RIASCOS VALENCIA",
+      "clave": "100677",
+      "poliza": "VI0002968497",
+      "contratante": "CITLALLI QUINTANA MEZA",
+      "producto": "VIDA MUJER",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "GM0000027157",
+      "contratante": "ANA SOFIA RIOS KARAM",
+      "producto": "INTEGRO",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "VI0002786638",
+      "contratante": "ANA SOFIA RIOS KARAM",
+      "producto": "NUEVO PLENITUD 60 15",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "VI0002786389",
+      "contratante": "ANA SOFIA RIOS KARAM",
+      "producto": "NUEVO PLENITUD 60",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "VI0002759285",
+      "contratante": "CAMILLA BERNAL GURZA",
+      "producto": "VIDA MUJER",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "VI0002778559",
+      "contratante": "CYNTHIA VERONICA MARLENE LIMON ESCOBEDO",
+      "producto": "NUEVO PLENITUD 60 15",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "GM0000657089",
+      "contratante": "EDNA LORENA VALADEZ BASSO",
+      "producto": "INTEGRO",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "GM0000635728",
+      "contratante": "FERNANDO ALEJANDRO FRANCO REYES",
+      "producto": "INTEGRO",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "VI0002797490",
+      "contratante": "FERNANDO ALEJANDRO FRANCO REYES",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "GM0000623138",
+      "contratante": "JUAN PABLO VILLEGAS CARDENAS",
+      "producto": "INTEGRO",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "VI0002758104",
+      "contratante": "JUANA KARINA MEDINA VILLA",
+      "producto": "DOTAL 15 STAR 95",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "VI0002790795",
+      "contratante": "LAURA DELGADILLO BAROCIO",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "VI0002820869",
+      "contratante": "LYDIA JOCELYN CRUZ RANGEL",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "GM0000705631",
+      "contratante": "PAULINA DE LARA DOMINGUEZ",
+      "producto": "PLENO",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "VI0002770371",
+      "contratante": "PAULINA DE LARA DOMINGUEZ",
+      "producto": "VIDA MUJER",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "poliza": "VI0002754983",
+      "contratante": "SALMA DANIELA AGUIRRE ISAIS",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "GABRIELA CASTAÑEDA SALAZAR",
+      "clave": "105696",
+      "poliza": "VI0002977526",
+      "contratante": "ALESSANDRO LUGO FAVA",
+      "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MIREYA LIZETTE TORRES GARCIA",
+      "clave": "106018",
+      "poliza": "VI0002978049",
+      "contratante": "OMAR ALEJANDRO AYON GARCIA",
+      "producto": "IMAGINA SER 65 PAGOS LIMITADOS 15",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "106893",
+      "poliza": "VI0002325204",
+      "contratante": "FERNANDO ORTIZ FERNANDEZ",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Vigor Prorrogado",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "106893",
+      "poliza": "VI0002352642",
+      "contratante": "JAVIER VAZQUEZ VAZQUEZ",
+      "producto": "ORVI 99 10 PAGOS",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Vigor Prorrogado",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
+      "clave": "107488",
+      "poliza": "GM0000687900",
+      "contratante": "AMBAR GABRIELA ROMERO CALDERON",
+      "producto": "PRACTICO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
+      "clave": "113312",
+      "poliza": "GM0000635904",
+      "contratante": "CLAUDIA YANETH GALLEGOS VELASCO",
+      "producto": "PRACTICO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-18",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "117440",
+      "poliza": "VI0002977456",
+      "contratante": "GERARDO DANIEL PEREZ DE LA CRUZ",
+      "producto": "IMAGINA SER 65 PAGOS LIMITADOS 15",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-18",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "ROCIO IVON RUIZ GARCIA",
+      "clave": "108658",
+      "poliza": "VI0002841836",
+      "contratante": "CARLOS GUSTAVO REYES PACHECO",
+      "producto": "IMAGINA SER 65",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "DESAPARECIDA (No en portal)",
+      "fecha": "2026-03-18",
+      "tipo": "BAJA"
+    }
+  ]
+}

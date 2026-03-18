@@ -25,9 +25,9 @@ __VIEWSTATE" value="" />
                             </td><td>
                                 <input type="submit" name="GVPolList$ctl27$btnMailOder" value="Mail Order" id="GVPolList_ctl27_btnMailOder" class="boton" />
                             </td><td>
-                                    
+                                    <input type="submit" name="GVPolList$ctl27$buttonRenovacion" value="Renovacion" onclick="AbrirModal(this); return false;" id="GVPolList_ctl27_buttonRenovacion" class="boton" name="buttonRenovacion" />
                                 </td><td align="left" style="width:20%;">
-                                    <input name="GVPolList$ctl27$UltimaReno" type="text" value="2025" id="GVPolList_ctl27_UltimaReno" name="UltimaReno" style="display: none;" />
+                                    <input name="GVPolList$ctl27$UltimaReno" type="text" value="2026" id="GVPolList_ctl27_UltimaReno" name="UltimaReno" style="display: none;" />
                                 </td><td align="left" style="width:20%;">
                                     
                                 </td><td align="left" style="width:20%;">
@@ -317,14 +317,14 @@ __VIEWSTATE" value="" />
                                 </td>
 		</tr><tr class="GridRow" style="background-color:AliceBlue;">
 			<td align="left" style="width:15%;">
-                                <a id="GVPolList_ctl38_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl38$lnkPoliza','')">GM0000540037</a>
-                                <input name="GVPolList$ctl38$numpoliza" type="text" value="GM0000540037" id="GVPolList_ctl38_numpoliza" name="numpoliza" style="display: none;" />
+                                <a id="GVPolList_ctl38_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl38$lnkPoliza','')">GM0000513462</a>
+                                <input name="GVPolList$ctl38$numpoliza" type="text" value="GM0000513462" id="GVPolList_ctl38_numpoliza" name="numpoliza" style="display: none;" />
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl38_lblContratante">JOSE DE JESUS HERNANDEZ GONZALEZ</span>
                             </td><td align="left" style="width:20%;">
-                                <span id="GVPolList_ctl38_lblAseguradoPrincipal">MARISOL STEPHANIA CACHO ALDACO</span>
+                                <span id="GVPolList_ctl38_lblAseguradoPrincipal">JOSE DE JESUS HERNANDEZ GONZALEZ</span>
                             </td><td align="left" style="width:25%;">
-                                <span id="GVPolList_ctl38_lblProducto">INTEGRO</span>
+                                <span id="GVPolList_ctl38_lblProducto">PRACTICO</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl38_lblEstatus">En Vigor</span>
                             </td><td align="left" style="width:20%;">
@@ -333,9 +333,9 @@ __VIEWSTATE" value="" />
                             </td><td>
                                 <input type="submit" name="GVPolList$ctl38$btnMailOder" value="Mail Order" id="GVPolList_ctl38_btnMailOder" class="boton" />
                             </td><td>
-                                    
+                                    <input type="submit" name="GVPolList$ctl38$buttonRenovacion" value="Renovacion" onclick="AbrirModal(this); return false;" id="GVPolList_ctl38_buttonRenovacion" class="boton" name="buttonRenovacion" />
                                 </td><td align="left" style="width:20%;">
-                                    <input name="GVPolList$ctl38$UltimaReno" type="text" value="2025" id="GVPolList_ctl38_UltimaReno" name="UltimaReno" style="display: none;" />
+                                    <input name="GVPolList$ctl38$UltimaReno" type="text" value="2026" id="GVPolList_ctl38_UltimaReno" name="UltimaReno" style="display: none;" />
                                 </td><td align="left" style="width:20%;">
                                     
                                 </td><td align="left" style="width:20%;">
@@ -345,14 +345,14 @@ __VIEWSTATE" value="" />
                                 </td>
 		</tr><tr class="GridRow">
 			<td align="left" style="width:15%;">
-                                <a id="GVPolList_ctl39_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl39$lnkPoliza','')">GM0000513462</a>
-                                <input name="GVPolList$ctl39$numpoliza" type="text" value="GM0000513462" id="GVPolList_ctl39_numpoliza" name="numpoliza" style="display: none;" />
+                                <a id="GVPolList_ctl39_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl39$lnkPoliza','')">GM0000540037</a>
+                                <input name="GVPolList$ctl39$numpoliza" type="text" value="GM0000540037" id="GVPolList_ctl39_numpoliza" name="numpoliza" style="display: none;" />
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl39_lblContratante">JOSE DE JESUS HERNANDEZ GONZALEZ</span>
                             </td><td align="left" style="width:20%;">
-                                <span id="GVPolList_ctl39_lblAseguradoPrincipal">JOSE DE JESUS HERNANDEZ GONZALEZ</span>
+                                <span id="GVPolList_ctl39_lblAseguradoPrincipal">MARISOL STEPHANIA CACHO ALDACO</span>
                             </td><td align="left" style="width:25%;">
-                                <span id="GVPolList_ctl39_lblProducto">PRACTICO</span>
+                                <span id="GVPolList_ctl39_lblProducto">INTEGRO</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl39_lblEstatus">En Vigor</span>
                             </td><td align="left" style="width:20%;">
@@ -361,9 +361,9 @@ __VIEWSTATE" value="" />
                             </td><td>
                                 <input type="submit" name="GVPolList$ctl39$btnMailOder" value="Mail Order" id="GVPolList_ctl39_btnMailOder" class="boton" />
                             </td><td>
-                                    <input type="submit" name="GVPolList$ctl39$buttonRenovacion" value="Renovacion" onclick="AbrirModal(this); return false;" id="GVPolList_ctl39_buttonRenovacion" class="boton" name="buttonRenovacion" />
+                                    
                                 </td><td align="left" style="width:20%;">
-                                    <input name="GVPolList$ctl39$UltimaReno" type="text" value="2026" id="GVPolList_ctl39_UltimaReno" name="UltimaReno" style="display: none;" />
+                                    <input name="GVPolList$ctl39$UltimaReno" type="text" value="2025" id="GVPolList_ctl39_UltimaReno" name="UltimaReno" style="display: none;" />
                                 </td><td align="left" style="width:20%;">
                                     
                                 </td><td align="left" style="width:20%;">

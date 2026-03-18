@@ -37,14 +37,14 @@ __VIEWSTATE" value="" />
                                 </td>
 		</tr><tr class="GridRow" style="background-color:AliceBlue;">
 			<td align="left" style="width:15%;">
-                                <a id="GVPolList_ctl21_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl21$lnkPoliza','')">GM0000714650</a>
-                                <input name="GVPolList$ctl21$numpoliza" type="text" value="GM0000714650" id="GVPolList_ctl21_numpoliza" name="numpoliza" style="display: none;" />
+                                <a id="GVPolList_ctl21_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl21$lnkPoliza','')">VI0002840574</a>
+                                <input name="GVPolList$ctl21$numpoliza" type="text" value="VI0002840574" id="GVPolList_ctl21_numpoliza" name="numpoliza" style="display: none;" />
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl21_lblContratante">ANA VERONICA GONZALEZ GAYTAN</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl21_lblAseguradoPrincipal">ANA VERONICA GONZALEZ GAYTAN</span>
                             </td><td align="left" style="width:25%;">
-                                <span id="GVPolList_ctl21_lblProducto">INTEGRO</span>
+                                <span id="GVPolList_ctl21_lblProducto">IMAGINA SER 60</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl21_lblEstatus">En Vigor</span>
                             </td><td align="left" style="width:20%;">
@@ -65,14 +65,14 @@ __VIEWSTATE" value="" />
                                 </td>
 		</tr><tr class="GridRow">
 			<td align="left" style="width:15%;">
-                                <a id="GVPolList_ctl22_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl22$lnkPoliza','')">VI0002840574</a>
-                                <input name="GVPolList$ctl22$numpoliza" type="text" value="VI0002840574" id="GVPolList_ctl22_numpoliza" name="numpoliza" style="display: none;" />
+                                <a id="GVPolList_ctl22_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl22$lnkPoliza','')">GM0000714650</a>
+                                <input name="GVPolList$ctl22$numpoliza" type="text" value="GM0000714650" id="GVPolList_ctl22_numpoliza" name="numpoliza" style="display: none;" />
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl22_lblContratante">ANA VERONICA GONZALEZ GAYTAN</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl22_lblAseguradoPrincipal">ANA VERONICA GONZALEZ GAYTAN</span>
                             </td><td align="left" style="width:25%;">
-                                <span id="GVPolList_ctl22_lblProducto">IMAGINA SER 60</span>
+                                <span id="GVPolList_ctl22_lblProducto">INTEGRO</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl22_lblEstatus">En Vigor</span>
                             </td><td align="left" style="width:20%;">

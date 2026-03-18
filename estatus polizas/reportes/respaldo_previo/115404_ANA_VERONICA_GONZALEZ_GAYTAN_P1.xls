@@ -37,14 +37,14 @@ __VIEWSTATE" value="" />
                                 </td>
 		</tr><tr class="GridRow" style="background-color:AliceBlue;">
 			<td align="left" style="width:15%;">
-                                <a id="GVPolList_ctl21_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl21$lnkPoliza','')">VI0002840574</a>
-                                <input name="GVPolList$ctl21$numpoliza" type="text" value="VI0002840574" id="GVPolList_ctl21_numpoliza" name="numpoliza" style="display: none;" />
+                                <a id="GVPolList_ctl21_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl21$lnkPoliza','')">GM0000714650</a>
+                                <input name="GVPolList$ctl21$numpoliza" type="text" value="GM0000714650" id="GVPolList_ctl21_numpoliza" name="numpoliza" style="display: none;" />
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl21_lblContratante">ANA VERONICA GONZALEZ GAYTAN</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl21_lblAseguradoPrincipal">ANA VERONICA GONZALEZ GAYTAN</span>
                             </td><td align="left" style="width:25%;">
-                                <span id="GVPolList_ctl21_lblProducto">IMAGINA SER 60</span>
+                                <span id="GVPolList_ctl21_lblProducto">INTEGRO</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl21_lblEstatus">En Vigor</span>
                             </td><td align="left" style="width:20%;">
@@ -65,14 +65,14 @@ __VIEWSTATE" value="" />
                                 </td>
 		</tr><tr class="GridRow">
 			<td align="left" style="width:15%;">
-                                <a id="GVPolList_ctl22_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl22$lnkPoliza','')">GM0000714650</a>
-                                <input name="GVPolList$ctl22$numpoliza" type="text" value="GM0000714650" id="GVPolList_ctl22_numpoliza" name="numpoliza" style="display: none;" />
+                                <a id="GVPolList_ctl22_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl22$lnkPoliza','')">VI0002840574</a>
+                                <input name="GVPolList$ctl22$numpoliza" type="text" value="VI0002840574" id="GVPolList_ctl22_numpoliza" name="numpoliza" style="display: none;" />
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl22_lblContratante">ANA VERONICA GONZALEZ GAYTAN</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl22_lblAseguradoPrincipal">ANA VERONICA GONZALEZ GAYTAN</span>
                             </td><td align="left" style="width:25%;">
-                                <span id="GVPolList_ctl22_lblProducto">INTEGRO</span>
+                                <span id="GVPolList_ctl22_lblProducto">IMAGINA SER 60</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl22_lblEstatus">En Vigor</span>
                             </td><td align="left" style="width:20%;">
@@ -149,14 +149,14 @@ __VIEWSTATE" value="" />
                                 </td>
 		</tr><tr class="GridRow" style="background-color:AliceBlue;">
 			<td align="left" style="width:15%;">
-                                <a id="GVPolList_ctl25_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl25$lnkPoliza','')">VI0002947121</a>
-                                <input name="GVPolList$ctl25$numpoliza" type="text" value="VI0002947121" id="GVPolList_ctl25_numpoliza" name="numpoliza" style="display: none;" />
+                                <a id="GVPolList_ctl25_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl25$lnkPoliza','')">GM0000740334</a>
+                                <input name="GVPolList$ctl25$numpoliza" type="text" value="GM0000740334" id="GVPolList_ctl25_numpoliza" name="numpoliza" style="display: none;" />
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl25_lblContratante">BRAULIO VILLARRUEL VELAZQUEZ</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl25_lblAseguradoPrincipal">BRAULIO VILLARRUEL VELAZQUEZ</span>
                             </td><td align="left" style="width:25%;">
-                                <span id="GVPolList_ctl25_lblProducto">IMAGINA SER 65</span>
+                                <span id="GVPolList_ctl25_lblProducto">INTEGRO</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl25_lblEstatus">En Vigor</span>
                             </td><td align="left" style="width:20%;">
@@ -165,9 +165,9 @@ __VIEWSTATE" value="" />
                             </td><td>
                                 <input type="submit" name="GVPolList$ctl25$btnMailOder" value="Mail Order" id="GVPolList_ctl25_btnMailOder" class="boton" />
                             </td><td>
-                                    
+                                    <input type="submit" name="GVPolList$ctl25$buttonRenovacion" value="Renovacion" onclick="AbrirModal(this); return false;" id="GVPolList_ctl25_buttonRenovacion" class="boton" name="buttonRenovacion" />
                                 </td><td align="left" style="width:20%;">
-                                    <input name="GVPolList$ctl25$UltimaReno" type="text" value="2025" id="GVPolList_ctl25_UltimaReno" name="UltimaReno" style="display: none;" />
+                                    <input name="GVPolList$ctl25$UltimaReno" type="text" value="2026" id="GVPolList_ctl25_UltimaReno" name="UltimaReno" style="display: none;" />
                                 </td><td align="left" style="width:20%;">
                                     
                                 </td><td align="left" style="width:20%;">
@@ -177,14 +177,14 @@ __VIEWSTATE" value="" />
                                 </td>
 		</tr><tr class="GridRow">
 			<td align="left" style="width:15%;">
-                                <a id="GVPolList_ctl26_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl26$lnkPoliza','')">GM0000740334</a>
-                                <input name="GVPolList$ctl26$numpoliza" type="text" value="GM0000740334" id="GVPolList_ctl26_numpoliza" name="numpoliza" style="display: none;" />
+                                <a id="GVPolList_ctl26_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl26$lnkPoliza','')">VI0002947121</a>
+                                <input name="GVPolList$ctl26$numpoliza" type="text" value="VI0002947121" id="GVPolList_ctl26_numpoliza" name="numpoliza" style="display: none;" />
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl26_lblContratante">BRAULIO VILLARRUEL VELAZQUEZ</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl26_lblAseguradoPrincipal">BRAULIO VILLARRUEL VELAZQUEZ</span>
                             </td><td align="left" style="width:25%;">
-                                <span id="GVPolList_ctl26_lblProducto">INTEGRO</span>
+                                <span id="GVPolList_ctl26_lblProducto">IMAGINA SER 65</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl26_lblEstatus">En Vigor</span>
                             </td><td align="left" style="width:20%;">
@@ -193,9 +193,9 @@ __VIEWSTATE" value="" />
                             </td><td>
                                 <input type="submit" name="GVPolList$ctl26$btnMailOder" value="Mail Order" id="GVPolList_ctl26_btnMailOder" class="boton" />
                             </td><td>
-                                    <input type="submit" name="GVPolList$ctl26$buttonRenovacion" value="Renovacion" onclick="AbrirModal(this); return false;" id="GVPolList_ctl26_buttonRenovacion" class="boton" name="buttonRenovacion" />
+                                    
                                 </td><td align="left" style="width:20%;">
-                                    <input name="GVPolList$ctl26$UltimaReno" type="text" value="2026" id="GVPolList_ctl26_UltimaReno" name="UltimaReno" style="display: none;" />
+                                    <input name="GVPolList$ctl26$UltimaReno" type="text" value="2025" id="GVPolList_ctl26_UltimaReno" name="UltimaReno" style="display: none;" />
                                 </td><td align="left" style="width:20%;">
                                     
                                 </td><td align="left" style="width:20%;">

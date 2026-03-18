@@ -289,14 +289,14 @@ __VIEWSTATE" value="" />
                                 </td>
 		</tr><tr class="GridRow">
 			<td align="left" style="width:15%;">
-                                <a id="GVPolList_ctl41_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl41$lnkPoliza','')">GM0000680333</a>
-                                <input name="GVPolList$ctl41$numpoliza" type="text" value="GM0000680333" id="GVPolList_ctl41_numpoliza" name="numpoliza" style="display: none;" />
+                                <a id="GVPolList_ctl41_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl41$lnkPoliza','')">GM0000671677</a>
+                                <input name="GVPolList$ctl41$numpoliza" type="text" value="GM0000671677" id="GVPolList_ctl41_numpoliza" name="numpoliza" style="display: none;" />
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl41_lblContratante">JOSE DE JESUS MARISCAL MARTINEZ</span>
                             </td><td align="left" style="width:20%;">
-                                <span id="GVPolList_ctl41_lblAseguradoPrincipal">JOSE DE JESUS MARISCAL MARTINEZ</span>
+                                <span id="GVPolList_ctl41_lblAseguradoPrincipal">LUCIA AURORA MARISCAL OCHOA</span>
                             </td><td align="left" style="width:25%;">
-                                <span id="GVPolList_ctl41_lblProducto">INTEGRO</span>
+                                <span id="GVPolList_ctl41_lblProducto">PRACTICO</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl41_lblEstatus">Anulada</span>
                             </td><td align="left" style="width:20%;">
@@ -317,14 +317,14 @@ __VIEWSTATE" value="" />
                                 </td>
 		</tr><tr class="GridRow" style="background-color:AliceBlue;">
 			<td align="left" style="width:15%;">
-                                <a id="GVPolList_ctl42_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl42$lnkPoliza','')">GM0000671677</a>
-                                <input name="GVPolList$ctl42$numpoliza" type="text" value="GM0000671677" id="GVPolList_ctl42_numpoliza" name="numpoliza" style="display: none;" />
+                                <a id="GVPolList_ctl42_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl42$lnkPoliza','')">GM0000680333</a>
+                                <input name="GVPolList$ctl42$numpoliza" type="text" value="GM0000680333" id="GVPolList_ctl42_numpoliza" name="numpoliza" style="display: none;" />
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl42_lblContratante">JOSE DE JESUS MARISCAL MARTINEZ</span>
                             </td><td align="left" style="width:20%;">
-                                <span id="GVPolList_ctl42_lblAseguradoPrincipal">LUCIA AURORA MARISCAL OCHOA</span>
+                                <span id="GVPolList_ctl42_lblAseguradoPrincipal">JOSE DE JESUS MARISCAL MARTINEZ</span>
                             </td><td align="left" style="width:25%;">
-                                <span id="GVPolList_ctl42_lblProducto">PRACTICO</span>
+                                <span id="GVPolList_ctl42_lblProducto">INTEGRO</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl42_lblEstatus">Anulada</span>
                             </td><td align="left" style="width:20%;">
