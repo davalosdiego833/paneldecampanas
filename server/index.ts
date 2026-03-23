@@ -1061,6 +1061,9 @@ app.post('/api/activity', (req, res) => {
             activities = activities.slice(0, 5000);
         }
 
+        const dbDir = path.join(BASE_PATH, 'db');
+        if (!fs.existsSync(dbDir)) fs.mkdirSync(dbDir);
+
         fs.writeFileSync(ACTIVITY_PATH, JSON.stringify(activities, null, 2));
         res.json({ success: true });
     } catch (e) {

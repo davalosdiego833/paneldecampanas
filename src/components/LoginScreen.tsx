@@ -25,6 +25,16 @@ const LoginScreen: React.FC<Props> = ({ onSelectRole }) => {
 
             const data = await res.json();
             if (data.success) {
+                // Registrar actividad de admin en DB
+                fetch('/api/activity', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        asesor: "Administrador",
+                        accion: "Inició Sesión / Entró al Dashboard"
+                    })
+                }).catch(e => console.error('Error logging admin login', e));
+
                 onSelectRole('admin');
             } else {
                 setError('Contraseña incorrecta');
