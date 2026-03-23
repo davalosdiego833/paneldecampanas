@@ -360,7 +360,8 @@ const AdminDashboard: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTh
 
     if (!data) return <div style={{ color: 'white', padding: '40px' }}>Error cargando datos.</div>;
 
-    const campaigns = Object.keys(data).filter(k => k !== 'dates');
+    const knownCampaigns = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion'];
+    const campaigns = Object.keys(data).filter(k => knownCampaigns.includes(k) && Array.isArray(data[k]));
     const totalAdvisors = new Set(campaigns.flatMap(c => (data[c] as any[]).map((r: any) => r.Asesor))).size;
 
     // Build classifications for each campaign

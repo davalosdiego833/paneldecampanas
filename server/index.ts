@@ -219,10 +219,14 @@ const extractCutoffDate = (wb: any, type: string): string => {
         }
         if (type === 'fanfest' || type === 'vive_tu_pasion') {
             const ws = wb.Sheets[wb.SheetNames[0]];
-            const v = ws?.['A6']?.v || "";
-            // regex updated to have optional "de" before year
-            const m = String(v).match(/\d{1,2}\s+de\s+[a-z]+(\s+de)?\s+(\d{4})/i);
-            return m ? parseSpanishDate(m[0]) : '';
+            const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1 });
+            for (let i = 0; i < 15; i++) {
+                if (!data[i]) continue;
+                const rowStr = data[i].join(' ');
+                const m = String(rowStr).match(/\d{1,2}\s+de\s+[a-z]+(\s+de)?\s+(\d{4})/i);
+                if (m) return parseSpanishDate(m[0]);
+            }
+            return '';
         }
         return '';
     } catch (e) {
@@ -327,7 +331,8 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
     if (name === 'legion_centurion') {
         const wb = readExcelData(name, { skipJson: true, date: date as string });
         if (!wb) return res.status(404).json({ error: 'Raw file not found' });
-        const ws = wb.Sheets[wb.SheetNames[0]];
+        const sheetName = wb.SheetNames.find((n: string) => n.toUpperCase() === 'ASESORES') || wb.SheetNames[0];
+        const ws = wb.Sheets[sheetName];
         if (!ws._cachedJson) ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 'A11:Z10000' });
         const json: any[] = ws._cachedJson;
         const b9 = ws['B9']?.v || "";
@@ -351,7 +356,8 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
     if (name === 'convenciones') {
         const wb = readExcelData(name, { skipJson: true, date: date as string });
         if (!wb) return res.status(404).json({ error: 'Raw file not found' });
-        const ws = wb.Sheets[wb.SheetNames[0]];
+        const sheetName = wb.SheetNames.find((n: string) => n.toUpperCase() === 'TODOS LOS RAMOS') || wb.SheetNames[0];
+        const ws = wb.Sheets[sheetName];
         if (!ws._cachedData) ws._cachedData = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AI5000' });
         const data: any[][] = ws._cachedData;
         const dir = getAdvisorDirectory();
@@ -426,7 +432,8 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
     if (name === 'fanfest') {
         const wb = readExcelData(name, { skipJson: true, date: date as string });
         if (!wb) return res.status(404).json({ error: 'Raw file not found' });
-        const ws = wb.Sheets[wb.SheetNames[0]];
+        const sheetName = wb.SheetNames.find((n: string) => n.toUpperCase() === 'ASESORES') || wb.SheetNames[0];
+        const ws = wb.Sheets[sheetName];
         const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 }); // Headers on Row 8
         const dir = getAdvisorDirectory();
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
@@ -452,7 +459,8 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
     if (name === 'vive_tu_pasion') {
         const wb = readExcelData(name, { skipJson: true, date: date as string });
         if (!wb) return res.status(404).json({ error: 'Raw file not found' });
-        const ws = wb.Sheets[wb.SheetNames[0]];
+        const sheetName = wb.SheetNames.find((n: string) => n.toUpperCase() === 'ASESORES') || wb.SheetNames[0];
+        const ws = wb.Sheets[sheetName];
         const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
         const dir = getAdvisorDirectory();
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
@@ -692,7 +700,8 @@ app.post('/api/admin/snapshot', async (req, res) => {
                     const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 3 });
                     result.camino_cumbre = data.slice(1).filter(r => String(r[3] || '') === '2043').map(r => ({ Asesor: resolveName(r[5]), Clave: r[5] || '', Mes_Asesor: Number(r[10] || 1), Polizas_Totales: Number(r[13] || 0), Mes_1_Prod: Number(r[21] || 0), Mes_2_Prod: Number(r[22] || 0), Mes_3_Prod: Number(r[23] || 0) }));
                 } else if (c === 'convenciones') {
-                    const ws = wb.Sheets[wb.SheetNames[0]];
+                    const sheetName = wb.SheetNames.find((n: string) => n.toUpperCase() === 'TODOS LOS RAMOS') || wb.SheetNames[0];
+                    const ws = wb.Sheets[sheetName];
                     const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AI5000' });
                     const allRows = data.slice(1);
                     let c480 = 0, c228 = 0, c108 = 0, c28 = 0;
@@ -712,7 +721,8 @@ app.post('/api/admin/snapshot', async (req, res) => {
                     const data: any[] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 2 });
                     result.graduacion = data.slice(1).filter(r => String(r[3] || '') === '2043').map(r => ({ Asesor: r[7] ? String(r[7]) : resolveName(r[6]), Clave: r[6] || '', Mes_Asesor: Number(r[8] || 1), Polizas_Totales: Number(r[16] || 0) }));
                 } else if (c === 'legion_centurion') {
-                    const ws = wb.Sheets[wb.SheetNames[0]];
+                    const sheetName = wb.SheetNames.find((n: string) => n.toUpperCase() === 'ASESORES') || wb.SheetNames[0];
+                    const ws = wb.Sheets[sheetName];
                     const data: any[] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 11 });
                     const b9 = ws['B9']?.v || "";
                     const mMatch = String(b9).toLowerCase().match(/(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/);
@@ -721,13 +731,13 @@ app.post('/api/admin/snapshot', async (req, res) => {
                         Asesor: resolveName(r[6]), Clave: r[6] || '', Total_Polizas: Number(r[10] || 0), Mes_Actual: mIndex, Nivel: r[13] || '', EnMeta: String(r[12] || '').toLowerCase() === 'p'
                     }));
                 } else if (c === 'fanfest') {
-                    const ws = wb.Sheets[wb.SheetNames[0]];
+                    const ws = wb.Sheets['ASESORES'] || wb.Sheets[wb.SheetNames[0]];
                     const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
                     result.fanfest = data.slice(1).filter(r => String(r[4] || '') === '2043').map(r => ({
                         Asesor: resolveName(r[6]), Clave: r[6] || '', Total_Polizas: Number(r[13] || 0), Enero: Number(r[8] || 0), Febrero: Number(r[9] || 0), Marzo: Number(r[10] || 0), Abril: Number(r[11] || 0), Condicion: String(r[12] || '').toLowerCase() === 'p', Premio: String(r[14] || '').toLowerCase() === 'p' ? "GANADO 🏆" : "PENDIENTE ⏳"
                     }));
                 } else if (c === 'vive_tu_pasion') {
-                    const ws = wb.Sheets[wb.SheetNames[0]];
+                    const ws = wb.Sheets['ASESORES'] || wb.Sheets[wb.SheetNames[0]];
                     const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
                     result.vive_tu_pasion = data.slice(1).filter(r => String(r[4] || '') === '2043').map(r => ({
                         Asesor: resolveName(r[6]), Clave: r[6] || '', Polizas: Number(r[8] || 0), Comisiones: Number(r[9] || 0), Premio: r[10] || ""
@@ -1214,5 +1224,5 @@ const preloadCampaigns = () => {
 
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running at http://0.0.0.0:${PORT}`);
-    preloadCampaigns();
+    // preloadCampaigns(); // Disabled temporarily to prevent 7MB file deadlock on boot
 });
