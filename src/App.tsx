@@ -5,6 +5,7 @@ import LoginScreen from './components/LoginScreen';
 import AdminHome from './components/AdminHome';
 import AdminDashboard from './components/AdminDashboard';
 import ResumenPromotoria from './components/ResumenPromotoria';
+import MetaDespacho from './components/MetaDespacho';
 import Welcome from './components/Welcome';
 import CampaignSelector from './components/CampaignSelector';
 import Dashboard from './components/Dashboard';
@@ -51,7 +52,7 @@ const App: React.FC = () => {
         }
     };
 
-    const handleAdminOption = (option: 'asesores' | 'promotoria' | 'eduardo' | 'karen' | 'actividad') => {
+    const handleAdminOption = (option: 'asesores' | 'promotoria' | 'eduardo' | 'karen' | 'actividad' | 'meta24m') => {
         if (option === 'asesores') {
             setPage('admin_dashboard');
         } else if (option === 'promotoria') {
@@ -62,6 +63,8 @@ const App: React.FC = () => {
             setPage('gerencia_karen');
         } else if (option === 'actividad') {
             setPage('admin_actividad');
+        } else if (option === 'meta24m') {
+            setPage('admin_meta');
         }
     };
 
@@ -111,6 +114,11 @@ const App: React.FC = () => {
     // Admin Activity Tracker
     if (page === 'admin_actividad') {
         return <AdminActivity onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} />;
+    }
+
+    // Meta 24M Tracker
+    if (page === 'admin_meta') {
+        return <MetaDespacho onBack={() => setPage('admin_home')} themeMode={themeMode} />;
     }
 
     // Advisor flow: uses regular Layout

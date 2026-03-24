@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 interface Props {
-    onSelectOption: (option: 'asesores' | 'promotoria' | 'eduardo' | 'karen' | 'actividad') => void;
+    onSelectOption: (option: 'asesores' | 'promotoria' | 'eduardo' | 'karen' | 'actividad' | 'meta24m') => void;
     onLogout: () => void;
 }
 
@@ -103,6 +103,59 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                         gap: '16px',
                     }}
                 >
+                    {/* Meta Despacho 24M */}
+                    <motion.button
+                        whileHover={{ scale: 1.02, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => {
+                            fetch('/api/activity', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    asesor: "Administrador",
+                                    accion: "Consultó Reporte Admin: Meta 24M"
+                                })
+                            }).catch(e => console.error('Error', e));
+                            onSelectOption('meta24m');
+                        }}
+                        style={{
+                            width: '100%',
+                            padding: '24px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '16px',
+                            background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%)',
+                            border: '1px solid rgba(212, 175, 55, 0.3)',
+                            borderRadius: '16px',
+                            cursor: 'pointer',
+                            color: '#ffffff',
+                            fontFamily: 'inherit',
+                            boxShadow: '0 8px 30px rgba(0,0,0,0.2)',
+                            position: 'relative',
+                            overflow: 'hidden'
+                        }}
+                    >
+                        {/* Glow effect */}
+                        <div style={{ position: 'absolute', top: '-50%', left: '-50%', width: '200%', height: '200%', background: 'radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 60%)', pointerEvents: 'none' }} />
+
+                        <div style={{
+                            width: '56px', height: '56px', borderRadius: '14px',
+                            background: 'linear-gradient(135deg, #D4AF37 0%, #B8860B 100%)',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            flexShrink: 0, boxShadow: '0 4px 15px rgba(212, 175, 55, 0.4)',
+                            zIndex: 1
+                        }}>
+                            <span style={{ fontSize: '28px' }}>🎯</span>
+                        </div>
+                        <div style={{ textAlign: 'left', flex: 1, zIndex: 1 }}>
+                            <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#D4AF37', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>Meta Anual 24M</div>
+                            <div style={{ fontSize: '0.85rem', color: '#e5e7eb', marginTop: '4px', fontWeight: 500 }}>
+                                Seguimiento mensual objetivo 2026
+                            </div>
+                        </div>
+                        <span style={{ fontSize: '1.4rem', color: '#D4AF37', zIndex: 1 }}>→</span>
+                    </motion.button>
+
                     {/* Resumen de Asesores */}
                     <motion.button
                         whileHover={{ scale: 1.02, y: -2 }}
