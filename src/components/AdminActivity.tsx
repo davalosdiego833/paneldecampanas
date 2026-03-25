@@ -21,7 +21,8 @@ interface ActivityEvent {
 const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTheme }) => {
     const [activities, setActivities] = useState<ActivityEvent[]>([]);
     const [loading, setLoading] = useState(true);
-    const [activeTab, setActiveTab] = useState<'accesos' | 'campanas' | 'admin'>('accesos');
+    const [activeTab, setActiveTab] = useState<'accesos' | 'campanas' | 'admin' | 'historial'>('accesos');
+    const [selectedMonth, setSelectedMonth] = useState<string>('all');
 
     const fetchActivity = async () => {
         setLoading(true);
@@ -56,7 +57,63 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
         fetchActivity();
     }, []);
 
-    // Metricas basicas - Accesos
+    // Helper para meses
+    const MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    const formatMonth = (yyyy_mm: string) => {
+        if (yyyy_mm === 'all') return 'Todos los tiempos';
+        const [y, m] = yyyy_mm.split('-');
+        return `${MONTHS[parseInt(m) - 1]} ${y}`;
+    };
+
+    // --- PROCESAMIENTO HISTORIAL (DASHBOARD) ---
+    const sortedActivities = [...activities].sort((a, b) => b.timestamp - a.timestamp);
+    const availableMonths = Array.from(new Set(sortedActivities.map(a => a.fecha.substring(0, 7)))).sort((a, b) => b.localeCompare(a));
+
+    const filteredHistory = selectedMonth === 'all'
+        ? sortedActivities
+        : sortedActivities.filter(a => a.fecha.startsWith(selectedMonth));
+
+    // Stats para Historial
+    const hist_logins = filteredHistory.filter(a => a.accion === 'Inició Sesión / Entró al Dashboard');
+    const hist_camps = filteredHistory.filter(a => a.accion.startsWith('Consultó Campaña:'));
+
+    // Top Asesor Historial
+    const histUserCounts = hist_logins.reduce((acc, curr) => {
+        if (curr.asesor !== 'Administrador' && curr.asesor !== '⚡ SISTEMA' && curr.asesor !== 'Diego Davalos') {
+            acc[curr.asesor] = (acc[curr.asesor] || 0) + 1;
+        }
+        return acc;
+    }, {} as Record<string, number>);
+    const histTopUser = Object.entries(histUserCounts).sort((a, b) => b[1] - a[1])[0] || ['Ninguno', 0];
+
+    // Top Campaña Historial
+    const histCampCounts = hist_camps.reduce((acc, curr) => {
+        const name = curr.accion.replace('Consultó Campaña: ', '');
+        acc[name] = (acc[name] || 0) + 1;
+        return acc;
+    }, {} as Record<string, number>);
+    const histTopCamp = Object.entries(histCampCounts).sort((a, b) => b[1] - a[1])[0] || ['Ninguna', 0];
+
+    // Agrupación por "Push"
+    const pushGroups: { pushEvent: ActivityEvent | null, items: ActivityEvent[] }[] = [];
+    let currentGroup: { pushEvent: ActivityEvent | null, items: ActivityEvent[] } = { pushEvent: null, items: [] };
+
+    filteredHistory.forEach(act => {
+        if (act.accion === '📥 Nueva Actualización de Reportes (Push)') {
+            if (currentGroup.items.length > 0 || currentGroup.pushEvent) {
+                pushGroups.push(currentGroup);
+            }
+            currentGroup = { pushEvent: act, items: [] };
+        } else {
+            currentGroup.items.push(act);
+        }
+    });
+    if (currentGroup.items.length > 0 || currentGroup.pushEvent) {
+        pushGroups.push(currentGroup);
+    }
+    // ----------------------------------------
+
+    // Metricas basicas - Accesos (HOY)
     const today = new Date().toISOString().split('T')[0];
     const loginActivities = activities.filter(a => a.accion === 'Inició Sesión / Entró al Dashboard');
     const todaysLogins = loginActivities.filter(a => a.fecha === today);
@@ -64,7 +121,8 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
 
     // Metricas basicas - Campañas
     const campaignActivities = activities.filter(a => a.accion.startsWith('Consultó Campaña:'));
-    const todaysCampaignClicks = campaignActivities.filter(a => a.fecha === today).length;
+    const todaysCampaigns = campaignActivities.filter(a => a.fecha === today);
+    const todaysCampaignClicks = todaysCampaigns.length;
 
     // Ranking de campañas
     const campaignCounts = campaignActivities.reduce((acc, curr) => {
@@ -79,7 +137,8 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
 
     // Metricas basicas - Admin
     const adminActivities = activities.filter(a => a.accion.startsWith('Consultó Reporte Admin:'));
-    const todaysAdminClicks = adminActivities.filter(a => a.fecha === today).length;
+    const todaysAdmins = adminActivities.filter(a => a.fecha === today);
+    const todaysAdminClicks = todaysAdmins.length;
 
     // Ranking de Reportes Admin
     const adminCounts = adminActivities.reduce((acc, curr) => {
@@ -148,6 +207,16 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
                             }}
                         >
                             Admin
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('historial')}
+                            style={{
+                                padding: '6px 16px', borderRadius: '8px', border: 'none', cursor: 'pointer', fontSize: '0.9rem', fontWeight: 600, transition: '0.2s',
+                                background: activeTab === 'historial' ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
+                                color: activeTab === 'historial' ? '#D4AF37' : 'var(--text-secondary)'
+                            }}
+                        >
+                            Historial
                         </button>
                     </div>
 
@@ -221,16 +290,16 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {loading && loginActivities.length === 0 ? (
+                                        {loading && todaysLogins.length === 0 ? (
                                             <tr>
                                                 <td colSpan={4} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>Cargando registros...</td>
                                             </tr>
-                                        ) : loginActivities.length === 0 ? (
+                                        ) : todaysLogins.length === 0 ? (
                                             <tr>
-                                                <td colSpan={4} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>No hay actividad registrada aún.</td>
+                                                <td colSpan={4} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>No hay actividad registrada el día de hoy.</td>
                                             </tr>
                                         ) : (
-                                            loginActivities.slice(0, 50).map((act, idx) => (
+                                            todaysLogins.slice(0, 50).map((act, idx) => (
                                                 <motion.tr
                                                     key={act.id}
                                                     initial={{ opacity: 0, y: 10 }}
@@ -360,16 +429,16 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {loading && campaignActivities.length === 0 ? (
+                                        {loading && todaysCampaigns.length === 0 ? (
                                             <tr>
                                                 <td colSpan={4} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>Cargando registros...</td>
                                             </tr>
-                                        ) : campaignActivities.length === 0 ? (
+                                        ) : todaysCampaigns.length === 0 ? (
                                             <tr>
-                                                <td colSpan={4} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>No hay clics en campañas registrados aún.</td>
+                                                <td colSpan={4} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>No hay clics en campañas registrados el día de hoy.</td>
                                             </tr>
                                         ) : (
-                                            campaignActivities.slice(0, 50).map((act, idx) => {
+                                            todaysCampaigns.slice(0, 50).map((act, idx) => {
                                                 const campName = act.accion.replace('Consultó Campaña: ', '');
                                                 return (
                                                     <motion.tr
@@ -502,16 +571,16 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {loading && adminActivities.length === 0 ? (
+                                        {loading && todaysAdmins.length === 0 ? (
                                             <tr>
                                                 <td colSpan={4} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>Cargando registros...</td>
                                             </tr>
-                                        ) : adminActivities.length === 0 ? (
+                                        ) : todaysAdmins.length === 0 ? (
                                             <tr>
-                                                <td colSpan={4} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>No hay visitas administrativas registradas aún.</td>
+                                                <td colSpan={4} style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>No hay visitas administrativas registradas el día de hoy.</td>
                                             </tr>
                                         ) : (
-                                            adminActivities.slice(0, 50).map((act, idx) => {
+                                            todaysAdmins.slice(0, 50).map((act, idx) => {
                                                 const reportName = act.accion.replace('Consultó Reporte Admin: ', '');
                                                 return (
                                                     <motion.tr
@@ -554,6 +623,163 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
                                 </table>
                             </div>
                         </div>
+                    </motion.div>
+                )}
+
+                {/* ----------------- TAB: HISTORIAL MENSUAL (DASHBOARD) ----------------- */}
+                {activeTab === 'historial' && (
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+                        <div className="glass-card" style={{ padding: '24px', marginBottom: '32px', borderTop: '3px solid #D4AF37' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '20px' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                                    <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(212, 175, 55, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                        <Clock size={24} color="#D4AF37" />
+                                    </div>
+                                    <div>
+                                        <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)' }}>Dashboard Analítico</h3>
+                                        <p style={{ margin: '4px 0 0 0', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                                            Explora el histórico de interacciones organizado por períodos de actualización (Push).
+                                        </p>
+                                    </div>
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: 'rgba(0,0,0,0.2)', padding: '8px 16px', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+                                    <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Filtrar Mes:</span>
+                                    <select
+                                        value={selectedMonth}
+                                        onChange={e => setSelectedMonth(e.target.value)}
+                                        style={{ background: 'transparent', color: 'var(--text-primary)', border: 'none', outline: 'none', fontSize: '1rem', fontWeight: 700, cursor: 'pointer' }}
+                                    >
+                                        <option value="all" style={{ color: '#000' }}>Todos los tiempos</option>
+                                        {availableMonths.map(m => (
+                                            <option key={m} value={m} style={{ color: '#000' }}>{formatMonth(m)}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Tarjetas Analíticas del Período */}
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginBottom: '32px' }}>
+                            <div className="glass-card" style={{ padding: '20px', display: 'flex', alignItems: 'center', gap: '16px', background: 'linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)' }}>
+                                <div style={{ width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(0, 122, 255, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <Users size={24} color="#007AFF" />
+                                </div>
+                                <div>
+                                    <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Asesor Más Activo</p>
+                                    <h4 style={{ margin: '4px 0 0 0', fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-primary)' }}>{histTopUser[0]}</h4>
+                                    <span style={{ fontSize: '0.8rem', color: '#007AFF', fontWeight: 600 }}>{histTopUser[1]} visitas</span>
+                                </div>
+                            </div>
+
+                            <div className="glass-card" style={{ padding: '20px', display: 'flex', alignItems: 'center', gap: '16px', background: 'linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)' }}>
+                                <div style={{ width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(108, 92, 231, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <Activity size={24} color="#6C5CE7" />
+                                </div>
+                                <div>
+                                    <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Campaña Más Vista</p>
+                                    <h4 style={{ margin: '4px 0 0 0', fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-primary)' }}>{histTopCamp[0]}</h4>
+                                    <span style={{ fontSize: '0.8rem', color: '#a29bfe', fontWeight: 600 }}>{histTopCamp[1]} clics</span>
+                                </div>
+                            </div>
+
+                            <div className="glass-card" style={{ padding: '20px', display: 'flex', alignItems: 'center', gap: '16px', background: 'linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)' }}>
+                                <div style={{ width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(0, 230, 118, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <Activity size={24} color="#00E676" />
+                                </div>
+                                <div>
+                                    <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Volumen del Período</p>
+                                    <h4 style={{ margin: '4px 0 0 0', fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-primary)' }}>{filteredHistory.length} Eventos</h4>
+                                    <span style={{ fontSize: '0.8rem', color: '#00E676', fontWeight: 600 }}>En la selección actual</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Bloques de Push */}
+                        {pushGroups.length === 0 ? (
+                            <div className="glass-card" style={{ padding: '40px', textAlign: 'center', color: 'var(--text-secondary)' }}>
+                                No hay registros para el período seleccionado.
+                            </div>
+                        ) : (
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                                {pushGroups.map((group, gIdx) => (
+                                    <div key={gIdx} className="glass-card" style={{ padding: 0, overflow: 'hidden', border: group.pushEvent ? '1px solid rgba(212, 175, 55, 0.3)' : '1px solid var(--glass-border)' }}>
+                                        {/* Cabecera del Push */}
+                                        <div style={{
+                                            padding: '16px 24px',
+                                            background: group.pushEvent ? 'linear-gradient(90deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%)' : 'rgba(255,255,255,0.02)',
+                                            borderBottom: '1px solid var(--glass-border)',
+                                            display: 'flex', justifyContent: 'space-between', alignItems: 'center'
+                                        }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                                {group.pushEvent ? (
+                                                    <>
+                                                        <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: '#D4AF37', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 15px rgba(212,175,55,0.4)' }}>
+                                                            <Activity size={18} color="#000" />
+                                                        </div>
+                                                        <div>
+                                                            <h4 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, color: '#D4AF37' }}>Actualización de Reportes (Push)</h4>
+                                                            <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)' }}>{group.pushEvent.fecha} a las {group.pushEvent.hora}</span>
+                                                        </div>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                            <Clock size={18} color="var(--text-secondary)" />
+                                                        </div>
+                                                        <div>
+                                                            <h4 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)' }}>Actividad Actual (Post-Push)</h4>
+                                                            <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Eventos recientes sin agrupar</span>
+                                                        </div>
+                                                    </>
+                                                )}
+                                            </div>
+                                            <div style={{ background: 'rgba(0,0,0,0.3)', padding: '6px 16px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-secondary)' }}>
+                                                {group.items.length} interacciones
+                                            </div>
+                                        </div>
+
+                                        {/* Tabla de interacciones del bloque */}
+                                        {group.items.length > 0 ? (
+                                            <div style={{ overflowX: 'auto', maxHeight: '400px', overflowY: 'auto' }}>
+                                                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                                                    <thead style={{ position: 'sticky', top: 0, background: 'rgba(15, 18, 25, 0.95)', backdropFilter: 'blur(10px)', zIndex: 10 }}>
+                                                        <tr style={{ borderBottom: '1px solid var(--glass-border)' }}>
+                                                            <th style={{ padding: '12px 24px', fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase' }}>Hora</th>
+                                                            <th style={{ padding: '12px 24px', fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase' }}>Usuario</th>
+                                                            <th style={{ padding: '12px 24px', fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase' }}>Acción</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {group.items.map((act, idx) => (
+                                                            <tr key={act.id || idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
+                                                                <td style={{ padding: '12px 24px', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                                                                    {act.fecha} <br /><span style={{ fontSize: '0.75rem', opacity: 0.7 }}>{act.hora}</span>
+                                                                </td>
+                                                                <td style={{ padding: '12px 24px', fontWeight: 600, color: 'var(--accent-gold)', fontSize: '0.9rem' }}>
+                                                                    {act.asesor}
+                                                                </td>
+                                                                <td style={{ padding: '12px 24px', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                                                                    <div style={{
+                                                                        display: 'inline-block', padding: '4px 10px', borderRadius: '8px', fontSize: '0.75rem', fontWeight: 600,
+                                                                        background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text-primary)'
+                                                                    }}>
+                                                                        {act.accion}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        ) : (
+                                            <div style={{ padding: '24px', textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                                                No hubo interacciones registradas en este período.
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </motion.div>
                 )}
             </main>

@@ -878,6 +878,32 @@ app.post('/api/admin/snapshot', async (req, res) => {
         const dbDir = path.join(BASE_PATH, 'db');
         if (!fs.existsSync(dbDir)) fs.mkdirSync(dbDir);
 
+        // --- AUTOMATIC ACTIVITY LOG FOR SNAPSHOT/PUSH ---
+        try {
+            const now = new Date();
+            const fmtMx = (opts: Intl.DateTimeFormatOptions) => new Intl.DateTimeFormat('es-MX', { ...opts, timeZone: 'America/Mexico_City' }).format(now);
+            const mxDay = fmtMx({ day: '2-digit' }), mxMonth = fmtMx({ month: '2-digit' }), mxYear = fmtMx({ year: 'numeric' });
+            const mxHour = fmtMx({ hour: '2-digit', hour12: false }), mxMinute = fmtMx({ minute: '2-digit' }), mxSecond = fmtMx({ second: '2-digit' });
+
+            const event = {
+                id: Date.now().toString(),
+                asesor: "⚡ SISTEMA",
+                accion: "📥 Nueva Actualización de Reportes (Push)",
+                fecha: `${mxYear}-${mxMonth}-${mxDay}`,
+                hora: `${mxHour.padStart(2, '0')}:${mxMinute.padStart(2, '0')}:${mxSecond.padStart(2, '0')}`,
+                timestamp: now.getTime()
+            };
+
+            let activities: any[] = [];
+            if (fs.existsSync(ACTIVITY_PATH)) {
+                try { activities = JSON.parse(fs.readFileSync(ACTIVITY_PATH, 'utf-8')); } catch (e) { }
+            }
+            activities.unshift(event);
+            if (activities.length > 5000) activities = activities.slice(0, 5000);
+            fs.writeFileSync(ACTIVITY_PATH, JSON.stringify(activities, null, 2));
+        } catch (actErr) { console.error('Error logging snapshot activity:', actErr); }
+        // ----------------------------------------------
+
         fs.writeFileSync(SNAPSHOT_PATH, JSON.stringify(snapshot, null, 2));
         res.json({ success: true, updatedAt: snapshot.updatedAt });
     } catch (e) {
