@@ -361,7 +361,7 @@ __VIEWSTATE" value="" />
                             </td><td>
                                 <input type="submit" name="GVPolList$ctl101$btnMailOder" value="Mail Order" id="GVPolList_ctl101_btnMailOder" class="boton" />
                             </td><td>
-                                    <input type="submit" name="GVPolList$ctl101$buttonRenovacion" value="Renovacion" onclick="AbrirModal(this); return false;" id="GVPolList_ctl101_buttonRenovacion" class="boton" name="buttonRenovacion" />
+                                    
                                 </td><td align="left" style="width:20%;">
                                     <input name="GVPolList$ctl101$UltimaReno" type="text" value="2026" id="GVPolList_ctl101_UltimaReno" name="UltimaReno" style="display: none;" />
                                 </td><td align="left" style="width:20%;">
@@ -389,7 +389,7 @@ __VIEWSTATE" value="" />
                             </td><td>
                                 <input type="submit" name="GVPolList$ctl102$btnMailOder" value="Mail Order" id="GVPolList_ctl102_btnMailOder" class="boton" />
                             </td><td>
-                                    <input type="submit" name="GVPolList$ctl102$buttonRenovacion" value="Renovacion" onclick="AbrirModal(this); return false;" id="GVPolList_ctl102_buttonRenovacion" class="boton" name="buttonRenovacion" />
+                                    
                                 </td><td align="left" style="width:20%;">
                                     <input name="GVPolList$ctl102$UltimaReno" type="text" value="2026" id="GVPolList_ctl102_UltimaReno" name="UltimaReno" style="display: none;" />
                                 </td><td align="left" style="width:20%;">
@@ -2034,12 +2034,12 @@ __VIEWSTATE" value="" />
                             </td><td align="left" style="width:25%;">
                                 <span id="GVPolList_ctl161_lblProducto">DOTAL 10 UDIS</span>
                             </td><td align="left" style="width:20%;">
-                                <span id="GVPolList_ctl161_lblEstatus">En Vigor</span>
+                                <span id="GVPolList_ctl161_lblEstatus">Anulada</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl161_lblCorreoMail" name="lblCorreoMail" style="display: none;"></span>
                                 <input name="GVPolList$ctl161$email" type="text" id="GVPolList_ctl161_email" name="email" class="email" style="display: none;" />
                             </td><td>
-                                <input type="submit" name="GVPolList$ctl161$btnMailOder" value="Mail Order" id="GVPolList_ctl161_btnMailOder" class="boton" />
+                                
                             </td><td>
                                     
                                 </td><td align="left" style="width:20%;">

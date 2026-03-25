@@ -1593,7 +1593,7 @@ __VIEWSTATE" value="" />
                             </td><td>
                                 <input type="submit" name="GVPolList$ctl162$btnMailOder" value="Mail Order" id="GVPolList_ctl162_btnMailOder" class="boton" />
                             </td><td>
-                                    <input type="submit" name="GVPolList$ctl162$buttonRenovacion" value="Renovacion" onclick="AbrirModal(this); return false;" id="GVPolList_ctl162_buttonRenovacion" class="boton" name="buttonRenovacion" />
+                                    
                                 </td><td align="left" style="width:20%;">
                                     <input name="GVPolList$ctl162$UltimaReno" type="text" value="2026" id="GVPolList_ctl162_UltimaReno" name="UltimaReno" style="display: none;" />
                                 </td><td align="left" style="width:20%;">
@@ -1957,7 +1957,7 @@ __VIEWSTATE" value="" />
                             </td><td>
                                 <input type="submit" name="GVPolList$ctl175$btnMailOder" value="Mail Order" id="GVPolList_ctl175_btnMailOder" class="boton" />
                             </td><td>
-                                    <input type="submit" name="GVPolList$ctl175$buttonRenovacion" value="Renovacion" onclick="AbrirModal(this); return false;" id="GVPolList_ctl175_buttonRenovacion" class="boton" name="buttonRenovacion" />
+                                    
                                 </td><td align="left" style="width:20%;">
                                     <input name="GVPolList$ctl175$UltimaReno" type="text" value="2026" id="GVPolList_ctl175_UltimaReno" name="UltimaReno" style="display: none;" />
                                 </td><td align="left" style="width:20%;">

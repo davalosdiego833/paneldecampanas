@@ -1,0 +1,241 @@
+{
+  "resumen": {
+    "fecha_anterior": "2026-03-18",
+    "fecha_nuevo": "2026-03-25",
+    "total_anterior": 2968,
+    "total_nuevo": 2976,
+    "diferencia_total": 8,
+    "cambios_estatus_general": {
+      "En Vigor": {
+        "anterior": 1921,
+        "nuevo": 1921,
+        "diferencia": 0,
+        "emoji": "⚪"
+      },
+      "Vigor Prorrogado": {
+        "anterior": 79,
+        "nuevo": 82,
+        "diferencia": 3,
+        "emoji": "🟢"
+      },
+      "Anulada": {
+        "anterior": 934,
+        "nuevo": 939,
+        "diferencia": 5,
+        "emoji": "🟢"
+      },
+      "En Vigor sin Pago de Primas": {
+        "anterior": 33,
+        "nuevo": 33,
+        "diferencia": 0,
+        "emoji": "⚪"
+      },
+      "DESAPARECIDA": {
+        "anterior": 1,
+        "nuevo": 1,
+        "diferencia": 0,
+        "emoji": "⚪"
+      }
+    }
+  },
+  "lista_cambios": [
+    {
+      "asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "64502",
+      "poliza": "VI0002231951",
+      "contratante": "GERARDO GONZALEZ ARRIAGA",
+      "producto": "ORVI 99 10 PAGOS",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Vigor Prorrogado",
+      "fecha": "2026-03-25",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "DESIREE DE LA PEÑA OROZCO",
+      "clave": "80122",
+      "poliza": "VI0002978892",
+      "contratante": "CRISTINA COTA GIL",
+      "producto": "VIDA MUJER",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-25",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "DESIREE DE LA PEÑA OROZCO",
+      "clave": "80122",
+      "poliza": "VI0002978535",
+      "contratante": "LAURA ANGELICA HERNANDEZ GUERRERO",
+      "producto": "ORVI 99 6 PAGOS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-25",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002979315",
+      "contratante": "DANIEL MONTES DE OCA MENA",
+      "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-25",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "GM0000553164",
+      "contratante": "ENRIQUE LEDESMA REYES",
+      "producto": "INTEGRO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-25",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002882579",
+      "contratante": "HECTOR RAUL MANCILLA GARCES",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "Anulada",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-25",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "GM0000714539",
+      "contratante": "REY DAVID RAMON OLGUIN DE LUNA",
+      "producto": "PLENO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-25",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "GM0000501048",
+      "contratante": "SALVADOR DE LA TORRE SANTIBA�EZ",
+      "producto": "PRACTICO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-25",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MARIA TERESA ASENCIO LOZANO",
+      "clave": "94156",
+      "poliza": "VI0002978726",
+      "contratante": "DIANA PAULA BARBA DE LA TORRE",
+      "producto": "IMAGINA SER 65 PAGOS LIMITADOS 15",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-25",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MARIA TERESA ASENCIO LOZANO",
+      "clave": "94156",
+      "poliza": "VI0002687246",
+      "contratante": "EVER EDUARDO CUETO GARCIA",
+      "producto": "NUEVO PLENITUD 60 15",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Vigor Prorrogado",
+      "fecha": "2026-03-25",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MARIA TERESA ASENCIO LOZANO",
+      "clave": "94156",
+      "poliza": "VI0002631217",
+      "contratante": "MARIA TERESA ASENCIO LOZANO",
+      "producto": "NUEVO PLENITUD 60",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-25",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
+      "clave": "95148",
+      "poliza": "GM0000679404",
+      "contratante": "MARIA GORETTI GONZALEZ REYNOSO",
+      "producto": "PRACTICO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-25",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
+      "clave": "104343",
+      "poliza": "VI0002828079",
+      "contratante": "RAMIRO ROBLES MURGUIA",
+      "producto": "DOTAL 10 UDIS",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-03-25",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "GABRIELA CASTAÑEDA SALAZAR",
+      "clave": "105696",
+      "poliza": "GM0000654657",
+      "contratante": "BEATRIZ ADRIANA HERNANDEZ PORTILLO",
+      "producto": "PRACTICO",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-25",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "GABRIELA CASTAÑEDA SALAZAR",
+      "clave": "105696",
+      "poliza": "GM0000726160",
+      "contratante": "OCTAVIO JONATHAN GARCIA MACIEL",
+      "producto": "PRACTICO",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-25",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "106893",
+      "poliza": "VI0002245870",
+      "contratante": "PROMOTORA DE SERVICIOS ERRE A SA DE CV",
+      "producto": "DOTAL 20 STAR 97",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Vigor Prorrogado",
+      "fecha": "2026-03-25",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "ANA VERONICA GONZALEZ GAYTAN",
+      "clave": "115404",
+      "poliza": "GM0000746169",
+      "contratante": "DULCE MARIA ESPARZA LEONER",
+      "producto": "INTEGRO",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-25",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "117440",
+      "poliza": "VI0002979261",
+      "contratante": "ALFONSO GONZALEZ FERNANDEZ",
+      "producto": "IMAGINA SER 65 PAGOS LIMITADOS 15",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-03-25",
+      "tipo": "ALTA"
+    }
+  ]
+}
