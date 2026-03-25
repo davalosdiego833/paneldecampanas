@@ -617,9 +617,9 @@ app.get('/api/admin/summary', (req, res) => {
                             EnMeta: String(r[12] || '').toLowerCase() === 'p'
                         }));
                     } else if (c === 'fanfest') {
-                        const ws = wb.Sheets[wb.SheetNames[0]];
+                        const ws = wb.Sheets['ASESORES'] || wb.Sheets[wb.SheetNames[0]];
                         const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
-                        result.fanfest = data.slice(1).filter(r => String(r[4] || '') === '2043').map(r => ({
+                        result.fanfest = data.slice(2).filter(r => String(r[4] || '') === '2043').map(r => ({
                             Asesor: resolveName(r[6]),
                             Clave: r[6] || '',
                             Total_Polizas: Number(r[13] || 0),
@@ -631,9 +631,9 @@ app.get('/api/admin/summary', (req, res) => {
                             Premio: String(r[14] || '').toLowerCase() === 'p' ? "GANADO 🏆" : "PENDIENTE ⏳"
                         }));
                     } else if (c === 'vive_tu_pasion') {
-                        const ws = wb.Sheets[wb.SheetNames[0]];
+                        const ws = wb.Sheets['ASESORES'] || wb.Sheets[wb.SheetNames[0]];
                         const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
-                        result.vive_tu_pasion = data.slice(1).filter(r => String(r[4] || '') === '2043').map(r => ({
+                        result.vive_tu_pasion = data.slice(2).filter(r => String(r[4] || '') === '2043').map(r => ({
                             Asesor: resolveName(r[6]),
                             Clave: r[6] || '',
                             Polizas: Number(r[8] || 0),
@@ -733,13 +733,13 @@ app.post('/api/admin/snapshot', async (req, res) => {
                 } else if (c === 'fanfest') {
                     const ws = wb.Sheets['ASESORES'] || wb.Sheets[wb.SheetNames[0]];
                     const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
-                    result.fanfest = data.slice(1).filter(r => String(r[4] || '') === '2043').map(r => ({
+                    result.fanfest = data.slice(2).filter(r => String(r[4] || '') === '2043').map(r => ({
                         Asesor: resolveName(r[6]), Clave: r[6] || '', Total_Polizas: Number(r[13] || 0), Enero: Number(r[8] || 0), Febrero: Number(r[9] || 0), Marzo: Number(r[10] || 0), Abril: Number(r[11] || 0), Condicion: String(r[12] || '').toLowerCase() === 'p', Premio: String(r[14] || '').toLowerCase() === 'p' ? "GANADO 🏆" : "PENDIENTE ⏳"
                     }));
                 } else if (c === 'vive_tu_pasion') {
                     const ws = wb.Sheets['ASESORES'] || wb.Sheets[wb.SheetNames[0]];
                     const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
-                    result.vive_tu_pasion = data.slice(1).filter(r => String(r[4] || '') === '2043').map(r => ({
+                    result.vive_tu_pasion = data.slice(2).filter(r => String(r[4] || '') === '2043').map(r => ({
                         Asesor: resolveName(r[6]), Clave: r[6] || '', Polizas: Number(r[8] || 0), Comisiones: Number(r[9] || 0), Premio: r[10] || ""
                     }));
                 }
