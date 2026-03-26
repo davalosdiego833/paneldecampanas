@@ -7,6 +7,5 @@ node_modules
 *.log
 ~$*
 
-# Database files (generated on server)
-db/actividad.json
+# Database files (generated on server — snapshot resets on push)
 db/resumen_snapshot.json

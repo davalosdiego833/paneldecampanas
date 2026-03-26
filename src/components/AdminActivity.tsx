@@ -113,8 +113,10 @@ const AdminActivity: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleThe
     }
     // ----------------------------------------
 
-    // Metricas basicas - Accesos (HOY)
-    const today = new Date().toISOString().split('T')[0];
+    // Use Mexico City timezone to match backend date format
+    const nowMx = new Date();
+    const mxFmt = (o: Intl.DateTimeFormatOptions) => new Intl.DateTimeFormat('es-MX', { ...o, timeZone: 'America/Mexico_City' }).format(nowMx);
+    const today = `${mxFmt({ year: 'numeric' })}-${mxFmt({ month: '2-digit' })}-${mxFmt({ day: '2-digit' })}`;
     const loginActivities = activities.filter(a => a.accion === 'Inició Sesión / Entró al Dashboard');
     const todaysLogins = loginActivities.filter(a => a.fecha === today);
     const uniqueUsersToday = new Set(todaysLogins.map(a => a.asesor)).size;
