@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, FileText, Clock, Search, Calendar, AlertTriangle, CheckCircle, XCircle, ChevronDown, TrendingUp, Users, Info, Activity } from 'lucide-react';
+import { Shield, FileText, Clock, Search, Calendar, AlertTriangle, CheckCircle, XCircle, ChevronDown, TrendingUp, Users, Info, Activity, MessageSquare, Save } from 'lucide-react';
 
 type SubTab = 'resumen' | 'historial';
 
@@ -285,8 +285,111 @@ const AdvisorTable: React.FC<{ asesores: Asesor[]; search: string; selectedDate:
     );
 };
 
+/* ========== INLINE COMMENT SECTION ========== */
+const CommentSection: React.FC<{ poliza: string; comentarios: Record<string, any>; onSave: (poliza: string, text: string) => void }> = ({ poliza, comentarios, onSave }) => {
+    const [open, setOpen] = useState(false);
+    const [text, setText] = useState(comentarios[poliza]?.comentario || '');
+    const [saving, setSaving] = useState(false);
+    const [saved, setSaved] = useState(false);
+    const hasComment = !!comentarios[poliza]?.comentario;
+
+    useEffect(() => { setText(comentarios[poliza]?.comentario || ''); }, [comentarios[poliza]]);
+
+    const handleSave = async () => {
+        setSaving(true);
+        await onSave(poliza, text);
+        setSaving(false);
+        setSaved(true);
+        setTimeout(() => setSaved(false), 2000);
+    };
+
+    return (
+        <div style={{ marginTop: '8px' }}>
+            <button onClick={() => setOpen(!open)} style={{
+                display: 'flex', alignItems: 'center', gap: '6px', background: 'none', border: 'none',
+                color: hasComment ? '#00E676' : 'var(--text-secondary)', cursor: 'pointer', fontSize: '0.72rem',
+                fontWeight: 700, padding: '4px 0', opacity: hasComment ? 1 : 0.6, transition: '0.2s'
+            }}>
+                <MessageSquare size={13} />
+                {hasComment ? '💬 Ver nota' : '💬 Agregar nota'}
+                {hasComment && <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#00E676', display: 'inline-block' }} />}
+            </button>
+            <AnimatePresence>
+                {open && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }} style={{ overflow: 'hidden' }}
+                    >
+                        <div style={{ marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                            <textarea
+                                value={text}
+                                onChange={e => setText(e.target.value)}
+                                placeholder="Escribe tu nota de seguimiento aquí..."
+                                rows={3}
+                                style={{
+                                    width: '100%', padding: '10px', background: 'rgba(255,255,255,0.05)',
+                                    border: '1px solid rgba(255,255,255,0.15)', borderRadius: '10px',
+                                    color: 'var(--text-primary)', fontSize: '0.8rem', resize: 'vertical',
+                                    outline: 'none', fontFamily: 'inherit', lineHeight: '1.5'
+                                }}
+                            />
+                            {comentarios[poliza]?.fecha_comentario && (
+                                <span style={{ fontSize: '0.65rem', opacity: 0.4, fontStyle: 'italic' }}>
+                                    Última nota: {comentarios[poliza].fecha_comentario}
+                                </span>
+                            )}
+                            <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
+                                {text && text !== (comentarios[poliza]?.comentario || '') && (
+                                    <button onClick={() => setText(comentarios[poliza]?.comentario || '')} style={{
+                                        padding: '6px 14px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)',
+                                        borderRadius: '8px', color: 'var(--text-secondary)', fontSize: '0.72rem', fontWeight: 700, cursor: 'pointer'
+                                    }}>Cancelar</button>
+                                )}
+                                <button onClick={handleSave} disabled={saving} style={{
+                                    padding: '6px 14px', background: saved ? 'rgba(0,230,118,0.2)' : 'rgba(0,122,255,0.2)',
+                                    border: `1px solid ${saved ? 'rgba(0,230,118,0.4)' : 'rgba(0,122,255,0.4)'}`,
+                                    borderRadius: '8px', color: saved ? '#00E676' : '#007AFF', fontSize: '0.72rem',
+                                    fontWeight: 800, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', transition: '0.2s'
+                                }}>
+                                    <Save size={12} />
+                                    {saving ? 'Guardando...' : saved ? '✓ Guardado' : 'Guardar'}
+                                </button>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+};
+
 /* ========== CAMBIOS VIEW COMPONENT ========== */
 const CambiosView: React.FC<{ cambios: CambiosData }> = ({ cambios }) => {
+    const [comentarios, setComentarios] = useState<Record<string, any>>({});
+
+    useEffect(() => {
+        fetch('/api/estatus-polizas/comentarios').then(r => r.json()).then(setComentarios).catch(() => { });
+    }, []);
+
+    const handleSaveComment = async (poliza: string, text: string) => {
+        try {
+            await fetch('/api/estatus-polizas/comentarios', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ poliza, comentario: text, fecha_cambio: cambios.resumen.fecha_nuevo })
+            });
+            // Update local state
+            setComentarios(prev => {
+                const next = { ...prev };
+                if (text.trim()) {
+                    next[poliza] = { comentario: text.trim(), fecha_comentario: new Date().toISOString().split('T')[0], fecha_cambio: cambios.resumen.fecha_nuevo };
+                } else {
+                    delete next[poliza];
+                }
+                return next;
+            });
+        } catch (e) { console.error('Error saving comment:', e); }
+    };
+
     // Clasificar cambios para el GPS solicitado por el usuario
     const cancelaciones = cambios.lista_cambios?.filter(c =>
         (c.estatus_anterior === 'En Vigor' || c.estatus_anterior === 'Vigor Prorrogado') &&
@@ -346,6 +449,7 @@ const CambiosView: React.FC<{ cambios: CambiosData }> = ({ cambios }) => {
                                     <div style={{ opacity: 0.8, fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
                                         <span style={{ opacity: 0.6 }}>{c.estatus_anterior}</span> ➔ <span style={{ fontWeight: 800, color: '#fff', background: 'var(--success-green)', padding: '2px 8px', borderRadius: '4px', fontSize: '0.7rem' }}>{c.estatus_nuevo}</span>
                                     </div>
+                                    <CommentSection poliza={c.poliza} comentarios={comentarios} onSave={handleSaveComment} />
                                 </div>
                             ))}
                             {recuperaciones.length === 0 && <p style={{ fontSize: '0.8rem', opacity: 0.4 }}>Sin recuperaciones.</p>}
@@ -386,6 +490,7 @@ const CambiosView: React.FC<{ cambios: CambiosData }> = ({ cambios }) => {
                                     <div style={{ opacity: 0.8, fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
                                         <span style={{ opacity: 0.6 }}>Ingresa como</span> <span style={{ fontWeight: 800, color: '#fff', background: 'var(--primary-blue)', padding: '2px 8px', borderRadius: '4px', fontSize: '0.7rem' }}>{c.estatus_nuevo}</span>
                                     </div>
+                                    <CommentSection poliza={c.poliza} comentarios={comentarios} onSave={handleSaveComment} />
                                 </div>
                             ))}
                             {altas.length === 0 && <p style={{ fontSize: '0.8rem', opacity: 0.4 }}>Sin pólizas nuevas.</p>}
@@ -426,6 +531,7 @@ const CambiosView: React.FC<{ cambios: CambiosData }> = ({ cambios }) => {
                                     <div style={{ opacity: 0.8, fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
                                         <span style={{ opacity: 0.6 }}>{c.estatus_anterior}</span> ➔ <span style={{ fontWeight: 800, color: '#fff', background: 'var(--danger-red)', padding: '2px 8px', borderRadius: '4px', fontSize: '0.7rem' }}>{c.estatus_nuevo}</span>
                                     </div>
+                                    <CommentSection poliza={c.poliza} comentarios={comentarios} onSave={handleSaveComment} />
                                 </div>
                             ))}
                             {cancelaciones.length === 0 && <p style={{ fontSize: '0.8rem', opacity: 0.4 }}>Sin cancelaciones hoy.</p>}

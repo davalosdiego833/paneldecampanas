@@ -1195,6 +1195,45 @@ app.get('/api/estatus-polizas/seguimiento', (req, res) => {
     } catch (e) { res.status(500).json({ error: 'Read error' }); }
 });
 
+// ===================== COMENTARIOS GPS DE CARTERA =====================
+const COMENTARIOS_PATH = path.join(BASE_PATH, 'db', 'comentarios_polizas.json');
+
+const readComentarios = (): Record<string, any> => {
+    try {
+        if (fs.existsSync(COMENTARIOS_PATH)) return JSON.parse(fs.readFileSync(COMENTARIOS_PATH, 'utf-8'));
+    } catch (e) { console.error('Error reading comentarios:', e); }
+    return {};
+};
+
+const writeComentarios = (data: Record<string, any>) => {
+    const dbDir = path.join(BASE_PATH, 'db');
+    if (!fs.existsSync(dbDir)) fs.mkdirSync(dbDir, { recursive: true });
+    fs.writeFileSync(COMENTARIOS_PATH, JSON.stringify(data, null, 2));
+};
+
+app.get('/api/estatus-polizas/comentarios', (req, res) => {
+    try { res.json(readComentarios()); }
+    catch (e) { res.status(500).json({ error: 'Read error' }); }
+});
+
+app.post('/api/estatus-polizas/comentarios', (req, res) => {
+    try {
+        const { poliza, comentario, fecha_cambio } = req.body;
+        if (!poliza) return res.status(400).json({ error: 'poliza is required' });
+        const now = new Date();
+        const fmt = (o: Intl.DateTimeFormatOptions) => new Intl.DateTimeFormat('es-MX', { ...o, timeZone: 'America/Mexico_City' }).format(now);
+        const fecha = `${fmt({ year: 'numeric' })}-${fmt({ month: '2-digit' })}-${fmt({ day: '2-digit' })}`;
+        const comentarios = readComentarios();
+        if (comentario && comentario.trim()) {
+            comentarios[poliza] = { comentario: comentario.trim(), fecha_comentario: fecha, fecha_cambio: fecha_cambio || '' };
+        } else {
+            delete comentarios[poliza];
+        }
+        writeComentarios(comentarios);
+        res.json({ success: true });
+    } catch (e) { console.error('Error saving comentario:', e); res.status(500).json({ error: 'Write error' }); }
+});
+
 app.use((req, res) => {
     if (req.path.startsWith('/api')) return res.status(404).json({ error: 'API not found' });
     if (path.extname(req.path)) return res.status(404).send('Not found');
