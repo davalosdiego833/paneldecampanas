@@ -7,5 +7,6 @@ node_modules
 *.log
 ~$*
 
-# Database files (generated on server — snapshot resets on push)
-db/resumen_snapshot.json
+# Database files (runtime data — persisted in ~/.panel_campanas_data/)
+db/actividad.json
+db/comentarios_polizas.json

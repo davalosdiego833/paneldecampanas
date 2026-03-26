@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import fs from 'fs';
+import os from 'os';
 import XLSX from 'xlsx';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
@@ -894,13 +895,10 @@ app.post('/api/admin/snapshot', async (req, res) => {
                 timestamp: now.getTime()
             };
 
-            let activities: any[] = [];
-            if (fs.existsSync(ACTIVITY_PATH)) {
-                try { activities = JSON.parse(fs.readFileSync(ACTIVITY_PATH, 'utf-8')); } catch (e) { }
-            }
+            let activities = dualReadArray(ACTIVITY_FILE);
             activities.unshift(event);
             if (activities.length > 5000) activities = activities.slice(0, 5000);
-            fs.writeFileSync(ACTIVITY_PATH, JSON.stringify(activities, null, 2));
+            dualWrite(ACTIVITY_FILE, activities);
         } catch (actErr) { console.error('Error logging snapshot activity:', actErr); }
         // ----------------------------------------------
 
@@ -1055,8 +1053,83 @@ app.get('/api/resumen-general', (req, res) => {
     } catch (e) { res.status(500).json({ error: 'Could not read summary data' }); }
 });
 
+// ===================== PERSISTENT DATA STORAGE =====================
+// Dual-write system: data is stored in BOTH db/ (in the repo) AND
+// ~/.panel_campanas_data/ (outside repo, survives git deploys).
+// On read, both locations are merged so data is never lost.
+
+const PERSISTENT_DIR = path.join(os.homedir(), '.panel_campanas_data');
+const LOCAL_DB_DIR = path.join(BASE_PATH, 'db');
+
+// Ensure both directories exist
+[PERSISTENT_DIR, LOCAL_DB_DIR].forEach(dir => {
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+});
+
+console.log(`[STORAGE] Local DB: ${LOCAL_DB_DIR}`);
+console.log(`[STORAGE] Persistent backup: ${PERSISTENT_DIR}`);
+
+// --- Generic helpers for dual-read/write ---
+const readJsonFile = (filePath: string): any => {
+    try {
+        if (fs.existsSync(filePath)) {
+            const raw = fs.readFileSync(filePath, 'utf-8').trim();
+            if (raw) return JSON.parse(raw);
+        }
+    } catch (e) { console.error(`[STORAGE] Error reading ${filePath}:`, e); }
+    return null;
+};
+
+const writeJsonFile = (filePath: string, data: any) => {
+    try {
+        const dir = path.dirname(filePath);
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    } catch (e) { console.error(`[STORAGE] Error writing ${filePath}:`, e); }
+};
+
+// Merge two arrays of activity events by unique id
+const mergeActivities = (a: any[], b: any[]): any[] => {
+    const map = new Map<string, any>();
+    for (const item of [...b, ...a]) { // a takes priority over b
+        if (item && item.id) map.set(item.id, item);
+    }
+    return Array.from(map.values()).sort((x, y) => (y.timestamp || 0) - (x.timestamp || 0));
+};
+
+// Merge two comment objects (union of keys, newer takes priority)
+const mergeComentarios = (a: Record<string, any>, b: Record<string, any>): Record<string, any> => {
+    return { ...b, ...a }; // a takes priority
+};
+
+// Dual-read: merge from both locations
+const dualReadArray = (filename: string): any[] => {
+    const localPath = path.join(LOCAL_DB_DIR, filename);
+    const persistPath = path.join(PERSISTENT_DIR, filename);
+    const local = readJsonFile(localPath) || [];
+    const persist = readJsonFile(persistPath) || [];
+    return mergeActivities(Array.isArray(local) ? local : [], Array.isArray(persist) ? persist : []);
+};
+
+const dualReadObject = (filename: string): Record<string, any> => {
+    const localPath = path.join(LOCAL_DB_DIR, filename);
+    const persistPath = path.join(PERSISTENT_DIR, filename);
+    const local = readJsonFile(localPath) || {};
+    const persist = readJsonFile(persistPath) || {};
+    return mergeComentarios(
+        typeof persist === 'object' && !Array.isArray(persist) ? persist : {},
+        typeof local === 'object' && !Array.isArray(local) ? local : {}
+    );
+};
+
+// Dual-write: save to both locations
+const dualWrite = (filename: string, data: any) => {
+    writeJsonFile(path.join(LOCAL_DB_DIR, filename), data);
+    writeJsonFile(path.join(PERSISTENT_DIR, filename), data);
+};
+
 // ===================== LOG DE ACTIVIDAD =====================
-const ACTIVITY_PATH = path.join(BASE_PATH, 'db', 'actividad.json');
+const ACTIVITY_FILE = 'actividad.json';
 const SNAPSHOT_PATH = path.join(BASE_PATH, 'db', 'resumen_snapshot.json');
 
 app.post('/api/activity', (req, res) => {
@@ -1082,25 +1155,13 @@ app.post('/api/activity', (req, res) => {
             timestamp: now.getTime()
         };
 
-        let activities: any[] = [];
-        if (fs.existsSync(ACTIVITY_PATH)) {
-            try {
-                const data = fs.readFileSync(ACTIVITY_PATH, 'utf-8');
-                activities = JSON.parse(data);
-            } catch (e) { console.error('Error parsing activity json, resetting array'); }
-        }
+        let activities = dualReadArray(ACTIVITY_FILE);
+        activities.unshift(event);
 
-        activities.unshift(event); // Add to the beginning (newest first)
+        // Keep only the last 5000 events
+        if (activities.length > 5000) activities = activities.slice(0, 5000);
 
-        // Keep only the last 5000 events to prevent the file from growing infinitely
-        if (activities.length > 5000) {
-            activities = activities.slice(0, 5000);
-        }
-
-        const dbDir = path.join(BASE_PATH, 'db');
-        if (!fs.existsSync(dbDir)) fs.mkdirSync(dbDir);
-
-        fs.writeFileSync(ACTIVITY_PATH, JSON.stringify(activities, null, 2));
+        dualWrite(ACTIVITY_FILE, activities);
         res.json({ success: true });
     } catch (e) {
         console.error('Error al guardar actividad:', e);
@@ -1110,9 +1171,7 @@ app.post('/api/activity', (req, res) => {
 
 app.get('/api/activity', (req, res) => {
     try {
-        if (!fs.existsSync(ACTIVITY_PATH)) return res.json([]);
-        const data = fs.readFileSync(ACTIVITY_PATH, 'utf-8');
-        res.json(JSON.parse(data));
+        res.json(dualReadArray(ACTIVITY_FILE));
     } catch (e) {
         console.error('Error al leer actividad:', e);
         res.status(500).json({ error: 'Could not read activity' });
@@ -1122,21 +1181,15 @@ app.get('/api/activity', (req, res) => {
 app.delete('/api/activity/:id', (req, res) => {
     try {
         const { id } = req.params;
-        if (fs.existsSync(ACTIVITY_PATH)) {
-            const data = fs.readFileSync(ACTIVITY_PATH, 'utf8');
-            let activities = JSON.parse(data);
+        let activities = dualReadArray(ACTIVITY_FILE);
+        const initialLength = activities.length;
+        activities = activities.filter((a: any) => a.id !== id);
 
-            const initialLength = activities.length;
-            activities = activities.filter((a: any) => a.id !== id);
-
-            if (activities.length < initialLength) {
-                fs.writeFileSync(ACTIVITY_PATH, JSON.stringify(activities, null, 2), 'utf8');
-                return res.json({ success: true, message: 'Record deleted successfully' });
-            } else {
-                return res.status(404).json({ error: 'Record not found' });
-            }
+        if (activities.length < initialLength) {
+            dualWrite(ACTIVITY_FILE, activities);
+            return res.json({ success: true, message: 'Record deleted successfully' });
         }
-        res.status(404).json({ error: 'Activity log not found' });
+        res.status(404).json({ error: 'Record not found' });
     } catch (e) {
         console.error('Error deleting activity:', e);
         res.status(500).json({ error: 'Error modifying activity log' });
@@ -1196,23 +1249,10 @@ app.get('/api/estatus-polizas/seguimiento', (req, res) => {
 });
 
 // ===================== COMENTARIOS GPS DE CARTERA =====================
-const COMENTARIOS_PATH = path.join(BASE_PATH, 'db', 'comentarios_polizas.json');
-
-const readComentarios = (): Record<string, any> => {
-    try {
-        if (fs.existsSync(COMENTARIOS_PATH)) return JSON.parse(fs.readFileSync(COMENTARIOS_PATH, 'utf-8'));
-    } catch (e) { console.error('Error reading comentarios:', e); }
-    return {};
-};
-
-const writeComentarios = (data: Record<string, any>) => {
-    const dbDir = path.join(BASE_PATH, 'db');
-    if (!fs.existsSync(dbDir)) fs.mkdirSync(dbDir, { recursive: true });
-    fs.writeFileSync(COMENTARIOS_PATH, JSON.stringify(data, null, 2));
-};
+const COMENTARIOS_FILE = 'comentarios_polizas.json';
 
 app.get('/api/estatus-polizas/comentarios', (req, res) => {
-    try { res.json(readComentarios()); }
+    try { res.json(dualReadObject(COMENTARIOS_FILE)); }
     catch (e) { res.status(500).json({ error: 'Read error' }); }
 });
 
@@ -1223,13 +1263,13 @@ app.post('/api/estatus-polizas/comentarios', (req, res) => {
         const now = new Date();
         const fmt = (o: Intl.DateTimeFormatOptions) => new Intl.DateTimeFormat('es-MX', { ...o, timeZone: 'America/Mexico_City' }).format(now);
         const fecha = `${fmt({ year: 'numeric' })}-${fmt({ month: '2-digit' })}-${fmt({ day: '2-digit' })}`;
-        const comentarios = readComentarios();
+        const comentarios = dualReadObject(COMENTARIOS_FILE);
         if (comentario && comentario.trim()) {
             comentarios[poliza] = { comentario: comentario.trim(), fecha_comentario: fecha, fecha_cambio: fecha_cambio || '' };
         } else {
             delete comentarios[poliza];
         }
-        writeComentarios(comentarios);
+        dualWrite(COMENTARIOS_FILE, comentarios);
         res.json({ success: true });
     } catch (e) { console.error('Error saving comentario:', e); res.status(500).json({ error: 'Write error' }); }
 });
