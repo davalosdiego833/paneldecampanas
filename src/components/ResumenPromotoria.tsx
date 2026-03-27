@@ -353,15 +353,15 @@ const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string; selectedDate:
     const totalPend = (r: any) => get(r, 'Total _Prima_Pendiente');
 
     // Totals
-    const sumPolPag = data.reduce((s, r) => s + Math.max(polPag(r), 0), 0);
-    const sumRiPag = data.reduce((s, r) => s + Math.max(riPag(r), 0), 0);
-    const sumRoPag = data.reduce((s, r) => s + Math.max(roPag(r), 0), 0);
-    const sumTotalPag = data.reduce((s, r) => s + Math.max(totalPag(r), 0), 0);
+    const sumPolPag = data.reduce((s, r) => s + polPag(r), 0);
+    const sumRiPag = data.reduce((s, r) => s + riPag(r), 0);
+    const sumRoPag = data.reduce((s, r) => s + roPag(r), 0);
+    const sumTotalPag = data.reduce((s, r) => s + totalPag(r), 0);
 
-    const sumPolPend = data.reduce((s, r) => s + Math.max(polPend(r), 0), 0);
-    const sumRiPend = data.reduce((s, r) => s + Math.max(riPend(r), 0), 0);
-    const sumRoPend = data.reduce((s, r) => s + Math.max(roPend(r), 0), 0);
-    const sumTotalPend = data.reduce((s, r) => s + Math.max(totalPend(r), 0), 0);
+    const sumPolPend = data.reduce((s, r) => s + polPend(r), 0);
+    const sumRiPend = data.reduce((s, r) => s + riPend(r), 0);
+    const sumRoPend = data.reduce((s, r) => s + roPend(r), 0);
+    const sumTotalPend = data.reduce((s, r) => s + totalPend(r), 0);
 
     const asesoresConPago = data.filter(r => polPag(r) > 0 || totalPag(r) > 0).length;
     const asesoresConPendiente = data.filter(r => polPend(r) > 0 || totalPend(r) > 0).length;
