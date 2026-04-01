@@ -1,0 +1,36 @@
+{
+  "resumen": {
+    "fecha_anterior": "Ninguna",
+    "fecha_nuevo": "2026-04-01",
+    "total_anterior": 0,
+    "total_nuevo": 2954,
+    "diferencia_total": 2954,
+    "cambios_estatus_general": {
+      "En Vigor": {
+        "anterior": 0,
+        "nuevo": 1919,
+        "diferencia": 1919,
+        "emoji": "🟢"
+      },
+      "Vigor Prorrogado": {
+        "anterior": 0,
+        "nuevo": 83,
+        "diferencia": 83,
+        "emoji": "🟢"
+      },
+      "Anulada": {
+        "anterior": 0,
+        "nuevo": 920,
+        "diferencia": 920,
+        "emoji": "🟢"
+      },
+      "En Vigor sin Pago de Primas": {
+        "anterior": 0,
+        "nuevo": 32,
+        "diferencia": 32,
+        "emoji": "🟢"
+      }
+    }
+  },
+  "lista_cambios": []
+}

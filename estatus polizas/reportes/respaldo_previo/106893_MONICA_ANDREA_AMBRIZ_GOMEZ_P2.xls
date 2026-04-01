@@ -1250,12 +1250,12 @@ __VIEWSTATE" value="" />
                             </td><td align="left" style="width:25%;">
                                 <span id="GVPolList_ctl116_lblProducto">DOTAL 20 STAR 97</span>
                             </td><td align="left" style="width:20%;">
-                                <span id="GVPolList_ctl116_lblEstatus">En Vigor</span>
+                                <span id="GVPolList_ctl116_lblEstatus">Vigor Prorrogado</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl116_lblCorreoMail" name="lblCorreoMail" style="display: none;"></span>
                                 <input name="GVPolList$ctl116$email" type="text" id="GVPolList_ctl116_email" name="email" class="email" style="display: none;" />
                             </td><td>
-                                <input type="submit" name="GVPolList$ctl116$btnMailOder" value="Mail Order" id="GVPolList_ctl116_btnMailOder" class="boton" />
+                                
                             </td><td>
                                     
                                 </td><td align="left" style="width:20%;">

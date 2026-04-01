@@ -305,7 +305,7 @@ __VIEWSTATE" value="" />
                             </td><td>
                                 <input type="submit" name="GVPolList$ctl116$btnMailOder" value="Mail Order" id="GVPolList_ctl116_btnMailOder" class="boton" />
                             </td><td>
-                                    <input type="submit" name="GVPolList$ctl116$buttonRenovacion" value="Renovacion" onclick="AbrirModal(this); return false;" id="GVPolList_ctl116_buttonRenovacion" class="boton" name="buttonRenovacion" />
+                                    
                                 </td><td align="left" style="width:20%;">
                                     <input name="GVPolList$ctl116$UltimaReno" type="text" value="2026" id="GVPolList_ctl116_UltimaReno" name="UltimaReno" style="display: none;" />
                                 </td><td align="left" style="width:20%;">
