@@ -23,18 +23,32 @@ async function consolidate() {
     const hoy = new Date().toISOString().split('T')[0];
     const mesActual = hoy.substring(0, 7);
 
-    // 1. Cargar el historial (último reporte generado)
+    // 1. Cargar el historial (último reporte generado, sin importar el mes)
     const reportesMesDir = path.join(OUTPUT_DIR, mesActual);
     if (!fs.existsSync(reportesMesDir)) fs.mkdirSync(reportesMesDir, { recursive: true });
 
-    const existingReports = fs.readdirSync(reportesMesDir)
-        .filter(f => f.startsWith('reporte_') && f.endsWith('.json') && !f.includes('summary') && !f.includes(hoy))
-        .sort((a, b) => b.localeCompare(a));
+    // Buscar el reporte más reciente en todos los meses disponibles
+    let ultimoReportePath = null;
+    const carpetasMeses = fs.readdirSync(OUTPUT_DIR)
+        .filter(d => fs.statSync(path.join(OUTPUT_DIR, d)).isDirectory() && /^\d{4}-\d{2}$/.test(d))
+        .sort((a, b) => b.localeCompare(a)); // Meses más recientes primero
+
+    for (const mesFolder of carpetasMeses) {
+        const folderPath = path.join(OUTPUT_DIR, mesFolder);
+        const reportes = fs.readdirSync(folderPath)
+            .filter(f => f.startsWith('reporte_') && f.endsWith('.json') && !f.includes('summary') && !f.includes(hoy))
+            .sort((a, b) => b.localeCompare(a)); // Días más recientes primero
+            
+        if (reportes.length > 0) {
+            ultimoReportePath = path.join(folderPath, reportes[0]);
+            break; // Encontramos el reporte más reciente globalmente
+        }
+    }
 
     let historialReport = null;
-    if (existingReports.length > 0) {
-        console.log(`📜 Cargando historial desde: ${existingReports[0]}`);
-        historialReport = JSON.parse(fs.readFileSync(path.join(reportesMesDir, existingReports[0]), 'utf-8'));
+    if (ultimoReportePath) {
+        console.log(`📜 Cargando historial desde: ${ultimoReportePath}`);
+        historialReport = JSON.parse(fs.readFileSync(ultimoReportePath, 'utf-8'));
 
         // LIMPIEZA DE HISTORIAL: Purgar basura de ejecuciones previas (póliza "1", "2", etc.)
         historialReport.asesores.forEach(a => {

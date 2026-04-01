@@ -1,36 +1,296 @@
 {
   "resumen": {
-    "fecha_anterior": "Ninguna",
+    "fecha_anterior": "2026-03-26",
     "fecha_nuevo": "2026-04-01",
-    "total_anterior": 0,
-    "total_nuevo": 2954,
-    "diferencia_total": 2954,
+    "total_anterior": 2976,
+    "total_nuevo": 2990,
+    "diferencia_total": 14,
     "cambios_estatus_general": {
       "En Vigor": {
-        "anterior": 0,
-        "nuevo": 1919,
-        "diferencia": 1919,
+        "anterior": 1921,
+        "nuevo": 1930,
+        "diferencia": 9,
         "emoji": "🟢"
       },
       "Vigor Prorrogado": {
-        "anterior": 0,
-        "nuevo": 83,
-        "diferencia": 83,
+        "anterior": 82,
+        "nuevo": 84,
+        "diferencia": 2,
         "emoji": "🟢"
       },
       "Anulada": {
-        "anterior": 0,
-        "nuevo": 920,
-        "diferencia": 920,
+        "anterior": 939,
+        "nuevo": 940,
+        "diferencia": 1,
         "emoji": "🟢"
       },
       "En Vigor sin Pago de Primas": {
-        "anterior": 0,
-        "nuevo": 32,
-        "diferencia": 32,
+        "anterior": 33,
+        "nuevo": 33,
+        "diferencia": 0,
+        "emoji": "⚪"
+      },
+      "DESAPARECIDA": {
+        "anterior": 1,
+        "nuevo": 3,
+        "diferencia": 2,
         "emoji": "🟢"
       }
     }
   },
-  "lista_cambios": []
+  "lista_cambios": [
+    {
+      "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+      "clave": "47116",
+      "poliza": "VI0002982095",
+      "contratante": "MANUEL ALFREDO CASTRO ROQUE",
+      "producto": "IMAGINA SER 65",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-01",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+      "clave": "47116",
+      "poliza": "VI0002981930",
+      "contratante": "MANUEL ALFREDO CASTRO ROQUE",
+      "producto": "IMAGINA SER 65",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-01",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "DESIREE DE LA PEÑA OROZCO",
+      "clave": "80122",
+      "poliza": "VI0002980866",
+      "contratante": "MARIA LAURA VERGARA FLORES SAIFFE",
+      "producto": "VIDA MUJER",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-01",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "DESIREE DE LA PEÑA OROZCO",
+      "clave": "80122",
+      "poliza": "VI0002981069",
+      "contratante": "MARIA LAURA VERGARA FLORES SAIFFE",
+      "producto": "IMAGINA SER 65 PAGOS LIMITADOS 10",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-01",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "DESIREE DE LA PEÑA OROZCO",
+      "clave": "80122",
+      "poliza": "VI0002980683",
+      "contratante": "MAYRA ALEJANDRA FIGUEROA LOPEZ",
+      "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-01",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "GM0000746485",
+      "contratante": "ANDRES ARCE MOLINA",
+      "producto": "ALFA MEDICAL FLEX B",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-01",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002284554",
+      "contratante": "GUSTAVO RICARDO RAMIREZ SANCHEZ",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-01",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002980666",
+      "contratante": "LUIS ENRIQUE ARELLANO MOLINA",
+      "producto": "ORVI 99-20 PAGOS DOLARES",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-01",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002420231",
+      "contratante": "LUIS ENRIQUE ARENAS FLORES",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-04-01",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002441141",
+      "contratante": "MAGDALENA MONTES DE OCA MENA",
+      "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-01",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002799623",
+      "contratante": "MANUEL ARTURO ARELLANO DE LA CRUZ",
+      "producto": "TEMPORAL 5 RENOVABLE STAR NUEVO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-04-01",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002604760",
+      "contratante": "MICHAEL PERRY VILLASENOR",
+      "producto": "TEMPORAL 5 RENOVABLE STAR NUEVO",
+      "estatus_anterior": "Anulada",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-01",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002606952",
+      "contratante": "NORMA ANGELICA CAMARENA ANDRADE",
+      "producto": "VIDA MUJER",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Vigor Prorrogado",
+      "fecha": "2026-04-01",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MARIA TERESA ASENCIO LOZANO",
+      "clave": "94156",
+      "poliza": "GM0000746189",
+      "contratante": "DANIEL RIOS SANDOVAL",
+      "producto": "INTEGRO",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-01",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
+      "clave": "95148",
+      "poliza": "GM0000679404",
+      "contratante": "MARIA GORETTI GONZALEZ REYNOSO",
+      "producto": "PRACTICO",
+      "estatus_anterior": "Anulada",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-01",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "FERNANDO JAVIER DAVALOS FLORES",
+      "clave": "98797",
+      "poliza": "GM0000637219",
+      "contratante": "JORGE ALEJANDRO ZARATE CAREAGA",
+      "producto": "PLENO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-04-01",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "JULIANA RIASCOS VALENCIA",
+      "clave": "100677",
+      "poliza": "VI0002717936",
+      "contratante": "RUBEN ALEJANDRO TRUJILLO GARCIA TORAL",
+      "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "Vigor Prorrogado",
+      "fecha": "2026-04-01",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
+      "clave": "102825",
+      "poliza": "GM0000519154",
+      "contratante": "ANTONIO VENEGAS MORAN",
+      "producto": "INTEGRO",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-01",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
+      "clave": "104343",
+      "poliza": "VI0002981273",
+      "contratante": "SARAHI ELIZABETH DE LEON FIGUEROA",
+      "producto": "VIDA MUJER",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-01",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "GABRIELA CASTAÑEDA SALAZAR",
+      "clave": "105696",
+      "poliza": "VI0002981493",
+      "contratante": "JAZMIN ALEJANDRA ZAMUDIO ESPINOSA",
+      "producto": "VIDA MUJER",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-01",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
+      "clave": "112083",
+      "poliza": "VI0002981734",
+      "contratante": "MARTHA BEATRIZ MAGA�A POZOS",
+      "producto": "VIDA MUJER",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-01",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "DESIREE DE LA PEÑA OROZCO",
+      "clave": "80122",
+      "poliza": "VI0002284554",
+      "contratante": "GUSTAVO RICARDO RAMIREZ SANCHEZ",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "DESAPARECIDA (No en portal)",
+      "fecha": "2026-04-01",
+      "tipo": "BAJA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "GM0000519154",
+      "contratante": "ANTONIO VENEGAS MORAN",
+      "producto": "INTEGRO",
+      "estatus_anterior": "En Vigor",
+      "estatus_nuevo": "DESAPARECIDA (No en portal)",
+      "fecha": "2026-04-01",
+      "tipo": "BAJA"
+    }
+  ]
 }

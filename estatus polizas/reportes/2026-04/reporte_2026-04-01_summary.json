@@ -1,5 +1,18 @@
 {
   "fecha_reporte": "2026-04-01",
+  "tipo_reporte": "conteo_inicial",
+  "descripcion": "Reporte inicial de conteo de pólizas por estatus para cada asesor",
+  "resumen_general": {
+    "total_asesores": 39,
+    "total_polizas": 2990,
+    "por_estatus": {
+      "En Vigor": 1930,
+      "Vigor Prorrogado": 84,
+      "Anulada": 940,
+      "En Vigor sin Pago de Primas": 33,
+      "DESAPARECIDA": 3
+    }
+  },
   "asesores": [
     {
       "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
@@ -60,13 +73,14 @@
       }
     },
     {
-      "nombre": "DESIREE DE LA PE A OROZCO",
+      "nombre": "DESIREE DE LA PEÑA OROZCO",
       "clave": "80122",
-      "total_polizas": 379,
+      "total_polizas": 380,
       "estatus": {
         "En Vigor": 278,
         "Anulada": 96,
-        "Vigor Prorrogado": 5
+        "Vigor Prorrogado": 5,
+        "DESAPARECIDA": 1
       }
     },
     {
@@ -81,18 +95,30 @@
       }
     },
     {
+      "nombre": "ALEJANDRA IVETTE PEDROZA MACIAS",
+      "clave": "81618",
+      "total_polizas": 33,
+      "estatus": {
+        "En Vigor": 11,
+        "Anulada": 20,
+        "En Vigor sin Pago de Primas": 1,
+        "Vigor Prorrogado": 1
+      }
+    },
+    {
       "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
       "clave": "87538",
-      "total_polizas": 497,
+      "total_polizas": 498,
       "estatus": {
         "En Vigor": 314,
         "Vigor Prorrogado": 10,
         "Anulada": 170,
+        "DESAPARECIDA": 1,
         "En Vigor sin Pago de Primas": 3
       }
     },
     {
-      "nombre": "ANDREA CELESTE IBA EZ RINCON",
+      "nombre": "ANDREA CELESTE IBAÑEZ RINCON",
       "clave": "88234",
       "total_polizas": 95,
       "estatus": {
@@ -112,7 +138,7 @@
       }
     },
     {
-      "nombre": "DARINKA URE A CASILLAS",
+      "nombre": "DARINKA UREÑA CASILLAS",
       "clave": "90355",
       "total_polizas": 273,
       "estatus": {
@@ -172,7 +198,7 @@
       }
     },
     {
-      "nombre": "SAMUEL NU O RIVERA",
+      "nombre": "SAMUEL NUÑO RIVERA",
       "clave": "101640",
       "total_polizas": 54,
       "estatus": {
@@ -189,15 +215,6 @@
       }
     },
     {
-      "nombre": "MARIA FERNANDA RIOS BERNAL",
-      "clave": "103982",
-      "total_polizas": 15,
-      "estatus": {
-        "En Vigor": 6,
-        "Anulada": 9
-      }
-    },
-    {
       "nombre": "JORGE ALBERTO PRECIADO GONZALEZ",
       "clave": "104343",
       "total_polizas": 84,
@@ -207,7 +224,7 @@
       }
     },
     {
-      "nombre": "GABRIELA CASTA EDA SALAZAR",
+      "nombre": "GABRIELA CASTAÑEDA SALAZAR",
       "clave": "105696",
       "total_polizas": 54,
       "estatus": {
@@ -236,7 +253,7 @@
       }
     },
     {
-      "nombre": "ORLANDA JIMENA CERVANTES NU EZ",
+      "nombre": "ORLANDA JIMENA CERVANTES NUÑEZ",
       "clave": "107488",
       "total_polizas": 64,
       "estatus": {
@@ -247,10 +264,11 @@
     {
       "nombre": "ROCIO IVON RUIZ GARCIA",
       "clave": "108658",
-      "total_polizas": 31,
+      "total_polizas": 32,
       "estatus": {
         "Anulada": 14,
-        "En Vigor": 17
+        "En Vigor": 17,
+        "DESAPARECIDA": 1
       }
     },
     {
@@ -263,7 +281,7 @@
       }
     },
     {
-      "nombre": "EVELYN CAROLINA VENEGAS I IGUEZ",
+      "nombre": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
       "clave": "109998",
       "total_polizas": 22,
       "estatus": {
@@ -297,7 +315,7 @@
       }
     },
     {
-      "nombre": "ORLANDA JIMENA CERVANTES NU EZ",
+      "nombre": "ORLANDA JIMENA CERVANTES NUÑEZ",
       "clave": "113312",
       "total_polizas": 19,
       "estatus": {
@@ -315,6 +333,18 @@
     },
     {
       "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "116795",
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "117352",
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
       "clave": "117440",
       "total_polizas": 4,
       "estatus": {
@@ -328,16 +358,21 @@
       "estatus": {
         "En Vigor": 2
       }
+    },
+    {
+      "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "117710",
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "total_polizas": 15,
+      "estatus": {
+        "En Vigor": 6,
+        "Anulada": 9
+      }
     }
-  ],
-  "resumen_general": {
-    "total_asesores": 35,
-    "total_polizas": 2954,
-    "por_estatus": {
-      "En Vigor": 1919,
-      "Vigor Prorrogado": 83,
-      "Anulada": 920,
-      "En Vigor sin Pago de Primas": 32
-    }
-  }
+  ]
 }
