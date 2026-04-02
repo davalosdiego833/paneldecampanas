@@ -1,62 +1,17 @@
 {
-  "ultima_actualizacion": "2026-04-01",
+  "ultima_actualizacion": "2026-04-02",
   "pendientes_recuperar": [
     {
       "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-      "clave": "87538",
-      "poliza": "VI0002420231",
-      "contratante": "LUIS ENRIQUE ARENAS FLORES",
-      "producto": "ORVI 99 10 UDIS",
+      "clave": "106893",
+      "poliza": "GM0000347079",
+      "contratante": "BRAULIO GUILLERMO NU�EZ AMBRIZ",
+      "producto": "INTEGRO",
       "estatus_anterior": "En Vigor",
       "estatus_nuevo": "Anulada",
-      "fecha": "2026-04-01",
-      "tipo": "CAMBIO"
-    },
-    {
-      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-      "clave": "87538",
-      "poliza": "VI0002799623",
-      "contratante": "MANUEL ARTURO ARELLANO DE LA CRUZ",
-      "producto": "TEMPORAL 5 RENOVABLE STAR NUEVO",
-      "estatus_anterior": "En Vigor",
-      "estatus_nuevo": "Anulada",
-      "fecha": "2026-04-01",
-      "tipo": "CAMBIO"
-    },
-    {
-      "asesor": "FERNANDO JAVIER DAVALOS FLORES",
-      "clave": "98797",
-      "poliza": "GM0000637219",
-      "contratante": "JORGE ALEJANDRO ZARATE CAREAGA",
-      "producto": "PLENO",
-      "estatus_anterior": "En Vigor",
-      "estatus_nuevo": "Anulada",
-      "fecha": "2026-04-01",
+      "fecha": "2026-04-02",
       "tipo": "CAMBIO"
     }
   ],
-  "recuperadas_este_mes": [
-    {
-      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-      "clave": "87538",
-      "poliza": "VI0002604760",
-      "contratante": "MICHAEL PERRY VILLASENOR",
-      "producto": "TEMPORAL 5 RENOVABLE STAR NUEVO",
-      "estatus_anterior": "Anulada",
-      "estatus_nuevo": "En Vigor",
-      "fecha": "2026-04-01",
-      "tipo": "CAMBIO"
-    },
-    {
-      "asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
-      "clave": "95148",
-      "poliza": "GM0000679404",
-      "contratante": "MARIA GORETTI GONZALEZ REYNOSO",
-      "producto": "PRACTICO",
-      "estatus_anterior": "Anulada",
-      "estatus_nuevo": "En Vigor",
-      "fecha": "2026-04-01",
-      "tipo": "CAMBIO"
-    }
-  ]
+  "recuperadas_este_mes": []
 }

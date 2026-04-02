@@ -1,5 +1,341 @@
 [
   {
+    "id": "1775156911873",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-04-02",
+    "hora": "13:08:31",
+    "timestamp": 1775156911860
+  },
+  {
+    "id": "1775156900827",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-02",
+    "hora": "13:08:20",
+    "timestamp": 1775156900791
+  },
+  {
+    "id": "1775156508246",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-04-02",
+    "hora": "13:01:48",
+    "timestamp": 1775156508245
+  },
+  {
+    "id": "1775156506987",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-02",
+    "hora": "13:01:46",
+    "timestamp": 1775156506941
+  },
+  {
+    "id": "1775156322097",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-04-02",
+    "hora": "12:58:42",
+    "timestamp": 1775156322094
+  },
+  {
+    "id": "1775156299880",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-02",
+    "hora": "12:58:19",
+    "timestamp": 1775156299857
+  },
+  {
+    "id": "1775156256173",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-04-02",
+    "hora": "12:57:36",
+    "timestamp": 1775156256171
+  },
+  {
+    "id": "1775156254505",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-02",
+    "hora": "12:57:34",
+    "timestamp": 1775156254501
+  },
+  {
+    "id": "1775156244677",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-04-02",
+    "hora": "12:57:24",
+    "timestamp": 1775156244675
+  },
+  {
+    "id": "1775156243427",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-02",
+    "hora": "12:57:23",
+    "timestamp": 1775156243408
+  },
+  {
+    "id": "1775156181730",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-04-02",
+    "hora": "12:56:21",
+    "timestamp": 1775156181724
+  },
+  {
+    "id": "1775156169987",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-02",
+    "hora": "12:56:09",
+    "timestamp": 1775156169971
+  },
+  {
+    "id": "1775156123047",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-04-02",
+    "hora": "12:55:23",
+    "timestamp": 1775156123043
+  },
+  {
+    "id": "1775156105638",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Promotoría",
+    "fecha": "2026-04-02",
+    "hora": "12:55:05",
+    "timestamp": 1775156105635
+  },
+  {
+    "id": "1775156089955",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-02",
+    "hora": "12:54:49",
+    "timestamp": 1775156089929
+  },
+  {
+    "id": "1775155423135",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-04-02",
+    "hora": "12:43:43",
+    "timestamp": 1775155423134
+  },
+  {
+    "id": "1775155420459",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-02",
+    "hora": "12:43:40",
+    "timestamp": 1775155420402
+  },
+  {
+    "id": "1775155067659",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-04-02",
+    "hora": "12:37:47",
+    "timestamp": 1775155067657
+  },
+  {
+    "id": "1775155059366",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-02",
+    "hora": "12:37:39",
+    "timestamp": 1775155059299
+  },
+  {
+    "id": "1775154779787",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-04-02",
+    "hora": "12:32:59",
+    "timestamp": 1775154779784
+  },
+  {
+    "id": "1775154775380",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-02",
+    "hora": "12:32:55",
+    "timestamp": 1775154775365
+  },
+  {
+    "id": "1775154547778",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-04-02",
+    "hora": "12:29:07",
+    "timestamp": 1775154547710
+  },
+  {
+    "id": "1775153765900",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-04-02",
+    "hora": "12:16:05",
+    "timestamp": 1775153765897
+  },
+  {
+    "id": "1775153763104",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-02",
+    "hora": "12:16:03",
+    "timestamp": 1775153763084
+  },
+  {
+    "id": "1775153569100",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-04-02",
+    "hora": "12:12:49",
+    "timestamp": 1775153569098
+  },
+  {
+    "id": "1775153557335",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-02",
+    "hora": "12:12:37",
+    "timestamp": 1775153557194
+  },
+  {
+    "id": "1775153149136",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-04-02",
+    "hora": "12:05:49",
+    "timestamp": 1775153149130
+  },
+  {
+    "id": "1775153134895",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-02",
+    "hora": "12:05:34",
+    "timestamp": 1775153134813
+  },
+  {
+    "id": "1775150977650",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Promotoría",
+    "fecha": "2026-04-02",
+    "hora": "11:29:37",
+    "timestamp": 1775150977649
+  },
+  {
+    "id": "1775150974200",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-02",
+    "hora": "11:29:34",
+    "timestamp": 1775150974184
+  },
+  {
+    "id": "1775145443335",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Promotoría",
+    "fecha": "2026-04-02",
+    "hora": "09:57:23",
+    "timestamp": 1775145443334
+  },
+  {
+    "id": "1775145441964",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-02",
+    "hora": "09:57:21",
+    "timestamp": 1775145441962
+  },
+  {
+    "id": "1775145418958",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Promotoría",
+    "fecha": "2026-04-02",
+    "hora": "09:56:58",
+    "timestamp": 1775145418953
+  },
+  {
+    "id": "1775145416301",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-02",
+    "hora": "09:56:56",
+    "timestamp": 1775145416285
+  },
+  {
+    "id": "1775079483171",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Promotoría",
+    "fecha": "2026-04-01",
+    "hora": "15:38:03",
+    "timestamp": 1775079483170
+  },
+  {
+    "id": "1775079480907",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-01",
+    "hora": "15:38:00",
+    "timestamp": 1775079480889
+  },
+  {
+    "id": "1775077041762",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Promotoría",
+    "fecha": "2026-04-01",
+    "hora": "14:57:21",
+    "timestamp": 1775077041761
+  },
+  {
+    "id": "1775077040368",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-01",
+    "hora": "14:57:20",
+    "timestamp": 1775077040352
+  },
+  {
+    "id": "1775076937301",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Promotoría",
+    "fecha": "2026-04-01",
+    "hora": "14:55:37",
+    "timestamp": 1775076937300
+  },
+  {
+    "id": "1775076935303",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-01",
+    "hora": "14:55:35",
+    "timestamp": 1775076935288
+  },
+  {
+    "id": "1775075706114",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Promotoría",
+    "fecha": "2026-04-01",
+    "hora": "14:35:06",
+    "timestamp": 1775075706112
+  },
+  {
+    "id": "1775075704237",
+    "asesor": "Administrador",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-04-01",
+    "hora": "14:35:04",
+    "timestamp": 1775075704178
+  },
+  {
     "id": "1775064254263",
     "asesor": "⚡ SISTEMA",
     "accion": "📥 Nueva Actualización de Reportes (Push)",

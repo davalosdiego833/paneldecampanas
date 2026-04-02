@@ -1201,29 +1201,34 @@ const POLIZAS_PATH = path.join(BASE_PATH, 'estatus polizas');
 
 app.get('/api/estatus-polizas/fechas', (req, res) => {
     try {
+        const { inactivos } = req.query;
         const reportesPath = path.join(POLIZAS_PATH, 'reportes');
         if (!fs.existsSync(reportesPath)) return res.json([]);
         const fechas: string[] = [];
         fs.readdirSync(reportesPath, { withFileTypes: true }).filter(d => d.isDirectory() && /^\d{4}-\d{2}$/.test(d.name)).forEach(dir => {
-            fs.readdirSync(path.join(reportesPath, dir.name)).filter(f => f.startsWith('reporte_') && f.endsWith('.json')).forEach(f => {
-                const m = f.match(/reporte_(\d{4}-\d{2}-\d{2})\.json/);
+            fs.readdirSync(path.join(reportesPath, dir.name)).filter(f => {
+                if (!f.startsWith('reporte_') || !f.endsWith('.json') || f.includes('summary')) return false;
+                return inactivos === 'true' ? f.includes('_inactivos') : !f.includes('_inactivos');
+            }).forEach(f => {
+                const m = f.match(/reporte_(\d{4}-\d{2}-\d{2})(?:_inactivos)?\.json/);
                 if (m) fechas.push(m[1]);
             });
         });
-        res.json(fechas.sort().reverse());
+        res.json([...new Set(fechas)].sort().reverse());
     } catch (e) { res.status(500).json({ error: 'Could not list dates' }); }
 });
 
 app.get('/api/estatus-polizas/reporte/:fecha', (req, res) => {
     try {
         const { fecha } = req.params;
-        const { summary } = req.query;
+        const { summary, inactivos } = req.query;
         const suffix = summary === 'true' ? '_summary.json' : '.json';
-        const p = path.join(POLIZAS_PATH, 'reportes', fecha.substring(0, 7), `reporte_${fecha}${suffix}`);
+        const inactivoStr = inactivos === 'true' ? '_inactivos' : '';
+        const p = path.join(POLIZAS_PATH, 'reportes', fecha.substring(0, 7), `reporte_${fecha}${inactivoStr}${suffix}`);
 
         if (!fs.existsSync(p)) {
             // Fallback to full if summary doesn't exist
-            const fullP = path.join(POLIZAS_PATH, 'reportes', fecha.substring(0, 7), `reporte_${fecha}.json`);
+            const fullP = path.join(POLIZAS_PATH, 'reportes', fecha.substring(0, 7), `reporte_${fecha}${inactivoStr}.json`);
             if (!fs.existsSync(fullP)) return res.status(404).json({ error: 'Not found' });
             return res.json(JSON.parse(fs.readFileSync(fullP, 'utf-8')));
         }
@@ -1234,11 +1239,15 @@ app.get('/api/estatus-polizas/reporte/:fecha', (req, res) => {
 app.get('/api/estatus-polizas/cambios/:fecha', (req, res) => {
     try {
         const { fecha } = req.params;
-        const p = path.join(POLIZAS_PATH, 'cambios', fecha.substring(0, 7), `cambios_${fecha}.json`);
+        const { inactivos } = req.query;
+        const inactivoStr = inactivos === 'true' ? '_inactivos' : '';
+        const p = path.join(POLIZAS_PATH, 'cambios', fecha.substring(0, 7), `cambios_${fecha}${inactivoStr}.json`);
         if (!fs.existsSync(p)) return res.json(null);
         res.json(JSON.parse(fs.readFileSync(p, 'utf-8')));
     } catch (e) { res.status(500).json({ error: 'Read error' }); }
 });
+
+
 
 app.get('/api/estatus-polizas/seguimiento', (req, res) => {
     try {

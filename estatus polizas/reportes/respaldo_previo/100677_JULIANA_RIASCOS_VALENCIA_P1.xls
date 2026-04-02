@@ -585,7 +585,7 @@ __VIEWSTATE" value="" />
                             </td><td>
                                 <input type="submit" name="GVPolList$ctl92$btnMailOder" value="Mail Order" id="GVPolList_ctl92_btnMailOder" class="boton" />
                             </td><td>
-                                    <input type="submit" name="GVPolList$ctl92$buttonRenovacion" value="Renovacion" onclick="AbrirModal(this); return false;" id="GVPolList_ctl92_buttonRenovacion" class="boton" name="buttonRenovacion" />
+                                    
                                 </td><td align="left" style="width:20%;">
                                     <input name="GVPolList$ctl92$UltimaReno" type="text" value="2026" id="GVPolList_ctl92_UltimaReno" name="UltimaReno" style="display: none;" />
                                 </td><td align="left" style="width:20%;">
@@ -1481,7 +1481,7 @@ __VIEWSTATE" value="" />
                             </td><td>
                                 <input type="submit" name="GVPolList$ctl124$btnMailOder" value="Mail Order" id="GVPolList_ctl124_btnMailOder" class="boton" />
                             </td><td>
-                                    <input type="submit" name="GVPolList$ctl124$buttonRenovacion" value="Renovacion" onclick="AbrirModal(this); return false;" id="GVPolList_ctl124_buttonRenovacion" class="boton" name="buttonRenovacion" />
+                                    
                                 </td><td align="left" style="width:20%;">
                                     <input name="GVPolList$ctl124$UltimaReno" type="text" value="2026" id="GVPolList_ctl124_UltimaReno" name="UltimaReno" style="display: none;" />
                                 </td><td align="left" style="width:20%;">
@@ -1689,14 +1689,14 @@ __VIEWSTATE" value="" />
                                 </td>
 		</tr><tr class="GridRow">
 			<td align="left" style="width:15%;">
-                                <a id="GVPolList_ctl132_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl132$lnkPoliza','')">VI0002719357</a>
-                                <input name="GVPolList$ctl132$numpoliza" type="text" value="VI0002719357" id="GVPolList_ctl132_numpoliza" name="numpoliza" style="display: none;" />
+                                <a id="GVPolList_ctl132_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl132$lnkPoliza','')">VI0002597543</a>
+                                <input name="GVPolList$ctl132$numpoliza" type="text" value="VI0002597543" id="GVPolList_ctl132_numpoliza" name="numpoliza" style="display: none;" />
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl132_lblContratante">RUBEN ALEJANDRO TRUJILLO GARCIA TORAL</span>
                             </td><td align="left" style="width:20%;">
-                                <span id="GVPolList_ctl132_lblAseguradoPrincipal">ALESSANDRA TRUJILLO SANCHEZ</span>
+                                <span id="GVPolList_ctl132_lblAseguradoPrincipal">MARCELA ALHELI SANCHEZ ACEVES</span>
                             </td><td align="left" style="width:25%;">
-                                <span id="GVPolList_ctl132_lblProducto">SEGUBECA 18 UDI PRIMA CONSTANTE</span>
+                                <span id="GVPolList_ctl132_lblProducto">VIDA MUJER</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl132_lblEstatus">En Vigor</span>
                             </td><td align="left" style="width:20%;">
@@ -1717,14 +1717,14 @@ __VIEWSTATE" value="" />
                                 </td>
 		</tr><tr class="GridRow" style="background-color:AliceBlue;">
 			<td align="left" style="width:15%;">
-                                <a id="GVPolList_ctl133_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl133$lnkPoliza','')">VI0002597543</a>
-                                <input name="GVPolList$ctl133$numpoliza" type="text" value="VI0002597543" id="GVPolList_ctl133_numpoliza" name="numpoliza" style="display: none;" />
+                                <a id="GVPolList_ctl133_lnkPoliza" class="ligas" href="javascript:__doPostBack('GVPolList$ctl133$lnkPoliza','')">VI0002719357</a>
+                                <input name="GVPolList$ctl133$numpoliza" type="text" value="VI0002719357" id="GVPolList_ctl133_numpoliza" name="numpoliza" style="display: none;" />
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl133_lblContratante">RUBEN ALEJANDRO TRUJILLO GARCIA TORAL</span>
                             </td><td align="left" style="width:20%;">
-                                <span id="GVPolList_ctl133_lblAseguradoPrincipal">MARCELA ALHELI SANCHEZ ACEVES</span>
+                                <span id="GVPolList_ctl133_lblAseguradoPrincipal">ALESSANDRA TRUJILLO SANCHEZ</span>
                             </td><td align="left" style="width:25%;">
-                                <span id="GVPolList_ctl133_lblProducto">VIDA MUJER</span>
+                                <span id="GVPolList_ctl133_lblProducto">SEGUBECA 18 UDI PRIMA CONSTANTE</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl133_lblEstatus">En Vigor</span>
                             </td><td align="left" style="width:20%;">
@@ -1754,12 +1754,12 @@ __VIEWSTATE" value="" />
                             </td><td align="left" style="width:25%;">
                                 <span id="GVPolList_ctl134_lblProducto">SEGUBECA 18 UDI PRIMA CONSTANTE</span>
                             </td><td align="left" style="width:20%;">
-                                <span id="GVPolList_ctl134_lblEstatus">En Vigor</span>
+                                <span id="GVPolList_ctl134_lblEstatus">Vigor Prorrogado</span>
                             </td><td align="left" style="width:20%;">
                                 <span id="GVPolList_ctl134_lblCorreoMail" name="lblCorreoMail" style="display: none;"></span>
                                 <input name="GVPolList$ctl134$email" type="text" id="GVPolList_ctl134_email" name="email" class="email" style="display: none;" />
                             </td><td>
-                                <input type="submit" name="GVPolList$ctl134$btnMailOder" value="Mail Order" id="GVPolList_ctl134_btnMailOder" class="boton" />
+                                
                             </td><td>
                                     
                                 </td><td align="left" style="width:20%;">

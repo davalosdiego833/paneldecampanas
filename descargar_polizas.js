@@ -7,7 +7,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // -- CONFIGURACIONES --
-const DOWNLOAD_DIRECTORY = path.join(__dirname, 'estatus polizas', 'reportes');
+const isInactive = process.argv.includes('--inactivos');
+const DOWNLOAD_DIRECTORY = isInactive 
+    ? path.join(__dirname, 'estatus polizas', 'reportes', 'inactivos') 
+    : path.join(__dirname, 'estatus polizas', 'reportes');
 
 if (!fs.existsSync(DOWNLOAD_DIRECTORY)) {
     fs.mkdirSync(DOWNLOAD_DIRECTORY, { recursive: true });
@@ -49,7 +52,7 @@ async function downloadCurrentPage(page, advClave, advNombre, pageNum, botTempDi
         for (const file of files) fs.unlinkSync(path.join(botTempDir, file));
     }
 
-    const excelBtnSelector = '#ctl00_ContentPlaceHolder1_BtnImprimir';
+    const excelBtnSelector = '#ctl00_ContentPlaceHolder1_imgBtnExcel, #ctl00_ContentPlaceHolder1_BtnImprimir';
     try {
         await page.waitForSelector(excelBtnSelector, { timeout: 15000 });
         await page.click(excelBtnSelector);
@@ -125,6 +128,31 @@ async function main() {
     await page.goto('https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/PolizasProm.aspx', { waitUntil: 'domcontentloaded', timeout: 90000 }).catch(() => { });
     await delay(3000);
 
+    // NUEVO: Seleccionar Activos o Inactivos
+    if (isInactive) {
+        console.log('🔘 Cambiando a vista de asesores INACTIVOS...');
+        try {
+            await page.waitForSelector('#ctl00_ContentPlaceHolder1_rdbStatus_1', { visible: true, timeout: 30000 });
+            const wasChanged = await page.evaluate(() => {
+                const rdb = document.querySelector('#ctl00_ContentPlaceHolder1_rdbStatus_1');
+                if (rdb && !rdb.checked) { rdb.click(); return true; }
+                return false;
+            });
+            if (wasChanged) await delay(10000); // Esperar post-carga AJAX solo si hubo cambio
+            await page.waitForSelector('#ctl00_ContentPlaceHolder1_GVListAgents', { timeout: 15000 });
+        } catch(e) { console.log('⚠️ No se pudo cambiar a Inactivos'); }
+    } else {
+        try { 
+            const wasChanged = await page.evaluate(() => {
+                const rdb = document.querySelector('#ctl00_ContentPlaceHolder1_rdbStatus_0');
+                if (rdb && !rdb.checked) { rdb.click(); return true; }
+                return false;
+            });
+            if (wasChanged) await delay(4000); 
+            await page.waitForSelector('#ctl00_ContentPlaceHolder1_GVListAgents', { timeout: 15000 });
+        } catch(e) {}
+    }
+
     const asesores = await page.evaluate(() => {
         const rows = Array.from(document.querySelectorAll('#ctl00_ContentPlaceHolder1_GVListAgents tr.GridRow, #ctl00_ContentPlaceHolder1_GVListAgents tr.GridAlternatingRow'));
         return rows.map(r => {
@@ -143,6 +171,7 @@ async function main() {
     });
 
     console.log(`📋 Encontrados ${asesores.length} asesores para procesar.`);
+    fs.writeFileSync(path.join(DOWNLOAD_DIRECTORY, 'lista_asesores.json'), JSON.stringify(asesores, null, 2));
 
     for (let i = 0; i < asesores.length; i++) {
         const adv = asesores[i];
@@ -152,24 +181,42 @@ async function main() {
         const filePattern = new RegExp(`${adv.clave}_${safeName}_P1\\.xls`);
         const existingFiles = fs.readdirSync(DOWNLOAD_DIRECTORY);
         if (existingFiles.some(f => filePattern.test(f))) {
-            console.log(`\n⏭️ [${i + 1}/${asesores.length}] Saltando: ${adv.clave} - ${adv.nombre} (ya existen archivos cruzados)`);
+            console.log(`\n⏭️ [${i + 1}/${asesores.length}] Saltando: ${adv.clave} - ${adv.nombre} (ya existe)`);
             continue;
         }
 
         console.log(`\n👤 [${i + 1}/${asesores.length}] Procesando: ${adv.clave} - ${adv.nombre}`);
 
         try {
-            // DIRECT NAVIGATION! By bypassing UI clicks we avoid huge timeouts
+            // --- ESTRATEGIA ROBUSTA (Sugerida por el usuario) ---
+            // 1. Ir a la lista principal para resetear el estado y picarle a "Inactivos" cada vez
+            // Esto asegura que la sesión del portal "recuerde" que estamos trabajando con inactivos
+            await page.goto('https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/PolizasProm.aspx', { waitUntil: 'domcontentloaded', timeout: 60000 });
+            
+            if (isInactive) {
+                // Seleccionar Inactivos radio button
+                const inactiveRadio = '#ctl00_ContentPlaceHolder1_rdbStatus_1';
+                await page.waitForSelector(inactiveRadio, { timeout: 10000 });
+                await page.evaluate(() => {
+                    const rdb = document.querySelector('#ctl00_ContentPlaceHolder1_rdbStatus_1');
+                    if (rdb && !rdb.checked) rdb.click();
+                });
+                await delay(3000); // Esperar post-carga AJAX
+            }
+
+            // 2. IR AL ASESOR ESPECÍFICO
             const navUrl = `https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/PolizasAgente.aspx?vagente=${adv.clave}`;
-            console.log(`    🔗 Navegando directo a la póliza...`);
+            console.log(`    🔗 Navegando a: ${navUrl}`);
             await page.goto(navUrl, { waitUntil: 'domcontentloaded', timeout: 90000 });
 
             // Wait for grid to have data rows (excluding header)
             try {
                 await page.waitForSelector('#ctl00_ContentPlaceHolder1_GVPolList tr.GridRow, #ctl00_ContentPlaceHolder1_GVPolList tr.GridAlternatingRow', { timeout: 15000 });
             } catch (e) {
-                console.log('    ℹ️ No se detectaron pólizas en el grid (o tardó mucho). Intentando descargar de todas formas.');
+                console.log('    ℹ️ No se detectaron pólizas en el grid (o tardó mucho).');
+                // Tomar captura si sale vacío (opcional para debug)
             }
+
 
             const pageNumbers = await getAvailablePages(page);
             if (pageNumbers.length === 0) {

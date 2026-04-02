@@ -1,0 +1,30 @@
+{
+  "resumen": {
+    "fecha_anterior": "Ninguna",
+    "fecha_nuevo": "2026-04-01",
+    "total_anterior": 0,
+    "total_nuevo": 13,
+    "diferencia_total": 13,
+    "cambios_estatus_general": {
+      "Anulada": {
+        "anterior": 0,
+        "nuevo": 9,
+        "diferencia": 9,
+        "emoji": "🟢"
+      },
+      "En Vigor": {
+        "anterior": 0,
+        "nuevo": 3,
+        "diferencia": 3,
+        "emoji": "🟢"
+      },
+      "Vigor Prorrogado": {
+        "anterior": 0,
+        "nuevo": 1,
+        "diferencia": 1,
+        "emoji": "🟢"
+      }
+    }
+  },
+  "lista_cambios": []
+}

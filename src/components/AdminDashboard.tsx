@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Home, BarChart3, Users, LogOut, ChevronRight, TrendingUp, TrendingDown, Target, AlertTriangle, Trophy, Award, Star, Shield, Sun, Moon, Search, X } from 'lucide-react';
+import { Home, BarChart3, Users, LogOut, ChevronRight, TrendingUp, TrendingDown, Target, AlertTriangle, Trophy, Award, Shield, Sun, Moon, Search, X } from 'lucide-react';
 
 interface Props {
     onLogout: () => void;

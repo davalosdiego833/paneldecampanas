@@ -7,8 +7,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Directorios base
+const isInactive = process.argv.includes('--inactivos');
+const suffix = isInactive ? '_inactivos' : '';
+
 const BASE_DIR = path.join(__dirname, 'estatus polizas');
-const DOWNLOADS_DIR = path.join(BASE_DIR, 'reportes');
+const DOWNLOADS_DIR = isInactive ? path.join(BASE_DIR, 'reportes', 'inactivos') : path.join(BASE_DIR, 'reportes');
 const OUTPUT_DIR = path.join(BASE_DIR, 'reportes');
 const CAMBIOS_DIR = path.join(BASE_DIR, 'cambios');
 const SEGUIMIENTO_DIR = path.join(BASE_DIR, 'seguimiento');
@@ -36,7 +39,7 @@ async function consolidate() {
     for (const mesFolder of carpetasMeses) {
         const folderPath = path.join(OUTPUT_DIR, mesFolder);
         const reportes = fs.readdirSync(folderPath)
-            .filter(f => f.startsWith('reporte_') && f.endsWith('.json') && !f.includes('summary') && !f.includes(hoy))
+            .filter(f => f.startsWith('reporte_') && f.endsWith('.json') && !f.includes('summary') && !f.includes(hoy) && (isInactive ? f.includes('_inactivos') : !f.includes('_inactivos')))
             .sort((a, b) => b.localeCompare(a)); // Días más recientes primero
             
         if (reportes.length > 0) {
@@ -79,12 +82,24 @@ async function consolidate() {
     };
     masterReport.fecha_reporte = hoy;
 
+    // Cargar la base de datos de todos los asesores presentes en el grid (incluso si tienen 0 pólizas)
+    const listaAsesoresPath = path.join(DOWNLOADS_DIR, 'lista_asesores.json');
+    if (fs.existsSync(listaAsesoresPath)) {
+        const asesoresBase = JSON.parse(fs.readFileSync(listaAsesoresPath, 'utf-8'));
+        asesoresBase.forEach(ab => {
+            if (!masterReport.asesores.find(x => x.clave === ab.clave)) {
+                masterReport.asesores.push({ nombre: ab.nombre, clave: ab.clave, polizas: [] });
+            }
+        });
+    }
+
     // Mapa para acceso rápido
     const masterAsesoresMap = {};
     masterReport.asesores.forEach(a => {
         masterAsesoresMap[a.clave] = a;
         a._polizasMap = {};
-        if (!a.polizas) a.polizas = []; // Garantizar que exista el array
+        a._vistasHoy = new Set(); // Garantizar que sea un Set limpio hoy
+        if (!a.polizas) a.polizas = []; 
         a.polizas.forEach(p => a._polizasMap[p.poliza] = p);
     });
 
@@ -100,6 +115,7 @@ async function consolidate() {
             masterAsesoresMap[clave] = asesorObj;
             masterReport.asesores.push(asesorObj);
             asesorObj._polizasMap = {};
+            asesorObj._vistasHoy = new Set();
         }
 
         console.log(`👤 Procesando: ${asesorObj.nombre} (${clave})`);
@@ -259,16 +275,16 @@ async function consolidate() {
     // 6. Guardar todo
     const cambiosHoyDir = path.join(CAMBIOS_DIR, mesActual);
     if (!fs.existsSync(cambiosHoyDir)) fs.mkdirSync(cambiosHoyDir, { recursive: true });
-    fs.writeFileSync(path.join(cambiosHoyDir, `cambios_${hoy}.json`), JSON.stringify(resumenCambios, null, 2));
+    fs.writeFileSync(path.join(cambiosHoyDir, `cambios_${hoy}${suffix}.json`), JSON.stringify(resumenCambios, null, 2));
 
-    fs.writeFileSync(path.join(reportesMesDir, `reporte_${hoy}.json`), JSON.stringify(masterReport, null, 2));
+    fs.writeFileSync(path.join(reportesMesDir, `reporte_${hoy}${suffix}.json`), JSON.stringify(masterReport, null, 2));
 
     // Resumen ligero para el frontend
     const summaryReport = {
         ...masterReport,
         asesores: masterReport.asesores.map(a => ({ nombre: a.nombre, clave: a.clave, total_polizas: a.total_polizas, estatus: a.estatus }))
     };
-    fs.writeFileSync(path.join(reportesMesDir, `reporte_${hoy}_summary.json`), JSON.stringify(summaryReport, null, 2));
+    fs.writeFileSync(path.join(reportesMesDir, `reporte_${hoy}${suffix}_summary.json`), JSON.stringify(summaryReport, null, 2));
 
     // Seguimiento activo (Cancelaciones recientes)
     const seguimiento = {

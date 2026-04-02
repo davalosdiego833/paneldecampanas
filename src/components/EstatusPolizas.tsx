@@ -70,6 +70,7 @@ const HeroCard: React.FC<{ title: string; value: string | number; trend?: string
 /* ========== MAIN COMPONENT ========== */
 const EstatusPolizasContent: React.FC = () => {
     const [subTab, setSubTab] = useState<SubTab>('resumen');
+    const [tipoAsesor, setTipoAsesor] = useState<'activos' | 'inactivos'>('activos');
     const [fechas, setFechas] = useState<string[]>([]);
     const [selectedDate, setSelectedDate] = useState<string>('');
     const [reporte, setReporte] = useState<Reporte | null>(null);
@@ -78,27 +79,35 @@ const EstatusPolizasContent: React.FC = () => {
     const [search, setSearch] = useState('');
 
     useEffect(() => {
-        fetch('/api/estatus-polizas/fechas').then(r => r.json())
+        fetch(`/api/estatus-polizas/fechas?inactivos=${tipoAsesor === 'inactivos'}`).then(r => r.json())
             .then((dates: string[]) => {
                 setFechas(dates);
-                if (dates.length > 0) setSelectedDate(dates[0]);
+                if (dates.length > 0) {
+                    // Always default to the most recent date when switching types
+                    setSelectedDate(dates[0]);
+                } else {
+                    setSelectedDate('');
+                }
             })
             .catch(console.error);
-    }, []);
+    }, [tipoAsesor]);
+
 
     useEffect(() => {
-        if (!selectedDate) return;
+        if (!selectedDate) {
+            setReporte(null); setCambios(null); setLoading(false); return;
+        }
         setLoading(true);
         // Load SUMMARY version for speed
         Promise.all([
-            fetch(`/api/estatus-polizas/reporte/${selectedDate}?summary=true`).then(r => r.ok ? r.json() : null),
-            fetch(`/api/estatus-polizas/cambios/${selectedDate}`).then(r => r.json().catch(() => null)),
+            fetch(`/api/estatus-polizas/reporte/${selectedDate}?summary=true&inactivos=${tipoAsesor === 'inactivos'}`).then(r => r.ok ? r.json() : null),
+            fetch(`/api/estatus-polizas/cambios/${selectedDate}?inactivos=${tipoAsesor === 'inactivos'}`).then(r => r.json().catch(() => null)),
         ]).then(([rep, cam]) => {
             setReporte(rep);
             setCambios(cam);
             setLoading(false);
         }).catch(() => setLoading(false));
-    }, [selectedDate]);
+    }, [selectedDate, tipoAsesor]);
 
     const formatDate = (f: string) => {
         const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
@@ -132,7 +141,20 @@ const EstatusPolizasContent: React.FC = () => {
                     </p>
                 </div>
 
-                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', background: 'rgba(255,255,255,0.05)', padding: '4px', borderRadius: '10px', border: '1px solid var(--glass-border)' }}>
+                        {(['activos', 'inactivos'] as const).map(tab => (
+                            <button key={tab} onClick={() => setTipoAsesor(tab)} style={{
+                                padding: '8px 16px', borderRadius: '8px', border: 'none', background: tipoAsesor === tab ? (tab === 'activos' ? '#007AFF' : '#FF9500') : 'transparent',
+                                color: tipoAsesor === tab ? '#fff' : 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer', transition: '0.2s', textTransform: 'capitalize'
+                            }}>
+                                {tab}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div style={{ width: '1px', height: '30px', background: 'var(--glass-border)', margin: '0 4px' }}></div>
+
                     <div style={{ display: 'flex', background: 'rgba(255,255,255,0.05)', padding: '4px', borderRadius: '10px', border: '1px solid var(--glass-border)' }}>
                         {(['resumen', 'historial'] as SubTab[]).map(tab => (
                             <button key={tab} onClick={() => setSubTab(tab)} style={{

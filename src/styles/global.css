@@ -375,3 +375,11 @@ button {
   pointer-events: none;
   animation: pulse 4s ease-in-out infinite;
 }
+
+/* Print Styles */
+@media print {
+  @page {
+    margin: 1cm;
+    size: auto;
+  }
+}

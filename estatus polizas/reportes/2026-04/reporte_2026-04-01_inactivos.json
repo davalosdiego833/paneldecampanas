@@ -1,0 +1,284 @@
+{
+  "fecha_reporte": "2026-04-01",
+  "asesores": [
+    {
+      "nombre": "VALERIA AIDE IBAÑEZ MURGUIA",
+      "clave": "18970",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "SELINA JANET LEMUS MIRAMONTES",
+      "clave": "21615",
+      "polizas": [
+        {
+          "poliza": "VI0002618421",
+          "contratante": "CARLOS PANTOJA MARISCAL",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002638461",
+          "contratante": "DIEGO ORLANDO NU�O RIVERA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002613699",
+          "contratante": "LIZA RODRIGUEZ VILLARREAL",
+          "producto": "ORVI 99-20 PAGOS UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000523839",
+          "contratante": "SONIA BERENICE GALLARDO MARTINEZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        }
+      ],
+      "_vistasHoy": {},
+      "total_polizas": 4,
+      "estatus": {
+        "Anulada": 4
+      }
+    },
+    {
+      "nombre": "ANGELICA NAHOMI ESTRADA OCHOA",
+      "clave": "25373",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "BEATRIZ ADRIANA GARCIA GOMEZ",
+      "clave": "35842",
+      "polizas": [
+        {
+          "poliza": "VI0002623550",
+          "contratante": "AARON LISANDRO SOTO GARCIA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002623898",
+          "contratante": "AMAIRANI GOMEZ HERNANDEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002630695",
+          "contratante": "BEATRIZ ADRIANA GARCIA GOMEZ",
+          "producto": "VIDA MUJER",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000550840",
+          "contratante": "BEATRIZ ADRIANA GARCIA GOMEZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002638182",
+          "contratante": "EDGAR MORENO GONZALEZ BAEZ",
+          "producto": "DOTAL 15 STAR 95",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002619572",
+          "contratante": "JEANETTE MARTINEZ CASTRO",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Vigor Prorrogado"
+        },
+        {
+          "poliza": "GM0000538880",
+          "contratante": "KATTIA SOFIA MEZA LECUONA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000550755",
+          "contratante": "MARCO ANTONIO PACHECO HERNANDEZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002642525",
+          "contratante": "SALVADOR LEGASPI SANCHEZ",
+          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "estatus": "En Vigor"
+        }
+      ],
+      "_vistasHoy": {},
+      "total_polizas": 9,
+      "estatus": {
+        "Anulada": 5,
+        "En Vigor": 3,
+        "Vigor Prorrogado": 1
+      }
+    },
+    {
+      "nombre": "MIRIAM MONSERRAT ZARAGOZA MEJIA",
+      "clave": "53295",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "LORENIA MARTINEZ MALO",
+      "clave": "80822",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "MARCO ANTONIO NEGRETE GONZALEZ",
+      "clave": "80830",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "LUIS EDUARDO MONJE VALADEZ",
+      "clave": "81303",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "ALEJANDRA IVETTE PEDROZA MACIAS",
+      "clave": "81618",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "ALEJANDRA GONZALEZ HERNANDEZ",
+      "clave": "81709",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "FIDEL ALEJANDRO AGUILAR AGUILAR",
+      "clave": "82736",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "SEGUROS MONTERREY NEW YORK LIFE SA DE CV",
+      "clave": "83407",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "JOAQUIN CHAVEZ SERENO",
+      "clave": "88060",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "SARA MARIA ROJAS ARREGUIN",
+      "clave": "88441",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "MONICA ALEJANDRA MENDEZ LOMELI",
+      "clave": "90582",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "LAURA SARAI DE LA TORRE LEON",
+      "clave": "93894",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "ALEJANDRA HAGELSIEB CARBOT",
+      "clave": "95310",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "ENRIQUE MOISES ENCISO RODRIGUEZ",
+      "clave": "97541",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "MIGUEL ALEJANDRO NUÑEZ GONZALEZ",
+      "clave": "98674",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "WENDY SUSANA SANCHEZ VAZQUEZ",
+      "clave": "100323",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "KATIA LIZETH LOPEZ BOCANEGRA",
+      "clave": "102700",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "ANTONIO ALEJANDRO CASTILLO MONTERO",
+      "clave": "102775",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "DANIEL SALVADOR DE ALBA ACEVES",
+      "clave": "103092",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "GUADALUPE SARAHI FIGUEROA GONZALEZ",
+      "clave": "104500",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "LUIS FERNANDO HERNANDEZ AYALA",
+      "clave": "110740",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "116795",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    }
+  ],
+  "resumen_general": {
+    "total_asesores": 26,
+    "total_polizas": 13,
+    "por_estatus": {
+      "Anulada": 9,
+      "En Vigor": 3,
+      "Vigor Prorrogado": 1
+    }
+  }
+}
