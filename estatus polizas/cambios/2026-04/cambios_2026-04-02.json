@@ -8,8 +8,8 @@
     "cambios_estatus_general": {
       "En Vigor": {
         "anterior": 1930,
-        "nuevo": 1928,
-        "diferencia": -2,
+        "nuevo": 1929,
+        "diferencia": -1,
         "emoji": "🔴"
       },
       "Vigor Prorrogado": {
@@ -32,9 +32,9 @@
       },
       "DESAPARECIDA": {
         "anterior": 3,
-        "nuevo": 4,
-        "diferencia": 1,
-        "emoji": "🟢"
+        "nuevo": 3,
+        "diferencia": 0,
+        "emoji": "⚪"
       }
     }
   },
@@ -43,23 +43,12 @@
       "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
       "clave": "106893",
       "poliza": "GM0000347079",
-      "contratante": "BRAULIO GUILLERMO NU�EZ AMBRIZ",
+      "contratante": "BRAULIO GUILLERMO NUÑEZ AMBRIZ",
       "producto": "INTEGRO",
       "estatus_anterior": "En Vigor",
       "estatus_nuevo": "Anulada",
       "fecha": "2026-04-02",
       "tipo": "CAMBIO"
-    },
-    {
-      "asesor": "DESIREE DE LA PEÑA OROZCO",
-      "clave": "80122",
-      "poliza": "VI0002246487",
-      "contratante": "DESIREE DE LA PE�A OROZCO",
-      "producto": "ORVI 99 10 UDIS",
-      "estatus_anterior": "En Vigor",
-      "estatus_nuevo": "DESAPARECIDA (No en portal)",
-      "fecha": "2026-04-02",
-      "tipo": "BAJA"
     }
   ]
 }

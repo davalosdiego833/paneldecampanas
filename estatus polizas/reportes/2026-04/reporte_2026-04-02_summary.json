@@ -6,11 +6,11 @@
     "total_asesores": 40,
     "total_polizas": 2990,
     "por_estatus": {
-      "En Vigor": 1928,
+      "En Vigor": 1929,
       "Vigor Prorrogado": 84,
       "Anulada": 941,
       "En Vigor sin Pago de Primas": 33,
-      "DESAPARECIDA": 4
+      "DESAPARECIDA": 3
     }
   },
   "asesores": [
@@ -77,10 +77,10 @@
       "clave": "80122",
       "total_polizas": 380,
       "estatus": {
-        "En Vigor": 277,
+        "En Vigor": 278,
         "Anulada": 96,
         "Vigor Prorrogado": 5,
-        "DESAPARECIDA": 2
+        "DESAPARECIDA": 1
       }
     },
     {

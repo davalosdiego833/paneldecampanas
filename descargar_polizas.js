@@ -46,43 +46,41 @@ async function getAvailablePages(page) {
 async function downloadCurrentPage(page, advClave, advNombre, pageNum, botTempDir) {
     console.log(`    📥 Descargando Página ${pageNum}...`);
 
-    // Limpiar temp
-    if (fs.existsSync(botTempDir)) {
-        const files = fs.readdirSync(botTempDir);
-        for (const file of files) fs.unlinkSync(path.join(botTempDir, file));
-    }
+    console.log(`    📥 Extrayendo Página ${pageNum}...`);
 
-    const excelBtnSelector = '#ctl00_ContentPlaceHolder1_imgBtnExcel, #ctl00_ContentPlaceHolder1_BtnImprimir';
     try {
-        await page.waitForSelector(excelBtnSelector, { timeout: 15000 });
-        await page.click(excelBtnSelector);
+        await page.waitForSelector('#ctl00_ContentPlaceHolder1_GVPolList', { timeout: 15000 });
+        const rawHtml = await page.$eval('#ctl00_ContentPlaceHolder1_GVPolList', table => {
+            let html = '<table border="1">';
+            html += '<tr><th>No. Póliza</th><th>Contratante</th><th>Asegurado Principal</th><th>Producto</th><th>Estatus</th><th>E6</th><th>E7</th><th>E8</th><th>E9</th><th>E10</th><th>E11</th><th>E12</th></tr>';
+            for(let row of table.rows) {
+                // Ignore completely empty rows or the pager row
+                if (!row.textContent || !row.textContent.trim()) continue;
+                if (row.textContent.includes('1') && row.textContent.includes('2') && row.cells.length === 1) continue;
+                
+                html += '<tr>';
+                for(let cell of row.cells) {
+                    html += '<td>' + (cell.textContent || '').trim() + '</td>';
+                }
+                html += '</tr>';
+            }
+            html += '</table>';
+            return html;
+        });
+        // Add meta charset to preserve UTF-8 like Ñ
+        const htmlContent = '<html><meta charset="utf-8"><body>' + rawHtml + '</body></html>';
+        
+        const safeName = advNombre.replace(/[^a-zA-Z0-9]/g, '_');
+        const newFileName = `${advClave}_${safeName}_P${pageNum}.xls`;
+        const newPath = path.join(DOWNLOAD_DIRECTORY, newFileName);
+        
+        fs.writeFileSync(newPath, htmlContent);
+        console.log(`    ✅ Guardado (Extracción DOM): ${newFileName}`);
+        return true;
     } catch (e) {
-        console.log(`    ⚠️ No se encontró botón Excel en pág ${pageNum}. Puede que no haya pólizas.`);
+        console.log(`    ⚠️ No se encontró la tabla de pólizas en pág ${pageNum}. Puede que no haya pólizas.`);
         return false;
     }
-
-    let downloadedFileName = null;
-    for (let checks = 0; checks < 60; checks++) { // 30 seg
-        await delay(500);
-        const files = fs.readdirSync(botTempDir);
-        if (files.length > 0 && !files.find(f => f.endsWith('.crdownload'))) {
-            downloadedFileName = files[0];
-            break;
-        }
-    }
-
-    if (!downloadedFileName) {
-        console.log(`    ⚠️ Tiempo agotado para descarga.`);
-        return false;
-    }
-
-    const safeName = advNombre.replace(/[^a-zA-Z0-9]/g, '_');
-    const newFileName = `${advClave}_${safeName}_P${pageNum}.xls`;
-    const oldPath = path.join(botTempDir, downloadedFileName);
-    const newPath = path.join(DOWNLOAD_DIRECTORY, newFileName);
-    fs.renameSync(oldPath, newPath);
-    console.log(`    ✅ Guardado: ${newFileName}`);
-    return true;
 }
 
 async function main() {
