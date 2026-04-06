@@ -231,19 +231,19 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '0.95rem', color: 'var(--text-secondary)' }}>
                     <li>
                         <span style={{ marginRight: '10px' }}>🌟</span>
-                        <strong style={{ color: 'var(--text-primary)' }}>MDRT DAY — ¡Evento Extraordinario!</strong>
+                        <strong style={{ color: 'var(--text-primary)' }}>MDRT DAY — ¡Alcanza la Gloria Mundial!</strong>
                         <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
-                            Prepárate para vivir la excelencia en CDMX. Un día dedicado a elevar tus estándares con lo mejor de la mesa del millón. 
-                            <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}> Cierre en junio</span>. ¡Vive este evento único y transforma tu carrera! 
+                            El MDRT DAY es tu pasaporte a la élite internacional de asesores. Tu lugar en la Mesa del Millón te espera este junio en CDMX. 
+                            <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}> Cierre en junio</span>. ¡Transforma hoy tu carrera y trasciende fronteras! 
                             Chequen las bases completas en el grupo de campañas.
                         </div>
                     </li>
                     <li>
                         <span style={{ marginRight: '10px' }}>🚀</span>
-                        <strong style={{ color: 'var(--text-primary)' }}>Convenciones al Doble (Solo Abril)</strong>
+                        <strong style={{ color: 'var(--text-primary)' }}>Convenciones al Doble — ¡Acelera tu Vuelo al Éxito!</strong>
                         <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
-                            ¡Acelera tu camino al éxito! Durante todo el mes de abril, tus créditos cuentan <span style={{ color: '#FF6B6B', fontWeight: 700 }}>X2 para Convenciones</span>. 
-                            Es el momento de dar el salto definitivo en el ranking.
+                            ¡Aprovecha el impulso de abril! Durante todo el mes, tus créditos valen <span style={{ color: '#FF6B6B', fontWeight: 700 }}>X2 para Convenciones</span>. 
+                            Es tu momento de brillar y escalar posiciones en el ranking. ¡Haz que cada esfuerzo cuente el doble!
                         </div>
                     </li>
                     <li>
