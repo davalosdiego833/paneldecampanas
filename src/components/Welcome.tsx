@@ -230,6 +230,23 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                 </h4>
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '0.95rem', color: 'var(--text-secondary)' }}>
                     <li>
+                        <span style={{ marginRight: '10px' }}>🌟</span>
+                        <strong style={{ color: 'var(--text-primary)' }}>MDRT DAY — ¡Evento Extraordinario!</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
+                            Prepárate para vivir la excelencia en CDMX. Un día dedicado a elevar tus estándares con lo mejor de la mesa del millón. 
+                            <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}> Cierre en junio</span>. ¡Vive este evento único y transforma tu carrera! 
+                            Chequen las bases completas en el grupo de campañas.
+                        </div>
+                    </li>
+                    <li>
+                        <span style={{ marginRight: '10px' }}>🚀</span>
+                        <strong style={{ color: 'var(--text-primary)' }}>Convenciones al Doble (Solo Abril)</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
+                            ¡Acelera tu camino al éxito! Durante todo el mes de abril, tus créditos cuentan <span style={{ color: '#FF6B6B', fontWeight: 700 }}>X2 para Convenciones</span>. 
+                            Es el momento de dar el salto definitivo en el ranking.
+                        </div>
+                    </li>
+                    <li>
                         <span style={{ marginRight: '10px' }}>⚽</span>
                         <strong style={{ color: 'var(--text-primary)' }}>Campaña Fan Fest (Ene - Abr)</strong>
                         <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>¡Vive la pasión del Mundial! Vende <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>6 pólizas</span> y gana un **Pase al Evento** y un **Jersey Exclusivo de SMNYL**.</div>
@@ -241,28 +258,18 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                     </li>
                     <li>
                         <span style={{ marginRight: '10px' }}>🛡️</span>
-                        <strong style={{ color: 'var(--text-primary)' }}>Legión Centurión — ¡Objetivo Marzo!</strong>
-                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>La meta para este mes es de <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>12 pólizas acumuladas</span>. ¿Ya sabes cuánto te falta para blindar tu lugar? ¡No bajes la guardia!</div>
+                        <strong style={{ color: 'var(--text-primary)' }}>Legión Centurión — ¡Objetivo Abril!</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>La meta para este mes es de <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>16 pólizas acumuladas</span>. Mantén el ritmo y asegura tu lugar en la élite de la promotoría.</div>
                     </li>
                     <li>
                         <span style={{ marginRight: '10px' }}>📅</span>
-                        <strong style={{ color: 'var(--text-primary)' }}>Gran Junta del Mes: Lunes 9 de Marzo</strong>
-                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>Nuestra cita obligada para arrancar con toda la energía. Nuevas estrategias, reconocimientos y visión de equipo. ¡No te la puedes perder!</div>
-                    </li>
-                    <li>
-                        <span style={{ marginRight: '10px' }}>🚢</span>
-                        <strong style={{ color: 'var(--text-primary)' }}>¡Cierre del Primer Trimestre!</strong>
-                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>Estamos cerrando el primer cuarto del año y <span style={{ color: '#FF6B6B', fontWeight: 700 }}>Convenciones está por cerrar</span>. No dejes que el barco se vaya sin ti; cada cierre cuenta hoy más que nunca.</div>
+                        <strong style={{ color: 'var(--text-primary)' }}>Junta Mensual: Lunes 13 de Abril</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>Nuestra reunión estratégica del mes. Análisis de resultados, reconocimientos y plan de vuelo para el segundo trimestre. ¡Te esperamos!</div>
                     </li>
                     <li>
                         <span style={{ marginRight: '10px' }}>💳</span>
-                        <strong style={{ color: 'var(--text-primary)' }}>Meses Sin Intereses (Ene - Mar)</strong>
-                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>Aprovecha el impulso de los MSI para nuevos negocios y renovaciones. Es la herramienta clave para facilitar el pago a tus clientes.</div>
-                    </li>
-                    <li>
-                        <span style={{ marginRight: '10px' }}>🏆</span>
-                        <strong style={{ color: 'var(--text-primary)' }}>Meta MDRT 2026</strong>
-                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>Sigue enfocado en la excelencia con la meta de $1,810,400 PA. ¡Tú tienes el talento para estar en la Mesa del Millón!</div>
+                        <strong style={{ color: 'var(--text-primary)' }}>Meses Sin Intereses (Abr - Jun)</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>Aprovecha el impulso de los MSI para nuevos negocios y renovaciones. Es la herramienta clave para facilitar el pago a tus clientes durante este periodo.</div>
                     </li>
                 </ul>
             </div>
