@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import fs from 'fs';
+import os from 'os';
 import XLSX from 'xlsx';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
@@ -926,17 +927,11 @@ app.post('/api/admin/snapshot', async (req, res) => {
                 hora: `${mxHour.padStart(2, '0')}:${mxMinute.padStart(2, '0')}:${mxSecond.padStart(2, '0')}`,
                 timestamp: now.getTime()
             };
-            let activities = [];
-            if (fs.existsSync(ACTIVITY_PATH)) {
-                try {
-                    activities = JSON.parse(fs.readFileSync(ACTIVITY_PATH, 'utf-8'));
-                }
-                catch (e) { }
-            }
+            let activities = dualReadArray(ACTIVITY_FILE);
             activities.unshift(event);
             if (activities.length > 5000)
                 activities = activities.slice(0, 5000);
-            fs.writeFileSync(ACTIVITY_PATH, JSON.stringify(activities, null, 2));
+            dualWrite(ACTIVITY_FILE, activities);
         }
         catch (actErr) {
             console.error('Error logging snapshot activity:', actErr);
@@ -1096,8 +1091,79 @@ app.get('/api/resumen-general', (req, res) => {
         res.status(500).json({ error: 'Could not read summary data' });
     }
 });
+// ===================== PERSISTENT DATA STORAGE =====================
+// Dual-write system: data is stored in BOTH db/ (in the repo) AND
+// ~/.panel_campanas_data/ (outside repo, survives git deploys).
+// On read, both locations are merged so data is never lost.
+const PERSISTENT_DIR = path.join(os.homedir(), '.panel_campanas_data');
+const LOCAL_DB_DIR = path.join(BASE_PATH, 'db');
+// Ensure both directories exist
+[PERSISTENT_DIR, LOCAL_DB_DIR].forEach(dir => {
+    if (!fs.existsSync(dir))
+        fs.mkdirSync(dir, { recursive: true });
+});
+console.log(`[STORAGE] Local DB: ${LOCAL_DB_DIR}`);
+console.log(`[STORAGE] Persistent backup: ${PERSISTENT_DIR}`);
+// --- Generic helpers for dual-read/write ---
+const readJsonFile = (filePath) => {
+    try {
+        if (fs.existsSync(filePath)) {
+            const raw = fs.readFileSync(filePath, 'utf-8').trim();
+            if (raw)
+                return JSON.parse(raw);
+        }
+    }
+    catch (e) {
+        console.error(`[STORAGE] Error reading ${filePath}:`, e);
+    }
+    return null;
+};
+const writeJsonFile = (filePath, data) => {
+    try {
+        const dir = path.dirname(filePath);
+        if (!fs.existsSync(dir))
+            fs.mkdirSync(dir, { recursive: true });
+        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    }
+    catch (e) {
+        console.error(`[STORAGE] Error writing ${filePath}:`, e);
+    }
+};
+// Merge two arrays of activity events by unique id
+const mergeActivities = (a, b) => {
+    const map = new Map();
+    for (const item of [...b, ...a]) { // a takes priority over b
+        if (item && item.id)
+            map.set(item.id, item);
+    }
+    return Array.from(map.values()).sort((x, y) => (y.timestamp || 0) - (x.timestamp || 0));
+};
+// Merge two comment objects (union of keys, newer takes priority)
+const mergeComentarios = (a, b) => {
+    return { ...b, ...a }; // a takes priority
+};
+// Dual-read: merge from both locations
+const dualReadArray = (filename) => {
+    const localPath = path.join(LOCAL_DB_DIR, filename);
+    const persistPath = path.join(PERSISTENT_DIR, filename);
+    const local = readJsonFile(localPath) || [];
+    const persist = readJsonFile(persistPath) || [];
+    return mergeActivities(Array.isArray(local) ? local : [], Array.isArray(persist) ? persist : []);
+};
+const dualReadObject = (filename) => {
+    const localPath = path.join(LOCAL_DB_DIR, filename);
+    const persistPath = path.join(PERSISTENT_DIR, filename);
+    const local = readJsonFile(localPath) || {};
+    const persist = readJsonFile(persistPath) || {};
+    return mergeComentarios(typeof persist === 'object' && !Array.isArray(persist) ? persist : {}, typeof local === 'object' && !Array.isArray(local) ? local : {});
+};
+// Dual-write: save to both locations
+const dualWrite = (filename, data) => {
+    writeJsonFile(path.join(LOCAL_DB_DIR, filename), data);
+    writeJsonFile(path.join(PERSISTENT_DIR, filename), data);
+};
 // ===================== LOG DE ACTIVIDAD =====================
-const ACTIVITY_PATH = path.join(BASE_PATH, 'db', 'actividad.json');
+const ACTIVITY_FILE = 'actividad.json';
 const SNAPSHOT_PATH = path.join(BASE_PATH, 'db', 'resumen_snapshot.json');
 app.post('/api/activity', (req, res) => {
     try {
@@ -1120,25 +1186,12 @@ app.post('/api/activity', (req, res) => {
             hora: `${mxHour.padStart(2, '0')}:${mxMinute.padStart(2, '0')}:${mxSecond.padStart(2, '0')}`,
             timestamp: now.getTime()
         };
-        let activities = [];
-        if (fs.existsSync(ACTIVITY_PATH)) {
-            try {
-                const data = fs.readFileSync(ACTIVITY_PATH, 'utf-8');
-                activities = JSON.parse(data);
-            }
-            catch (e) {
-                console.error('Error parsing activity json, resetting array');
-            }
-        }
-        activities.unshift(event); // Add to the beginning (newest first)
-        // Keep only the last 5000 events to prevent the file from growing infinitely
-        if (activities.length > 5000) {
+        let activities = dualReadArray(ACTIVITY_FILE);
+        activities.unshift(event);
+        // Keep only the last 5000 events
+        if (activities.length > 5000)
             activities = activities.slice(0, 5000);
-        }
-        const dbDir = path.join(BASE_PATH, 'db');
-        if (!fs.existsSync(dbDir))
-            fs.mkdirSync(dbDir);
-        fs.writeFileSync(ACTIVITY_PATH, JSON.stringify(activities, null, 2));
+        dualWrite(ACTIVITY_FILE, activities);
         res.json({ success: true });
     }
     catch (e) {
@@ -1148,10 +1201,7 @@ app.post('/api/activity', (req, res) => {
 });
 app.get('/api/activity', (req, res) => {
     try {
-        if (!fs.existsSync(ACTIVITY_PATH))
-            return res.json([]);
-        const data = fs.readFileSync(ACTIVITY_PATH, 'utf-8');
-        res.json(JSON.parse(data));
+        res.json(dualReadArray(ACTIVITY_FILE));
     }
     catch (e) {
         console.error('Error al leer actividad:', e);
@@ -1161,20 +1211,14 @@ app.get('/api/activity', (req, res) => {
 app.delete('/api/activity/:id', (req, res) => {
     try {
         const { id } = req.params;
-        if (fs.existsSync(ACTIVITY_PATH)) {
-            const data = fs.readFileSync(ACTIVITY_PATH, 'utf8');
-            let activities = JSON.parse(data);
-            const initialLength = activities.length;
-            activities = activities.filter((a) => a.id !== id);
-            if (activities.length < initialLength) {
-                fs.writeFileSync(ACTIVITY_PATH, JSON.stringify(activities, null, 2), 'utf8');
-                return res.json({ success: true, message: 'Record deleted successfully' });
-            }
-            else {
-                return res.status(404).json({ error: 'Record not found' });
-            }
+        let activities = dualReadArray(ACTIVITY_FILE);
+        const initialLength = activities.length;
+        activities = activities.filter((a) => a.id !== id);
+        if (activities.length < initialLength) {
+            dualWrite(ACTIVITY_FILE, activities);
+            return res.json({ success: true, message: 'Record deleted successfully' });
         }
-        res.status(404).json({ error: 'Activity log not found' });
+        res.status(404).json({ error: 'Record not found' });
     }
     catch (e) {
         console.error('Error deleting activity:', e);
@@ -1185,18 +1229,23 @@ app.delete('/api/activity/:id', (req, res) => {
 const POLIZAS_PATH = path.join(BASE_PATH, 'estatus polizas');
 app.get('/api/estatus-polizas/fechas', (req, res) => {
     try {
+        const { inactivos } = req.query;
         const reportesPath = path.join(POLIZAS_PATH, 'reportes');
         if (!fs.existsSync(reportesPath))
             return res.json([]);
         const fechas = [];
         fs.readdirSync(reportesPath, { withFileTypes: true }).filter(d => d.isDirectory() && /^\d{4}-\d{2}$/.test(d.name)).forEach(dir => {
-            fs.readdirSync(path.join(reportesPath, dir.name)).filter(f => f.startsWith('reporte_') && f.endsWith('.json')).forEach(f => {
-                const m = f.match(/reporte_(\d{4}-\d{2}-\d{2})\.json/);
+            fs.readdirSync(path.join(reportesPath, dir.name)).filter(f => {
+                if (!f.startsWith('reporte_') || !f.endsWith('.json') || f.includes('summary'))
+                    return false;
+                return inactivos === 'true' ? f.includes('_inactivos') : !f.includes('_inactivos');
+            }).forEach(f => {
+                const m = f.match(/reporte_(\d{4}-\d{2}-\d{2})(?:_inactivos)?\.json/);
                 if (m)
                     fechas.push(m[1]);
             });
         });
-        res.json(fechas.sort().reverse());
+        res.json([...new Set(fechas)].sort().reverse());
     }
     catch (e) {
         res.status(500).json({ error: 'Could not list dates' });
@@ -1205,12 +1254,13 @@ app.get('/api/estatus-polizas/fechas', (req, res) => {
 app.get('/api/estatus-polizas/reporte/:fecha', (req, res) => {
     try {
         const { fecha } = req.params;
-        const { summary } = req.query;
+        const { summary, inactivos } = req.query;
         const suffix = summary === 'true' ? '_summary.json' : '.json';
-        const p = path.join(POLIZAS_PATH, 'reportes', fecha.substring(0, 7), `reporte_${fecha}${suffix}`);
+        const inactivoStr = inactivos === 'true' ? '_inactivos' : '';
+        const p = path.join(POLIZAS_PATH, 'reportes', fecha.substring(0, 7), `reporte_${fecha}${inactivoStr}${suffix}`);
         if (!fs.existsSync(p)) {
             // Fallback to full if summary doesn't exist
-            const fullP = path.join(POLIZAS_PATH, 'reportes', fecha.substring(0, 7), `reporte_${fecha}.json`);
+            const fullP = path.join(POLIZAS_PATH, 'reportes', fecha.substring(0, 7), `reporte_${fecha}${inactivoStr}.json`);
             if (!fs.existsSync(fullP))
                 return res.status(404).json({ error: 'Not found' });
             return res.json(JSON.parse(fs.readFileSync(fullP, 'utf-8')));
@@ -1224,7 +1274,9 @@ app.get('/api/estatus-polizas/reporte/:fecha', (req, res) => {
 app.get('/api/estatus-polizas/cambios/:fecha', (req, res) => {
     try {
         const { fecha } = req.params;
-        const p = path.join(POLIZAS_PATH, 'cambios', fecha.substring(0, 7), `cambios_${fecha}.json`);
+        const { inactivos } = req.query;
+        const inactivoStr = inactivos === 'true' ? '_inactivos' : '';
+        const p = path.join(POLIZAS_PATH, 'cambios', fecha.substring(0, 7), `cambios_${fecha}${inactivoStr}.json`);
         if (!fs.existsSync(p))
             return res.json(null);
         res.json(JSON.parse(fs.readFileSync(p, 'utf-8')));
@@ -1245,26 +1297,10 @@ app.get('/api/estatus-polizas/seguimiento', (req, res) => {
     }
 });
 // ===================== COMENTARIOS GPS DE CARTERA =====================
-const COMENTARIOS_PATH = path.join(BASE_PATH, 'db', 'comentarios_polizas.json');
-const readComentarios = () => {
-    try {
-        if (fs.existsSync(COMENTARIOS_PATH))
-            return JSON.parse(fs.readFileSync(COMENTARIOS_PATH, 'utf-8'));
-    }
-    catch (e) {
-        console.error('Error reading comentarios:', e);
-    }
-    return {};
-};
-const writeComentarios = (data) => {
-    const dbDir = path.join(BASE_PATH, 'db');
-    if (!fs.existsSync(dbDir))
-        fs.mkdirSync(dbDir, { recursive: true });
-    fs.writeFileSync(COMENTARIOS_PATH, JSON.stringify(data, null, 2));
-};
+const COMENTARIOS_FILE = 'comentarios_polizas.json';
 app.get('/api/estatus-polizas/comentarios', (req, res) => {
     try {
-        res.json(readComentarios());
+        res.json(dualReadObject(COMENTARIOS_FILE));
     }
     catch (e) {
         res.status(500).json({ error: 'Read error' });
@@ -1278,14 +1314,14 @@ app.post('/api/estatus-polizas/comentarios', (req, res) => {
         const now = new Date();
         const fmt = (o) => new Intl.DateTimeFormat('es-MX', { ...o, timeZone: 'America/Mexico_City' }).format(now);
         const fecha = `${fmt({ year: 'numeric' })}-${fmt({ month: '2-digit' })}-${fmt({ day: '2-digit' })}`;
-        const comentarios = readComentarios();
+        const comentarios = dualReadObject(COMENTARIOS_FILE);
         if (comentario && comentario.trim()) {
             comentarios[poliza] = { comentario: comentario.trim(), fecha_comentario: fecha, fecha_cambio: fecha_cambio || '' };
         }
         else {
             delete comentarios[poliza];
         }
-        writeComentarios(comentarios);
+        dualWrite(COMENTARIOS_FILE, comentarios);
         res.json({ success: true });
     }
     catch (e) {
