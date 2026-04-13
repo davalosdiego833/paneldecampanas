@@ -1,5 +1,5 @@
 {
-  "updatedAt": "13/4/2026, 11:19:58",
+  "updatedAt": "13/4/2026, 12:03:23",
   "data": {
     "dates": {
       "mdrt": "31 de marzo de 2026",
@@ -384,7 +384,7 @@
         "Mes_3_Prod": 2
       },
       {
-        "Asesor": "Asesor 116876",
+        "Asesor": "PAULA ANGELICA LOMELI CAZARES",
         "Clave": 116876,
         "Mes_Asesor": 1,
         "Polizas_Totales": 4.5,
@@ -843,7 +843,7 @@
         "EnMeta": false
       },
       {
-        "Asesor": "Asesor 116876",
+        "Asesor": "PAULA ANGELICA LOMELI CAZARES",
         "Clave": 116876,
         "Total_Polizas": 4,
         "Mes_Actual": 3,
@@ -1244,7 +1244,7 @@
         "Premio": "PENDIENTE ⏳"
       },
       {
-        "Asesor": "Asesor 116876",
+        "Asesor": "PAULA ANGELICA LOMELI CAZARES",
         "Clave": 116876,
         "Total_Polizas": 4,
         "Enero": 2,
@@ -1985,7 +1985,7 @@
         "Premio": ""
       },
       {
-        "Asesor": "Asesor 116876",
+        "Asesor": "PAULA ANGELICA LOMELI CAZARES",
         "Clave": 116876,
         "Polizas": 0,
         "Comisiones": 0,
@@ -2898,7 +2898,7 @@
       },
       "pagado_pendiente": [
         {
-          "Nombre Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 4,
           "Recibo_Inicial_Pagado": 406177.63,
@@ -2910,7 +2910,7 @@
           "Total _Prima_Pendiente": 410862.26
         },
         {
-          "Nombre Asesor": "DESIREE DE LA PEÐA OROZCO",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 4,
           "Recibo_Inicial_Pagado": 178153.93,
@@ -2922,7 +2922,7 @@
           "Total _Prima_Pendiente": 200888.79
         },
         {
-          "Nombre Asesor": "ANAIS LUA MORENO",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2856,
           "Pólizas-Pagadas": 1,
           "Recibo_Inicial_Pagado": 1854.93,
@@ -2934,7 +2934,7 @@
           "Total _Prima_Pendiente": 175156.77
         },
         {
-          "Nombre Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2692,
           "Pólizas-Pagadas": 2,
           "Recibo_Inicial_Pagado": 32501.09,
@@ -2946,7 +2946,7 @@
           "Total _Prima_Pendiente": 85794.59
         },
         {
-          "Nombre Asesor": "ORLANDA JIMENA CERVANTES NUÐEZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -2958,7 +2958,7 @@
           "Total _Prima_Pendiente": 107694.21
         },
         {
-          "Nombre Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 1,
           "Recibo_Inicial_Pagado": 2117.52,
@@ -2970,7 +2970,7 @@
           "Total _Prima_Pendiente": 76850.76
         },
         {
-          "Nombre Asesor": "VELIA PATRICIA BERNAL RAMOS",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2856,
           "Pólizas-Pagadas": 1,
           "Recibo_Inicial_Pagado": 1499.56,
@@ -2982,7 +2982,7 @@
           "Total _Prima_Pendiente": 31356.09
         },
         {
-          "Nombre Asesor": "GABRIELA CASTAÐEDA SALAZAR",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 1,
           "Recibo_Inicial_Pagado": 32118.39,
@@ -2994,7 +2994,7 @@
           "Total _Prima_Pendiente": 58897.51
         },
         {
-          "Nombre Asesor": "ROGELIO TORRES ORTIZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2692,
           "Pólizas-Pagadas": 1,
           "Recibo_Inicial_Pagado": 13128.07,
@@ -3006,7 +3006,7 @@
           "Total _Prima_Pendiente": 101309.13
         },
         {
-          "Nombre Asesor": "ANA VERONICA GONZALEZ GAYTAN",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3018,7 +3018,7 @@
           "Total _Prima_Pendiente": 12170.29
         },
         {
-          "Nombre Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2692,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3030,7 +3030,7 @@
           "Total _Prima_Pendiente": 9494.81
         },
         {
-          "Nombre Asesor": "PAULINA RODRIGUEZ DE LA MORA",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 1,
           "Recibo_Inicial_Pagado": 1459.06,
@@ -3042,7 +3042,7 @@
           "Total _Prima_Pendiente": 17384.95
         },
         {
-          "Nombre Asesor": "HANA SOFIA LOPEZ QUIÐONEZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2692,
           "Pólizas-Pagadas": 1,
           "Recibo_Inicial_Pagado": 1697.76,
@@ -3054,7 +3054,7 @@
           "Total _Prima_Pendiente": 66856.35
         },
         {
-          "Nombre Asesor": "DARINKA UREÐA CASILLAS",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3066,7 +3066,7 @@
           "Total _Prima_Pendiente": 29400.74
         },
         {
-          "Nombre Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 1,
           "Recibo_Inicial_Pagado": 10300.87,
@@ -3078,7 +3078,7 @@
           "Total _Prima_Pendiente": 49965.37
         },
         {
-          "Nombre Asesor": "MONSERRAT VELASCO SANTOS",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 4,
           "Recibo_Inicial_Pagado": 7492.03,
@@ -3090,7 +3090,7 @@
           "Total _Prima_Pendiente": 0
         },
         {
-          "Nombre Asesor": "MARICELA ARREOLA LOPEZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3102,7 +3102,7 @@
           "Total _Prima_Pendiente": 0
         },
         {
-          "Nombre Asesor": "JOSE RENE DE ALBA MORALES",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2692,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3114,7 +3114,7 @@
           "Total _Prima_Pendiente": 100701.01
         },
         {
-          "Nombre Asesor": "SOFIA CAMPILLO VASCONCELOS",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2856,
           "Pólizas-Pagadas": 3,
           "Recibo_Inicial_Pagado": 8797.08,
@@ -3126,7 +3126,7 @@
           "Total _Prima_Pendiente": 60897.84
         },
         {
-          "Nombre Asesor": "MIREYA LIZETTE TORRES GARCIA",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 1,
           "Recibo_Inicial_Pagado": 585.37,
@@ -3138,7 +3138,7 @@
           "Total _Prima_Pendiente": 22762.21
         },
         {
-          "Nombre Asesor": "JULIANA RIASCOS VALENCIA",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3150,7 +3150,7 @@
           "Total _Prima_Pendiente": 18165.66
         },
         {
-          "Nombre Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2856,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3162,7 +3162,7 @@
           "Total _Prima_Pendiente": 53730.88
         },
         {
-          "Nombre Asesor": "JORGE ANTONIO LUNA LARA",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2692,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3174,7 +3174,7 @@
           "Total _Prima_Pendiente": 56209.91
         },
         {
-          "Nombre Asesor": "JOSE ALBERTO CORONADO ROSAS",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3186,7 +3186,7 @@
           "Total _Prima_Pendiente": 0
         },
         {
-          "Nombre Asesor": "BRUNO BRAULIO MACIAS ALVAREZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3198,7 +3198,7 @@
           "Total _Prima_Pendiente": 13675.57
         },
         {
-          "Nombre Asesor": "ROCIO YANETH OCHOA IBARRA",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3210,7 +3210,7 @@
           "Total _Prima_Pendiente": 7778.69
         },
         {
-          "Nombre Asesor": "LUVIA PATRICIA FIGUEROA CASTRO",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2856,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3222,7 +3222,7 @@
           "Total _Prima_Pendiente": 39457.38
         },
         {
-          "Nombre Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3234,7 +3234,7 @@
           "Total _Prima_Pendiente": 0
         },
         {
-          "Nombre Asesor": "MARIA TERESA ASENCIO LOZANO",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 1,
           "Recibo_Inicial_Pagado": 1432.36,
@@ -3246,7 +3246,7 @@
           "Total _Prima_Pendiente": 0
         },
         {
-          "Nombre Asesor": "SAMUEL NUÐO RIVERA",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3258,7 +3258,7 @@
           "Total _Prima_Pendiente": 2384.04
         },
         {
-          "Nombre Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2692,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3270,7 +3270,7 @@
           "Total _Prima_Pendiente": 41311.52
         },
         {
-          "Nombre Asesor": "JOCELYN URIBE VARGAS",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3282,7 +3282,7 @@
           "Total _Prima_Pendiente": 5199.32
         },
         {
-          "Nombre Asesor": "ANDREA CELESTE IBAÐEZ RINCON",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3294,7 +3294,7 @@
           "Total _Prima_Pendiente": 19987.46
         },
         {
-          "Nombre Asesor": "PAULA ANGELICA LOMELI CAZARES",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2856,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3306,7 +3306,7 @@
           "Total _Prima_Pendiente": 18185.59
         },
         {
-          "Nombre Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3318,7 +3318,7 @@
           "Total _Prima_Pendiente": 0
         },
         {
-          "Nombre Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3330,7 +3330,7 @@
           "Total _Prima_Pendiente": 21637.32
         },
         {
-          "Nombre Asesor": "MARIA JOSE GUZMAN ZAMORA",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2692,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3342,7 +3342,7 @@
           "Total _Prima_Pendiente": 40460.55
         },
         {
-          "Nombre Asesor": "EVELYN CAROLINA VENEGAS IÐIGUEZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3354,7 +3354,7 @@
           "Total _Prima_Pendiente": 0
         },
         {
-          "Nombre Asesor": "KAREN MUÐOZ GARCIA",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2511,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3366,7 +3366,7 @@
           "Total _Prima_Pendiente": 0
         },
         {
-          "Nombre Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2511,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3378,7 +3378,7 @@
           "Total _Prima_Pendiente": 9207.01
         },
         {
-          "Nombre Asesor": "MARIO IVAN ROMERO GONZALEZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2856,
           "Pólizas-Pagadas": 1,
           "Recibo_Inicial_Pagado": 1778.41,
@@ -3390,7 +3390,7 @@
           "Total _Prima_Pendiente": 19562.52
         },
         {
-          "Nombre Asesor": "LAURA DOLORES MONTAÐO MONTAÐO",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2856,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3402,7 +3402,7 @@
           "Total _Prima_Pendiente": 6684.84
         },
         {
-          "Nombre Asesor": "ROCIO IVON RUIZ GARCIA",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3414,7 +3414,7 @@
           "Total _Prima_Pendiente": 0
         },
         {
-          "Nombre Asesor": "GERARDO DANIEL BARAJAS TORRES",
+          "Nombre Asesor": "Asesor 5",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3426,7 +3426,7 @@
           "Total _Prima_Pendiente": 0
         },
         {
-          "Nombre Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3438,7 +3438,7 @@
           "Total _Prima_Pendiente": 20482.43
         },
         {
-          "Nombre Asesor": "ALEJANDRA IVETTE PEDROZA MACIAS",
+          "Nombre Asesor": "Asesor 4",
           "Sucursal": 2043,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3450,7 +3450,7 @@
           "Total _Prima_Pendiente": 15063.56
         },
         {
-          "Nombre Asesor": "ANA LAURA CONTRERAS IÐIGUEZ",
+          "Nombre Asesor": "Asesor 2",
           "Sucursal": 2692,
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
@@ -3887,7 +3887,7 @@
           "Pólizas_Faltantes": 0
         },
         {
-          "ASESOR": "Asesor 116876",
+          "ASESOR": "PAULA ANGELICA LOMELI CAZARES",
           "SUC": 2856,
           "Polizas_Acumuladas_Mes_Ant.": 4.5,
           "Polizas_Del_mes": 0,
@@ -3908,7 +3908,7 @@
       "comparativo_vida": {
         "individuals": [
           {
-            "Nombre del Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 4,
             "Polizas_Pagadas_Año_Actual": 3,
@@ -3916,7 +3916,7 @@
             "Prima_Pagada_Año_Actual": 178.07
           },
           {
-            "Nombre del Asesor": "VALERIA AIDE IBAÐEZ MURGUIA",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -3924,7 +3924,7 @@
             "Prima_Pagada_Año_Actual": 0
           },
           {
-            "Nombre del Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2511,
             "Polizas_Pagadas_Año_Anterior": 1,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -3932,7 +3932,7 @@
             "Prima_Pagada_Año_Actual": 9.02
           },
           {
-            "Nombre del Asesor": "PAULINA RODRIGUEZ DE LA MORA",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 1,
             "Polizas_Pagadas_Año_Actual": 1,
@@ -3940,7 +3940,7 @@
             "Prima_Pagada_Año_Actual": 33.7
           },
           {
-            "Nombre del Asesor": "MARIO ALFONSO SARMIENTO OROZCO",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2511,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -3948,7 +3948,7 @@
             "Prima_Pagada_Año_Actual": 0
           },
           {
-            "Nombre del Asesor": "DESIREE DE LA PEÐA OROZCO",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 8,
             "Polizas_Pagadas_Año_Actual": 6,
@@ -3956,7 +3956,7 @@
             "Prima_Pagada_Año_Actual": 249.15
           },
           {
-            "Nombre del Asesor": "MARICELA ARREOLA LOPEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 4,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -3964,7 +3964,7 @@
             "Prima_Pagada_Año_Actual": 39.76
           },
           {
-            "Nombre del Asesor": "KAREN MUÐOZ GARCIA",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2511,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -3972,7 +3972,7 @@
             "Prima_Pagada_Año_Actual": 2.4
           },
           {
-            "Nombre del Asesor": "ALEJANDRA IVETTE PEDROZA MACIAS",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -3980,7 +3980,7 @@
             "Prima_Pagada_Año_Actual": 14.95
           },
           {
-            "Nombre del Asesor": "SEGUROS MONTERREY NEW YORK LIFE SA DE CV",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -3988,7 +3988,7 @@
             "Prima_Pagada_Año_Actual": 0
           },
           {
-            "Nombre del Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 6,
             "Polizas_Pagadas_Año_Actual": 7,
@@ -3996,7 +3996,7 @@
             "Prima_Pagada_Año_Actual": 760.86
           },
           {
-            "Nombre del Asesor": "ANDREA CELESTE IBAÐEZ RINCON",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 1,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4004,7 +4004,7 @@
             "Prima_Pagada_Año_Actual": 12.65
           },
           {
-            "Nombre del Asesor": "JOCELYN URIBE VARGAS",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4012,7 +4012,7 @@
             "Prima_Pagada_Año_Actual": 15.5
           },
           {
-            "Nombre del Asesor": "DARINKA UREÐA CASILLAS",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 9,
             "Polizas_Pagadas_Año_Actual": 3,
@@ -4020,7 +4020,7 @@
             "Prima_Pagada_Año_Actual": 219.62
           },
           {
-            "Nombre del Asesor": "MARIA TERESA ASENCIO LOZANO",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 3,
@@ -4028,7 +4028,7 @@
             "Prima_Pagada_Año_Actual": 66.79
           },
           {
-            "Nombre del Asesor": "JOSE ALBERTO CORONADO ROSAS",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4036,7 +4036,7 @@
             "Prima_Pagada_Año_Actual": 10.21
           },
           {
-            "Nombre del Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 2,
             "Polizas_Pagadas_Año_Actual": 1,
@@ -4044,7 +4044,7 @@
             "Prima_Pagada_Año_Actual": 20.23
           },
           {
-            "Nombre del Asesor": "FERNANDO JAVIER DAVALOS FLORES",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4052,7 +4052,7 @@
             "Prima_Pagada_Año_Actual": 0
           },
           {
-            "Nombre del Asesor": "WENDY SUSANA SANCHEZ VAZQUEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4060,7 +4060,7 @@
             "Prima_Pagada_Año_Actual": 0
           },
           {
-            "Nombre del Asesor": "JULIANA RIASCOS VALENCIA",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 3,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4068,7 +4068,7 @@
             "Prima_Pagada_Año_Actual": 53.4
           },
           {
-            "Nombre del Asesor": "SAMUEL NUÐO RIVERA",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 1,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4076,7 +4076,7 @@
             "Prima_Pagada_Año_Actual": 23.85
           },
           {
-            "Nombre del Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4084,7 +4084,7 @@
             "Prima_Pagada_Año_Actual": 13.24
           },
           {
-            "Nombre del Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 4,
             "Polizas_Pagadas_Año_Actual": 1,
@@ -4092,7 +4092,7 @@
             "Prima_Pagada_Año_Actual": 39.98
           },
           {
-            "Nombre del Asesor": "ROGELIO TORRES ORTIZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2692,
             "Polizas_Pagadas_Año_Anterior": 7,
             "Polizas_Pagadas_Año_Actual": 4,
@@ -4100,7 +4100,7 @@
             "Prima_Pagada_Año_Actual": 107.29
           },
           {
-            "Nombre del Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2692,
             "Polizas_Pagadas_Año_Anterior": 7,
             "Polizas_Pagadas_Año_Actual": 5,
@@ -4108,7 +4108,7 @@
             "Prima_Pagada_Año_Actual": 126.07
           },
           {
-            "Nombre del Asesor": "GABRIELA CASTAÐEDA SALAZAR",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 2,
             "Polizas_Pagadas_Año_Actual": 2,
@@ -4116,7 +4116,7 @@
             "Prima_Pagada_Año_Actual": 71.16
           },
           {
-            "Nombre del Asesor": "MIREYA LIZETTE TORRES GARCIA",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 2,
             "Polizas_Pagadas_Año_Actual": 1,
@@ -4124,7 +4124,7 @@
             "Prima_Pagada_Año_Actual": 32.06
           },
           {
-            "Nombre del Asesor": "ORLANDA JIMENA CERVANTES NUÐEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 6,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4132,7 +4132,7 @@
             "Prima_Pagada_Año_Actual": 132.61
           },
           {
-            "Nombre del Asesor": "ARMANDO JONATHAN DE LA CRUZ DIAZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2692,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4140,7 +4140,7 @@
             "Prima_Pagada_Año_Actual": 0
           },
           {
-            "Nombre del Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2692,
             "Polizas_Pagadas_Año_Anterior": 6,
             "Polizas_Pagadas_Año_Actual": 1,
@@ -4148,7 +4148,7 @@
             "Prima_Pagada_Año_Actual": 64.99
           },
           {
-            "Nombre del Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2692,
             "Polizas_Pagadas_Año_Anterior": 5,
             "Polizas_Pagadas_Año_Actual": 1,
@@ -4156,7 +4156,7 @@
             "Prima_Pagada_Año_Actual": 145.55
           },
           {
-            "Nombre del Asesor": "ROCIO IVON RUIZ GARCIA",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 3,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4164,7 +4164,7 @@
             "Prima_Pagada_Año_Actual": 10.45
           },
           {
-            "Nombre del Asesor": "ANGELICA YADIRA ROMERO JAUREGUI",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2692,
             "Polizas_Pagadas_Año_Anterior": 3,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4172,7 +4172,7 @@
             "Prima_Pagada_Año_Actual": 0
           },
           {
-            "Nombre del Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 1,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4180,7 +4180,7 @@
             "Prima_Pagada_Año_Actual": 23.88
           },
           {
-            "Nombre del Asesor": "RODRIGO RAMON ALVAREZ JIMENEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4188,7 +4188,7 @@
             "Prima_Pagada_Año_Actual": 0
           },
           {
-            "Nombre del Asesor": "MIRIAM ROCIO LOMELI CHAVEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2856,
             "Polizas_Pagadas_Año_Anterior": 2,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4196,7 +4196,7 @@
             "Prima_Pagada_Año_Actual": 0
           },
           {
-            "Nombre del Asesor": "EVELYN CAROLINA VENEGAS IÐIGUEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 2,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4204,7 +4204,7 @@
             "Prima_Pagada_Año_Actual": 8.54
           },
           {
-            "Nombre del Asesor": "ROCIO YANETH OCHOA IBARRA",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 2,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4212,7 +4212,7 @@
             "Prima_Pagada_Año_Actual": 26.61
           },
           {
-            "Nombre del Asesor": "ANAIS LUA MORENO",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2856,
             "Polizas_Pagadas_Año_Anterior": 12,
             "Polizas_Pagadas_Año_Actual": 6,
@@ -4220,7 +4220,7 @@
             "Prima_Pagada_Año_Actual": 172.46
           },
           {
-            "Nombre del Asesor": "JOSE RENE DE ALBA MORALES",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2692,
             "Polizas_Pagadas_Año_Anterior": 1,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4228,7 +4228,7 @@
             "Prima_Pagada_Año_Actual": 42.88
           },
           {
-            "Nombre del Asesor": "LUIS FERNANDO HERNANDEZ AYALA",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4236,7 +4236,7 @@
             "Prima_Pagada_Año_Actual": 0
           },
           {
-            "Nombre del Asesor": "JORGE ANTONIO LUNA LARA",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2692,
             "Polizas_Pagadas_Año_Anterior": 3,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4244,7 +4244,7 @@
             "Prima_Pagada_Año_Actual": 33.9
           },
           {
-            "Nombre del Asesor": "CLAUDIA VALERIA HERNANDEZ MACIAS",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2856,
             "Polizas_Pagadas_Año_Anterior": 7,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4252,7 +4252,7 @@
             "Prima_Pagada_Año_Actual": 13.5
           },
           {
-            "Nombre del Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 4,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4260,7 +4260,7 @@
             "Prima_Pagada_Año_Actual": 0
           },
           {
-            "Nombre del Asesor": "MARIO ALBERTO VILLASEÐOR SANCHEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2692,
             "Polizas_Pagadas_Año_Anterior": 1,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4268,7 +4268,7 @@
             "Prima_Pagada_Año_Actual": 0
           },
           {
-            "Nombre del Asesor": "LAURA DOLORES MONTAÐO MONTAÐO",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2856,
             "Polizas_Pagadas_Año_Anterior": 1,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4276,7 +4276,7 @@
             "Prima_Pagada_Año_Actual": 15.06
           },
           {
-            "Nombre del Asesor": "BRUNO BRAULIO MACIAS ALVAREZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 1,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4284,7 +4284,7 @@
             "Prima_Pagada_Año_Actual": 22.09
           },
           {
-            "Nombre del Asesor": "ANA LAURA CONTRERAS IÐIGUEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2692,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 1,
@@ -4292,7 +4292,7 @@
             "Prima_Pagada_Año_Actual": 69.42
           },
           {
-            "Nombre del Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2856,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4300,7 +4300,7 @@
             "Prima_Pagada_Año_Actual": 47.98
           },
           {
-            "Nombre del Asesor": "HANA SOFIA LOPEZ QUIÐONEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2692,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 1,
@@ -4308,7 +4308,7 @@
             "Prima_Pagada_Año_Actual": 27.97
           },
           {
-            "Nombre del Asesor": "MARIA JOSE GUZMAN ZAMORA",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2692,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4316,7 +4316,7 @@
             "Prima_Pagada_Año_Actual": 22.36
           },
           {
-            "Nombre del Asesor": "LINDA TANIA MIROSLAVA ENRIQUEZ PRECIADO",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2692,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4324,7 +4324,7 @@
             "Prima_Pagada_Año_Actual": 0
           },
           {
-            "Nombre del Asesor": "VELIA PATRICIA BERNAL RAMOS",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2856,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 2,
@@ -4332,7 +4332,7 @@
             "Prima_Pagada_Año_Actual": 143.38
           },
           {
-            "Nombre del Asesor": "ANA VERONICA GONZALEZ GAYTAN",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 1,
@@ -4340,7 +4340,7 @@
             "Prima_Pagada_Año_Actual": 53.86
           },
           {
-            "Nombre del Asesor": "LUVIA PATRICIA FIGUEROA CASTRO",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2856,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 2,
@@ -4348,7 +4348,7 @@
             "Prima_Pagada_Año_Actual": 67.16
           },
           {
-            "Nombre del Asesor": "GERARDO DANIEL BARAJAS TORRES",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
@@ -4356,7 +4356,7 @@
             "Prima_Pagada_Año_Actual": 4.76
           },
           {
-            "Nombre del Asesor": "PAULA ANGELICA LOMELI CAZARES",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2856,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 4,
@@ -4364,7 +4364,7 @@
             "Prima_Pagada_Año_Actual": 72.05
           },
           {
-            "Nombre del Asesor": "SOFIA CAMPILLO VASCONCELOS",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2856,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 5,
@@ -4372,7 +4372,7 @@
             "Prima_Pagada_Año_Actual": 33.06
           },
           {
-            "Nombre del Asesor": "MONSERRAT VELASCO SANTOS",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2043,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 4,
@@ -4380,7 +4380,7 @@
             "Prima_Pagada_Año_Actual": 15.45
           },
           {
-            "Nombre del Asesor": "MARIO IVAN ROMERO GONZALEZ",
+            "Nombre del Asesor": "Asesor ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Sucursal": 2856,
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 1,

@@ -24,10 +24,12 @@ fi
 echo "🌐 Actualizando servidor en vivo (Hostinger)..."
 ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     cd $SERVER_PATH
-    git pull origin main
+    git fetch origin main
+    git reset --hard origin/main
     # Hostinger Node.js suele reiniciar al detectar cambios en archivos clave
-    # Si usas un sistema de reinicio específico, añádelo aquí.
-    echo "✅ Servidor actualizado."
+    # Forzar eliminación de snapshot para recarga de datos
+    rm -f db/resumen_snapshot.json
+    echo "✅ Servidor actualizado y caché de datos limpia."
 EOF
 
 echo "✨ Despliegue completado con éxito!"
