@@ -268,6 +268,9 @@ const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggl
                     <button onClick={onLogout} className="nav-item" style={{ color: 'var(--text-secondary)', justifyContent: 'center', fontSize: '0.85rem' }}>
                         <LogOut size={16} className="nav-icon" /> Cerrar Sesión
                     </button>
+                    <div style={{ marginTop: '8px', textAlign: 'center', fontSize: '0.65rem', color: 'var(--text-secondary)', opacity: 0.5, letterSpacing: '0.05em' }}>
+                        VERSION v1.2.1 — ROBUSTO
+                    </div>
                 </div>
             </aside>
             <main className="main-content" style={{ padding: '32px 40px', overflowY: 'auto' }}>
