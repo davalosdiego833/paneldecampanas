@@ -148,10 +148,14 @@ const formatMexicoTimestamp = () => {
 };
 
 async function runUpdate() {
-    console.log('🚀 Actualizando snapshot con nuevo nombre de asesor...');
+    console.log('🚀 Actualizando snapshot con nuevo reporte de Pagado y Emitido...');
     const dir = getAdvisorDirectory();
     const resolveName = (cl) => dir[String(cl)] || `Asesor ${cl}`;
     const result = { dates: {} };
+    // Mantenemos los datos anteriores leídos del snapshot actual si no hay archivo nuevo para esas campañas
+    const currentSnapshot = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf8'));
+    result.dates = currentSnapshot.data.dates;
+    
     const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion'];
 
     for (const c of cams) {
@@ -215,11 +219,14 @@ async function runUpdate() {
             if (iso) {
                 const d = iso.split('-');
                 result.dates[c] = `${d[2]} de ${MONTHS_ES[Number(d[1]) - 1]} de ${d[0]}`;
-            } else result.dates[c] = "";
+            }
+        } else {
+            // Mantener datos anteriores si no hay archivo nuevo
+            result[c] = currentSnapshot.data[c];
         }
     }
 
-    const rg = { fechas_corte: {} };
+    const rg = currentSnapshot.data.resumen_general || { fechas_corte: {} };
     const adminFolders = [
         { key: 'asesores_sin_emision', path: 'administrador/asesores_sin_emision', type: 'asesores_sin_emision' },
         { key: 'pagado_pendiente', path: 'administrador/pagado_emitidido', type: 'pagado_pendiente' },
@@ -287,6 +294,6 @@ async function runUpdate() {
 
     if (!fs.existsSync(path.dirname(SNAPSHOT_PATH))) fs.mkdirSync(path.dirname(SNAPSHOT_PATH), { recursive: true });
     fs.writeFileSync(SNAPSHOT_PATH, JSON.stringify(snapshot, null, 2));
-    console.log(`✨ Snapshot actualizado. Asesor 116876 ahora es: ${dir['116876']}`);
+    console.log(`✨ Snapshot actualizado. Pagado y Emitido actualizado a: ${rg.fechas_corte['pagado_pendiente']}`);
 }
 runUpdate().catch(err => { console.error(err); process.exit(1); });
