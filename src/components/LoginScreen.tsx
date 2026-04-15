@@ -281,9 +281,14 @@ const LoginScreen: React.FC<Props> = ({ onSelectRole }) => {
                 </div>
 
                 {/* Footer */}
-                <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.2)', letterSpacing: '0.05em' }}>
-                    AMBRIZ ASESORES © 2026
-                </p>
+                <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.2)', letterSpacing: '0.05em', margin: 0 }}>
+                        AMBRIZ ASESORES © 2026
+                    </p>
+                    <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.15)', letterSpacing: '0.1em', fontWeight: 600 }}>
+                        VERSION v1.2.1 — ROBUSTO
+                    </p>
+                </div>
             </motion.div>
         </div>
     );
