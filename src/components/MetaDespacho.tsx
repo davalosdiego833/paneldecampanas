@@ -11,18 +11,19 @@ interface Props {
 const fmt = (n: number) => '$' + n.toLocaleString('es-MX', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
 
 const MetaDespacho: React.FC<Props> = ({ onBack, themeMode }) => {
-    const [marzoPagado, setMarzoPagado] = useState<number>(0);
+    const [abrilPagado, setAbrilPagado] = useState<number>(0);
     const [loading, setLoading] = useState(true);
 
     const META_MENSUAL = 2000000;
     const META_ANUAL = 24000000;
 
-    // Hardcoded historical closed months (Enero, Febrero)
+    // Hardcoded historical closed months
     const eneroPagado = 973307;
     const febreroPagado = 915278;
+    const marzoPagado = 1309989; 
 
     useEffect(() => {
-        const fetchLiveMarchData = async () => {
+        const fetchLiveAprilData = async () => {
             try {
                 // Fetch the snapshot that contains the 'pagado_pendiente' array
                 const snapRes = await fetch('/api/admin/snapshot-status');
@@ -31,38 +32,38 @@ const MetaDespacho: React.FC<Props> = ({ onBack, themeMode }) => {
                 const res = await fetch(`/api/resumen-general?useSnapshot=${snapStatus.exists}`);
                 const d = await res.json();
 
-                // Calculate March total from LIVE 'Pagado y Emitido' snapshot
+                // Calculate April total from LIVE 'Pagado y Emitido' snapshot
                 if (d && d.pagado_pendiente) {
-                    const totalMarch = d.pagado_pendiente.reduce((sum: number, row: any) => {
+                    const totalApril = d.pagado_pendiente.reduce((sum: number, row: any) => {
                         return sum + Math.max(Number(row['Total _Prima_Pagada']) || 0, 0);
                     }, 0);
-                    setMarzoPagado(totalMarch);
+                    setAbrilPagado(totalApril);
                 }
             } catch (err) {
-                console.error("Error fetching live pagado data for March:", err);
+                console.error("Error fetching live pagado data for April:", err);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchLiveMarchData();
+        fetchLiveAprilData();
     }, []);
 
     // Derived accumulators
-    const acumuladoTotal = eneroPagado + febreroPagado + marzoPagado;
-    const metaAcumuladaEsperada = META_MENSUAL * 3; // Ene, Feb, Mar (3 months passed/passing)
+    const acumuladoTotal = eneroPagado + febreroPagado + marzoPagado + abrilPagado;
+    const metaAcumuladaEsperada = META_MENSUAL * 4; // Ene, Feb, Mar, Abr
     const diferencialAcumulado = acumuladoTotal - metaAcumuladaEsperada;
 
-    const faltanteMes = Math.max(0, META_MENSUAL - marzoPagado);
-    const pctMes = Math.min((marzoPagado / META_MENSUAL) * 100, 100);
+    const faltanteMes = Math.max(0, META_MENSUAL - abrilPagado);
+    const pctMes = Math.min((abrilPagado / META_MENSUAL) * 100, 100);
     const pctAnual = Math.min((acumuladoTotal / META_ANUAL) * 100, 100);
 
     // Chart Dataset
     const chartData = [
         { mes: 'Ene', pagado: eneroPagado, meta: META_MENSUAL },
-        { mes: 'Feb', febreroPagado, pagado: febreroPagado, meta: META_MENSUAL },
-        { mes: 'Mar (Vivo)', pagado: marzoPagado, meta: META_MENSUAL },
-        { mes: 'Abr', pagado: 0, meta: META_MENSUAL },
+        { mes: 'Feb', pagado: febreroPagado, meta: META_MENSUAL },
+        { mes: 'Mar', pagado: marzoPagado, meta: META_MENSUAL },
+        { mes: 'Abr (Vivo)', pagado: abrilPagado, meta: META_MENSUAL },
         { mes: 'May', pagado: 0, meta: META_MENSUAL },
         { mes: 'Jun', pagado: 0, meta: META_MENSUAL },
         { mes: 'Jul', pagado: 0, meta: META_MENSUAL },
@@ -111,7 +112,7 @@ const MetaDespacho: React.FC<Props> = ({ onBack, themeMode }) => {
 
                     {/* Ring Progress (Yearly) */}
                     <div className="glass-card" style={{ padding: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(145deg, rgba(20,25,35,0.8), rgba(10,12,18,0.9))', border: '1px solid rgba(255,255,255,0.05)' }}>
-                        <h3 style={{ color: 'var(--text-secondary)', fontSize: '1rem', fontWeight: 600, marginBottom: '24px' }}>Acumulado Anual (Ene - Mar)</h3>
+                        <h3 style={{ color: 'var(--text-secondary)', fontSize: '1rem', fontWeight: 600, marginBottom: '24px' }}>Acumulado Anual (Ene - Abr)</h3>
                         <div style={{ position: 'relative', width: '220px', height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             <svg width="220" height="220" viewBox="0 0 220 220" style={{ transform: 'rotate(-90deg)' }}>
                                 {/* Background Circle */}
@@ -161,11 +162,11 @@ const MetaDespacho: React.FC<Props> = ({ onBack, themeMode }) => {
                             <div style={{ position: 'absolute', top: 0, right: 0, padding: '12px 16px', background: 'rgba(0,122,255,0.1)', color: '#42A5F5', fontWeight: 700, fontSize: '0.75rem', borderBottomLeftRadius: '16px' }}>En Vivo (Reporte Hoy)</div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
                                 <Calendar size={24} color="#42A5F5" />
-                                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff', margin: 0 }}>Marzo 2026</h3>
+                                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff', margin: 0 }}>Abril 2026</h3>
                             </div>
 
                             <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px', marginBottom: '24px' }}>
-                                <span style={{ fontSize: '3rem', fontWeight: 900, color: '#fff', lineHeight: 1 }}>{fmt(marzoPagado)}</span>
+                                <span style={{ fontSize: '3rem', fontWeight: 900, color: '#fff', lineHeight: 1 }}>{fmt(abrilPagado)}</span>
                             </div>
 
                             <div style={{ marginBottom: '16px' }}>
@@ -194,7 +195,7 @@ const MetaDespacho: React.FC<Props> = ({ onBack, themeMode }) => {
                                 <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', margin: 0 }}>Balance Acumulado T1</h3>
                             </div>
                             <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '16px', lineHeight: 1.5 }}>
-                                Comparando el total acumulado de Ene-Mar ({fmt(acumuladoTotal)}) contra lo que deberíamos llevar cobrado al cierre de este trimestre ({fmt(metaAcumuladaEsperada)}):
+                                Comparando el total acumulado de Ene-Abr ({fmt(acumuladoTotal)}) contra lo que deberíamos llevar cobrado al cierre de este período ({fmt(metaAcumuladaEsperada)}):
                             </p>
                             <div style={{ padding: '16px', borderRadius: '12px', background: diferencialAcumulado >= 0 ? 'rgba(0,230,118,0.1)' : 'rgba(255,107,107,0.1)', color: diferencialAcumulado >= 0 ? '#00E676' : '#FF6B6B', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontWeight: 700, fontSize: '1.2rem' }}>
                                 <span>{diferencialAcumulado >= 0 ? 'Superávit a favor:' : 'Déficit acumulado:'}</span>
