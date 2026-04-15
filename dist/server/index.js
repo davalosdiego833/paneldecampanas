@@ -1,4 +1,4 @@
-// Version: 1.1.0_fix_comparativo_final
+// Version: 1.2.3_final_sync
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
