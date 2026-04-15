@@ -1461,6 +1461,26 @@ const preloadCampaigns = () => {
     };
     setTimeout(loadNext, 2000); // Start preloading 2 seconds after boot
 };
+app.get('/api/debug/excel', (req, res) => {
+    try {
+        const compPath = 'administrador/comparativo_vida';
+        const wb = readExcelData(compPath, { skipJson: true });
+        if (!wb)
+            return res.json({ error: 'Workbook not found' });
+        const ws = findSheet(wb, 'promotoria');
+        if (!ws)
+            return res.json({ error: 'Sheet promotoria not found', sheets: wb.SheetNames });
+        const raw = XLSX.utils.sheet_to_json(ws, { header: 1 });
+        res.json({
+            row5: raw[4],
+            rowCount: raw.length,
+            sample: raw.slice(0, 10)
+        });
+    }
+    catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running at http://0.0.0.0:${PORT}`);
     // preloadCampaigns(); // Disabled temporarily to prevent 7MB file deadlock on boot
