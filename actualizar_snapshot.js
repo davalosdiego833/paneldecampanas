@@ -71,28 +71,37 @@ const run = () => {
             const rawP = XLSX.utils.sheet_to_json(wsP, { header: 1 });
             const dataRow = rawP[4]; // Fila 5 es la data
             if (dataRow) {
+                const parseVal = (v) => {
+                    if (v === undefined || v === null || v === '') return 0;
+                    if (typeof v === 'number') return v;
+                    const str = String(v).replace(/[%,\s]/g, '');
+                    const num = parseFloat(str);
+                    if (isNaN(num)) return 0;
+                    return String(v).includes('%') ? num / 100 : num;
+                };
+
                 snapshot.data.resumen_general.comparativo_vida = {
                     generalSummary: {
-                        Polizas_Pagadas_Año_Anterior: Number(dataRow[0] || 0),
-                        Polizas_Pagadas_Año_Actual: Number(dataRow[1] || 0),
-                        Crec_Polizas_Pagadas: Number(dataRow[2] || 0),
-                        '%_Crec_Polizas_Pagadas': Number(dataRow[3] || 0),
-                        Prima_Pagada_Año_Anterior: Number(dataRow[4] || 0),
-                        'Prima_Pagada_Añoa_Actual': Number(dataRow[5] || 0),
-                        Crec_Prima_Pagada: Number(dataRow[6] || 0),
-                        '%_Crec_Prima_Pagada': Number(dataRow[7] || 0),
-                        Recluta_Año_Anterior: Number(dataRow[8] || 0),
-                        Recluta_Año_Actual: Number(dataRow[9] || 0),
-                        Crec_Recluta: Number(dataRow[10] || 0),
-                        '%_Crec_Recluta': Number(dataRow[11] || 0),
-                        Prima_Pagada_Reclutas_Año_Anterior: Number(dataRow[12] || 0),
-                        Prima_Pagada_Reclutas_Año_Actual: Number(dataRow[13] || 0),
-                        Crec_Prima_Pagada_Reclutas: Number(dataRow[14] || 0),
-                        '%_Crec_Prima_Pagada_Reclutas': Number(dataRow[15] || 0)
+                        Polizas_Pagadas_Año_Anterior: parseVal(dataRow[0]),
+                        Polizas_Pagadas_Año_Actual: parseVal(dataRow[1]),
+                        Crec_Polizas_Pagadas: parseVal(dataRow[2]),
+                        '%_Crec_Polizas_Pagadas': parseVal(dataRow[3]),
+                        Prima_Pagada_Año_Anterior: parseVal(dataRow[4]),
+                        'Prima_Pagada_Añoa_Actual': parseVal(dataRow[5]),
+                        Crec_Prima_Pagada: parseVal(dataRow[6]),
+                        '%_Crec_Prima_Pagada': parseVal(dataRow[7]),
+                        Recluta_Año_Anterior: parseVal(dataRow[8]),
+                        Recluta_Año_Actual: parseVal(dataRow[9]),
+                        Crec_Recluta: parseVal(dataRow[10]),
+                        '%_Crec_Recluta': parseVal(dataRow[11]),
+                        Prima_Pagada_Reclutas_Año_Anterior: parseVal(dataRow[12]),
+                        Prima_Pagada_Reclutas_Año_Actual: parseVal(dataRow[13]),
+                        Crec_Prima_Pagada_Reclutas: parseVal(dataRow[14]),
+                        '%_Crec_Prima_Pagada_Reclutas': parseVal(dataRow[15])
                     },
                     individuals: []
                 };
-                console.log('[DEBUG] Local Snapshot RowMapped:', dataRow.slice(0, 16));
+                console.log('[DEBUG] Local Snapshot RowMapped (v1.2.0):', dataRow.slice(0, 16));
             }
 
             // Hoja Asesores (Detalle)
