@@ -9,7 +9,16 @@ SSH_KEY="~/.ssh/id_rsa_panel"
 
 echo "🚀 Iniciando despliegue automático..."
 
-# 1. Subir cambios a GitHub
+# 1. Compilar proyecto (Frontend y Backend)
+echo "🏗️ Compilando proyecto..."
+npm run build
+
+if [ $? -ne 0 ]; then
+    echo "❌ Error en la compilación. Abortando."
+    exit 1
+fi
+
+# 2. Subir cambios a GitHub
 echo "📦 Subiendo cambios a GitHub..."
 git add .
 git commit -m "data: Actualización automática de reportes ($(date +'%Y-%m-%d %H:%M'))"

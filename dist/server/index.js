@@ -870,12 +870,20 @@ app.post('/api/admin/snapshot', async (req, res) => {
                             sum = {
                                 Polizas_Pagadas_Año_Anterior: Number(dataRow[0] || 0),
                                 Polizas_Pagadas_Año_Actual: Number(dataRow[1] || 0),
+                                Crec_Polizas_Pagadas: Number(dataRow[2] || 0),
+                                '%_Crec_Polizas_Pagadas': Number(dataRow[3] || 0),
                                 Prima_Pagada_Año_Anterior: Number(dataRow[4] || 0),
-                                Prima_Pagada_Año_Actual: Number(dataRow[5] || 0),
+                                'Prima_Pagada_Añoa_Actual': Number(dataRow[5] || 0),
+                                Crec_Prima_Pagada: Number(dataRow[6] || 0),
+                                '%_Crec_Prima_Pagada': Number(dataRow[7] || 0),
                                 Recluta_Año_Anterior: Number(dataRow[8] || 0),
                                 Recluta_Año_Actual: Number(dataRow[9] || 0),
+                                Crec_Recluta: Number(dataRow[10] || 0),
+                                '%_Crec_Recluta': Number(dataRow[11] || 0),
                                 Prima_Pagada_Reclutas_Año_Anterior: Number(dataRow[12] || 0),
-                                Prima_Pagada_Reclutas_Año_Actual: Number(dataRow[13] || 0)
+                                Prima_Pagada_Reclutas_Año_Actual: Number(dataRow[13] || 0),
+                                Crec_Prima_Pagada_Reclutas: Number(dataRow[14] || 0),
+                                '%_Crec_Prima_Pagada_Reclutas': Number(dataRow[15] || 0)
                             };
                         }
                     }
@@ -886,7 +894,18 @@ app.post('/api/admin/snapshot', async (req, res) => {
                     if (wsA) {
                         const rawFormat = XLSX.utils.sheet_to_json(wsA, { header: 1 });
                         if (rawFormat.length > 2 && rawFormat[2][2] === 'Mat') {
-                            inds = rawFormat.slice(3).filter((r) => String(r[2] || '') === '2043').map((r) => ({ 'Nombre del Asesor': r[6] || r[5], 'Sucursal': r[3], 'Polizas_Pagadas_Año_Anterior': Number(r[15] || 0), 'Polizas_Pagadas_Año_Actual': Number(r[16] || 0), 'Prima_Pagada_Año_Anterior': Number(r[23] || 0), 'Prima_Pagada_Año_Actual': Number(r[24] || 0) }));
+                            inds = rawFormat.slice(6).filter((r) => String(r[6] || r[5] || '') !== '' && r[6] !== 'TOTAL').map((r) => ({
+                                'Nombre del Asesor': r[6] || r[5],
+                                'Sucursal': r[3],
+                                'Polizas_Pagadas_Año_Anterior': Number(r[15] || 0),
+                                'Polizas_Pagadas_Año_Actual': Number(r[16] || 0),
+                                'Crec_Polizas_Pagadas': Number(r[17] || 0),
+                                '%_Crec_Polizas_Pagadas': Number(r[18] || 0),
+                                'Prima_Pagada_Año_Anterior': Number(r[23] || 0),
+                                'Prima_Pagada_Año_Actual': Number(r[24] || 0),
+                                'Crec_Prima_Pagada': Number(r[25] || 0),
+                                '%_Crec_Prima_Pagada': Number(r[26] || 0)
+                            }));
                         }
                         else {
                             inds = XLSX.utils.sheet_to_json(wsA, { range: 1 }).filter((r) => String(r['MAT'] || '') === '2043').map((r) => ({ 'Nombre del Asesor': r['Nombre'], 'Sucursal': r['Sucursal'], 'Polizas_Pagadas_Año_Anterior': Number(r['Pzs Pag Ant'] || 0), 'Polizas_Pagadas_Año_Actual': Number(r['Pzs Pag Act'] || 0), 'Prima_Pagada_Año_Anterior': Number(r['Pri Pag Ant'] || 0), 'Prima_Pagada_Año_Actual': Number(r['Pri Pag Act'] || 0) }));
@@ -975,6 +994,19 @@ app.post('/api/admin/verify-password', (req, res) => {
     else
         res.status(401).json({ success: false, error: 'Contraseña incorrecta' });
 });
+app.get('/api/historico-metas', (req, res) => {
+    const filePath = path.join(BASE_PATH, 'db', 'historico_metas.json');
+    if (!fs.existsSync(filePath)) {
+        return res.json({ "2026": {} });
+    }
+    try {
+        const data = fs.readFileSync(filePath, 'utf8');
+        res.json(JSON.parse(data));
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Error reading history' });
+    }
+});
 app.get('/api/resumen-general', (req, res) => {
     try {
         const { dates, useSnapshot } = req.query;
@@ -1038,12 +1070,20 @@ app.get('/api/resumen-general', (req, res) => {
                         sum = {
                             Polizas_Pagadas_Año_Anterior: Number(dataRow[0] || 0),
                             Polizas_Pagadas_Año_Actual: Number(dataRow[1] || 0),
+                            Crec_Polizas_Pagadas: Number(dataRow[2] || 0),
+                            '%_Crec_Polizas_Pagadas': Number(dataRow[3] || 0),
                             Prima_Pagada_Año_Anterior: Number(dataRow[4] || 0),
-                            Prima_Pagada_Año_Actual: Number(dataRow[5] || 0),
+                            'Prima_Pagada_Añoa_Actual': Number(dataRow[5] || 0),
+                            Crec_Prima_Pagada: Number(dataRow[6] || 0),
+                            '%_Crec_Prima_Pagada': Number(dataRow[7] || 0),
                             Recluta_Año_Anterior: Number(dataRow[8] || 0),
                             Recluta_Año_Actual: Number(dataRow[9] || 0),
+                            Crec_Recluta: Number(dataRow[10] || 0),
+                            '%_Crec_Recluta': Number(dataRow[11] || 0),
                             Prima_Pagada_Reclutas_Año_Anterior: Number(dataRow[12] || 0),
-                            Prima_Pagada_Reclutas_Año_Actual: Number(dataRow[13] || 0)
+                            Prima_Pagada_Reclutas_Año_Actual: Number(dataRow[13] || 0),
+                            Crec_Prima_Pagada_Reclutas: Number(dataRow[14] || 0),
+                            '%_Crec_Prima_Pagada_Reclutas': Number(dataRow[15] || 0)
                         };
                     }
                 }
@@ -1062,13 +1102,17 @@ app.get('/api/resumen-general', (req, res) => {
                 const rawFormat = XLSX.utils.sheet_to_json(wsA, { header: 1 });
                 if (rawFormat.length > 2 && rawFormat[2][2] === 'Mat') {
                     // Nuevo formato complejo (Comparativo Vida original)
-                    inds = rawFormat.slice(3).filter((r) => String(r[2] || '') === '2043').map((r) => ({
+                    inds = rawFormat.slice(6).filter((r) => String(r[6] || r[5] || '') !== '' && r[6] !== 'TOTAL').map((r) => ({
                         'Nombre del Asesor': r[6] || r[5],
                         'Sucursal': r[3],
                         'Polizas_Pagadas_Año_Anterior': Number(r[15] || 0),
                         'Polizas_Pagadas_Año_Actual': Number(r[16] || 0),
+                        'Crec_Polizas_Pagadas': Number(r[17] || 0),
+                        '%_Crec_Polizas_Pagadas': Number(r[18] || 0),
                         'Prima_Pagada_Año_Anterior': Number(r[23] || 0),
-                        'Prima_Pagada_Año_Actual': Number(r[24] || 0)
+                        'Prima_Pagada_Año_Actual': Number(r[24] || 0),
+                        'Crec_Prima_Pagada': Number(r[25] || 0),
+                        '%_Crec_Prima_Pagada': Number(r[26] || 0)
                     }));
                 }
                 else {
