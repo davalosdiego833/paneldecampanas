@@ -867,6 +867,7 @@ app.post('/api/admin/snapshot', async (req, res) => {
                                 Crec_Prima_Pagada_Reclutas: parseVal(dataRow[14]),
                                 '%_Crec_Prima_Pagada_Reclutas': parseVal(dataRow[15])
                             };
+                        }
                     } else {
                         console.warn('[SNAPSHOT] comparativo_vida: Sheet "promotoria" NOT found. Available sheets:', wbComp.SheetNames);
                     }

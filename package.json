@@ -9,7 +9,7 @@
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "start": "node dist/server/index.js",
     "prebuild": "mv index.dev.html index.html 2>/dev/null || true",
-    "build": "npm run prebuild && tsc && vite build && tsc -p tsconfig.server.json && mv index.html index.dev.html || true",
+    "build": "npm run prebuild && tsc && vite build && tsc -p tsconfig.server.json && mv index.html index.dev.html",
     "preview": "vite preview"
   },
   "keywords": [],

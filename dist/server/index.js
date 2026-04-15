@@ -866,28 +866,38 @@ app.post('/api/admin/snapshot', async (req, res) => {
                     let sum = null;
                     if (wsP) {
                         const rawP = XLSX.utils.sheet_to_json(wsP, { header: 1 });
-                        const dataRow = rawP.find((row, idx) => idx > 0 && row.length > 4 && typeof row[0] === 'number');
+                        const parseVal = (v) => {
+                            if (v === undefined || v === null || v === '')
+                                return 0;
+                            if (typeof v === 'number')
+                                return v;
+                            const str = String(v).replace(/[%,\s]/g, '');
+                            const num = parseFloat(str);
+                            if (isNaN(num))
+                                return 0;
+                            return String(v).includes('%') ? num / 100 : num;
+                        };
+                        const dataRow = rawP[4] || rawP.find((row, idx) => idx > 0 && row.length > 4 && typeof row[0] === 'number');
                         if (dataRow) {
                             // LITERAL MAPPING FROM EXCEL SCREENSHOT (Row 5 = index 4)
                             sum = {
-                                Polizas_Pagadas_Año_Anterior: Number(dataRow[0] || 0),
-                                Polizas_Pagadas_Año_Actual: Number(dataRow[1] || 0),
-                                Crec_Polizas_Pagadas: Number(dataRow[2] || 0),
-                                '%_Crec_Polizas_Pagadas': Number(dataRow[3] || 0),
-                                Prima_Pagada_Año_Anterior: Number(dataRow[4] || 0),
-                                'Prima_Pagada_Añoa_Actual': Number(dataRow[5] || 0),
-                                Crec_Prima_Pagada: Number(dataRow[6] || 0),
-                                '%_Crec_Prima_Pagada': Number(dataRow[7] || 0),
-                                Recluta_Año_Anterior: Number(dataRow[8] || 0),
-                                Recluta_Año_Actual: Number(dataRow[9] || 0),
-                                Crec_Recluta: Number(dataRow[10] || 0),
-                                '%_Crec_Recluta': Number(dataRow[11] || 0),
-                                Prima_Pagada_Reclutas_Año_Anterior: Number(dataRow[12] || 0),
-                                Prima_Pagada_Reclutas_Año_Actual: Number(dataRow[13] || 0),
-                                Crec_Prima_Pagada_Reclutas: Number(dataRow[14] || 0),
-                                '%_Crec_Prima_Pagada_Reclutas': Number(dataRow[15] || 0)
+                                Polizas_Pagadas_Año_Anterior: parseVal(dataRow[0]),
+                                Polizas_Pagadas_Año_Actual: parseVal(dataRow[1]),
+                                Crec_Polizas_Pagadas: parseVal(dataRow[2]),
+                                '%_Crec_Polizas_Pagadas': parseVal(dataRow[3]),
+                                Prima_Pagada_Año_Anterior: parseVal(dataRow[4]),
+                                'Prima_Pagada_Añoa_Actual': parseVal(dataRow[5]),
+                                Crec_Prima_Pagada: parseVal(dataRow[6]),
+                                '%_Crec_Prima_Pagada': parseVal(dataRow[7]),
+                                Recluta_Año_Anterior: parseVal(dataRow[8]),
+                                Recluta_Año_Actual: parseVal(dataRow[9]),
+                                Crec_Recluta: parseVal(dataRow[10]),
+                                '%_Crec_Recluta': parseVal(dataRow[11]),
+                                Prima_Pagada_Reclutas_Año_Anterior: parseVal(dataRow[12]),
+                                Prima_Pagada_Reclutas_Año_Actual: parseVal(dataRow[13]),
+                                Crec_Prima_Pagada_Reclutas: parseVal(dataRow[14]),
+                                '%_Crec_Prima_Pagada_Reclutas': parseVal(dataRow[15])
                             };
-                            console.log('[DEBUG] Promotoría Snapshot Row Found:', dataRow.slice(0, 16));
                         }
                     }
                     else {
@@ -1067,29 +1077,40 @@ app.get('/api/resumen-general', (req, res) => {
             if (wsP) {
                 const rawP = XLSX.utils.sheet_to_json(wsP, { header: 1 });
                 if (rawP.length > 2) {
-                    // Try to find the data row. Usually index 2 if there's an empty line at 1.
-                    const dataRow = rawP.find((row, idx) => idx > 0 && row.length > 4 && typeof row[0] === 'number');
+                    const parseVal = (v) => {
+                        if (v === undefined || v === null || v === '')
+                            return 0;
+                        if (typeof v === 'number')
+                            return v;
+                        const str = String(v).replace(/[%,\s]/g, '');
+                        const num = parseFloat(str);
+                        if (isNaN(num))
+                            return 0;
+                        return String(v).includes('%') ? num / 100 : num;
+                    };
+                    // Try Row 5 (index 4) first, then fallback to finding number row
+                    const dataRow = rawP[4] || rawP.find((row, idx) => idx > 0 && row.length > 4 && typeof row[0] === 'number');
                     if (dataRow) {
                         // LITERAL MAPPING FROM EXCEL SCREENSHOT (Row 5 = index 4)
                         sum = {
-                            Polizas_Pagadas_Año_Anterior: Number(dataRow[0] || 0),
-                            Polizas_Pagadas_Año_Actual: Number(dataRow[1] || 0),
-                            Crec_Polizas_Pagadas: Number(dataRow[2] || 0),
-                            '%_Crec_Polizas_Pagadas': Number(dataRow[3] || 0),
-                            Prima_Pagada_Año_Anterior: Number(dataRow[4] || 0),
-                            'Prima_Pagada_Añoa_Actual': Number(dataRow[5] || 0),
-                            Crec_Prima_Pagada: Number(dataRow[6] || 0),
-                            '%_Crec_Prima_Pagada': Number(dataRow[7] || 0),
-                            Recluta_Año_Anterior: Number(dataRow[8] || 0),
-                            Recluta_Año_Actual: Number(dataRow[9] || 0),
-                            Crec_Recluta: Number(dataRow[10] || 0),
-                            '%_Crec_Recluta': Number(dataRow[11] || 0),
-                            Prima_Pagada_Reclutas_Año_Anterior: Number(dataRow[12] || 0),
-                            Prima_Pagada_Reclutas_Año_Actual: Number(dataRow[13] || 0),
-                            Crec_Prima_Pagada_Reclutas: Number(dataRow[14] || 0),
-                            '%_Crec_Prima_Pagada_Reclutas': Number(dataRow[15] || 0)
+                            Polizas_Pagadas_Año_Anterior: parseVal(dataRow[0]),
+                            Polizas_Pagadas_Año_Actual: parseVal(dataRow[1]),
+                            Crec_Polizas_Pagadas: parseVal(dataRow[2]),
+                            '%_Crec_Polizas_Pagadas': parseVal(dataRow[3]),
+                            Prima_Pagada_Año_Anterior: parseVal(dataRow[4]),
+                            'Prima_Pagada_Añoa_Actual': parseVal(dataRow[5]),
+                            Crec_Prima_Pagada: parseVal(dataRow[6]),
+                            '%_Crec_Prima_Pagada': parseVal(dataRow[7]),
+                            Recluta_Año_Anterior: parseVal(dataRow[8]),
+                            Recluta_Año_Actual: parseVal(dataRow[9]),
+                            Crec_Recluta: parseVal(dataRow[10]),
+                            '%_Crec_Recluta': parseVal(dataRow[11]),
+                            Prima_Pagada_Reclutas_Año_Anterior: parseVal(dataRow[12]),
+                            Prima_Pagada_Reclutas_Año_Actual: parseVal(dataRow[13]),
+                            Crec_Prima_Pagada_Reclutas: parseVal(dataRow[14]),
+                            '%_Crec_Prima_Pagada_Reclutas': parseVal(dataRow[15])
                         };
-                        console.log('[DEBUG] Promotoría API Row Found:', dataRow.slice(0, 16));
+                        console.log('[DEBUG] Promotoría API Row Found (v1.2.0):', dataRow.slice(0, 16));
                     }
                 }
                 if (!sum) {
