@@ -1,0 +1,1 @@
+const XLSX = require('xlsx'); console.log(JSON.stringify(XLSX.utils.sheet_to_json(XLSX.readFile('administrador/comparativo_vida.xlsx').Sheets['promotoria'], {header:1})[4]))

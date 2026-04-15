@@ -883,20 +883,20 @@ app.post('/api/admin/snapshot', async (req, res) => {
                             sum = {
                                 Polizas_Pagadas_Año_Anterior: parseVal(dataRow[0]),
                                 Polizas_Pagadas_Año_Actual: parseVal(dataRow[1]),
-                                Crec_Polizas_Pagadas: parseVal(dataRow[2]),
-                                '%_Crec_Polizas_Pagadas': parseVal(dataRow[3]),
+                                Crec_Polizas_Pagadas: parseVal(dataRow[2]) || (parseVal(dataRow[1]) - parseVal(dataRow[0])),
+                                '%_Crec_Polizas_Pagadas': parseVal(dataRow[3]) || (parseVal(dataRow[0]) !== 0 ? (parseVal(dataRow[1]) - parseVal(dataRow[0])) / parseVal(dataRow[0]) : 0),
                                 Prima_Pagada_Año_Anterior: parseVal(dataRow[4]),
                                 'Prima_Pagada_Añoa_Actual': parseVal(dataRow[5]),
-                                Crec_Prima_Pagada: parseVal(dataRow[6]),
-                                '%_Crec_Prima_Pagada': parseVal(dataRow[7]),
+                                Crec_Prima_Pagada: parseVal(dataRow[6]) || (parseVal(dataRow[5]) - parseVal(dataRow[4])),
+                                '%_Crec_Prima_Pagada': parseVal(dataRow[7]) || (parseVal(dataRow[4]) !== 0 ? (parseVal(dataRow[5]) - parseVal(dataRow[4])) / parseVal(dataRow[4]) : 0),
                                 Recluta_Año_Anterior: parseVal(dataRow[8]),
                                 Recluta_Año_Actual: parseVal(dataRow[9]),
-                                Crec_Recluta: parseVal(dataRow[10]),
-                                '%_Crec_Recluta': parseVal(dataRow[11]),
+                                Crec_Recluta: parseVal(dataRow[10]) || (parseVal(dataRow[9]) - parseVal(dataRow[8])),
+                                '%_Crec_Recluta': parseVal(dataRow[11]) || (parseVal(dataRow[8]) !== 0 ? (parseVal(dataRow[9]) - parseVal(dataRow[8])) / parseVal(dataRow[8]) : 0),
                                 Prima_Pagada_Reclutas_Año_Anterior: parseVal(dataRow[12]),
                                 Prima_Pagada_Reclutas_Año_Actual: parseVal(dataRow[13]),
-                                Crec_Prima_Pagada_Reclutas: parseVal(dataRow[14]),
-                                '%_Crec_Prima_Pagada_Reclutas': parseVal(dataRow[15])
+                                Crec_Prima_Pagada_Reclutas: parseVal(dataRow[14]) || (parseVal(dataRow[13]) - parseVal(dataRow[12])),
+                                '%_Crec_Prima_Pagada_Reclutas': parseVal(dataRow[15]) || (parseVal(dataRow[12]) !== 0 ? (parseVal(dataRow[13]) - parseVal(dataRow[12])) / parseVal(dataRow[12]) : 0)
                             };
                         }
                     }
@@ -1095,20 +1095,20 @@ app.get('/api/resumen-general', (req, res) => {
                         sum = {
                             Polizas_Pagadas_Año_Anterior: parseVal(dataRow[0]),
                             Polizas_Pagadas_Año_Actual: parseVal(dataRow[1]),
-                            Crec_Polizas_Pagadas: parseVal(dataRow[2]),
-                            '%_Crec_Polizas_Pagadas': parseVal(dataRow[3]),
+                            Crec_Polizas_Pagadas: parseVal(dataRow[2]) || (parseVal(dataRow[1]) - parseVal(dataRow[0])),
+                            '%_Crec_Polizas_Pagadas': parseVal(dataRow[3]) || (parseVal(dataRow[0]) !== 0 ? (parseVal(dataRow[1]) - parseVal(dataRow[0])) / parseVal(dataRow[0]) : 0),
                             Prima_Pagada_Año_Anterior: parseVal(dataRow[4]),
                             'Prima_Pagada_Añoa_Actual': parseVal(dataRow[5]),
-                            Crec_Prima_Pagada: parseVal(dataRow[6]),
-                            '%_Crec_Prima_Pagada': parseVal(dataRow[7]),
+                            Crec_Prima_Pagada: parseVal(dataRow[6]) || (parseVal(dataRow[5]) - parseVal(dataRow[4])),
+                            '%_Crec_Prima_Pagada': parseVal(dataRow[7]) || (parseVal(dataRow[4]) !== 0 ? (parseVal(dataRow[5]) - parseVal(dataRow[4])) / parseVal(dataRow[4]) : 0),
                             Recluta_Año_Anterior: parseVal(dataRow[8]),
                             Recluta_Año_Actual: parseVal(dataRow[9]),
-                            Crec_Recluta: parseVal(dataRow[10]),
-                            '%_Crec_Recluta': parseVal(dataRow[11]),
+                            Crec_Recluta: parseVal(dataRow[10]) || (parseVal(dataRow[9]) - parseVal(dataRow[8])),
+                            '%_Crec_Recluta': parseVal(dataRow[11]) || (parseVal(dataRow[8]) !== 0 ? (parseVal(dataRow[9]) - parseVal(dataRow[8])) / parseVal(dataRow[8]) : 0),
                             Prima_Pagada_Reclutas_Año_Anterior: parseVal(dataRow[12]),
                             Prima_Pagada_Reclutas_Año_Actual: parseVal(dataRow[13]),
-                            Crec_Prima_Pagada_Reclutas: parseVal(dataRow[14]),
-                            '%_Crec_Prima_Pagada_Reclutas': parseVal(dataRow[15])
+                            Crec_Prima_Pagada_Reclutas: parseVal(dataRow[14]) || (parseVal(dataRow[13]) - parseVal(dataRow[12])),
+                            '%_Crec_Prima_Pagada_Reclutas': parseVal(dataRow[15]) || (parseVal(dataRow[12]) !== 0 ? (parseVal(dataRow[13]) - parseVal(dataRow[12])) / parseVal(dataRow[12]) : 0)
                         };
                         console.log('[DEBUG] Promotoría API Row Found (v1.2.0):', dataRow.slice(0, 16));
                     }
@@ -1461,26 +1461,6 @@ const preloadCampaigns = () => {
     };
     setTimeout(loadNext, 2000); // Start preloading 2 seconds after boot
 };
-app.get('/api/debug/excel', (req, res) => {
-    try {
-        const compPath = 'administrador/comparativo_vida';
-        const wb = readExcelData(compPath, { skipJson: true });
-        if (!wb)
-            return res.json({ error: 'Workbook not found' });
-        const ws = findSheet(wb, 'promotoria');
-        if (!ws)
-            return res.json({ error: 'Sheet promotoria not found', sheets: wb.SheetNames });
-        const raw = XLSX.utils.sheet_to_json(ws, { header: 1 });
-        res.json({
-            row5: raw[4],
-            rowCount: raw.length,
-            sample: raw.slice(0, 10)
-        });
-    }
-    catch (e) {
-        res.status(500).json({ error: e.message });
-    }
-});
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running at http://0.0.0.0:${PORT}`);
     // preloadCampaigns(); // Disabled temporarily to prevent 7MB file deadlock on boot
