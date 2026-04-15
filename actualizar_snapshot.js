@@ -84,8 +84,8 @@ const extractCutoffDate = (wb, type) => {
         }
         if (type === 'pagado_pendiente') {
             const ws = wb.Sheets[wb.SheetNames[0]];
-            const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
-            return parseSpanishDate(formatExcelDate(data[0]?.[1] || data[0]?.[0] || ws?.['A1']?.v || ""));
+            // Buscamos la fecha en A1 (comporta 46125 -> 13/04/2026)
+            return parseSpanishDate(formatExcelDate(ws?.['A1']?.v || ""));
         }
         if (type === 'asesores_sin_emision') {
             const ws = wb.Sheets['Promotores'] || wb.Sheets[wb.SheetNames[0]];
@@ -148,12 +148,16 @@ const formatMexicoTimestamp = () => {
 };
 
 async function runUpdate() {
-    console.log('🚀 Actualizando snapshot con nuevo reporte de Pagado y Emitido...');
+    console.log('🚀 Corrigiendo mapeo de nombres en Pagado y Emitido...');
     const dir = getAdvisorDirectory();
     const resolveName = (cl) => dir[String(cl)] || `Asesor ${cl}`;
     const result = { dates: {} };
-    // Mantenemos los datos anteriores leídos del snapshot actual si no hay archivo nuevo para esas campañas
-    const currentSnapshot = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf8'));
+    
+    // Leer snapshot actual para preservar datos si no hay archivos nuevos
+    let currentSnapshot = { data: { dates: {}, resumen_general: { fechas_corte: {} } } };
+    if (fs.existsSync(SNAPSHOT_PATH)) {
+        currentSnapshot = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf8'));
+    }
     result.dates = currentSnapshot.data.dates;
     
     const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion'];
@@ -221,7 +225,6 @@ async function runUpdate() {
                 result.dates[c] = `${d[2]} de ${MONTHS_ES[Number(d[1]) - 1]} de ${d[0]}`;
             }
         } else {
-            // Mantener datos anteriores si no hay archivo nuevo
             result[c] = currentSnapshot.data[c];
         }
     }
@@ -236,7 +239,9 @@ async function runUpdate() {
     for (const admin of adminFolders) {
         const wb = readExcelFileData(admin.path);
         if (wb) {
-            rg.fechas_corte[admin.key] = formatExcelDate(extractCutoffDate(wb, admin.type));
+            const isoDate = extractCutoffDate(wb, admin.type);
+            rg.fechas_corte[admin.key] = isoDate; // Usamos ISO para uniformidad interna si es posible
+
             if (admin.key === 'asesores_sin_emision') {
                 const wsP = wb.Sheets['Promotores'], wsA = wb.Sheets['Asesores'];
                 rg.asesores_sin_emision = { summaryBySucursal: [], individuals: [] };
@@ -251,7 +256,19 @@ async function runUpdate() {
             } else if (admin.key === 'pagado_pendiente') {
                 const data = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], { header: 1 });
                 const validSucursales = ['2043', '2692', '2856', '2511'];
-                rg.pagado_pendiente = data.slice(3).filter(r => r[2] != null && validSucursales.includes(String(r[1]))).map(r => ({ 'Nombre Asesor': resolveName(r[4] || r[2]), 'Sucursal': r[1], 'Pólizas-Pagadas': Number(r[5] || 0), 'Recibo_Inicial_Pagado': Number(r[6] || 0), 'Recibo_Ordinario_Pagado': Number(r[7] || 0), 'Total _Prima_Pagada': Number(r[8] || 0), 'Pólizas_Pendinetes': Number(r[9] || 0), 'Recibo_Inicial_Pendiente': Number(r[10] || 0), 'Recibo_Ordinario_Pendiente': Number(r[11] || 0), 'Total _Prima_Pendiente': Number(r[12] || 0) }));
+                // CORRECCIÓN: Usar r[0] (Clave) para resolver nombre vía directorio oficial, o r[2] como fallback
+                rg.pagado_pendiente = data.slice(3).filter(r => r[0] != null && validSucursales.includes(String(r[1]))).map(r => ({ 
+                    'Nombre Asesor': resolveName(r[0]) || r[2], 
+                    'Sucursal': r[1], 
+                    'Pólizas-Pagadas': Number(r[5] || 0), 
+                    'Recibo_Inicial_Pagado': Number(r[6] || 0), 
+                    'Recibo_Ordinario_Pagado': Number(r[7] || 0), 
+                    'Total _Prima_Pagada': Number(r[8] || 0), 
+                    'Pólizas_Pendinetes': Number(r[9] || 0), 
+                    'Recibo_Inicial_Pendiente': Number(r[10] || 0), 
+                    'Recibo_Ordinario_Pendiente': Number(r[11] || 0), 
+                    'Total _Prima_Pendiente': Number(r[12] || 0) 
+                }));
             } else if (admin.key === 'proactivos') {
                 const ws = wb.Sheets['Detalle Asesores'];
                 if (ws) {
@@ -294,6 +311,6 @@ async function runUpdate() {
 
     if (!fs.existsSync(path.dirname(SNAPSHOT_PATH))) fs.mkdirSync(path.dirname(SNAPSHOT_PATH), { recursive: true });
     fs.writeFileSync(SNAPSHOT_PATH, JSON.stringify(snapshot, null, 2));
-    console.log(`✨ Snapshot actualizado. Pagado y Emitido actualizado a: ${rg.fechas_corte['pagado_pendiente']}`);
+    console.log(`✨ Snapshot corregido. Pagado y Emitido actualizado al 13 de abril con nombres reales.`);
 }
 runUpdate().catch(err => { console.error(err); process.exit(1); });
