@@ -11,28 +11,28 @@ interface Props {
 const fmt = (n: number) => '$' + n.toLocaleString('es-MX', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
 
 const MetaDespacho: React.FC<Props> = ({ onBack, themeMode }) => {
+    const [historico, setHistorico] = useState<Record<string, number>>({});
     const [abrilPagado, setAbrilPagado] = useState<number>(0);
     const [loading, setLoading] = useState(true);
 
     const META_MENSUAL = 2000000;
     const META_ANUAL = 24000000;
 
-    // Hardcoded historical closed months
-    const eneroPagado = 973307;
-    const febreroPagado = 915278;
-    const marzoPagado = 1483121; 
-
     useEffect(() => {
-        const fetchLiveAprilData = async () => {
+        const fetchData = async () => {
             try {
-                // Fetch the snapshot that contains the 'pagado_pendiente' array
+                // 1. Fetch Historical Data (Closed Months)
+                const histRes = await fetch('/api/historico-metas');
+                const histData = await histRes.json();
+                const year2026 = histData["2026"] || {};
+                setHistorico(year2026);
+
+                // 2. Fetch Live data (Current month: April)
                 const snapRes = await fetch('/api/admin/snapshot-status');
                 const snapStatus = await snapRes.json();
-
                 const res = await fetch(`/api/resumen-general?useSnapshot=${snapStatus.exists}`);
                 const d = await res.json();
 
-                // Calculate April total from LIVE 'Pagado y Emitido' snapshot
                 if (d && d.pagado_pendiente) {
                     const totalApril = d.pagado_pendiente.reduce((sum: number, row: any) => {
                         return sum + Math.max(Number(row['Total _Prima_Pagada']) || 0, 0);
@@ -40,16 +40,20 @@ const MetaDespacho: React.FC<Props> = ({ onBack, themeMode }) => {
                     setAbrilPagado(totalApril);
                 }
             } catch (err) {
-                console.error("Error fetching live pagado data for April:", err);
+                console.error("Error fetching meta data:", err);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchLiveAprilData();
+        fetchData();
     }, []);
 
-    // Derived accumulators
+    // Derived values from JSON + Live
+    const eneroPagado = historico.ene || 0;
+    const febreroPagado = historico.feb || 0;
+    const marzoPagado = historico.mar || 0;
+
     const acumuladoTotal = eneroPagado + febreroPagado + marzoPagado + abrilPagado;
     const metaAcumuladaEsperada = META_MENSUAL * 4; // Ene, Feb, Mar, Abr
     const diferencialAcumulado = acumuladoTotal - metaAcumuladaEsperada;
@@ -157,7 +161,7 @@ const MetaDespacho: React.FC<Props> = ({ onBack, themeMode }) => {
                     {/* Right column: Current Month & Accumulator analysis */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
 
-                        {/* En Vivo Marzo */}
+                        {/* En Vivo Abril */}
                         <div className="glass-card" style={{ padding: '32px', flex: 1, position: 'relative', overflow: 'hidden' }}>
                             <div style={{ position: 'absolute', top: 0, right: 0, padding: '12px 16px', background: 'rgba(0,122,255,0.1)', color: '#42A5F5', fontWeight: 700, fontSize: '0.75rem', borderBottomLeftRadius: '16px' }}>En Vivo (Reporte Hoy)</div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>

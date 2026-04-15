@@ -933,6 +933,19 @@ app.post('/api/admin/verify-password', (req, res) => {
     else res.status(401).json({ success: false, error: 'Contraseña incorrecta' });
 });
 
+app.get('/api/historico-metas', (req, res) => {
+    const filePath = path.join(BASE_PATH, 'db', 'historico_metas.json');
+    if (!fs.existsSync(filePath)) {
+        return res.json({ "2026": {} });
+    }
+    try {
+        const data = fs.readFileSync(filePath, 'utf8');
+        res.json(JSON.parse(data));
+    } catch (e) {
+        res.status(500).json({ error: 'Error reading history' });
+    }
+});
+
 app.get('/api/resumen-general', (req, res) => {
     try {
         const { dates, useSnapshot } = req.query;
