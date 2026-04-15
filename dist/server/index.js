@@ -868,23 +868,31 @@ app.post('/api/admin/snapshot', async (req, res) => {
                         const rawP = XLSX.utils.sheet_to_json(wsP, { header: 1 });
                         const dataRow = rawP.find((row, idx) => idx > 0 && row.length > 4 && typeof row[0] === 'number');
                         if (dataRow) {
+                            const polAnt = Number(dataRow[0] || 0);
+                            const polAct = Number(dataRow[1] || 0);
+                            const primaAnt = Number(dataRow[4] || 0);
+                            const primaAct = Number(dataRow[5] || 0);
+                            const recAnt = Number(dataRow[8] || 0);
+                            const recAct = Number(dataRow[9] || 0);
+                            const pRecAnt = Number(dataRow[12] || 0);
+                            const pRecAct = Number(dataRow[13] || 0);
                             sum = {
-                                Polizas_Pagadas_Año_Anterior: Number(dataRow[0] || 0),
-                                Polizas_Pagadas_Año_Actual: Number(dataRow[1] || 0),
-                                Crec_Polizas_Pagadas: Number(dataRow[2] || 0),
-                                '%_Crec_Polizas_Pagadas': Number(dataRow[3] || 0),
-                                Prima_Pagada_Año_Anterior: Number(dataRow[4] || 0),
-                                'Prima_Pagada_Añoa_Actual': Number(dataRow[5] || 0),
-                                Crec_Prima_Pagada: Number(dataRow[6] || 0),
-                                '%_Crec_Prima_Pagada': Number(dataRow[7] || 0),
-                                Recluta_Año_Anterior: Number(dataRow[8] || 0),
-                                Recluta_Año_Actual: Number(dataRow[9] || 0),
-                                Crec_Recluta: Number(dataRow[10] || 0),
-                                '%_Crec_Recluta': Number(dataRow[11] || 0),
-                                Prima_Pagada_Reclutas_Año_Anterior: Number(dataRow[12] || 0),
-                                Prima_Pagada_Reclutas_Año_Actual: Number(dataRow[13] || 0),
-                                Crec_Prima_Pagada_Reclutas: Number(dataRow[14] || 0),
-                                '%_Crec_Prima_Pagada_Reclutas': Number(dataRow[15] || 0)
+                                Polizas_Pagadas_Año_Anterior: polAnt,
+                                Polizas_Pagadas_Año_Actual: polAct,
+                                Crec_Polizas_Pagadas: polAct - polAnt,
+                                '%_Crec_Polizas_Pagadas': polAnt !== 0 ? (polAct - polAnt) / polAnt : 0,
+                                Prima_Pagada_Año_Anterior: primaAnt,
+                                'Prima_Pagada_Añoa_Actual': primaAct,
+                                Crec_Prima_Pagada: primaAct - primaAnt,
+                                '%_Crec_Prima_Pagada': primaAnt !== 0 ? (primaAct - primaAnt) / primaAnt : 0,
+                                Recluta_Año_Anterior: recAnt,
+                                Recluta_Año_Actual: recAct,
+                                Crec_Recluta: recAct - recAnt,
+                                '%_Crec_Recluta': recAnt !== 0 ? (recAct - recAnt) / recAnt : 0,
+                                Prima_Pagada_Reclutas_Año_Anterior: pRecAnt,
+                                Prima_Pagada_Reclutas_Año_Actual: pRecAct,
+                                Crec_Prima_Pagada_Reclutas: pRecAct - pRecAnt,
+                                '%_Crec_Prima_Pagada_Reclutas': pRecAnt !== 0 ? (pRecAct - pRecAnt) / pRecAnt : 0
                             };
                         }
                     }
@@ -1068,23 +1076,31 @@ app.get('/api/resumen-general', (req, res) => {
                     // Try to find the data row. Usually index 2 if there's an empty line at 1.
                     const dataRow = rawP.find((row, idx) => idx > 0 && row.length > 4 && typeof row[0] === 'number');
                     if (dataRow) {
+                        const pAnt = Number(dataRow[0] || 0);
+                        const pAct = Number(dataRow[1] || 0);
+                        const prAnt = Number(dataRow[4] || 0);
+                        const prAct = Number(dataRow[5] || 0);
+                        const rAnt = Number(dataRow[8] || 0);
+                        const rAct = Number(dataRow[9] || 0);
+                        const prrAnt = Number(dataRow[12] || 0);
+                        const prrAct = Number(dataRow[13] || 0);
                         sum = {
-                            Polizas_Pagadas_Año_Anterior: Number(dataRow[0] || 0),
-                            Polizas_Pagadas_Año_Actual: Number(dataRow[1] || 0),
-                            Crec_Polizas_Pagadas: Number(dataRow[2] || 0),
-                            '%_Crec_Polizas_Pagadas': Number(dataRow[3] || 0),
-                            Prima_Pagada_Año_Anterior: Number(dataRow[4] || 0),
-                            'Prima_Pagada_Añoa_Actual': Number(dataRow[5] || 0),
-                            Crec_Prima_Pagada: Number(dataRow[6] || 0),
-                            '%_Crec_Prima_Pagada': Number(dataRow[7] || 0),
-                            Recluta_Año_Anterior: Number(dataRow[8] || 0),
-                            Recluta_Año_Actual: Number(dataRow[9] || 0),
-                            Crec_Recluta: Number(dataRow[10] || 0),
-                            '%_Crec_Recluta': Number(dataRow[11] || 0),
-                            Prima_Pagada_Reclutas_Año_Anterior: Number(dataRow[12] || 0),
-                            Prima_Pagada_Reclutas_Año_Actual: Number(dataRow[13] || 0),
-                            Crec_Prima_Pagada_Reclutas: Number(dataRow[14] || 0),
-                            '%_Crec_Prima_Pagada_Reclutas': Number(dataRow[15] || 0)
+                            Polizas_Pagadas_Año_Anterior: pAnt,
+                            Polizas_Pagadas_Año_Actual: pAct,
+                            Crec_Polizas_Pagadas: pAct - pAnt,
+                            '%_Crec_Polizas_Pagadas': pAnt !== 0 ? (pAct - pAnt) / pAnt : 0,
+                            Prima_Pagada_Año_Anterior: prAnt,
+                            'Prima_Pagada_Añoa_Actual': prAct,
+                            Crec_Prima_Pagada: prAct - prAnt,
+                            '%_Crec_Prima_Pagada': prAnt !== 0 ? (prAct - prAnt) / prAnt : 0,
+                            Recluta_Año_Anterior: rAnt,
+                            Recluta_Año_Actual: rAct,
+                            Crec_Recluta: rAct - rAnt,
+                            '%_Crec_Recluta': rAnt !== 0 ? (rAct - rAnt) / rAnt : 0,
+                            Prima_Pagada_Reclutas_Año_Anterior: prrAnt,
+                            Prima_Pagada_Reclutas_Año_Actual: prrAct,
+                            Crec_Prima_Pagada_Reclutas: prrAct - prrAnt,
+                            '%_Crec_Prima_Pagada_Reclutas': prrAnt !== 0 ? (prrAct - prrAnt) / prrAnt : 0
                         };
                     }
                 }
