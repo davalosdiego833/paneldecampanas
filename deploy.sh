@@ -38,7 +38,19 @@ ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     # Hostinger Node.js suele reiniciar al detectar cambios en archivos clave
     # Forzar eliminación de snapshot para recarga de datos
     rm -f db/resumen_snapshot.json
-    echo "✅ Servidor actualizado y caché de datos limpia."
+    
+    # DISPARADOR DE REINICIO (Phusion Passenger / Hostinger)
+    mkdir -p tmp
+    touch tmp/restart.txt
+    
+    # VERIFICACIÓN DE INTEGRIDAD
+    if grep -q "1.1.0_fix_comparativo_final" dist/server/index.js; then
+        echo "✅ Código verificado: Versión 1.1.0_fix_comparativo_final detectada."
+    else
+        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión en dist/server/index.js"
+    fi
+    
+    echo "✅ Servidor actualizado, reiniciado y caché de datos limpia."
 EOF
 
 echo "✨ Despliegue completado con éxito!"
