@@ -686,14 +686,19 @@ const ComparativoVida: React.FC<{ data: any; fechaCorte: string; isGerencia?: bo
         const primAct = Number(r.Prima_Pagada_Año_Actual || r.Prima_Pagada_Añoa_Actual || 0);
         const polAntLocal = Number(r.Polizas_Pagadas_Año_Anterior || 0);
         const polActLocal = Number(r.Polizas_Pagadas_Año_Actual || 0);
-        const crecPrima = primAct - primAnt;
-        const crecPol = polActLocal - polAntLocal;
+        
+        // Use pre-calculated server values if available, otherwise compute locally
+        const crecPrima = r.Crec_Prima_Pagada ?? (primAct - primAnt);
+        const crecPol = r.Crec_Polizas_Pagadas ?? (polActLocal - polAntLocal);
+        const pctPrima = r['%_Crec_Prima_Pagada'] ?? (primAnt !== 0 ? (crecPrima / primAnt) : 0);
+        const pctPol = r['%_Crec_Polizas_Pagadas'] ?? (polAntLocal !== 0 ? (crecPol / polAntLocal) : 0);
+
         return {
             ...r,
             Crec_Prima_Pagada: crecPrima,
             Crec_Polizas_Pagadas: crecPol,
-            '%_Crec_Prima_Pagada': primAnt > 0 ? (crecPrima / primAnt) * 100 : 0,
-            '%_Crec_Polizas_Pagadas': polAntLocal > 0 ? (crecPol / polAntLocal) * 100 : 0
+            '%_Crec_Prima_Pagada': pctPrima,
+            '%_Crec_Polizas_Pagadas': pctPol
         };
     });
 

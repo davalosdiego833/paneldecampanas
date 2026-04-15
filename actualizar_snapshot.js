@@ -105,8 +105,12 @@ const run = () => {
                     'Sucursal': r[3],
                     'Polizas_Pagadas_Año_Anterior': Number(r[15] || 0),
                     'Polizas_Pagadas_Año_Actual': Number(r[16] || 0),
+                    'Crec_Polizas_Pagadas': Number(r[17] || 0),
+                    '%_Crec_Polizas_Pagadas': Number(r[18] || 0),
                     'Prima_Pagada_Año_Anterior': Number(r[23] || 0),
                     'Prima_Pagada_Año_Actual': Number(r[24] || 0),
+                    'Crec_Prima_Pagada': Number(r[25] || 0),
+                    '%_Crec_Prima_Pagada': Number(r[26] || 0)
                 }));
             }
             const fechaCV = wsP['A1']?.v || '';
