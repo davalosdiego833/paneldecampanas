@@ -49,18 +49,24 @@ ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     cp -r dist/* ../public_html/
     mkdir -p tmp
     
-    # Re-crear .htaccess si no existe o fue alterado
-    printf "PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node\nPassengerAppRoot /home/u211138134/domains/panel.ambrizydavalos.com/nodejs\nPassengerAppType node\nPassengerStartupFile dist/server/index.js\n\nRewriteEngine On\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > ../public_html/.htaccess
+    # Iniciar Node en segundo plano si no está corriendo (Puerto 5005)
+    if ! ps aux | grep -v grep | grep -q "dist/server/index.js"; then
+        nohup /opt/alt/alt-nodejs20/root/usr/bin/node dist/server/index.js > console.log 2>&1 &
+        sleep 2
+    fi
+    
+    # .htaccess que PRIORIZA API sobre Estático
+    printf "RewriteEngine On\n\n# Prioridad 1: API\nRewriteCond %%{REQUEST_URI} ^/api\nRewriteRule ^(.*)\$ http://127.0.0.1:5005/\$1 [P,L]\n\n# Prioridad 2: Archivos Estáticos\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > ../public_html/.htaccess
     
     # Limpieza de caché y reinicio
     rm -f db/resumen_snapshot.json
     touch tmp/restart.txt
     
     # VERIFICACIÓN DE INTEGRIDAD
-    if grep -q "1.2.5" dist/server/index.js; then
-        echo "✅ Código verificado: Versión 1.2.5 detectada."
+    if grep -q "1.2.6" dist/server/index.js; then
+        echo "✅ Código verificado: Versión 1.2.6 detectada."
     else
-        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión 1.2.5 en dist/server/index.js"
+        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión 1.2.6 en dist/server/index.js"
     fi
     
     echo "✅ Servidor actualizado, reiniciado y blindaje de configuración activo."
