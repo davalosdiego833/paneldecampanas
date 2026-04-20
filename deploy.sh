@@ -52,19 +52,19 @@ ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     cp dist/server/index.js ../public_html/app.js
     
     # FORZAR PERSISTENCIA (Inyectar en todos lados including secret builds)
-    for target in "." "../public_html" "$PARENT_DIR/public_html/.builds/source/repository"; do
-        if [ -d "$target" ] || [ "$target" = "." ]; then
-            [ -f .env ] && cp .env $target/.env
-            [ -d db ] && cp -r db $target/
+    for target in "." "../public_html" "\$PARENT_DIR/public_html/.builds/source/repository"; do
+        if [ -d "\$target" ] || [ "\$target" = "." ]; then
+            [ -f .env ] && cp .env \$target/.env
+            [ -d db ] && cp -r db \$target/
         fi
     done
     
     # ENLACE MAESTRO DE LIBRERÍAS
-    ln -sfn $PARENT_DIR/nodejs/node_modules ../public_html/node_modules
+    ln -sfn \$PARENT_DIR/nodejs/node_modules ../public_html/node_modules
     
     # HTACCESS DE FORTALEZA (FUERA DE PUBLIC_HTML)
     # Este archivo en la carpeta raíz del dominio sobrevive a cualquier limpieza de public_html
-    printf "PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node\nPassengerAppRoot $PARENT_DIR/public_html\nPassengerAppType node\nPassengerStartupFile app.js\nPassengerBaseURI /\n\nRewriteEngine On\n\n# Fallback SPA\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > $PARENT_DIR/.htaccess
+    printf "PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node\nPassengerAppRoot \$PARENT_DIR/public_html\nPassengerAppType node\nPassengerStartupFile app.js\nPassengerBaseURI /\n\nRewriteEngine On\n\n# Fallback SPA\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > \$PARENT_DIR/.htaccess
     
     # REINICIO TOTAL
     mkdir -p ../public_html/tmp
