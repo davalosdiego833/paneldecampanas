@@ -354,7 +354,7 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                     ← Volver al inicio
                 </button>
                 <div style={{ marginTop: '16px', textAlign: 'center', fontSize: '0.65rem', color: '#9ca3af', opacity: 0.3, letterSpacing: '0.1em', fontWeight: 600 }}>
-                    VERSION v1.2.4 — RECOVERY
+                    VERSION v1.2.5 — FULL RECOVERY
                 </div>
             </motion.div>
 

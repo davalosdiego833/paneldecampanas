@@ -46,20 +46,21 @@ ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     
     # ASEGURAR HTACCESS EN PUBLIC_HTML (Puente Hostinger)
     mkdir -p ../public_html
+    cp -r dist/* ../public_html/
     mkdir -p tmp
     
     # Re-crear .htaccess si no existe o fue alterado
-    printf "PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node\nPassengerAppRoot /home/u211138134/domains/panel.ambrizydavalos.com/nodejs\nPassengerAppType node\nPassengerStartupFile dist/server/index.js\n\nRewriteEngine On\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule ^(.*)\$ http://127.0.0.1:5005/\$1 [P,L]\n" > ../public_html/.htaccess
+    printf "PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node\nPassengerAppRoot /home/u211138134/domains/panel.ambrizydavalos.com/nodejs\nPassengerAppType node\nPassengerStartupFile dist/server/index.js\n\nRewriteEngine On\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > ../public_html/.htaccess
     
     # Limpieza de caché y reinicio
     rm -f db/resumen_snapshot.json
     touch tmp/restart.txt
     
     # VERIFICACIÓN DE INTEGRIDAD
-    if grep -q "1.2.4" dist/server/index.js; then
-        echo "✅ Código verificado: Versión 1.2.4 detectada."
+    if grep -q "1.2.5" dist/server/index.js; then
+        echo "✅ Código verificado: Versión 1.2.5 detectada."
     else
-        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión 1.2.4 en dist/server/index.js"
+        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión 1.2.5 en dist/server/index.js"
     fi
     
     echo "✅ Servidor actualizado, reiniciado y blindaje de configuración activo."
