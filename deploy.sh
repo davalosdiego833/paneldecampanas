@@ -35,45 +35,39 @@ echo "🌐 Actualizando servidor en vivo (Hostinger)..."
 ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     cd $SERVER_PATH
     
-    # RESPALDO DE CONFIGURACIÓN (Evitar pérdida por reset)
+    # RESPALDO DE CONFIGURACIÓN
     [ -f .env ] && cp .env .env.bak
     
     git fetch origin main
     git reset --hard origin/main
     
-    # RESTAURAR CONFIGURACIÓN SI SE PERDIÓ
+    # RESTAURAR CONFIGURACIÓN
     [ -f .env.bak ] && mv .env.bak .env
     
-    # ASEGURAR HTACCESS EN PUBLIC_HTML (Puente Hostinger)
+    # --- CONSOLIDACIÓN MAESTRA EN PUBLIC_HTML ---
+    # public_html es obligatorio para subdominios en Hostinger
     mkdir -p ../public_html
     cp -r dist/* ../public_html/
-    mkdir -p tmp
+    cp dist/server/index.js ../public_html/index.js
+    [ -d db ] && cp -r db ../public_html/
+    [ -f .env ] && cp .env ../public_html/
     
-    # MOVER PUNTO DE ARRANQUE A LA RAÍZ Y LIMPIAR
-    cp dist/server/index.js ./index.js
+    # CONFIGURACIÓN PASSENGER UNIFICADA
+    printf "PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node\nPassengerAppRoot /home/u211138134/domains/panel.ambrizydavalos.com/public_html\nPassengerAppType node\nPassengerStartupFile index.js\n\nRewriteEngine On\n\n# Fallback para rutas de frontend (SPA)\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > ../public_html/.htaccess
     
-    # ASEGURAR CARPETA OBLIGATORIA (public_html)
-    mkdir -p ../public_html
-    cp -r dist/* ../public_html/
-    
-    # CONFIGURACIÓN NATIVA PASSENGER (En public_html/ que es el Web Root)
-    # Sin Proxy rules para evitar interferencia
-    printf "PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node\nPassengerAppRoot /home/u211138134/domains/panel.ambrizydavalos.com/nodejs\nPassengerAppType node\nPassengerStartupFile index.js\n\nRewriteEngine On\n\n# Manejo de rutas SPA (Frontend)\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > ../public_html/.htaccess
-    
-    # Limpieza de caché y reinicio (Phusion Passenger estándar)
-    rm -f db/resumen_snapshot.json
-    mkdir -p tmp && touch tmp/restart.txt
-    pkill -f "dist/server/index.js" || true
-    pkill -f "index.js" || true
+    # Reinicio forzado
+    mkdir -p ../public_html/tmp
+    touch ../public_html/tmp/restart.txt
+    pkill -u $SERVER_USER node || true
     
     # VERIFICACIÓN DE INTEGRIDAD
-    if grep -q "1.3.0" dist/server/index.js; then
-        echo "✅ Código verificado: Versión 1.3.0 detectada."
+    if grep -q "1.3.1" ../public_html/index.js; then
+        echo "✅ Código verificado: Versión 1.3.1 consolidada."
     else
-        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión 1.3.0 en dist/server/index.js"
+        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión 1.3.1 en public_html"
     fi
     
-    echo "✅ Servidor estabilizado en modo NATIVO v1.3.0."
+    echo "✅ Servidor RECURADO Y CONSOLIDADO v1.3.1 (FULL DATA + UI)."
 EOF
 
 echo "✨ Despliegue completado con éxito!"
