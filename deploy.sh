@@ -44,27 +44,27 @@ ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     # RESTAURAR CONFIGURACIÓN
     [ -f .env.bak ] && mv .env.bak .env
     
-    # --- HARMONY BRIDGE v1.3.8 ---
-    # Sincronización con el Auto-Build de Hostinger
-    AUTO_BUILD_ROOT="../public_html/.builds/source/repository"
+    # --- THE FORTRESS v1.3.9 (ARQUITECTURA PERSISTENTE) ---
+    # Sincronización con el Auto-Build (Zona Segura Exterior)
+    PARENT_DIR="/home/u211138134/domains/panel.ambrizydavalos.com"
     mkdir -p ../public_html/api
     cp -r dist/* ../public_html/
     cp dist/server/index.js ../public_html/app.js
     
-    # INYECCIÓN AGRESIVA (Fuerza Bruta en todos los posibles roots)
-    for target in "." "../public_html" "$AUTO_BUILD_ROOT" "$AUTO_BUILD_ROOT/server"; do
+    # FORZAR PERSISTENCIA (Inyectar en todos lados including secret builds)
+    for target in "." "../public_html" "$PARENT_DIR/public_html/.builds/source/repository"; do
         if [ -d "$target" ] || [ "$target" = "." ]; then
             [ -f .env ] && cp .env $target/.env
-            [ -f .env.bak ] && cp .env.bak $target/.env
             [ -d db ] && cp -r db $target/
         fi
     done
     
-    # ENLACE MAESTRO
-    ln -sfn /home/u211138134/domains/panel.ambrizydavalos.com/nodejs/node_modules ../public_html/node_modules
+    # ENLACE MAESTRO DE LIBRERÍAS
+    ln -sfn $PARENT_DIR/nodejs/node_modules ../public_html/node_modules
     
-    # HTACCESS NATIVO DEFINITIVO
-    printf "PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node\nPassengerAppRoot /home/u211138134/domains/panel.ambrizydavalos.com/public_html\nPassengerAppType node\nPassengerStartupFile app.js\nPassengerBaseURI /\n\nRewriteEngine On\n\n# Fallback SPA\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > ../public_html/.htaccess
+    # HTACCESS DE FORTALEZA (FUERA DE PUBLIC_HTML)
+    # Este archivo en la carpeta raíz del dominio sobrevive a cualquier limpieza de public_html
+    printf "PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node\nPassengerAppRoot $PARENT_DIR/public_html\nPassengerAppType node\nPassengerStartupFile app.js\nPassengerBaseURI /\n\nRewriteEngine On\n\n# Fallback SPA\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > $PARENT_DIR/.htaccess
     
     # REINICIO TOTAL
     mkdir -p ../public_html/tmp
@@ -72,7 +72,7 @@ ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     pkill -f "app.js" || true
     pkill -u \$SERVER_USER node || true
     
-    echo "✅ SISTEMA ARMONIZADO v1.3.8."
+    echo "✅ SISTEMA BLINDADO v1.3.9 — THE FORTRESS."
 EOF
 
 echo "✨ Despliegue completado con éxito!"
