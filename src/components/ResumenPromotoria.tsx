@@ -269,7 +269,7 @@ const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggl
                         <LogOut size={16} className="nav-icon" /> Cerrar Sesión
                     </button>
                     <div style={{ marginTop: '8px', textAlign: 'center', fontSize: '0.65rem', color: 'var(--text-secondary)', opacity: 0.5, letterSpacing: '0.05em' }}>
-                        VERSION v1.3.3 — PHP BRIDGE
+                        VERSION v1.3.4 — TOTAL RESTORE
                     </div>
                 </div>
             </aside>
