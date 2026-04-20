@@ -44,37 +44,39 @@ ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     # RESTAURAR CONFIGURACIÓN
     [ -f .env.bak ] && mv .env.bak .env
     
-    # --- RESTORACIÓN NATIVA v1.3.6 ---
+    # --- ULTIMATE RESTORE v1.3.7 ---
+    # Sincronización total con el proceso de Hostinger
     mkdir -p ../public_html/api
     cp -r dist/* ../public_html/
     cp dist/server/index.js ../public_html/app.js
     
-    # RE-INYECTAR CONFIGURACIÓN Y DATOS
-    [ -f .env ] && cp .env ../public_html/.env
-    [ -f .env.bak ] && cp .env.bak ../public_html/.env
-    [ -d db ] && cp -r db ../public_html/
+    # FORZAR PERSISTENCIA DE CONFIG Y DATOS (EN TODOS LOS ROOTS)
+    for target in "." "../public_html"; do
+        [ -f .env ] && cp .env \$target/.env
+        [ -f .env.bak ] && cp .env.bak \$target/.env
+        [ -d db ] && cp -r db \$target/
+    done
     
-    # ENLACE DE LIBRERÍAS
+    # ENLACE MAESTRO DE LIBRERÍAS
     ln -sfn /home/u211138134/domains/panel.ambrizydavalos.com/nodejs/node_modules ../public_html/node_modules
     
-    # HTACCESS NATIVO FINAL
-    # PassengerBaseURI / es la llave maestra para subdominios en Hostinger
+    # HTACCESS NATIVO DEFINITIVO
     printf "PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node\nPassengerAppRoot /home/u211138134/domains/panel.ambrizydavalos.com/public_html\nPassengerAppType node\nPassengerStartupFile app.js\nPassengerBaseURI /\n\nRewriteEngine On\n\n# Fallback SPA\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > ../public_html/.htaccess
     
-    # Reinicio por watchdog de Passenger
+    # REINICIO TOTAL (Passenger Watchdog)
     mkdir -p ../public_html/tmp
     touch ../public_html/tmp/restart.txt
     pkill -f "app.js" || true
     pkill -u \$SERVER_USER node || true
     
     # VERIFICACIÓN DE INTEGRIDAD
-    if grep -q "1.3.6" ../public_html/app.js; then
-        echo "✅ Código verificado: Versión 1.3.6 (Native) consolidada."
+    if grep -q "1.3.7" ../public_html/app.js; then
+        echo "✅ Código verificado: Versión 1.3.7 (Ultimate) consolidada."
     else
-        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión 1.3.6."
+        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión 1.3.7."
     fi
     
-    echo "✅ Servidor RESTAURADO NATIVAMENTE v1.3.6."
+    echo "✅ SISTEMA 100% RESTAURADO v1.3.7."
 EOF
 
 echo "✨ Despliegue completado con éxito!"
