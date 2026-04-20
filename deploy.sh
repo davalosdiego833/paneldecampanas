@@ -44,33 +44,29 @@ ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     # RESTAURAR CONFIGURACIÓN
     [ -f .env.bak ] && mv .env.bak .env
     
-    # CONSOLIDACIÓN TOTAL EN PUBLIC_HTML (v1.3.2)
-    mkdir -p ../public_html
+    # CONSOLIDACIÓN v1.3.3 CON PUENTE PHP
+    mkdir -p ../public_html/api
     cp -r dist/* ../public_html/
-    
-    # RENOMBRADO A ESTÁNDAR UNIVERSAL (app.js)
     cp dist/server/index.js ../public_html/app.js
     
-    # BASE DE DATOS Y ENTORNO
-    [ -d db ] && cp -r db ../public_html/
-    [ -f .env ] && cp .env ../public_html/
+    # REFORZAR HTACCESS PARA USAR EL PUENTE PHP EN LA API
+    printf "RewriteEngine On\n\n# Prioridad 1: API via Puente PHP\nRewriteRule ^api/(.*)\$ api/index.php?url=\$1 [QSA,L]\n\n# Prioridad 2: Archivos Estáticos y SPA\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > ../public_html/.htaccess
     
-    # HTACCESS ESTÁNDAR MAESTRO
-    printf "PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node\nPassengerAppRoot /home/u211138134/domains/panel.ambrizydavalos.com/public_html\nPassengerAppType node\nPassengerStartupFile app.js\n\nRewriteEngine On\n\n# Fallback SPA\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > ../public_html/.htaccess
-    
-    # Reinicio forzado por Passenger
-    mkdir -p ../public_html/tmp
-    touch ../public_html/tmp/restart.txt
-    pkill -u $SERVER_USER node || true
+    # CREAR PUENTE PHP (Maestro Bridge)
+    printf "<?php\n\$url = 'http://127.0.0.1:5005/api/' . (isset(\$_GET['url']) ? \$_GET['url'] : '');\n\$ch = curl_init();\ncurl_setopt(\$ch, CURLOPT_URL, \$url);\ncurl_setopt(\$ch, CURLOPT_RETURNTRANSFER, true);\ncurl_setopt(\$ch, CURLOPT_FOLLOWLOCATION, true);\nif (\$_SERVER['REQUEST_METHOD'] === 'POST') {\n    curl_setopt(\$ch, CURLOPT_POST, true);\n    curl_setopt(\$ch, CURLOPT_POSTFIELDS, file_get_contents('php://input'));\n}\n\$headers = [];\nforeach (getallheaders() as \$name => \$value) { if (strtolower(\$name) !== 'host') \$headers[] = \"\$name: \$value\"; }\ncurl_setopt(\$ch, CURLOPT_HTTPHEADER, \$headers);\n\$response = curl_exec(\$ch);\n\$httpCode = curl_getinfo(\$ch, CURLINFO_HTTP_CODE);\ncurl_close(\$ch);\nhttp_response_code(\$httpCode);\nheader('Content-Type: application/json');\necho \$response;\n" > ../public_html/api/index.php
+
+    # Iniciar motor Node de respaldo (Puerto 5005)
+    pkill -u \$SERVER_USER node || true
+    nohup /opt/alt/alt-nodejs20/root/usr/bin/node ../public_html/app.js > ../public_html/console.log 2>&1 &
     
     # VERIFICACIÓN DE INTEGRIDAD
-    if grep -q "1.3.2" ../public_html/app.js; then
-        echo "✅ Código verificado: Versión 1.3.2 (app.js) consolidada."
+    if grep -q "1.3.3" ../public_html/app.js; then
+        echo "✅ Código verificado: Versión 1.3.3 (PHP Bridge) consolidada."
     else
-        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión 1.3.2 en el root."
+        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión 1.3.3."
     fi
     
-    echo "✅ Servidor RECONECTADO en v1.3.2 — FINAL BRIDGE."
+    echo "✅ Servidor RECONECTADO CON PUENTE PHP v1.3.3."
 EOF
 
 echo "✨ Despliegue completado con éxito!"
