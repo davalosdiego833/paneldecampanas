@@ -286,7 +286,7 @@ const LoginScreen: React.FC<Props> = ({ onSelectRole }) => {
                         AMBRIZ ASESORES © 2026
                     </p>
                     <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.15)', letterSpacing: '0.1em', fontWeight: 600 }}>
-                        VERSION v1.2.3 — SINCRONIZADO
+                        VERSION v1.2.4 — RECOVERY
                     </p>
                 </div>
             </motion.div>
