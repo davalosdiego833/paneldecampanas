@@ -1,4 +1,4 @@
-// Version: 1.3.5_memory_bridge
+// Version: 1.3.6_native_finalis
 import express from 'express';
 import cors from 'cors';
 import path from 'path';

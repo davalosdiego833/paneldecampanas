@@ -44,8 +44,7 @@ ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     # RESTAURAR CONFIGURACIÓN
     [ -f .env.bak ] && mv .env.bak .env
     
-    # --- RESTORACIÓN v1.3.5 (EL PUENTE DE MEMORIA) ---
-    # Unificar todo en public_html con enlace a librerías
+    # --- RESTORACIÓN NATIVA v1.3.6 ---
     mkdir -p ../public_html/api
     cp -r dist/* ../public_html/
     cp dist/server/index.js ../public_html/app.js
@@ -55,29 +54,27 @@ ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     [ -f .env.bak ] && cp .env.bak ../public_html/.env
     [ -d db ] && cp -r db ../public_html/
     
-    # CREAR ENLACE DE LIBRERÍAS (Symlink Maestro)
+    # ENLACE DE LIBRERÍAS
     ln -sfn /home/u211138134/domains/panel.ambrizydavalos.com/nodejs/node_modules ../public_html/node_modules
     
-    # REFORZAR HTACCESS PARA EL PUENTE PHP
-    printf "RewriteEngine On\n\n# Prioridad 1: API via Puente PHP\nRewriteRule ^api/(.*)\$ api/index.php?url=\$1 [QSA,L]\n\n# Prioridad 2: Archivos Estáticos y SPA\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > ../public_html/.htaccess
+    # HTACCESS NATIVO FINAL
+    # PassengerBaseURI / es la llave maestra para subdominios en Hostinger
+    printf "PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node\nPassengerAppRoot /home/u211138134/domains/panel.ambrizydavalos.com/public_html\nPassengerAppType node\nPassengerStartupFile app.js\nPassengerBaseURI /\n\nRewriteEngine On\n\n# Fallback SPA\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > ../public_html/.htaccess
     
-    # PUENTE PHP (Recalibrado)
-    printf "<?php\n\$url = 'http://127.0.0.1:5005/api/' . (isset(\$_GET['url']) ? \$_GET['url'] : '');\n\$ch = curl_init();\ncurl_setopt(\$ch, CURLOPT_URL, \$url);\ncurl_setopt(\$ch, CURLOPT_RETURNTRANSFER, true);\ncurl_setopt(\$ch, CURLOPT_FOLLOWLOCATION, true);\nif (\$_SERVER['REQUEST_METHOD'] === 'POST') {\n    curl_setopt(\$ch, CURLOPT_POST, true);\n    curl_setopt(\$ch, CURLOPT_POSTFIELDS, file_get_contents('php://input'));\n}\n\$headers = [];\nforeach (getallheaders() as \$name => \$value) { if (strtolower(\$name) !== 'host') \$headers[] = \"\$name: \$value\"; }\ncurl_setopt(\$ch, CURLOPT_HTTPHEADER, \$headers);\n\$response = curl_exec(\$ch);\n\$httpCode = curl_getinfo(\$ch, CURLINFO_HTTP_CODE);\ncurl_close(\$ch);\nhttp_response_code(\$httpCode);\nheader('Content-Type: application/json');\necho \$response;\n" > ../public_html/api/index.php
-
-    # Reiniciar motor Node con librerías vinculadas
+    # Reinicio por watchdog de Passenger
+    mkdir -p ../public_html/tmp
+    touch ../public_html/tmp/restart.txt
     pkill -f "app.js" || true
     pkill -u \$SERVER_USER node || true
-    cd ../public_html
-    nohup /opt/alt/alt-nodejs20/root/usr/bin/node app.js > console.log 2>&1 &
     
     # VERIFICACIÓN DE INTEGRIDAD
-    if grep -q "1.3.5" app.js; then
-        echo "✅ Código verificado: Versión 1.3.5 (Memory Bridge) consolidada."
+    if grep -q "1.3.6" ../public_html/app.js; then
+        echo "✅ Código verificado: Versión 1.3.6 (Native) consolidada."
     else
-        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión 1.3.5."
+        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión 1.3.6."
     fi
     
-    echo "✅ Servidor RESTAURADO Y VINCULADO v1.3.5."
+    echo "✅ Servidor RESTAURADO NATIVAMENTE v1.3.6."
 EOF
 
 echo "✨ Despliegue completado con éxito!"
