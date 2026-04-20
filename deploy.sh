@@ -44,30 +44,33 @@ ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     # RESTAURAR CONFIGURACIÓN
     [ -f .env.bak ] && mv .env.bak .env
     
-    # --- CONSOLIDACIÓN MAESTRA EN PUBLIC_HTML ---
-    # public_html es obligatorio para subdominios en Hostinger
+    # CONSOLIDACIÓN TOTAL EN PUBLIC_HTML (v1.3.2)
     mkdir -p ../public_html
     cp -r dist/* ../public_html/
-    cp dist/server/index.js ../public_html/index.js
+    
+    # RENOMBRADO A ESTÁNDAR UNIVERSAL (app.js)
+    cp dist/server/index.js ../public_html/app.js
+    
+    # BASE DE DATOS Y ENTORNO
     [ -d db ] && cp -r db ../public_html/
     [ -f .env ] && cp .env ../public_html/
     
-    # CONFIGURACIÓN PASSENGER UNIFICADA
-    printf "PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node\nPassengerAppRoot /home/u211138134/domains/panel.ambrizydavalos.com/public_html\nPassengerAppType node\nPassengerStartupFile index.js\n\nRewriteEngine On\n\n# Fallback para rutas de frontend (SPA)\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > ../public_html/.htaccess
+    # HTACCESS ESTÁNDAR MAESTRO
+    printf "PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node\nPassengerAppRoot /home/u211138134/domains/panel.ambrizydavalos.com/public_html\nPassengerAppType node\nPassengerStartupFile app.js\n\nRewriteEngine On\n\n# Fallback SPA\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > ../public_html/.htaccess
     
-    # Reinicio forzado
+    # Reinicio forzado por Passenger
     mkdir -p ../public_html/tmp
     touch ../public_html/tmp/restart.txt
     pkill -u $SERVER_USER node || true
     
     # VERIFICACIÓN DE INTEGRIDAD
-    if grep -q "1.3.1" ../public_html/index.js; then
-        echo "✅ Código verificado: Versión 1.3.1 consolidada."
+    if grep -q "1.3.2" ../public_html/app.js; then
+        echo "✅ Código verificado: Versión 1.3.2 (app.js) consolidada."
     else
-        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión 1.3.1 en public_html"
+        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión 1.3.2 en el root."
     fi
     
-    echo "✅ Servidor RECURADO Y CONSOLIDADO v1.3.1 (FULL DATA + UI)."
+    echo "✅ Servidor RECONECTADO en v1.3.2 — FINAL BRIDGE."
 EOF
 
 echo "✨ Despliegue completado con éxito!"
