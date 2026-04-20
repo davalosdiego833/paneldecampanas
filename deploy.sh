@@ -44,39 +44,35 @@ ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     # RESTAURAR CONFIGURACIÓN
     [ -f .env.bak ] && mv .env.bak .env
     
-    # --- ULTIMATE RESTORE v1.3.7 ---
-    # Sincronización total con el proceso de Hostinger
+    # --- HARMONY BRIDGE v1.3.8 ---
+    # Sincronización con el Auto-Build de Hostinger
+    AUTO_BUILD_ROOT="../public_html/.builds/source/repository"
     mkdir -p ../public_html/api
     cp -r dist/* ../public_html/
     cp dist/server/index.js ../public_html/app.js
     
-    # FORZAR PERSISTENCIA DE CONFIG Y DATOS (EN TODOS LOS ROOTS)
-    for target in "." "../public_html"; do
-        [ -f .env ] && cp .env \$target/.env
-        [ -f .env.bak ] && cp .env.bak \$target/.env
-        [ -d db ] && cp -r db \$target/
+    # INYECCIÓN AGRESIVA (Fuerza Bruta en todos los posibles roots)
+    for target in "." "../public_html" "$AUTO_BUILD_ROOT" "$AUTO_BUILD_ROOT/server"; do
+        if [ -d "$target" ] || [ "$target" = "." ]; then
+            [ -f .env ] && cp .env $target/.env
+            [ -f .env.bak ] && cp .env.bak $target/.env
+            [ -d db ] && cp -r db $target/
+        fi
     done
     
-    # ENLACE MAESTRO DE LIBRERÍAS
+    # ENLACE MAESTRO
     ln -sfn /home/u211138134/domains/panel.ambrizydavalos.com/nodejs/node_modules ../public_html/node_modules
     
     # HTACCESS NATIVO DEFINITIVO
     printf "PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node\nPassengerAppRoot /home/u211138134/domains/panel.ambrizydavalos.com/public_html\nPassengerAppType node\nPassengerStartupFile app.js\nPassengerBaseURI /\n\nRewriteEngine On\n\n# Fallback SPA\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > ../public_html/.htaccess
     
-    # REINICIO TOTAL (Passenger Watchdog)
+    # REINICIO TOTAL
     mkdir -p ../public_html/tmp
     touch ../public_html/tmp/restart.txt
     pkill -f "app.js" || true
     pkill -u \$SERVER_USER node || true
     
-    # VERIFICACIÓN DE INTEGRIDAD
-    if grep -q "1.3.7" ../public_html/app.js; then
-        echo "✅ Código verificado: Versión 1.3.7 (Ultimate) consolidada."
-    else
-        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión 1.3.7."
-    fi
-    
-    echo "✅ SISTEMA 100% RESTAURADO v1.3.7."
+    echo "✅ SISTEMA ARMONIZADO v1.3.8."
 EOF
 
 echo "✨ Despliegue completado con éxito!"
