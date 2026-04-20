@@ -49,32 +49,27 @@ ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     cp -r dist/* ../public_html/
     mkdir -p tmp
     
-    # ASEGURAR HTACCESS EN PUBLIC_HTML (Puente Hostinger)
-    mkdir -p ../public_html
-    cp -r dist/* ../public_html/
-    
-    # MOVER PUNTO DE ARRANQUE A LA RAÍZ (Requerido por Passenger-Hostinger)
+    # MOVER PUNTO DE ARRANQUE A LA RAÍZ Y LIMPIAR
     cp dist/server/index.js ./index.js
     
-    # REFORZAR HTACCESS DE ARRANQUE
-    printf "PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node\nPassengerAppRoot /home/u211138134/domains/panel.ambrizydavalos.com/nodejs\nPassengerAppType node\nPassengerStartupFile index.js\n\nRewriteEngine On\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n\n# Proxy API forzado\nRewriteCond %%{REQUEST_URI} ^/api\nRewriteRule ^(.*)\$ http://127.0.0.1:5005/\$1 [P,L]\n" > ../public_html/.htaccess
-
-    # Iniciar Node en segundo plano si Passenger falla (Puerto 5005)
-    pkill -f "dist/server/index.js" || true
-    nohup /opt/alt/alt-nodejs20/root/usr/bin/node index.js > console.log 2>&1 &
+    # ELIMINAR CARPETA TEMPORAL QUE BLOQUEA EL MOTOR (public_html)
+    rm -rf ../public_html
+    
+    # REFORZAR HTACCESS EN LA RAÍZ DEL APP (nodejs/)
+    printf "PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node\nPassengerAppRoot /home/u211138134/domains/panel.ambrizydavalos.com/nodejs\nPassengerAppType node\nPassengerStartupFile index.js\n\nRewriteEngine On\nRewriteRule ^index\.html$ - [L]\nRewriteCond %%{REQUEST_FILENAME} !-f\nRewriteCond %%{REQUEST_FILENAME} !-d\nRewriteRule . /index.html [L]\n" > .htaccess
     
     # Limpieza de caché y reinicio
     rm -f db/resumen_snapshot.json
     mkdir -p tmp && touch tmp/restart.txt
     
     # VERIFICACIÓN DE INTEGRIDAD
-    if grep -q "1.2.7" dist/server/index.js; then
-        echo "✅ Código verificado: Versión 1.2.7 detectada."
+    if grep -q "1.2.8" dist/server/index.js; then
+        echo "✅ Código verificado: Versión 1.2.8 detectada."
     else
-        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión 1.2.7 en dist/server/index.js"
+        echo "⚠️ ADVERTENCIA: No se encontró la marca de versión 1.2.8 en dist/server/index.js"
     fi
     
-    echo "✅ Servidor actualizado, reiniciado y configurado en modo ESTÁNDAR v1.2.7."
+    echo "✅ Servidor restaurado a ESTÁNDAR HOSTINGER v1.2.8."
 EOF
 
 echo "✨ Despliegue completado con éxito!"
