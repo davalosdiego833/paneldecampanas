@@ -11,9 +11,10 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Adjust BASE_PATH depending on if we are running from /server/index.ts (dev) or /dist/server/index.js (prod)
+// Detect if we are running in the Hostinger remote environment
+const isHostinger = __dirname.includes('domains/panel.ambrizydavalos.com');
 const isProd = __dirname.endsWith('dist/server') || __dirname.endsWith('dist\\server');
-const BASE_PATH = isProd ? path.join(__dirname, '../..') : path.join(__dirname, '..');
+const BASE_PATH = isHostinger ? __dirname : (isProd ? path.join(__dirname, '../..') : path.join(__dirname, '..'));
 
 const app = express();
 const PORT = Number(process.env.PORT) || 5005;
