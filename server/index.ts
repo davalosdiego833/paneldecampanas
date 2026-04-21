@@ -8,17 +8,28 @@ import XLSX from 'xlsx';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 
-dotenv.config();
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-const app = express();
-const PORT = Number(process.env.PORT) || 5005;
 
 // Adjust BASE_PATH depending on if we are running from /server/index.ts (dev) or /dist/server/index.js (prod)
 const isProd = __dirname.endsWith('dist/server') || __dirname.endsWith('dist\\server');
 const BASE_PATH = isProd ? path.join(__dirname, '../..') : path.join(__dirname, '..');
+
+const app = express();
+const PORT = Number(process.env.PORT) || 5005;
+
+// distributed architecture: Load .env from parent dir if it doesn't exist locally
+const localEnv = path.join(BASE_PATH, '.env');
+const hostingerEnv = path.join(BASE_PATH, '../.env');
+dotenv.config({ path: fs.existsSync(localEnv) ? localEnv : hostingerEnv });
+
+// Helper to reliably find the 'db' directory
+const getDbPath = () => {
+    const localDb = path.join(BASE_PATH, 'db');
+    const hostingerDb = path.join(BASE_PATH, '../db');
+    return fs.existsSync(localDb) ? localDb : hostingerDb; // fallback if local misses (Hostinger)
+};
+const DB_PATH_DYNAMIC = getDbPath();
 const ASSETS_PATH = path.join(BASE_PATH, 'assets');
 const THEMES_PATH = path.join(BASE_PATH, 'themes');
 
@@ -905,7 +916,7 @@ app.post('/api/admin/snapshot', async (req, res) => {
             console.error('Error during snapshot resumen_general:', rgError);
         }
 
-        const dbDir = path.join(BASE_PATH, 'db');
+        const dbDir = DB_PATH_DYNAMIC;
         if (!fs.existsSync(dbDir)) fs.mkdirSync(dbDir);
 
         // --- AUTOMATIC ACTIVITY LOG FOR SNAPSHOT/PUSH ---
@@ -963,7 +974,7 @@ app.post('/api/admin/verify-password', (req, res) => {
 });
 
 app.get('/api/historico-metas', (req, res) => {
-    const filePath = path.join(BASE_PATH, 'db', 'historico_metas.json');
+    const filePath = path.join(DB_PATH_DYNAMIC, 'historico_metas.json');
     if (!fs.existsSync(filePath)) {
         return res.json({ "2026": {} });
     }
@@ -1123,7 +1134,7 @@ app.get('/api/resumen-general', (req, res) => {
 // On read, both locations are merged so data is never lost.
 
 const PERSISTENT_DIR = path.join(os.homedir(), '.panel_campanas_data');
-const LOCAL_DB_DIR = path.join(BASE_PATH, 'db');
+const LOCAL_DB_DIR = DB_PATH_DYNAMIC;
 
 // Ensure both directories exist
 [PERSISTENT_DIR, LOCAL_DB_DIR].forEach(dir => {
@@ -1194,7 +1205,7 @@ const dualWrite = (filename: string, data: any) => {
 
 // ===================== LOG DE ACTIVIDAD =====================
 const ACTIVITY_FILE = 'actividad.json';
-const SNAPSHOT_PATH = path.join(BASE_PATH, 'db', 'resumen_snapshot.json');
+const SNAPSHOT_PATH = path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json');
 
 app.post('/api/activity', (req, res) => {
     try {
