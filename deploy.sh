@@ -19,53 +19,40 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# 2. Subir cambios a GitHub
-echo "📦 Subiendo cambios a GitHub..."
+# 2. Subir cambios a GitHub (A una rama de backup para no disparar el Auto-Deploy de Hostinger en 'main')
+echo "📦 Subiendo cambios a GitHub (rama data-backup)..."
 git add .
-git commit -m "data: Actualización automática de reportes ($(date +'%Y-%m-%d %H:%M'))"
-git push origin main
+git commit -m "data: Actualización automática de reportes ($(date +'%Y-%m-%d %H:%M'))" || true
+git push origin HEAD:data-backup -f
 
 if [ $? -ne 0 ]; then
     echo "❌ Error al subir a GitHub. Abortando."
     exit 1
 fi
 
-# 2. Sincronizar servidor Hostinger vía SSH
-echo "🌐 Actualizando servidor en vivo (Hostinger)..."
+PARENT_DIR="/home/u211138134/domains/panel.ambrizydavalos.com"
+
+# 3. Despliegue Directo via RSYNC (Evita el Auto-Builder)
+echo "🌐 Sincronizando archivos críticos al servidor..."
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" dist/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/dist/
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" package.json $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" .htaccess $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/
+
+# 4. Configurar Servidor via SSH
 ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     PARENT_DIR="/home/u211138134/domains/panel.ambrizydavalos.com"
     
-    # ESPERAR A QUE HOSTINGER TERMINE DE DESTRUIR TODO (Webhook AutoDeploy)
-    echo "⏳ Esperando 25s a que el Auto-mantenimiento de Hostinger termine..."
-    sleep 25
+    # Asegurar enlaces y app.js
+    cp \$PARENT_DIR/public_html/dist/server/index.js \$PARENT_DIR/public_html/app.js
+    ln -sfn \$PARENT_DIR/nodejs/node_modules \$PARENT_DIR/public_html/node_modules
     
-    # --- RESTAURACIÓN DE LA FORTALEZA ---
-    cd $SERVER_PATH
-    
-    git fetch origin main
-    git reset --hard origin/main
-    
-    PARENT_DIR="/home/u211138134/domains/panel.ambrizydavalos.com"
-    
-    # 1. Limpiar el desastre del Auto Deploy
-    rm -rf ../public_html/* || true
-    
-    # 2. Restaurar archivos desde nuestro clon puro
-    mkdir -p ../public_html/api
-    cp -r dist/* ../public_html/
-    cp dist/server/index.js ../public_html/app.js
-    
-    # 3. Enlaces Maestros y .htaccess
-    ln -sfn \$PARENT_DIR/nodejs/node_modules ../public_html/node_modules
-    cp .htaccess ../public_html/.htaccess
-    
-    # 4. REINICIO DE PASSENGER (Para que tome los nuevos cambios)
-    mkdir -p ../public_html/tmp
-    touch ../public_html/tmp/restart.txt
+    # REINICIO DE PASSENGER
+    mkdir -p \$PARENT_DIR/public_html/tmp
+    touch \$PARENT_DIR/public_html/tmp/restart.txt
     pkill -u \$SERVER_USER node || true
     pkill -f "app.js" || true
     
-    echo "✅ SISTEMA BLINDADO DISTRIBUIDO Y RESTAURADO LUEGO DEL AUTO-BUILD."
+    echo "✅ SISTEMA BLINDADO DISTRIBUIDO DESPLEGADO EXITOSAMENTE."
 EOF
 
 echo "✨ Despliegue completado con éxito!"
