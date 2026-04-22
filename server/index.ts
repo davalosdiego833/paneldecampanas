@@ -26,11 +26,6 @@ dotenv.config({ path: fs.existsSync(localEnv) ? localEnv : hostingerEnv });
 
 // Helper to reliably find protected folders in Distributed Architecture
 const getProtectedPath = (folder: string) => {
-    // Current folder could be public_html or dist/server
-    const local = path.join(BASE_PATH, folder);
-    
-    // In Hostinger, BASE_PATH is domains/.../public_html
-    // Safe data is in domains/.../db or domains/.../nodejs/folder
     const isHostinger = __dirname.includes('domains/panel.ambrizydavalos.com');
     
     if (isHostinger) {
@@ -38,12 +33,11 @@ const getProtectedPath = (folder: string) => {
         const hostingerNodeJS = path.join(BASE_PATH, '../nodejs', folder);
         
         // Priority for Hostinger: 
-        // 1. nodejs (administrador, estatus polizas)
-        // 2. parent (db)
         if (folder !== 'db' && fs.existsSync(hostingerNodeJS)) return hostingerNodeJS;
         if (fs.existsSync(hostingerParent)) return hostingerParent;
     }
 
+    const local = path.join(BASE_PATH, folder);
     if (fs.existsSync(local)) return local;
     return local;
 };
