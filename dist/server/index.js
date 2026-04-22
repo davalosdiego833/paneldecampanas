@@ -20,6 +20,7 @@ const localEnv = path.join(BASE_PATH, '.env');
 const hostingerEnv = path.join(BASE_PATH, '../.env');
 dotenv.config({ path: fs.existsSync(localEnv) ? localEnv : hostingerEnv });
 // Helper to reliably find protected folders in Distributed Architecture
+const SUCURSALES_PROMO = ['2043', '2856', '2692', '2511', '313'];
 const getProtectedPath = (folder) => {
     const isHostinger = __dirname.includes('domains/panel.ambrizydavalos.com');
     if (isHostinger) {
@@ -344,7 +345,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const mIndex = mMatch ? MONTHS_ES.indexOf(mMatch[1]) + 1 : 1;
         const dir = getAdvisorDirectory();
         const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
-        const row = json.find(r => String(r['Matriz'] || '') === '2043' && (String(r['Asesor'] || '') === advisor || advisorKeys.includes(String(r['Asesor'] || ''))));
+        const row = json.find(r => SUCURSALES_PROMO.includes(String(r['Matriz'] || '')) && (String(r['Asesor'] || '') === advisor || advisorKeys.includes(String(r['Asesor'] || ''))));
         if (!row)
             return res.status(404).json({ error: 'Advisor not found' });
         const totalPol = Number(row['Total Pólizas'] || 0);
@@ -368,7 +369,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const data = ws._cachedData;
         const dir = getAdvisorDirectory();
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
-        const row = data.find(r => String(r[4] || '') === '2043' && (String(r[7] || '') === advisor || advisorIds.includes(String(r[7] || ''))));
+        const row = data.find(r => SUCURSALES_PROMO.includes(String(r[4] || '')) && (String(r[7] || '') === advisor || advisorIds.includes(String(r[7] || ''))));
         if (!row)
             return res.status(404).json({ error: 'Advisor not found' });
         const allCredits = data.slice(1).filter(r => r[32] != null && r[32] !== '' && r[24] != null);
@@ -407,7 +408,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const data = ws._cachedData;
         const dir = getAdvisorDirectory();
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
-        const row = data.find(r => String(r[3] || '') === '2043' && (String(r[5] || '') === advisor || advisorIds.includes(String(r[5] || ''))));
+        const row = data.find(r => SUCURSALES_PROMO.includes(String(r[3] || '')) && (String(r[5] || '') === advisor || advisorIds.includes(String(r[5] || ''))));
         if (!row)
             return res.status(404).json({ error: 'Advisor not found' });
         const pols = Number(row[13] || 0);
@@ -428,7 +429,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const json = ws._cachedJson;
         const dir = getAdvisorDirectory();
         const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
-        const row = json.find(r => String(r['NOMBRE'] || '') === advisor || advisorKeys.includes(String(r['NOMBRE'] || '')) || String(r['ASESOR'] || '') === advisor || advisorKeys.includes(String(r['ASESOR'] || '')));
+        const row = json.find(r => SUCURSALES_PROMO.includes(String(r['Sucursal'] || r['Suc'] || '')) && (String(r['NOMBRE'] || '') === advisor || advisorKeys.includes(String(r['NOMBRE'] || '')) || String(r['ASESOR'] || '') === advisor || advisorKeys.includes(String(r['ASESOR'] || ''))));
         if (!row)
             return res.status(404).json({ error: 'Advisor not found' });
         const limitKey = Object.keys(row).find(k => k.includes('MITE P/'));
@@ -449,7 +450,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const dir = getAdvisorDirectory();
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
         // E (idx 4) is Mat, G (idx 6) is Clave
-        const row = data.find(r => String(r[4] || '') === '2043' && (String(r[6] || '') === advisor || advisorIds.includes(String(r[6] || ''))));
+        const row = data.find(r => SUCURSALES_PROMO.includes(String(r[4] || '')) && (String(r[6] || '') === advisor || advisorIds.includes(String(r[6] || ''))));
         if (!row)
             return res.status(404).json({ error: 'Advisor not found' });
         return res.json({
@@ -474,7 +475,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
         const dir = getAdvisorDirectory();
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
-        const row = data.find(r => String(r[4] || '') === '2043' && (String(r[6] || '') === advisor || advisorIds.includes(String(r[6] || ''))));
+        const row = data.find(r => SUCURSALES_PROMO.includes(String(r[4] || '')) && (String(r[6] || '') === advisor || advisorIds.includes(String(r[6] || ''))));
         if (!row)
             return res.status(404).json({ error: 'Advisor not found' });
         return res.json({
@@ -496,7 +497,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const json = ws._cachedJson;
         const dir = getAdvisorDirectory();
         const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
-        const row = json.find(r => String(r['Mat'] || '') === '2043' && (String(r['Nombre del Asesor'] || '') === advisor || advisorKeys.includes(String(r['Nombre del Asesor'] || '')) || String(r['Asesor'] || '') === advisor || advisorKeys.includes(String(r['Asesor'] || ''))));
+        const row = json.find(r => SUCURSALES_PROMO.includes(String(r['Mat'] || r['Matriz'] || '')) && (String(r['Nombre del Asesor'] || '') === advisor || advisorKeys.includes(String(r['Nombre del Asesor'] || '')) || String(r['Asesor'] || '') === advisor || advisorKeys.includes(String(r['Asesor'] || ''))));
         if (!row)
             return res.status(404).json({ error: 'Advisor not found' });
         const paKey = Object.keys(row).find(k => (k || '').trim().toLowerCase() === 'total prima');
@@ -569,7 +570,7 @@ app.get('/api/admin/summary', (req, res) => {
                     if (c === 'mdrt') {
                         const ws = wb.Sheets[wb.SheetNames.find((n) => n.toUpperCase() === 'MDRT') || wb.SheetNames[0]];
                         const data = XLSX.utils.sheet_to_json(ws, { range: 3 });
-                        result.mdrt = data.filter(r => String(r.Matriz || r['Mat'] || '') === '2043').map(r => {
+                        result.mdrt = data.filter(r => SUCURSALES_PROMO.includes(String(r.Matriz || r['Mat'] || ''))).map(r => {
                             // Find PA column (some Excels have leading/trailing spaces)
                             const paKey = Object.keys(r).find(k => k.trim().toLowerCase() === 'total prima' || k.trim().toLowerCase() === 'camino prima');
                             return {
@@ -582,7 +583,7 @@ app.get('/api/admin/summary', (req, res) => {
                     else if (c === 'camino_cumbre') {
                         const ws = wb.Sheets[wb.SheetNames[0]];
                         const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 3 });
-                        result.camino_cumbre = data.slice(1).filter(r => String(r[3] || '') === '2043').map(r => ({ Asesor: resolveName(r[5]), Clave: r[5] || '', Mes_Asesor: Number(r[10] || 1), Polizas_Totales: Number(r[13] || 0), Mes_1_Prod: Number(r[21] || 0), Mes_2_Prod: Number(r[22] || 0), Mes_3_Prod: Number(r[23] || 0) }));
+                        result.camino_cumbre = data.slice(1).filter(r => SUCURSALES_PROMO.includes(String(r[3] || ''))).map(r => ({ Asesor: resolveName(r[5]), Clave: r[5] || '', Mes_Asesor: Number(r[10] || 1), Polizas_Totales: Number(r[13] || 0), Mes_1_Prod: Number(r[21] || 0), Mes_2_Prod: Number(r[22] || 0), Mes_3_Prod: Number(r[23] || 0) }));
                     }
                     else if (c === 'convenciones') {
                         const ws = wb.Sheets[wb.SheetNames[0]];
@@ -610,7 +611,7 @@ app.get('/api/admin/summary', (req, res) => {
                             if (l === 28)
                                 c28 = Number(r[24] || 0);
                         });
-                        result.convenciones = allRows.filter(r => String(r[4] || '') === '2043').map(r => ({
+                        result.convenciones = allRows.filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
                             Asesor: resolveName(r[7]),
                             Clave: r[7] || '',
                             Comision_Vida: Number(r[11] || 0),
@@ -624,7 +625,7 @@ app.get('/api/admin/summary', (req, res) => {
                     else if (c === 'graduacion') {
                         const ws = wb.Sheets[wb.SheetNames[0]];
                         const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 2 });
-                        result.graduacion = data.slice(1).filter(r => String(r[3] || '') === '2043').map(r => ({ Asesor: r[7] ? String(r[7]) : resolveName(r[6]), Clave: r[6] || '', Mes_Asesor: Number(r[8] || 1), Polizas_Totales: Number(r[16] || 0) }));
+                        result.graduacion = data.slice(1).filter(r => SUCURSALES_PROMO.includes(String(r[3] || ''))).map(r => ({ Asesor: r[7] ? String(r[7]) : resolveName(r[6]), Clave: r[6] || '', Mes_Asesor: Number(r[8] || 1), Polizas_Totales: Number(r[16] || 0) }));
                     }
                     else if (c === 'legion_centurion') {
                         const ws = wb.Sheets[wb.SheetNames[0]];
@@ -632,7 +633,7 @@ app.get('/api/admin/summary', (req, res) => {
                         const b9 = ws['B9']?.v || "";
                         const mMatch = String(b9).toLowerCase().match(/(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/);
                         const mIndex = mMatch ? MONTHS_ES.indexOf(mMatch[1]) + 1 : 1;
-                        result.legion_centurion = data.slice(1).filter(r => String(r[4] || '') === '2043').map(r => ({
+                        result.legion_centurion = data.slice(1).filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
                             Asesor: resolveName(r[6]),
                             Clave: r[6] || '',
                             Total_Polizas: Number(r[10] || 0),
@@ -644,7 +645,7 @@ app.get('/api/admin/summary', (req, res) => {
                     else if (c === 'fanfest') {
                         const ws = wb.Sheets['ASESORES'] || wb.Sheets[wb.SheetNames[0]];
                         const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
-                        result.fanfest = data.slice(2).filter(r => String(r[4] || '') === '2043').map(r => ({
+                        result.fanfest = data.slice(2).filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
                             Asesor: resolveName(r[6]),
                             Clave: r[6] || '',
                             Total_Polizas: Number(r[13] || 0),
@@ -659,7 +660,7 @@ app.get('/api/admin/summary', (req, res) => {
                     else if (c === 'vive_tu_pasion') {
                         const ws = wb.Sheets['ASESORES'] || wb.Sheets[wb.SheetNames[0]];
                         const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
-                        result.vive_tu_pasion = data.slice(2).filter(r => String(r[4] || '') === '2043').map(r => ({
+                        result.vive_tu_pasion = data.slice(2).filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
                             Asesor: resolveName(r[6]),
                             Clave: r[6] || '',
                             Polizas: Number(r[8] || 0),

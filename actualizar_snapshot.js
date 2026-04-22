@@ -7,7 +7,9 @@ const DB_PATH = path.join(BASE_PATH, 'db');
 const SNAPSHOT_FILE = path.join(DB_PATH, 'resumen_snapshot.json');
 
 // FILTRO ÚNICO: Solo Matriz 2043
+// FILTRO ÚNICO: Solo Matriz 2043
 const VALID_SUCURSAL = '2043';
+const SUCURSALES_ADMIN = ['2043', '2856', '2692', '2511', '313']; // IDs conocidos de la promo
 
 // Helper to resolve advisor name using the directory
 const resolveName = (clave, fallbackName, directory) => {
@@ -134,7 +136,10 @@ const run = () => {
             if (wsP) {
                 const dat = XLSX.utils.sheet_to_json(wsP, { header: 1, range: 3 });
                 rg.asesores_sin_emision.summaryBySucursal = dat
-                    .filter(r => String(r[1]) === VALID_SUCURSAL || String(r[4]) === VALID_SUCURSAL)
+                    .filter(r => {
+                        const sucId = String(r[1] || r[4] || '').trim();
+                        return SUCURSALES_ADMIN.includes(sucId);
+                    })
                     .map(r => ({
                         Sucursal: r[5] || r[2],
                         Suc: r[4] || r[1],
@@ -155,7 +160,11 @@ const run = () => {
             if (wsA) {
                 const dat = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 4 });
                 rg.asesores_sin_emision.individuals = dat
-                    .filter(r => String(r[3]) === VALID_SUCURSAL || String(r[4]) === VALID_SUCURSAL)
+                    .filter(r => {
+                        const claveStr = String(r[6] || '').trim();
+                        const sucId = String(r[3] || r[4] || '').trim();
+                        return SUCURSALES_ADMIN.includes(sucId) || !!directory[claveStr];
+                    })
                     .map(r => ({
                         Asesor: resolveName(r[6], r[7], directory),
                         Clave: r[6],
@@ -184,7 +193,11 @@ const run = () => {
             const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 4 });
             
             rg.proactivos = data
-                .filter(r => r[4] && (String(r[2]) === VALID_SUCURSAL || String(r[3]) === VALID_SUCURSAL))
+                .filter(r => {
+                    const claveStr = String(r[4] || '').trim();
+                    const sucId = String(r[2] || r[3] || '').trim();
+                    return r[4] && (SUCURSALES_ADMIN.includes(sucId) || !!directory[claveStr]);
+                })
                 .map(r => ({
                     ASESOR: resolveName(r[4], null, directory),
                     SUC: r[3],
@@ -243,7 +256,11 @@ const run = () => {
             if (wsA) {
                 const rawA = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 6 });
                 rg.comparativo_vida.individuals = rawA
-                    .filter(r => r[6] && r[6] !== 'TOTAL' && (String(r[3]) === VALID_SUCURSAL || String(r[4]) === VALID_SUCURSAL))
+                    .filter(r => {
+                        const claveStr = String(r[5] || '').trim();
+                        const sucId = String(r[3] || r[4] || '').trim();
+                        return r[6] && r[6] !== 'TOTAL' && (SUCURSALES_ADMIN.includes(sucId) || !!directory[claveStr]);
+                    })
                     .map(r => ({
                         'Nombre del Asesor': resolveName(r[5], r[6], directory),
                         'Sucursal': r[3],

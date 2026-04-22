@@ -3,8 +3,12 @@
 Este documento contiene las reglas de negocio inmutables para la actualización de datos del panel. Cualquier agente o proceso de automatización **debe** consultar este manual antes de modificar la lógica de extracción.
 
 ## 1. Reglas Generales de Filtrado
-- **Sucursal Obligatoria:** `2043` (Matriz).
-- **Filtro de Seguridad:** Todos los reportes deben filtrar por la columna de Sucursal para mostrar exclusivamente la información de la promotoria 2043.
+- **Sucursal Obligatoria (Campañas):** `2043` (Matriz).
+- **Inclusión por Identidad (Administración):** En reportes administrativos (Pagado/Pendiente), se debe incluir a cualquier asesor que:
+  a) Tenga Sucursal 2043 OR
+  b) Su clave exista en el `directorio_asesores.xlsx` (incluye IDs como 2856 y 2511).
+- **Filtro de Seguridad:** Todos los reportes deben permitir la sub-filtración por ID de sucursal para las vistas de Gerencia (Karen = 2856, Lalo = 2511).
+- **Sistema de Alertas:** El proceso de consolidación debe alertar si encuentra una clave de nuestras sucursales que no esté en el directorio.
 
 ## 2. Orígenes y Hojas de Datos
 
