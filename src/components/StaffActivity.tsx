@@ -30,9 +30,33 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
 
     if (loading) return <div style={{ color: 'white', padding: '40px', textAlign: 'center' }}>Cargando métricas del staff...</div>;
     if (!staffData || Object.keys(staffData).length === 0) return <div style={{ color: 'white', padding: '40px', textAlign: 'center' }}>No hay datos de staff registrados.</div>;
-
     const person = staffData[activeStaff];
-    const hasEnoughData = person && person.history && person.history.length >= 2;
+    
+    // Lógica para encontrar el ciclo de comparación correcto (evitar mostrar 0 si el último es un baseline)
+    let prevIndex = -1;
+    let currIndex = -1;
+
+    if (person && person.history && person.history.length >= 2) {
+        // Buscamos el último registro que tenga "movimiento" respecto al anterior
+        // O simplemente tomamos los dos últimos que no sean idénticos
+        for (let i = person.history.length - 1; i > 0; i--) {
+            const c = person.history[i].data;
+            const p = person.history[i-1].data;
+            const hasDiff = Object.keys(c).some(k => (c[k] || 0) !== (p[k] || 0));
+            if (hasDiff) {
+                currIndex = i;
+                prevIndex = i - 1;
+                break;
+            }
+        }
+        // Fallback: si todos son iguales (recién empezando), tomamos los dos últimos
+        if (currIndex === -1) {
+            currIndex = person.history.length - 1;
+            prevIndex = person.history.length - 2;
+        }
+    }
+
+    const hasEnoughData = prevIndex !== -1 && currIndex !== -1;
 
     const devMetrics = [
         { key: 'citas_iniciales', label: 'Citas Iniciales', icon: '📞' },
@@ -46,8 +70,8 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
         { key: 'ent_enamoramiento', label: 'Entrevistas Enamoramiento', icon: '💖' },
         { key: 'ent_seleccion', label: 'Entrevistas Selección / Comp.', icon: '📝' },
         { key: 'sesiones_rda', label: 'Sesiones RDA Completadas', icon: '✅' },
-        { key: 'recluta_citas', label: 'Citas Recluta (Bitácora)', icon: '📅' },
-        { key: 'recluta_contactos', label: 'Contactos / Búsqueda', icon: '🔎' },
+        { key: 'recluta_citas', label: 'Citas Recluta (Bitácora)', icon: '📅', isVolume: true },
+        { key: 'recluta_contactos', label: 'Contactos / Búsqueda', icon: '🔎', isVolume: true },
     ];
 
     const metrics = person?.role === 'hr' ? hrMetrics : devMetrics;
@@ -55,24 +79,36 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
     let deltas: any[] = [];
     let totalGoldHours = 0;
     let intensity = "0";
-    let chartData: any[] = [];
+    let conversionChartData: any[] = [];
+    let volumeChartData: any[] = [];
     let prev: any = null;
     let curr: any = null;
 
     if (hasEnoughData) {
-        prev = person.history[person.history.length - 2].data;
-        curr = person.history[person.history.length - 1].data;
+        prev = person.history[prevIndex].data;
+        curr = person.history[currIndex].data;
 
         deltas = metrics.map(m => ({
             label: m.label,
             gain: (curr[m.key] || 0) - (prev[m.key] || 0),
             prev: prev[m.key] || 0,
-            curr: curr[m.key] || 0
+            curr: curr[m.key] || 0,
+            isVolume: (m as any).isVolume
         }));
 
-        totalGoldHours = deltas.filter(d => d.label !== 'Actividades/Tareas en Agenda').reduce((sum, d) => sum + d.gain, 0);
-        intensity = ((totalGoldHours / 40) * 100).toFixed(0);
-        chartData = deltas.map(d => ({ name: d.label, 'Semana Anterior': d.prev, 'Esta Semana': d.curr, 'Crecimiento': d.gain }));
+        // Solo sumar horas para Desarrollo
+        if (person.role !== 'hr') {
+            totalGoldHours = deltas.filter(d => d.label !== 'Actividades/Tareas en Agenda').reduce((sum, d) => sum + d.gain, 0);
+            intensity = ((totalGoldHours / 40) * 100).toFixed(0);
+        }
+
+        conversionChartData = deltas.filter(d => !d.isVolume && d.label !== 'Actividades/Tareas en Agenda').map(d => ({ 
+            name: d.label, 'Previo': d.prev, 'Actual': d.curr, 'Ganancia': d.gain 
+        }));
+        
+        volumeChartData = deltas.filter(d => d.isVolume).map(d => ({ 
+            name: d.label, 'Previo': d.prev, 'Actual': d.curr, 'Ganancia': d.gain 
+        }));
     }
 
     return (
@@ -114,7 +150,7 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                 {!hasEnoughData ? (
                     <div style={{ textAlign: 'center', padding: '100px 40px', color: 'var(--text-secondary)' }}>
                         <h2 style={{ color: 'white', marginBottom: '16px' }}>📉 Esperando datos de comparativa para {person.name}</h2>
-                        <p>Necesitamos el registro de hoy (Lunes) para poder calcular el crecimiento semanal vs Martes {person.history[0].date}.</p>
+                        <p>Necesitamos más de un registro para poder calcular el crecimiento semanal.</p>
                     </div>
                 ) : (
                     <>
@@ -125,37 +161,65 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                                     💎 Mina de Oro — {person.name}
                                 </h1>
                                 <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginTop: '6px' }}>
-                                    Comparativo: Martes {person.history[person.history.length - 2].date} vs Lunes {person.history[person.history.length - 1].date}
+                                    Comparativo: Martes {person.history[prevIndex].date} vs lunes {person.history[currIndex].date}
                                 </p>
                             </div>
-                            <div style={{ padding: '12px 24px', background: 'rgba(0,122,255,0.1)', border: '1px solid rgba(0,122,255,0.25)', borderRadius: '16px', textAlign: 'right' }}>
-                                <div style={{ fontSize: '1.8rem', fontWeight: 900, color: 'white' }}>{totalGoldHours} hrs <span style={{ fontSize: '0.9rem', opacity: 0.5, fontWeight: 400 }}>de crecimiento</span></div>
-                                <div style={{ fontSize: '0.85rem', color: '#007AFF', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '4px' }}>{(totalGoldHours / 5).toFixed(1)} hrs / día promedio</div>
-                            </div>
+                            
+                            {person.role !== 'hr' ? (
+                                <div style={{ padding: '12px 24px', background: 'rgba(0,122,255,0.1)', border: '1px solid rgba(0,122,255,0.25)', borderRadius: '16px', textAlign: 'right' }}>
+                                    <div style={{ fontSize: '1.8rem', fontWeight: 900, color: 'white' }}>{totalGoldHours} hrs <span style={{ fontSize: '0.9rem', opacity: 0.5, fontWeight: 400 }}>de crecimiento</span></div>
+                                    <div style={{ fontSize: '0.85rem', color: '#007AFF', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '4px' }}>{(totalGoldHours / 5).toFixed(1)} hrs / día promedio</div>
+                                </div>
+                            ) : (
+                                <div style={{ padding: '12px 24px', background: 'rgba(168, 85, 247, 0.1)', border: '1px solid rgba(168, 85, 247, 0.25)', borderRadius: '16px', textAlign: 'right' }}>
+                                    <div style={{ fontSize: '1.8rem', fontWeight: 900, color: 'white' }}>RH Activo</div>
+                                    <div style={{ fontSize: '0.85rem', color: '#A855F7', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '4px' }}>Gestión de Reclutamiento</div>
+                                </div>
+                            )}
                         </div>
 
                         {/* Intensity KPI */}
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
-                            <div className="glass-card" style={{ borderLeft: '4px solid #00E676', padding: '24px' }}>
-                                <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>APROVECHAMIENTO SEMANAL</div>
-                                <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#00E676', margin: '8px 0' }}>{intensity}%</div>
-                                <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Basado en 40 horas totales a la semana.</div>
-                                <div style={{ marginTop: '16px', height: '8px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px', position: 'relative' }}>
-                                    <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: `${intensity}%`, background: '#00E676', borderRadius: '4px' }} />
-                                </div>
-                            </div>
-
-                            <div className="glass-card" style={{ borderLeft: '4px solid #FFD93D', padding: '24px' }}>
-                                <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>TOTAL HORAS DE VALOR</div>
-                                <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#FFD93D', margin: '8px 0' }}>{totalGoldHours} hrs</div>
-                                <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Suma del crecimiento en actividades críticas.</div>
-                            </div>
-
-                            <div className="glass-card" style={{ borderLeft: '4px solid #42A5F5', padding: '24px' }}>
-                                <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>ACTIVIDADES COMPLETADAS EN AGENDA</div>
-                                <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#42A5F5', margin: '8px 0' }}>+{curr.tareas_actividades - prev.tareas_actividades}</div>
-                                <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Incremento en tareas totales registradas.</div>
-                            </div>
+                            {person.role !== 'hr' ? (
+                                <>
+                                    <div className="glass-card" style={{ borderLeft: '4px solid #00E676', padding: '24px' }}>
+                                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>APROVECHAMIENTO SEMANAL</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#00E676', margin: '8px 0' }}>{intensity}%</div>
+                                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Basado en 40 horas totales a la semana.</div>
+                                        <div style={{ marginTop: '16px', height: '8px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px', position: 'relative' }}>
+                                            <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: `${Math.min(parseInt(intensity), 100)}%`, background: '#00E676', borderRadius: '4px' }} />
+                                        </div>
+                                    </div>
+                                    <div className="glass-card" style={{ borderLeft: '4px solid #FFD93D', padding: '24px' }}>
+                                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>TOTAL HORAS DE VALOR</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#FFD93D', margin: '8px 0' }}>{totalGoldHours} hrs</div>
+                                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Suma del crecimiento en actividades críticas.</div>
+                                    </div>
+                                    <div className="glass-card" style={{ borderLeft: '4px solid #42A5F5', padding: '24px' }}>
+                                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>ACTIVIDADES COMPLETADAS EN AGENDA</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#42A5F5', margin: '8px 0' }}>+{(curr.tareas_actividades || 0) - (prev.tareas_actividades || 0)}</div>
+                                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Incremento en tareas totales registradas.</div>
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    <div className="glass-card" style={{ borderLeft: '4px solid #A855F7', padding: '24px' }}>
+                                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>NUEVO ALCANCE DE BÚSQUEDA</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#A855F7', margin: '8px 0' }}>+{(curr.recluta_contactos || 0) - (prev.recluta_contactos || 0)}</div>
+                                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Nuevos contactos registrados en bitácora esta semana.</div>
+                                    </div>
+                                    <div className="glass-card" style={{ borderLeft: '4px solid #FF5252', padding: '24px' }}>
+                                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>NUEVAS CITAS AGENDADAS</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#FF5252', margin: '8px 0' }}>+{(curr.recluta_citas || 0) - (prev.recluta_citas || 0)}</div>
+                                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Crecimiento en volumen de reclutamiento.</div>
+                                    </div>
+                                    <div className="glass-card" style={{ borderLeft: '4px solid #007AFF', padding: '24px' }}>
+                                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>ENTREVISTAS DE FILTRO</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#007AFF', margin: '8px 0' }}>+{(curr.ent_enamoramiento || 0) - (prev.ent_enamoramiento || 0) + (curr.ent_seleccion || 0) - (prev.ent_seleccion || 0)}</div>
+                                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Total de entrevistas iniciales y de selección.</div>
+                                    </div>
+                                </>
+                            )}
                         </div>
 
                         {/* Metrics Table */}
@@ -181,7 +245,9 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                                                 <td style={{ padding: '20px 24px', opacity: 0.5, textAlign: 'center', fontSize: '1rem' }}>{d.prev}</td>
                                                 <td style={{ padding: '20px 24px', fontWeight: 800, textAlign: 'center', fontSize: '1.2rem' }}>{d.curr}</td>
                                                 <td style={{ padding: '20px 24px', textAlign: 'right' }}>
-                                                    <span style={{ padding: '6px 14px', borderRadius: '20px', background: 'rgba(0,230,118,0.15)', color: '#00E676', fontSize: '0.9rem', fontWeight: 900 }}>+{d.gain}</span>
+                                                    <span style={{ padding: '6px 14px', borderRadius: '20px', background: d.gain >= 0 ? 'rgba(0,230,118,0.15)' : 'rgba(255,82,82,0.15)', color: d.gain >= 0 ? '#00E676' : '#FF5252', fontSize: '0.9rem', fontWeight: 900 }}>
+                                                        {d.gain >= 0 ? `+${d.gain}` : d.gain}
+                                                    </span>
                                                 </td>
                                             </tr>
                                         ))}
@@ -190,27 +256,44 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                             </div>
                         </div>
 
-                        {/* Chart Section */}
-                        <div className="glass-card" style={{ padding: '32px' }}>
-                            <div style={{ marginBottom: '32px' }}>
-                                <h3 style={{ fontSize: '1.2rem', fontWeight: 800 }}>📊 Análisis Visual de Productividad</h3>
-                                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Comparativa de volumen de actividad semanal</p>
+                        {/* Chart Section - Split into two for scale */}
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '24px' }}>
+                            <div className="glass-card" style={{ padding: '32px' }}>
+                                <div style={{ marginBottom: '24px' }}>
+                                    <h3 style={{ fontSize: '1.2rem', fontWeight: 800 }}>📊 Conversión de Mina</h3>
+                                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Citas, Entrevistas y Arranques</p>
+                                </div>
+                                <div style={{ height: '300px', width: '100%' }}>
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <BarChart data={conversionChartData}>
+                                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                                            <XAxis dataKey="name" stroke="rgba(255,255,255,0.3)" fontSize={10} tickLine={false} axisLine={false} />
+                                            <YAxis stroke="rgba(255,255,255,0.3)" fontSize={10} tickLine={false} axisLine={false} />
+                                            <Tooltip contentStyle={{ background: '#12141a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px' }} />
+                                            <Bar name="Previo" dataKey="Previo" fill="rgba(255,255,255,0.1)" radius={[4, 4, 0, 0]} />
+                                            <Bar name="Actual" dataKey="Actual" fill="#007AFF" radius={[4, 4, 0, 0]} />
+                                        </BarChart>
+                                    </ResponsiveContainer>
+                                </div>
                             </div>
-                            <div style={{ height: '400px', width: '100%' }}>
-                                <ResponsiveContainer width="100%" height="100%">
-                                    <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-                                        <XAxis dataKey="name" stroke="rgba(255,255,255,0.5)" fontSize={11} tickLine={false} axisLine={false} />
-                                        <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickLine={false} axisLine={false} />
-                                        <Tooltip 
-                                            contentStyle={{ background: '#12141a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}
-                                            itemStyle={{ fontSize: '0.85rem', fontWeight: 600 }}
-                                        />
-                                        <Legend wrapperStyle={{ paddingTop: '20px', fontSize: '0.85rem' }} />
-                                        <Bar name="Cierre Martes Pasado" dataKey="Semana Anterior" fill="rgba(255,255,255,0.1)" radius={[6, 6, 0, 0]} />
-                                        <Bar name="Cierre Lunes Actual" dataKey="Esta Semana" fill="#007AFF" radius={[6, 6, 0, 0]} />
-                                    </BarChart>
-                                </ResponsiveContainer>
+
+                            <div className="glass-card" style={{ padding: '32px' }}>
+                                <div style={{ marginBottom: '24px' }}>
+                                    <h3 style={{ fontSize: '1.2rem', fontWeight: 800 }}>📈 Volumen de Prospección</h3>
+                                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Contactos y Citas en Bitácora</p>
+                                </div>
+                                <div style={{ height: '300px', width: '100%' }}>
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <BarChart data={volumeChartData}>
+                                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                                            <XAxis dataKey="name" stroke="rgba(255,255,255,0.3)" fontSize={10} tickLine={false} axisLine={false} />
+                                            <YAxis stroke="rgba(255,255,255,0.3)" fontSize={10} tickLine={false} axisLine={false} />
+                                            <Tooltip contentStyle={{ background: '#12141a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px' }} />
+                                            <Bar name="Previo" dataKey="Previo" fill="rgba(255,255,255,0.1)" radius={[4, 4, 0, 0]} />
+                                            <Bar name="Actual" dataKey="Actual" fill="#A855F7" radius={[4, 4, 0, 0]} />
+                                        </BarChart>
+                                    </ResponsiveContainer>
+                                </div>
                             </div>
                         </div>
                     </>
