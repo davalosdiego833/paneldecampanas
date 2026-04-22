@@ -41,6 +41,7 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
         { key: 'citas_cierre', label: 'Citas de Cierre', icon: '🎯' },
         { key: 'sesiones_11', label: 'Sesiones 1:1', icon: '🗣️' },
         { key: 'arranque_rapido', label: 'Acompañamientos / Arranques', icon: '⚡' },
+        { key: 'tareas_actividades', label: 'Actividades/Tareas en Agenda', icon: '📅' },
     ];
 
     const deltas = metrics.map(m => ({
@@ -50,7 +51,7 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
         curr: curr[m.key] || 0
     }));
 
-    const totalGoldHours = deltas.reduce((sum, d) => sum + d.gain, 0);
+    const totalGoldHours = deltas.filter(d => d.label !== 'Actividades/Tareas en Agenda').reduce((sum, d) => sum + d.gain, 0);
     const avgPerDay = (totalGoldHours / 5).toFixed(1);
     const intensity = ((Number(avgPerDay) / 8) * 100).toFixed(0);
 
@@ -104,9 +105,9 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                     </div>
 
                     <div className="glass-card" style={{ borderLeft: '4px solid #42A5F5', padding: '24px' }}>
-                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>METAS CUMPLIDAS</div>
+                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>ACTIVIDADES COMPLETADAS EN AGENDA</div>
                         <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#42A5F5', margin: '8px 0' }}>+{curr.tareas_actividades - prev.tareas_actividades}</div>
-                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Crecimiento en tareas totales completadas.</div>
+                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Incremento en tareas totales registradas.</div>
                     </div>
                 </div>
 
