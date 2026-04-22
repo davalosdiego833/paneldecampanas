@@ -1041,6 +1041,7 @@ app.get('/api/resumen-general', (req, res) => {
                 return res.json(snapshotData.data.resumen_general);
             }
         }
+        const VALID_SUCURSALES = ['2043', '2692', '2856', '2511', '313'];
         const selectedDates = dates ? JSON.parse(dates) : {};
         const result = { fechas_corte: {} };
         const sinEmPath = 'administrador/asesores_sin_emision';
@@ -1051,21 +1052,53 @@ app.get('/api/resumen-general', (req, res) => {
             result.asesores_sin_emision = { summaryBySucursal: [], individuals: [] };
             if (wsP) {
                 const dat = XLSX.utils.sheet_to_json(wsP, { header: 1, range: 3 });
-                result.asesores_sin_emision.summaryBySucursal = dat.filter((r) => String(r[3] || '') === '2043').map((r) => ({ Sucursal: r[5] || 'Descon', Suc: r[4], Agentes: Number(r[6] || 0), Asesores_con_Emisión_Vida: Number(r[7] || 0), '%_Asesores_con_Emisión_Vida': Number(r[8] || 0), Asesores_con_Emisión_GMM: Number(r[9] || 0), '%_Asesores_con_Emisión_GMM': Number(r[10] || 0), Asesores_con_pol_Pagada_Vida: Number(r[11] || 0), '%_Asesores_con_pol_Pagada_Vida': Number(r[12] || 0), Asesores_con_pol_Pagada_GMM: Number(r[13] || 0), '%_Asesores_con_pol_Pagada_GMM': Number(r[14] || 0), Prima_Pagada_Vida: Number(r[15] || 0), Prima_Pagada_GMM: Number(r[16] || 0) }));
+                result.asesores_sin_emision.summaryBySucursal = dat
+                    .filter((r) => VALID_SUCURSALES.includes(String(r[1])) || VALID_SUCURSALES.includes(String(r[4])))
+                    .map((r) => ({
+                    Sucursal: r[5] || r[2],
+                    Suc: r[4] || r[1],
+                    Agentes: Number(r[6] || 0),
+                    Asesores_con_Emisión_Vida: Number(r[7] || 0),
+                    '%_Asesores_con_Emisión_Vida': Number(r[8] || 0),
+                    Asesores_con_Emisión_GMM: Number(r[9] || 0),
+                    '%_Asesores_con_Emisión_GMM': Number(r[10] || 0),
+                    Asesores_con_pol_Pagada_Vida: Number(r[11] || 0),
+                    '%_Asesores_con_pol_Pagada_Vida': Number(r[12] || 0),
+                    Asesores_con_pol_Pagada_GMM: Number(r[13] || 0),
+                    '%_Asesores_con_pol_Pagada_GMM': Number(r[14] || 0),
+                    Prima_Pagada_Vida: Number(r[15] || 0),
+                    Prima_Pagada_GMM: Number(r[16] || 0)
+                }));
             }
             if (wsA) {
                 const dat = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 4 });
-                result.asesores_sin_emision.individuals = dat.filter((r) => String(r[3] || '') === '2043').map((r) => ({ Asesor: r[7] || 'Descon', Clave: r[6] || '', Sucursal: r[5] || 'General', Suc: r[4], Emitido_Vida: Number(r[10] || 0), Emitido_GMM: Number(r[11] || 0), Pagado_Vida: Number(r[12] || 0), Pagado_GMM: Number(r[13] || 0), Prima_Pagada_Vida: Number(r[14] || 0), Prima_Pagada_GMM: Number(r[15] || 0), Sin_Emisión_Vida: r[16] || '', Sin_Emisión_GMM: r[17] || '', '3_Meses_Sin_Emisión_Vida': r[18] || '', '3_Meses_Sin_Emisión_GMM': r[19] || '' }));
+                result.asesores_sin_emision.individuals = dat
+                    .filter((r) => VALID_SUCURSALES.includes(String(r[3])) || VALID_SUCURSALES.includes(String(r[4])))
+                    .map((r) => ({
+                    Asesor: r[7] || 'Descon',
+                    Clave: r[6] || '',
+                    Sucursal: r[5] || 'General',
+                    Suc: r[4],
+                    Emitido_Vida: Number(r[10] || 0),
+                    Emitido_GMM: Number(r[11] || 0),
+                    Pagado_Vida: Number(r[12] || 0),
+                    Pagado_GMM: Number(r[13] || 0),
+                    Prima_Pagada_Vida: Number(r[14] || 0),
+                    Prima_Pagada_GMM: Number(r[15] || 0),
+                    Sin_Emisión_Vida: r[16] || '',
+                    Sin_Emisión_GMM: r[17] || '',
+                    '3_Meses_Sin_Emisión_Vida': r[18] || '',
+                    '3_Meses_Sin_Emisión_GMM': r[19] || ''
+                }));
             }
         }
         const pagPath = 'administrador/pagado_emitidido';
         const wbPag = readExcelData(pagPath, { skipJson: true, date: selectedDates.pagado_pendiente });
         if (wbPag) {
-            const data = XLSX.utils.sheet_to_json(wbPag.Sheets[wbPag.SheetNames[0]], { header: 1 });
+            const data = XLSX.utils.sheet_to_json(wbPag.Sheets[wbPag.Sheets[wbPag.SheetNames[0]] ? wbPag.SheetNames[0] : wbPag.SheetNames[0]], { header: 1 });
             result.fechas_corte['pagado_pendiente'] = formatExcelDate(extractCutoffDate(wbPag, 'pagado_pendiente'));
-            const validSucursales = ['2043', '2692', '2856', '2511'];
             result.pagado_pendiente = data.slice(3)
-                .filter(r => r[2] != null && validSucursales.includes(String(r[1])))
+                .filter(r => r[2] != null && VALID_SUCURSALES.includes(String(r[1])))
                 .map(r => ({ 'Nombre Asesor': r[2], 'Sucursal': r[1], 'Pólizas-Pagadas': Number(r[5] || 0), 'Recibo_Inicial_Pagado': Number(r[6] || 0), 'Recibo_Ordinario_Pagado': Number(r[7] || 0), 'Total _Prima_Pagada': Number(r[8] || 0), 'Pólizas_Pendinetes': Number(r[9] || 0), 'Recibo_Inicial_Pendiente': Number(r[10] || 0), 'Recibo_Ordinario_Pendiente': Number(r[11] || 0), 'Total _Prima_Pendiente': Number(r[12] || 0) }));
         }
         const dir = getAdvisorDirectory();
