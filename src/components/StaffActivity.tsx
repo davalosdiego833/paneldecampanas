@@ -34,13 +34,23 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
     const person = staffData[activeStaff];
     const hasEnoughData = person && person.history && person.history.length >= 2;
 
-    const metrics = [
+    const devMetrics = [
         { key: 'citas_iniciales', label: 'Citas Iniciales', icon: '📞' },
         { key: 'citas_cierre', label: 'Citas de Cierre', icon: '🎯' },
         { key: 'sesiones_11', label: 'Sesiones 1:1', icon: '🗣️' },
         { key: 'arranque_rapido', label: 'Acompañamientos / Arranques', icon: '⚡' },
         { key: 'tareas_actividades', label: 'Actividades/Tareas en Agenda', icon: '📅' },
     ];
+
+    const hrMetrics = [
+        { key: 'ent_enamoramiento', label: 'Entrevistas Enamoramiento', icon: '💖' },
+        { key: 'ent_seleccion', label: 'Entrevistas Selección / Comp.', icon: '📝' },
+        { key: 'sesiones_rda', label: 'Sesiones RDA Completadas', icon: '✅' },
+        { key: 'recluta_citas', label: 'Citas Recluta (Bitácora)', icon: '📅' },
+        { key: 'recluta_contactos', label: 'Contactos / Búsqueda', icon: '🔎' },
+    ];
+
+    const metrics = person?.role === 'hr' ? hrMetrics : devMetrics;
 
     let deltas: any[] = [];
     let totalGoldHours = 0;

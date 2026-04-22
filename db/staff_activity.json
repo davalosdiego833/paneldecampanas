@@ -23,6 +23,17 @@
           "arranque_rapido": 8,
           "tareas_actividades": 60
         }
+      },
+      {
+        "date": "2026-04-21",
+        "type": "martes_cierre",
+        "data": {
+          "citas_iniciales": 8,
+          "citas_cierre": 5,
+          "sesiones_11": 8,
+          "arranque_rapido": 8,
+          "tareas_actividades": 60
+        }
       }
     ],
     "goals": {
@@ -51,10 +62,36 @@
           "arranque_rapido": 7,
           "tareas_actividades": 31
         }
+      },
+      {
+        "date": "2026-04-21",
+        "data": {
+          "citas_iniciales": 14,
+          "citas_cierre": 11,
+          "sesiones_11": 3,
+          "arranque_rapido": 7,
+          "tareas_actividades": 31
+        }
       }
     ],
     "goals": {
       "gold_hours_per_day": 4
     }
+  },
+  "shelsea": {
+    "name": "Shelsea Gerente",
+    "role": "hr",
+    "history": [
+      {
+        "date": "2026-04-14",
+        "data": {
+          "ent_enamoramiento": 12,
+          "ent_seleccion": 3,
+          "sesiones_rda": 3,
+          "recluta_citas": 34,
+          "recluta_contactos": 296
+        }
+      }
+    ]
   }
 }
