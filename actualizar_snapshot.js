@@ -89,7 +89,23 @@ const run = () => {
             const wb = XLSX.readFile(pePath);
             const ws = wb.Sheets[wb.SheetNames[0]];
             const rawData = XLSX.utils.sheet_to_json(ws, { header: 1 });
-            const dataRows = rawData.slice(3).filter(r => r[2] && String(r[1]) === VALID_SUCURSAL);
+            
+            // Brain Rule: Include if Sucursal is 2043 OR if advisor exists in our directory (Managers/Gerencias)
+            const dataRows = rawData.slice(3).filter(r => {
+                const claveStr = String(r[0] || '').trim();
+                const sucursalStr = String(r[1] || '').trim();
+                const nameInExcel = String(r[2] || '').trim();
+                
+                const isOurSucursal = sucursalStr === VALID_SUCURSAL || sucursalStr === '2856' || sucursalStr === '2511';
+                const isInDirectory = !!directory[claveStr];
+
+                // Alert if it's a known sucursal but missing in directory
+                if (isOurSucursal && !isInDirectory && nameInExcel) {
+                    console.warn(`⚠️ ALERTA: Clave ${claveStr} (${nameInExcel}) de sucursal ${sucursalStr} no está en el directorio.`);
+                }
+
+                return nameInExcel && (isOurSucursal || isInDirectory);
+            });
             
             rg.pagado_pendiente = dataRows.map(r => ({
                 'Nombre Asesor': resolveName(r[0], r[2], directory),
