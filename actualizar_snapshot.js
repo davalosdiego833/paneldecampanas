@@ -6,15 +6,34 @@ const BASE_PATH = process.cwd();
 const DB_PATH = path.join(BASE_PATH, 'db');
 const SNAPSHOT_FILE = path.join(DB_PATH, 'resumen_snapshot.json');
 
+// IDs que el usuario suele manejar según server/index.ts
+const VALID_SUCURSALES = ['2043', '2692', '2856', '2511', '313'];
+
 // Helper to resolve advisor name using the directory
 const resolveName = (clave, fallbackName, directory) => {
     if (!clave) return fallbackName || 'Asesor Desconocido';
-    return directory[String(clave)] || fallbackName || `Asesor ${clave}`;
+    const claveStr = String(clave).trim();
+    return directory[claveStr] || fallbackName || `Asesor ${claveStr}`;
+};
+
+const extractCutoffDate = (wb) => {
+    const ws = wb.Sheets[wb.SheetNames[0]];
+    const range = XLSX.utils.decode_range(ws['!ref'] || 'A1:Z50');
+    for (let r = 0; r <= range.e.r && r < 10; r++) {
+        for (let c = 0; c <= range.e.c; c++) {
+            const cell = ws[XLSX.utils.encode_cell({ r, c })];
+            if (cell && cell.v) {
+                const match = String(cell.v).match(/\d{1,2}\s+de\s+[a-z]+\s+de\s+\d{4}/i);
+                if (match) return match[0];
+            }
+        }
+    }
+    return '';
 };
 
 const run = () => {
     try {
-        console.log('🚀 Iniciando consolidación de datos para Snapshot...');
+        console.log('🚀 Iniciando consolidación de datos para Snapshot (v2.0)...');
 
         // 1. Cargar Directorio de Asesores
         const dirPath = path.join(BASE_PATH, 'administrador', 'directorio_asesores.xlsx');
@@ -25,7 +44,7 @@ const run = () => {
             dataDir.forEach(row => {
                 const clave = row.Clave || row.CLAVE || row.clave;
                 const nombre = row.Nombre_Completo || row['Nombre Completo'] || row.nombre;
-                if (clave && nombre) directory[String(clave)] = String(nombre).trim();
+                if (clave && nombre) directory[String(clave).trim()] = String(nombre).trim();
             });
         }
 
@@ -37,50 +56,128 @@ const run = () => {
             }
         };
 
-        // 2. Reporte Pagado y Emitido
+        const rg = snapshot.data.resumen_general;
+        const fc = snapshot.data.fechas_corte;
+
+        // 2. Reporte Pagado y Pendiente
         const pePath = path.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'pagado_emitido.xlsx');
         if (fs.existsSync(pePath)) {
             const wb = XLSX.readFile(pePath);
             const ws = wb.Sheets[wb.SheetNames[0]];
             const rawData = XLSX.utils.sheet_to_json(ws, { header: 1 });
-            const dataRows = rawData.slice(3).filter(r => r[1] && r[1] !== 'TOTAL');
+            // Encabezados en fila 3 (index 2), datos desde fila 4 (index 3)
+            const dataRows = rawData.slice(3).filter(r => r[2] && VALID_SUCURSALES.includes(String(r[1])));
             
-            snapshot.data.resumen_general.pagado_pendiente = dataRows.map(r => ({
-                'Nombre Asesor': resolveName(r[1], r[2], directory),
-                'Sucursal': r[3],
-                'Pólizas-Pagadas': r[5],
-                'Recibo_Inicial_Pagado': r[6],
-                'Recibo_Ordinario_Pagado': r[7],
-                'Total _Prima_Pagada': r[8],
-                'Pólizas_Pendinetes': r[9],
-                'Recibo_Inicial_Pendiente': r[10],
-                'Recibo_Ordinario_Pendiente': r[11],
-                'Total _Prima_Pendiente': r[12]
+            rg.pagado_pendiente = dataRows.map(r => ({
+                'Nombre Asesor': resolveName(r[0], r[2], directory),
+                'Sucursal': r[1],
+                'Pólizas-Pagadas': Number(r[5] || 0),
+                'Recibo_Inicial_Pagado': Number(r[6] || 0),
+                'Recibo_Ordinario_Pagado': Number(r[7] || 0),
+                'Total _Prima_Pagada': Number(r[8] || 0),
+                'Pólizas_Pendinetes': Number(r[9] || 0),
+                'Recibo_Inicial_Pendiente': Number(r[10] || 0),
+                'Recibo_Ordinario_Pendiente': Number(r[11] || 0),
+                'Total _Prima_Pendiente': Number(r[12] || 0)
             }));
-            const fechaVal = ws['A1']?.v || '';
-            snapshot.data.fechas_corte.pagado_pendiente = String(fechaVal).match(/\d{1,2}\s+de\s+[a-z]+\s+de\s+\d{4}/i)?.[0] || '';
+            fc.pagado_pendiente = extractCutoffDate(wb);
         }
 
-        // 3. Comparativo de Vida
+        // 3. Asesores sin Emisión
+        const sinEmPath = path.join(BASE_PATH, 'administrador', 'asesores_sin_emision', 'Asesores sin Emision.xls');
+        if (fs.existsSync(sinEmPath)) {
+            const wb = XLSX.readFile(sinEmPath);
+            const wsP = wb.Sheets['Promotores'];
+            const wsA = wb.Sheets['Asesores'];
+            
+            rg.asesores_sin_emision = { summaryBySucursal: [], individuals: [] };
+            
+            if (wsP) {
+                const dat = XLSX.utils.sheet_to_json(wsP, { header: 1, range: 3 });
+                rg.asesores_sin_emision.summaryBySucursal = dat
+                    .filter(r => VALID_SUCURSALES.includes(String(r[1])) || VALID_SUCURSALES.includes(String(r[4])))
+                    .map(r => ({
+                        Sucursal: r[5] || r[2],
+                        Suc: r[4] || r[1],
+                        Agentes: Number(r[6] || 0),
+                        Asesores_con_Emisión_Vida: Number(r[7] || 0),
+                        '%_Asesores_con_Emisión_Vida': Number(r[8] || 0),
+                        Asesores_con_Emisión_GMM: Number(r[9] || 0),
+                        '%_Asesores_con_Emisión_GMM': Number(r[10] || 0),
+                        Asesores_con_pol_Pagada_Vida: Number(r[11] || 0),
+                        '%_Asesores_con_pol_Pagada_Vida': Number(r[12] || 0),
+                        Asesores_con_pol_Pagada_GMM: Number(r[13] || 0),
+                        '%_Asesores_con_pol_Pagada_GMM': Number(r[14] || 0),
+                        Prima_Pagada_Vida: Number(r[15] || 0),
+                        Prima_Pagada_GMM: Number(r[16] || 0)
+                    }));
+            }
+            
+            if (wsA) {
+                const dat = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 4 });
+                rg.asesores_sin_emision.individuals = dat
+                    .filter(r => VALID_SUCURSALES.includes(String(r[3])) || VALID_SUCURSALES.includes(String(r[4])))
+                    .map(r => ({
+                        Asesor: resolveName(r[6], r[7], directory),
+                        Clave: r[6],
+                        Sucursal: r[5],
+                        Suc: r[4],
+                        Emitido_Vida: Number(r[10] || 0),
+                        Emitido_GMM: Number(r[11] || 0),
+                        Pagado_Vida: Number(r[12] || 0),
+                        Pagado_GMM: Number(r[13] || 0),
+                        Prima_Pagada_Vida: Number(r[14] || 0),
+                        Prima_Pagada_GMM: Number(r[15] || 0),
+                        Sin_Emisión_Vida: r[16],
+                        Sin_Emisión_GMM: r[17],
+                        '3_Meses_Sin_Emisión_Vida': r[18],
+                        '3_Meses_Sin_Emisión_GMM': r[19]
+                    }));
+            }
+            fc.asesores_sin_emision = extractCutoffDate(wb);
+        }
+
+        // 4. Proactivos
+        const proPath = path.join(BASE_PATH, 'administrador', 'proactivos', 'Proactivos.xlsx');
+        if (fs.existsSync(proPath)) {
+            const wb = XLSX.readFile(proPath);
+            const ws = wb.Sheets['Detalle Asesores'] || wb.Sheets[wb.SheetNames[0]];
+            const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 4 });
+            
+            rg.proactivos = data
+                .filter(r => r[4] && (VALID_SUCURSALES.includes(String(r[2])) || VALID_SUCURSALES.includes(String(r[3]))))
+                .map(r => ({
+                    ASESOR: resolveName(r[4], null, directory),
+                    SUC: r[3],
+                    'Polizas_Acumuladas_Mes_Ant.': Number(r[9] || 0),
+                    'Polizas_Del_mes': Number(r[10] || 0),
+                    'Polizas_Acumuladas_Total': Number(r[11] || 0),
+                    'Proactivo_al_mes': r[12],
+                    'Pólizas_Faltantes': Number(r[13] || 0),
+                    'Proactivo_a_Dic': r[14],
+                    'Pólizas_Faltantes_Para_Dic': Number(r[15] || 0)
+                }));
+            fc.proactivos = extractCutoffDate(wb);
+        }
+
+        // 5. Comparativo de Vida
         const cvPath = path.join(BASE_PATH, 'administrador', 'comparativo_vida', 'comparativo vida.xlsx');
         if (fs.existsSync(cvPath)) {
             const wb = XLSX.readFile(cvPath);
-            
-            // Hoja Promotoria (Resumen General)
             const wsP = wb.Sheets['promotoria'] || wb.Sheets[wb.SheetNames[0]];
             const rawP = XLSX.utils.sheet_to_json(wsP, { header: 1 });
-            const dataRow = rawP[4]; // Fila 5 es la data
+            const dataRow = rawP[4];
+            
             if (dataRow) {
                 const parseVal = (v) => {
-                    if (v === undefined || v === null || v === '') return 0;
+                    if (v == null || v === '') return 0;
                     if (typeof v === 'number') return v;
-                    const str = String(v).replace(/[%,\s]/g, '');
-                    const num = parseFloat(str);
-                    if (isNaN(num)) return 0;
-                    return String(v).includes('%') ? num / 100 : num;
+                    const clean = String(v).replace(/[%,\s]/g, '');
+                    const n = parseFloat(clean);
+                    return isNaN(n) ? 0 : (String(v).includes('%') ? n / 100 : n);
                 };
 
-                snapshot.data.resumen_general.comparativo_vida = {
+                rg.comparativo_vida = {
                     generalSummary: {
                         Polizas_Pagadas_Año_Anterior: parseVal(dataRow[0]),
                         Polizas_Pagadas_Año_Actual: parseVal(dataRow[1]),
@@ -101,49 +198,32 @@ const run = () => {
                     },
                     individuals: []
                 };
-                console.log('[DEBUG] Local Snapshot RowMapped (v1.2.0):', dataRow.slice(0, 16));
             }
 
-            // Hoja Asesores (Detalle)
             const wsA = wb.Sheets['asesores'];
             if (wsA) {
-                const rawA = XLSX.utils.sheet_to_json(wsA, { header: 1 });
-                // Empezamos desde la fila 4 (index 3) que es donde están los datos de asesores
-                const advisorRows = rawA.slice(6).filter(r => r[6] && r[6] !== 'TOTAL');
-                snapshot.data.resumen_general.comparativo_vida.individuals = advisorRows.map(r => ({
-                    'Nombre del Asesor': resolveName(r[5], r[6], directory),
-                    'Sucursal': r[3],
-                    'Polizas_Pagadas_Año_Anterior': Number(r[15] || 0),
-                    'Polizas_Pagadas_Año_Actual': Number(r[16] || 0),
-                    'Crec_Polizas_Pagadas': Number(r[17] || 0),
-                    '%_Crec_Polizas_Pagadas': Number(r[18] || 0),
-                    'Prima_Pagada_Año_Anterior': Number(r[23] || 0),
-                    'Prima_Pagada_Año_Actual': Number(r[24] || 0),
-                    'Crec_Prima_Pagada': Number(r[25] || 0),
-                    '%_Crec_Prima_Pagada': Number(r[26] || 0)
-                }));
+                const rawA = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 6 });
+                rg.comparativo_vida.individuals = rawA
+                    .filter(r => r[6] && r[6] !== 'TOTAL' && (VALID_SUCURSALES.includes(String(r[3])) || VALID_SUCURSALES.includes(String(r[4]))))
+                    .map(r => ({
+                        'Nombre del Asesor': resolveName(r[5], r[6], directory),
+                        'Sucursal': r[3],
+                        'Polizas_Pagadas_Año_Anterior': Number(r[15] || 0),
+                        'Polizas_Pagadas_Año_Actual': Number(r[16] || 0),
+                        'Crec_Polizas_Pagadas': Number(r[17] || 0),
+                        '%_Crec_Polizas_Pagadas': Number(r[18] || 0),
+                        'Prima_Pagada_Año_Anterior': Number(r[23] || 0),
+                        'Prima_Pagada_Año_Actual': Number(r[24] || 0),
+                        'Crec_Prima_Pagada': Number(r[25] || 0),
+                        '%_Crec_Prima_Pagada': Number(r[26] || 0)
+                    }));
             }
-            const fechaCV = wsP['A1']?.v || '';
-            snapshot.data.fechas_corte.comparativo_vida = String(fechaCV).match(/\d{1,2}\s+de\s+[a-z]+\s+de\s+\d{4}/i)?.[0] || '';
-        }
-
-        // 4. Proactivos
-        const proPath = path.join(BASE_PATH, 'administrador', 'proactivos', 'Proactivos.xlsx');
-        if (fs.existsSync(proPath)) {
-            const wb = XLSX.readFile(proPath);
-            const ws = wb.Sheets['Resumen Proactivos'] || wb.Sheets[0];
-            const data = XLSX.utils.sheet_to_json(ws);
-            snapshot.data.resumen_general.proactivos = data.map(r => ({
-                ...r,
-                ASESOR: resolveName(r.Asesor, r.ASESOR, directory)
-            }));
-            const fechaPro = ws['A1']?.v || '';
-            snapshot.data.fechas_corte.proactivos = String(fechaPro).match(/\d{1,2}\s+de\s+[a-z]+\s+de\s+\d{4}/i)?.[0] || '';
+            fc.comparativo_vida = extractCutoffDate(wb);
         }
 
         if (!fs.existsSync(DB_PATH)) fs.mkdirSync(DB_PATH);
         fs.writeFileSync(SNAPSHOT_FILE, JSON.stringify(snapshot, null, 2));
-        console.log('✅ Snapshot actualizado exitosamente en db/resumen_snapshot.json');
+        console.log('✅ Snapshot consolidado exitosamente!');
 
     } catch (e) {
         console.error('❌ Error en consolidación:', e);
