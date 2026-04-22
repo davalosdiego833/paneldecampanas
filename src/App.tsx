@@ -11,6 +11,7 @@ import CampaignSelector from './components/CampaignSelector';
 import Dashboard from './components/Dashboard';
 
 import AdminActivity from './components/AdminActivity';
+import StaffActivity from './components/StaffActivity';
 
 const App: React.FC = () => {
     const [page, setPage] = useState<Page>('login');
@@ -52,7 +53,7 @@ const App: React.FC = () => {
         }
     };
 
-    const handleAdminOption = (option: 'asesores' | 'promotoria' | 'eduardo' | 'karen' | 'actividad' | 'meta24m') => {
+    const handleAdminOption = (option: 'asesores' | 'promotoria' | 'eduardo' | 'karen' | 'actividad' | 'meta24m' | 'staff') => {
         if (option === 'asesores') {
             setPage('admin_dashboard');
         } else if (option === 'promotoria') {
@@ -65,6 +66,8 @@ const App: React.FC = () => {
             setPage('admin_actividad');
         } else if (option === 'meta24m') {
             setPage('admin_meta');
+        } else if (option === 'staff') {
+            setPage('admin_staff');
         }
     };
 
@@ -119,6 +122,11 @@ const App: React.FC = () => {
     // Meta 24M Tracker
     if (page === 'admin_meta') {
         return <MetaDespacho onBack={() => setPage('admin_home')} themeMode={themeMode} />;
+    }
+
+    // Staff Activity Dashboard
+    if (page === 'admin_staff') {
+        return <StaffActivity onBack={() => setPage('admin_home')} themeMode={themeMode} />;
     }
 
     // Advisor flow: uses regular Layout

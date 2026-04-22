@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 interface Props {
-    onSelectOption: (option: 'asesores' | 'promotoria' | 'eduardo' | 'karen' | 'actividad' | 'meta24m') => void;
+    onSelectOption: (option: 'asesores' | 'promotoria' | 'eduardo' | 'karen' | 'actividad' | 'meta24m' | 'staff') => void;
     onLogout: () => void;
 }
 
@@ -368,6 +368,39 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                 alignItems: 'flex-start',
                 zIndex: 20
             }}>
+
+                {/* Staff Activity Button */}
+                <button
+                    onClick={() => onSelectOption('staff')}
+                    style={{
+                        padding: '8px 16px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'rgba(0, 122, 255, 0.05)',
+                        border: '1px solid rgba(0, 122, 255, 0.1)',
+                        borderRadius: '20px',
+                        color: '#9ca3af',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        fontSize: '0.8rem',
+                        fontWeight: 600,
+                        letterSpacing: '0.05em',
+                    }}
+                    title="Mina de Oro Staff"
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(0, 122, 255, 0.15)';
+                        e.currentTarget.style.color = '#007AFF';
+                        e.currentTarget.style.borderColor = 'rgba(0, 122, 255, 0.3)';
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(0, 122, 255, 0.05)';
+                        e.currentTarget.style.color = '#9ca3af';
+                        e.currentTarget.style.borderColor = 'rgba(0, 122, 255, 0.1)';
+                    }}
+                >
+                    ACTIVIDAD STAFF
+                </button>
 
                 {/* Discreet Activity Tracker Button */}
                 <button
