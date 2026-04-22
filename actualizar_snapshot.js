@@ -38,8 +38,14 @@ const extractCutoffDate = (wb) => {
             if (!row) continue;
             for (const val of row) {
                 if (!val) continue;
+                
+                // Opción 1: Es una fecha de Excel (Número entre 45000 y 47000 aprox para 2023-2028)
+                if (typeof val === 'number' && val > 45000 && val < 47000) {
+                    return formatExcelDate(val);
+                }
+
+                // Opción 2: Es un string que parece fecha
                 const str = String(val).toUpperCase();
-                // Regex flexible para "16 de ABR de 2026", "16 de Mayo de 2026", etc.
                 if (/\d{1,2}\s+(?:DE\s+)?[A-ZÁÉÍÓÚÑ]{3,}\s+(?:DE\s+)?\d{4}/i.test(str)) {
                     return formatExcelDate(val);
                 }
