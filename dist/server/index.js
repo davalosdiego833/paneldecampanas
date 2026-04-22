@@ -19,15 +19,23 @@ const PORT = Number(process.env.PORT) || 5005;
 const localEnv = path.join(BASE_PATH, '.env');
 const hostingerEnv = path.join(BASE_PATH, '../.env');
 dotenv.config({ path: fs.existsSync(localEnv) ? localEnv : hostingerEnv });
-// Helper to reliably find the 'db' directory
-const getDbPath = () => {
-    const localDb = path.join(BASE_PATH, 'db');
-    const hostingerDb = path.join(BASE_PATH, '../db');
-    return fs.existsSync(localDb) ? localDb : hostingerDb; // fallback if local misses (Hostinger)
+// Helper to reliably find protected folders in Distributed Architecture
+const getProtectedPath = (folder) => {
+    const local = path.join(BASE_PATH, folder);
+    const hostingerParent = path.join(BASE_PATH, '..', folder); // Peer to public_html
+    const hostingerNodeJS = path.join(BASE_PATH, '../nodejs', folder); // Specific nodejs folder
+    if (fs.existsSync(local))
+        return local;
+    if (fs.existsSync(hostingerNodeJS))
+        return hostingerNodeJS;
+    if (fs.existsSync(hostingerParent))
+        return hostingerParent;
+    return local;
 };
-const DB_PATH_DYNAMIC = getDbPath();
+const DB_PATH_DYNAMIC = getProtectedPath('db');
 const ASSETS_PATH = path.join(BASE_PATH, 'assets');
 const THEMES_PATH = path.join(BASE_PATH, 'themes');
+const ADMIN_PATH = getProtectedPath('administrador');
 app.use(cors());
 app.use(express.json());
 let cachedAdvisors = [];
@@ -39,7 +47,7 @@ const getCachedAdvisors = () => {
 };
 // Helper to get advisor directory
 const getAdvisorDirectory = () => {
-    const filePath = path.join(BASE_PATH, 'administrador', 'directorio_asesores.xlsx');
+    const filePath = path.join(ADMIN_PATH, 'directorio_asesores.xlsx');
     if (!fs.existsSync(filePath))
         return {};
     try {
@@ -1344,7 +1352,7 @@ app.delete('/api/activity/:id', (req, res) => {
     }
 });
 // ===================== ESTATUS DE PÓLIZAS =====================
-const POLIZAS_PATH = path.join(BASE_PATH, 'estatus polizas');
+const POLIZAS_PATH = getProtectedPath('estatus polizas');
 app.get('/api/estatus-polizas/fechas', (req, res) => {
     try {
         const { inactivos } = req.query;
