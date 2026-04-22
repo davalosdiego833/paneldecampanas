@@ -52,6 +52,7 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
     }));
 
     const totalGoldHours = deltas.filter(d => d.label !== 'Actividades/Tareas en Agenda').reduce((sum, d) => sum + d.gain, 0);
+    const avgPerDay = (totalGoldHours / 5).toFixed(1);
     const intensity = ((totalGoldHours / 40) * 100).toFixed(0);
 
     const chartData = deltas.map(d => ({ name: d.label, 'Semana Anterior': d.prev, 'Esta Semana': d.curr, 'Crecimiento': d.gain }));
@@ -81,8 +82,8 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                         </p>
                     </div>
                     <div style={{ padding: '12px 24px', background: 'rgba(0,122,255,0.1)', border: '1px solid rgba(0,122,255,0.25)', borderRadius: '16px', textAlign: 'right' }}>
-                        <div style={{ fontSize: '0.75rem', color: '#007AFF', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Horas de Oro Semanales</div>
-                        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: 'white' }}>{totalGoldHours} / 40 hrs</div>
+                        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: 'white' }}>{totalGoldHours} hrs <span style={{ fontSize: '0.9rem', opacity: 0.5, fontWeight: 400 }}>de crecimiento</span></div>
+                        <div style={{ fontSize: '0.85rem', color: '#007AFF', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '4px' }}>{avgPerDay} hrs / día promedio</div>
                     </div>
                 </div>
 
