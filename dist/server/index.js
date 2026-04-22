@@ -1038,7 +1038,11 @@ app.get('/api/resumen-general', (req, res) => {
         if (useSnapshot === 'true' && fs.existsSync(SNAPSHOT_PATH)) {
             const snapshotData = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
             if (snapshotData.data?.resumen_general) {
-                return res.json(snapshotData.data.resumen_general);
+                // Return flat structure compatible with frontend
+                return res.json({
+                    ...snapshotData.data.resumen_general,
+                    fechas_corte: snapshotData.data.fechas_corte || {}
+                });
             }
         }
         const VALID_SUCURSAL = '2043';
