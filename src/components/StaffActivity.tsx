@@ -52,8 +52,7 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
     }));
 
     const totalGoldHours = deltas.filter(d => d.label !== 'Actividades/Tareas en Agenda').reduce((sum, d) => sum + d.gain, 0);
-    const avgPerDay = (totalGoldHours / 5).toFixed(1);
-    const intensity = ((Number(avgPerDay) / 8) * 100).toFixed(0);
+    const intensity = ((totalGoldHours / 40) * 100).toFixed(0);
 
     const chartData = deltas.map(d => ({ name: d.label, 'Semana Anterior': d.prev, 'Esta Semana': d.curr, 'Crecimiento': d.gain }));
 
@@ -82,17 +81,17 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                         </p>
                     </div>
                     <div style={{ padding: '12px 24px', background: 'rgba(0,122,255,0.1)', border: '1px solid rgba(0,122,255,0.25)', borderRadius: '16px', textAlign: 'right' }}>
-                        <div style={{ fontSize: '0.75rem', color: '#007AFF', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Promedio Actividades de Oro</div>
-                        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: 'white' }}>{avgPerDay} hrs/día</div>
+                        <div style={{ fontSize: '0.75rem', color: '#007AFF', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Horas de Oro Semanales</div>
+                        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: 'white' }}>{totalGoldHours} / 40 hrs</div>
                     </div>
                 </div>
 
                 {/* Intensity KPI */}
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
                     <div className="glass-card" style={{ borderLeft: '4px solid #00E676', padding: '24px' }}>
-                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>INTENSIDAD SEMANAL</div>
+                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>APROVECHAMIENTO SEMANAL</div>
                         <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#00E676', margin: '8px 0' }}>{intensity}%</div>
-                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Basado en 8h/día de jornada laboral.</div>
+                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Basado en 40 horas totales a la semana.</div>
                         <div style={{ marginTop: '16px', height: '8px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px', position: 'relative' }}>
                             <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: `${intensity}%`, background: '#00E676', borderRadius: '4px' }} />
                         </div>
