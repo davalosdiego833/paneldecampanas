@@ -67,8 +67,11 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
     ];
 
     const hrConversionMetrics = [
-        { key: 'ent_enamoramiento', label: 'Entrevistas Enamoramiento', icon: '💖' },
-        { key: 'ent_seleccion', label: 'Entrevistas Selección / Comp.', icon: '📝' },
+        { key: 'activos_mes', label: 'Activos (Abril)', icon: '👥' },
+        { key: 'ent_enamoramiento', label: 'Enamoramiento', icon: '💖' },
+        { key: 'ent_entrevista', label: 'Entrevista', icon: '🗣️' },
+        { key: 'ent_compensacion', label: 'Compensación', icon: '💰' },
+        { key: 'ent_administrativa', label: 'Administrativa', icon: '📁' },
         { key: 'sesiones_rda', label: 'Sesiones RDA Completadas', icon: '✅' },
     ];
 
@@ -107,7 +110,7 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
             intensity = ((totalGoldHours / 40) * 100).toFixed(0);
         }
 
-        conversionChartData = deltas.filter(d => !d.isVolume && d.label !== 'Actividades/Tareas en Agenda').map(d => ({ 
+        conversionChartData = deltas.filter(d => !d.isVolume && d.label !== 'Actividades/Tareas en Agenda' && d.key !== 'activos_mes').map(d => ({ 
             name: d.label, 'Previo': d.prev, 'Actual': d.curr, 'Ganancia': d.gain 
         }));
         
@@ -181,7 +184,7 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                                     transition: 'all 0.2s ease'
                                 }}
                             >
-                                {staffData[key].name.split(' ')[0]}
+                                {staffData[key].name}
                             </button>
                         ))}
                     </div>
@@ -243,20 +246,20 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                                 </>
                             ) : (
                                 <>
-                                    <div className="glass-card" style={{ borderLeft: '4px solid #A855F7', padding: '24px' }}>
-                                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>NUEVO ALCANCE DE BÚSQUEDA</div>
-                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#A855F7', margin: '8px 0' }}>+{(curr.recluta_contactos || 0) - (prev.recluta_contactos || 0)}</div>
-                                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Nuevos contactos registrados en bitácora esta semana.</div>
-                                    </div>
-                                    <div className="glass-card" style={{ borderLeft: '4px solid #FF5252', padding: '24px' }}>
-                                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>NUEVAS CITAS AGENDADAS</div>
-                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#FF5252', margin: '8px 0' }}>+{(curr.recluta_citas || 0) - (prev.recluta_citas || 0)}</div>
-                                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Crecimiento en volumen de reclutamiento.</div>
+                                    <div className="glass-card" style={{ borderLeft: '4px solid #F50057', padding: '24px' }}>
+                                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>ENAMORAMIENTO</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#F50057', margin: '8px 0' }}>+{(curr.ent_enamoramiento || 0) - (prev.ent_enamoramiento || 0)}</div>
+                                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Crecimiento semanal de prospectos enamorados.</div>
                                     </div>
                                     <div className="glass-card" style={{ borderLeft: '4px solid #007AFF', padding: '24px' }}>
-                                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>ENTREVISTAS DE FILTRO</div>
-                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#007AFF', margin: '8px 0' }}>+{(curr.ent_enamoramiento || 0) - (prev.ent_enamoramiento || 0) + (curr.ent_seleccion || 0) - (prev.ent_seleccion || 0)}</div>
-                                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Total de entrevistas iniciales y de selección.</div>
+                                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>ENTREVISTA</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#007AFF', margin: '8px 0' }}>+{(curr.ent_entrevista || 0) - (prev.ent_entrevista || 0)}</div>
+                                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Nuevas entrevistas de selección esta semana.</div>
+                                    </div>
+                                    <div className="glass-card" style={{ borderLeft: '4px solid #FFD93D', padding: '24px' }}>
+                                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>COMPENSACIÓN</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#FFD93D', margin: '8px 0' }}>+{(curr.ent_compensacion || 0) - (prev.ent_compensacion || 0)}</div>
+                                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Nuevas entrevistas de compensación cerradas.</div>
                                     </div>
                                 </>
                             )}
