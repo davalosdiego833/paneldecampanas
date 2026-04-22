@@ -31,7 +31,18 @@
   },
   "fer": {
     "name": "Fernanda Carlos",
-    "history": [],
+    "history": [
+      {
+        "date": "2026-04-14",
+        "data": {
+          "citas_iniciales": 6,
+          "citas_cierre": 3,
+          "sesiones_11": 2,
+          "arranque_rapido": 3,
+          "tareas_actividades": 12
+        }
+      }
+    ],
     "goals": {
       "gold_hours_per_day": 4
     }
