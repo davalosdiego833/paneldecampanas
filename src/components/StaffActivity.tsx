@@ -66,15 +66,19 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
         { key: 'tareas_actividades', label: 'Actividades/Tareas en Agenda', icon: '📅' },
     ];
 
-    const hrMetrics = [
+    const hrConversionMetrics = [
         { key: 'ent_enamoramiento', label: 'Entrevistas Enamoramiento', icon: '💖' },
         { key: 'ent_seleccion', label: 'Entrevistas Selección / Comp.', icon: '📝' },
         { key: 'sesiones_rda', label: 'Sesiones RDA Completadas', icon: '✅' },
-        { key: 'recluta_citas', label: 'Citas Recluta (Bitácora)', icon: '📅', isVolume: true },
-        { key: 'recluta_contactos', label: 'Contactos / Búsqueda', icon: '🔎', isVolume: true },
     ];
 
-    const metrics = person?.role === 'hr' ? hrMetrics : devMetrics;
+    const hrProspectingMetrics = [
+        { key: 'recluta_contactos', label: 'Contactos / Búsqueda', icon: '🔎', isVolume: true },
+        { key: 'recluta_citas', label: 'Citas Recluta (Bitácora)', icon: '📅', isVolume: true },
+        { key: 'recluta_entrevistas', label: 'Entrevistas Realizadas', icon: '🤝' },
+    ];
+
+    const metrics = person?.role === 'hr' ? [...hrConversionMetrics, ...hrProspectingMetrics] : devMetrics;
 
     let deltas: any[] = [];
     let totalGoldHours = 0;
@@ -89,6 +93,7 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
         curr = person.history[currIndex].data;
 
         deltas = metrics.map(m => ({
+            key: m.key,
             label: m.label,
             gain: (curr[m.key] || 0) - (prev[m.key] || 0),
             prev: prev[m.key] || 0,
@@ -110,6 +115,41 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
             name: d.label, 'Previo': d.prev, 'Actual': d.curr, 'Ganancia': d.gain 
         }));
     }
+
+    const TableSection = ({ title, icon, data }: { title: string, icon: any, data: any[] }) => (
+        <div className="glass-card" style={{ padding: '0', overflow: 'hidden' }}>
+            <div style={{ padding: '24px', borderBottom: '1px solid var(--glass-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 700 }}>{title}</h3>
+                {icon}
+            </div>
+            <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                    <thead>
+                        <tr style={{ background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid var(--glass-border)' }}>
+                            <th style={{ padding: '20px 24px', fontSize: '0.8rem', opacity: 0.6, fontWeight: 600 }}>TIPO DE ACTIVIDAD</th>
+                            <th style={{ padding: '20px 24px', fontSize: '0.8rem', opacity: 0.6, fontWeight: 600, textAlign: 'center' }}>CIERRE MARTES</th>
+                            <th style={{ padding: '20px 24px', fontSize: '0.8rem', opacity: 0.6, fontWeight: 600, textAlign: 'center' }}>CIERRE LUNES</th>
+                            <th style={{ padding: '20px 24px', fontSize: '0.8rem', opacity: 0.6, fontWeight: 600, textAlign: 'right' }}>CRECIMIENTO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.map(d => (
+                            <tr key={d.label} style={{ borderBottom: '1px solid var(--glass-border)' }}>
+                                <td style={{ padding: '20px 24px', fontWeight: 700, fontSize: '1rem' }}>{d.label}</td>
+                                <td style={{ padding: '20px 24px', opacity: 0.5, textAlign: 'center', fontSize: '1rem' }}>{d.prev}</td>
+                                <td style={{ padding: '20px 24px', fontWeight: 800, textAlign: 'center', fontSize: '1.2rem' }}>{d.curr}</td>
+                                <td style={{ padding: '20px 24px', textAlign: 'right' }}>
+                                    <span style={{ padding: '6px 14px', borderRadius: '20px', background: d.gain >= 0 ? 'rgba(0,230,118,0.15)' : 'rgba(255,82,82,0.15)', color: d.gain >= 0 ? '#00E676' : '#FF5252', fontSize: '0.9rem', fontWeight: 900 }}>
+                                        {d.gain >= 0 ? `+${d.gain}` : d.gain}
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
 
     return (
         <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', padding: '40px' }}>
@@ -222,38 +262,28 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                             )}
                         </div>
 
-                        {/* Metrics Table */}
-                        <div className="glass-card" style={{ padding: '0', overflow: 'hidden' }}>
-                            <div style={{ padding: '24px', borderBottom: '1px solid var(--glass-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <h3 style={{ fontSize: '1.1rem', fontWeight: 700 }}>🔍 Desglose Comparativo de Actividad</h3>
-                                <Activity size={20} color="#007AFF" />
-                            </div>
-                            <div style={{ overflowX: 'auto' }}>
-                                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-                                    <thead>
-                                        <tr style={{ background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid var(--glass-border)' }}>
-                                            <th style={{ padding: '20px 24px', fontSize: '0.8rem', opacity: 0.6, fontWeight: 600 }}>TIPO DE ACTIVIDAD</th>
-                                            <th style={{ padding: '20px 24px', fontSize: '0.8rem', opacity: 0.6, fontWeight: 600, textAlign: 'center' }}>CIERRE MARTES</th>
-                                            <th style={{ padding: '20px 24px', fontSize: '0.8rem', opacity: 0.6, fontWeight: 600, textAlign: 'center' }}>CIERRE LUNES</th>
-                                            <th style={{ padding: '20px 24px', fontSize: '0.8rem', opacity: 0.6, fontWeight: 600, textAlign: 'right' }}>CRECIMIENTO</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {deltas.map(d => (
-                                            <tr key={d.label} style={{ borderBottom: '1px solid var(--glass-border)' }}>
-                                                <td style={{ padding: '20px 24px', fontWeight: 700, fontSize: '1rem' }}>{d.label}</td>
-                                                <td style={{ padding: '20px 24px', opacity: 0.5, textAlign: 'center', fontSize: '1rem' }}>{d.prev}</td>
-                                                <td style={{ padding: '20px 24px', fontWeight: 800, textAlign: 'center', fontSize: '1.2rem' }}>{d.curr}</td>
-                                                <td style={{ padding: '20px 24px', textAlign: 'right' }}>
-                                                    <span style={{ padding: '6px 14px', borderRadius: '20px', background: d.gain >= 0 ? 'rgba(0,230,118,0.15)' : 'rgba(255,82,82,0.15)', color: d.gain >= 0 ? '#00E676' : '#FF5252', fontSize: '0.9rem', fontWeight: 900 }}>
-                                                        {d.gain >= 0 ? `+${d.gain}` : d.gain}
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
+                        {/* Metrics Table(s) */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                            {person.role === 'hr' ? (
+                                <>
+                                    <TableSection 
+                                        title="🔍 Desglose: Mina de Reclutamiento (Conversión)" 
+                                        icon={<Activity size={20} color="#007AFF" />} 
+                                        data={deltas.filter(d => hrConversionMetrics.some(m => m.key === d.key))}
+                                    />
+                                    <TableSection 
+                                        title="📋 Desglose: Bitácora de Prospección (Esfuerzo)" 
+                                        icon={<Activity size={20} color="#A855F7" />} 
+                                        data={deltas.filter(d => hrProspectingMetrics.some(m => m.key === d.key))}
+                                    />
+                                </>
+                            ) : (
+                                <TableSection 
+                                    title="🔍 Desglose Comparativo de Actividad" 
+                                    icon={<Activity size={20} color="#007AFF" />} 
+                                    data={deltas}
+                                />
+                            )}
                         </div>
 
                         {/* Chart Section - Split into two for scale */}

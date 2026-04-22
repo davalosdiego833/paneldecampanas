@@ -79,7 +79,7 @@
     }
   },
   "shelsea": {
-    "name": "Shelsea Gerente",
+    "name": "Shelsea",
     "role": "hr",
     "history": [
       {
@@ -89,7 +89,8 @@
           "ent_seleccion": 3,
           "sesiones_rda": 3,
           "recluta_citas": 34,
-          "recluta_contactos": 296
+          "recluta_contactos": 296,
+          "recluta_entrevistas": 10
         }
       },
       {
@@ -99,7 +100,8 @@
           "ent_seleccion": 7,
           "sesiones_rda": 3,
           "recluta_citas": 47,
-          "recluta_contactos": 426
+          "recluta_contactos": 426,
+          "recluta_entrevistas": 13
         }
       }
     ]
