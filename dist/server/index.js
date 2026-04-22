@@ -1460,6 +1460,29 @@ app.post('/api/estatus-polizas/comentarios', (req, res) => {
         res.status(500).json({ error: 'Write error' });
     }
 });
+// ===================== ACTIVIDAD DEL STAFF =====================
+const STAFF_FILE = 'staff_activity.json';
+app.get('/api/admin/staff-activity', (req, res) => {
+    try {
+        const filePath = path.join(DB_PATH_DYNAMIC, STAFF_FILE);
+        if (!fs.existsSync(filePath))
+            return res.json({});
+        res.json(JSON.parse(fs.readFileSync(filePath, 'utf-8')));
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Read error' });
+    }
+});
+app.post('/api/admin/staff-activity', (req, res) => {
+    try {
+        const filePath = path.join(DB_PATH_DYNAMIC, STAFF_FILE);
+        fs.writeFileSync(filePath, JSON.stringify(req.body, null, 2));
+        res.json({ success: true });
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Write error' });
+    }
+});
 app.use((req, res) => {
     if (req.path.startsWith('/api'))
         return res.status(404).json({ error: 'API not found' });

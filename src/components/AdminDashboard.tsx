@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Home, BarChart3, Users, LogOut, ChevronRight, TrendingUp, TrendingDown, Target, AlertTriangle, Trophy, Award, Shield, Sun, Moon, Search, X } from 'lucide-react';
+import { Home, BarChart3, Users, Activity, LogOut, ChevronRight, TrendingUp, TrendingDown, Target, AlertTriangle, Trophy, Award, Shield, Sun, Moon, Search, X } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 interface Props {
     onLogout: () => void;
@@ -9,7 +10,7 @@ interface Props {
     toggleTheme: () => void;
 }
 
-type AdminView = 'resumen' | 'detalle';
+type AdminView = 'resumen' | 'detalle' | 'staff';
 
 interface CampaignData {
     dates: Record<string, string>;
@@ -409,6 +410,10 @@ const AdminDashboard: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTh
                         <Users className="nav-icon" size={20} />
                         <span>Detalle por Campaña</span>
                     </button>
+                    <button onClick={() => setView('staff')} className={`nav-item ${view === 'staff' ? 'active' : ''}`}>
+                        <Activity className="nav-icon" size={20} />
+                        <span>Actividad del Staff</span>
+                    </button>
                 </nav>
 
                 <div style={{ borderTop: '1px solid var(--glass-border)', paddingTop: '16px', marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -435,8 +440,10 @@ const AdminDashboard: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTh
             <main className="main-content" style={{ overflowY: 'auto', maxHeight: '100vh', padding: '32px 40px' }}>
                 {view === 'resumen' ? (
                     <ResumenGeneral data={data} classifications={classifications} totalAdvisors={totalAdvisors} />
-                ) : (
+                ) : view === 'detalle' ? (
                     <DetallePorCampana data={data} classifications={classifications} />
+                ) : (
+                    <StaffActivityView themeMode={themeMode} />
                 )}
             </main>
         </div>
@@ -929,6 +936,153 @@ const AdvisorSection: React.FC<{
                 </button>
             )}
         </div>
+    );
+};
+
+
+// =================== STAFF ACTIVITY VIEW ===================
+const StaffActivityView: React.FC<{ themeMode: 'dark' | 'light' }> = ({ themeMode }) => {
+    const [staffData, setStaffData] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetch('/api/admin/staff-activity')
+            .then(res => res.json())
+            .then(d => {
+                setStaffData(d);
+                setLoading(false);
+            })
+            .catch(e => {
+                console.error(e);
+                setLoading(false);
+            });
+    }, []);
+
+    if (loading) return <div style={{ color: 'white', padding: '40px' }}>Cargando métricas del staff...</div>;
+    if (!staffData || Object.keys(staffData).length === 0) return <div style={{ color: 'white', padding: '40px' }}>No hay datos de staff registrados.</div>;
+
+    const person = staffData.miros; // Focado en Miros para el Cáliz
+    if (!person || !person.history || person.history.length < 2) {
+        return <div style={{ color: 'white', padding: '40px' }}>Datos insuficientes para comparativa de Miros.</div>;
+    }
+
+    const prev = person.history[0].data;
+    const curr = person.history[1].data;
+
+    const metrics = [
+        { key: 'citas_iniciales', label: 'Citas Iniciales', icon: '📞' },
+        { key: 'citas_cierre', label: 'Citas de Cierre', icon: '🎯' },
+        { key: 'sesiones_11', label: 'Sesiones 1:1', icon: '🗣️' },
+        { key: 'arranque_rapido', label: 'Acompañamientos / Arranques', icon: '⚡' },
+    ];
+
+    const deltas = metrics.map(m => ({
+        label: m.label,
+        gain: (curr[m.key] || 0) - (prev[m.key] || 0),
+        prev: prev[m.key] || 0,
+        curr: curr[m.key] || 0
+    }));
+
+    const totalGoldHours = deltas.reduce((sum, d) => sum + d.gain, 0);
+    const avgPerDay = (totalGoldHours / 5).toFixed(1);
+    const intensity = ((Number(avgPerDay) / 8) * 100).toFixed(0);
+
+    const chartData = deltas.map(d => ({ name: d.label, 'Semana Anterior': d.prev, 'Esta Semana': d.curr, 'Crecimiento': d.gain }));
+
+    return (
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            {/* Header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                    <h1 style={{ fontSize: '1.8rem', fontWeight: 800, letterSpacing: '-0.02em' }}>
+                        💎 Mina de Oro — {person.name}
+                    </h1>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginTop: '4px' }}>
+                        Comparativo: Martes {person.history[0].date} vs Lunes {person.history[1].date}
+                    </p>
+                </div>
+                <div style={{ padding: '10px 20px', background: 'rgba(0,122,255,0.1)', border: '1px solid rgba(0,122,255,0.25)', borderRadius: '12px', textAlign: 'right' }}>
+                    <div style={{ fontSize: '0.7rem', color: '#007AFF', fontWeight: 700, textTransform: 'uppercase' }}>Promedio Actividades de Oro</div>
+                    <div style={{ fontSize: '1.5rem', fontWeight: 900 }}>{avgPerDay} hrs/día</div>
+                </div>
+            </div>
+
+            {/* Intensity KPI */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
+                <div className="glass-card" style={{ borderLeft: '4px solid #00E676' }}>
+                    <div style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600 }}>INTENSIDAD SEMANAL</div>
+                    <div style={{ fontSize: '2.2rem', fontWeight: 900, color: '#00E676', margin: '4px 0' }}>{intensity}%</div>
+                    <div style={{ fontSize: '0.75rem', opacity: 0.7 }}>Basado en 8h/día de jornada laboral.</div>
+                    <div style={{ marginTop: '12px', height: '6px', background: 'rgba(255,255,255,0.1)', borderRadius: '3px', position: 'relative' }}>
+                        <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: `${intensity}%`, background: '#00E676', borderRadius: '3px' }} />
+                    </div>
+                </div>
+
+                <div className="glass-card" style={{ borderLeft: '4px solid #FFD93D' }}>
+                    <div style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600 }}>TOTAL HORAS DE VALOR</div>
+                    <div style={{ fontSize: '2.2rem', fontWeight: 900, color: '#FFD93D', margin: '4px 0' }}>{totalGoldHours} hrs</div>
+                    <div style={{ fontSize: '0.75rem', opacity: 0.7 }}>Crecimiento total en actividades seleccionadas.</div>
+                </div>
+
+                <div className="glass-card" style={{ borderLeft: '4px solid #42A5F5' }}>
+                    <div style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600 }}>AGENDA / TAREAS</div>
+                    <div style={{ fontSize: '2.2rem', fontWeight: 900, color: '#42A5F5', margin: '4px 0' }}>+{curr.tareas_actividades - prev.tareas_actividades}</div>
+                    <div style={{ fontSize: '0.75rem', opacity: 0.7 }}>Incremento en tareas totales completadas.</div>
+                </div>
+            </div>
+
+            {/* Metrics Table */}
+            <div className="glass-card" style={{ padding: '0', overflow: 'hidden' }}>
+                <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--glass-border)', display: 'flex', justifyContent: 'space-between' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 700 }}>🔍 Desglose por Actividad</h3>
+                </div>
+                <div style={{ overflowX: 'auto' }}>
+                    <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                        <thead>
+                            <tr style={{ background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid var(--glass-border)' }}>
+                                <th style={{ padding: '16px 24px', fontSize: '0.75rem', opacity: 0.6 }}>ACTIVIDAD</th>
+                                <th style={{ padding: '16px 24px', fontSize: '0.75rem', opacity: 0.6 }}>MARTES PASADO</th>
+                                <th style={{ padding: '16px 24px', fontSize: '0.75rem', opacity: 0.6 }}>LUNES ACTUAL</th>
+                                <th style={{ padding: '16px 24px', fontSize: '0.75rem', opacity: 0.6 }}>CRECIMIENTO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {deltas.map(d => (
+                                <tr key={d.label} style={{ borderBottom: '1px solid var(--glass-border)' }}>
+                                    <td style={{ padding: '16px 24px', fontWeight: 700 }}>{d.label}</td>
+                                    <td style={{ padding: '16px 24px', opacity: 0.5 }}>{d.prev}</td>
+                                    <td style={{ padding: '16px 24px', fontWeight: 700 }}>{d.curr}</td>
+                                    <td style={{ padding: '16px 24px' }}>
+                                        <span style={{ padding: '4px 10px', borderRadius: '12px', background: 'rgba(0,230,118,0.1)', color: '#00E676', fontSize: '0.8rem', fontWeight: 800 }}>+{d.gain}</span>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {/* Chart */}
+            <div className="glass-card" style={{ padding: '24px' }}>
+                <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '20px' }}>📊 Crecimiento Semanal</h3>
+                <div style={{ height: '300px', width: '100%' }}>
+                    <ResponsiveContainer width="100%" height="100%">
+                        <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+                            <XAxis dataKey="name" stroke="rgba(255,255,255,0.5)" fontSize={12} tickLine={false} axisLine={false} />
+                            <YAxis stroke="rgba(255,255,255,0.5)" fontSize={12} tickLine={false} axisLine={false} />
+                            <Tooltip 
+                                contentStyle={{ background: '#1a1a2e', border: '1px solid #333', borderRadius: '8px' }}
+                                itemStyle={{ fontSize: '0.8rem' }}
+                            />
+                            <Legend wrapperStyle={{ paddingTop: '20px' }} />
+                            <Bar dataKey="Semana Anterior" fill="rgba(255,255,255,0.1)" radius={[4, 4, 0, 0]} />
+                            <Bar dataKey="Esta Semana" fill="#007AFF" radius={[4, 4, 0, 0]} />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+            </div>
+        </motion.div>
     );
 };
 

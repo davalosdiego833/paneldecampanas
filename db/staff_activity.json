@@ -1,0 +1,39 @@
+{
+  "miros": {
+    "name": "Miroslava Enriquez",
+    "history": [
+      {
+        "date": "2026-04-14",
+        "type": "martes_cierre",
+        "data": {
+          "citas_iniciales": 1,
+          "citas_cierre": 1,
+          "sesiones_11": 7,
+          "arranque_rapido": 5,
+          "tareas_actividades": 28
+        }
+      },
+      {
+        "date": "2026-04-20",
+        "type": "lunes_cierre",
+        "data": {
+          "citas_iniciales": 8,
+          "citas_cierre": 5,
+          "sesiones_11": 8,
+          "arranque_rapido": 8,
+          "tareas_actividades": 60
+        }
+      }
+    ],
+    "goals": {
+      "gold_hours_per_day": 4
+    }
+  },
+  "fer": {
+    "name": "Fernanda Carlos",
+    "history": [],
+    "goals": {
+      "gold_hours_per_day": 4
+    }
+  }
+}
