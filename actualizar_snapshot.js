@@ -6,8 +6,8 @@ const BASE_PATH = process.cwd();
 const DB_PATH = path.join(BASE_PATH, 'db');
 const SNAPSHOT_FILE = path.join(DB_PATH, 'resumen_snapshot.json');
 
-// IDs que el usuario suele manejar según server/index.ts
-const VALID_SUCURSALES = ['2043', '2692', '2856', '2511', '313'];
+// FILTRO ÚNICO: Solo Matriz 2043
+const VALID_SUCURSAL = '2043';
 
 // Helper to resolve advisor name using the directory
 const resolveName = (clave, fallbackName, directory) => {
@@ -16,15 +16,33 @@ const resolveName = (clave, fallbackName, directory) => {
     return directory[claveStr] || fallbackName || `Asesor ${claveStr}`;
 };
 
+const formatExcelDate = (val) => {
+    const monthsNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    if (typeof val === 'number') {
+        const d = XLSX.SSF.parse_date_code(val);
+        if (d) {
+            const year = d.y < 100 ? (d.y < 30 ? 2000 + d.y : 1900 + d.y) : d.y;
+            return `${d.d} de ${monthsNames[d.m - 1]} de ${year}`;
+        }
+    }
+    return String(val || '').trim();
+};
+
 const extractCutoffDate = (wb) => {
-    const ws = wb.Sheets[wb.SheetNames[0]];
-    const range = XLSX.utils.decode_range(ws['!ref'] || 'A1:Z50');
-    for (let r = 0; r <= range.e.r && r < 10; r++) {
-        for (let c = 0; c <= range.e.c; c++) {
-            const cell = ws[XLSX.utils.encode_cell({ r, c })];
-            if (cell && cell.v) {
-                const match = String(cell.v).match(/\d{1,2}\s+de\s+[a-z]+\s+de\s+\d{4}/i);
-                if (match) return match[0];
+    // Buscamos en las primeras 3 hojas, primeras 5 filas
+    for (let i = 0; i < Math.min(wb.SheetNames.length, 3); i++) {
+        const ws = wb.Sheets[wb.SheetNames[i]];
+        const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 0 });
+        for (let r = 0; r < 5; r++) {
+            const row = data[r];
+            if (!row) continue;
+            for (const val of row) {
+                if (!val) continue;
+                const str = String(val).toUpperCase();
+                // Regex flexible para "16 de ABR de 2026", "16 de Mayo de 2026", etc.
+                if (/\d{1,2}\s+(?:DE\s+)?[A-ZÁÉÍÓÚÑ]{3,}\s+(?:DE\s+)?\d{4}/i.test(str)) {
+                    return formatExcelDate(val);
+                }
             }
         }
     }
@@ -33,7 +51,7 @@ const extractCutoffDate = (wb) => {
 
 const run = () => {
     try {
-        console.log('🚀 Iniciando consolidación de datos para Snapshot (v2.0)...');
+        console.log('🚀 Iniciando restauración de Snapshot (Solo Matriz 2043)...');
 
         // 1. Cargar Directorio de Asesores
         const dirPath = path.join(BASE_PATH, 'administrador', 'directorio_asesores.xlsx');
@@ -65,8 +83,7 @@ const run = () => {
             const wb = XLSX.readFile(pePath);
             const ws = wb.Sheets[wb.SheetNames[0]];
             const rawData = XLSX.utils.sheet_to_json(ws, { header: 1 });
-            // Encabezados en fila 3 (index 2), datos desde fila 4 (index 3)
-            const dataRows = rawData.slice(3).filter(r => r[2] && VALID_SUCURSALES.includes(String(r[1])));
+            const dataRows = rawData.slice(3).filter(r => r[2] && String(r[1]) === VALID_SUCURSAL);
             
             rg.pagado_pendiente = dataRows.map(r => ({
                 'Nombre Asesor': resolveName(r[0], r[2], directory),
@@ -95,7 +112,7 @@ const run = () => {
             if (wsP) {
                 const dat = XLSX.utils.sheet_to_json(wsP, { header: 1, range: 3 });
                 rg.asesores_sin_emision.summaryBySucursal = dat
-                    .filter(r => VALID_SUCURSALES.includes(String(r[1])) || VALID_SUCURSALES.includes(String(r[4])))
+                    .filter(r => String(r[1]) === VALID_SUCURSAL || String(r[4]) === VALID_SUCURSAL)
                     .map(r => ({
                         Sucursal: r[5] || r[2],
                         Suc: r[4] || r[1],
@@ -116,7 +133,7 @@ const run = () => {
             if (wsA) {
                 const dat = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 4 });
                 rg.asesores_sin_emision.individuals = dat
-                    .filter(r => VALID_SUCURSALES.includes(String(r[3])) || VALID_SUCURSALES.includes(String(r[4])))
+                    .filter(r => String(r[3]) === VALID_SUCURSAL || String(r[4]) === VALID_SUCURSAL)
                     .map(r => ({
                         Asesor: resolveName(r[6], r[7], directory),
                         Clave: r[6],
@@ -145,7 +162,7 @@ const run = () => {
             const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 4 });
             
             rg.proactivos = data
-                .filter(r => r[4] && (VALID_SUCURSALES.includes(String(r[2])) || VALID_SUCURSALES.includes(String(r[3]))))
+                .filter(r => r[4] && (String(r[2]) === VALID_SUCURSAL || String(r[3]) === VALID_SUCURSAL))
                 .map(r => ({
                     ASESOR: resolveName(r[4], null, directory),
                     SUC: r[3],
@@ -204,7 +221,7 @@ const run = () => {
             if (wsA) {
                 const rawA = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 6 });
                 rg.comparativo_vida.individuals = rawA
-                    .filter(r => r[6] && r[6] !== 'TOTAL' && (VALID_SUCURSALES.includes(String(r[3])) || VALID_SUCURSALES.includes(String(r[4]))))
+                    .filter(r => r[6] && r[6] !== 'TOTAL' && (String(r[3]) === VALID_SUCURSAL || String(r[4]) === VALID_SUCURSAL))
                     .map(r => ({
                         'Nombre del Asesor': resolveName(r[5], r[6], directory),
                         'Sucursal': r[3],
@@ -223,7 +240,7 @@ const run = () => {
 
         if (!fs.existsSync(DB_PATH)) fs.mkdirSync(DB_PATH);
         fs.writeFileSync(SNAPSHOT_FILE, JSON.stringify(snapshot, null, 2));
-        console.log('✅ Snapshot consolidado exitosamente!');
+        console.log('✅ Snapshot restaurado (FILTRO 2043) exitosamente!');
 
     } catch (e) {
         console.error('❌ Error en consolidación:', e);

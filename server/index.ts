@@ -999,7 +999,7 @@ app.get('/api/resumen-general', (req, res) => {
             }
         }
 
-        const VALID_SUCURSALES = ['2043', '2692', '2856', '2511', '313'];
+        const VALID_SUCURSAL = '2043';
         const selectedDates = dates ? JSON.parse(dates as string) : {};
         const result: Record<string, any> = { fechas_corte: {} };
 
@@ -1012,7 +1012,7 @@ app.get('/api/resumen-general', (req, res) => {
             if (wsP) {
                 const dat = XLSX.utils.sheet_to_json(wsP, { header: 1, range: 3 });
                 result.asesores_sin_emision.summaryBySucursal = dat
-                    .filter((r: any) => VALID_SUCURSALES.includes(String(r[1])) || VALID_SUCURSALES.includes(String(r[4])))
+                    .filter((r: any) => String(r[1]) === VALID_SUCURSAL || String(r[4]) === VALID_SUCURSAL)
                     .map((r: any) => ({ 
                         Sucursal: r[5] || r[2], 
                         Suc: r[4] || r[1], 
@@ -1032,7 +1032,7 @@ app.get('/api/resumen-general', (req, res) => {
             if (wsA) {
                 const dat = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 4 });
                 result.asesores_sin_emision.individuals = dat
-                    .filter((r: any) => VALID_SUCURSALES.includes(String(r[3])) || VALID_SUCURSALES.includes(String(r[4])))
+                    .filter((r: any) => String(r[3]) === VALID_SUCURSAL || String(r[4]) === VALID_SUCURSAL)
                     .map((r: any) => ({ 
                         Asesor: r[7] || 'Descon', 
                         Clave: r[6] || '', 
@@ -1058,7 +1058,7 @@ app.get('/api/resumen-general', (req, res) => {
             const data: any[][] = XLSX.utils.sheet_to_json(wbPag.Sheets[wbPag.Sheets[wbPag.SheetNames[0]] ? wbPag.SheetNames[0] : wbPag.SheetNames[0]], { header: 1 });
             result.fechas_corte['pagado_pendiente'] = formatExcelDate(extractCutoffDate(wbPag, 'pagado_pendiente'));
             result.pagado_pendiente = data.slice(3)
-                .filter(r => r[2] != null && VALID_SUCURSALES.includes(String(r[1])))
+                .filter(r => r[2] != null && String(r[1]) === VALID_SUCURSAL)
                 .map(r => ({ 'Nombre Asesor': r[2], 'Sucursal': r[1], 'Pólizas-Pagadas': Number(r[5] || 0), 'Recibo_Inicial_Pagado': Number(r[6] || 0), 'Recibo_Ordinario_Pagado': Number(r[7] || 0), 'Total _Prima_Pagada': Number(r[8] || 0), 'Pólizas_Pendinetes': Number(r[9] || 0), 'Recibo_Inicial_Pendiente': Number(r[10] || 0), 'Recibo_Ordinario_Pendiente': Number(r[11] || 0), 'Total _Prima_Pendiente': Number(r[12] || 0) }));
         }
 
