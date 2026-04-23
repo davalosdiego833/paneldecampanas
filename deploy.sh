@@ -37,7 +37,18 @@ echo "🌐 Sincronizando archivos críticos al servidor..."
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" dist/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/dist/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" package.json $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" .htaccess $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/
-rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" db/staff_activity.json $SERVER_USER@$SERVER_IP:$PARENT_DIR/db/staff_activity.json
+
+# 3.1 Blindaje de Datos (Zona Inmune)
+echo "🛡️ Protegiendo archivos de datos y campañas..."
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" db/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/db/
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" administrador/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/administrador/
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" camino_cumbre/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/camino_cumbre/
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" convenciones/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/convenciones/
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" fanfest/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/fanfest/
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" graduacion/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/graduacion/
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" legion_centurion/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/legion_centurion/
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" mdrt/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/mdrt/
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" vive_tu_pasion/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/vive_tu_pasion/
 
 # 4. Configurar Servidor via SSH
 ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF

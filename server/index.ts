@@ -265,7 +265,7 @@ const extractCutoffDate = (wb: any, type: string): string => {
 
 // Helper to read Excel with optional date (history)
 const readExcelData = (folderName: string, options: { skipJson?: boolean, date?: string } = {}) => {
-    const folderPath = path.join(BASE_PATH, folderName);
+    const folderPath = getProtectedPath(folderName);
     if (!fs.existsSync(folderPath)) return null;
 
     try {
@@ -334,10 +334,20 @@ const getCaminoDate = (worksheet: any) => {
 app.get('/api/campaigns', (req, res) => {
     const exclude = ['assets', 'themes', 'server', 'node_modules', 'src', 'public', '.git', 'dist', '.conda', 'administrador', 'tmp', '.cache', '.npm', 'estatus polizas', 'estatus_polizas'];
     try {
-        const folders = fs.readdirSync(BASE_PATH, { withFileTypes: true })
+        const publicFolders = fs.readdirSync(BASE_PATH, { withFileTypes: true })
             .filter(dirent => dirent.isDirectory() && !exclude.includes(dirent.name) && !dirent.name.startsWith('.'))
             .map(dirent => dirent.name);
-        res.json(folders.sort());
+
+        const protectedPath = getProtectedPath('.');
+        let protectedFolders: string[] = [];
+        if (fs.existsSync(protectedPath)) {
+            protectedFolders = fs.readdirSync(protectedPath, { withFileTypes: true })
+                .filter(dirent => dirent.isDirectory() && !exclude.includes(dirent.name) && !dirent.name.startsWith('.') && dirent.name !== 'public_html' && dirent.name !== 'nodejs' && dirent.name !== 'db')
+                .map(dirent => dirent.name);
+        }
+
+        const allFolders = Array.from(new Set([...publicFolders, ...protectedFolders]));
+        res.json(allFolders.sort());
     } catch (error) {
         res.status(500).json({ error: 'Could not list campaigns' });
     }
