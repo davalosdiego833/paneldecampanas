@@ -24,6 +24,11 @@ if (isProd) {
 const app = express();
 const PORT = Number(process.env.PORT) || 5005;
 
+// Load .env from parent dir if it doesn't exist locally
+const localEnv = path.join(BASE_PATH, '.env');
+const hostingerEnv = path.join(BASE_PATH, '../.env');
+dotenv.config({ path: fs.existsSync(localEnv) ? localEnv : hostingerEnv });
+
 // Helper to reliably find protected folders in Distributed Architecture
 const SUCURSALES_PROMO = ['2043', '2856', '2692', '2511', '313'];
 
