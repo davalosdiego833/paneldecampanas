@@ -13,23 +13,16 @@ const __dirname = path.dirname(__filename);
 
 // Detect if we are running in the Hostinger remote environment
 const isHostinger = __dirname.includes('domains/panel.ambrizydavalos.com');
-const isProd = __dirname.endsWith('dist/server') || __dirname.endsWith('dist\\server') || __dirname.includes('/dist/server');
+const isProd = __dirname.includes('/dist/server');
 
 // Reliable BASE_PATH detection
 let BASE_PATH = __dirname;
 if (isProd) {
-    if (__dirname.includes('dist/server')) BASE_PATH = path.join(__dirname, '../../..');
-    else BASE_PATH = path.join(__dirname, '../..');
+    BASE_PATH = path.join(__dirname, '../../..');
 }
-// If running as app.js in public_html, BASE_PATH is already __dirname
 
 const app = express();
 const PORT = Number(process.env.PORT) || 5005;
-
-console.log(`[INIT] isHostinger: ${isHostinger}`);
-console.log(`[INIT] isProd: ${isProd}`);
-console.log(`[INIT] BASE_PATH: ${BASE_PATH}`);
-console.log(`[INIT] __dirname: ${__dirname}`);
 
 // Helper to reliably find protected folders in Distributed Architecture
 const SUCURSALES_PROMO = ['2043', '2856', '2692', '2511', '313'];
@@ -39,10 +32,6 @@ const getProtectedPath = (folder: string) => {
         const hostingerParent = path.join(BASE_PATH, '..', folder);
         const hostingerNodeJS = path.join(BASE_PATH, '../nodejs', folder);
         
-        console.log(`[PATH-CHECK] Looking for ${folder} in:`);
-        console.log(`  - Parent: ${hostingerParent} (${fs.existsSync(hostingerParent)})`);
-        console.log(`  - NodeJS: ${hostingerNodeJS} (${fs.existsSync(hostingerNodeJS)})`);
-
         if (folder !== 'db' && fs.existsSync(hostingerNodeJS)) return hostingerNodeJS;
         if (fs.existsSync(hostingerParent)) return hostingerParent;
     }
@@ -1499,28 +1488,6 @@ const preloadCampaigns = () => {
 
     setTimeout(loadNext, 2000); // Start preloading 2 seconds after boot
 };
-
-app.get('/api/debug-paths', (req, res) => {
-    const folders = ['db', 'administrador', 'mdrt', 'camino_cumbre'];
-    const report: any = {
-        isHostinger,
-        isProd,
-        BASE_PATH,
-        __dirname,
-        results: {}
-    };
-
-    folders.forEach(f => {
-        const p = getProtectedPath(f);
-        report.results[f] = {
-            targetPath: p,
-            exists: fs.existsSync(p),
-            contents: fs.existsSync(p) ? fs.readdirSync(p).slice(0, 5) : []
-        };
-    });
-
-    res.json(report);
-});
 
 // Final catch-all for React
 app.get('*', (req, res) => {
