@@ -54,8 +54,9 @@ rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" vive_tu_pasion/
 ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     PARENT_DIR="/home/u211138134/domains/panel.ambrizydavalos.com"
     
-    # Asegurar enlaces y app.js
-    cp \$PARENT_DIR/public_html/dist/server/index.js \$PARENT_DIR/public_html/app.js
+    # Crear cargador ESM para respetar rutas relativas
+    echo "import './dist/server/index.js';" > \$PARENT_DIR/public_html/app.js
+    
     ln -sfn \$PARENT_DIR/nodejs/node_modules \$PARENT_DIR/public_html/node_modules
     
     # REINICIO DE PASSENGER
