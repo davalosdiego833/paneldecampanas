@@ -13,34 +13,41 @@ const __dirname = path.dirname(__filename);
 
 // Detect if we are running in the Hostinger remote environment
 const isHostinger = __dirname.includes('domains/panel.ambrizydavalos.com');
-const isProd = __dirname.endsWith('dist/server') || __dirname.endsWith('dist\\server');
-const BASE_PATH = isHostinger ? __dirname : (isProd ? path.join(__dirname, '../..') : path.join(__dirname, '..'));
+const isProd = __dirname.endsWith('dist/server') || __dirname.endsWith('dist\\server') || __dirname.includes('/dist/server');
+
+// Reliable BASE_PATH detection
+let BASE_PATH = __dirname;
+if (isProd) {
+    if (__dirname.includes('dist/server')) BASE_PATH = path.join(__dirname, '../../..');
+    else BASE_PATH = path.join(__dirname, '../..');
+}
+// If running as app.js in public_html, BASE_PATH is already __dirname
 
 const app = express();
 const PORT = Number(process.env.PORT) || 5005;
 
-// distributed architecture: Load .env from parent dir if it doesn't exist locally
-const localEnv = path.join(BASE_PATH, '.env');
-const hostingerEnv = path.join(BASE_PATH, '../.env');
-dotenv.config({ path: fs.existsSync(localEnv) ? localEnv : hostingerEnv });
+console.log(`[INIT] isHostinger: ${isHostinger}`);
+console.log(`[INIT] isProd: ${isProd}`);
+console.log(`[INIT] BASE_PATH: ${BASE_PATH}`);
+console.log(`[INIT] __dirname: ${__dirname}`);
 
 // Helper to reliably find protected folders in Distributed Architecture
 const SUCURSALES_PROMO = ['2043', '2856', '2692', '2511', '313'];
 
 const getProtectedPath = (folder: string) => {
-    const isHostinger = __dirname.includes('domains/panel.ambrizydavalos.com');
-    
     if (isHostinger) {
         const hostingerParent = path.join(BASE_PATH, '..', folder);
         const hostingerNodeJS = path.join(BASE_PATH, '../nodejs', folder);
         
-        // Priority for Hostinger: 
+        console.log(`[PATH-CHECK] Looking for ${folder} in:`);
+        console.log(`  - Parent: ${hostingerParent} (${fs.existsSync(hostingerParent)})`);
+        console.log(`  - NodeJS: ${hostingerNodeJS} (${fs.existsSync(hostingerNodeJS)})`);
+
         if (folder !== 'db' && fs.existsSync(hostingerNodeJS)) return hostingerNodeJS;
         if (fs.existsSync(hostingerParent)) return hostingerParent;
     }
 
     const local = path.join(BASE_PATH, folder);
-    if (fs.existsSync(local)) return local;
     return local;
 };
 
