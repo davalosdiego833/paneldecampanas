@@ -35,7 +35,8 @@ PARENT_DIR="/home/u211138134/domains/panel.ambrizydavalos.com"
 # 3. Despliegue Directo via RSYNC (Evita el Auto-Builder)
 echo "🌐 Sincronizando archivos críticos al servidor..."
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" dist/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/dist/
-rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" assets/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/assets/
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" assets/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/assets/ 2>/dev/null || true
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" themes/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/themes/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" package.json $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" .htaccess $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/
 
