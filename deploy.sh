@@ -62,11 +62,9 @@ ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     
     ln -sfn \$PARENT_DIR/nodejs/node_modules \$PARENT_DIR/public_html/node_modules
     
-    # REINICIO DE PASSENGER
+    # REINICIO DE PASSENGER (Solo touch, sin pkill)
     mkdir -p \$PARENT_DIR/public_html/tmp
     touch \$PARENT_DIR/public_html/tmp/restart.txt
-    pkill -u \$SERVER_USER node || true
-    pkill -f "app.js" || true
     
     echo "✅ SISTEMA BLINDADO DISTRIBUIDO DESPLEGADO EXITOSAMENTE."
 EOF

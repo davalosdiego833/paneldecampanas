@@ -19,10 +19,6 @@ if (isProd) {
 }
 const app = express();
 const PORT = Number(process.env.PORT) || 5005;
-try {
-    fs.writeFileSync(path.join(BASE_PATH, 'boot_check.txt'), `Fortress booting: ${new Date().toISOString()}`);
-}
-catch (e) { }
 // Load .env from parent dir if it doesn't exist locally
 const localEnv = path.join(BASE_PATH, '.env');
 const hostingerEnv = path.join(BASE_PATH, '../.env');
