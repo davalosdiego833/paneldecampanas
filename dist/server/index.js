@@ -1555,11 +1555,34 @@ const preloadCampaigns = () => {
             console.error(`[CACHE WARMER] Error al precargar ${c}:`, e);
         }
         idx++;
-        setTimeout(loadNext, 1000); // Wait 1 second before doing the next one
+        setTimeout(loadNext, 1000); // Wait 1 second before doing the next
     };
     setTimeout(loadNext, 2000); // Start preloading 2 seconds after boot
 };
+app.get('/api/debug-paths', (req, res) => {
+    const folders = ['db', 'administrador', 'mdrt', 'camino_cumbre'];
+    const report = {
+        isHostinger,
+        isProd,
+        BASE_PATH,
+        __dirname,
+        results: {}
+    };
+    folders.forEach(f => {
+        const p = getProtectedPath(f);
+        report.results[f] = {
+            targetPath: p,
+            exists: fs.existsSync(p),
+            contents: fs.existsSync(p) ? fs.readdirSync(p).slice(0, 5) : []
+        };
+    });
+    res.json(report);
+});
+// Final catch-all for React
+app.get('*', (req, res) => {
+    res.sendFile(path.join(DIST_PATH, 'index.html'));
+});
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running at http://0.0.0.0:${PORT}`);
+    console.log(`🚀 Fortress Server running on port ${PORT}`);
     // preloadCampaigns(); // Disabled temporarily to prevent 7MB file deadlock on boot
 });
