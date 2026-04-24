@@ -34,10 +34,10 @@ const SUCURSALES_PROMO = ['2043', '2856', '2692', '2511', '313'];
 
 const getProtectedPath = (folder: string) => {
     if (isHostinger) {
-        const hostingerParent = path.join(BASE_PATH, '..', folder);
         const hostingerNodeJS = path.join(BASE_PATH, '../nodejs', folder);
+        const hostingerParent = path.join(BASE_PATH, '..', folder);
         
-        if (folder !== 'db' && fs.existsSync(hostingerNodeJS)) return hostingerNodeJS;
+        if (fs.existsSync(hostingerNodeJS)) return hostingerNodeJS;
         if (fs.existsSync(hostingerParent)) return hostingerParent;
     }
 

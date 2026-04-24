@@ -27,9 +27,9 @@ dotenv.config({ path: fs.existsSync(localEnv) ? localEnv : hostingerEnv });
 const SUCURSALES_PROMO = ['2043', '2856', '2692', '2511', '313'];
 const getProtectedPath = (folder) => {
     if (isHostinger) {
-        const hostingerParent = path.join(BASE_PATH, '..', folder);
         const hostingerNodeJS = path.join(BASE_PATH, '../nodejs', folder);
-        if (folder !== 'db' && fs.existsSync(hostingerNodeJS))
+        const hostingerParent = path.join(BASE_PATH, '..', folder);
+        if (fs.existsSync(hostingerNodeJS))
             return hostingerNodeJS;
         if (fs.existsSync(hostingerParent))
             return hostingerParent;
