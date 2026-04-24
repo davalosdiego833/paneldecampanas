@@ -1062,7 +1062,7 @@ app.get('/api/resumen-general', (req, res) => {
                 // Return flat structure compatible with frontend
                 return res.json({
                     ...snapshotData.data.resumen_general,
-                    fechas_corte: snapshotData.data.fechas_corte || {}
+                    fechas_corte: snapshotData.data.resumen_general.fechas_corte || snapshotData.data.fechas_corte || {}
                 });
             }
         }
