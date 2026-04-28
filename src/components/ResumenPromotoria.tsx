@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Sun, Moon, LogOut, ArrowLeft, DollarSign, Users, TrendingUp, Activity, AlertTriangle, CheckCircle, XCircle, Search, Calendar, Shield } from 'lucide-react';
+import { Sun, Moon, LogOut, ArrowLeft, DollarSign, Users, TrendingUp, Activity, AlertTriangle, CheckCircle, XCircle, Search, Calendar, Shield, MessageSquare } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 import EstatusPolizasContent from './EstatusPolizas';
 
@@ -584,6 +584,53 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate
     );
 };
 
+/* ========== PROACTIVOS AVISO BUTTON ========== */
+const ProactivoCopyButton: React.FC<{
+    fechaCorte: string;
+    faltantes: number;
+}> = ({ fechaCorte, faltantes }) => {
+    const [copied, setCopied] = useState(false);
+
+    const handleCopy = () => {
+        const parts = fechaCorte.split('-');
+        let mesCorte = 'este mes';
+        let requisitoMes = 1;
+        let fmtFecha = fechaCorte;
+        
+        if (parts.length === 3) {
+            const year = parts[0];
+            const monthNum = parseInt(parts[1], 10);
+            const day = parts[2];
+            const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+            mesCorte = months[monthNum - 1] || 'este mes';
+            requisitoMes = monthNum; 
+            fmtFecha = `${day} de ${mesCorte} del ${year}`;
+        }
+
+        const msg = `AVISO DE PROACTIVOS\n\nEspero que estés teniendo un excelente día.\n\nTe escribo personalmente porque, al revisar nuestro cierre del ${fmtFecha}, noté que todavía no figuras en la Lista de Proactivos de la promotoria.\n\nComo sabes, para nosotros en Ambriz Asesores, mantener un ritmo constante de producción no es solo una métrica; es la garantía de que tu negocio sigue sano y protegiendo familias.\n\nAl cierre de cada semestre del año haremos evaluación de proactivos y con esto se considerara seguir teniendo derecho a:\n - TENER PRP INDIVIDUAL CON EMMANUEL (PARA ASESORES +2AÑOS)\n - HACER USO DE HERRAMIENTAS DE LA PROMOTORIA PARA TU NEGOCIO (PANEL DE CAMPAÑAS, PAGINA DE ANF, ETC)\n\nPara el mes de ${mesCorte}, el requisito mínimo es contar con ${requisitoMes} pólizas vendidas para mantener el estatus de proactivo.\n\nActualmente:\nTe hacen falta: ${faltantes} póliza(s) para ser asesor proactivo en ${mesCorte}.\n\nDéjame un pulgarcito arriba de enterad@ 🙂`;
+
+        navigator.clipboard.writeText(msg);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+
+    return (
+        <button 
+            onClick={handleCopy}
+            title="Copiar aviso para WhatsApp"
+            style={{
+                background: 'rgba(255,107,107,0.1)', border: '1px solid rgba(255,107,107,0.3)', borderRadius: '6px',
+                padding: '6px 10px', color: copied ? '#00E676' : '#FF6B6B',
+                cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '6px',
+                fontSize: '0.75rem', fontWeight: 800, transition: '0.2s', width: 'max-content'
+            }}
+        >
+            {copied ? <CheckCircle size={14} /> : <MessageSquare size={14} />} 
+            {copied ? 'Copiado' : 'Avisar'}
+        </button>
+    );
+};
+
 /* ========== SECTION 3: PROACTIVOS ========== */
 const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDate: string | null; onDateSelect: (d: string | null) => void; themeMode: 'dark' | 'light' }> = ({ data, fechaCorte, selectedDate, onDateSelect, themeMode }) => {
     if (!data || !data.length) return <div>No hay datos</div>;
@@ -600,11 +647,18 @@ const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDate: stri
         polizas: Number(r.Polizas_Acumuladas_Total) || 0,
     }));
 
-    const headers = ['#', 'Asesor', 'Suc', 'Acum. Ant.', 'Del Mes', 'Acum. Total', 'Proactivo Mes', 'Faltantes', 'Proactivo Dic', 'Falt. Dic'];
-    const rows = sortedData.map((r: any, i: number) => [
-        i + 1, r.ASESOR, r.SUC, fmtNum(r['Polizas_Acumuladas_Mes_Ant.']), fmtNum(r.Polizas_Del_mes), fmtNum(r.Polizas_Acumuladas_Total),
-        r.Proactivo_al_mes === 'p' ? '✅ Sí' : '❌ No', fmtNum(r.Pólizas_Faltantes), r.Proactivo_a_Dic === 'p' ? '✅ Sí' : '❌ No', fmtNum(r.Pólizas_Faltantes_Para_Dic),
-    ]);
+    const headers = ['#', 'Asesor', 'Suc', 'Acum. Ant.', 'Del Mes', 'Acum. Total', 'Proactivo Mes', 'Faltantes', 'Proactivo Dic', 'Falt. Dic', 'Acción'];
+    const rows = sortedData.map((r: any, i: number) => {
+        const faltantes = Number(r.Pólizas_Faltantes) || 0;
+        return [
+            i + 1, r.ASESOR, r.SUC, fmtNum(r['Polizas_Acumuladas_Mes_Ant.']), fmtNum(r.Polizas_Del_mes), fmtNum(r.Polizas_Acumuladas_Total),
+            r.Proactivo_al_mes === 'p' ? '✅ Sí' : '❌ No', 
+            fmtNum(faltantes), 
+            r.Proactivo_a_Dic === 'p' ? '✅ Sí' : '❌ No', 
+            fmtNum(r.Pólizas_Faltantes_Para_Dic),
+            r.Proactivo_al_mes !== 'p' && faltantes > 0 ? <ProactivoCopyButton fechaCorte={fechaCorte} faltantes={faltantes} /> : ''
+        ];
+    });
 
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
