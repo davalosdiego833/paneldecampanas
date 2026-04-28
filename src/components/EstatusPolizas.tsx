@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, FileText, Clock, Search, Calendar, AlertTriangle, CheckCircle, XCircle, ChevronDown, TrendingUp, Users, Info, Activity, MessageSquare, Save } from 'lucide-react';
+import { Shield, FileText, Clock, Search, Calendar, AlertTriangle, CheckCircle, XCircle, ChevronDown, TrendingUp, Users, Info, Activity, MessageSquare, Save, Copy } from 'lucide-react';
 
 type SubTab = 'resumen' | 'historial';
 
@@ -385,6 +385,28 @@ const CommentSection: React.FC<{ poliza: string; comentarios: Record<string, any
     );
 };
 
+const CopyButton: React.FC<{ poliza: string; contratante: string }> = ({ poliza, contratante }) => {
+    const [copied, setCopied] = useState(false);
+    return (
+        <button 
+            onClick={() => {
+                navigator.clipboard.writeText(`${poliza}\n${contratante}`);
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+            }}
+            title="Copiar datos para WhatsApp"
+            style={{
+                background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '6px',
+                padding: '4px 8px', color: copied ? '#00E676' : 'var(--text-secondary)',
+                cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px',
+                fontSize: '0.7rem', fontWeight: 700, transition: '0.2s'
+            }}
+        >
+            {copied ? <CheckCircle size={12} /> : <Copy size={12} />} {copied ? 'Copiado' : 'Copiar'}
+        </button>
+    );
+};
+
 /* ========== CAMBIOS VIEW COMPONENT ========== */
 const CambiosView: React.FC<{ cambios: CambiosData }> = ({ cambios }) => {
     const [comentarios, setComentarios] = useState<Record<string, any>>({});
@@ -550,8 +572,11 @@ const CambiosView: React.FC<{ cambios: CambiosData }> = ({ cambios }) => {
                                     <div style={{ fontWeight: 700, fontSize: '0.8rem', color: 'var(--text-primary)', marginBottom: '8px', opacity: 0.9 }}>
                                         {c.producto || 'Póliza de Vida'}
                                     </div>
-                                    <div style={{ opacity: 0.8, fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                        <span style={{ opacity: 0.6 }}>{c.estatus_anterior}</span> ➔ <span style={{ fontWeight: 800, color: '#fff', background: 'var(--danger-red)', padding: '2px 8px', borderRadius: '4px', fontSize: '0.7rem' }}>{c.estatus_nuevo}</span>
+                                    <div style={{ opacity: 0.8, fontSize: '0.75rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6px' }}>
+                                        <div>
+                                            <span style={{ opacity: 0.6 }}>{c.estatus_anterior}</span> ➔ <span style={{ fontWeight: 800, color: '#fff', background: 'var(--danger-red)', padding: '2px 8px', borderRadius: '4px', fontSize: '0.7rem' }}>{c.estatus_nuevo}</span>
+                                        </div>
+                                        <CopyButton poliza={c.poliza} contratante={c.contratante || 'CLIENTE POR IDENTIFICAR'} />
                                     </div>
                                     <CommentSection poliza={c.poliza} comentarios={comentarios} onSave={handleSaveComment} />
                                 </div>
