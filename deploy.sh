@@ -46,7 +46,7 @@ rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" .htaccess $SERV
 
 # 3.1 Blindaje de Datos (Zona Inmune en folder nodejs)
 echo "🛡️ Protegiendo archivos de datos y campañas..."
-rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" db/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/db/
+rsync -avz --exclude "comentarios_polizas.json" --exclude "actividad.json" --exclude "staff_activity.json" -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" db/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/db/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" administrador/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/administrador/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" camino_cumbre/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/camino_cumbre/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" convenciones/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/convenciones/

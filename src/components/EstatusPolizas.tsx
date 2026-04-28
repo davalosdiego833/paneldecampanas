@@ -407,6 +407,31 @@ const CopyButton: React.FC<{ poliza: string; contratante: string }> = ({ poliza,
     );
 };
 
+const CopyMessageButton: React.FC<{ polizas: any[] }> = ({ polizas }) => {
+    const [copied, setCopied] = useState(false);
+    return (
+        <button 
+            onClick={() => {
+                const header = `Hola, hola!… Espero te encuentres bien\n\nOye; estoy viendo unos cambios en los estatus de algunas de tus polizas.\nLas siguientes polizas pasaron de un estatus de vigor a anulado. Saben que paso? las tenian en el radar? el cliente sabe que se anulo?\n\n`;
+                const body = polizas.map(p => `${p.poliza && !p.poliza.startsWith('PENDIENTE') ? p.poliza : 'En Trámite'} - ${p.contratante || 'CLIENTE POR IDENTIFICAR'}`).join('\n');
+                navigator.clipboard.writeText(header + body);
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+            }}
+            title="Copiar mensaje para WhatsApp"
+            style={{
+                width: '100%', background: 'rgba(0,122,255,0.1)', border: '1px solid rgba(0,122,255,0.3)', borderRadius: '8px',
+                padding: '10px', color: copied ? '#00E676' : '#007AFF',
+                cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+                fontSize: '0.75rem', fontWeight: 800, transition: '0.2s', marginTop: '12px'
+            }}
+        >
+            {copied ? <CheckCircle size={14} /> : <MessageSquare size={14} />} 
+            {copied ? '¡Mensaje Copiado!' : 'Copiar Mensaje WhatsApp'}
+        </button>
+    );
+};
+
 /* ========== CAMBIOS VIEW COMPONENT ========== */
 const CambiosView: React.FC<{ cambios: CambiosData }> = ({ cambios }) => {
     const [comentarios, setComentarios] = useState<Record<string, any>>({});
@@ -446,6 +471,13 @@ const CambiosView: React.FC<{ cambios: CambiosData }> = ({ cambios }) => {
     ) || [];
 
     const altas = cambios.lista_cambios?.filter(c => c.tipo === 'ALTA') || [];
+
+    const agrupadasCancelaciones = cancelaciones.reduce((acc, curr) => {
+        if (!acc[curr.clave]) acc[curr.clave] = { asesor: curr.asesor, clave: curr.clave, polizas: [] };
+        acc[curr.clave].polizas.push(curr);
+        return acc;
+    }, {} as Record<string, { asesor: string; clave: string; polizas: any[] }>);
+    const asesoresCancelaciones = Object.values(agrupadasCancelaciones);
 
     const generalStats = cambios.resumen.cambios_estatus_general;
 
@@ -556,29 +588,39 @@ const CambiosView: React.FC<{ cambios: CambiosData }> = ({ cambios }) => {
                             <h4 style={{ fontSize: '0.9rem', fontWeight: 800 }}>GPS Cancelaciones ({cancelaciones.length})</h4>
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                            {cancelaciones.map((c, i) => (
-                                <div key={i} style={{ padding: '12px', background: 'rgba(255,255,255,0.03)', borderRadius: '12px', border: '1px solid rgba(255,107,107,0.3)' }}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px', alignItems: 'flex-start' }}>
-                                        <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                            <span style={{ fontWeight: 800, fontSize: '0.75rem', color: 'var(--danger-red)', textTransform: 'uppercase' }}>
-                                                {c.asesor} <span style={{ opacity: 0.6 }}>({c.clave})</span>
-                                            </span>
-                                            <span style={{ fontWeight: 900, fontSize: '0.9rem', color: 'var(--text-primary)', marginTop: '2px' }}>{c.contratante || 'CLIENTE POR IDENTIFICAR'}</span>
-                                        </div>
-                                        <span style={{ fontSize: '0.75rem', fontWeight: 900, color: 'var(--text-primary)', opacity: 0.6, background: 'rgba(255,255,255,0.05)', padding: '2px 6px', borderRadius: '4px' }}>
-                                            #{c.poliza && !c.poliza.startsWith('PENDIENTE') ? c.poliza : 'Identificando...'}
+                            {asesoresCancelaciones.map((grupo, i) => (
+                                <div key={i} style={{ padding: '16px', background: 'rgba(255,255,255,0.03)', borderRadius: '12px', border: '1px solid rgba(255,107,107,0.3)' }}>
+                                    {/* Encabezado del Asesor */}
+                                    <div style={{ marginBottom: '12px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '8px' }}>
+                                        <span style={{ fontWeight: 800, fontSize: '0.85rem', color: 'var(--danger-red)', textTransform: 'uppercase' }}>
+                                            {grupo.asesor} <span style={{ opacity: 0.6 }}>({grupo.clave})</span>
                                         </span>
                                     </div>
-                                    <div style={{ fontWeight: 700, fontSize: '0.8rem', color: 'var(--text-primary)', marginBottom: '8px', opacity: 0.9 }}>
-                                        {c.producto || 'Póliza de Vida'}
+                                    
+                                    {/* Lista de Pólizas */}
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                        {grupo.polizas.map((c, j) => (
+                                            <div key={j} style={{ background: 'rgba(0,0,0,0.2)', padding: '10px', borderRadius: '8px' }}>
+                                                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px', alignItems: 'flex-start' }}>
+                                                    <span style={{ fontWeight: 900, fontSize: '0.85rem', color: 'var(--text-primary)' }}>
+                                                        {c.contratante || 'CLIENTE POR IDENTIFICAR'}
+                                                    </span>
+                                                    <span style={{ fontSize: '0.75rem', fontWeight: 900, color: 'var(--text-primary)', opacity: 0.6, background: 'rgba(255,255,255,0.05)', padding: '2px 6px', borderRadius: '4px' }}>
+                                                        #{c.poliza && !c.poliza.startsWith('PENDIENTE') ? c.poliza : 'Identificando...'}
+                                                    </span>
+                                                </div>
+                                                <div style={{ fontWeight: 700, fontSize: '0.75rem', color: 'var(--text-primary)', marginBottom: '8px', opacity: 0.9 }}>
+                                                    {c.producto || 'Póliza de Vida'}
+                                                </div>
+                                                <div style={{ opacity: 0.8, fontSize: '0.7rem', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+                                                    <span style={{ opacity: 0.6 }}>{c.estatus_anterior}</span> ➔ <span style={{ fontWeight: 800, color: '#fff', background: 'var(--danger-red)', padding: '2px 8px', borderRadius: '4px' }}>{c.estatus_nuevo}</span>
+                                                </div>
+                                                <CommentSection poliza={c.poliza} comentarios={comentarios} onSave={handleSaveComment} />
+                                            </div>
+                                        ))}
                                     </div>
-                                    <div style={{ opacity: 0.8, fontSize: '0.75rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6px' }}>
-                                        <div>
-                                            <span style={{ opacity: 0.6 }}>{c.estatus_anterior}</span> ➔ <span style={{ fontWeight: 800, color: '#fff', background: 'var(--danger-red)', padding: '2px 8px', borderRadius: '4px', fontSize: '0.7rem' }}>{c.estatus_nuevo}</span>
-                                        </div>
-                                        <CopyButton poliza={c.poliza} contratante={c.contratante || 'CLIENTE POR IDENTIFICAR'} />
-                                    </div>
-                                    <CommentSection poliza={c.poliza} comentarios={comentarios} onSave={handleSaveComment} />
+
+                                    <CopyMessageButton polizas={grupo.polizas} />
                                 </div>
                             ))}
                             {cancelaciones.length === 0 && <p style={{ fontSize: '0.8rem', opacity: 0.4 }}>Sin cancelaciones hoy.</p>}
