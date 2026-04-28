@@ -32,28 +32,13 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
     if (!staffData || Object.keys(staffData).length === 0) return <div style={{ color: 'white', padding: '40px', textAlign: 'center' }}>No hay datos de staff registrados.</div>;
     const person = staffData[activeStaff];
     
-    // Lógica para encontrar el ciclo de comparación correcto (evitar mostrar 0 si el último es un baseline)
+    // Siempre tomamos los dos últimos registros para el comparativo real de la semana
     let prevIndex = -1;
     let currIndex = -1;
 
     if (person && person.history && person.history.length >= 2) {
-        // Buscamos el último registro que tenga "movimiento" respecto al anterior
-        // O simplemente tomamos los dos últimos que no sean idénticos
-        for (let i = person.history.length - 1; i > 0; i--) {
-            const c = person.history[i].data;
-            const p = person.history[i-1].data;
-            const hasDiff = Object.keys(c).some(k => (c[k] || 0) !== (p[k] || 0));
-            if (hasDiff) {
-                currIndex = i;
-                prevIndex = i - 1;
-                break;
-            }
-        }
-        // Fallback: si todos son iguales (recién empezando), tomamos los dos últimos
-        if (currIndex === -1) {
-            currIndex = person.history.length - 1;
-            prevIndex = person.history.length - 2;
-        }
+        currIndex = person.history.length - 1;
+        prevIndex = person.history.length - 2;
     }
 
     const hasEnoughData = prevIndex !== -1 && currIndex !== -1;

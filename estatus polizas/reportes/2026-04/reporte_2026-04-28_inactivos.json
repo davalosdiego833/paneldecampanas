@@ -1,0 +1,2318 @@
+{
+  "fecha_reporte": "2026-04-28",
+  "asesores": [
+    {
+      "nombre": "VALERIA AIDE IBAÑEZ MURGUIA",
+      "clave": "18970",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "SELINA JANET LEMUS MIRAMONTES",
+      "clave": "21615",
+      "polizas": [
+        {
+          "poliza": "VI0002618421",
+          "contratante": "CARLOS PANTOJA MARISCAL",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002638461",
+          "contratante": "DIEGO ORLANDO NU�O RIVERA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002613699",
+          "contratante": "LIZA RODRIGUEZ VILLARREAL",
+          "producto": "ORVI 99-20 PAGOS UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000523839",
+          "contratante": "SONIA BERENICE GALLARDO MARTINEZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        }
+      ],
+      "total_polizas": 4,
+      "estatus": {
+        "Anulada": 4
+      }
+    },
+    {
+      "nombre": "ANGELICA NAHOMI ESTRADA OCHOA",
+      "clave": "25373",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "BEATRIZ ADRIANA GARCIA GOMEZ",
+      "clave": "35842",
+      "polizas": [
+        {
+          "poliza": "VI0002623550",
+          "contratante": "AARON LISANDRO SOTO GARCIA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002623898",
+          "contratante": "AMAIRANI GOMEZ HERNANDEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002630695",
+          "contratante": "BEATRIZ ADRIANA GARCIA GOMEZ",
+          "producto": "VIDA MUJER",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000550840",
+          "contratante": "BEATRIZ ADRIANA GARCIA GOMEZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002638182",
+          "contratante": "EDGAR MORENO GONZALEZ BAEZ",
+          "producto": "DOTAL 15 STAR 95",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002619572",
+          "contratante": "JEANETTE MARTINEZ CASTRO",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Vigor Prorrogado"
+        },
+        {
+          "poliza": "GM0000538880",
+          "contratante": "KATTIA SOFIA MEZA LECUONA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000550755",
+          "contratante": "MARCO ANTONIO PACHECO HERNANDEZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002642525",
+          "contratante": "SALVADOR LEGASPI SANCHEZ",
+          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "estatus": "En Vigor"
+        }
+      ],
+      "total_polizas": 9,
+      "estatus": {
+        "Anulada": 5,
+        "En Vigor": 3,
+        "Vigor Prorrogado": 1
+      }
+    },
+    {
+      "nombre": "MIRIAM MONSERRAT ZARAGOZA MEJIA",
+      "clave": "53295",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "LORENIA MARTINEZ MALO",
+      "clave": "80822",
+      "polizas": [
+        {
+          "poliza": "VI0002446388",
+          "contratante": "BRIJIDA MARCELINA JIMENEZ VALLE",
+          "producto": "ORVI 99 6 PAGOS",
+          "estatus": "En Vigor sin Pago de Primas"
+        },
+        {
+          "poliza": "VI0002402625",
+          "contratante": "HALIDA ORALIA MADRIGAL GALVAN",
+          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002400038",
+          "contratante": "HALIDA ORALIA MADRIGAL GALVAN",
+          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002402620",
+          "contratante": "HALIDA ORALIA MADRIGAL GALVAN",
+          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000399591",
+          "contratante": "JOSE CARLOS ROMERO LOAIZA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000412961",
+          "contratante": "LUIS MIGUEL GUTIERREZ OROZCO",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        }
+      ],
+      "total_polizas": 6,
+      "estatus": {
+        "En Vigor sin Pago de Primas": 1,
+        "Anulada": 5
+      }
+    },
+    {
+      "nombre": "MARCO ANTONIO NEGRETE GONZALEZ",
+      "clave": "80830",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "LUIS EDUARDO MONJE VALADEZ",
+      "clave": "81303",
+      "polizas": [
+        {
+          "poliza": "VI0002438193",
+          "contratante": "ABRAHAM DAVID GARZA RAMIREZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000552244",
+          "contratante": "ADOLFO RAVIELA ALVAREZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002503256",
+          "contratante": "AIDA VANESSA SERRATOS OSORIO",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000430912",
+          "contratante": "ALONDRA ELIZABETH CERVANTES GONZALEZ",
+          "producto": "ALFA MEDICAL FLEX A",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002414120",
+          "contratante": "ANIELA CRUZ LUEVANO",
+          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002500881",
+          "contratante": "ANUAR URIBE GAYTAN",
+          "producto": "ORVI 99 6 PAGOS",
+          "estatus": "En Vigor sin Pago de Primas"
+        },
+        {
+          "poliza": "VI0002465762",
+          "contratante": "ARIZBETH PAZ LOPEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000081274",
+          "contratante": "ARMANDO FRANCISCO RODRIGUEZ ROSAS",
+          "producto": "SL INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000454682",
+          "contratante": "CHRISTOPHER ZARZA ENRIQUEZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000423789",
+          "contratante": "CORTES DE CARTON LUBER SA DE CV",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000485390",
+          "contratante": "DAVID GARCIA PANDURO",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000395232",
+          "contratante": "EDUARDO MONJE RIVAS",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000395941",
+          "contratante": "EDUARDO MONJE RIVAS",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000418767",
+          "contratante": "GEORGINA DE LA MORA REYNA",
+          "producto": "PLENO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000503047",
+          "contratante": "JAIR GEOVANNI RAVIELA RAMIREZ",
+          "producto": "ALFA MEDICAL FLEX A",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000394031",
+          "contratante": "JESUS ENRIQUE LOZOYA MURILLO",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002409251",
+          "contratante": "JESUS ENRIQUE LOZOYA MURILLO",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000517152",
+          "contratante": "JESUS FRANCISCO GARCIA RAMIREZ",
+          "producto": "ALFA MEDICAL FLEX A",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000412474",
+          "contratante": "JOSE ROBERTO CARDENAS OCHOA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000473477",
+          "contratante": "LUIS ARTURO MENDEZ LOPEZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000460971",
+          "contratante": "LUIS EDUARDO MONJE VALADEZ",
+          "producto": "ALFA MEDICAL FLEX A",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000439203",
+          "contratante": "LUIS EDUARDO MONJE VALADEZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002515998",
+          "contratante": "LUIS EDUARDO MONJE VALADEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002521764",
+          "contratante": "LUIS ENRIQUE MORALES ROMERO",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002471596",
+          "contratante": "MARGARITA ESCOBEDO CASILLAS",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000483369",
+          "contratante": "MARIA ELISA RIVERA ALVAREZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000406717",
+          "contratante": "MARIA ISABEL PEREZ MENDEZ",
+          "producto": "PLENO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000461008",
+          "contratante": "MARIA YESENIA SANCHEZ SANCHEZ",
+          "producto": "PLENO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000527059",
+          "contratante": "MARIA YESENIA SANCHEZ SANCHEZ",
+          "producto": "PLENO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000527060",
+          "contratante": "MARIA YESENIA SANCHEZ SANCHEZ",
+          "producto": "PLENO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002435038",
+          "contratante": "MIRYAM EGLICERIA SOTELO RIVERA",
+          "producto": "VIDA MUJER",
+          "estatus": "Vigor Prorrogado"
+        },
+        {
+          "poliza": "GM0000461993",
+          "contratante": "MIRYAM EGLICERIA SOTELO RIVERA",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002472300",
+          "contratante": "NANCY ESCOBEDO CASILLAS",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002558967",
+          "contratante": "NEFTALI NAVARRO JIMENEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002463193",
+          "contratante": "PABLO DAVID REYES GUERRA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002415466",
+          "contratante": "PAULA PAMELA MONJE VALADEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Vigor Prorrogado"
+        },
+        {
+          "poliza": "VI0002430635",
+          "contratante": "PAULA PAMELA MONJE VALADEZ",
+          "producto": "VIDA MUJER",
+          "estatus": "Vigor Prorrogado"
+        },
+        {
+          "poliza": "GM0000379913",
+          "contratante": "RICARDO ALBERTO RAMIREZ GUERRERO",
+          "producto": "ALFA MEDICAL FLEX A",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000458467",
+          "contratante": "RICARDO RIVERA ALVAREZ",
+          "producto": "ALFA MEDICAL FLEX A",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000491944",
+          "contratante": "ROCIO DEL CARMEN PRIETO RAMOS",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000407064",
+          "contratante": "RODOLFO HERNANDEZ MENDEZ",
+          "producto": "ALFA MEDICAL FLEX B",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000479455",
+          "contratante": "SANDRA AIDEE CASILLAS GONZALEZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000407984",
+          "contratante": "SANDRA VELEZ LEON",
+          "producto": "ALFA MEDICAL FLEX B",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000392909",
+          "contratante": "THELMA PATRICIA GARCIA HERNANDEZ",
+          "producto": "ALFA MEDICAL FLEX A",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000415141",
+          "contratante": "TULIO CESAR MORA GIL",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002470340",
+          "contratante": "ULISES AURELIO LEON SANTOS",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Vigor Prorrogado"
+        },
+        {
+          "poliza": "VI0002472563",
+          "contratante": "VERONICA PEREZ MENDEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Vigor Prorrogado"
+        }
+      ],
+      "total_polizas": 47,
+      "estatus": {
+        "Anulada": 41,
+        "En Vigor sin Pago de Primas": 1,
+        "Vigor Prorrogado": 5
+      }
+    },
+    {
+      "nombre": "ALEJANDRA IVETTE PEDROZA MACIAS",
+      "clave": "81618",
+      "polizas": [
+        {
+          "poliza": "VI0002419071",
+          "contratante": "ABAD VLADIMIR CASTOLO HERNANDEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002813244",
+          "contratante": "ALONDRA MARSILLI SANCHEZ",
+          "producto": "ORVI 99-20 PAGOS UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000184295",
+          "contratante": "ANA MARIA RENGIFO CHARRIA",
+          "producto": "SL INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002649563",
+          "contratante": "ANDREA MACIAS MEJIA",
+          "producto": "VIDA MUJER",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000431593",
+          "contratante": "AURELIO MACIAS SAPIEN",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002439329",
+          "contratante": "BLANCA IYALI GARCIA CHAVEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000416524",
+          "contratante": "ERNESTO MAURICIO ACEVEDO MACIAS",
+          "producto": "ALFA MEDICAL FLEX A",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000358194",
+          "contratante": "ERNESTO MAURICIO ACEVEDO MACIAS",
+          "producto": "ALFA MEDICAL FLEX A",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002419107",
+          "contratante": "FABIOLA RODRIGUEZ GONZALEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002440094",
+          "contratante": "FABIOLA RODRIGUEZ GONZALEZ",
+          "producto": "VIDA MUJER",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002453966",
+          "contratante": "GABRIEL GALLARDO RAMIREZ",
+          "producto": "ORVI 99 6 PAGOS",
+          "estatus": "En Vigor sin Pago de Primas"
+        },
+        {
+          "poliza": "GM0000520891",
+          "contratante": "HAYDEE MARTIN DEL CAMPO GARCIA",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000403266",
+          "contratante": "IVAN ELIEZER IBARRA SANDOVAL",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000547960",
+          "contratante": "JORGE ENRIQUE MACIAS SAPIEN",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000419964",
+          "contratante": "JORGE NAVARRO ROMERO",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002931047",
+          "contratante": "JORGE TREJO HUERTA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000490939",
+          "contratante": "JULES MACIAS VELDERRAIN",
+          "producto": "INTEGRO",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002422765",
+          "contratante": "LINA NORMA SORIA RATIA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002471636",
+          "contratante": "LUIS ALBERTO MARQUEZ RAMOS",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002482170",
+          "contratante": "MARCELA BERENICE ACEVEDO MACIAS",
+          "producto": "ORVI 99-20 PAGOS DOLARES",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002460754",
+          "contratante": "MONICA ELIZABETH PEDROZA MACIAS",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002432192",
+          "contratante": "NORMA ARACELI DEL VALLE LOPEZ",
+          "producto": "ORVI 99 6 PAGOS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000442751",
+          "contratante": "OCTAVIO VLADIMIR GUZMAN BRISE�O",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002416978",
+          "contratante": "RUDY NU�EZ AGUILAR",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002448993",
+          "contratante": "RUDY NU�EZ AGUILAR",
+          "producto": "IMAGINA SER 65",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002417625",
+          "contratante": "RUDY NU�EZ AGUILAR",
+          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002665993",
+          "contratante": "SANDRA CRISTINA PEDROZA CRUZ",
+          "producto": "VIDA MUJER",
+          "estatus": "Vigor Prorrogado"
+        },
+        {
+          "poliza": "VI0002735173",
+          "contratante": "SANDRA CRISTINA PEDROZA CRUZ",
+          "producto": "NUEVO PLENITUD 60",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002410125",
+          "contratante": "SANDRA CRISTINA PEDROZA CRUZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000403264",
+          "contratante": "SANDRA MACIAS SAPIEN",
+          "producto": "ALFA MEDICAL FLEX A",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000399829",
+          "contratante": "STEPHANIE CHAVOYA VALENZUELA",
+          "producto": "ALFA MEDICAL FLEX A",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002411084",
+          "contratante": "THANIA LIZETH ENCISO MORQUECHO",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002409598",
+          "contratante": "VERONICA MONSERRAT PEREZ CADENA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "En Vigor"
+        }
+      ],
+      "total_polizas": 33,
+      "estatus": {
+        "En Vigor": 11,
+        "Anulada": 20,
+        "En Vigor sin Pago de Primas": 1,
+        "Vigor Prorrogado": 1
+      }
+    },
+    {
+      "nombre": "ALEJANDRA GONZALEZ HERNANDEZ",
+      "clave": "81709",
+      "polizas": [
+        {
+          "poliza": "VI0002683868",
+          "contratante": "ELIZABETH GUADALUPE DE LA ROSA DEL ANGEL",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002707381",
+          "contratante": "ERIKA RODRIGUEZ TORRES",
+          "producto": "VIDA MUJER",
+          "estatus": "Vigor Prorrogado"
+        },
+        {
+          "poliza": "VI0002694615",
+          "contratante": "FERNANDO CARRERA AVALOS",
+          "producto": "ORVI 99-20 PAGOS UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000588986",
+          "contratante": "MANUEL LOPEZ PRADO",
+          "producto": "PLENO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002695590",
+          "contratante": "MARIA LETICIA GUERRERO HERNANDEZ",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002695995",
+          "contratante": "RODRIGO CARRERA AVALOS",
+          "producto": "ORVI 99-20 PAGOS UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002705521",
+          "contratante": "VANIA EUNICE MATA MARTINEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        }
+      ],
+      "total_polizas": 7,
+      "estatus": {
+        "Anulada": 6,
+        "Vigor Prorrogado": 1
+      }
+    },
+    {
+      "nombre": "FIDEL ALEJANDRO AGUILAR AGUILAR",
+      "clave": "82736",
+      "polizas": [
+        {
+          "poliza": "GM0000404293",
+          "contratante": "ALAN MANUEL GOMEZ ARRAZOLA",
+          "producto": "ALFA MEDICAL FLEX A",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002447825",
+          "contratante": "ALEJANDRA ALVARADO HERNANDEZ",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002441697",
+          "contratante": "ANA MARIA ARCIGA SOLORIO",
+          "producto": "VIDA MUJER",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000401148",
+          "contratante": "ANGELICA AGUILAR ZU�IGA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000400464",
+          "contratante": "ANGELICA AGUILAR ZU�IGA",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000424905",
+          "contratante": "DIANA EDITH ESTRELA AGUIRRE",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002446574",
+          "contratante": "JOSE ANTONIO MONROY ALFARO",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002480117",
+          "contratante": "JUAN PABLO AGUILAR AGUILAR",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002439314",
+          "contratante": "KARINA CARLOS PE�ALOZA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002424535",
+          "contratante": "LAURA LIZETTE GARCIA SEGURA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002485362",
+          "contratante": "MARIBEL ALEXA BECERRA OROZCO",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000436762",
+          "contratante": "MARIBEL ALEXA BECERRA OROZCO",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002438110",
+          "contratante": "OSCAR EDUARDO AGUILAR AGUILAR",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        }
+      ],
+      "total_polizas": 13,
+      "estatus": {
+        "Anulada": 12,
+        "En Vigor": 1
+      }
+    },
+    {
+      "nombre": "SEGUROS MONTERREY NEW YORK LIFE SA DE CV",
+      "clave": "83407",
+      "polizas": [
+        {
+          "poliza": "VI0002631000",
+          "contratante": "ALEJANDRO CHAVEZ VALLE",
+          "producto": "ORVI 99 6 PAGOS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000615482",
+          "contratante": "ALONDRA MONSERRAT MARTIN DEL CAMPO LIRA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002578225",
+          "contratante": "ANA BEATRIZ GARCIA MONTERDE",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002816613",
+          "contratante": "ANA SOFIA RUIZ GARCIA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002580395",
+          "contratante": "ANDRES ALEJANDRO ROBLES MAC GREGOR",
+          "producto": "NUEVO PLENITUD 60 15",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000468254",
+          "contratante": "ANGEL DAVALOS MORALES",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000543536",
+          "contratante": "ANGELICA NAHOMI ESTRADA OCHOA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002581729",
+          "contratante": "ANTONIO ISRAEL REYES LOPEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002542210",
+          "contratante": "ANTONIO VAZQUEZ SERENO",
+          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002531028",
+          "contratante": "BEATRIZ ESPINO AYALA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000595921",
+          "contratante": "CARLOS ALBERTO JASSO TORRES",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002742922",
+          "contratante": "CARLOS ALBERTO RAMIREZ MORALES",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000615659",
+          "contratante": "CARLOS ALBERTO RAMIREZ MORALES",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002807298",
+          "contratante": "CHRISTOPHER LENIN LASSO PRADO",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000642003",
+          "contratante": "CHRISTOPHER LENIN LASSO PRADO",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002690934",
+          "contratante": "CINTHIA NOEMI JASSO TORRES",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002749340",
+          "contratante": "CYNTHIA GABRIELA PEREZ CERVANTES",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002481253",
+          "contratante": "DANIEL GREY ACEVES",
+          "producto": "ORVI 99 6 PAGOS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002570977",
+          "contratante": "DAVID ALEJANDRO LECUANDA RAMOS",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002720916",
+          "contratante": "EDGAR ADOLFO BEAS SANCHEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002832296",
+          "contratante": "EDGAR ISRAEL ROMERO FERNANDEZ",
+          "producto": "ORVI 99-20 PAGOS DOLARES",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002613968",
+          "contratante": "EDGAR NAVARRO GUTIERREZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000493236",
+          "contratante": "EDGAR ULISES SANDINO RUVALCABA GARCIA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000474564",
+          "contratante": "EDGAR ULISES SANDINO RUVALCABA GARCIA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000512966",
+          "contratante": "EMMANUEL GONZALEZ MEDINA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002774126",
+          "contratante": "ENRIQUE JAUREGUI HERNANDEZ",
+          "producto": "ORVI 99-20 PAGOS UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002795028",
+          "contratante": "ENRIQUE JIMENEZ HARO",
+          "producto": "IMAGINA SER 65",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002794710",
+          "contratante": "ENRIQUE JIMENEZ HARO",
+          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002579285",
+          "contratante": "ENYI CASSANDRA CRUZ SANCHEZ",
+          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000402107",
+          "contratante": "FERNANDO ALBERTO SANTANA GARCIA",
+          "producto": "ALFA MEDICAL FLEX A",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000495335",
+          "contratante": "FRANCISCO JAVIER GARCIA HERNANDEZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000468257",
+          "contratante": "FRANCISCO ULISES FUENTES JIMENEZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002841388",
+          "contratante": "GEOVANNI QUETZALCOATL VAZQUEZ ESPARZA",
+          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002578339",
+          "contratante": "GIOVANNA ATZHIRI ORTEGA GARCIA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002615992",
+          "contratante": "GLORIA NALLELY NOVOA RAMOS",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000454883",
+          "contratante": "HORACIO MORALES PALOMARES",
+          "producto": "ALFA MEDICAL FLEX B",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002616291",
+          "contratante": "IVAN ALEJANDRO ESTRADA OCHOA",
+          "producto": "ORVI 99 6 PAGOS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000530158",
+          "contratante": "IVONNE LISSETTE ZU�IGA MORALES",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000527622",
+          "contratante": "JESSICA PAOLA NATERA ENCISO",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000597614",
+          "contratante": "JESUS NOE GRIJALVA DUE�AS",
+          "producto": "PLENO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000469770",
+          "contratante": "JESUS RICARDO RAMIREZ GALVAN",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002522260",
+          "contratante": "JORGE ENRIQUE OROZCO VILLALOBOS",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000643707",
+          "contratante": "JOSE FELIX VERA SOTERO",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000477017",
+          "contratante": "JOSE TRINIDAD TORRES CARRILLO",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000671050",
+          "contratante": "JOSUE NU�EZ BERNAL",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000615404",
+          "contratante": "JUAN JOSE ESTEBAN MEDINA PEREZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002607141",
+          "contratante": "KARLA MONTSERRAT IBA�EZ MURGUIA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002774204",
+          "contratante": "KATYA ALEJANDRA TORRES MEDINA",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000491341",
+          "contratante": "LEONARDO ALBERTO PE�A GASTELUM",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002753492",
+          "contratante": "LIDIA JAZMIN LOPEZ BOCANEGRA",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000604298",
+          "contratante": "LUIS ANTONIO TELLO ESCALANTE",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000476648",
+          "contratante": "MARIA ALEJANDRA CENDEJAS GUTIERREZ",
+          "producto": "PLENO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000435431",
+          "contratante": "MARIA DE COVADONGA CONCHA GONZALEZ",
+          "producto": "ALFA MEDICAL FLEX B",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000490142",
+          "contratante": "MARIA DEL CARMEN CASTRILLON ISAZA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002725359",
+          "contratante": "MARIO ALEXANDRO OCHOA TOVAR",
+          "producto": "DOTAL 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002623947",
+          "contratante": "MARTHA SARAY MORENO RIOS",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002743684",
+          "contratante": "MELINA SALAZAR ROSALES",
+          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002739269",
+          "contratante": "MIGUEL ANGEL HERNANDEZ GUZMAN",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002813680",
+          "contratante": "MIGUEL ANGEL LOPEZ LOPEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000510504",
+          "contratante": "MIGUEL IGNACIO CABALLERO MARISCAL",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002589428",
+          "contratante": "OSCAR OSVALDO CHAVEZ CHOLICO",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000566271",
+          "contratante": "PAMELA DURAN GARCIA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000458233",
+          "contratante": "PRISCILA MONSERRAT MATA TORRES",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000546887",
+          "contratante": "RACHID SEHEDI AZUARA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000468873",
+          "contratante": "RAMON BARAJAS CONTRERAS",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002611763",
+          "contratante": "RICARDO ALFREDO NOLASCO GONZALEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002640049",
+          "contratante": "ROSA ISELA RAMOS RUBIO",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000629800",
+          "contratante": "ROSA MARIA RODRIGUEZ RIVAS",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000462455",
+          "contratante": "SALVADOR VALENCIA MAGA�A",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002607749",
+          "contratante": "SANDRA ELIZABETH RAMOS RUBIO",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002613324",
+          "contratante": "SANDRA PATRICIA DE LUNA PRECIADO",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002415273",
+          "contratante": "SUSANA KARINA RAMIREZ RUIZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002646486",
+          "contratante": "TONATIUH TLACAELEL MAGDALENO LIMON",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000649602",
+          "contratante": "VIOLENA ANTONIETTE RENTERIA VIRAMONTES",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000618196",
+          "contratante": "ZULMA JANET HERNANDEZ PERALTA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002884538",
+          "contratante": "CESAR OCTAVIO GONZALEZ ANTON",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002871512",
+          "contratante": "HUGO ENRIQUE MACIAS ACEVES",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000653570",
+          "contratante": "JORGE PADILLA MONTES",
+          "producto": "PLENO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002790437",
+          "contratante": "JUANA LUCIA GUERRERO CARDENAS",
+          "producto": "IMAGINA SER 65",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002788845",
+          "contratante": "JUANA LUCIA GUERRERO CARDENAS",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        }
+      ],
+      "total_polizas": 80,
+      "estatus": {
+        "Anulada": 78,
+        "En Vigor": 2
+      }
+    },
+    {
+      "nombre": "JOAQUIN CHAVEZ SERENO",
+      "clave": "88060",
+      "polizas": [
+        {
+          "poliza": "GM0000495077",
+          "contratante": "ALEJANDRO OCHOA FIGUEROA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000479781",
+          "contratante": "ALFREDO EZEQUIEL ESTRELLA CHAVEZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000464862",
+          "contratante": "BENJAMIN LUGO MONREAL",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002536654",
+          "contratante": "BRIAN GEOVANNI MILIAN HIGAREDA",
+          "producto": "NUEVO PLENITUD 60 15",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000429541",
+          "contratante": "BRIAN GEOVANNI MILIAN HIGAREDA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002498716",
+          "contratante": "CARLOS ESPITIA MORENO",
+          "producto": "NUEVO PLENITUD 65 15",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002537898",
+          "contratante": "CAROLINA MORA OCHOA",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002477137",
+          "contratante": "CELESTE ANAHI HERRERA CALDERON",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002552470",
+          "contratante": "CESAR HUERAMO CHAVEZ",
+          "producto": "ORVI 99 6 PAGOS",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000489761",
+          "contratante": "CESAR HUERAMO CHAVEZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002478498",
+          "contratante": "DIEGO EDMUNDO VILLALOBOS NU�O DE ALBA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Vigor Prorrogado"
+        },
+        {
+          "poliza": "VI0002546812",
+          "contratante": "EDWIN JAHIR VAZQUEZ MAGA�A",
+          "producto": "ORVI 99 6 PAGOS",
+          "estatus": "Vigor Prorrogado"
+        },
+        {
+          "poliza": "VI0002480786",
+          "contratante": "EMMANUEL DIAZ HERNANDEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000478228",
+          "contratante": "ERIK FRANCISCO VALENCIA MENDOZA",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000449098",
+          "contratante": "ERIK FRANCISCO VALENCIA MENDOZA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002471195",
+          "contratante": "FIDEL ALEJANDRO PEREZ VILLASE�OR",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000428999",
+          "contratante": "FIDEL ALEJANDRO PEREZ VILLASE�OR",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000463055",
+          "contratante": "GRUPO LOESSA CONSULTORES SA DE CV",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000506277",
+          "contratante": "GUILLERMO ADOLFO PATI�O DIAZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002524876",
+          "contratante": "IMELDA BERENISE BUSTOS CARREON",
+          "producto": "NUEVO PLENITUD 60.",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000498126",
+          "contratante": "ITZAYANA TORRES HUERTA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000444381",
+          "contratante": "IYASA CONSTRUCCIONES SA DE CV",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000456339",
+          "contratante": "JORGE AYALA PANTOJA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000428886",
+          "contratante": "JOSE JAVIER SERENO CALVILLO",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002522744",
+          "contratante": "JUAN ALONSO VILLALON CUETO",
+          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002483251",
+          "contratante": "JULIO CESAR ESPITIA PINEDA",
+          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002487723",
+          "contratante": "JULIO CESAR VIEYRA VIEYRA",
+          "producto": "ORVI 99 10 PAGOS",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000436000",
+          "contratante": "LUIS FERNANDO MAGA�A MONDRAGON",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000503020",
+          "contratante": "MA GUADALUPE TORRES DUARTE",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002535400",
+          "contratante": "OSCAR IVAN GOMEZ ACOSTA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000444270",
+          "contratante": "RODRIGO LOPEZ GARCINI",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002550998",
+          "contratante": "VANESSA ESPINO RUIZ",
+          "producto": "VIDA MUJER",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002521389",
+          "contratante": "VERONICA VALENZUELA SOTELO",
+          "producto": "ORVI 99 6 PAGOS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002510224",
+          "contratante": "VERONICA VALENZUELA SOTELO",
+          "producto": "ORVI 99 6 PAGOS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002523484",
+          "contratante": "VERONICA VALENZUELA SOTELO",
+          "producto": "ORVI 99 6 PAGOS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002491863",
+          "contratante": "VICTOR HUGO ESPITIA MORENO",
+          "producto": "ORVI 99 6 PAGOS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002496764",
+          "contratante": "ZORAIDA MOLINA SERENO",
+          "producto": "ORVI 99 10 PAGOS",
+          "estatus": "En Vigor"
+        }
+      ],
+      "total_polizas": 37,
+      "estatus": {
+        "Anulada": 25,
+        "En Vigor": 10,
+        "Vigor Prorrogado": 2
+      }
+    },
+    {
+      "nombre": "SARA MARIA ROJAS ARREGUIN",
+      "clave": "88441",
+      "polizas": [
+        {
+          "poliza": "VI0002511831",
+          "contratante": "ANDREINA PRIMADI HERRERA PUENTE",
+          "producto": "NUEVO PLENITUD 65 15",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002495263",
+          "contratante": "BRENDA CRISTINA SAENZ VARELA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000446439",
+          "contratante": "CARLOS ALEJANDRO BAUTISTA TAFOLLA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002511812",
+          "contratante": "ESTEPHANIE MENDOZA FLORES",
+          "producto": "NUEVO PLENITUD 65",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002513458",
+          "contratante": "GUSTAVO ABRAHAM HERRERA PUENTE",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000439326",
+          "contratante": "LYNDA GABRIELA MONTES MENDIETA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002492561",
+          "contratante": "LYNDA GABRIELA MONTES MENDIETA",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000439520",
+          "contratante": "NANCY DANIELA MENDIVIL BARRAGAN",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000442239",
+          "contratante": "RAMIRO SAENZ VARELA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002495243",
+          "contratante": "RAMIRO SAENZ VARELA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002374750",
+          "contratante": "SALVADOR CABRERA TOVAR",
+          "producto": "IMAGINA SER 65",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000435279",
+          "contratante": "VIOLETA YUNUEN MATA PONCE",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002482473",
+          "contratante": "VIOLETA YUNUEN MATA PONCE",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        }
+      ],
+      "total_polizas": 13,
+      "estatus": {
+        "Anulada": 12,
+        "En Vigor": 1
+      }
+    },
+    {
+      "nombre": "MONICA ALEJANDRA MENDEZ LOMELI",
+      "clave": "90582",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "LAURA SARAI DE LA TORRE LEON",
+      "clave": "93894",
+      "polizas": [
+        {
+          "poliza": "VI0002565431",
+          "contratante": "ADRIAN DELGADILLO HERNANDEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000539548",
+          "contratante": "ALAN GARIBAY GRACIAN",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002666277",
+          "contratante": "ARIANA DINORAH TORRES TAPIA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000536812",
+          "contratante": "DANIEL MURILLO RAMOS",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002551662",
+          "contratante": "DANIEL MURILLO RAMOS",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002580719",
+          "contratante": "JESUS ARAUJO BRAVO",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000484324",
+          "contratante": "JESUS ARAUJO BRAVO",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000538683",
+          "contratante": "JONATHAN HERRERA ALANIS",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000476914",
+          "contratante": "JONATHAN HERRERA ALANIS",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002564063",
+          "contratante": "LAURA SARAI DE LA TORRE LEON",
+          "producto": "NUEVO PLENITUD 60",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002564328",
+          "contratante": "LAURA SARAI DE LA TORRE LEON",
+          "producto": "NUEVO PLENITUD 60",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000504836",
+          "contratante": "LIGIA MARIA LACAYO VALENZUELA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002554935",
+          "contratante": "YADIRA ROSALES MIRANDA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002557081",
+          "contratante": "YADIRA ROSALES MIRANDA",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        }
+      ],
+      "total_polizas": 14,
+      "estatus": {
+        "Anulada": 14
+      }
+    },
+    {
+      "nombre": "ALEJANDRA HAGELSIEB CARBOT",
+      "clave": "95310",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "ENRIQUE MOISES ENCISO RODRIGUEZ",
+      "clave": "97541",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "MIGUEL ALEJANDRO NUÑEZ GONZALEZ",
+      "clave": "98674",
+      "polizas": [
+        {
+          "poliza": "GM0000537924",
+          "contratante": "CLAUDIA RODRIGUEZ AVENDA�O",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000509528",
+          "contratante": "FELIX DURAN COLIN",
+          "producto": "PLENO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002573805",
+          "contratante": "GLADYS ORALIA ERREGUIN RAMIREZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002596290",
+          "contratante": "GUSTAVO RAMIREZ LUGO",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000506798",
+          "contratante": "JESUS VEGA GONZALEZ",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000524555",
+          "contratante": "JOB ISRAEL ZU�IGA GONZALEZ",
+          "producto": "PLENO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000528210",
+          "contratante": "JOB ISRAEL ZU�IGA GONZALEZ",
+          "producto": "PLENO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000528871",
+          "contratante": "KARIM ITUARTE AYALA",
+          "producto": "INTEGRO",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000548489",
+          "contratante": "MARCO ANTONIO GONZALEZ TREJO",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000509279",
+          "contratante": "MARIA ESTHER NAVA .",
+          "producto": "PLENO NOVO",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002570701",
+          "contratante": "MARIA GUADALUPE GALLARDO ISASSI",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000507689",
+          "contratante": "MARIANA ACEVEDO NEGRETE",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000522388",
+          "contratante": "MARTHA PATRICIA BALDERAS MORENO",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000507947",
+          "contratante": "MICHEL ALBERTO CORNEJO CORNEJO",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000504735",
+          "contratante": "OMAR ESPINO RODRIGUEZ",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000540405",
+          "contratante": "RENE EDGAR GOMEZ SOTO",
+          "producto": "PLENO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002598922",
+          "contratante": "SALVADOR ALEJANDRO NU�EZ ENRIQUEZ",
+          "producto": "TEMPORAL 20 STAR",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002574542",
+          "contratante": "ULISES RAUL MORALES MARTINEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        }
+      ],
+      "total_polizas": 18,
+      "estatus": {
+        "Anulada": 14,
+        "En Vigor": 4
+      }
+    },
+    {
+      "nombre": "WENDY SUSANA SANCHEZ VAZQUEZ",
+      "clave": "100323",
+      "polizas": [
+        {
+          "poliza": "GM0000628309",
+          "contratante": "ADRIANA PADILLA MARES",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000623923",
+          "contratante": "ARMANDO ARVIZU ARAMBURO",
+          "producto": "ALFA MEDICAL FLEX B",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000609270",
+          "contratante": "ARMANDO ARVIZU ARAMBURO",
+          "producto": "ALFA MEDICAL FLEX B",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000586928",
+          "contratante": "CLAUDIO FABIAN VAZQUEZ GALLARDO",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002714311",
+          "contratante": "DULCE MARIA SANCHEZ MAYEN",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000592219",
+          "contratante": "GABRIELA LOPEZ SANCHEZ",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002701120",
+          "contratante": "LAURA PATRICIA FLORES L�PEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002746515",
+          "contratante": "LUIS ALFONSO SANCHEZ SANCHEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Vigor Prorrogado"
+        },
+        {
+          "poliza": "GM0000639932",
+          "contratante": "MARTHA MARIZETH MOYEDA RUIZ",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002763428",
+          "contratante": "MITZI ARACELI YA�EZ MORENO",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002804793",
+          "contratante": "MITZI ARACELI YA�EZ MORENO",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000619046",
+          "contratante": "ROXANNA VAZQUEZ LUPERCIO",
+          "producto": "ALFA MEDICAL FLEX B",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000614302",
+          "contratante": "TEODORO RIVAS ENCISO",
+          "producto": "ALFA MEDICAL FLEX B",
+          "estatus": "Anulada"
+        }
+      ],
+      "total_polizas": 13,
+      "estatus": {
+        "Anulada": 11,
+        "En Vigor": 1,
+        "Vigor Prorrogado": 1
+      }
+    },
+    {
+      "nombre": "KATIA LIZETH LOPEZ BOCANEGRA",
+      "clave": "102700",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "ANTONIO ALEJANDRO CASTILLO MONTERO",
+      "clave": "102775",
+      "polizas": [
+        {
+          "poliza": "GM0000613427",
+          "contratante": "DAVID GONGORA PACHECO",
+          "producto": "INTEGRO",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002749779",
+          "contratante": "GENNY DEL SOCORRO CASTILLO MONTERO",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000603708",
+          "contratante": "LUCELY NAOMI ESPINOSA SILVEIRA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002743018",
+          "contratante": "PAMELA ADRIANA HERRERA LARRACHE",
+          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002745071",
+          "contratante": "RICARDO EMMANUEL PONCE AZCORRA",
+          "producto": "M�O",
+          "estatus": "Anulada"
+        }
+      ],
+      "total_polizas": 5,
+      "estatus": {
+        "En Vigor": 2,
+        "Anulada": 3
+      }
+    },
+    {
+      "nombre": "DANIEL SALVADOR DE ALBA ACEVES",
+      "clave": "103092",
+      "polizas": [
+        {
+          "poliza": "GM0000609167",
+          "contratante": "ALEJANDRA JANET GARCIA SANCHEZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000611838",
+          "contratante": "CARLOS GUILLERMO GUTIERREZ ESPINOZA",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002772156",
+          "contratante": "EDGAR ALONSO CASILLAS LUEVANOS",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000627048",
+          "contratante": "EDUARDO SAMAEL PICAZO SANCHEZ",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000607928",
+          "contratante": "JAEL AHTZIRI GALLARDO DURAN",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002742444",
+          "contratante": "JAEL AHTZIRI GALLARDO DURAN",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002742627",
+          "contratante": "JAEL AHTZIRI GALLARDO DURAN",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002743439",
+          "contratante": "LUIS REYNALDO TRUJILLO GALVAN",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Vigor Prorrogado"
+        },
+        {
+          "poliza": "VI0002740995",
+          "contratante": "MARIA FERNANDA TRUJILLO GALVAN",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002779974",
+          "contratante": "RODRIGO ALVARADO GUTIERREZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002780247",
+          "contratante": "ROSA ERNESTINA GALVAN GALINDO",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000613699",
+          "contratante": "SANDRA CATALINA LOPEZ SUAREZ",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        }
+      ],
+      "total_polizas": 12,
+      "estatus": {
+        "Anulada": 11,
+        "Vigor Prorrogado": 1
+      }
+    },
+    {
+      "nombre": "GUADALUPE SARAHI FIGUEROA GONZALEZ",
+      "clave": "104500",
+      "polizas": [
+        {
+          "poliza": "VI0002771310",
+          "contratante": "ALMA ROCIO RUBALCAVA GARCIA",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002813621",
+          "contratante": "ANA PAULA MUJICA CARDENAS",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002802079",
+          "contratante": "ANA PAULA MUJICA CARDENAS",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000624997",
+          "contratante": "ELENA SOFIA BRANCACCIO PEREZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002762875",
+          "contratante": "GEMA ITZEL LANDEROS CARRILLO",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000625074",
+          "contratante": "JOSE ALFONSO ALCOCER MARTINEZ",
+          "producto": "INTEGRO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002810974",
+          "contratante": "LEONEL EDUARDO FIGUEROA GONZALEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002781813",
+          "contratante": "MANUEL ALEJANDRO ORTEGA DELGADO",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002812159",
+          "contratante": "MARIA ALONDRA ARACELI BEDOY GUTIERREZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002797135",
+          "contratante": "MARIA JOSE BRAVO ALCARAZ",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002796040",
+          "contratante": "TANIA AIDE MEJIA CUEVAS",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        }
+      ],
+      "total_polizas": 11,
+      "estatus": {
+        "Anulada": 11
+      }
+    },
+    {
+      "nombre": "LUIS FERNANDO HERNANDEZ AYALA",
+      "clave": "110740",
+      "polizas": [
+        {
+          "poliza": "VI0002868505",
+          "contratante": "ANDREA DEL ROCIO GOUT MELENDEZ",
+          "producto": "ORVI 99-20 PAGOS UDIS",
+          "estatus": "Anulada"
+        }
+      ],
+      "total_polizas": 1,
+      "estatus": {
+        "Anulada": 1
+      }
+    },
+    {
+      "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "116795",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "ARMANDO JONATHAN DE LA CRUZ DIAZ",
+      "clave": "107660",
+      "polizas": [
+        {
+          "poliza": "VI0002823872",
+          "contratante": "ALEXANDER BRAYAN DE LA CRUZ DIAZ",
+          "producto": "IMAGINA SER 65",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000682523",
+          "contratante": "BLANCA CAROLINA MAGAÑA CASTELLON",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "GM0000651163",
+          "contratante": "BRENDA JOANNA GARCIA CHAVEZ",
+          "producto": "PRACTICO",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002846524",
+          "contratante": "KAREN SINAI SANCHEZ SONORA",
+          "producto": "VIDA MUJER",
+          "estatus": "Anulada"
+        }
+      ],
+      "total_polizas": 4,
+      "estatus": {
+        "Anulada": 4
+      }
+    },
+    {
+      "nombre": "ANGELICA YADIRA ROMERO JAUREGUI",
+      "clave": "108920",
+      "polizas": [
+        {
+          "poliza": "VI0002894189",
+          "contratante": "CHRISTIAN ALEJANDRO FERNANDEZ GONZALEZ",
+          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002848359",
+          "contratante": "FERNANDO ALVAREZ FLORES",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002833037",
+          "contratante": "GUILLERMO RICARDO TELLEZ OLMOS",
+          "producto": "IMAGINA SER 65",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002851005",
+          "contratante": "IRVING RAFAEL CANDIA HERNANDEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002894752",
+          "contratante": "IRVING RAFAEL CANDIA HERNANDEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002847195",
+          "contratante": "JOAQUIN ALEJANDRO CHAVEZ ROJAS",
+          "producto": "IMAGINA SER 65",
+          "estatus": "Anulada"
+        },
+        {
+          "poliza": "VI0002894442",
+          "contratante": "JOSE ALEJANDRO PIMENTEL SANTIVAÑEZ",
+          "producto": "IMAGINA SER 65",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002869045",
+          "contratante": "JUAN JOSE QUISTIAN HERNANDEZ",
+          "producto": "ORVI 99 10 UDIS",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002831021",
+          "contratante": "MARELVY LOPEZ GUERRERO",
+          "producto": "IMAGINA SER 65",
+          "estatus": "En Vigor"
+        }
+      ],
+      "total_polizas": 9,
+      "estatus": {
+        "Anulada": 5,
+        "En Vigor": 4
+      }
+    },
+    {
+      "nombre": "LINDA TANIA MIROSLAVA ENRIQUEZ PRECIADO",
+      "clave": "114664",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "115032",
+      "polizas": [],
+      "total_polizas": 0,
+      "estatus": {}
+    }
+  ],
+  "resumen_general": {
+    "total_asesores": 30,
+    "total_polizas": 336,
+    "por_estatus": {
+      "Anulada": 282,
+      "En Vigor": 39,
+      "Vigor Prorrogado": 12,
+      "En Vigor sin Pago de Primas": 3
+    }
+  }
+}

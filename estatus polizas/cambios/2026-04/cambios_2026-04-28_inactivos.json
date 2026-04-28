@@ -1,0 +1,235 @@
+{
+  "resumen": {
+    "fecha_anterior": "2026-04-06",
+    "fecha_nuevo": "2026-04-28",
+    "total_anterior": 318,
+    "total_nuevo": 336,
+    "diferencia_total": 18,
+    "cambios_estatus_general": {
+      "Anulada": {
+        "anterior": 268,
+        "nuevo": 282,
+        "diferencia": 14,
+        "emoji": "🟢"
+      },
+      "En Vigor": {
+        "anterior": 35,
+        "nuevo": 39,
+        "diferencia": 4,
+        "emoji": "🟢"
+      },
+      "Vigor Prorrogado": {
+        "anterior": 12,
+        "nuevo": 12,
+        "diferencia": 0,
+        "emoji": "⚪"
+      },
+      "En Vigor sin Pago de Primas": {
+        "anterior": 3,
+        "nuevo": 3,
+        "diferencia": 0,
+        "emoji": "⚪"
+      }
+    }
+  },
+  "lista_cambios": [
+    {
+      "asesor": "SEGUROS MONTERREY NEW YORK LIFE SA DE CV",
+      "clave": "83407",
+      "poliza": "VI0002884538",
+      "contratante": "CESAR OCTAVIO GONZALEZ ANTON",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "SEGUROS MONTERREY NEW YORK LIFE SA DE CV",
+      "clave": "83407",
+      "poliza": "VI0002871512",
+      "contratante": "HUGO ENRIQUE MACIAS ACEVES",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "SEGUROS MONTERREY NEW YORK LIFE SA DE CV",
+      "clave": "83407",
+      "poliza": "GM0000653570",
+      "contratante": "JORGE PADILLA MONTES",
+      "producto": "PLENO",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "SEGUROS MONTERREY NEW YORK LIFE SA DE CV",
+      "clave": "83407",
+      "poliza": "VI0002790437",
+      "contratante": "JUANA LUCIA GUERRERO CARDENAS",
+      "producto": "IMAGINA SER 65",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "SEGUROS MONTERREY NEW YORK LIFE SA DE CV",
+      "clave": "83407",
+      "poliza": "VI0002788845",
+      "contratante": "JUANA LUCIA GUERRERO CARDENAS",
+      "producto": "VIDA MUJER",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "ARMANDO JONATHAN DE LA CRUZ DIAZ",
+      "clave": "107660",
+      "poliza": "VI0002823872",
+      "contratante": "ALEXANDER BRAYAN DE LA CRUZ DIAZ",
+      "producto": "IMAGINA SER 65",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "ARMANDO JONATHAN DE LA CRUZ DIAZ",
+      "clave": "107660",
+      "poliza": "GM0000682523",
+      "contratante": "BLANCA CAROLINA MAGAÑA CASTELLON",
+      "producto": "PRACTICO",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "ARMANDO JONATHAN DE LA CRUZ DIAZ",
+      "clave": "107660",
+      "poliza": "GM0000651163",
+      "contratante": "BRENDA JOANNA GARCIA CHAVEZ",
+      "producto": "PRACTICO",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "ARMANDO JONATHAN DE LA CRUZ DIAZ",
+      "clave": "107660",
+      "poliza": "VI0002846524",
+      "contratante": "KAREN SINAI SANCHEZ SONORA",
+      "producto": "VIDA MUJER",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "ANGELICA YADIRA ROMERO JAUREGUI",
+      "clave": "108920",
+      "poliza": "VI0002894189",
+      "contratante": "CHRISTIAN ALEJANDRO FERNANDEZ GONZALEZ",
+      "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "ANGELICA YADIRA ROMERO JAUREGUI",
+      "clave": "108920",
+      "poliza": "VI0002848359",
+      "contratante": "FERNANDO ALVAREZ FLORES",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "ANGELICA YADIRA ROMERO JAUREGUI",
+      "clave": "108920",
+      "poliza": "VI0002833037",
+      "contratante": "GUILLERMO RICARDO TELLEZ OLMOS",
+      "producto": "IMAGINA SER 65",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "ANGELICA YADIRA ROMERO JAUREGUI",
+      "clave": "108920",
+      "poliza": "VI0002851005",
+      "contratante": "IRVING RAFAEL CANDIA HERNANDEZ",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "ANGELICA YADIRA ROMERO JAUREGUI",
+      "clave": "108920",
+      "poliza": "VI0002894752",
+      "contratante": "IRVING RAFAEL CANDIA HERNANDEZ",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "ANGELICA YADIRA ROMERO JAUREGUI",
+      "clave": "108920",
+      "poliza": "VI0002847195",
+      "contratante": "JOAQUIN ALEJANDRO CHAVEZ ROJAS",
+      "producto": "IMAGINA SER 65",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "Anulada",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "ANGELICA YADIRA ROMERO JAUREGUI",
+      "clave": "108920",
+      "poliza": "VI0002894442",
+      "contratante": "JOSE ALEJANDRO PIMENTEL SANTIVAÑEZ",
+      "producto": "IMAGINA SER 65",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "ANGELICA YADIRA ROMERO JAUREGUI",
+      "clave": "108920",
+      "poliza": "VI0002869045",
+      "contratante": "JUAN JOSE QUISTIAN HERNANDEZ",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "ANGELICA YADIRA ROMERO JAUREGUI",
+      "clave": "108920",
+      "poliza": "VI0002831021",
+      "contratante": "MARELVY LOPEZ GUERRERO",
+      "producto": "IMAGINA SER 65",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-04-28",
+      "tipo": "ALTA"
+    }
+  ]
+}
