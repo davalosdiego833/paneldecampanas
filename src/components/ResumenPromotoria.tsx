@@ -592,19 +592,33 @@ const ProactivoCopyButton: React.FC<{
     const [copied, setCopied] = useState(false);
 
     const handleCopy = () => {
-        const parts = fechaCorte.split('-');
         let mesCorte = 'este mes';
         let requisitoMes = 1;
         let fmtFecha = fechaCorte;
+
+        const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        const monthsLower = months.map(m => m.toLowerCase());
         
-        if (parts.length === 3) {
+        // Try to parse YYYY-MM-DD
+        const parts = fechaCorte.split('-');
+        if (parts.length === 3 && parts[0].length === 4) {
             const year = parts[0];
             const monthNum = parseInt(parts[1], 10);
             const day = parts[2];
-            const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
             mesCorte = months[monthNum - 1] || 'este mes';
             requisitoMes = monthNum; 
             fmtFecha = `${day} de ${mesCorte} del ${year}`;
+        } else {
+            // Try to find the month in the string (e.g., "27 de Abril de 2026")
+            const words = fechaCorte.replace(/,/g, '').split(' ');
+            for (const word of words) {
+                const idx = monthsLower.indexOf(word.toLowerCase());
+                if (idx !== -1) {
+                    mesCorte = months[idx];
+                    requisitoMes = idx + 1;
+                    break;
+                }
+            }
         }
 
         const msg = `AVISO DE PROACTIVOS\n\nEspero que estés teniendo un excelente día.\n\nTe escribo personalmente porque, al revisar nuestro cierre del ${fmtFecha}, noté que todavía no figuras en la Lista de Proactivos de la promotoria.\n\nComo sabes, para nosotros en Ambriz Asesores, mantener un ritmo constante de producción no es solo una métrica; es la garantía de que tu negocio sigue sano y protegiendo familias.\n\nAl cierre de cada semestre del año haremos evaluación de proactivos y con esto se considerara seguir teniendo derecho a:\n - TENER PRP INDIVIDUAL CON EMMANUEL (PARA ASESORES +2AÑOS)\n - HACER USO DE HERRAMIENTAS DE LA PROMOTORIA PARA TU NEGOCIO (PANEL DE CAMPAÑAS, PAGINA DE ANF, ETC)\n\nPara el mes de ${mesCorte}, el requisito mínimo es contar con ${requisitoMes} pólizas vendidas para mantener el estatus de proactivo.\n\nActualmente:\nTe hacen falta: ${faltantes} póliza(s) para ser asesor proactivo en ${mesCorte}.\n\nDéjame un pulgarcito arriba de enterad@ 🙂`;
