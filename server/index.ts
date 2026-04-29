@@ -581,7 +581,10 @@ app.get('/api/admin/summary', (req, res) => {
         // Performance optimization: check for frozen snapshot
         if (useSnapshot === 'true' && fs.existsSync(SNAPSHOT_PATH)) {
             const snapshotData = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
-            return res.json(snapshotData.data || snapshotData); // Fallback for old snapshot format
+            const data = snapshotData.data || snapshotData;
+            if (data && (data.mdrt || data.camino_cumbre || data.graduacion)) {
+                return res.json(data);
+            }
         }
 
         const result: Record<string, any> = { dates: {} };
