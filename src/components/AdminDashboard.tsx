@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Home, BarChart3, Users, Activity, LogOut, ChevronRight, TrendingUp, TrendingDown, Target, AlertTriangle, Trophy, Award, Shield, Sun, Moon, Search, X } from 'lucide-react';
+import { Home, BarChart3, Users, Activity, LogOut, ChevronRight, TrendingUp, TrendingDown, Target, AlertTriangle, Trophy, Award, Shield, Sun, Moon, Search, X, MessageSquare } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 interface Props {
@@ -110,17 +110,17 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
                 details.push(`PA: ${formatCurrency(pa)}`);
                 if (next) details.push(`Faltante ${next}: ${formatCurrency(faltanteNext)}`);
                 else details.push('✨ Máximo nivel alcanzado');
-                ganando.push({ name, value: pa, pct, details });
+                ganando.push({ name, value: pa, pct, details, row });
             } else if (pct >= 60) {
                 // Cerca de meta: entre 60% y 99%
                 details.push(`PA: ${formatCurrency(pa)}`);
                 details.push(`Faltante Miembro: ${formatCurrency(META_MEMBER - pa)}`);
-                cerca.push({ name, value: pa, pct, details });
+                cerca.push({ name, value: pa, pct, details, row });
             } else {
                 // Por debajo: menos del 60%
                 details.push(`PA: ${formatCurrency(pa)}`);
                 details.push(`Faltante Miembro: ${formatCurrency(META_MEMBER - pa)}`);
-                lejos.push({ name, value: pa, pct, details });
+                lejos.push({ name, value: pa, pct, details, row });
             }
         }
 
@@ -141,19 +141,19 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
                 // En meta: cumple o supera el promedio de 4 pólizas/mes
                 details.push(`Mes ${mes} · ${polizas} pólizas`);
                 details.push(status_txt);
-                ganando.push({ name, value: polizas, details, status: status_txt });
+                ganando.push({ name, value: polizas, details, status: status_txt, row });
             } else if (faltanteMeta <= 5 && !isAlert) {
                 // Cerca de meta: le faltan 5 o menos pólizas
                 details.push(`Mes ${mes} · ${polizas} pólizas`);
                 details.push(`Faltan ${faltanteMeta.toFixed(1)} pólizas para meta`);
                 details.push(status_txt);
-                cerca.push({ name, value: polizas, details, status: status_txt });
+                cerca.push({ name, value: polizas, details, status: status_txt, row });
             } else {
                 // Por debajo: le faltan más de 5 o isAlert
                 details.push(`Mes ${mes} · ${polizas} pólizas`);
                 details.push(`Faltan ${faltanteMeta.toFixed(1)} pólizas para meta`);
                 details.push(status_txt);
-                lejos.push({ name, value: polizas, details, status: status_txt });
+                lejos.push({ name, value: polizas, details, status: status_txt, row });
             }
         }
 
@@ -181,7 +181,7 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
                 details.push(`Pólizas: ${polizas}`);
                 if (next) details.push(`Faltante ${next}: ${formatCurrency(faltanteNext)}`);
                 else details.push('✨ Máximo nivel');
-                ganando.push({ name, value: total, details, lugar });
+                ganando.push({ name, value: total, details, lugar, row });
             } else {
                 // No califica aún o está cerca
                 details.push(`Lugar #${lugar}`);
@@ -201,9 +201,9 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
                 // Cerca si le falta poco para 1 Diamante o está en lugar competitivo
                 const isNear = faltanteNext <= 150000 || (lugar <= 600 && total > 0);
                 if (isNear) {
-                    cerca.push({ name, value: total, details, lugar, faltante: faltanteNext });
+                    cerca.push({ name, value: total, details, lugar, faltante: faltanteNext, row });
                 } else {
-                    lejos.push({ name, value: total, details, lugar, faltante: faltanteNext });
+                    lejos.push({ name, value: total, details, lugar, faltante: faltanteNext, row });
                 }
             }
         }
@@ -223,13 +223,13 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
 
             if (faltanteMeta <= 0) {
                 // En meta: cumple o supera promedio de 3 pólizas/mes
-                ganando.push({ name, value: polizas, details });
+                ganando.push({ name, value: polizas, details, row });
             } else if (faltanteMeta <= 5) {
                 // Cerca de meta: le faltan 5 o menos para el promedio
-                cerca.push({ name, value: polizas, details });
+                cerca.push({ name, value: polizas, details, row });
             } else {
                 // Por debajo: le faltan más de 5
-                lejos.push({ name, value: polizas, details });
+                lejos.push({ name, value: polizas, details, row });
             }
         }
 
@@ -250,7 +250,7 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
 
             if (estaEnMeta) {
                 // En meta
-                ganando.push({ name, value: polizas, details, nivel });
+                ganando.push({ name, value: polizas, details, nivel, row });
             } else {
                 // Si no está en meta, ver si está cerca (menos de 5 pólizas para el promedio de 4/mes)
                 const mes = Math.floor(Number(row.Mes_Actual || 1));
@@ -259,10 +259,10 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
 
                 if (faltanteMeta <= 5) {
                     details.push(`⚠️ Faltante Meta Mes: ${faltanteMeta.toFixed(1)} pólizas`);
-                    cerca.push({ name, value: polizas, details, faltante: faltanteMeta });
+                    cerca.push({ name, value: polizas, details, faltante: faltanteMeta, row });
                 } else {
                     details.push(`❌ Faltante Meta Mes: ${faltanteMeta.toFixed(1)} pólizas`);
-                    lejos.push({ name, value: polizas, details, faltante: faltanteMeta });
+                    lejos.push({ name, value: polizas, details, faltante: faltanteMeta, row });
                 }
             }
         }
@@ -283,11 +283,11 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
             ];
 
             if (total >= 6 && condicion) {
-                ganando.push({ name, value: total, details });
+                ganando.push({ name, value: total, details, row });
             } else if (total >= 4) {
-                cerca.push({ name, value: total, details });
+                cerca.push({ name, value: total, details, row });
             } else {
-                lejos.push({ name, value: total, details });
+                lejos.push({ name, value: total, details, row });
             }
         }
 
@@ -303,11 +303,11 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
 
             // Nivel 1: 5 pols & 15k coms
             if (pols >= 5 && coms >= 15000) {
-                ganando.push({ name, value: pols, details });
+                ganando.push({ name, value: pols, details, row });
             } else if (pols >= 3) {
-                cerca.push({ name, value: pols, details });
+                cerca.push({ name, value: pols, details, row });
             } else {
-                lejos.push({ name, value: pols, details });
+                lejos.push({ name, value: pols, details, row });
             }
         }
     });
@@ -853,6 +853,7 @@ const DetallePorCampana: React.FC<{
                                             advisors={filteredAdvisors}
                                             campaign={camp}
                                             isFiltered={isFiltering}
+                                            fechaCorte={data.dates ? data.dates[camp] : 'hoy'}
                                         />
                                     );
                                 })}
@@ -865,6 +866,137 @@ const DetallePorCampana: React.FC<{
     );
 };
 
+
+// =================== CAMPAIGN COPY BUTTON ===================
+const CampaignCopyButton: React.FC<{
+    campaign: string;
+    row: any;
+    fechaCorte: string;
+}> = ({ campaign, row, fechaCorte }) => {
+    const [copied, setCopied] = useState(false);
+
+    const handleCopy = () => {
+        const fullName = row.Asesor || row.name || 'Asesor';
+        const firstName = fullName.split(' ')[0];
+        const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        const monthsLower = months.map(m => m.toLowerCase());
+        
+        let monthIndex = new Date().getMonth() + 1; // Default to current month
+        const words = fechaCorte.replace(/,/g, '').split(' ');
+        for (const word of words) {
+            const idx = monthsLower.indexOf(word.toLowerCase());
+            if (idx !== -1) {
+                monthIndex = idx + 1;
+                break;
+            }
+        }
+
+        let msg = `Hola ${firstName}, ¿cómo estás? 👋\nOye, estuve checando tus números al ${fechaCorte} en `;
+        const footer = `\n\ndéjame un pulgarcito arriba de enterad@ 🙂`;
+
+        if (campaign === 'mdrt') {
+            const pa = Number(row.PA_Acumulada || 0);
+            const goal = 1810400;
+            const faltante = Math.max(0, goal - pa);
+            const remainingMonths = Math.max(1, 12 - monthIndex + 1);
+            const avg = (faltante / remainingMonths).toLocaleString('es-MX', { maximumFractionDigits: 0 });
+            msg += `la campaña *MDRT* y así te encuentras:\n\nLlevas ${formatCurrency(pa)} de PA acumulada. Para llegar a la meta de Miembro te faltan ${formatCurrency(faltante)}.\nEsto significa que de aquí a diciembre tendrías que estar cerrando un promedio de *${formatCurrency(Number(avg.replace(/[^0-9]/g, '')))}* cada mes para lograrlo. ¡Es un objetivo muy alcanzable si mantenemos el ritmo! 🔝`;
+        } 
+        else if (campaign === 'camino_cumbre') {
+            const pols = Number(row.Polizas_Totales || 0);
+            const mes = Number(row.Mes_Asesor || 1);
+            const qEnd = Math.ceil(mes / 3) * 3;
+            const qGoal = qEnd * 4;
+            const faltante = Math.max(0, qGoal - pols);
+            const remainingMonths = Math.max(1, qEnd - mes + 1);
+            const avg = (faltante / remainingMonths).toFixed(1);
+            msg += `*Camino a la Cumbre*: 🏔️\n\nLlevas ${pols} pólizas y estás en tu mes #${mes}. Para cerrar este trimestre con tu bono en meta, el objetivo es llegar a ${qGoal} pólizas.\nTe faltan *${faltante}*, por lo que tendrías que promediar *${avg}* pólizas por mes en lo que queda del trimestre. ¡Vamos por ese bono! ⚡`;
+        }
+        else if (campaign === 'legion_centurion') {
+            const pols = Number(row.Total_Polizas || 0);
+            const mes = Number(row.Mes_Actual || monthIndex);
+            const goalMes = mes * 4;
+            const faltanteMes = Math.max(0, goalMes - pols);
+            msg += `*Legión Centurión*: 🛡️\n\nLlevas ${pols} pólizas totales. El objetivo para estar en meta este mes es de ${goalMes} pólizas. Te faltan *${faltanteMes}* pólizas para estar al corriente hoy. ¡A darle con todo para no rezagarnos! 💪`;
+        }
+        else if (campaign === 'graduacion') {
+            const pols = Number(row.Polizas_Totales || 0);
+            const mes = Number(row.Mes_Asesor || 1);
+            const remaining = Math.max(1, 12 - mes + 1);
+            const faltante = Math.max(0, 36 - pols);
+            const avg = (faltante / remaining).toFixed(1);
+            msg += `*Graduación*: 🎓\n\nLlevas ${pols} de las 36 requeridas para graduarte. Te faltan ${faltante}.\nComo te quedan ${remaining} meses de programa, el objetivo es cerrar *${avg}* pólizas por mes para graduarte con éxito. ✨`;
+        }
+        else if (campaign === 'convenciones') {
+            const lugar = Number(row.Lugar || 9999);
+            const total = Number(row.PA_Total || 0);
+            const polizas = Number(row.Polizas || 0);
+            const missingPol = Math.max(0, 30 - polizas);
+            const missingCred = Math.max(0, 588500 - total);
+            const hasCandados = missingPol <= 0 && missingCred <= 0;
+            const isQualified = lugar <= 480 && hasCandados;
+
+            msg += `el ranking de *Convenciones*: 🏛️\n\n`;
+            if (isQualified) {
+                msg += `🎉 ¡Felicidades! Ya estás calificado para la Convención. Estás en el lugar #${lugar} con ${polizas} pólizas y ${formatCurrency(total)} créditos. ¡Sigue así para subir al siguiente nivel de diamantes! 💎`;
+            } else if (hasCandados) {
+                const faltanteCred = Math.max(0, Number(row.Lugar_480 || 0) - total);
+                msg += `Vas muy bien: ya cumples con los candados de pólizas y créditos mínimos. Sin embargo, estás en el lugar #${lugar}. Para entrar a la zona de calificación (lugar 480) te faltan *${formatCurrency(faltanteCred)}* créditos. ¡Estás muy cerca! ⚡`;
+            } else {
+                msg += `Estás en el lugar #${lugar}, pero para poder validar ese lugar necesitamos liberar los candados mínimos. Te faltan *${missingPol}* pólizas y *${formatCurrency(missingCred)}* créditos. ¡Enfoquémonos en esos mínimos para asegurar tu lugar! 🎯`;
+            }
+        }
+        else if (campaign === 'vive_tu_pasion') {
+            const pols = Number(row.Polizas || 0);
+            const coms = Number(row.Comisiones || 0);
+            const niveles = [
+                { id: 1, pols: 5, com: 15000 },
+                { id: 2, pols: 7, com: 25000 },
+                { id: 3, pols: 9, com: 40000 },
+                { id: 4, pols: 12, com: 50000 }
+            ];
+            const currentLevel = [...niveles].reverse().find(n => pols >= n.pols && coms >= n.com);
+            const nextLevel = niveles.find(n => pols < n.pols || coms < n.com);
+
+            msg += `*Vive tu Pasión*: 🔥\n\nLlevas ${pols} pólizas y ${formatCurrency(coms)} en comisiones. `;
+            if (currentLevel) {
+                msg += `¡Ya tienes ganado el Nivel ${currentLevel.id}! 🏆 `;
+                if (nextLevel) {
+                    msg += `Para subir al siguiente nivel de premio (Nivel ${nextLevel.id}) te faltan ${nextLevel.pols - pols} pólizas y ${formatCurrency(nextLevel.com - coms)} en comisión. ✨`;
+                } else {
+                    msg += `¡Has alcanzado el nivel máximo de la campaña! 🎉`;
+                }
+            } else {
+                msg += `Para alcanzar el primer nivel de premio te faltan ${5 - pols} pólizas y ${formatCurrency(15000 - coms)} en comisión. ¡A meterle velocidad! 🚀`;
+            }
+        } else {
+            msg += `la campaña *${campaign}*. Llevas un gran avance. ¡Sigue así!`;
+        }
+
+        msg += footer;
+        navigator.clipboard.writeText(msg);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+
+    return (
+        <button 
+            onClick={(e) => { e.stopPropagation(); handleCopy(); }}
+            title="Copiar aviso para WhatsApp"
+            style={{
+                background: 'rgba(37,211,102,0.1)', border: '1px solid rgba(37,211,102,0.3)', borderRadius: '6px',
+                padding: '4px 8px', color: copied ? '#fff' : '#25D366',
+                backgroundColor: copied ? '#25D366' : 'rgba(37,211,102,0.1)',
+                cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '4px',
+                fontSize: '0.7rem', fontWeight: 800, transition: '0.2s'
+            }}
+        >
+            <MessageSquare size={12} /> 
+            {copied ? 'Copiado' : 'Avisar'}
+        </button>
+    );
+};
+
 // =================== ADVISOR SECTION ===================
 const AdvisorSection: React.FC<{
     title: string;
@@ -873,7 +1005,8 @@ const AdvisorSection: React.FC<{
     advisors: any[];
     campaign: string;
     isFiltered?: boolean;
-}> = ({ title, icon, color, advisors, campaign, isFiltered }) => {
+    fechaCorte?: string;
+}> = ({ title, icon, color, advisors, campaign, isFiltered, fechaCorte }) => {
     const [showAll, setShowAll] = useState(false);
     const displayList = (showAll || isFiltered) ? advisors : advisors.slice(0, 10);
 
@@ -900,7 +1033,12 @@ const AdvisorSection: React.FC<{
                     >
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                             <span style={{ width: '24px', fontSize: '0.75rem', color: 'var(--text-secondary)', textAlign: 'center' }}>{i + 1}</span>
-                            <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>{adv.name}</span>
+                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>{adv.name}</span>
+                                <div style={{ marginTop: '4px' }}>
+                                    <CampaignCopyButton campaign={campaign} row={adv.row} fechaCorte={fechaCorte || 'hoy'} />
+                                </div>
+                            </div>
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2px' }}>
                             {adv.details ? adv.details.map((line: string, j: number) => (
