@@ -969,6 +969,35 @@ const CampaignCopyButton: React.FC<{
             } else {
                 msg += `Para alcanzar el primer nivel de premio te faltan ${5 - pols} pólizas y ${formatCurrency(15000 - coms)} en comisión. ¡A meterle velocidad! 🚀`;
             }
+        }
+        else if (campaign === 'fanfest') {
+            const total = Number(row.Total_Polizas || 0);
+            const condicion = !!row.Condicion;
+            const premio = String(row.Premio || 'PENDIENTE ⏳');
+            const ene = Number(row.Enero || 0);
+            const feb = Number(row.Febrero || 0);
+            const mar = Number(row.Marzo || 0);
+            const abr = Number(row.Abril || 0);
+            const faltantePols = Math.max(0, 6 - total);
+
+            msg += `*Fan Fest*: 🎉\n\nAsí vas en tu producción mes a mes:\n📌 Enero: ${ene} | Febrero: ${feb} | Marzo: ${mar} | Abril: ${abr}\n📊 Total acumulado: *${total} pólizas*\n\n`;
+
+            if (total >= 6 && condicion) {
+                // Ya ganó
+                msg += `🏆 ¡Felicidades! Ya cumpliste con las 6 pólizas y la condición de Marzo-Abril está cubierta. Tu premio está: *${premio}*. ¡Sigue así, eres un ejemplo para la promotoría! 🔥`;
+            } else if (total >= 6 && !condicion) {
+                // Tiene pólizas pero le falta condición
+                msg += `Llevas ${total} pólizas, ¡ya superaste las 6 requeridas! 💪 Sin embargo, aún te falta cumplir la *condición de producción en Marzo-Abril*. Necesitas asegurarte de tener actividad en esos meses para que tu premio quede validado. ¡Estás muy cerca! ⚡`;
+            } else {
+                // Le faltan pólizas
+                msg += `Te faltan *${faltantePols} pólizas* para llegar a las 6 que pide la campaña.`;
+                if (!condicion) {
+                    msg += ` Además, necesitas cubrir la *condición de producción en Marzo-Abril* para validar tu premio.`;
+                } else {
+                    msg += ` La buena noticia es que ya tienes cubierta la condición de Marzo-Abril. 👍`;
+                }
+                msg += `\n\n¡Vamos a cerrar con todo para llevarte el premio! 🎯`;
+            }
         } else {
             msg += `la campaña *${campaign}*. Llevas un gran avance. ¡Sigue así!`;
         }
