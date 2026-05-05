@@ -13,6 +13,7 @@ import Dashboard from './components/Dashboard';
 import AdminActivity from './components/AdminActivity';
 import StaffActivity from './components/StaffActivity';
 import CentroAvisos from './components/CentroAvisos';
+import InfografiaGenerator from './components/InfografiaGenerator';
 
 const App: React.FC = () => {
     const [page, setPage] = useState<Page>('login');
@@ -54,7 +55,7 @@ const App: React.FC = () => {
         }
     };
 
-    const handleAdminOption = (option: 'asesores' | 'promotoria' | 'eduardo' | 'karen' | 'actividad' | 'meta24m' | 'staff' | 'centro_avisos') => {
+    const handleAdminOption = (option: 'asesores' | 'promotoria' | 'eduardo' | 'karen' | 'actividad' | 'meta24m' | 'staff' | 'centro_avisos' | 'infografias') => {
         if (option === 'asesores') {
             setPage('admin_dashboard');
         } else if (option === 'promotoria') {
@@ -71,6 +72,8 @@ const App: React.FC = () => {
             setPage('admin_staff');
         } else if (option === 'centro_avisos') {
             setPage('centro_avisos');
+        } else if (option === 'infografias') {
+            setPage('infografias');
         }
     };
 
@@ -135,6 +138,11 @@ const App: React.FC = () => {
     // Centro de Avisos
     if (page === 'centro_avisos') {
         return <CentroAvisos onBack={() => setPage('admin_home')} themeMode={themeMode} />;
+    }
+
+    // Generador de Infografías
+    if (page === 'infografias') {
+        return <InfografiaGenerator onBack={() => setPage('admin_home')} themeMode={themeMode} />;
     }
 
     // Advisor flow: uses regular Layout
