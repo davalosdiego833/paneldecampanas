@@ -1304,6 +1304,49 @@ const dualWrite = (filename, data) => {
     writeJsonFile(path.join(LOCAL_DB_DIR, filename), data);
     writeJsonFile(path.join(PERSISTENT_DIR, filename), data);
 };
+// ===================== CENTRO DE AVISOS =====================
+const ALERTS_FILE_PATH = path.join(DB_PATH_DYNAMIC, 'alertas_pendientes.json');
+app.get('/api/admin/alertas', (req, res) => {
+    try {
+        if (fs.existsSync(ALERTS_FILE_PATH)) {
+            const data = JSON.parse(fs.readFileSync(ALERTS_FILE_PATH, 'utf-8'));
+            return res.json(data);
+        }
+        res.json({ generatedAt: null, totalNew: 0, alerts: [] });
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Could not read alerts' });
+    }
+});
+app.post('/api/admin/alertas/:id/sent', (req, res) => {
+    try {
+        if (!fs.existsSync(ALERTS_FILE_PATH))
+            return res.status(404).json({ error: 'No alerts file' });
+        const data = JSON.parse(fs.readFileSync(ALERTS_FILE_PATH, 'utf-8'));
+        const alert = (data.alerts || []).find((a) => a.id === req.params.id);
+        if (alert) {
+            alert.sent = true;
+            fs.writeFileSync(ALERTS_FILE_PATH, JSON.stringify(data, null, 2));
+        }
+        res.json({ success: true });
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Could not update alert' });
+    }
+});
+app.delete('/api/admin/alertas/clear-sent', (req, res) => {
+    try {
+        if (!fs.existsSync(ALERTS_FILE_PATH))
+            return res.json({ success: true });
+        const data = JSON.parse(fs.readFileSync(ALERTS_FILE_PATH, 'utf-8'));
+        data.alerts = (data.alerts || []).filter((a) => !a.sent);
+        fs.writeFileSync(ALERTS_FILE_PATH, JSON.stringify(data, null, 2));
+        res.json({ success: true, remaining: data.alerts.length });
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Could not clear alerts' });
+    }
+});
 // ===================== LOG DE ACTIVIDAD =====================
 const ACTIVITY_FILE = 'actividad.json';
 const SNAPSHOT_PATH = path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json');

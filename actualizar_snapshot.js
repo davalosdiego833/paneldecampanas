@@ -57,9 +57,16 @@ const extractCutoffDate = (wb) => {
     return '';
 };
 
-const run = () => {
+const run = async () => {
     try {
         console.log('🚀 Iniciando restauración de Snapshot (Solo Matriz 2043)...');
+
+        // HISTORIAL: Guardar snapshot anterior para comparación de alertas
+        if (fs.existsSync(SNAPSHOT_FILE)) {
+            const PREV_FILE = path.join(DB_PATH, 'resumen_snapshot_prev.json');
+            fs.copyFileSync(SNAPSHOT_FILE, PREV_FILE);
+            console.log('📸 Snapshot anterior guardado para comparación.');
+        }
 
         // 1. Cargar Directorio de Asesores
         const dirPath = path.join(BASE_PATH, 'administrador', 'directorio_asesores.xlsx');
@@ -280,6 +287,14 @@ const run = () => {
         if (!fs.existsSync(DB_PATH)) fs.mkdirSync(DB_PATH);
         fs.writeFileSync(SNAPSHOT_FILE, JSON.stringify(snapshot, null, 2));
         console.log('✅ Snapshot restaurado (FILTRO 2043) exitosamente!');
+
+        // AUTO-GENERAR ALERTAS comparando snapshot anterior vs nuevo
+        try {
+            const { generateAlerts } = await import('./generar_alertas.js');
+            generateAlerts();
+        } catch (e) {
+            console.warn('⚠️ No se pudieron generar alertas (generar_alertas.js):', e.message);
+        }
 
     } catch (e) {
         console.error('❌ Error en consolidación:', e);

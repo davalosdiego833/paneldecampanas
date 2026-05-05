@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 interface Props {
-    onSelectOption: (option: 'asesores' | 'promotoria' | 'eduardo' | 'karen' | 'actividad' | 'meta24m' | 'staff') => void;
+    onSelectOption: (option: 'asesores' | 'promotoria' | 'eduardo' | 'karen' | 'actividad' | 'meta24m' | 'staff' | 'centro_avisos') => void;
     onLogout: () => void;
 }
 
@@ -154,6 +154,51 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                             </div>
                         </div>
                         <span style={{ fontSize: '1.4rem', color: '#D4AF37', zIndex: 1 }}>→</span>
+                    </motion.button>
+
+                    {/* Centro de Avisos */}
+                    <motion.button
+                        whileHover={{ scale: 1.02, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => {
+                            fetch('/api/activity', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    asesor: "Administrador",
+                                    accion: "Consultó Centro de Avisos"
+                                })
+                            }).catch(e => console.error('Error', e));
+                            onSelectOption('centro_avisos');
+                        }}
+                        style={{
+                            width: '100%',
+                            padding: '20px 24px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '16px',
+                            background: 'linear-gradient(135deg, rgba(255, 159, 67, 0.15) 0%, rgba(255, 107, 107, 0.08) 100%)',
+                            border: '1px solid rgba(255, 159, 67, 0.3)',
+                            borderRadius: '16px',
+                            cursor: 'pointer',
+                            fontFamily: 'inherit',
+                            position: 'relative',
+                            overflow: 'hidden',
+                        }}
+                    >
+                        <div style={{
+                            width: '44px', height: '44px', borderRadius: '12px',
+                            background: 'rgba(255, 159, 67, 0.2)',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            fontSize: '1.3rem',
+                        }}>🔔</div>
+                        <div style={{ textAlign: 'left', flex: 1 }}>
+                            <div style={{ fontSize: '1rem', fontWeight: 800, color: '#FF9F43' }}>Centro de Avisos</div>
+                            <div style={{ fontSize: '0.78rem', color: '#e5e7eb', marginTop: '2px', fontWeight: 500 }}>
+                                Mensajes inteligentes para asesores
+                            </div>
+                        </div>
+                        <span style={{ fontSize: '1.2rem', color: '#FF9F43' }}>→</span>
                     </motion.button>
 
                     {/* Resumen de Asesores */}
