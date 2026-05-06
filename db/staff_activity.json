@@ -45,6 +45,18 @@
           "arranque_rapido": 8,
           "tareas_actividades": 79
         }
+      },
+      {
+        "date": "2026-05-05",
+        "type": "lunes_cierre",
+        "month_start": true,
+        "data": {
+          "citas_iniciales": 0,
+          "citas_cierre": 1,
+          "sesiones_11": 2,
+          "arranque_rapido": 0,
+          "tareas_actividades": 13
+        }
       }
     ],
     "goals": {
@@ -93,6 +105,18 @@
           "arranque_rapido": 7,
           "tareas_actividades": 31
         }
+      },
+      {
+        "date": "2026-05-05",
+        "type": "lunes_cierre",
+        "data": {
+          "citas_iniciales": 0,
+          "citas_cierre": 0,
+          "sesiones_11": 0,
+          "arranque_rapido": 0,
+          "tareas_actividades": 0
+        },
+        "month_start": true
       }
     ],
     "goals": {
@@ -141,6 +165,20 @@
           "ent_administrativa": 0,
           "recluta_contactos": 506,
           "recluta_entrevistas": 16
+        }
+      },
+      {
+        "date": "2026-05-05",
+        "type": "lunes_cierre",
+        "month_start": true,
+        "data": {
+          "activos_mes": 4,
+          "ent_enamoramiento": 1,
+          "ent_entrevista": 0,
+          "ent_compensacion": 0,
+          "ent_administrativa": 0,
+          "recluta_contactos": 39,
+          "recluta_entrevistas": 1
         }
       }
     ]
