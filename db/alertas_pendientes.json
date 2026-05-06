@@ -1,36 +1,5 @@
 {
-  "generatedAt": "6/5/2026, 11:23:41 a.m.",
-  "totalNew": 3,
-  "alerts": [
-    {
-      "id": "8651aa18-a2a2-4eb4-95f4-e38e81ce11c5",
-      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-      "firstName": "Monica",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "Prima pagada subió $75.0k",
-      "message": "Hola Monica, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 30 de Abril de 2026, noté que tu prima pagada subió *$75.0k*. Ahora llevas un total de *$289.3k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "bf939dba-68af-4f17-b6e0-5d6f956bea5f",
-      "asesor": "JORGE ANTONIO LUNA LARA",
-      "firstName": "Jorge",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "Prima pagada subió $5.8k",
-      "message": "Hola Jorge, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 30 de Abril de 2026, noté que tu prima pagada subió *$5.8k*. Ahora llevas un total de *$67.6k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "78d64a12-588c-40b6-ba9a-b85a478440ce",
-      "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-      "firstName": "Rafael",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "Prima pagada subió $6.2k",
-      "message": "Hola Rafael, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 30 de Abril de 2026, noté que tu prima pagada subió *$6.2k*. Ahora llevas un total de *$43.7k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    }
-  ]
+  "generatedAt": "6/5/2026, 3:20:33 p.m.",
+  "totalNew": 0,
+  "alerts": []
 }

@@ -159,6 +159,253 @@ export const generateAlerts = () => {
         }
     });
 
+    // ===================== 4. CAMPAÑAS =====================
+    const prevCamps = prevData.campaigns || {};
+    const currCamps = currData.campaigns || {};
+    const campDates = currData.campaignDates || {};
+    const getFirst = (name) => {
+        if (!name) return 'Asesor';
+        const f = name.split(' ')[0];
+        return f.charAt(0) + f.slice(1).toLowerCase();
+    };
+
+    // --- MDRT ---
+    const META_MEMBER = 1810400;
+    const META_COT = 5431200;
+    const META_TOT = 10862400;
+    const getMdrtLevel = (pa) => {
+        if (pa >= META_TOT) return 'TOT';
+        if (pa >= META_COT) return 'COT';
+        if (pa >= META_MEMBER) return 'Miembro';
+        return null;
+    };
+    const prevMdrt = prevCamps.mdrt || [];
+    const currMdrt = currCamps.mdrt || [];
+    const prevMdrtMap = {}; prevMdrt.forEach(r => { prevMdrtMap[r.Asesor] = r; });
+    const fecha_mdrt = campDates.mdrt || '';
+
+    currMdrt.forEach(r => {
+        const old = prevMdrtMap[r.Asesor];
+        if (!old) return;
+        const fn = getFirst(r.Asesor);
+        const oldLvl = getMdrtLevel(old.PA_Acumulada);
+        const newLvl = getMdrtLevel(r.PA_Acumulada);
+
+        if (newLvl && (!oldLvl || newLvl !== oldLvl)) {
+            alerts.push({
+                id: uid(), asesor: r.Asesor, firstName: fn,
+                campaign: 'mdrt', type: 'positive',
+                event: `¡Alcanzó nivel ${newLvl} en MDRT!`,
+                message: `Hola ${fn}, ¿cómo estás? 👋\n¡Felicidades enormes! 🏆🎉\n\nEstuve checando tus números al ${fecha_mdrt} en la campaña de *MDRT* y ¡ya alcanzaste el nivel de *${newLvl}*!\n\nTu prima acumulada es de *${formatCurrency(r.PA_Acumulada)}*. ¡Tremendo logro!\n\ndéjame un pulgarcito arriba de enterad@ 🙂`,
+                sent: false
+            });
+        }
+    });
+
+    // --- CONVENCIONES ---
+    const getDiamante = (lugar) => {
+        if (lugar <= 28) return '4 Diamantes (Amalfi)';
+        if (lugar <= 108) return '3 Diamantes (París)';
+        if (lugar <= 228) return '2 Diamantes (Costa Rica)';
+        if (lugar <= 480) return '1 Diamante (Cancún)';
+        return null;
+    };
+    const prevConv = prevCamps.convenciones || [];
+    const currConv = currCamps.convenciones || [];
+    const prevConvMap = {}; prevConv.forEach(r => { prevConvMap[r.Asesor] = r; });
+    const fecha_conv = campDates.convenciones || '';
+
+    currConv.forEach(r => {
+        const old = prevConvMap[r.Asesor];
+        if (!old) return;
+        const fn = getFirst(r.Asesor);
+        const oldDiam = getDiamante(old.Lugar);
+        const newDiam = getDiamante(r.Lugar);
+
+        // Positivo: Subió de nivel de diamante
+        if (newDiam && (!oldDiam || newDiam !== oldDiam)) {
+            alerts.push({
+                id: uid(), asesor: r.Asesor, firstName: fn,
+                campaign: 'convenciones', type: 'positive',
+                event: `¡Subió a ${newDiam}!`,
+                message: `Hola ${fn}, ¿cómo estás? 👋\n¡Noticias increíbles! ✈️💎\n\nEstuve checando tus números al ${fecha_conv} en *Convenciones* y ¡ahora estás en el lugar *#${r.Lugar}*!\n\nEsto significa que calificas para *${newDiam}* 🎉\n\nCreditos totales: *${formatCurrency(r.PA_Total)}*\nPólizas: *${r.Polizas}*\n\n¡Sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂`,
+                sent: false
+            });
+        }
+
+        // Riesgo: Estaba dentro del top 480 y salió
+        if (oldDiam && !newDiam) {
+            const faltante = Math.max(0, r.Lugar_480 - r.PA_Total);
+            alerts.push({
+                id: uid(), asesor: r.Asesor, firstName: fn,
+                campaign: 'convenciones', type: 'risk',
+                event: `Salió del Top 480 (ahora lugar #${r.Lugar})`,
+                message: `Hola ${fn}, ¿cómo estás? 👋\nOye, estuve checando tus números al ${fecha_conv} en *Convenciones* y noté que bajaste al lugar *#${r.Lugar}*.\n\nPara volver al Top 480 (1 Diamante) necesitas *${formatCurrency(faltante)}* créditos adicionales.\n\n¡Vamos con todo para recuperar tu lugar! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂`,
+                sent: false
+            });
+        }
+
+        // Positivo: Subió significativamente de lugar (más de 50 posiciones)
+        if (!newDiam && !oldDiam && old.Lugar - r.Lugar >= 50) {
+            alerts.push({
+                id: uid(), asesor: r.Asesor, firstName: fn,
+                campaign: 'convenciones', type: 'positive',
+                event: `Subió ${old.Lugar - r.Lugar} lugares (ahora #${r.Lugar})`,
+                message: `Hola ${fn}, ¿cómo estás? 👋\n¡Oye, buen avance! 📈\n\nEstuve checando tus números al ${fecha_conv} en *Convenciones* y subiste *${old.Lugar - r.Lugar} lugares*. Ahora estás en el *#${r.Lugar}*.\n\nCréditos totales: *${formatCurrency(r.PA_Total)}*\n\n¡Vamos por ese diamante! 💎\n\ndéjame un pulgarcito arriba de enterad@ 🙂`,
+                sent: false
+            });
+        }
+    });
+
+    // --- LEGIÓN CENTURIÓN ---
+    const LC_BRONCE = 48; const LC_PLATA = 72; const LC_ORO = 90; const LC_PLATINO = 120;
+    const getLegionLevel = (polizas) => {
+        if (polizas >= LC_PLATINO) return 'Platino';
+        if (polizas >= LC_ORO) return 'Oro';
+        if (polizas >= LC_PLATA) return 'Plata';
+        if (polizas >= LC_BRONCE) return 'Bronce';
+        return null;
+    };
+    const prevLeg = prevCamps.legion_centurion || [];
+    const currLeg = currCamps.legion_centurion || [];
+    const prevLegMap = {}; prevLeg.forEach(r => { prevLegMap[r.Asesor] = r; });
+    const fecha_leg = campDates.legion_centurion || '';
+
+    currLeg.forEach(r => {
+        const old = prevLegMap[r.Asesor];
+        if (!old) return;
+        const fn = getFirst(r.Asesor);
+        const oldLvl = getLegionLevel(old.Total_Polizas);
+        const newLvl = getLegionLevel(r.Total_Polizas);
+
+        // Positivo: subió de nivel
+        if (newLvl && (!oldLvl || newLvl !== oldLvl)) {
+            alerts.push({
+                id: uid(), asesor: r.Asesor, firstName: fn,
+                campaign: 'legion_centurion', type: 'positive',
+                event: `¡Alcanzó nivel ${newLvl} en Legión!`,
+                message: `Hola ${fn}, ¿cómo estás? 👋\n¡Felicidades! 🛡️🎉\n\nEstuve checando tus números al ${fecha_leg} en *Legión Centurión* y ¡ya alcanzaste el nivel *${newLvl}*!\n\nLlevas *${r.Total_Polizas} pólizas* en el año. ¡Tremendo ritmo!\n\ndéjame un pulgarcito arriba de enterad@ 🙂`,
+                sent: false
+            });
+        }
+
+        // Positivo: se puso en meta del mes (no estaba antes)
+        if (r.EnMeta && !old.EnMeta) {
+            alerts.push({
+                id: uid(), asesor: r.Asesor, firstName: fn,
+                campaign: 'legion_centurion', type: 'positive',
+                event: `¡Se puso en meta del mes en Legión!`,
+                message: `Hola ${fn}, ¿cómo estás? 👋\n¡Gran noticia! 🛡️\n\nEstuve checando tus números al ${fecha_leg} en *Legión Centurión* y ¡ya estás *en meta del mes*! 🎯\n\nLlevas *${r.Total_Polizas} pólizas* en el año. ¡Sigue con ese ritmo!\n\ndéjame un pulgarcito arriba de enterad@ 🙂`,
+                sent: false
+            });
+        }
+
+        // Riesgo: perdió meta del mes
+        if (!r.EnMeta && old.EnMeta) {
+            alerts.push({
+                id: uid(), asesor: r.Asesor, firstName: fn,
+                campaign: 'legion_centurion', type: 'risk',
+                event: `Perdió meta del mes en Legión`,
+                message: `Hola ${fn}, ¿cómo estás? 👋\nOye, estuve checando tus números al ${fecha_leg} en *Legión Centurión* y noté que este corte *ya no estás en meta del mes*.\n\nLlevas *${r.Total_Polizas} pólizas*. ¡Hay que meter el acelerador para no perder el ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂`,
+                sent: false
+            });
+        }
+    });
+
+    // --- FAN FEST ---
+    const prevFF = prevCamps.fanfest || [];
+    const currFF = currCamps.fanfest || [];
+    const prevFFMap = {}; prevFF.forEach(r => { prevFFMap[r.Asesor] = r; });
+    const fecha_ff = campDates.fanfest || '';
+
+    currFF.forEach(r => {
+        const old = prevFFMap[r.Asesor];
+        if (!old) return;
+        const fn = getFirst(r.Asesor);
+
+        // Positivo: ganó la campaña (pasó a GANADO)
+        if (r.Premio === 'GANADO' && old.Premio !== 'GANADO') {
+            alerts.push({
+                id: uid(), asesor: r.Asesor, firstName: fn,
+                campaign: 'fanfest', type: 'positive',
+                event: `¡Ganó Fan Fest!`,
+                message: `Hola ${fn}, ¿cómo estás? 👋\n¡FELICIDADES ENORMES! ⚽🏆\n\nEstuve checando tus números al ${fecha_ff} en *Fan Fest* y ¡ya *GANASTE* la campaña!\n\nLlevas *${r.Total_Polizas} pólizas*. ¡Qué orgullo! 🎉\n\ndéjame un pulgarcito arriba de enterad@ 🙂`,
+                sent: false
+            });
+        }
+
+        // Positivo: cumplió condición mensual (no la tenía)
+        if (r.Condicion && !old.Condicion) {
+            alerts.push({
+                id: uid(), asesor: r.Asesor, firstName: fn,
+                campaign: 'fanfest', type: 'positive',
+                event: `¡Cumplió condición del mes en Fan Fest!`,
+                message: `Hola ${fn}, ¿cómo estás? 👋\n¡Buenas noticias! ⚽\n\nEstuve checando tus números al ${fecha_ff} en *Fan Fest* y ¡ya *cumpliste la condición del mes*! 🎯\n\nLlevas *${r.Total_Polizas} pólizas* acumuladas. ¡Sigue así!\n\ndéjame un pulgarcito arriba de enterad@ 🙂`,
+                sent: false
+            });
+        }
+    });
+
+    // --- CAMINO A LA CUMBRE ---
+    const prevCC = prevCamps.camino_cumbre || [];
+    const currCC = currCamps.camino_cumbre || [];
+    const prevCCMap = {}; prevCC.forEach(r => { prevCCMap[r.Asesor] = r; });
+    const fecha_cc = campDates.camino_cumbre || '';
+
+    currCC.forEach(r => {
+        const old = prevCCMap[r.Asesor];
+        if (!old) return;
+        const fn = getFirst(r.Asesor);
+
+        // Positivo: avanzó de mes (hito importante: meses 6, 9, 12, 13)
+        if (r.Mes_Asesor > old.Mes_Asesor && [6, 9, 12, 13].includes(r.Mes_Asesor)) {
+            const hitos = { 6: 'la mitad del camino', 9: 'tres cuartos del camino', 12: 'el penúltimo mes', 13: '¡LA META FINAL!' };
+            alerts.push({
+                id: uid(), asesor: r.Asesor, firstName: fn,
+                campaign: 'camino_cumbre', type: 'positive',
+                event: `¡Llegó al Mes ${r.Mes_Asesor} en Camino a la Cumbre!`,
+                message: `Hola ${fn}, ¿cómo estás? 👋\n¡Excelentes noticias! ⛰️🎉\n\nEstuve checando tus números al ${fecha_cc} en *Camino a la Cumbre* y ¡ya llegaste al *Mes ${r.Mes_Asesor}*!\n\nEsto significa que alcanzaste *${hitos[r.Mes_Asesor]}* 🏔️\nLlevas *${r.Polizas_Totales} pólizas* acumuladas.\n\n¡Vamos con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂`,
+                sent: false
+            });
+        }
+
+        // Positivo: subió significativamente en pólizas (3+)
+        const polDiff = r.Polizas_Totales - old.Polizas_Totales;
+        if (polDiff >= 3 && ![6, 9, 12, 13].includes(r.Mes_Asesor)) {
+            alerts.push({
+                id: uid(), asesor: r.Asesor, firstName: fn,
+                campaign: 'camino_cumbre', type: 'positive',
+                event: `+${polDiff} pólizas en Camino a la Cumbre`,
+                message: `Hola ${fn}, ¿cómo estás? 👋\n¡Buen avance! ⛰️📈\n\nEstuve checando tus números al ${fecha_cc} en *Camino a la Cumbre* y subiste *${polDiff} pólizas* desde el último corte.\n\nAhora llevas *${r.Polizas_Totales} pólizas* en tu Mes ${r.Mes_Asesor}.\n\n¡Sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂`,
+                sent: false
+            });
+        }
+    });
+
+    // --- GRADUACIÓN ---
+    const prevGrad = prevCamps.graduacion || [];
+    const currGrad = currCamps.graduacion || [];
+    const prevGradMap = {}; prevGrad.forEach(r => { prevGradMap[r.Asesor] = r; });
+    const fecha_grad = campDates.graduacion || '';
+
+    currGrad.forEach(r => {
+        const old = prevGradMap[r.Asesor];
+        if (!old) return;
+        const fn = getFirst(r.Asesor);
+
+        // Positivo: avanzó de mes (hitos 6, 9, 12, 13)
+        if (r.Mes_Asesor > old.Mes_Asesor && [6, 9, 12, 13].includes(r.Mes_Asesor)) {
+            const hitos = { 6: 'la mitad del camino', 9: 'tres cuartos', 12: 'el penúltimo mes', 13: '¡LA GRADUACIÓN!' };
+            alerts.push({
+                id: uid(), asesor: r.Asesor, firstName: fn,
+                campaign: 'graduacion', type: 'positive',
+                event: `¡Llegó al Mes ${r.Mes_Asesor} en Graduación!`,
+                message: `Hola ${fn}, ¿cómo estás? 👋\n¡Felicidades! 🎓🎉\n\nEstuve checando tus números al ${fecha_grad} en *Graduación* y ¡ya llegaste al *Mes ${r.Mes_Asesor}*!\n\nEsto significa que alcanzaste *${hitos[r.Mes_Asesor]}* 🏆\nLlevas *${r.Polizas_Totales} pólizas* acumuladas.\n\n¡Vamos con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂`,
+                sent: false
+            });
+        }
+    });
+
     // ===================== GUARDAR ALERTAS =====================
     // Cargar alertas existentes para preservar el estado "sent"
     let existingAlerts = [];
