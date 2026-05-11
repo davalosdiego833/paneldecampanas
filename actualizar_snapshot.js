@@ -315,7 +315,7 @@ const run = async () => {
             if (files.length > 0) {
                 const wb = XLSX.readFile(path.join(convPath, files[0]));
                 const ws = wb.Sheets[wb.SheetNames[0]];
-                const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AI5000' });
+                const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
                 const allRows = data.slice(1);
                 let c480 = 0, c228 = 0, c108 = 0, c28 = 0;
                 allRows.forEach(r => {

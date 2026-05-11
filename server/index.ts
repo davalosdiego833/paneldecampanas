@@ -403,7 +403,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         if (!wb) return res.status(404).json({ error: 'Raw file not found' });
         const sheetName = wb.SheetNames.find((n: string) => n.toUpperCase() === 'TODOS LOS RAMOS') || wb.SheetNames[0];
         const ws = wb.Sheets[sheetName];
-        if (!ws._cachedData) ws._cachedData = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AI5000' });
+        if (!ws._cachedData) ws._cachedData = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
         const data: any[][] = ws._cachedData;
         const dir = getAdvisorDirectory();
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
@@ -619,7 +619,7 @@ app.get('/api/admin/summary', (req, res) => {
                         result.camino_cumbre = data.slice(1).filter(r => SUCURSALES_PROMO.includes(String(r[3] || ''))).map(r => ({ Asesor: resolveName(r[5]), Clave: r[5] || '', Mes_Asesor: Number(r[10] || 1), Polizas_Totales: Number(r[13] || 0), Mes_1_Prod: Number(r[21] || 0), Mes_2_Prod: Number(r[22] || 0), Mes_3_Prod: Number(r[23] || 0) }));
                     } else if (c === 'convenciones') {
                         const ws = wb.Sheets[wb.SheetNames[0]];
-                        const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AI5000' });
+                        const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
                         // Global thresholds
                         const allRows = data.slice(1);
                         let c480 = 0, c228 = 0, c108 = 0, c28 = 0;
@@ -750,7 +750,7 @@ app.post('/api/admin/snapshot', async (req, res) => {
                 } else if (c === 'convenciones') {
                     const sheetName = wb.SheetNames.find((n: string) => n.toUpperCase() === 'TODOS LOS RAMOS') || wb.SheetNames[0];
                     const ws = wb.Sheets[sheetName];
-                    const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AI5000' });
+                    const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
                     const allRows = data.slice(1);
                     let c480 = 0, c228 = 0, c108 = 0, c28 = 0;
                     allRows.forEach(r => {
@@ -1521,7 +1521,7 @@ const preloadCampaigns = () => {
             if (wb && wb.Sheets) {
                 if (c === 'convenciones') {
                     const ws = wb.Sheets[wb.SheetNames[0]];
-                    if (!ws._cachedData) ws._cachedData = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AI5000' });
+                    if (!ws._cachedData) ws._cachedData = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
                 } else if (c === 'camino_cumbre') {
                     const ws = wb.Sheets[wb.SheetNames[0]];
                     if (!ws._cachedData) ws._cachedData = XLSX.utils.sheet_to_json(ws, { header: 1, range: 3 });
