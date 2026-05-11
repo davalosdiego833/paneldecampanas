@@ -93,9 +93,12 @@ const Convenciones: React.FC<Props> = ({ data }) => {
                         <p style={{ fontSize: '0.8rem', opacity: 0.6, marginBottom: '4px', textTransform: 'uppercase' }}>RDA</p>
                         <p style={{ fontSize: '1.5rem', fontWeight: 600 }}>{formatCurrency(rda)}</p>
                     </div>
-                    <div className="glass-card" style={{ textAlign: 'center', borderBottom: '4px solid var(--success-green)' }}>
+                    <div className="glass-card" style={{ textAlign: 'center', borderBottom: cumple_creditos ? '4px solid var(--success-green)' : '4px solid var(--danger-red)' }}>
                         <p style={{ fontSize: '0.8rem', opacity: 0.6, marginBottom: '4px', textTransform: 'uppercase' }}>Créditos Totales</p>
-                        <p style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--success-green)' }}>{formatCurrency(creditos_totales)}</p>
+                        <p style={{ fontSize: '1.5rem', fontWeight: 800, color: cumple_creditos ? 'var(--success-green)' : 'var(--danger-red)' }}>{formatCurrency(creditos_totales)}</p>
+                        <p style={{ fontSize: '0.7rem', color: cumple_creditos ? 'var(--success-green)' : 'var(--danger-red)', fontWeight: 700 }}>
+                            {cumple_creditos ? '✅ Mínimo OK' : `❌ Faltan ${formatCurrency(Math.max(0, 588500 - creditos_totales))}`}
+                        </p>
                     </div>
                     <div className="glass-card" style={{ textAlign: 'center', borderBottom: cumple_polizas ? '4px solid var(--success-green)' : '4px solid var(--danger-red)' }}>
                         <p style={{ fontSize: '0.8rem', opacity: 0.6, marginBottom: '4px', textTransform: 'uppercase' }}>Pólizas</p>
