@@ -16,9 +16,14 @@ const isHostinger = __dirname.includes('domains/panel.ambrizydavalos.com');
 const isProd = __dirname.includes('/dist/server');
 
 // Reliable BASE_PATH detection
+// In dev mode, __dirname is 'server/' so we go up one level to project root
+// In prod (dist/server), we go up 3 levels to project root
 let BASE_PATH = __dirname;
 if (isProd) {
     BASE_PATH = path.join(__dirname, '../../..');
+} else if (!isHostinger) {
+    // Dev mode: server/ → project root
+    BASE_PATH = path.join(__dirname, '..');
 }
 
 const app = express();

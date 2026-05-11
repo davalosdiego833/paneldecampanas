@@ -1,5 +1,16 @@
 {
-  "generatedAt": "6/5/2026, 3:20:33 p.m.",
-  "totalNew": 0,
-  "alerts": []
+  "generatedAt": "11/5/2026, 1:16:20 p.m.",
+  "totalNew": 1,
+  "alerts": [
+    {
+      "id": "e04526f3-7924-409d-8519-7cdeef1596c8",
+      "asesor": "GABRIELA CASTAÐEDA SALAZAR",
+      "firstName": "Gabriela",
+      "campaign": "fanfest",
+      "type": "positive",
+      "event": "¡Ganó Fan Fest!",
+      "message": "Hola Gabriela, ¿cómo estás? 👋\n¡FELICIDADES ENORMES! ⚽🏆\n\nEstuve checando tus números al Avance al 30 de abril 2026 en *Fan Fest* y ¡ya *GANASTE* la campaña!\n\nLlevas *6.5 pólizas*. ¡Qué orgullo! 🎉\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    }
+  ]
 }
