@@ -537,7 +537,6 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate
                             const id = Number(r.Suc);
                             let managerName = r.Sucursal; // fallback
                             if (id === 2043 || id === 2511) managerName = 'Alejandra';
-                            else if (id === 2692) managerName = 'Eduardo';
                             else if (id === 2856) managerName = 'Karen';
 
                             return [managerName, r.Suc, r.Agentes, r.Asesores_con_Emisión_Vida, pct(r['%_Asesores_con_Emisión_Vida']), r.Asesores_con_Emisión_GMM, pct(r['%_Asesores_con_Emisión_GMM']), r.Asesores_con_pol_Pagada_Vida, pct(r['%_Asesores_con_pol_Pagada_Vida']), r.Asesores_con_pol_Pagada_GMM, pct(r['%_Asesores_con_pol_Pagada_GMM']), fmt(r.Prima_Pagada_Vida), fmt(r.Prima_Pagada_GMM)];

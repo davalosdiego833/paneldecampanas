@@ -55,13 +55,11 @@ const App: React.FC = () => {
         }
     };
 
-    const handleAdminOption = (option: 'asesores' | 'promotoria' | 'eduardo' | 'karen' | 'actividad' | 'meta24m' | 'staff' | 'centro_avisos' | 'infografias') => {
+    const handleAdminOption = (option: 'asesores' | 'promotoria' | 'karen' | 'actividad' | 'meta24m' | 'staff' | 'centro_avisos' | 'infografias') => {
         if (option === 'asesores') {
             setPage('admin_dashboard');
         } else if (option === 'promotoria') {
             setPage('resumen_promotoria');
-        } else if (option === 'eduardo') {
-            setPage('gerencia_eduardo');
         } else if (option === 'karen') {
             setPage('gerencia_karen');
         } else if (option === 'actividad') {
@@ -108,11 +106,6 @@ const App: React.FC = () => {
     // Resumen de Promotoría — has its own layout/sidebar
     if (page === 'resumen_promotoria') {
         return <ResumenPromotoria onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} />;
-    }
-
-    // Gerencia Eduardo — filtered by sucursal 2692
-    if (page === 'gerencia_eduardo') {
-        return <ResumenPromotoria onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} sucursalFilter={[2692]} gerenciaName="GERENCIA EDUARDO" />;
     }
 
     // Gerencia Karen — filtered by sucursal 2856

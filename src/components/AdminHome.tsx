@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 interface Props {
-    onSelectOption: (option: 'asesores' | 'promotoria' | 'eduardo' | 'karen' | 'actividad' | 'meta24m' | 'staff' | 'centro_avisos' | 'infografias') => void;
+    onSelectOption: (option: 'asesores' | 'promotoria' | 'karen' | 'actividad' | 'meta24m' | 'staff' | 'centro_avisos' | 'infografias') => void;
     onLogout: () => void;
 }
 
@@ -338,51 +338,7 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                         <span style={{ fontSize: '1.2rem', color: '#007AFF', opacity: 0.7 }}>→</span>
                     </motion.button>
 
-                    {/* Gerencia Eduardo */}
-                    <motion.button
-                        whileHover={{ scale: 1.02, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => {
-                            fetch('/api/activity', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({
-                                    asesor: "Administrador",
-                                    accion: "Consultó Reporte Admin: Gerencia Eduardo"
-                                })
-                            }).catch(e => console.error('Error', e));
-                            onSelectOption('eduardo');
-                        }}
-                        style={{
-                            width: '100%',
-                            padding: '20px 24px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '16px',
-                            background: 'linear-gradient(135deg, rgba(108, 92, 231, 0.12) 0%, rgba(108, 92, 231, 0.04) 100%)',
-                            border: '1px solid rgba(108, 92, 231, 0.2)',
-                            borderRadius: '12px',
-                            cursor: 'pointer',
-                            color: '#ffffff',
-                            fontFamily: 'inherit',
-                        }}
-                    >
-                        <div style={{
-                            width: '48px', height: '48px', borderRadius: '12px',
-                            background: 'linear-gradient(135deg, #6C5CE7 0%, #5A4BD1 100%)',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            flexShrink: 0, boxShadow: '0 4px 15px rgba(108, 92, 231, 0.3)',
-                        }}>
-                            <span style={{ fontSize: '24px' }}>👔</span>
-                        </div>
-                        <div style={{ textAlign: 'left', flex: 1 }}>
-                            <div style={{ fontSize: '1.1rem', fontWeight: 700 }}>Gerencia Eduardo</div>
-                            <div style={{ fontSize: '0.8rem', color: '#9ca3af', marginTop: '2px' }}>
-                                Sucursal 2692
-                            </div>
-                        </div>
-                        <span style={{ fontSize: '1.2rem', color: '#6C5CE7', opacity: 0.7 }}>→</span>
-                    </motion.button>
+
 
                     {/* Gerencia Karen */}
                     <motion.button
