@@ -46,7 +46,7 @@ rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" .htaccess $SERV
 
 # 3.1 Blindaje de Datos (Zona Inmune en folder nodejs)
 echo "🛡️ Protegiendo archivos de datos y campañas..."
-rsync -avz --exclude "comentarios_polizas.json" --exclude "actividad.json" --exclude "staff_activity.json" -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" db/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/db/
+rsync -avz --exclude "comentarios_polizas.json" --exclude "actividad.json" --exclude "staff_activity.json" --exclude "alertas_pendientes.json" -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" db/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/db/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" administrador/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/administrador/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" camino_cumbre/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/camino_cumbre/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" convenciones/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/convenciones/
@@ -57,7 +57,12 @@ rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" mdrt/ $SERVER_U
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" vive_tu_pasion/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/vive_tu_pasion/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" "estatus polizas/" $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/"estatus polizas/"
 
-# 4. Configurar Servidor via SSH
+# 4. Subir scripts de generación al servidor
+echo "📤 Subiendo scripts de procesamiento..."
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" actualizar_snapshot.js $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" generar_alertas.js $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/
+
+# 5. Configurar Servidor via SSH
 ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     PARENT_DIR="/home/u211138134/domains/panel.ambrizydavalos.com"
     
@@ -69,6 +74,11 @@ ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
     
     ln -sfn \$PARENT_DIR/nodejs/node_modules \$PARENT_DIR/public_html/node_modules
     
+    # GENERAR ALERTAS EN SERVIDOR (compara snapshot anterior real vs datos nuevos)
+    cd \$PARENT_DIR/nodejs
+    echo "🔔 Regenerando snapshot y alertas en servidor..."
+    /opt/alt/alt-nodejs18/root/usr/bin/node --experimental-vm-modules actualizar_snapshot.js 2>&1 || echo "⚠️ Alertas: ejecución con warnings (puede ser normal)"
+    
     # REINICIO DE PASSENGER (Solo touch, sin pkill)
     mkdir -p \$PARENT_DIR/public_html/tmp
     touch \$PARENT_DIR/public_html/tmp/restart.txt
@@ -77,3 +87,4 @@ ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
 EOF
 
 echo "✨ Despliegue completado con éxito!"
+
