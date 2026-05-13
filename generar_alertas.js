@@ -63,7 +63,6 @@ export const generateAlerts = () => {
 
         // Negativo: pasó de proactivo a inactivo
         if (old.Proactivo_al_mes === 'p' && r.Proactivo_al_mes === 'i') {
-            const faltantes = Number(r['Pólizas_Faltantes'] || 0);
             // Determinar mes del corte para calcular requisito
             const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
             let monthIndex = new Date().getMonth() + 1;
@@ -74,12 +73,14 @@ export const generateAlerts = () => {
             }
             const mesNombre = months[monthIndex - 1];
             const mesCap = mesNombre.charAt(0).toUpperCase() + mesNombre.slice(1);
+            const polizasAcum = Number(r.Polizas_Acumuladas_Total || 0);
+            const faltantesMes = Math.max(0, Math.ceil(monthIndex - polizasAcum));
 
             alerts.push({
                 id: uid(), asesor: name, firstName: firstNameCap,
                 campaign: 'proactivos', type: 'risk',
-                event: `Perdió estatus de Proactivo (faltan ${faltantes} pólizas)`,
-                message: `AVISO DE PROACTIVOS\n\nEspero que estés teniendo un excelente día.\n\nTe escribo personalmente porque, al revisar nuestro cierre del ${fecha}, noté que todavía no figuras en la Lista de Proactivos de la promotoria.\n\nComo sabes, para nosotros en Ambriz Asesores, mantener un ritmo constante de producción no es solo una métrica; es la garantía de que tu negocio sigue sano y protegiendo familias.\n\nAl cierre de cada semestre del año haremos evaluación de proactivos y con esto se considerara seguir teniendo derecho a:\n - TENER PRP INDIVIDUAL CON EMMANUEL (PARA ASESORES +2AÑOS)\n - HACER USO DE HERRAMIENTAS DE LA PROMOTORIA PARA TU NEGOCIO (PANEL DE CAMPAÑAS, PAGINA DE ANF, ETC)\n\nPara el mes de ${mesCap}, el requisito mínimo es contar con ${monthIndex} pólizas vendidas para mantener el estatus de proactivo.\n\nActualmente:\nTe hacen falta: ${faltantes} póliza(s) para ser asesor proactivo en ${mesCap}.\n\ndéjame un pulgarcito arriba de enterad@ 🙂`,
+                event: `Perdió estatus de Proactivo (faltan ${faltantesMes} pólizas)`,
+                message: `AVISO DE PROACTIVOS\n\nEspero que estés teniendo un excelente día.\n\nTe escribo personalmente porque, al revisar nuestro cierre al ${fecha}, noté que todavía no figuras en la Lista de Proactivos de la promotoria.\n\nComo sabes, para nosotros en Ambriz Asesores, mantener un ritmo constante de producción no es solo una métrica; es la garantía de que tu negocio sigue sano y protegiendo familias.\n\nAl cierre de cada semestre del año haremos evaluación de proactivos y con esto se considerara seguir teniendo derecho a:\n - TENER PRP INDIVIDUAL CON EMMANUEL (PARA ASESORES +2AÑOS)\n - HACER USO DE HERRAMIENTAS DE LA PROMOTORIA PARA TU NEGOCIO (PANEL DE CAMPAÑAS, PAGINA DE ANF, ETC)\n\nPara el mes de ${mesCap}, el requisito mínimo es contar con ${monthIndex} pólizas vendidas para mantener el estatus de proactivo.\n\nAl corte mencionado:\nTe hizo falta: ${faltantesMes} póliza(s) para ser asesor proactivo en ${mesCap}.\n\ndéjame un pulgarcito arriba de enterad@ 🙂`,
                 sent: false
             });
         }

@@ -586,8 +586,8 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate
 /* ========== PROACTIVOS AVISO BUTTON ========== */
 const ProactivoCopyButton: React.FC<{
     fechaCorte: string;
-    faltantes: number;
-}> = ({ fechaCorte, faltantes }) => {
+    polizasAcumuladas: number;
+}> = ({ fechaCorte, polizasAcumuladas }) => {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = () => {
@@ -620,7 +620,9 @@ const ProactivoCopyButton: React.FC<{
             }
         }
 
-        const msg = `AVISO DE PROACTIVOS\n\nEspero que estés teniendo un excelente día.\n\nTe escribo personalmente porque, al revisar nuestro cierre del ${fmtFecha}, noté que todavía no figuras en la Lista de Proactivos de la promotoria.\n\nComo sabes, para nosotros en Ambriz Asesores, mantener un ritmo constante de producción no es solo una métrica; es la garantía de que tu negocio sigue sano y protegiendo familias.\n\nAl cierre de cada semestre del año haremos evaluación de proactivos y con esto se considerara seguir teniendo derecho a:\n - TENER PRP INDIVIDUAL CON EMMANUEL (PARA ASESORES +2AÑOS)\n - HACER USO DE HERRAMIENTAS DE LA PROMOTORIA PARA TU NEGOCIO (PANEL DE CAMPAÑAS, PAGINA DE ANF, ETC)\n\nPara el mes de ${mesCorte}, el requisito mínimo es contar con ${requisitoMes} pólizas vendidas para mantener el estatus de proactivo.\n\nActualmente:\nTe hacen falta: ${faltantes} póliza(s) para ser asesor proactivo en ${mesCorte}.\n\nDéjame un pulgarcito arriba de enterad@ 🙂`;
+        const faltantesMes = Math.max(0, Math.ceil(requisitoMes - polizasAcumuladas));
+
+        const msg = `AVISO DE PROACTIVOS\n\nEspero que estés teniendo un excelente día.\n\nTe escribo personalmente porque, al revisar nuestro cierre al ${fmtFecha}, noté que todavía no figuras en la Lista de Proactivos de la promotoria.\n\nComo sabes, para nosotros en Ambriz Asesores, mantener un ritmo constante de producción no es solo una métrica; es la garantía de que tu negocio sigue sano y protegiendo familias.\n\nAl cierre de cada semestre del año haremos evaluación de proactivos y con esto se considerara seguir teniendo derecho a:\n - TENER PRP INDIVIDUAL CON EMMANUEL (PARA ASESORES +2AÑOS)\n - HACER USO DE HERRAMIENTAS DE LA PROMOTORIA PARA TU NEGOCIO (PANEL DE CAMPAÑAS, PAGINA DE ANF, ETC)\n\nPara el mes de ${mesCorte}, el requisito mínimo es contar con ${requisitoMes} pólizas vendidas para mantener el estatus de proactivo.\n\nAl corte mencionado:\nTe hizo falta: ${faltantesMes} póliza(s) para ser asesor proactivo en ${mesCorte}.\n\nDéjame un pulgarcito arriba de enterad@ 🙂`;
 
         navigator.clipboard.writeText(msg);
         setCopied(true);
@@ -660,16 +662,26 @@ const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDate: stri
         polizas: Number(r.Polizas_Acumuladas_Total) || 0,
     }));
 
-    const headers = ['#', 'Asesor', 'Suc', 'Acum. Ant.', 'Del Mes', 'Acum. Total', 'Proactivo Mes', 'Faltantes', 'Proactivo Dic', 'Falt. Dic', 'Acción'];
+    // Calculate month requirement from fechaCorte
+    const monthsArr = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    let mesRequisito = new Date().getMonth() + 1;
+    const fechaWords = fechaCorte.replace(/,/g, '').split(' ');
+    for (const word of fechaWords) {
+        const idx = monthsArr.indexOf(word.toLowerCase());
+        if (idx !== -1) { mesRequisito = idx + 1; break; }
+    }
+
+    const headers = ['#', 'Asesor', 'Suc', 'Acum. Ant.', 'Del Mes', 'Acum. Total', 'Proactivo Mes', 'Falt. Mes', 'Proactivo Dic', 'Falt. Dic', 'Acción'];
     const rows = sortedData.map((r: any, i: number) => {
-        const faltantes = Number(r.Pólizas_Faltantes) || 0;
+        const polizasAcum = Number(r.Polizas_Acumuladas_Total) || 0;
+        const faltantesMes = Math.max(0, Math.ceil(mesRequisito - polizasAcum));
         return [
-            i + 1, r.ASESOR, r.SUC, fmtNum(r['Polizas_Acumuladas_Mes_Ant.']), fmtNum(r.Polizas_Del_mes), fmtNum(r.Polizas_Acumuladas_Total),
+            i + 1, r.ASESOR, r.SUC, fmtNum(r['Polizas_Acumuladas_Mes_Ant.']), fmtNum(r.Polizas_Del_mes), fmtNum(polizasAcum),
             r.Proactivo_al_mes === 'p' ? '✅ Sí' : '❌ No', 
-            fmtNum(faltantes), 
+            fmtNum(faltantesMes), 
             r.Proactivo_a_Dic === 'p' ? '✅ Sí' : '❌ No', 
             fmtNum(r.Pólizas_Faltantes_Para_Dic),
-            r.Proactivo_al_mes !== 'p' && faltantes > 0 ? <ProactivoCopyButton fechaCorte={fechaCorte} faltantes={faltantes} /> : ''
+            r.Proactivo_al_mes !== 'p' && faltantesMes > 0 ? <ProactivoCopyButton fechaCorte={fechaCorte} polizasAcumuladas={polizasAcum} /> : ''
         ];
     });
 
