@@ -47,12 +47,14 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
         { key: 'citas_iniciales', label: 'Citas Iniciales', icon: '📞' },
         { key: 'citas_cierre', label: 'Citas de Cierre', icon: '🎯' },
         { key: 'sesiones_11', label: 'Sesiones 1:1', icon: '🗣️' },
+        { key: 'polizas', label: 'Pólizas', icon: '📄' },
+        { key: 'contratos_firmados', label: 'Contratos Firmados', icon: '🏅' },
         { key: 'arranque_rapido', label: 'Acompañamientos / Arranques', icon: '⚡' },
         { key: 'tareas_actividades', label: 'Actividades/Tareas en Agenda', icon: '📅' },
     ];
 
     const hrConversionMetrics = [
-        { key: 'activos_mes', label: 'Activos (Abril)', icon: '👥' },
+        { key: 'activos_mes', label: 'Activos (Mes)', icon: '👥' },
         { key: 'ent_enamoramiento', label: 'Enamoramiento', icon: '💖' },
         { key: 'ent_entrevista', label: 'Entrevista', icon: '🗣️' },
         { key: 'ent_compensacion', label: 'Compensación', icon: '💰' },
@@ -91,11 +93,13 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
 
         // Solo sumar horas para Desarrollo
         if (person.role !== 'hr') {
-            totalGoldHours = deltas.filter(d => d.label !== 'Actividades/Tareas en Agenda').reduce((sum, d) => sum + d.gain, 0);
+            const excludeHours = ['tareas_actividades', 'polizas', 'contratos_firmados'];
+            totalGoldHours = deltas.filter(d => !excludeHours.includes(d.key)).reduce((sum, d) => sum + d.gain, 0);
             intensity = ((totalGoldHours / 40) * 100).toFixed(0);
         }
 
-        conversionChartData = deltas.filter(d => !d.isVolume && d.label !== 'Actividades/Tareas en Agenda' && d.key !== 'activos_mes').map(d => ({ 
+        const excludeConversion = ['tareas_actividades', 'activos_mes', 'polizas', 'contratos_firmados'];
+        conversionChartData = deltas.filter(d => !d.isVolume && !excludeConversion.includes(d.key)).map(d => ({ 
             name: d.label, 'Previo': d.prev, 'Actual': d.curr, 'Ganancia': d.gain 
         }));
         
