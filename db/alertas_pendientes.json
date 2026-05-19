@@ -1,56 +1,5 @@
 {
-  "generatedAt": "18/5/2026, 10:22:46 a.m.",
-  "totalNew": 5,
-  "alerts": [
-    {
-      "id": "b11e5d76-93ef-4f28-8db0-e2a23f29eab1",
-      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-      "firstName": "Monica",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "Prima pagada subió $44.2k",
-      "message": "Hola Monica, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 13 de Mayo de 2026, noté que tu prima pagada subió *$44.2k*. Ahora llevas un total de *$45.9k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "f316f52c-d6df-44ea-a977-27d2fe3c03fc",
-      "asesor": "MARIO IVAN ROMERO GONZALEZ",
-      "firstName": "Mario",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "Prima pagada subió $32.9k",
-      "message": "Hola Mario, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 13 de Mayo de 2026, noté que tu prima pagada subió *$32.9k*. Ahora llevas un total de *$32.9k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "a9fec950-35a3-4d6a-90ff-5c23e94205fd",
-      "asesor": "MARICELA ARREOLA LOPEZ",
-      "firstName": "Maricela",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "Prima pagada subió $22.7k",
-      "message": "Hola Maricela, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 13 de Mayo de 2026, noté que tu prima pagada subió *$22.7k*. Ahora llevas un total de *$22.7k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "2bc83a25-8132-4a24-8b0a-dbebc175a02c",
-      "asesor": "PAULINA LIZBETH SOTO MUÐIZ",
-      "firstName": "Paulina",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "Prima pagada subió $13.7k",
-      "message": "Hola Paulina, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 13 de Mayo de 2026, noté que tu prima pagada subió *$13.7k*. Ahora llevas un total de *$18.1k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "0d56cc54-ef03-42c2-8c82-4164acdc9537",
-      "asesor": "VELIA PATRICIA BERNAL RAMOS",
-      "firstName": "Velia",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "Prima pagada subió $5.0k",
-      "message": "Hola Velia, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 13 de Mayo de 2026, noté que tu prima pagada subió *$5.0k*. Ahora llevas un total de *$9.5k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    }
-  ]
+  "generatedAt": "19/5/2026, 9:58:23 a.m.",
+  "totalNew": 0,
+  "alerts": []
 }
