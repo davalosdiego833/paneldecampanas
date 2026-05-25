@@ -120,12 +120,12 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
     let intensity = "0";
     let conversionChartData: any[] = [];
     let volumeChartData: any[] = [];
-    let prev: any = null;
-    let curr: any = null;
+    let prev: any = {};
+    let curr: any = {};
 
-    if (hasEnoughData) {
-        prev = person.history[prevIndex].data;
-        curr = person.history[currIndex].data;
+    if (hasEnoughData && person?.history) {
+        prev = person.history[prevIndex]?.data || {};
+        curr = person.history[currIndex]?.data || {};
 
         deltas = metrics.map(m => ({
             key: m.key,
@@ -241,7 +241,7 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                                     transition: 'all 0.2s ease'
                                 }}
                             >
-                                {staffData[key].name}
+                                {staffData[key]?.name || 'Asesor'}
                             </button>
                         ))}
                     </div>
@@ -263,12 +263,12 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                                 </h1>
                                 <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginTop: '6px' }}>
                                     {selectedPeriod === 'latest' 
-                                        ? `Comparativo: Martes ${person.history[prevIndex].date} vs lunes ${person.history[currIndex].date}`
-                                        : `Comparativo Mensual: ${person.history[prevIndex].date} vs ${person.history[currIndex].date}`}
+                                        ? `Comparativo: Martes ${person?.history?.[prevIndex]?.date || '?'} vs lunes ${person?.history?.[currIndex]?.date || '?'}`
+                                        : `Comparativo Mensual: ${person?.history?.[prevIndex]?.date || '?'} vs ${person?.history?.[currIndex]?.date || '?'}`}
                                 </p>
                             </div>
                             
-                            {person.role !== 'hr' ? (
+                            {person?.role !== 'hr' ? (
                                 <div style={{ padding: '12px 24px', background: 'rgba(0,122,255,0.1)', border: '1px solid rgba(0,122,255,0.25)', borderRadius: '16px', textAlign: 'right' }}>
                                     <div style={{ fontSize: '1.8rem', fontWeight: 900, color: 'white' }}>{totalGoldHours} hrs <span style={{ fontSize: '0.9rem', opacity: 0.5, fontWeight: 400 }}>de crecimiento</span></div>
                                     <div style={{ fontSize: '0.85rem', color: '#007AFF', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '4px' }}>{(totalGoldHours / 5).toFixed(1)} hrs / día promedio</div>
@@ -283,14 +283,14 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
 
                         {/* Intensity KPI */}
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
-                            {person.role !== 'hr' ? (
+                            {person?.role !== 'hr' ? (
                                 <>
                                     <div className="glass-card" style={{ borderLeft: '4px solid #00E676', padding: '24px' }}>
                                         <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>APROVECHAMIENTO SEMANAL</div>
                                         <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#00E676', margin: '8px 0' }}>{intensity}%</div>
                                         <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Basado en 40 horas totales a la semana.</div>
                                         <div style={{ marginTop: '16px', height: '8px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px', position: 'relative' }}>
-                                            <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: `${Math.min(parseInt(intensity), 100)}%`, background: '#00E676', borderRadius: '4px' }} />
+                                            <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: `${Math.min(parseInt(intensity) || 0, 100)}%`, background: '#00E676', borderRadius: '4px' }} />
                                         </div>
                                     </div>
                                     <div className="glass-card" style={{ borderLeft: '4px solid #FFD93D', padding: '24px' }}>
@@ -300,7 +300,7 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                                     </div>
                                     <div className="glass-card" style={{ borderLeft: '4px solid #42A5F5', padding: '24px' }}>
                                         <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>ACTIVIDADES COMPLETADAS EN AGENDA</div>
-                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#42A5F5', margin: '8px 0' }}>+{(curr.tareas_actividades || 0) - (prev.tareas_actividades || 0)}</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#42A5F5', margin: '8px 0' }}>+{Number(curr.tareas_actividades || 0) - Number(prev.tareas_actividades || 0)}</div>
                                         <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Incremento en tareas totales registradas.</div>
                                     </div>
                                 </>
@@ -308,17 +308,17 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                                 <>
                                     <div className="glass-card" style={{ borderLeft: '4px solid #F50057', padding: '24px' }}>
                                         <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>ENAMORAMIENTO</div>
-                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#F50057', margin: '8px 0' }}>+{(curr.ent_enamoramiento || 0) - (prev.ent_enamoramiento || 0)}</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#F50057', margin: '8px 0' }}>+{Number(curr.ent_enamoramiento || 0) - Number(prev.ent_enamoramiento || 0)}</div>
                                         <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Crecimiento semanal de prospectos enamorados.</div>
                                     </div>
                                     <div className="glass-card" style={{ borderLeft: '4px solid #007AFF', padding: '24px' }}>
                                         <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>ENTREVISTA</div>
-                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#007AFF', margin: '8px 0' }}>+{(curr.ent_entrevista || 0) - (prev.ent_entrevista || 0)}</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#007AFF', margin: '8px 0' }}>+{Number(curr.ent_entrevista || 0) - Number(prev.ent_entrevista || 0)}</div>
                                         <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Nuevas entrevistas de selección esta semana.</div>
                                     </div>
                                     <div className="glass-card" style={{ borderLeft: '4px solid #FFD93D', padding: '24px' }}>
                                         <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>COMPENSACIÓN</div>
-                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#FFD93D', margin: '8px 0' }}>+{(curr.ent_compensacion || 0) - (prev.ent_compensacion || 0)}</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#FFD93D', margin: '8px 0' }}>+{Number(curr.ent_compensacion || 0) - Number(prev.ent_compensacion || 0)}</div>
                                         <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Nuevas entrevistas de compensación cerradas.</div>
                                     </div>
                                 </>
