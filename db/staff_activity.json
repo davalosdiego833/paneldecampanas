@@ -67,6 +67,16 @@
           "arranque_rapido": 1,
           "tareas_actividades": 46
         }
+      },
+      {
+        "date": "2026-05-20",
+        "data": {
+          "citas_iniciales": 0,
+          "citas_cierre": 3,
+          "sesiones_11": 6,
+          "arranque_rapido": 4,
+          "tareas_actividades": 61
+        }
       }
     ],
     "goals": {
@@ -137,6 +147,17 @@
           "contratos_firmados": 1,
           "arranque_rapido": 4,
           "tareas_actividades": 25
+        }
+      },
+      {
+        "date": "2026-05-20",
+        "data": {
+          "citas_iniciales": 14,
+          "citas_cierre": 7,
+          "polizas": 0,
+          "contratos_firmados": 1,
+          "arranque_rapido": 12,
+          "tareas_actividades": 34
         }
       }
     ],
@@ -213,6 +234,18 @@
           "recluta_contactos": 199,
           "recluta_citas": 27,
           "recluta_entrevistas": 8
+        }
+      },
+      {
+        "date": "2026-05-20",
+        "data": {
+          "activos_mes": 26,
+          "ent_enamoramiento": 20,
+          "ent_compensacion": 4,
+          "ent_administrativa": 1,
+          "sesiones_rda": 1,
+          "recluta_contactos": 407,
+          "recluta_entrevistas": 14
         }
       }
     ]
