@@ -13,6 +13,12 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
     const [loading, setLoading] = useState(true);
     const [activeStaff, setActiveStaff] = useState<string>('');
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
+    const [selectedPeriod, setSelectedPeriod] = useState<string>('latest');
+
+    // Reset period when changing staff
+    useEffect(() => {
+        setSelectedPeriod('latest');
+    }, [activeStaff]);
 
     useEffect(() => {
         fetch('/api/admin/staff-activity?t=' + Date.now())
@@ -36,14 +42,8 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
     if (loading) return <div style={{ color: 'white', padding: '40px', textAlign: 'center' }}>Cargando métricas del staff...</div>;
     if (errorMsg) return <div style={{ color: '#FF6B6B', padding: '40px', textAlign: 'center' }}>Error al cargar datos: {errorMsg}</div>;
     if (!staffData || Object.keys(staffData).length === 0) return <div style={{ color: 'white', padding: '40px', textAlign: 'center' }}>No hay datos de staff registrados. (El servidor devolvió vacío)</div>;
-    const person = staffData[activeStaff];
     
-    const [selectedPeriod, setSelectedPeriod] = useState<string>('latest');
-
-    // Reset period when changing staff
-    useEffect(() => {
-        setSelectedPeriod('latest');
-    }, [activeStaff]);
+    const person = staffData[activeStaff];
 
     let prevIndex = -1;
     let currIndex = -1;
