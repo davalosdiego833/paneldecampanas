@@ -477,9 +477,14 @@ const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string; selectedDate:
             {/* ── TABLA: Asesores sin Actividad ── */}
             {(() => {
                 const sinActRows = data.filter(r => polPag(r) <= 0 && polPend(r) <= 0 && riPag(r) <= 0 && riPend(r) <= 0)
-                    .map((r, i) => [i + 1, r['Nombre Asesor'], r.Sucursal]);
+                    .map((r, i) => [
+                        i + 1, 
+                        r['Nombre Asesor'], 
+                        r.Sucursal,
+                        <SinEmisionCopyButton fechaCorte={fechaCorte} asesorNombre={(r['Nombre Asesor'] || '').split(' ')[0]} />
+                    ]);
                 return sinActRows.length > 0 ? (
-                    <SearchableTable title={`⚪ Asesores sin Actividad (${sinActRows.length})`} headers={['#', 'Asesor', 'Suc']} rows={sinActRows} />
+                    <SearchableTable title={`⚪ Asesores sin Actividad (${sinActRows.length})`} headers={['#', 'Asesor', 'Suc', 'Acción']} rows={sinActRows} />
                 ) : null;
             })()}
         </motion.div>
