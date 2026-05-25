@@ -317,9 +317,9 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                                         <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Crecimiento semanal de prospectos enamorados.</div>
                                     </div>
                                     <div className="glass-card" style={{ borderLeft: '4px solid #007AFF', padding: '24px' }}>
-                                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>ENTREVISTA</div>
-                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#007AFF', margin: '8px 0' }}>{formatGain(curr.ent_entrevista, prev.ent_entrevista)}</div>
-                                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Nuevas entrevistas de selección esta semana.</div>
+                                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>ENTREVISTA REALIZADAS</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#007AFF', margin: '8px 0' }}>{formatGain(curr.recluta_entrevistas, prev.recluta_entrevistas)}</div>
+                                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Nuevas entrevistas registradas en bitácora.</div>
                                     </div>
                                     <div className="glass-card" style={{ borderLeft: '4px solid #FFD93D', padding: '24px' }}>
                                         <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>COMPENSACIÓN</div>
@@ -329,6 +329,19 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                                 </>
                             )}
                         </div>
+
+                        {/* Observaciones (Si existen) */}
+                        {curr.observaciones && (
+                            <div className="glass-card" style={{ padding: '24px', background: 'rgba(255,255,255,0.02)', borderLeft: '4px solid #A855F7' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+                                    <span style={{ fontSize: '1.2rem' }}>💡</span>
+                                    <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white', margin: 0 }}>Observaciones y Áreas de Mejora</h3>
+                                </div>
+                                <div style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6', whiteSpace: 'pre-wrap' }}>
+                                    {curr.observaciones}
+                                </div>
+                            </div>
+                        )}
 
                         {/* Metrics Table(s) */}
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
