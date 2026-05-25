@@ -12,10 +12,14 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
     const [staffData, setStaffData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [activeStaff, setActiveStaff] = useState<string>('');
+    const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch('/api/admin/staff-activity')
-            .then(res => res.json())
+        fetch('/api/admin/staff-activity?t=' + Date.now())
+            .then(res => {
+                if (!res.ok) throw new Error('HTTP error ' + res.status);
+                return res.json();
+            })
             .then(d => {
                 setStaffData(d);
                 const keys = Object.keys(d);
@@ -24,12 +28,14 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
             })
             .catch(e => {
                 console.error(e);
+                setErrorMsg(e.message || 'Error de red');
                 setLoading(false);
             });
     }, []);
 
     if (loading) return <div style={{ color: 'white', padding: '40px', textAlign: 'center' }}>Cargando métricas del staff...</div>;
-    if (!staffData || Object.keys(staffData).length === 0) return <div style={{ color: 'white', padding: '40px', textAlign: 'center' }}>No hay datos de staff registrados.</div>;
+    if (errorMsg) return <div style={{ color: '#FF6B6B', padding: '40px', textAlign: 'center' }}>Error al cargar datos: {errorMsg}</div>;
+    if (!staffData || Object.keys(staffData).length === 0) return <div style={{ color: 'white', padding: '40px', textAlign: 'center' }}>No hay datos de staff registrados. (El servidor devolvió vacío)</div>;
     const person = staffData[activeStaff];
     
     const [selectedPeriod, setSelectedPeriod] = useState<string>('latest');
@@ -244,7 +250,7 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
 
                 {!hasEnoughData ? (
                     <div style={{ textAlign: 'center', padding: '100px 40px', color: 'var(--text-secondary)' }}>
-                        <h2 style={{ color: 'white', marginBottom: '16px' }}>📉 Esperando datos de comparativa para {person.name}</h2>
+                        <h2 style={{ color: 'white', marginBottom: '16px' }}>📉 Esperando datos de comparativa para {person?.name || activeStaff}</h2>
                         <p>{selectedPeriod !== 'latest' ? 'Se necesitan al menos 2 registros en este mes para calcular el crecimiento mensual.' : 'Necesitamos más de un registro para poder calcular el crecimiento semanal.'}</p>
                     </div>
                 ) : (
@@ -253,7 +259,7 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <div>
                                 <h1 style={{ fontSize: '2.2rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'white' }}>
-                                    💎 Mina de Oro — {person.name}
+                                    💎 Mina de Oro — {person?.name || activeStaff}
                                 </h1>
                                 <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginTop: '6px' }}>
                                     {selectedPeriod === 'latest' 
