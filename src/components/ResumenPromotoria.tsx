@@ -568,18 +568,59 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate
                 {sinPolizasVida.length > 0 && (
                     <SearchableTable
                         title={`⚪ Asesores sin Pólizas Pagadas Vida (${sinPolizasVida.length})`}
-                        headers={['#', 'Asesor', 'Suc', 'Prima Pagada Vida', 'Estatus']}
-                        rows={sinPolizasVida.map((r: any, i: number) => [
-                            i + 1,
-                            r.Asesor,
-                            r.Suc,
-                            fmt(r.Prima_Pagada_Vida),
-                            r['3_Meses_Sin_Emisión_Vida'] === 'i' ? '🚨 Crítico (3 meses+)' : (Number(r.Prima_Pagada_Vida) > 0 ? '💰 Con Prima (Sin Póliza)' : '❌ Sin Actividad')
-                        ])}
+                        headers={['#', 'Asesor', 'Suc', 'Prima Pagada Vida', 'Estatus', 'Acción']}
+                        rows={sinPolizasVida.map((r: any, i: number) => {
+                            const firstName = (r.Asesor || '').split(' ')[0];
+                            const status = r['3_Meses_Sin_Emisión_Vida'] === 'i' ? '🚨 Crítico (3 meses+)' : (Number(r.Prima_Pagada_Vida) > 0 ? '💰 Con Prima (Sin Póliza)' : '❌ Sin Actividad');
+                            return [
+                                i + 1,
+                                r.Asesor,
+                                r.Suc,
+                                fmt(r.Prima_Pagada_Vida),
+                                status,
+                                <SinEmisionCopyButton fechaCorte={fechaCorte} asesorNombre={firstName} />
+                            ];
+                        })}
                     />
                 )}
             </div>
         </motion.div>
+    );
+};
+
+/* ========== SIN EMISIÓN AVISO BUTTON ========== */
+const SinEmisionCopyButton: React.FC<{ fechaCorte: string; asesorNombre: string }> = ({ fechaCorte, asesorNombre }) => {
+    const [copied, setCopied] = useState(false);
+
+    const handleCopy = () => {
+        let fmtFecha = fechaCorte;
+        const parts = fechaCorte.split('-');
+        if (parts.length === 3 && parts[0].length === 4) {
+            const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+            fmtFecha = `${parts[2]} de ${months[parseInt(parts[1], 10) - 1]} del ${parts[0]}`;
+        }
+
+        const msg = `Hola ${asesorNombre}, ¡excelente día!\n\nTe escribo rapidísimo porque revisando el reporte al ${fmtFecha}, veo que no traes ventas registradas en el ramo de Vida este mes.\n\n¿Me confirmas si el dato es correcto o si ya traes algún trámite o cierre en proceso para este mes? ¡Para tenerlo en el radar!\n\nQuedo al pendiente, un abrazo.`;
+
+        navigator.clipboard.writeText(msg);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+
+    return (
+        <button 
+            onClick={handleCopy}
+            title="Copiar aviso para WhatsApp"
+            style={{
+                background: 'rgba(255,107,107,0.1)', border: '1px solid rgba(255,107,107,0.3)', borderRadius: '6px',
+                padding: '6px 10px', color: copied ? '#00E676' : '#FF6B6B',
+                cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '6px',
+                fontSize: '0.75rem', fontWeight: 800, transition: '0.2s', width: 'max-content'
+            }}
+        >
+            {copied ? <CheckCircle size={14} /> : <MessageSquare size={14} />} 
+            {copied ? 'Copiado' : 'Avisar'}
+        </button>
     );
 };
 
