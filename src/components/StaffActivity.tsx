@@ -32,13 +32,52 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
     if (!staffData || Object.keys(staffData).length === 0) return <div style={{ color: 'white', padding: '40px', textAlign: 'center' }}>No hay datos de staff registrados.</div>;
     const person = staffData[activeStaff];
     
-    // Siempre tomamos los dos últimos registros para el comparativo real de la semana
+    const [selectedPeriod, setSelectedPeriod] = useState<string>('latest');
+
+    // Reset period when changing staff
+    useEffect(() => {
+        setSelectedPeriod('latest');
+    }, [activeStaff]);
+
     let prevIndex = -1;
     let currIndex = -1;
+    let availablePeriods: { id: string, label: string }[] = [{ id: 'latest', label: 'Última Semana' }];
 
-    if (person && person.history && person.history.length >= 2) {
-        currIndex = person.history.length - 1;
-        prevIndex = person.history.length - 2;
+    if (person && person.history && person.history.length > 0) {
+        // Extract unique months
+        const monthsNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        const monthsMap = new Map<string, string>();
+        
+        person.history.forEach((h: any) => {
+            const parts = h.date.split('-');
+            if (parts.length >= 2) {
+                const year = parts[0];
+                const month = parseInt(parts[1], 10);
+                const periodId = `${year}-${parts[1]}`;
+                const periodLabel = `${monthsNames[month - 1]} ${year}`;
+                if (!monthsMap.has(periodId)) {
+                    monthsMap.set(periodId, periodLabel);
+                }
+            }
+        });
+
+        Array.from(monthsMap.entries()).forEach(([id, label]) => {
+            availablePeriods.push({ id, label });
+        });
+
+        if (selectedPeriod === 'latest' && person.history.length >= 2) {
+            currIndex = person.history.length - 1;
+            prevIndex = person.history.length - 2;
+        } else if (selectedPeriod !== 'latest') {
+            const monthEntries = person.history
+                .map((h: any, index: number) => ({ h, index }))
+                .filter((item: any) => item.h.date.startsWith(selectedPeriod));
+            
+            if (monthEntries.length >= 2) {
+                prevIndex = monthEntries[0].index;
+                currIndex = monthEntries[monthEntries.length - 1].index;
+            }
+        }
     }
 
     const hasEnoughData = prevIndex !== -1 && currIndex !== -1;
@@ -156,7 +195,30 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                         <ChevronLeft size={20} /> Volver al Menú
                     </button>
 
-                    <div style={{ display: 'flex', gap: '8px', background: 'rgba(255,255,255,0.03)', padding: '6px', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+                    <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+                        {availablePeriods.length > 1 && (
+                            <select 
+                                value={selectedPeriod} 
+                                onChange={(e) => setSelectedPeriod(e.target.value)}
+                                style={{
+                                    padding: '8px 16px',
+                                    borderRadius: '8px',
+                                    border: '1px solid var(--glass-border)',
+                                    background: 'rgba(255,255,255,0.05)',
+                                    color: 'var(--text-primary)',
+                                    fontSize: '0.85rem',
+                                    fontWeight: 700,
+                                    outline: 'none',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                {availablePeriods.map(p => (
+                                    <option key={p.id} value={p.id} style={{ background: '#1e293b' }}>{p.label}</option>
+                                ))}
+                            </select>
+                        )}
+
+                        <div style={{ display: 'flex', gap: '8px', background: 'rgba(255,255,255,0.03)', padding: '6px', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
                         {Object.keys(staffData).map(key => (
                             <button
                                 key={key}
@@ -178,11 +240,12 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                         ))}
                     </div>
                 </div>
+                </div>
 
                 {!hasEnoughData ? (
                     <div style={{ textAlign: 'center', padding: '100px 40px', color: 'var(--text-secondary)' }}>
                         <h2 style={{ color: 'white', marginBottom: '16px' }}>📉 Esperando datos de comparativa para {person.name}</h2>
-                        <p>Necesitamos más de un registro para poder calcular el crecimiento semanal.</p>
+                        <p>{selectedPeriod !== 'latest' ? 'Se necesitan al menos 2 registros en este mes para calcular el crecimiento mensual.' : 'Necesitamos más de un registro para poder calcular el crecimiento semanal.'}</p>
                     </div>
                 ) : (
                     <>
@@ -193,7 +256,9 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                                     💎 Mina de Oro — {person.name}
                                 </h1>
                                 <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginTop: '6px' }}>
-                                    Comparativo: Martes {person.history[prevIndex].date} vs lunes {person.history[currIndex].date}
+                                    {selectedPeriod === 'latest' 
+                                        ? `Comparativo: Martes ${person.history[prevIndex].date} vs lunes ${person.history[currIndex].date}`
+                                        : `Comparativo Mensual: ${person.history[prevIndex].date} vs ${person.history[currIndex].date}`}
                                 </p>
                             </div>
                             
