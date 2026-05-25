@@ -177,7 +177,7 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                                 <td style={{ padding: '20px 24px', fontWeight: 800, textAlign: 'center', fontSize: '1.2rem' }}>{d.curr}</td>
                                 <td style={{ padding: '20px 24px', textAlign: 'right' }}>
                                     <span style={{ padding: '6px 14px', borderRadius: '20px', background: d.gain >= 0 ? 'rgba(0,230,118,0.15)' : 'rgba(255,82,82,0.15)', color: d.gain >= 0 ? '#00E676' : '#FF5252', fontSize: '0.9rem', fontWeight: 900 }}>
-                                        {d.gain >= 0 ? `+${d.gain}` : d.gain}
+                                        {d.gain > 0 ? `+${d.gain}` : d.gain}
                                     </span>
                                 </td>
                             </tr>
@@ -187,6 +187,11 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
             </div>
         </div>
     );
+
+    const formatGain = (currVal: any, prevVal: any) => {
+        const gain = Number(currVal || 0) - Number(prevVal || 0);
+        return gain > 0 ? `+${gain}` : gain;
+    };
 
     return (
         <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', padding: '40px' }}>
@@ -300,7 +305,7 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                                     </div>
                                     <div className="glass-card" style={{ borderLeft: '4px solid #42A5F5', padding: '24px' }}>
                                         <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>ACTIVIDADES COMPLETADAS EN AGENDA</div>
-                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#42A5F5', margin: '8px 0' }}>+{Number(curr.tareas_actividades || 0) - Number(prev.tareas_actividades || 0)}</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#42A5F5', margin: '8px 0' }}>{formatGain(curr.tareas_actividades, prev.tareas_actividades)}</div>
                                         <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Incremento en tareas totales registradas.</div>
                                     </div>
                                 </>
@@ -308,17 +313,17 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                                 <>
                                     <div className="glass-card" style={{ borderLeft: '4px solid #F50057', padding: '24px' }}>
                                         <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>ENAMORAMIENTO</div>
-                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#F50057', margin: '8px 0' }}>+{Number(curr.ent_enamoramiento || 0) - Number(prev.ent_enamoramiento || 0)}</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#F50057', margin: '8px 0' }}>{formatGain(curr.ent_enamoramiento, prev.ent_enamoramiento)}</div>
                                         <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Crecimiento semanal de prospectos enamorados.</div>
                                     </div>
                                     <div className="glass-card" style={{ borderLeft: '4px solid #007AFF', padding: '24px' }}>
                                         <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>ENTREVISTA</div>
-                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#007AFF', margin: '8px 0' }}>+{Number(curr.ent_entrevista || 0) - Number(prev.ent_entrevista || 0)}</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#007AFF', margin: '8px 0' }}>{formatGain(curr.ent_entrevista, prev.ent_entrevista)}</div>
                                         <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Nuevas entrevistas de selección esta semana.</div>
                                     </div>
                                     <div className="glass-card" style={{ borderLeft: '4px solid #FFD93D', padding: '24px' }}>
                                         <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>COMPENSACIÓN</div>
-                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#FFD93D', margin: '8px 0' }}>+{Number(curr.ent_compensacion || 0) - Number(prev.ent_compensacion || 0)}</div>
+                                        <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#FFD93D', margin: '8px 0' }}>{formatGain(curr.ent_compensacion, prev.ent_compensacion)}</div>
                                         <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>Nuevas entrevistas de compensación cerradas.</div>
                                     </div>
                                 </>
