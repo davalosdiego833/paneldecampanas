@@ -76,7 +76,21 @@
           "sesiones_11": 6,
           "arranque_rapido": 4,
           "tareas_actividades": 61,
-          "observaciones": "Se logró registrar avance importante en el seguimiento de prospectos (+17 actividades en agenda), sumando 1 nueva cita inicial y 2 de cierre, además de 2 sesiones 1:1.\n\nÁrea de mejora: Poner foco principal en la conversión de esas citas a pólizas y arranques (se mantuvieron en 0 esta semana). ¡Ya se tiene la actividad, falta presionar el cierre!"
+          "observaciones": "Buen ritmo en seguimiento con +15 nuevas actividades en agenda. Se logró generar 1 nueva cita de cierre, 2 sesiones 1:1 adicionales y diste un salto importante con +3 nuevos arranques.\n\nÁrea de mejora: Toca meter el acelerador en generar nuevas Citas Iniciales (se mantuvo en 0) y empujar agresivamente esas citas de cierre hacia la firma para capitalizar todo ese gran esfuerzo de seguimiento y acompañamiento."
+        }
+      },
+      {
+        "date": "2026-05-25",
+        "type": "lunes_cierre",
+        "data": {
+          "citas_iniciales": 2,
+          "citas_cierre": 3,
+          "sesiones_11": 9,
+          "arranque_rapido": 5,
+          "tareas_actividades": 77,
+          "polizas": 0,
+          "contratos_firmados": 0,
+          "observaciones": "Buen empuje esta semana retomando la generación de prospectos con +2 nuevas Citas Iniciales, algo que estaba pendiente. Además, mantuviste el seguimiento constante (+16 actividades en agenda) lo que permitió sumar 3 nuevas Sesiones 1:1 y lograr un nuevo Arranque Rápido.\n\nÁrea de mejora: El volumen de sesiones y citas iniciales es excelente, pero el foco crítico debe ser empujar que esta nueva actividad aterrice y se convierta en nuevas Citas de Cierre (que se mantuvo en 0 crecimiento esta semana). ¡Acelerar la fase final del embudo!"
         }
       }
     ],
@@ -159,7 +173,20 @@
           "contratos_firmados": 1,
           "arranque_rapido": 12,
           "tareas_actividades": 34,
-          "observaciones": "Excelente crecimiento de volumen en agenda (+34 actividades). Hay un muy buen empuje sumando 4 nuevas citas iniciales y 2 citas de cierre, además de mantener la conversión viva con 1 nueva póliza y 1 arranque rápido. ¡El ritmo es muy positivo!"
+          "observaciones": "Tu foco principal de la semana estuvo 100% en el acompañamiento y arranque de asesores, logrando un increíble empuje de +8 arranques rápidos. Además sumaste 9 actividades más en agenda.\n\nÁrea de mejora: Como la semana se enfocó en arranques, la generación de nuevas citas iniciales y cierres se mantuvo en pausa (ambas con crecimiento 0). Ahora toca volver a equilibrar el embudo sumando nuevas citas iniciales."
+        }
+      },
+      {
+        "date": "2026-05-25",
+        "type": "lunes_cierre",
+        "data": {
+          "citas_iniciales": 30,
+          "citas_cierre": 13,
+          "polizas": 0,
+          "contratos_firmados": 1,
+          "arranque_rapido": 14,
+          "tareas_actividades": 37,
+          "observaciones": "Semana EXPLOSIVA en generación de negocio. Fer duplicó sus Citas Iniciales pasando de 14 a 30 (+16), y casi duplicó también las Citas de Cierre de 7 a 13 (+6). Además sumó 2 nuevos Arranques Rápidos manteniendo su ritmo de acompañamiento.\n\nÁrea de mejora: A pesar de tener un volumen altísimo de citas y cierres, las Pólizas se mantuvieron en 0 y los Contratos Firmados sin movimiento. Es momento de capitalizar todo este esfuerzo masivo y concretar cierres reales. ¡El embudo está lleno, toca presionar la conversión final!"
         }
       }
     ],
@@ -248,7 +275,21 @@
           "sesiones_rda": 1,
           "recluta_contactos": 407,
           "recluta_entrevistas": 14,
-          "observaciones": "Volumen masivo de prospección logrando +208 nuevos contactos de recluta. Excelente filtro inicial logrando +6 nuevos prospectos enamorados y sumando 6 nuevas entrevistas realizadas (creciendo de 8 a 14).\n\nObservación: Asegurar que este alto volumen de entrevistas iniciales escale más rápido a entrevistas de selección y fases administrativas."
+          "observaciones": "Volumen masivo de prospección logrando +208 nuevos contactos de recluta. Excelente filtro inicial logrando +6 nuevos prospectos enamorados y concretando 6 nuevas entrevistas iniciales, de las cuales avanzaste a cerrar 2 nuevas de compensación.\n\nÁrea de mejora: Asegurar que este altísimo volumen de contacto en frío escale fuerte y no se estanque, llevándolos a las fases administrativas y sesiones RDA."
+        }
+      },
+      {
+        "date": "2026-05-25",
+        "type": "lunes_cierre",
+        "data": {
+          "activos_mes": 30,
+          "ent_enamoramiento": 28,
+          "ent_compensacion": 4,
+          "ent_administrativa": 1,
+          "sesiones_rda": 3,
+          "recluta_contactos": 437,
+          "recluta_entrevistas": 17,
+          "observaciones": "Shelsea sigue con un ritmo impresionante de prospección, sumando +30 nuevos contactos (de 407 a 437) y logrando +8 nuevos prospectos enamorados (de 20 a 28). Además completó 2 Sesiones RDA adicionales y sumó 3 nuevas entrevistas realizadas (de 14 a 17). Los activos del mes subieron de 26 a 30.\n\nÁrea de mejora: La compensación y la administrativa se mantuvieron sin movimiento esta semana. El reto es que ese altísimo volumen de enamoramientos (+8) y entrevistas (+3) se convierta en avances reales hacia compensación y cierre administrativo. ¡El embudo de reclutamiento está muy lleno, toca empujar la conversión!"
         }
       }
     ]

@@ -101,7 +101,6 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
     const hrConversionMetrics = [
         { key: 'activos_mes', label: 'Activos (Mes)', icon: '👥' },
         { key: 'ent_enamoramiento', label: 'Enamoramiento', icon: '💖' },
-        { key: 'ent_entrevista', label: 'Entrevista', icon: '🗣️' },
         { key: 'ent_compensacion', label: 'Compensación', icon: '💰' },
         { key: 'ent_administrativa', label: 'Administrativa', icon: '📁' },
         { key: 'sesiones_rda', label: 'Sesiones RDA Completadas', icon: '✅' },
