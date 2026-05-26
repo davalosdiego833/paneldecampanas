@@ -1,0 +1,256 @@
+{
+  "miros": {
+    "name": "Miroslava Enriquez",
+    "history": [
+      {
+        "date": "2026-04-14",
+        "type": "martes_cierre",
+        "data": {
+          "citas_iniciales": 1,
+          "citas_cierre": 1,
+          "sesiones_11": 7,
+          "arranque_rapido": 5,
+          "tareas_actividades": 28
+        }
+      },
+      {
+        "date": "2026-04-20",
+        "type": "lunes_cierre",
+        "data": {
+          "citas_iniciales": 8,
+          "citas_cierre": 5,
+          "sesiones_11": 8,
+          "arranque_rapido": 8,
+          "tareas_actividades": 60
+        }
+      },
+      {
+        "date": "2026-04-21",
+        "type": "martes_cierre",
+        "data": {
+          "citas_iniciales": 8,
+          "citas_cierre": 5,
+          "sesiones_11": 8,
+          "arranque_rapido": 8,
+          "tareas_actividades": 60
+        }
+      },
+      {
+        "date": "2026-04-27",
+        "type": "lunes_cierre",
+        "data": {
+          "citas_iniciales": 12,
+          "citas_cierre": 7,
+          "sesiones_11": 8,
+          "arranque_rapido": 8,
+          "tareas_actividades": 79
+        }
+      },
+      {
+        "date": "2026-05-05",
+        "type": "lunes_cierre",
+        "month_start": true,
+        "data": {
+          "citas_iniciales": 0,
+          "citas_cierre": 1,
+          "sesiones_11": 2,
+          "arranque_rapido": 0,
+          "tareas_actividades": 13
+        }
+      },
+      {
+        "date": "2026-05-14",
+        "data": {
+          "citas_iniciales": 0,
+          "citas_cierre": 2,
+          "sesiones_11": 4,
+          "arranque_rapido": 1,
+          "tareas_actividades": 46
+        }
+      },
+      {
+        "date": "2026-05-20",
+        "data": {
+          "citas_iniciales": 0,
+          "citas_cierre": 3,
+          "sesiones_11": 6,
+          "arranque_rapido": 4,
+          "tareas_actividades": 61,
+          "observaciones": "Buen ritmo en seguimiento con +15 nuevas actividades en agenda. Se logró generar 1 nueva cita de cierre, 2 sesiones 1:1 adicionales y diste un salto importante con +3 nuevos arranques.\n\nÁrea de mejora: Toca meter el acelerador en generar nuevas Citas Iniciales (se mantuvo en 0) y empujar agresivamente esas citas de cierre hacia la firma para capitalizar todo ese gran esfuerzo de seguimiento y acompañamiento."
+        }
+      }
+    ],
+    "goals": {
+      "gold_hours_per_day": 4
+    }
+  },
+  "fer": {
+    "name": "Fernanda Carlos",
+    "history": [
+      {
+        "date": "2026-04-14",
+        "data": {
+          "citas_iniciales": 6,
+          "citas_cierre": 3,
+          "sesiones_11": 2,
+          "arranque_rapido": 3,
+          "tareas_actividades": 12
+        }
+      },
+      {
+        "date": "2026-04-20",
+        "data": {
+          "citas_iniciales": 14,
+          "citas_cierre": 11,
+          "sesiones_11": 3,
+          "arranque_rapido": 7,
+          "tareas_actividades": 31
+        }
+      },
+      {
+        "date": "2026-04-21",
+        "data": {
+          "citas_iniciales": 14,
+          "citas_cierre": 11,
+          "sesiones_11": 3,
+          "arranque_rapido": 7,
+          "tareas_actividades": 31
+        }
+      },
+      {
+        "date": "2026-04-27",
+        "data": {
+          "citas_iniciales": 14,
+          "citas_cierre": 11,
+          "sesiones_11": 3,
+          "arranque_rapido": 7,
+          "tareas_actividades": 31
+        }
+      },
+      {
+        "date": "2026-05-05",
+        "type": "lunes_cierre",
+        "data": {
+          "citas_iniciales": 0,
+          "citas_cierre": 0,
+          "sesiones_11": 0,
+          "arranque_rapido": 0,
+          "tareas_actividades": 0
+        },
+        "month_start": true
+      },
+      {
+        "date": "2026-05-14",
+        "data": {
+          "citas_iniciales": 14,
+          "citas_cierre": 7,
+          "polizas": 0,
+          "contratos_firmados": 1,
+          "arranque_rapido": 4,
+          "tareas_actividades": 25
+        }
+      },
+      {
+        "date": "2026-05-20",
+        "data": {
+          "citas_iniciales": 14,
+          "citas_cierre": 7,
+          "polizas": 0,
+          "contratos_firmados": 1,
+          "arranque_rapido": 12,
+          "tareas_actividades": 34,
+          "observaciones": "Tu foco principal de la semana estuvo 100% en el acompañamiento y arranque de asesores, logrando un increíble empuje de +8 arranques rápidos. Además sumaste 9 actividades más en agenda.\n\nÁrea de mejora: Como la semana se enfocó en arranques, la generación de nuevas citas iniciales y cierres se mantuvo en pausa (ambas con crecimiento 0). Ahora toca volver a equilibrar el embudo sumando nuevas citas iniciales."
+        }
+      }
+    ],
+    "goals": {
+      "gold_hours_per_day": 4
+    }
+  },
+  "shelsea": {
+    "name": "Shelsea",
+    "role": "hr",
+    "history": [
+      {
+        "date": "2026-04-14",
+        "data": {
+          "activos_mes": 20,
+          "ent_enamoramiento": 12,
+          "ent_entrevista": 2,
+          "ent_compensacion": 1,
+          "ent_administrativa": 0,
+          "sesiones_rda": 3,
+          "recluta_citas": 34,
+          "recluta_contactos": 296,
+          "recluta_entrevistas": 10
+        }
+      },
+      {
+        "date": "2026-04-20",
+        "data": {
+          "activos_mes": 26,
+          "ent_enamoramiento": 19,
+          "ent_entrevista": 4,
+          "ent_compensacion": 3,
+          "ent_administrativa": 0,
+          "sesiones_rda": 3,
+          "recluta_citas": 47,
+          "recluta_contactos": 426,
+          "recluta_entrevistas": 13
+        }
+      },
+      {
+        "date": "2026-04-27",
+        "data": {
+          "activos_mes": 34,
+          "ent_enamoramiento": 26,
+          "ent_entrevista": 16,
+          "ent_compensacion": 3,
+          "ent_administrativa": 0,
+          "recluta_contactos": 506,
+          "recluta_entrevistas": 16
+        }
+      },
+      {
+        "date": "2026-05-05",
+        "type": "lunes_cierre",
+        "month_start": true,
+        "data": {
+          "activos_mes": 4,
+          "ent_enamoramiento": 1,
+          "ent_entrevista": 0,
+          "ent_compensacion": 0,
+          "ent_administrativa": 0,
+          "recluta_contactos": 39,
+          "recluta_entrevistas": 1
+        }
+      },
+      {
+        "date": "2026-05-14",
+        "data": {
+          "activos_mes": 22,
+          "ent_enamoramiento": 14,
+          "ent_entrevista": 2,
+          "ent_compensacion": 2,
+          "ent_administrativa": 0,
+          "recluta_contactos": 199,
+          "recluta_citas": 27,
+          "recluta_entrevistas": 8
+        }
+      },
+      {
+        "date": "2026-05-20",
+        "data": {
+          "activos_mes": 26,
+          "ent_enamoramiento": 20,
+          "ent_compensacion": 4,
+          "ent_administrativa": 1,
+          "sesiones_rda": 1,
+          "recluta_contactos": 407,
+          "recluta_entrevistas": 14,
+          "observaciones": "Volumen masivo de prospección logrando +208 nuevos contactos de recluta. Excelente filtro inicial logrando +6 nuevos prospectos enamorados y concretando 6 nuevas entrevistas iniciales, de las cuales avanzaste a cerrar 2 nuevas de compensación.\n\nÁrea de mejora: Asegurar que este altísimo volumen de contacto en frío escale fuerte y no se estanque, llevándolos a las fases administrativas y sesiones RDA."
+        }
+      }
+    ]
+  }
+}
