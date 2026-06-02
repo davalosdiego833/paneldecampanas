@@ -92,8 +92,6 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
         { key: 'citas_iniciales', label: 'Citas Iniciales', icon: '📞' },
         { key: 'citas_cierre', label: 'Citas de Cierre', icon: '🎯' },
         { key: 'sesiones_11', label: 'Sesiones 1:1', icon: '🗣️' },
-        { key: 'polizas', label: 'Pólizas', icon: '📄' },
-        { key: 'contratos_firmados', label: 'Contratos Firmados', icon: '🏅' },
         { key: 'arranque_rapido', label: 'Acompañamientos / Arranques', icon: '⚡' },
         { key: 'tareas_actividades', label: 'Actividades/Tareas en Agenda', icon: '📅' },
     ];
