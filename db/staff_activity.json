@@ -356,6 +356,20 @@
           "recluta_entrevistas": 17,
           "observaciones": "Shelsea dio un salto gigantesco en generación pura de base de datos sumando **+69 nuevos contactos** en frío. Además, este empuje logró generar 2 nuevos Enamoramientos y logró completar 1 Sesión RDA adicional. La base de activos en el mes creció a 32.\n\nÁrea de mejora: Toda la energía se fue a la punta del embudo (prospección cruda), lo que provocó que Compensación, Administrativas y Entrevistas se quedaran estáticas. El reto principal para cerrar el mes es asegurar que esos 69 nuevos contactos bajen rápido a entrevistas reales."
         }
+      },
+      {
+        "date": "2026-05-31",
+        "type": "lunes_cierre",
+        "data": {
+          "activos_mes": 32,
+          "ent_enamoramiento": 30,
+          "ent_compensacion": 4,
+          "ent_administrativa": 1,
+          "sesiones_rda": 4,
+          "recluta_contactos": 506,
+          "recluta_entrevistas": 18,
+          "observaciones": "Shelsea cierra el mes de mayo consolidando su gran volumen de prospección. En este último corte sumó +1 entrevista realizada para un total acumulado de 18 en el mes, manteniendo además su base de 506 contactos prospectados y 30 enamoramientos.\n\nÁrea de mejora: Al iniciar junio, el reto prioritario es reactivar y acelerar la conversión de la parte media y baja del embudo (compensaciones y procesos administrativos), para capitalizar la enorme cantidad de contactos generados en mayo en nuevos activos."
+        }
       }
     ]
   }
