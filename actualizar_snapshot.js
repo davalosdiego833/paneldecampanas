@@ -31,11 +31,11 @@ const formatExcelDate = (val) => {
 };
 
 const extractCutoffDate = (wb) => {
-    // Buscamos en las primeras 3 hojas, primeras 5 filas
+    // Buscamos en las primeras 3 hojas, primeras 30 filas
     for (let i = 0; i < Math.min(wb.SheetNames.length, 3); i++) {
         const ws = wb.Sheets[wb.SheetNames[i]];
         const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 0 });
-        for (let r = 0; r < 25; r++) {
+        for (let r = 0; r < 30; r++) {
             const row = data[r];
             if (!row) continue;
             for (const val of row) {
@@ -46,10 +46,11 @@ const extractCutoffDate = (wb) => {
                     return formatExcelDate(val);
                 }
 
-                // Opción 2: Es un string que parece fecha
-                const str = String(val).toUpperCase();
-                if (/\d{1,2}\s+(?:DE\s+)?[A-ZÁÉÍÓÚÑ]{3,}\s+(?:DE\s+)?\d{4}/i.test(str)) {
-                    return formatExcelDate(val);
+                // Opción 2: Es un string que parece fecha (ej. "Avance al 27 de mayo de 2026")
+                const str = String(val);
+                const match = str.match(/\d{1,2}\s+(?:de\s+)?[a-záéíóúñ]{3,}\s+(?:de\s+)?\d{4}/i);
+                if (match) {
+                    return match[0].toLowerCase();
                 }
             }
         }
@@ -317,10 +318,13 @@ const run = async () => {
                 const sheetName = wb.SheetNames.find(n => n.toUpperCase() === 'MDRT') || wb.SheetNames[0];
                 const ws = wb.Sheets[sheetName];
                 const data = extractData(ws);
-                campaigns.mdrt = data.filter(r => SUCURSALES_PROMO.includes(String(r['Mat'] || r['Mat / Unidad'] || r.Matriz || ''))).map(r => {
-                    const paKey = Object.keys(r).find(k => k && (k.trim().toLowerCase() === 'total prima' || k.trim().toLowerCase() === 'camino prima' || k.trim().toLowerCase() === 'prima anualizada' || k.trim().toLowerCase() === 'prima ponderada mdrt'));
-                    const nameKey = Object.keys(r).find(k => k && (k.trim().toLowerCase() === 'nombre del asesor' || k.trim().toLowerCase() === 'asesor'));
-                    const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toLowerCase() === 'asesor') || nameKey);
+                campaigns.mdrt = data.filter(r => {
+                    const matKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MATRIZ' || k.trim().toUpperCase() === 'MAT' || k.trim().toUpperCase() === 'MAT / UNIDAD'));
+                    return SUCURSALES_PROMO.includes(String(r[matKey] || ''));
+                }).map(r => {
+                    const paKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'TOTAL PRIMA' || k.trim().toUpperCase() === 'CAMINO PRIMA' || k.trim().toUpperCase() === 'PRIMA ANUALIZADA' || k.trim().toUpperCase() === 'PRIMA PONDERADA MDRT'));
+                    const nameKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'NOMBRE DEL ASESOR' || k.trim().toUpperCase() === 'ASESOR'));
+                    const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toUpperCase() === 'ASESOR') || nameKey);
                     return { Asesor: resolveName(r[claveKey] || r[nameKey], null, directory), Clave: String(r[claveKey] || ''), PA_Acumulada: Number(r[paKey] || 0) };
                 });
                 campaignDates.mdrt = extractCutoffDate(wb);
@@ -381,13 +385,16 @@ const run = async () => {
                 const wb = XLSX.readFile(path.join(ccPath, files[0]));
                 const ws = wb.Sheets[wb.SheetNames[0]];
                 const data = extractData(ws);
-                campaigns.camino_cumbre = data.filter(r => SUCURSALES_PROMO.includes(String(r['Mat'] || r['Mat / Unidad'] || r.Matriz || r[3] || ''))).map(r => {
-                    const paKey = Object.keys(r).find(k => k && k.trim().toLowerCase().includes('total'));
-                    const nameKey = Object.keys(r).find(k => k && (k.trim().toLowerCase() === 'nombre del asesor' || k.trim().toLowerCase() === 'asesor'));
-                    const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toLowerCase() === 'asesor') || nameKey);
+                campaigns.camino_cumbre = data.filter(r => {
+                    const matKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MATRIZ' || k.trim().toUpperCase() === 'MAT' || k.trim().toUpperCase() === 'MAT / UNIDAD'));
+                    return SUCURSALES_PROMO.includes(String(r[matKey] || r[3] || ''));
+                }).map(r => {
+                    const paKey = Object.keys(r).find(k => k && k.trim().toUpperCase().includes('TOTAL'));
+                    const nameKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'NOMBRE DEL ASESOR' || k.trim().toUpperCase() === 'ASESOR'));
+                    const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toUpperCase() === 'ASESOR') || nameKey);
                     return {
                         Asesor: resolveName(r[nameKey] || r[claveKey] || r[5], null, directory), Clave: String(r[claveKey] || r[5] || ''),
-                        Mes_Asesor: Number(r.Mes_Asesor || r['Mes'] || r[10] || 1), Polizas_Totales: Number(r.Polizas_Totales || r[paKey] || r[13] || 0)
+                        Mes_Asesor: Number(r.Mes_Asesor || r['Mes'] || r['MES'] || r[10] || 1), Polizas_Totales: Number(r.Polizas_Totales || r[paKey] || r[13] || 0)
                     };
                 });
                 campaignDates.camino_cumbre = extractCutoffDate(wb);
@@ -439,10 +446,13 @@ const run = async () => {
                 if (!wsName) wsName = wb.SheetNames[0];
                 const ws = wb.Sheets[wsName];
                 const data = extractData(ws);
-                campaigns.graduacion = data.filter(r => SUCURSALES_PROMO.includes(String(r['Matriz'] || r['Mat'] || r['Mat / Unidad'] || r[3] || ''))).map(r => {
-                    const paKey = Object.keys(r).find(k => k && (k.trim().toLowerCase().includes('total') || k.trim().toLowerCase().includes('vigor')));
-                    const nameKey = Object.keys(r).find(k => k && (k.trim().toLowerCase() === 'nombre del asesor' || k.trim().toLowerCase() === 'asesor' || k.trim().toLowerCase() === 'nombre'));
-                    const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && (k.trim().toLowerCase() === 'asesor' || k.trim().toLowerCase() === 'clave')) || nameKey);
+                campaigns.graduacion = data.filter(r => {
+                    const matKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MATRIZ' || k.trim().toUpperCase() === 'MAT' || k.trim().toUpperCase() === 'MAT / UNIDAD'));
+                    return SUCURSALES_PROMO.includes(String(r[matKey] || r[3] || ''));
+                }).map(r => {
+                    const paKey = Object.keys(r).find(k => k && (k.trim().toUpperCase().includes('TOTAL') || k.trim().toUpperCase().includes('VIGOR')));
+                    const nameKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'NOMBRE DEL ASESOR' || k.trim().toUpperCase() === 'ASESOR' || k.trim().toUpperCase() === 'NOMBRE'));
+                    const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'ASESOR' || k.trim().toUpperCase() === 'CLAVE')) || nameKey);
                     return {
                         Asesor: r.Asesor || r[nameKey] ? String(r.Asesor || r[nameKey]) : resolveName(r.Clave || r[claveKey] || r[6], null, directory), Clave: String(r.Clave || r[claveKey] || r[6] || ''),
                         Mes_Asesor: Number(r.Mes_Asesor || r['Mes'] || r['mes'] || r['MES'] || 1), Polizas_Totales: Number(r.Polizas_Totales || r[paKey] || r['EN VIGOR'] || 0)
