@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2/6/2026, 9:27:11 p.m.",
+  "updatedAt": "2/6/2026, 9:32:07 p.m.",
   "data": {
     "resumen_general": {
       "asesores_sin_emision": {
@@ -1122,799 +1122,114 @@
     "campaigns": {
       "mdrt": [
         {
-          "Asesor": "PAULINA RODRIGUEZ DE LA MORA",
-          "Clave": "65046",
-          "PA_Acumulada": 17091.06
+          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+          "Clave": "87538",
+          "PA_Acumulada": 1572887.26
         },
         {
-          "Asesor": "PAULINA RODRIGUEZ DE LA MORA",
-          "Clave": "65046",
-          "PA_Acumulada": 25330.85
+          "Asesor": "DESIREE DE LA PEÐA OROZCO",
+          "Clave": "80122",
+          "PA_Acumulada": 777720.97
         },
         {
-          "Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
-          "Clave": "102825",
-          "PA_Acumulada": 34685.04
+          "Asesor": "DARINKA UREÐA CASILLAS",
+          "Clave": "90355",
+          "PA_Acumulada": 668994.18
         },
         {
-          "Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
-          "Clave": "102825",
-          "PA_Acumulada": 17825.06
+          "Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
+          "Clave": "104750",
+          "PA_Acumulada": 398405.6
         },
         {
-          "Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
-          "Clave": "102825",
-          "PA_Acumulada": 30728.82
+          "Asesor": "ANAIS LUA MORENO",
+          "Clave": "110453",
+          "PA_Acumulada": 384184.56
+        },
+        {
+          "Asesor": "JORGE ANTONIO LUNA LARA",
+          "Clave": "111056",
+          "PA_Acumulada": 338553.69
+        },
+        {
+          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+          "Clave": "47116",
+          "PA_Acumulada": 288580.71
+        },
+        {
+          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
+          "Clave": "116883",
+          "PA_Acumulada": 258909.99
+        },
+        {
+          "Asesor": "MARIA TERESA ASENCIO LOZANO",
+          "Clave": "94156",
+          "PA_Acumulada": 258088.63
+        },
+        {
+          "Asesor": "MONSERRAT VELASCO SANTOS",
+          "Clave": "117440",
+          "PA_Acumulada": 220167.32
+        },
+        {
+          "Asesor": "GABRIELA CASTAÐEDA SALAZAR",
+          "Clave": "105696",
+          "PA_Acumulada": 218688.73
+        },
+        {
+          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
+          "Clave": "116876",
+          "PA_Acumulada": 148768.46
+        },
+        {
+          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
+          "Clave": "115047",
+          "PA_Acumulada": 144161.06
+        },
+        {
+          "Asesor": "ROGELIO TORRES ORTIZ",
+          "Clave": "104718",
+          "PA_Acumulada": 142393.88
+        },
+        {
+          "Asesor": "MARIA FERNANDA RIOS BERNAL",
+          "Clave": "103982",
+          "PA_Acumulada": 130497.06
+        },
+        {
+          "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
+          "Clave": "115404",
+          "PA_Acumulada": 109214.09
         },
         {
           "Asesor": "ORLANDA JIMENA CERVANTES NUÐEZ",
           "Clave": "107488",
-          "PA_Acumulada": 98471.17
-        },
-        {
-          "Asesor": "ROCIO YANETH OCHOA IBARRA",
-          "Clave": "110105",
-          "PA_Acumulada": 25046.54
-        },
-        {
-          "Asesor": "ANAIS LUA MORENO",
-          "Clave": "110453",
-          "PA_Acumulada": 46840.96
-        },
-        {
-          "Asesor": "ANAIS LUA MORENO",
-          "Clave": "110453",
-          "PA_Acumulada": 20540.52
-        },
-        {
-          "Asesor": "ANAIS LUA MORENO",
-          "Clave": "110453",
-          "PA_Acumulada": 69040.8
-        },
-        {
-          "Asesor": "ANAIS LUA MORENO",
-          "Clave": "110453",
-          "PA_Acumulada": 24428.23
-        },
-        {
-          "Asesor": "ANAIS LUA MORENO",
-          "Clave": "110453",
-          "PA_Acumulada": 23309.52
-        },
-        {
-          "Asesor": "ANAIS LUA MORENO",
-          "Clave": "110453",
-          "PA_Acumulada": 22808.24
-        },
-        {
-          "Asesor": "ANAIS LUA MORENO",
-          "Clave": "110453",
-          "PA_Acumulada": 46338.55
-        },
-        {
-          "Asesor": "ANAIS LUA MORENO",
-          "Clave": "110453",
-          "PA_Acumulada": 48344.59
-        },
-        {
-          "Asesor": "ANAIS LUA MORENO",
-          "Clave": "110453",
-          "PA_Acumulada": 27130.22
-        },
-        {
-          "Asesor": "ANAIS LUA MORENO",
-          "Clave": "110453",
-          "PA_Acumulada": 19794.08
-        },
-        {
-          "Asesor": "ANAIS LUA MORENO",
-          "Clave": "110453",
-          "PA_Acumulada": 34087.51
-        },
-        {
-          "Asesor": "JORGE ANTONIO LUNA LARA",
-          "Clave": "111056",
-          "PA_Acumulada": 103185.04
-        },
-        {
-          "Asesor": "JORGE ANTONIO LUNA LARA",
-          "Clave": "111056",
-          "PA_Acumulada": 35764.7
-        },
-        {
-          "Asesor": "JORGE ANTONIO LUNA LARA",
-          "Clave": "111056",
-          "PA_Acumulada": 17035.53
-        },
-        {
-          "Asesor": "JORGE ANTONIO LUNA LARA",
-          "Clave": "111056",
-          "PA_Acumulada": 31065.24
-        },
-        {
-          "Asesor": "JORGE ANTONIO LUNA LARA",
-          "Clave": "111056",
-          "PA_Acumulada": 47988.26
-        },
-        {
-          "Asesor": "JORGE ANTONIO LUNA LARA",
-          "Clave": "111056",
-          "PA_Acumulada": 43789.07
-        },
-        {
-          "Asesor": "JORGE ANTONIO LUNA LARA",
-          "Clave": "111056",
-          "PA_Acumulada": 62069.26
-        },
-        {
-          "Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
-          "Clave": "112083",
-          "PA_Acumulada": 21630.84
-        },
-        {
-          "Asesor": "ANA LAURA CONTRERAS IÐIGUEZ",
-          "Clave": "113450",
-          "PA_Acumulada": 58035.37
-        },
-        {
-          "Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
-          "Clave": "114100",
-          "PA_Acumulada": 41068.42
-        },
-        {
-          "Asesor": "HANA SOFIA LOPEZ QUIÐONEZ",
-          "Clave": "114157",
-          "PA_Acumulada": 24156.67
-        },
-        {
-          "Asesor": "HANA SOFIA LOPEZ QUIÐONEZ",
-          "Clave": "114157",
-          "PA_Acumulada": 20303.28
-        },
-        {
-          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
-          "Clave": "115047",
-          "PA_Acumulada": 40110.96
-        },
-        {
-          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
-          "Clave": "115047",
-          "PA_Acumulada": 9125.83
-        },
-        {
-          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
-          "Clave": "115047",
-          "PA_Acumulada": 51320.13
-        },
-        {
-          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
-          "Clave": "115047",
-          "PA_Acumulada": 24598.61
-        },
-        {
-          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
-          "Clave": "115047",
-          "PA_Acumulada": 30559.63
-        },
-        {
-          "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
-          "Clave": "115404",
-          "PA_Acumulada": 3981.56
-        },
-        {
-          "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
-          "Clave": "115404",
-          "PA_Acumulada": 15207.61
-        },
-        {
-          "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
-          "Clave": "115404",
-          "PA_Acumulada": 34494.96
-        },
-        {
-          "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
-          "Clave": "115404",
-          "PA_Acumulada": 25677.22
-        },
-        {
-          "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
-          "Clave": "115404",
-          "PA_Acumulada": 29852.74
-        },
-        {
-          "Asesor": "LUVIA PATRICIA FIGUEROA CASTRO",
-          "Clave": "116060",
-          "PA_Acumulada": 30604.24
-        },
-        {
-          "Asesor": "LUVIA PATRICIA FIGUEROA CASTRO",
-          "Clave": "116060",
-          "PA_Acumulada": 30269.46
-        },
-        {
-          "Asesor": "LUVIA PATRICIA FIGUEROA CASTRO",
-          "Clave": "116060",
-          "PA_Acumulada": 21769.2
-        },
-        {
-          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
-          "Clave": "116876",
-          "PA_Acumulada": 5150.32
-        },
-        {
-          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
-          "Clave": "116876",
-          "PA_Acumulada": 23950.2
-        },
-        {
-          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
-          "Clave": "116876",
-          "PA_Acumulada": 21251.74
-        },
-        {
-          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
-          "Clave": "116876",
-          "PA_Acumulada": 31868.94
-        },
-        {
-          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
-          "Clave": "116876",
-          "PA_Acumulada": 41734.74
-        },
-        {
-          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
-          "Clave": "116876",
-          "PA_Acumulada": 24812.52
-        },
-        {
-          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
-          "Clave": "116883",
-          "PA_Acumulada": 21877.56
-        },
-        {
-          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
-          "Clave": "116883",
-          "PA_Acumulada": 19404.85
-        },
-        {
-          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
-          "Clave": "116883",
-          "PA_Acumulada": 32409.96
-        },
-        {
-          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
-          "Clave": "116883",
-          "PA_Acumulada": 46203.83
-        },
-        {
-          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
-          "Clave": "116883",
-          "PA_Acumulada": 20758
-        },
-        {
-          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
-          "Clave": "116883",
-          "PA_Acumulada": 21892.56
-        },
-        {
-          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
-          "Clave": "116883",
-          "PA_Acumulada": 20820.48
-        },
-        {
-          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
-          "Clave": "116883",
-          "PA_Acumulada": 26232.24
-        },
-        {
-          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
-          "Clave": "116883",
-          "PA_Acumulada": 25260.35
-        },
-        {
-          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
-          "Clave": "116883",
-          "PA_Acumulada": 24050.16
-        },
-        {
-          "Asesor": "MONSERRAT VELASCO SANTOS",
-          "Clave": "117440",
-          "PA_Acumulada": 29361.5
-        },
-        {
-          "Asesor": "MONSERRAT VELASCO SANTOS",
-          "Clave": "117440",
-          "PA_Acumulada": 30528.9
-        },
-        {
-          "Asesor": "MONSERRAT VELASCO SANTOS",
-          "Clave": "117440",
-          "PA_Acumulada": 59313.1
-        },
-        {
-          "Asesor": "MONSERRAT VELASCO SANTOS",
-          "Clave": "117440",
-          "PA_Acumulada": 35795.66
-        },
-        {
-          "Asesor": "MONSERRAT VELASCO SANTOS",
-          "Clave": "117440",
-          "PA_Acumulada": 65168.16
-        },
-        {
-          "Asesor": "Asesor 117678",
-          "Clave": "117678",
-          "PA_Acumulada": 17234.11
-        },
-        {
-          "Asesor": "Asesor 117678",
-          "Clave": "117678",
-          "PA_Acumulada": 4515.4
-        },
-        {
-          "Asesor": "MARIO IVAN ROMERO GONZALEZ",
-          "Clave": "118069",
-          "PA_Acumulada": 21341.04
-        },
-        {
-          "Asesor": "MARIO IVAN ROMERO GONZALEZ",
-          "Clave": "118069",
-          "PA_Acumulada": 32963.68
-        },
-        {
-          "Asesor": "MARIO IVAN ROMERO GONZALEZ",
-          "Clave": "118069",
-          "PA_Acumulada": 20022
-        },
-        {
-          "Asesor": "MARIO IVAN ROMERO GONZALEZ",
-          "Clave": "118069",
-          "PA_Acumulada": 31904.59
-        },
-        {
-          "Asesor": "Asesor 118246",
-          "Clave": "118246",
-          "PA_Acumulada": 19033.46
+          "PA_Acumulada": 98628.89
         },
         {
           "Asesor": "JULIANA RIASCOS VALENCIA",
           "Clave": "100677",
-          "PA_Acumulada": 29685.6
+          "PA_Acumulada": 97588.37
         },
         {
-          "Asesor": "JULIANA RIASCOS VALENCIA",
-          "Clave": "100677",
-          "PA_Acumulada": 65657.14
+          "Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
+          "Clave": "102825",
+          "PA_Acumulada": 83924.15
         },
         {
-          "Asesor": "MARIA FERNANDA RIOS BERNAL",
-          "Clave": "103982",
-          "PA_Acumulada": 40245.72
-        },
-        {
-          "Asesor": "MARIA FERNANDA RIOS BERNAL",
-          "Clave": "103982",
-          "PA_Acumulada": 29960.16
-        },
-        {
-          "Asesor": "MARIA FERNANDA RIOS BERNAL",
-          "Clave": "103982",
-          "PA_Acumulada": 27320.44
-        },
-        {
-          "Asesor": "MARIA FERNANDA RIOS BERNAL",
-          "Clave": "103982",
-          "PA_Acumulada": 32970.74
+          "Asesor": "LUVIA PATRICIA FIGUEROA CASTRO",
+          "Clave": "116060",
+          "PA_Acumulada": 82642.9
         },
         {
           "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
           "Clave": "104343",
-          "PA_Acumulada": 20601.72
-        },
-        {
-          "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
-          "Clave": "104343",
-          "PA_Acumulada": 29827.08
-        },
-        {
-          "Asesor": "ROGELIO TORRES ORTIZ",
-          "Clave": "104718",
-          "PA_Acumulada": 31773.6
-        },
-        {
-          "Asesor": "ROGELIO TORRES ORTIZ",
-          "Clave": "104718",
-          "PA_Acumulada": 34085.01
-        },
-        {
-          "Asesor": "ROGELIO TORRES ORTIZ",
-          "Clave": "104718",
-          "PA_Acumulada": 29327.13
-        },
-        {
-          "Asesor": "ROGELIO TORRES ORTIZ",
-          "Clave": "104718",
-          "PA_Acumulada": 22811.88
-        },
-        {
-          "Asesor": "ROGELIO TORRES ORTIZ",
-          "Clave": "104718",
-          "PA_Acumulada": 26124.8
-        },
-        {
-          "Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
-          "Clave": "104750",
-          "PA_Acumulada": 987
-        },
-        {
-          "Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
-          "Clave": "104750",
-          "PA_Acumulada": 104845.02
-        },
-        {
-          "Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
-          "Clave": "104750",
-          "PA_Acumulada": 39851.79
-        },
-        {
-          "Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
-          "Clave": "104750",
-          "PA_Acumulada": 48559.3
-        },
-        {
-          "Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
-          "Clave": "104750",
-          "PA_Acumulada": 19682.13
-        },
-        {
-          "Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
-          "Clave": "104750",
-          "PA_Acumulada": 23327.02
-        },
-        {
-          "Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
-          "Clave": "104750",
-          "PA_Acumulada": 20701.82
-        },
-        {
-          "Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
-          "Clave": "104750",
-          "PA_Acumulada": 28170.6
-        },
-        {
-          "Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
-          "Clave": "104750",
-          "PA_Acumulada": 35924.46
-        },
-        {
-          "Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
-          "Clave": "104750",
-          "PA_Acumulada": 22276.03
-        },
-        {
-          "Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
-          "Clave": "104750",
-          "PA_Acumulada": 29695.37
-        },
-        {
-          "Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
-          "Clave": "104750",
-          "PA_Acumulada": 22474.1
-        },
-        {
-          "Asesor": "GABRIELA CASTAÐEDA SALAZAR",
-          "Clave": "105696",
-          "PA_Acumulada": 16178.04
-        },
-        {
-          "Asesor": "GABRIELA CASTAÐEDA SALAZAR",
-          "Clave": "105696",
-          "PA_Acumulada": 30829.7
-        },
-        {
-          "Asesor": "GABRIELA CASTAÐEDA SALAZAR",
-          "Clave": "105696",
-          "PA_Acumulada": 32008.12
-        },
-        {
-          "Asesor": "GABRIELA CASTAÐEDA SALAZAR",
-          "Clave": "105696",
-          "PA_Acumulada": 36290.86
-        },
-        {
-          "Asesor": "GABRIELA CASTAÐEDA SALAZAR",
-          "Clave": "105696",
-          "PA_Acumulada": 24746.52
-        },
-        {
-          "Asesor": "GABRIELA CASTAÐEDA SALAZAR",
-          "Clave": "105696",
-          "PA_Acumulada": 30844.8
-        },
-        {
-          "Asesor": "GABRIELA CASTAÐEDA SALAZAR",
-          "Clave": "105696",
-          "PA_Acumulada": 20004.84
-        },
-        {
-          "Asesor": "GABRIELA CASTAÐEDA SALAZAR",
-          "Clave": "105696",
-          "PA_Acumulada": 24320.33
-        },
-        {
-          "Asesor": "MIREYA LIZETTE TORRES GARCIA",
-          "Clave": "106018",
-          "PA_Acumulada": 34230.34
+          "PA_Acumulada": 70839.61
         },
         {
           "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
           "Clave": "108404",
-          "PA_Acumulada": 27059.39
-        },
-        {
-          "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
-          "Clave": "108404",
-          "PA_Acumulada": 36910.69
-        },
-        {
-          "Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
-          "Clave": "108405",
-          "PA_Acumulada": 36157.08
-        },
-        {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "PA_Acumulada": 28537.5
-        },
-        {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "PA_Acumulada": 22254.85
-        },
-        {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "PA_Acumulada": 12649.35
-        },
-        {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "PA_Acumulada": 30891.26
-        },
-        {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "PA_Acumulada": 30905.31
-        },
-        {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "PA_Acumulada": 35452.07
-        },
-        {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "PA_Acumulada": 31643.66
-        },
-        {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "PA_Acumulada": 20887.92
-        },
-        {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "PA_Acumulada": 30510.06
-        },
-        {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "PA_Acumulada": 30131.19
-        },
-        {
-          "Asesor": "DESIREE DE LA PEÐA OROZCO",
-          "Clave": "80122",
-          "PA_Acumulada": 20532.36
-        },
-        {
-          "Asesor": "DESIREE DE LA PEÐA OROZCO",
-          "Clave": "80122",
-          "PA_Acumulada": 24122.32
-        },
-        {
-          "Asesor": "DESIREE DE LA PEÐA OROZCO",
-          "Clave": "80122",
-          "PA_Acumulada": 30630.6
-        },
-        {
-          "Asesor": "DESIREE DE LA PEÐA OROZCO",
-          "Clave": "80122",
-          "PA_Acumulada": 99721
-        },
-        {
-          "Asesor": "DESIREE DE LA PEÐA OROZCO",
-          "Clave": "80122",
-          "PA_Acumulada": 25519.48
-        },
-        {
-          "Asesor": "DESIREE DE LA PEÐA OROZCO",
-          "Clave": "80122",
-          "PA_Acumulada": 68028.53
-        },
-        {
-          "Asesor": "DESIREE DE LA PEÐA OROZCO",
-          "Clave": "80122",
-          "PA_Acumulada": 26773.91
-        },
-        {
-          "Asesor": "DESIREE DE LA PEÐA OROZCO",
-          "Clave": "80122",
-          "PA_Acumulada": 65372.71
-        },
-        {
-          "Asesor": "DESIREE DE LA PEÐA OROZCO",
-          "Clave": "80122",
-          "PA_Acumulada": 90359.7
-        },
-        {
-          "Asesor": "DESIREE DE LA PEÐA OROZCO",
-          "Clave": "80122",
-          "PA_Acumulada": 30525.47
-        },
-        {
-          "Asesor": "DESIREE DE LA PEÐA OROZCO",
-          "Clave": "80122",
-          "PA_Acumulada": 65224.51
-        },
-        {
-          "Asesor": "DESIREE DE LA PEÐA OROZCO",
-          "Clave": "80122",
-          "PA_Acumulada": 65224.51
-        },
-        {
-          "Asesor": "DESIREE DE LA PEÐA OROZCO",
-          "Clave": "80122",
-          "PA_Acumulada": 48510.19
-        },
-        {
-          "Asesor": "DESIREE DE LA PEÐA OROZCO",
-          "Clave": "80122",
-          "PA_Acumulada": 22596.93
-        },
-        {
-          "Asesor": "MARICELA ARREOLA LOPEZ",
-          "Clave": "80925",
-          "PA_Acumulada": 23039.92
-        },
-        {
-          "Asesor": "MARICELA ARREOLA LOPEZ",
-          "Clave": "80925",
-          "PA_Acumulada": 22717.34
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 45812.02
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 23681.28
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 6958.04
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 52280.44
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 32985.78
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 21419.88
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 103777.12
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 11563.15
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 40193.23
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 38064.96
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 48660.09
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 35879.76
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 49352.04
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 286117.73
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 50474.51
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 128216.9
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 72272.72
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 34874.52
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 32296.31
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 27821.97
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 23851.61
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 32346.69
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 76246.75
-        },
-        {
-          "Asesor": "ANDREA CELESTE IBAÐEZ RINCON",
-          "Clave": "88234",
-          "PA_Acumulada": 40309.92
-        },
-        {
-          "Asesor": "ANDREA CELESTE IBAÐEZ RINCON",
-          "Clave": "88234",
-          "PA_Acumulada": 41678.55
+          "PA_Acumulada": 68773.35
         },
         {
           "Asesor": "JOCELYN URIBE VARGAS",
@@ -1922,124 +1237,119 @@
           "PA_Acumulada": 65218.56
         },
         {
-          "Asesor": "DARINKA UREÐA CASILLAS",
-          "Clave": "90355",
-          "PA_Acumulada": 24204.72
+          "Asesor": "ANA LAURA CONTRERAS IÐIGUEZ",
+          "Clave": "113450",
+          "PA_Acumulada": 59295.37
         },
         {
-          "Asesor": "DARINKA UREÐA CASILLAS",
-          "Clave": "90355",
-          "PA_Acumulada": 36516.09
+          "Asesor": "MARICELA ARREOLA LOPEZ",
+          "Clave": "80925",
+          "PA_Acumulada": 54315.88
         },
         {
-          "Asesor": "DARINKA UREÐA CASILLAS",
-          "Clave": "90355",
-          "PA_Acumulada": 24641.99
+          "Asesor": "ANDREA CELESTE IBAÐEZ RINCON",
+          "Clave": "88234",
+          "PA_Acumulada": 49452.89
         },
         {
-          "Asesor": "DARINKA UREÐA CASILLAS",
-          "Clave": "90355",
-          "PA_Acumulada": 65727.68
+          "Asesor": "HANA SOFIA LOPEZ QUIÐONEZ",
+          "Clave": "114157",
+          "PA_Acumulada": 44459.95
         },
         {
-          "Asesor": "DARINKA UREÐA CASILLAS",
-          "Clave": "90355",
-          "PA_Acumulada": 81439.46
+          "Asesor": "PAULINA RODRIGUEZ DE LA MORA",
+          "Clave": "65046",
+          "PA_Acumulada": 42730.56
         },
         {
-          "Asesor": "DARINKA UREÐA CASILLAS",
-          "Clave": "90355",
-          "PA_Acumulada": 25249.52
+          "Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
+          "Clave": "114100",
+          "PA_Acumulada": 41068.42
         },
         {
-          "Asesor": "DARINKA UREÐA CASILLAS",
-          "Clave": "90355",
-          "PA_Acumulada": 48557.5
+          "Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
+          "Clave": "108405",
+          "PA_Acumulada": 35008.68
         },
         {
-          "Asesor": "DARINKA UREÐA CASILLAS",
-          "Clave": "90355",
-          "PA_Acumulada": 80525.54
+          "Asesor": "MIREYA LIZETTE TORRES GARCIA",
+          "Clave": "106018",
+          "PA_Acumulada": 34656.56
         },
         {
-          "Asesor": "DARINKA UREÐA CASILLAS",
-          "Clave": "90355",
-          "PA_Acumulada": 45445.11
+          "Asesor": "ROCIO YANETH OCHOA IBARRA",
+          "Clave": "110105",
+          "PA_Acumulada": 26966.54
         },
         {
-          "Asesor": "DARINKA UREÐA CASILLAS",
-          "Clave": "90355",
-          "PA_Acumulada": 67294.54
+          "Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
+          "Clave": "112083",
+          "PA_Acumulada": 21630.84
         },
         {
-          "Asesor": "DARINKA UREÐA CASILLAS",
-          "Clave": "90355",
-          "PA_Acumulada": 31379.53
+          "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
+          "Clave": "98797",
+          "PA_Acumulada": 15849.19
         },
         {
-          "Asesor": "DARINKA UREÐA CASILLAS",
-          "Clave": "90355",
-          "PA_Acumulada": 71011.5
+          "Asesor": "SAMUEL NUÐO RIVERA",
+          "Clave": "101640",
+          "PA_Acumulada": 9579.48
         },
         {
-          "Asesor": "DARINKA UREÐA CASILLAS",
-          "Clave": "90355",
-          "PA_Acumulada": 38456.48
+          "Asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+          "Clave": "64502",
+          "PA_Acumulada": 8705.04
         },
         {
-          "Asesor": "MARIA TERESA ASENCIO LOZANO",
-          "Clave": "94156",
-          "PA_Acumulada": 4991.48
+          "Asesor": "KAREN MUÐOZ GARCIA",
+          "Clave": "81044",
+          "PA_Acumulada": 2301.18
         },
         {
-          "Asesor": "MARIA TERESA ASENCIO LOZANO",
-          "Clave": "94156",
-          "PA_Acumulada": 17801.31
+          "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
+          "Clave": "63441",
+          "PA_Acumulada": 1364.96
         },
         {
-          "Asesor": "MARIA TERESA ASENCIO LOZANO",
-          "Clave": "94156",
-          "PA_Acumulada": 4878.5
+          "Asesor": "EVELYN CAROLINA VENEGAS IÐIGUEZ",
+          "Clave": "109998",
+          "PA_Acumulada": 162.5
         },
         {
-          "Asesor": "MARIA TERESA ASENCIO LOZANO",
-          "Clave": "94156",
-          "PA_Acumulada": 36941.3
+          "Asesor": "MARIO ALFONSO SARMIENTO OROZCO",
+          "Clave": "69684",
+          "PA_Acumulada": 142.55
         },
         {
-          "Asesor": "MARIA TERESA ASENCIO LOZANO",
-          "Clave": "94156",
-          "PA_Acumulada": 29978.54
+          "Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
+          "Clave": "109007",
+          "PA_Acumulada": 9.86
         },
         {
-          "Asesor": "MARIA TERESA ASENCIO LOZANO",
-          "Clave": "94156",
-          "PA_Acumulada": 18910.44
+          "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
+          "Clave": "59120",
+          "PA_Acumulada": 0
         },
         {
-          "Asesor": "MARIA TERESA ASENCIO LOZANO",
-          "Clave": "94156",
-          "PA_Acumulada": 50032.04
+          "Asesor": "MIRIAM ROCIO LOMELI CHAVEZ",
+          "Clave": "109819",
+          "PA_Acumulada": 0
         },
         {
-          "Asesor": "MARIA TERESA ASENCIO LOZANO",
-          "Clave": "94156",
-          "PA_Acumulada": 61450.78
+          "Asesor": "JOSE RENE DE ALBA MORALES",
+          "Clave": "110575",
+          "PA_Acumulada": 0
         },
         {
-          "Asesor": "MARIA TERESA ASENCIO LOZANO",
-          "Clave": "94156",
-          "PA_Acumulada": 27569.25
-        },
-        {
-          "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
-          "Clave": "95148",
-          "PA_Acumulada": 23133.08
+          "Asesor": "LAURA DOLORES MONTAÐO MONTAÐO",
+          "Clave": "112522",
+          "PA_Acumulada": 0
         },
         {
           "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
           "Clave": "95148",
-          "PA_Acumulada": 46057.76
+          "PA_Acumulada": -634.16
         }
       ],
       "convenciones": [

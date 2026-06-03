@@ -450,40 +450,58 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         if (!wb)
             return res.status(404).json({ error: 'Raw file not found' });
         const ws = wb.Sheets[wb.SheetNames[0]];
-        if (!ws._cachedData)
-            ws._cachedData = XLSX.utils.sheet_to_json(ws, { header: 1, range: 3 });
-        const data = ws._cachedData;
+        const rawData = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+        let headerIdx = -1;
+        for (let i = 0; i < Math.min(30, rawData.length); i++) {
+            if (rawData[i] && rawData[i].some(c => String(c).toLowerCase().trim() === 'asesor')) {
+                headerIdx = i;
+                break;
+            }
+        }
+        if (headerIdx === -1)
+            headerIdx = 0;
+        const data = XLSX.utils.sheet_to_json(ws, { range: headerIdx, defval: '' });
         const dir = getAdvisorDirectory();
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
-        const row = data.find(r => SUCURSALES_PROMO.includes(String(r[3] || '')) && (String(r[5] || '') === advisor || advisorIds.includes(String(r[5] || ''))));
+        const row = data.find((r) => SUCURSALES_PROMO.includes(String(r['Mat'] || r['Matriz'] || '')) && (String(r['Asesor'] || '') === advisor || advisorIds.includes(String(r['Asesor'] || ''))));
         if (!row)
             return res.status(404).json({ error: 'Advisor not found' });
-        const pols = Number(row[13] || 0);
-        const mes = Number(row[10] || 1);
         return res.json({
-            'Asesor': advisor, 'Clave': row[5] || '', 'Fecha_Corte': getCaminoDate(ws) || "",
-            'Mes_Asesor': mes, 'Trimestre': Math.ceil(mes / 3), 'Polizas_Totales': pols,
-            'Mes_1_Prod': row[21] || 0, 'Mes_2_Prod': row[22] || 0, 'Mes_3_Prod': row[23] || 0
+            'Asesor': advisor, 'Clave': row['Asesor'] || '', 'Fecha_Corte': extractCutoffDate(wb, 'camino_cumbre') || "",
+            'Mes_Asesor': Number(row['Mes'] || 1), 'Trimestre': Math.ceil(Number(row['Mes'] || 1) / 3), 'Polizas_Totales': Number(row['Total'] || row['Polizas_Totales'] || 0),
+            'Mes_1_Prod': Number(row['Mes 1'] || 0), 'Mes_2_Prod': Number(row['Mes 2'] || 0), 'Mes_3_Prod': Number(row['Mes 3'] || 0)
         });
     }
     if (name === 'graduacion') {
         const wb = readExcelData(name, { skipJson: true, date: date });
         if (!wb)
             return res.status(404).json({ error: 'Raw file not found' });
-        const ws = wb.Sheets[wb.SheetNames[0]];
-        if (!ws._cachedJson)
-            ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 2 });
-        const json = ws._cachedJson;
+        let wsName = wb.SheetNames.find((n) => n.toLowerCase().includes('desarrollo (2)') || n.toLowerCase().includes('detalle') || n.toLowerCase().includes('asesores'));
+        if (!wsName)
+            wsName = wb.SheetNames[0];
+        const ws = wb.Sheets[wsName];
+        const rawData = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+        let headerIdx = -1;
+        for (let i = 0; i < Math.min(30, rawData.length); i++) {
+            if (rawData[i] && rawData[i].some(c => String(c).toLowerCase().trim() === 'asesor' || String(c).toLowerCase().trim() === 'clave')) {
+                headerIdx = i;
+                break;
+            }
+        }
+        if (headerIdx === -1)
+            headerIdx = 0;
+        const data = XLSX.utils.sheet_to_json(ws, { range: headerIdx, defval: '' });
         const dir = getAdvisorDirectory();
         const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
-        const row = json.find(r => SUCURSALES_PROMO.includes(String(r['Sucursal'] || r['Suc'] || '')) && (String(r['NOMBRE'] || '') === advisor || advisorKeys.includes(String(r['NOMBRE'] || '')) || String(r['ASESOR'] || '') === advisor || advisorKeys.includes(String(r['ASESOR'] || ''))));
+        const row = data.find((r) => SUCURSALES_PROMO.includes(String(r['Matriz'] || r['Mat'] || r['Sucursal'] || r['Suc'] || '')) && (String(r['Asesor'] || r['NOMBRE'] || '') === advisor || advisorKeys.includes(String(r['Asesor'] || r['NOMBRE'] || '')) || String(r['Clave'] || r['ASESOR'] || '') === advisor || advisorKeys.includes(String(r['Clave'] || r['ASESOR'] || ''))));
         if (!row)
             return res.status(404).json({ error: 'Advisor not found' });
-        const limitKey = Object.keys(row).find(k => k.includes('MITE P/'));
+        const limitKey = Object.keys(row).find(k => k.includes('MITE P/') || k.toLowerCase().includes('limite'));
         const fechaLimite = limitKey ? row[limitKey] : "";
+        const paKey = Object.keys(row).find(k => k.toLowerCase().includes('total') || k.toLowerCase().includes('vigor'));
         return res.json({
-            'Asesor': advisor, 'Clave': row['ASESOR'] || '', 'Fecha_Corte': extractCutoffDate(wb, 'mdrt') || parseSpanishDate(extractCutoffDate(wb, 'mdrt')) || "",
-            'Mes_Asesor': row['MES'] || 0, 'Polizas_Totales': row['EN VIGOR'] || 0, 'Comisones': row['TOTAL2'] || 0,
+            'Asesor': advisor, 'Clave': row['Clave'] || row['Asesor'] || row['ASESOR'] || '', 'Fecha_Corte': extractCutoffDate(wb, 'graduacion') || parseSpanishDate(extractCutoffDate(wb, 'graduacion')) || "",
+            'Mes_Asesor': row['mes'] || row['MES'] || 0, 'Polizas_Totales': row[paKey] || row['EN VIGOR'] || 0, 'Comisones': row['Convenciones y Recon.'] || row['TOTAL2'] || 0,
             'Fecha_Limite_Meta': formatExcelDate(fechaLimite) || "No disponible"
         });
     }

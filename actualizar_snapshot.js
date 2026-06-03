@@ -387,7 +387,7 @@ const run = async () => {
                     const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toLowerCase() === 'asesor') || nameKey);
                     return {
                         Asesor: resolveName(r[nameKey] || r[claveKey] || r[5], null, directory), Clave: String(r[claveKey] || r[5] || ''),
-                        Mes_Asesor: Number(r.Mes_Asesor || r[10] || 1), Polizas_Totales: Number(r.Polizas_Totales || r[paKey] || r[13] || 0)
+                        Mes_Asesor: Number(r.Mes_Asesor || r['Mes'] || r[10] || 1), Polizas_Totales: Number(r.Polizas_Totales || r[paKey] || r[13] || 0)
                     };
                 });
                 campaignDates.camino_cumbre = extractCutoffDate(wb);
@@ -435,15 +435,17 @@ const run = async () => {
             const files = fs.readdirSync(gradPath).filter(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm')) && !f.startsWith('~$'));
             if (files.length > 0) {
                 const wb = XLSX.readFile(path.join(gradPath, files[0]));
-                const ws = wb.Sheets[wb.SheetNames[0]];
+                let wsName = wb.SheetNames.find(n => n.toLowerCase().includes('desarrollo (2)') || n.toLowerCase().includes('detalle') || n.toLowerCase().includes('asesores'));
+                if (!wsName) wsName = wb.SheetNames[0];
+                const ws = wb.Sheets[wsName];
                 const data = extractData(ws);
-                campaigns.graduacion = data.filter(r => SUCURSALES_PROMO.includes(String(r['Mat'] || r['Mat / Unidad'] || r.Matriz || r[3] || ''))).map(r => {
-                    const paKey = Object.keys(r).find(k => k && k.trim().toLowerCase().includes('total'));
-                    const nameKey = Object.keys(r).find(k => k && (k.trim().toLowerCase() === 'nombre del asesor' || k.trim().toLowerCase() === 'asesor'));
-                    const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toLowerCase() === 'asesor') || nameKey);
+                campaigns.graduacion = data.filter(r => SUCURSALES_PROMO.includes(String(r['Matriz'] || r['Mat'] || r['Mat / Unidad'] || r[3] || ''))).map(r => {
+                    const paKey = Object.keys(r).find(k => k && (k.trim().toLowerCase().includes('total') || k.trim().toLowerCase().includes('vigor')));
+                    const nameKey = Object.keys(r).find(k => k && (k.trim().toLowerCase() === 'nombre del asesor' || k.trim().toLowerCase() === 'asesor' || k.trim().toLowerCase() === 'nombre'));
+                    const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && (k.trim().toLowerCase() === 'asesor' || k.trim().toLowerCase() === 'clave')) || nameKey);
                     return {
                         Asesor: r.Asesor || r[nameKey] ? String(r.Asesor || r[nameKey]) : resolveName(r.Clave || r[claveKey] || r[6], null, directory), Clave: String(r.Clave || r[claveKey] || r[6] || ''),
-                        Mes_Asesor: Number(r.Mes_Asesor || r[8] || 1), Polizas_Totales: Number(r.Polizas_Totales || r[paKey] || r[16] || 0)
+                        Mes_Asesor: Number(r.Mes_Asesor || r['Mes'] || r['mes'] || r['MES'] || 1), Polizas_Totales: Number(r.Polizas_Totales || r[paKey] || r['EN VIGOR'] || 0)
                     };
                 });
                 campaignDates.graduacion = extractCutoffDate(wb);
