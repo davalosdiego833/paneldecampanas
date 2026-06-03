@@ -204,7 +204,7 @@ const extractCutoffDate = (wb, type) => {
             if (sheetsToScan.length === 0)
                 sheetsToScan = wb.SheetNames.slice(0, 3).map((n) => wb.Sheets[n]);
             for (let sheet of sheetsToScan) {
-                const rawRows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '', range: 30 });
+                const rawRows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
                 for (let i = 0; i < Math.min(25, rawRows.length); i++) {
                     for (let j = 0; j < Math.min(10, rawRows[i].length); j++) {
                         const text = String(rawRows[i][j]).trim();
@@ -246,24 +246,24 @@ const extractCutoffDate = (wb, type) => {
         }
         if (type === 'pagado_pendiente') {
             const ws = wb.Sheets[wb.SheetNames[0]];
-            const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 5 });
+            const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
             return parseSpanishDate(formatExcelDate(data[0]?.[1] || data[0]?.[0] || ws?.['A1']?.v || ""));
         }
         if (type === 'asesores_sin_emision') {
             const ws = wb.Sheets['Promotores'] || wb.Sheets[wb.SheetNames[0]];
-            const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 5 });
+            const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
             return parseSpanishDate(formatExcelDate(data[1]?.[0] || data[0]?.[0] || ""));
         }
         if (type === 'comparativo_vida') {
             const ws = findSheet(wb, 'asesores');
             if (!ws)
                 return '';
-            const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 5 });
+            const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
             return parseSpanishDate(formatExcelDate(data[0]?.[0] || data[1]?.[2] || ""));
         }
         if (type === 'fanfest' || type === 'vive_tu_pasion') {
             const ws = wb.Sheets[wb.SheetNames[0]];
-            const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 20 });
+            const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
             for (let i = 0; i < 15; i++) {
                 if (!data[i])
                     continue;
@@ -1084,8 +1084,8 @@ app.get('/api/campaigns/dates', (req, res) => {
     try {
         if (fs.existsSync(SNAPSHOT_PATH)) {
             const snapshotData = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
-            if (snapshotData.data && snapshotData.data.fechas_corte && Object.keys(snapshotData.data.fechas_corte).length > 0) {
-                return res.json(snapshotData.data.fechas_corte);
+            if (snapshotData.data && snapshotData.data.campaignDates && Object.keys(snapshotData.data.campaignDates).length > 0) {
+                return res.json(snapshotData.data.campaignDates);
             }
         }
         const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion'];
