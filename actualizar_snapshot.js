@@ -35,7 +35,7 @@ const extractCutoffDate = (wb) => {
     for (let i = 0; i < Math.min(wb.SheetNames.length, 3); i++) {
         const ws = wb.Sheets[wb.SheetNames[i]];
         const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 0 });
-        for (let r = 0; r < 5; r++) {
+        for (let r = 0; r < 25; r++) {
             const row = data[r];
             if (!row) continue;
             for (const val of row) {
@@ -290,21 +290,40 @@ const run = async () => {
         const campaigns = {};
         const campaignDates = {};
 
+        // Helper para leer excels que traen basura (logos, fechas) en las primeras filas
+        const extractData = (ws) => {
+            const rawData = XLSX.utils.sheet_to_json(ws, { header: 1 });
+            let headerIdx = -1;
+            for (let i = 0; i < Math.min(30, rawData.length); i++) {
+                const row = rawData[i];
+                if (row && row.some(cell => {
+                    const c = String(cell).toLowerCase().trim();
+                    return c === 'asesor' || c === 'mat' || c === 'mat / unidad' || c === 'nombre del asesor';
+                })) {
+                    headerIdx = i;
+                    break;
+                }
+            }
+            if (headerIdx === -1) headerIdx = 0;
+            return XLSX.utils.sheet_to_json(ws, { range: headerIdx });
+        };
+
         // MDRT
         try {
             const mdrtPath = path.join(BASE_PATH, 'mdrt');
-            const files = fs.readdirSync(mdrtPath).filter(f => f.endsWith('.xlsx') && !f.startsWith('~$'));
+            const files = fs.readdirSync(mdrtPath).filter(f => f.endsWith('.xlsx') || f.endsWith('.xlsm'));
             if (files.length > 0) {
                 const wb = XLSX.readFile(path.join(mdrtPath, files[0]));
-                const ws = wb.Sheets[wb.SheetNames.find(n => n.toUpperCase() === 'MDRT') || wb.SheetNames[0]];
-                const data = XLSX.utils.sheet_to_json(ws, { range: 3 });
-                campaigns.mdrt = data.filter(r => SUCURSALES_PROMO.includes(String(r.Matriz || r['Mat'] || ''))).map(r => {
-                    const paKey = Object.keys(r).find(k => k.trim().toLowerCase() === 'total prima' || k.trim().toLowerCase() === 'camino prima');
-                    return { Asesor: resolveName(r.Asesor || r['Nombre del Asesor'], null, directory), Clave: String(r.Asesor || ''), PA_Acumulada: Number(r[paKey] || 0) };
+                const sheetName = wb.SheetNames.find(n => n.toUpperCase() === 'MDRT') || wb.SheetNames[0];
+                const ws = wb.Sheets[sheetName];
+                const data = extractData(ws);
+                campaigns.mdrt = data.filter(r => SUCURSALES_PROMO.includes(String(r['Mat'] || r['Mat / Unidad'] || r.Matriz || ''))).map(r => {
+                    const paKey = Object.keys(r).find(k => k && (k.trim().toLowerCase() === 'total prima' || k.trim().toLowerCase() === 'camino prima' || k.trim().toLowerCase() === 'prima anualizada' || k.trim().toLowerCase() === 'prima ponderada mdrt'));
+                    const nameKey = Object.keys(r).find(k => k && (k.trim().toLowerCase() === 'nombre del asesor' || k.trim().toLowerCase() === 'asesor'));
+                    const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toLowerCase() === 'asesor') || nameKey);
+                    return { Asesor: resolveName(r[claveKey] || r[nameKey], null, directory), Clave: String(r[claveKey] || ''), PA_Acumulada: Number(r[paKey] || 0) };
                 });
-                const v = ws?.['A1']?.v || '';
-                const ms = String(v).match(/\d{1,2}\s+de\s+[a-z]+\s+de\s+\d{4}/gi);
-                campaignDates.mdrt = ms ? ms[ms.length - 1] : '';
+                campaignDates.mdrt = extractCutoffDate(wb);
             }
         } catch(e) { console.warn('⚠️ MDRT skip:', e.message); }
 
@@ -330,9 +349,7 @@ const run = async () => {
                     PA_Total: Number(r[24] || 0), Polizas: Number(r[28] || 0),
                     Lugar: Number(r[32] || 9999), Lugar_480: c480, Lugar_228: c228, Lugar_108: c108, Lugar_28: c28
                 }));
-                const v = ws?.['B17']?.v || '';
-                const m = String(v).match(/\d{1,2}\s+de\s+[a-z]+\s+de\s+\d{4}/i);
-                campaignDates.convenciones = m ? m[0] : (typeof v === 'number' ? formatExcelDate(v) : String(v));
+                campaignDates.convenciones = extractCutoffDate(wb);
             }
         } catch(e) { console.warn('⚠️ Convenciones skip:', e.message); }
 
@@ -363,14 +380,17 @@ const run = async () => {
             if (files.length > 0) {
                 const wb = XLSX.readFile(path.join(ccPath, files[0]));
                 const ws = wb.Sheets[wb.SheetNames[0]];
-                const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 3 });
-                campaigns.camino_cumbre = data.slice(1).filter(r => SUCURSALES_PROMO.includes(String(r[3] || ''))).map(r => ({
-                    Asesor: resolveName(r[5], null, directory), Clave: String(r[5] || ''),
-                    Mes_Asesor: Number(r[10] || 1), Polizas_Totales: Number(r[13] || 0)
-                }));
-                const v = ws?.['A1']?.v || '';
-                const ms = String(v).match(/\d{1,2}\s+de\s+[a-z]+\s+de\s+\d{4}/gi);
-                campaignDates.camino_cumbre = ms ? ms[ms.length - 1] : '';
+                const data = extractData(ws);
+                campaigns.camino_cumbre = data.filter(r => SUCURSALES_PROMO.includes(String(r['Mat'] || r['Mat / Unidad'] || r.Matriz || r[3] || ''))).map(r => {
+                    const paKey = Object.keys(r).find(k => k && k.trim().toLowerCase().includes('total'));
+                    const nameKey = Object.keys(r).find(k => k && (k.trim().toLowerCase() === 'nombre del asesor' || k.trim().toLowerCase() === 'asesor'));
+                    const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toLowerCase() === 'asesor') || nameKey);
+                    return {
+                        Asesor: resolveName(r[nameKey] || r[claveKey] || r[5], null, directory), Clave: String(r[claveKey] || r[5] || ''),
+                        Mes_Asesor: Number(r.Mes_Asesor || r[10] || 1), Polizas_Totales: Number(r.Polizas_Totales || r[paKey] || r[13] || 0)
+                    };
+                });
+                campaignDates.camino_cumbre = extractCutoffDate(wb);
             }
         } catch(e) { console.warn('⚠️ Camino skip:', e.message); }
 
@@ -416,11 +436,16 @@ const run = async () => {
             if (files.length > 0) {
                 const wb = XLSX.readFile(path.join(gradPath, files[0]));
                 const ws = wb.Sheets[wb.SheetNames[0]];
-                const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 2 });
-                campaigns.graduacion = data.slice(1).filter(r => SUCURSALES_PROMO.includes(String(r[3] || ''))).map(r => ({
-                    Asesor: r[7] ? String(r[7]) : resolveName(r[6], null, directory), Clave: String(r[6] || ''),
-                    Mes_Asesor: Number(r[8] || 1), Polizas_Totales: Number(r[16] || 0)
-                }));
+                const data = extractData(ws);
+                campaigns.graduacion = data.filter(r => SUCURSALES_PROMO.includes(String(r['Mat'] || r['Mat / Unidad'] || r.Matriz || r[3] || ''))).map(r => {
+                    const paKey = Object.keys(r).find(k => k && k.trim().toLowerCase().includes('total'));
+                    const nameKey = Object.keys(r).find(k => k && (k.trim().toLowerCase() === 'nombre del asesor' || k.trim().toLowerCase() === 'asesor'));
+                    const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toLowerCase() === 'asesor') || nameKey);
+                    return {
+                        Asesor: r.Asesor || r[nameKey] ? String(r.Asesor || r[nameKey]) : resolveName(r.Clave || r[claveKey] || r[6], null, directory), Clave: String(r.Clave || r[claveKey] || r[6] || ''),
+                        Mes_Asesor: Number(r.Mes_Asesor || r[8] || 1), Polizas_Totales: Number(r.Polizas_Totales || r[paKey] || r[16] || 0)
+                    };
+                });
                 campaignDates.graduacion = extractCutoffDate(wb);
             }
         } catch(e) { console.warn('⚠️ Graduación skip:', e.message); }
