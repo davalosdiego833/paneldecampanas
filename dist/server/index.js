@@ -450,17 +450,20 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         if (!wb)
             return res.status(404).json({ error: 'Raw file not found' });
         const ws = wb.Sheets[wb.SheetNames[0]];
-        const rawData = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
-        let headerIdx = -1;
-        for (let i = 0; i < Math.min(30, rawData.length); i++) {
-            if (rawData[i] && rawData[i].some(c => String(c).toLowerCase().trim() === 'asesor')) {
-                headerIdx = i;
-                break;
+        if (!ws._cachedData) {
+            const rawData = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+            let headerIdx = -1;
+            for (let i = 0; i < Math.min(30, rawData.length); i++) {
+                if (rawData[i] && rawData[i].some(c => String(c).toLowerCase().trim() === 'asesor')) {
+                    headerIdx = i;
+                    break;
+                }
             }
+            if (headerIdx === -1)
+                headerIdx = 0;
+            ws._cachedData = XLSX.utils.sheet_to_json(ws, { range: headerIdx, defval: '' });
         }
-        if (headerIdx === -1)
-            headerIdx = 0;
-        const data = XLSX.utils.sheet_to_json(ws, { range: headerIdx, defval: '' });
+        const data = ws._cachedData;
         const dir = getAdvisorDirectory();
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
         const row = data.find((r) => SUCURSALES_PROMO.includes(String(r['Mat'] || r['Matriz'] || '')) && (String(r['Asesor'] || '') === advisor || advisorIds.includes(String(r['Asesor'] || ''))));
@@ -480,17 +483,20 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         if (!wsName)
             wsName = wb.SheetNames[0];
         const ws = wb.Sheets[wsName];
-        const rawData = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
-        let headerIdx = -1;
-        for (let i = 0; i < Math.min(30, rawData.length); i++) {
-            if (rawData[i] && rawData[i].some(c => String(c).toLowerCase().trim() === 'asesor' || String(c).toLowerCase().trim() === 'clave')) {
-                headerIdx = i;
-                break;
+        if (!ws._cachedData) {
+            const rawData = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+            let headerIdx = -1;
+            for (let i = 0; i < Math.min(30, rawData.length); i++) {
+                if (rawData[i] && rawData[i].some(c => String(c).toLowerCase().trim() === 'asesor' || String(c).toLowerCase().trim() === 'clave')) {
+                    headerIdx = i;
+                    break;
+                }
             }
+            if (headerIdx === -1)
+                headerIdx = 0;
+            ws._cachedData = XLSX.utils.sheet_to_json(ws, { range: headerIdx, defval: '' });
         }
-        if (headerIdx === -1)
-            headerIdx = 0;
-        const data = XLSX.utils.sheet_to_json(ws, { range: headerIdx, defval: '' });
+        const data = ws._cachedData;
         const dir = getAdvisorDirectory();
         const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
         const row = data.find((r) => SUCURSALES_PROMO.includes(String(r['Matriz'] || r['Mat'] || r['Sucursal'] || r['Suc'] || '')) && (String(r['Asesor'] || r['NOMBRE'] || '') === advisor || advisorKeys.includes(String(r['Asesor'] || r['NOMBRE'] || '')) || String(r['Clave'] || r['ASESOR'] || '') === advisor || advisorKeys.includes(String(r['Clave'] || r['ASESOR'] || ''))));
