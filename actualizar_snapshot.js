@@ -18,6 +18,18 @@ const resolveName = (clave, fallbackName, directory) => {
     return directory[claveStr] || fallbackName || `Asesor ${claveStr}`;
 };
 
+// Helper to get the most recent file in a folder
+const getMostRecentFile = (dirPath) => {
+    if (!fs.existsSync(dirPath)) return null;
+    const files = fs.readdirSync(dirPath).filter(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm')) && !f.startsWith('~$'));
+    if (files.length === 0) return null;
+    
+    return files.map(f => {
+        const fullPath = path.join(dirPath, f);
+        return { file: f, mtime: fs.statSync(fullPath).mtime.getTime() };
+    }).sort((a, b) => b.mtime - a.mtime)[0].file;
+};
+
 const formatExcelDate = (val) => {
     const monthsNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     if (typeof val === 'number') {
@@ -334,9 +346,9 @@ const run = async () => {
         // Convenciones
         try {
             const convPath = path.join(BASE_PATH, 'convenciones');
-            const files = fs.readdirSync(convPath).filter(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm')) && !f.startsWith('~$'));
-            if (files.length > 0) {
-                const wb = XLSX.readFile(path.join(convPath, files[0]));
+            const recentFile = getMostRecentFile(convPath);
+            if (recentFile) {
+                const wb = XLSX.readFile(path.join(convPath, recentFile));
                 const ws = wb.Sheets[wb.SheetNames[0]];
                 const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
                 const allRows = data.slice(1);
@@ -360,9 +372,9 @@ const run = async () => {
         // Legión Centurión
         try {
             const legPath = path.join(BASE_PATH, 'legion_centurion');
-            const files = fs.readdirSync(legPath).filter(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm')) && !f.startsWith('~$'));
-            if (files.length > 0) {
-                const wb = XLSX.readFile(path.join(legPath, files[0]));
+            const recentFile = getMostRecentFile(legPath);
+            if (recentFile) {
+                const wb = XLSX.readFile(path.join(legPath, recentFile));
                 const ws = wb.Sheets[wb.SheetNames[0]];
                 const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 11 });
                 const b9 = ws['B9']?.v || '';
@@ -380,9 +392,9 @@ const run = async () => {
         // Camino a la Cumbre
         try {
             const ccPath = path.join(BASE_PATH, 'camino_cumbre');
-            const files = fs.readdirSync(ccPath).filter(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm')) && !f.startsWith('~$'));
-            if (files.length > 0) {
-                const wb = XLSX.readFile(path.join(ccPath, files[0]));
+            const recentFile = getMostRecentFile(ccPath);
+            if (recentFile) {
+                const wb = XLSX.readFile(path.join(ccPath, recentFile));
                 const ws = wb.Sheets[wb.SheetNames[0]];
                 const data = extractData(ws);
                 campaigns.camino_cumbre = data.filter(r => {
@@ -404,9 +416,9 @@ const run = async () => {
         // Fan Fest
         try {
             const ffPath = path.join(BASE_PATH, 'fanfest');
-            const files = fs.readdirSync(ffPath).filter(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm')) && !f.startsWith('~$'));
-            if (files.length > 0) {
-                const wb = XLSX.readFile(path.join(ffPath, files[0]));
+            const recentFile = getMostRecentFile(ffPath);
+            if (recentFile) {
+                const wb = XLSX.readFile(path.join(ffPath, recentFile));
                 const ws = wb.Sheets['ASESORES'] || wb.Sheets[wb.SheetNames[0]];
                 const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
                 campaigns.fanfest = data.slice(2).filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
@@ -422,9 +434,9 @@ const run = async () => {
         // Vive Tu Pasión
         try {
             const vtpPath = path.join(BASE_PATH, 'vive_tu_pasion');
-            const files = fs.readdirSync(vtpPath).filter(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm')) && !f.startsWith('~$'));
-            if (files.length > 0) {
-                const wb = XLSX.readFile(path.join(vtpPath, files[0]));
+            const recentFile = getMostRecentFile(vtpPath);
+            if (recentFile) {
+                const wb = XLSX.readFile(path.join(vtpPath, recentFile));
                 const ws = wb.Sheets['ASESORES'] || wb.Sheets[wb.SheetNames[0]];
                 const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
                 campaigns.vive_tu_pasion = data.slice(2).filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
@@ -439,9 +451,9 @@ const run = async () => {
         // Graduación
         try {
             const gradPath = path.join(BASE_PATH, 'graduacion');
-            const files = fs.readdirSync(gradPath).filter(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm')) && !f.startsWith('~$'));
-            if (files.length > 0) {
-                const wb = XLSX.readFile(path.join(gradPath, files[0]));
+            const recentFile = getMostRecentFile(gradPath);
+            if (recentFile) {
+                const wb = XLSX.readFile(path.join(gradPath, recentFile));
                 let wsName = wb.SheetNames.find(n => n.toLowerCase().includes('desarrollo (2)') || n.toLowerCase().includes('detalle') || n.toLowerCase().includes('asesores'));
                 if (!wsName) wsName = wb.SheetNames[0];
                 const ws = wb.Sheets[wsName];
