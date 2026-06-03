@@ -453,9 +453,11 @@ const run = async () => {
                     const paKey = Object.keys(r).find(k => k && (k.trim().toUpperCase().includes('TOTAL') || k.trim().toUpperCase().includes('VIGOR')));
                     const nameKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'NOMBRE DEL ASESOR' || k.trim().toUpperCase() === 'ASESOR' || k.trim().toUpperCase() === 'NOMBRE'));
                     const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'ASESOR' || k.trim().toUpperCase() === 'CLAVE')) || nameKey);
+                    const limitKey = Object.keys(r).find(k => k && (k.trim().toUpperCase().includes('LÍMITE') || k.trim().toUpperCase().includes('LIMITE')));
                     return {
                         Asesor: r.Asesor || r[nameKey] ? String(r.Asesor || r[nameKey]) : resolveName(r.Clave || r[claveKey] || r[6], null, directory), Clave: String(r.Clave || r[claveKey] || r[6] || ''),
-                        Mes_Asesor: Number(r.Mes_Asesor || r['Mes'] || r['mes'] || r['MES'] || 1), Polizas_Totales: Number(r.Polizas_Totales || r[paKey] || r['EN VIGOR'] || 0)
+                        Mes_Asesor: Number(r.Mes_Asesor || r['Mes'] || r['mes'] || r['MES'] || 1), Polizas_Totales: Number(r.Polizas_Totales || r[paKey] || r['EN VIGOR'] || 0),
+                        Fecha_Limite_Meta: r[limitKey] ? formatExcelDate(r[limitKey]) : ''
                     };
                 });
                 campaignDates.graduacion = extractCutoffDate(wb);
