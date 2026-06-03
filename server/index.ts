@@ -137,6 +137,24 @@ app.use(express.static(DIST_PATH, { setHeaders: setMimeHeaders }));
 
 
 
+
+const extractData = (ws: any) => {
+    const rawData = XLSX.utils.sheet_to_json(ws, { header: 1 });
+    let headerIdx = -1;
+    for (let i = 0; i < Math.min(25, rawData.length); i++) {
+        if (rawData[i] && (rawData[i] as any[]).some(cell => {
+            if (!cell) return false;
+            const c = String(cell).toLowerCase().trim();
+            return c === 'asesor' || c === 'mat' || c === 'mat / unidad' || c === 'nombre del asesor';
+        })) {
+            headerIdx = i;
+            break;
+        }
+    }
+    if (headerIdx === -1) headerIdx = 0;
+    return XLSX.utils.sheet_to_json(ws, { range: headerIdx });
+};
+
 const MONTHS_ES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 
 const parseSpanishDate = (str: string): string => {
@@ -208,10 +226,25 @@ const extractCutoffDate = (wb: any, type: string): string => {
             return m ? parseSpanishDate(m[0]) : '';
         }
         if (type === 'mdrt') {
-            const ws = wb.Sheets[wb.SheetNames.find((n: string) => n.toUpperCase() === 'MDRT') || wb.SheetNames[0]];
-            const v = ws?.['A1']?.v || "";
-            const ms = String(v).match(/\d{1,2}\s+de\s+[a-z]+\s+de\s+\d{4}/gi);
-            return ms ? parseSpanishDate(ms[ms.length - 1]) : '';
+            let sheetNames = ['MDRT', 'Detalle', 'Calculadora'];
+            let sheetsToScan = sheetNames.filter((n: string) => wb.SheetNames.includes(n)).map((n: string) => wb.Sheets[n]);
+            if (sheetsToScan.length === 0) sheetsToScan = wb.SheetNames.slice(0, 3).map((n: string) => wb.Sheets[n]);
+            
+            for (let sheet of sheetsToScan) {
+                const rawRows: any[][] = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
+                for (let i = 0; i < Math.min(25, rawRows.length); i++) {
+                    for (let j = 0; j < Math.min(10, rawRows[i].length); j++) {
+                        const text = String(rawRows[i][j]).trim();
+                        const match = text.match(/avance al (\d{1,2}) de (\w+) de (\d{4})/i) ||
+                                      text.match(/avance.*\b(\d{1,2})\s*de\s*([a-zA-Z]+)\s*(?:de\s*)?(\d{4})/i) ||
+                                      text.match(/(\d{1,2})\s*de\s*([a-zA-Z]+)\s*(?:de\s*)?(\d{4})/i);
+                        if (match && !text.match(/igc|limra/i)) {
+                            return parseSpanishDate(match[0]);
+                        }
+                    }
+                }
+            }
+            return '';
         }
         if (type === 'camino_cumbre') {
             const ws = wb.Sheets[wb.SheetNames[0]];
@@ -468,7 +501,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const fechaLimite = limitKey ? row[limitKey] : "";
 
         return res.json({
-            'Asesor': advisor, 'Clave': row['ASESOR'] || '', 'Fecha_Corte': getMdrtDate(ws) || "",
+            'Asesor': advisor, 'Clave': row['ASESOR'] || '', 'Fecha_Corte': extractCutoffDate(wb, 'mdrt') || parseSpanishDate(extractCutoffDate(wb, 'mdrt')) || "",
             'Mes_Asesor': row['MES'] || 0, 'Polizas_Totales': row['EN VIGOR'] || 0, 'Comisones': row['TOTAL2'] || 0,
             'Fecha_Limite_Meta': formatExcelDate(fechaLimite) || "No disponible"
         });
@@ -527,7 +560,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const wb = readExcelData(name, { skipJson: true, date: date as string });
         if (!wb) return res.status(404).json({ error: 'Raw file not found' });
         const ws = wb.Sheets[wb.SheetNames.find((n: string) => n.toUpperCase() === 'MDRT') || wb.SheetNames[0]];
-        if (!ws._cachedJson) ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 3 });
+        if (!ws._cachedJson) ws._cachedJson = extractData(ws);
         const json: any[] = ws._cachedJson;
         const dir = getAdvisorDirectory();
         const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
@@ -535,11 +568,15 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         if (!row) return res.status(404).json({ error: 'Advisor not found' });
         const paKey = Object.keys(row).find(k => (k || '').trim().toLowerCase() === 'total prima');
         const pa = paKey ? Number(row[paKey] || 0) : 0;
-        const mMatches = Array.from(String(ws['A1']?.v || '').toLowerCase().matchAll(/(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/g));
-        const lastM = mMatches.length > 0 ? mMatches[mMatches.length - 1]![1] : "enero";
-        return res.json({
-            'Asesor': advisor, 'Clave': row['Asesor'] || '', 'Fecha_Corte': getMdrtDate(ws) || "",
-            'Mes_Actual': MONTHS_ES.indexOf(lastM) + 1, 'PA_Acumulada': pa
+        const cutoffDate = extractCutoffDate(wb, 'mdrt');
+        let currentMonthNum = 1;
+        if (cutoffDate) {
+            const parts = cutoffDate.split('-');
+            if (parts.length === 3) currentMonthNum = parseInt(parts[1], 10);
+        }
+                return res.json({
+            'Asesor': advisor, 'Clave': row['Asesor'] || '', 'Fecha_Corte': extractCutoffDate(wb, 'mdrt') || parseSpanishDate(extractCutoffDate(wb, 'mdrt')) || "",
+            'Mes_Actual': currentMonthNum, 'PA_Acumulada': pa
         });
     }
 
@@ -603,7 +640,7 @@ app.get('/api/admin/summary', (req, res) => {
                 if (wb) {
                     if (c === 'mdrt') {
                         const ws = wb.Sheets[wb.SheetNames.find((n: string) => n.toUpperCase() === 'MDRT') || wb.SheetNames[0]];
-                        const data: any[] = XLSX.utils.sheet_to_json(ws, { range: 3 });
+                        const data: any[] = extractData(ws);
                         result.mdrt = data.filter(r => SUCURSALES_PROMO.includes(String(r.Matriz || r['Mat'] || ''))).map(r => {
                             // Find PA column (some Excels have leading/trailing spaces)
                             const paKey = Object.keys(r).find(k => k.trim().toLowerCase() === 'total prima' || k.trim().toLowerCase() === 'camino prima');
@@ -738,7 +775,7 @@ app.post('/api/admin/snapshot', async (req, res) => {
             if (wb) {
                 if (c === 'mdrt') {
                     const ws = wb.Sheets[wb.SheetNames.find((n: string) => n.toUpperCase() === 'MDRT') || wb.SheetNames[0]];
-                    const data: any[] = XLSX.utils.sheet_to_json(ws, { range: 3 });
+                    const data: any[] = extractData(ws);
                     result.mdrt = data.filter(r => String(r.Matriz || r['Mat'] || '') === '2043').map(r => {
                         const paKey = Object.keys(r).find(k => k.trim().toLowerCase() === 'total prima' || k.trim().toLowerCase() === 'camino prima');
                         return { Asesor: resolveName(r.Asesor || r['Nombre del Asesor']), Clave: r.Asesor || '', PA_Acumulada: Number(r[paKey!] || 0) };
@@ -1530,7 +1567,7 @@ const preloadCampaigns = () => {
                     if (!ws._cachedJson) ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 2 });
                 } else if (c === 'mdrt') {
                     const ws = wb.Sheets[wb.SheetNames.find((n: string) => n.toUpperCase() === 'MDRT') || wb.SheetNames[0]];
-                    if (ws && !ws._cachedJson) ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 3 });
+                    if (ws && !ws._cachedJson) ws._cachedJson = extractData(ws);
                 } else if (c === 'legion_centurion') {
                     const ws = wb.Sheets[wb.SheetNames[0]];
                     if (!ws._cachedJson) ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 'A11:Z10000' });
