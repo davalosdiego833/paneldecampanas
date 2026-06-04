@@ -201,50 +201,7 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                         <span style={{ fontSize: '1.2rem', color: '#FF9F43' }}>→</span>
                     </motion.button>
 
-                    {/* Generador de Infografías */}
-                    <motion.button
-                        whileHover={{ scale: 1.02, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => {
-                            fetch('/api/activity', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({
-                                    asesor: "Administrador",
-                                    accion: "Consultó Generador de Infografías"
-                                })
-                            }).catch(e => console.error('Error', e));
-                            onSelectOption('infografias');
-                        }}
-                        style={{
-                            width: '100%',
-                            padding: '20px 24px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '16px',
-                            background: 'linear-gradient(135deg, rgba(224, 64, 251, 0.15) 0%, rgba(156, 39, 176, 0.08) 100%)',
-                            border: '1px solid rgba(224, 64, 251, 0.3)',
-                            borderRadius: '16px',
-                            cursor: 'pointer',
-                            fontFamily: 'inherit',
-                            position: 'relative',
-                            overflow: 'hidden',
-                        }}
-                    >
-                        <div style={{
-                            width: '44px', height: '44px', borderRadius: '12px',
-                            background: 'rgba(224, 64, 251, 0.2)',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            fontSize: '1.3rem',
-                        }}>🎨</div>
-                        <div style={{ textAlign: 'left', flex: 1 }}>
-                            <div style={{ fontSize: '1rem', fontWeight: 800, color: '#E040FB' }}>Infografías</div>
-                            <div style={{ fontSize: '0.78rem', color: '#e5e7eb', marginTop: '2px', fontWeight: 500 }}>
-                                Genera imágenes para compartir
-                            </div>
-                        </div>
-                        <span style={{ fontSize: '1.2rem', color: '#E040FB' }}>→</span>
-                    </motion.button>
+
 
                     {/* Resumen de Asesores */}
                     <motion.button
