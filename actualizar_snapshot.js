@@ -527,7 +527,8 @@ const run = async () => {
                     return {
                         Asesor: r.Asesor || r[nameKey] ? String(r.Asesor || r[nameKey]) : resolveName(r.Clave || r[claveKey] || r[6], null, directory), Clave: String(r.Clave || r[claveKey] || r[6] || ''),
                         Mes_Asesor: Number(r.Mes_Asesor || r['Mes'] || r['mes'] || r['MES'] || 1), Polizas_Totales: Number(r.Polizas_Totales || r[paKey] || r['EN VIGOR'] || 0),
-                        Fecha_Limite_Meta: r[limitKey] ? formatExcelDate(r[limitKey]) : ''
+                        Fecha_Limite_Meta: r[limitKey] ? formatExcelDate(r[limitKey]) : '',
+                        Comisones: Number(r.Comisones || r['TOTAL_1'] || Object.keys(r).reverse().find(k => k && k.trim().toUpperCase().includes('TOTAL')) ? r[Object.keys(r).reverse().find(k => k && k.trim().toUpperCase().includes('TOTAL'))] : 0)
                     };
                 });
                 campaignDates.graduacion = extractCutoffDate(wb);
