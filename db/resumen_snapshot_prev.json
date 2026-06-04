@@ -1,5 +1,5 @@
 {
-  "updatedAt": "4/6/2026, 11:13:35 a.m.",
+  "updatedAt": "4/6/2026, 11:52:04 a.m.",
   "data": {
     "resumen_general": {
       "asesores_sin_emision": {
@@ -638,7 +638,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2021-05-25"
         },
         {
           "ASESOR": "KAREN MUÐOZ GARCIA",
@@ -649,7 +650,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2022-11-06"
         },
         {
           "ASESOR": "MARIO ALFONSO SARMIENTO OROZCO",
@@ -660,10 +662,11 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2022-07-28"
         },
         {
-          "ASESOR": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+          "ASESOR": "Asesor 64502",
           "SUC": 2043,
           "Polizas_Acumuladas_Mes_Ant.": 0,
           "Polizas_Del_mes": 0,
@@ -671,7 +674,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "N/A"
         },
         {
           "ASESOR": "MARIA FERNANDA CARLOS VAZQUEZ",
@@ -682,7 +686,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2022-06-20"
         },
         {
           "ASESOR": "TIARE DE LA CRUZ DZIB CABRERA",
@@ -693,7 +698,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2022-05-26"
         },
         {
           "ASESOR": "LAURA DOLORES MONTAÐO MONTAÐO",
@@ -704,7 +710,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2025-04-28"
         },
         {
           "ASESOR": "JOSE RENE DE ALBA MORALES",
@@ -715,7 +722,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2024-10-17"
         },
         {
           "ASESOR": "EVELYN CAROLINA VENEGAS IÐIGUEZ",
@@ -726,7 +734,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2024-10-30"
         },
         {
           "ASESOR": "ISAI ANTONIO ROJAS MARTINEZ",
@@ -737,7 +746,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2024-08-20"
         },
         {
           "ASESOR": "SAMUEL NUÐO RIVERA",
@@ -748,7 +758,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2023-06-26"
         },
         {
           "ASESOR": "JOCELYN URIBE VARGAS",
@@ -759,7 +770,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 4.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 11.5
+          "Pólizas_Faltantes_Para_Dic": 11.5,
+          "Fecha_Conexion": "2020-04-27"
         },
         {
           "ASESOR": "ROCIO YANETH OCHOA IBARRA",
@@ -770,7 +782,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 4.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 11.5
+          "Pólizas_Faltantes_Para_Dic": 11.5,
+          "Fecha_Conexion": "2024-09-24"
         },
         {
           "ASESOR": "ORLANDA JIMENA CERVANTES NUÐEZ",
@@ -781,7 +794,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 4.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 11.5
+          "Pólizas_Faltantes_Para_Dic": 11.5,
+          "Fecha_Conexion": "2024-05-27"
         },
         {
           "ASESOR": "ADRIANA ALEJANDRA JOYA MARTINEZ",
@@ -792,7 +806,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 4,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 11
+          "Pólizas_Faltantes_Para_Dic": 11,
+          "Fecha_Conexion": "2025-07-24"
         },
         {
           "ASESOR": "ANA LAURA CONTRERAS IÐIGUEZ",
@@ -803,7 +818,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 4,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 11
+          "Pólizas_Faltantes_Para_Dic": 11,
+          "Fecha_Conexion": "2025-07-13"
         },
         {
           "ASESOR": "LUIS GUILLERMO OLGUIN FERNANDEZ",
@@ -814,7 +830,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 4,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 11
+          "Pólizas_Faltantes_Para_Dic": 11,
+          "Fecha_Conexion": "2025-03-19"
         },
         {
           "ASESOR": "MARIA ELIZABETH LLAMAS LOPEZ",
@@ -825,7 +842,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 4,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 11
+          "Pólizas_Faltantes_Para_Dic": 11,
+          "Fecha_Conexion": "2024-06-27"
         },
         {
           "ASESOR": "MIREYA LIZETTE TORRES GARCIA",
@@ -836,7 +854,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 4,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 11
+          "Pólizas_Faltantes_Para_Dic": 11,
+          "Fecha_Conexion": "2024-02-21"
         },
         {
           "ASESOR": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
@@ -847,7 +866,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 3.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10.5
+          "Pólizas_Faltantes_Para_Dic": 10.5,
+          "Fecha_Conexion": "2022-12-20"
         },
         {
           "ASESOR": "ANDREA CELESTE IBAÐEZ RINCON",
@@ -858,7 +878,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 3.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10.5
+          "Pólizas_Faltantes_Para_Dic": 10.5,
+          "Fecha_Conexion": "2019-11-24"
         },
         {
           "ASESOR": "MARICELA ARREOLA LOPEZ",
@@ -869,7 +890,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 3.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10.5
+          "Pólizas_Faltantes_Para_Dic": 10.5,
+          "Fecha_Conexion": "2018-12-04"
         },
         {
           "ASESOR": "PAULINA RODRIGUEZ DE LA MORA",
@@ -880,7 +902,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 3.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10.5
+          "Pólizas_Faltantes_Para_Dic": 10.5,
+          "Fecha_Conexion": "2022-07-20"
         },
         {
           "ASESOR": "HANA SOFIA LOPEZ QUIÐONEZ",
@@ -891,7 +914,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 3.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10.5
+          "Pólizas_Faltantes_Para_Dic": 10.5,
+          "Fecha_Conexion": "2025-09-03"
         },
         {
           "ASESOR": "LILIANA IVETTE CASTILLO SANCHEZ",
@@ -902,7 +926,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 3.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10.5
+          "Pólizas_Faltantes_Para_Dic": 10.5,
+          "Fecha_Conexion": "2024-06-23"
         },
         {
           "ASESOR": "JULIANA RIASCOS VALENCIA",
@@ -913,7 +938,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 3.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10.5
+          "Pólizas_Faltantes_Para_Dic": 10.5,
+          "Fecha_Conexion": "2023-03-13"
         },
         {
           "ASESOR": "JORGE ALBERTO PRECIADO GONZALEZ",
@@ -924,7 +950,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 3,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10
+          "Pólizas_Faltantes_Para_Dic": 10,
+          "Fecha_Conexion": "2023-10-01"
         },
         {
           "ASESOR": "JOSE EDUARDO EZQUERRO BARQUERA",
@@ -935,7 +962,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 10,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10
+          "Pólizas_Faltantes_Para_Dic": 10,
+          "Fecha_Conexion": "2023-07-09"
         },
         {
           "ASESOR": "ANA VERONICA GONZALEZ GAYTAN",
@@ -946,7 +974,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 2,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 9
+          "Pólizas_Faltantes_Para_Dic": 9,
+          "Fecha_Conexion": "2025-11-24"
         },
         {
           "ASESOR": "MARIA FERNANDA RIOS BERNAL",
@@ -957,7 +986,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 1.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 8.5
+          "Pólizas_Faltantes_Para_Dic": 8.5,
+          "Fecha_Conexion": "2023-10-16"
         },
         {
           "ASESOR": "VELIA PATRICIA BERNAL RAMOS",
@@ -968,7 +998,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 1,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 8
+          "Pólizas_Faltantes_Para_Dic": 8,
+          "Fecha_Conexion": "2025-10-13"
         },
         {
           "ASESOR": "JORGE ANTONIO LUNA LARA",
@@ -979,7 +1010,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 1,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 8
+          "Pólizas_Faltantes_Para_Dic": 8,
+          "Fecha_Conexion": "2024-12-12"
         },
         {
           "ASESOR": "ROGELIO TORRES ORTIZ",
@@ -990,7 +1022,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 0.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 7.5
+          "Pólizas_Faltantes_Para_Dic": 7.5,
+          "Fecha_Conexion": "2023-12-03"
         },
         {
           "ASESOR": "MARIA TERESA ASENCIO LOZANO",
@@ -1001,7 +1034,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 6
+          "Pólizas_Faltantes_Para_Dic": 6,
+          "Fecha_Conexion": "2020-11-23"
         },
         {
           "ASESOR": "GABRIELA CASTAÐEDA SALAZAR",
@@ -1012,7 +1046,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 4.5
+          "Pólizas_Faltantes_Para_Dic": 4.5,
+          "Fecha_Conexion": "2023-12-18"
         },
         {
           "ASESOR": "PAULA ANGELICA LOMELI CAZARES",
@@ -1023,7 +1058,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 3.5
+          "Pólizas_Faltantes_Para_Dic": 3.5,
+          "Fecha_Conexion": "2026-03-29"
         },
         {
           "ASESOR": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
@@ -1034,7 +1070,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 3
+          "Pólizas_Faltantes_Para_Dic": 3,
+          "Fecha_Conexion": "2022-02-23"
         },
         {
           "ASESOR": "PAULINA LIZBETH SOTO MUÐIZ",
@@ -1045,7 +1082,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 2.5
+          "Pólizas_Faltantes_Para_Dic": 2.5,
+          "Fecha_Conexion": "2023-11-05"
         },
         {
           "ASESOR": "MONSERRAT VELASCO SANTOS",
@@ -1056,7 +1094,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 2
+          "Pólizas_Faltantes_Para_Dic": 2,
+          "Fecha_Conexion": "2026-05-06"
         },
         {
           "ASESOR": "ANAIS LUA MORENO",
@@ -1067,7 +1106,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 1.5
+          "Pólizas_Faltantes_Para_Dic": 1.5,
+          "Fecha_Conexion": "2024-11-03"
         },
         {
           "ASESOR": "DARINKA UREÐA CASILLAS",
@@ -1078,7 +1118,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "p",
-          "Pólizas_Faltantes_Para_Dic": 0
+          "Pólizas_Faltantes_Para_Dic": 0,
+          "Fecha_Conexion": "2020-04-27"
         },
         {
           "ASESOR": "MONICA ANDREA AMBRIZ GOMEZ",
@@ -1089,7 +1130,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "p",
-          "Pólizas_Faltantes_Para_Dic": 0
+          "Pólizas_Faltantes_Para_Dic": 0,
+          "Fecha_Conexion": "2019-09-22"
         },
         {
           "ASESOR": "DESIREE DE LA PEÐA OROZCO",
@@ -1100,7 +1142,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "p",
-          "Pólizas_Faltantes_Para_Dic": 0
+          "Pólizas_Faltantes_Para_Dic": 0,
+          "Fecha_Conexion": "2018-09-27"
         },
         {
           "ASESOR": "SOFIA CAMPILLO VASCONCELOS",
@@ -1111,7 +1154,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "p",
-          "Pólizas_Faltantes_Para_Dic": 0
+          "Pólizas_Faltantes_Para_Dic": 0,
+          "Fecha_Conexion": "2026-04-13"
         }
       ],
       "comparativo_vida": {
@@ -2068,7 +2112,7 @@
           "PA_Acumulada": 9579.48
         },
         {
-          "Asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+          "Asesor": "Asesor 64502",
           "Clave": "64502",
           "PA_Acumulada": 8705.04
         },
@@ -2103,7 +2147,7 @@
           "PA_Acumulada": 0
         },
         {
-          "Asesor": "MIRIAM ROCIO LOMELI CHAVEZ",
+          "Asesor": "Asesor 109819",
           "Clave": "109819",
           "PA_Acumulada": 0
         },
@@ -2246,7 +2290,7 @@
           "Lugar_28": 2062207.66
         },
         {
-          "Asesor": "MIRIAM ROCIO LOMELI CHAVEZ",
+          "Asesor": "Asesor 109819",
           "Clave": "109819",
           "PA_Total": 36757.05,
           "Polizas": 3,
@@ -2947,7 +2991,7 @@
           "EnMeta": false
         },
         {
-          "Asesor": "MIRIAM ROCIO LOMELI CHAVEZ",
+          "Asesor": "Asesor 109819",
           "Clave": "109819",
           "Total_Polizas": 0,
           "Mes_Actual": 5,
@@ -3269,7 +3313,7 @@
           "Premio": "PENDIENTE"
         },
         {
-          "Asesor": "BRUNO BRAULIO MACIAS ALVAREZ",
+          "Asesor": "Asesor 113076",
           "Clave": "113076",
           "Total_Polizas": 0,
           "Condicion": false,
@@ -3290,7 +3334,7 @@
           "Premio": "PENDIENTE"
         },
         {
-          "Asesor": "CLAUDIA VALERIA HERNANDEZ MACIAS",
+          "Asesor": "Asesor 111960",
           "Clave": "111960",
           "Total_Polizas": 0,
           "Condicion": false,
@@ -3311,7 +3355,7 @@
           "Premio": "PENDIENTE"
         },
         {
-          "Asesor": "MIRIAM ROCIO LOMELI CHAVEZ",
+          "Asesor": "Asesor 109819",
           "Clave": "109819",
           "Total_Polizas": 0,
           "Condicion": false,
@@ -3325,7 +3369,7 @@
           "Premio": "PENDIENTE"
         },
         {
-          "Asesor": "ROCIO IVON RUIZ GARCIA",
+          "Asesor": "Asesor 108658",
           "Clave": "108658",
           "Total_Polizas": 0,
           "Condicion": false,
@@ -3339,7 +3383,7 @@
           "Premio": "PENDIENTE"
         },
         {
-          "Asesor": "JOSE ALBERTO CORONADO ROSAS",
+          "Asesor": "Asesor 94205",
           "Clave": "94205",
           "Total_Polizas": 0,
           "Condicion": false,
@@ -3509,7 +3553,7 @@
           "Premio": ""
         },
         {
-          "Asesor": "ROCIO IVON RUIZ GARCIA",
+          "Asesor": "Asesor 108658",
           "Clave": "108658",
           "Polizas": 0,
           "Comisiones": 0,
@@ -3544,21 +3588,21 @@
           "Premio": ""
         },
         {
-          "Asesor": "JOSE ALBERTO CORONADO ROSAS",
+          "Asesor": "Asesor 94205",
           "Clave": "94205",
           "Polizas": 0,
           "Comisiones": 0,
           "Premio": ""
         },
         {
-          "Asesor": "CLAUDIA VALERIA HERNANDEZ MACIAS",
+          "Asesor": "Asesor 111960",
           "Clave": "111960",
           "Polizas": 0,
           "Comisiones": 0,
           "Premio": ""
         },
         {
-          "Asesor": "BRUNO BRAULIO MACIAS ALVAREZ",
+          "Asesor": "Asesor 113076",
           "Clave": "113076",
           "Polizas": 0,
           "Comisiones": 0,
@@ -3572,7 +3616,7 @@
           "Premio": ""
         },
         {
-          "Asesor": "MIRIAM ROCIO LOMELI CHAVEZ",
+          "Asesor": "Asesor 109819",
           "Clave": "109819",
           "Polizas": 0,
           "Comisiones": 0,

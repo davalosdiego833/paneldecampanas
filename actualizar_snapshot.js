@@ -320,12 +320,20 @@ const run = async () => {
                 rg.comparativo_vida.individuals = rawA
                     .filter(r => {
                         const claveStr = String(r[isRaw ? 7 : 5] || '').trim();
-                        const sucId = String(r[isRaw ? 4 : 3] || r[isRaw ? 5 : 4] || '').trim();
-                        return r[isRaw ? 8 : 6] && r[isRaw ? 8 : 6] !== 'TOTAL' && (SUCURSALES_ADMIN.includes(sucId) || !!directory[claveStr]);
+                        const sucId1 = String(r[isRaw ? 4 : 3] || '').trim();
+                        const sucId2 = String(r[isRaw ? 5 : 4] || '').trim();
+                        return r[isRaw ? 8 : 6] && r[isRaw ? 8 : 6] !== 'TOTAL' && 
+                               (SUCURSALES_ADMIN.includes(sucId1) || SUCURSALES_ADMIN.includes(sucId2) || !!directory[claveStr]);
                     })
-                    .map(r => ({
-                        'Nombre del Asesor': resolveName(r[isRaw ? 7 : 5], r[isRaw ? 8 : 6], directory),
-                        'Sucursal': r[isRaw ? 4 : 3],
+                    .map(r => {
+                        const sucId1 = String(r[isRaw ? 4 : 3] || '').trim();
+                        const sucId2 = String(r[isRaw ? 5 : 4] || '').trim();
+                        // Tomamos el segundo ID como sucursal específica si es distinto al de la promotoría (ej. 2856 en lugar de 2043)
+                        const finalSuc = (sucId2 && SUCURSALES_ADMIN.includes(sucId2)) ? sucId2 : sucId1;
+                        
+                        return {
+                            'Nombre del Asesor': resolveName(r[isRaw ? 7 : 5], r[isRaw ? 8 : 6], directory),
+                            'Sucursal': finalSuc,
                         'Polizas_Pagadas_Año_Anterior': Number(r[isRaw ? 17 : 15] || 0),
                         'Polizas_Pagadas_Año_Actual': Number(r[isRaw ? 18 : 16] || 0),
                         'Crec_Polizas_Pagadas': Number(r[isRaw ? 19 : 17] || 0),
@@ -334,7 +342,8 @@ const run = async () => {
                         'Prima_Pagada_Año_Actual': Number(r[isRaw ? 26 : 24] || 0),
                         'Crec_Prima_Pagada': Number(r[isRaw ? 27 : 25] || 0),
                         '%_Crec_Prima_Pagada': Number(r[isRaw ? 28 : 26] || 0)
-                    }));
+                        };
+                    });
             }
             fc.comparativo_vida = extractCutoffDate(wb);
         }
