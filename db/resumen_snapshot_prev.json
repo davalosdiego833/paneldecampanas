@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2/6/2026, 10:12:27 p.m.",
+  "updatedAt": "3/6/2026, 1:37:12 p.m.",
   "data": {
     "resumen_general": {
       "asesores_sin_emision": {
@@ -1116,8 +1116,8 @@
       ]
     },
     "fechas_corte": {
-      "asesores_sin_emision": "28 de MAY de 2026",
-      "proactivos": "Información al 28 de mayo de 2026."
+      "asesores_sin_emision": "28 de may de 2026",
+      "proactivos": "28 de mayo de 2026"
     },
     "campaigns": {
       "mdrt": [
@@ -2948,16 +2948,87 @@
           "Premio": ""
         }
       ],
-      "graduacion": []
+      "graduacion": [
+        {
+          "Asesor": "112522",
+          "Clave": "112522",
+          "Mes_Asesor": 14,
+          "Polizas_Totales": 6,
+          "Fecha_Limite_Meta": "1 de Marzo de 2026"
+        },
+        {
+          "Asesor": "114100",
+          "Clave": "114100",
+          "Mes_Asesor": 11,
+          "Polizas_Totales": 14.5,
+          "Fecha_Limite_Meta": "1 de Junio de 2026"
+        },
+        {
+          "Asesor": "113450",
+          "Clave": "113450",
+          "Mes_Asesor": 11,
+          "Polizas_Totales": 11.5,
+          "Fecha_Limite_Meta": "1 de Junio de 2026"
+        },
+        {
+          "Asesor": "114157",
+          "Clave": "114157",
+          "Mes_Asesor": 9,
+          "Polizas_Totales": 9.5,
+          "Fecha_Limite_Meta": "1 de Agosto de 2026"
+        },
+        {
+          "Asesor": "115047",
+          "Clave": "115047",
+          "Mes_Asesor": 8,
+          "Polizas_Totales": 15.5,
+          "Fecha_Limite_Meta": "1 de Septiembre de 2026"
+        },
+        {
+          "Asesor": "115404",
+          "Clave": "115404",
+          "Mes_Asesor": 7,
+          "Polizas_Totales": 12,
+          "Fecha_Limite_Meta": "1 de Octubre de 2026"
+        },
+        {
+          "Asesor": "116060",
+          "Clave": "116060",
+          "Mes_Asesor": 6,
+          "Polizas_Totales": 8.5,
+          "Fecha_Limite_Meta": "1 de Noviembre de 2026"
+        },
+        {
+          "Asesor": "116876",
+          "Clave": "116876",
+          "Mes_Asesor": 3,
+          "Polizas_Totales": 6.5,
+          "Fecha_Limite_Meta": "1 de Febrero de 2027"
+        },
+        {
+          "Asesor": "116883",
+          "Clave": "116883",
+          "Mes_Asesor": 2,
+          "Polizas_Totales": 9,
+          "Fecha_Limite_Meta": "1 de Marzo de 2027"
+        },
+        {
+          "Asesor": "117440",
+          "Clave": "117440",
+          "Mes_Asesor": 1,
+          "Polizas_Totales": 7,
+          "Fecha_Limite_Meta": "1 de Abril de 2027"
+        }
+      ]
     },
     "campaignDates": {
-      "mdrt": "Avance del 1 de enero al 27 de mayo de 2026.",
-      "convenciones": "Al 27 de Mayo de 2026",
+      "mdrt": "27 de mayo de 2026",
+      "convenciones": "27 de mayo de 2026",
       "legion_centurion": "15 de Mayo de 2026",
-      "camino_cumbre": "Avance  al 27 de mayo de 2026.",
-      "fanfest": "Avance al 30 de abril 2026",
-      "vive_tu_pasion": "Avance al 30 de abril 2026",
-      "graduacion": "Avance al 28 de mayo de 2026."
+      "camino_cumbre": "27 de mayo de 2026",
+      "fanfest": "30 de abril 2026",
+      "vive_tu_pasion": "30 de abril 2026",
+      "graduacion": "28 de mayo de 2026"
     }
   }
 }

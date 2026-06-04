@@ -145,7 +145,10 @@ const run = async () => {
         }
 
         // 3. Asesores sin Emisión
-        const sinEmPath = path.join(BASE_PATH, 'administrador', 'asesores_sin_emision', 'Asesores sin Emision.xls');
+        let sinEmPath = path.join(BASE_PATH, 'administrador', 'asesores_sin_emision', 'Asesores sin Emision.xlsx');
+        if (!fs.existsSync(sinEmPath)) {
+            sinEmPath = path.join(BASE_PATH, 'administrador', 'asesores_sin_emision', 'Asesores sin Emision.xls');
+        }
         if (fs.existsSync(sinEmPath)) {
             const wb = XLSX.readFile(sinEmPath);
             const wsP = wb.Sheets['Promotores'];
@@ -323,6 +326,7 @@ const run = async () => {
 
         // MDRT
         try {
+            console.log('Processing mdrt');
             const mdrtPath = path.join(BASE_PATH, 'mdrt');
             const files = fs.readdirSync(mdrtPath).filter(f => f.endsWith('.xlsx') || f.endsWith('.xlsm'));
             if (files.length > 0) {
@@ -345,6 +349,7 @@ const run = async () => {
 
         // Convenciones
         try {
+            console.log('Processing convenciones');
             const convPath = path.join(BASE_PATH, 'convenciones');
             const recentFile = getMostRecentFile(convPath);
             if (recentFile) {
@@ -371,6 +376,7 @@ const run = async () => {
 
         // Legión Centurión
         try {
+            console.log('Processing legion_centurion');
             const legPath = path.join(BASE_PATH, 'legion_centurion');
             const recentFile = getMostRecentFile(legPath);
             if (recentFile) {
@@ -391,6 +397,7 @@ const run = async () => {
 
         // Camino a la Cumbre
         try {
+            console.log('Processing camino_cumbre');
             const ccPath = path.join(BASE_PATH, 'camino_cumbre');
             const recentFile = getMostRecentFile(ccPath);
             if (recentFile) {
@@ -415,6 +422,7 @@ const run = async () => {
 
         // Fan Fest
         try {
+            console.log('Processing fanfest');
             const ffPath = path.join(BASE_PATH, 'fanfest');
             const recentFile = getMostRecentFile(ffPath);
             if (recentFile) {
@@ -433,6 +441,7 @@ const run = async () => {
 
         // Vive Tu Pasión
         try {
+            console.log('Processing vive_tu_pasion');
             const vtpPath = path.join(BASE_PATH, 'vive_tu_pasion');
             const recentFile = getMostRecentFile(vtpPath);
             if (recentFile) {
@@ -450,11 +459,12 @@ const run = async () => {
 
         // Graduación
         try {
+            console.log('Processing graduacion');
             const gradPath = path.join(BASE_PATH, 'graduacion');
             const recentFile = getMostRecentFile(gradPath);
             if (recentFile) {
                 const wb = XLSX.readFile(path.join(gradPath, recentFile));
-                let wsName = wb.SheetNames.find(n => n.toLowerCase().includes('desarrollo (2)') || n.toLowerCase().includes('detalle') || n.toLowerCase().includes('asesores'));
+                let wsName = wb.SheetNames.find(n => n.toLowerCase().includes('encuentroii') || n.toLowerCase().includes('desarrollo (2)') || n.toLowerCase().includes('detalle') || n.toLowerCase().includes('asesores'));
                 if (!wsName) wsName = wb.SheetNames[0];
                 const ws = wb.Sheets[wsName];
                 const data = extractData(ws);
