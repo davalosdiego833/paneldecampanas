@@ -416,7 +416,8 @@ const run = async () => {
                 campaigns.convenciones = allRows.filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
                     Asesor: resolveName(r[7], null, directory), Clave: String(r[7] || ''),
                     PA_Total: Number(r[24] || 0), Polizas: Number(r[28] || 0),
-                    Lugar: Number(r[32] || 9999), Lugar_480: c480, Lugar_228: c228, Lugar_108: c108, Lugar_28: c28
+                    Lugar: Number(r[32] || 9999), Lugar_480: c480, Lugar_228: c228, Lugar_108: c108, Lugar_28: c28,
+                    Comision_Vida: Number(r[11] || 0), RDA: Number(r[18] || 0)
                 }));
                 campaignDates.convenciones = extractCutoffDate(wb);
             }
