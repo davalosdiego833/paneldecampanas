@@ -1,5 +1,5 @@
 {
-  "updatedAt": "4/6/2026, 10:42:02 a.m.",
+  "updatedAt": "4/6/2026, 11:52:04 a.m.",
   "data": {
     "resumen_general": {
       "asesores_sin_emision": {
@@ -638,7 +638,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2021-05-25"
         },
         {
           "ASESOR": "KAREN MUÐOZ GARCIA",
@@ -649,7 +650,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2022-11-06"
         },
         {
           "ASESOR": "MARIO ALFONSO SARMIENTO OROZCO",
@@ -660,10 +662,11 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2022-07-28"
         },
         {
-          "ASESOR": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+          "ASESOR": "Asesor 64502",
           "SUC": 2043,
           "Polizas_Acumuladas_Mes_Ant.": 0,
           "Polizas_Del_mes": 0,
@@ -671,7 +674,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "N/A"
         },
         {
           "ASESOR": "MARIA FERNANDA CARLOS VAZQUEZ",
@@ -682,7 +686,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2022-06-20"
         },
         {
           "ASESOR": "TIARE DE LA CRUZ DZIB CABRERA",
@@ -693,7 +698,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2022-05-26"
         },
         {
           "ASESOR": "LAURA DOLORES MONTAÐO MONTAÐO",
@@ -704,7 +710,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2025-04-28"
         },
         {
           "ASESOR": "JOSE RENE DE ALBA MORALES",
@@ -715,7 +722,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2024-10-17"
         },
         {
           "ASESOR": "EVELYN CAROLINA VENEGAS IÐIGUEZ",
@@ -726,7 +734,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2024-10-30"
         },
         {
           "ASESOR": "ISAI ANTONIO ROJAS MARTINEZ",
@@ -737,7 +746,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2024-08-20"
         },
         {
           "ASESOR": "SAMUEL NUÐO RIVERA",
@@ -748,7 +758,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 12
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2023-06-26"
         },
         {
           "ASESOR": "JOCELYN URIBE VARGAS",
@@ -759,7 +770,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 4.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 11.5
+          "Pólizas_Faltantes_Para_Dic": 11.5,
+          "Fecha_Conexion": "2020-04-27"
         },
         {
           "ASESOR": "ROCIO YANETH OCHOA IBARRA",
@@ -770,7 +782,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 4.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 11.5
+          "Pólizas_Faltantes_Para_Dic": 11.5,
+          "Fecha_Conexion": "2024-09-24"
         },
         {
           "ASESOR": "ORLANDA JIMENA CERVANTES NUÐEZ",
@@ -781,7 +794,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 4.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 11.5
+          "Pólizas_Faltantes_Para_Dic": 11.5,
+          "Fecha_Conexion": "2024-05-27"
         },
         {
           "ASESOR": "ADRIANA ALEJANDRA JOYA MARTINEZ",
@@ -792,7 +806,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 4,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 11
+          "Pólizas_Faltantes_Para_Dic": 11,
+          "Fecha_Conexion": "2025-07-24"
         },
         {
           "ASESOR": "ANA LAURA CONTRERAS IÐIGUEZ",
@@ -803,7 +818,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 4,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 11
+          "Pólizas_Faltantes_Para_Dic": 11,
+          "Fecha_Conexion": "2025-07-13"
         },
         {
           "ASESOR": "LUIS GUILLERMO OLGUIN FERNANDEZ",
@@ -814,7 +830,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 4,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 11
+          "Pólizas_Faltantes_Para_Dic": 11,
+          "Fecha_Conexion": "2025-03-19"
         },
         {
           "ASESOR": "MARIA ELIZABETH LLAMAS LOPEZ",
@@ -825,7 +842,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 4,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 11
+          "Pólizas_Faltantes_Para_Dic": 11,
+          "Fecha_Conexion": "2024-06-27"
         },
         {
           "ASESOR": "MIREYA LIZETTE TORRES GARCIA",
@@ -836,7 +854,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 4,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 11
+          "Pólizas_Faltantes_Para_Dic": 11,
+          "Fecha_Conexion": "2024-02-21"
         },
         {
           "ASESOR": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
@@ -847,7 +866,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 3.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10.5
+          "Pólizas_Faltantes_Para_Dic": 10.5,
+          "Fecha_Conexion": "2022-12-20"
         },
         {
           "ASESOR": "ANDREA CELESTE IBAÐEZ RINCON",
@@ -858,7 +878,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 3.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10.5
+          "Pólizas_Faltantes_Para_Dic": 10.5,
+          "Fecha_Conexion": "2019-11-24"
         },
         {
           "ASESOR": "MARICELA ARREOLA LOPEZ",
@@ -869,7 +890,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 3.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10.5
+          "Pólizas_Faltantes_Para_Dic": 10.5,
+          "Fecha_Conexion": "2018-12-04"
         },
         {
           "ASESOR": "PAULINA RODRIGUEZ DE LA MORA",
@@ -880,7 +902,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 3.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10.5
+          "Pólizas_Faltantes_Para_Dic": 10.5,
+          "Fecha_Conexion": "2022-07-20"
         },
         {
           "ASESOR": "HANA SOFIA LOPEZ QUIÐONEZ",
@@ -891,7 +914,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 3.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10.5
+          "Pólizas_Faltantes_Para_Dic": 10.5,
+          "Fecha_Conexion": "2025-09-03"
         },
         {
           "ASESOR": "LILIANA IVETTE CASTILLO SANCHEZ",
@@ -902,7 +926,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 3.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10.5
+          "Pólizas_Faltantes_Para_Dic": 10.5,
+          "Fecha_Conexion": "2024-06-23"
         },
         {
           "ASESOR": "JULIANA RIASCOS VALENCIA",
@@ -913,7 +938,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 3.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10.5
+          "Pólizas_Faltantes_Para_Dic": 10.5,
+          "Fecha_Conexion": "2023-03-13"
         },
         {
           "ASESOR": "JORGE ALBERTO PRECIADO GONZALEZ",
@@ -924,7 +950,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 3,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10
+          "Pólizas_Faltantes_Para_Dic": 10,
+          "Fecha_Conexion": "2023-10-01"
         },
         {
           "ASESOR": "JOSE EDUARDO EZQUERRO BARQUERA",
@@ -935,7 +962,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 10,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 10
+          "Pólizas_Faltantes_Para_Dic": 10,
+          "Fecha_Conexion": "2023-07-09"
         },
         {
           "ASESOR": "ANA VERONICA GONZALEZ GAYTAN",
@@ -946,7 +974,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 2,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 9
+          "Pólizas_Faltantes_Para_Dic": 9,
+          "Fecha_Conexion": "2025-11-24"
         },
         {
           "ASESOR": "MARIA FERNANDA RIOS BERNAL",
@@ -957,7 +986,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 1.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 8.5
+          "Pólizas_Faltantes_Para_Dic": 8.5,
+          "Fecha_Conexion": "2023-10-16"
         },
         {
           "ASESOR": "VELIA PATRICIA BERNAL RAMOS",
@@ -968,7 +998,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 1,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 8
+          "Pólizas_Faltantes_Para_Dic": 8,
+          "Fecha_Conexion": "2025-10-13"
         },
         {
           "ASESOR": "JORGE ANTONIO LUNA LARA",
@@ -979,7 +1010,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 1,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 8
+          "Pólizas_Faltantes_Para_Dic": 8,
+          "Fecha_Conexion": "2024-12-12"
         },
         {
           "ASESOR": "ROGELIO TORRES ORTIZ",
@@ -990,7 +1022,8 @@
           "Proactivo_al_mes": "i",
           "Pólizas_Faltantes": 0.5,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 7.5
+          "Pólizas_Faltantes_Para_Dic": 7.5,
+          "Fecha_Conexion": "2023-12-03"
         },
         {
           "ASESOR": "MARIA TERESA ASENCIO LOZANO",
@@ -1001,7 +1034,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 6
+          "Pólizas_Faltantes_Para_Dic": 6,
+          "Fecha_Conexion": "2020-11-23"
         },
         {
           "ASESOR": "GABRIELA CASTAÐEDA SALAZAR",
@@ -1012,7 +1046,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 4.5
+          "Pólizas_Faltantes_Para_Dic": 4.5,
+          "Fecha_Conexion": "2023-12-18"
         },
         {
           "ASESOR": "PAULA ANGELICA LOMELI CAZARES",
@@ -1023,7 +1058,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 3.5
+          "Pólizas_Faltantes_Para_Dic": 3.5,
+          "Fecha_Conexion": "2026-03-29"
         },
         {
           "ASESOR": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
@@ -1034,7 +1070,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 3
+          "Pólizas_Faltantes_Para_Dic": 3,
+          "Fecha_Conexion": "2022-02-23"
         },
         {
           "ASESOR": "PAULINA LIZBETH SOTO MUÐIZ",
@@ -1045,7 +1082,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 2.5
+          "Pólizas_Faltantes_Para_Dic": 2.5,
+          "Fecha_Conexion": "2023-11-05"
         },
         {
           "ASESOR": "MONSERRAT VELASCO SANTOS",
@@ -1056,7 +1094,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 2
+          "Pólizas_Faltantes_Para_Dic": 2,
+          "Fecha_Conexion": "2026-05-06"
         },
         {
           "ASESOR": "ANAIS LUA MORENO",
@@ -1067,7 +1106,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "i",
-          "Pólizas_Faltantes_Para_Dic": 1.5
+          "Pólizas_Faltantes_Para_Dic": 1.5,
+          "Fecha_Conexion": "2024-11-03"
         },
         {
           "ASESOR": "DARINKA UREÐA CASILLAS",
@@ -1078,7 +1118,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "p",
-          "Pólizas_Faltantes_Para_Dic": 0
+          "Pólizas_Faltantes_Para_Dic": 0,
+          "Fecha_Conexion": "2020-04-27"
         },
         {
           "ASESOR": "MONICA ANDREA AMBRIZ GOMEZ",
@@ -1089,7 +1130,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "p",
-          "Pólizas_Faltantes_Para_Dic": 0
+          "Pólizas_Faltantes_Para_Dic": 0,
+          "Fecha_Conexion": "2019-09-22"
         },
         {
           "ASESOR": "DESIREE DE LA PEÐA OROZCO",
@@ -1100,7 +1142,8 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "p",
-          "Pólizas_Faltantes_Para_Dic": 0
+          "Pólizas_Faltantes_Para_Dic": 0,
+          "Fecha_Conexion": "2018-09-27"
         },
         {
           "ASESOR": "SOFIA CAMPILLO VASCONCELOS",
@@ -1111,13 +1154,785 @@
           "Proactivo_al_mes": "p",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "p",
-          "Pólizas_Faltantes_Para_Dic": 0
+          "Pólizas_Faltantes_Para_Dic": 0,
+          "Fecha_Conexion": "2026-04-13"
         }
-      ]
+      ],
+      "comparativo_vida": {
+        "generalSummary": {
+          "Polizas_Pagadas_Año_Anterior": 199,
+          "Polizas_Pagadas_Año_Actual": 124,
+          "Crec_Polizas_Pagadas": -75,
+          "%_Crec_Polizas_Pagadas": -0.3769,
+          "Prima_Pagada_Año_Anterior": 9434.75,
+          "Prima_Pagada_Año_Actual": 5748.09,
+          "Crec_Prima_Pagada": -3686.66,
+          "%_Crec_Prima_Pagada": -0.3908
+        },
+        "individuals": [
+          {
+            "Nombre del Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 8.5,
+            "Polizas_Pagadas_Año_Actual": 7,
+            "Crec_Polizas_Pagadas": -1.5,
+            "%_Crec_Polizas_Pagadas": -0.1765,
+            "Prima_Pagada_Año_Anterior": 392.62,
+            "Prima_Pagada_Año_Actual": 282.69,
+            "Crec_Prima_Pagada": -109.93,
+            "%_Crec_Prima_Pagada": -0.28
+          },
+          {
+            "Nombre del Asesor": "VALERIA AIDE IBAÐEZ MURGUIA",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 40.71,
+            "Prima_Pagada_Año_Actual": 0,
+            "Crec_Prima_Pagada": -40.71,
+            "%_Crec_Prima_Pagada": -1
+          },
+          {
+            "Nombre del Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 1,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": -1,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 45.05,
+            "Prima_Pagada_Año_Actual": 12.72,
+            "Crec_Prima_Pagada": -32.33,
+            "%_Crec_Prima_Pagada": -0.7176
+          },
+          {
+            "Nombre del Asesor": "PAULINA RODRIGUEZ DE LA MORA",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 1,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 31.17,
+            "Prima_Pagada_Año_Actual": 36.5,
+            "Crec_Prima_Pagada": 5.33,
+            "%_Crec_Prima_Pagada": 0.171
+          },
+          {
+            "Nombre del Asesor": "MARIO ALFONSO SARMIENTO OROZCO",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 15.2,
+            "Prima_Pagada_Año_Actual": 0,
+            "Crec_Prima_Pagada": -15.2,
+            "%_Crec_Prima_Pagada": -1
+          },
+          {
+            "Nombre del Asesor": "DESIREE DE LA PEÐA OROZCO",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 14,
+            "Polizas_Pagadas_Año_Actual": 14,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 995.37,
+            "Prima_Pagada_Año_Actual": 648.83,
+            "Crec_Prima_Pagada": -346.54,
+            "%_Crec_Prima_Pagada": -0.3482
+          },
+          {
+            "Nombre del Asesor": "MARICELA ARREOLA LOPEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 5,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": -4,
+            "%_Crec_Polizas_Pagadas": -0.8,
+            "Prima_Pagada_Año_Anterior": 160.61,
+            "Prima_Pagada_Año_Actual": 77.18,
+            "Crec_Prima_Pagada": -83.43,
+            "%_Crec_Prima_Pagada": -0.5195
+          },
+          {
+            "Nombre del Asesor": "KAREN MUÐOZ GARCIA",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 31.44,
+            "Prima_Pagada_Año_Actual": 2.4,
+            "Crec_Prima_Pagada": -29.04,
+            "%_Crec_Prima_Pagada": -0.9237
+          },
+          {
+            "Nombre del Asesor": "ALEJANDRA IVETTE PEDROZA MACIAS",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 2.87,
+            "Prima_Pagada_Año_Actual": 30.1,
+            "Crec_Prima_Pagada": 27.23,
+            "%_Crec_Prima_Pagada": 9.4878
+          },
+          {
+            "Nombre del Asesor": "SEGUROS MONTERREY NEW YORK LIFE SA DE CV",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 8.1,
+            "Prima_Pagada_Año_Actual": 0,
+            "Crec_Prima_Pagada": -8.1,
+            "%_Crec_Prima_Pagada": -1
+          },
+          {
+            "Nombre del Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 13,
+            "Polizas_Pagadas_Año_Actual": 13,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 1042.59,
+            "Prima_Pagada_Año_Actual": 1121.63,
+            "Crec_Prima_Pagada": 79.04,
+            "%_Crec_Prima_Pagada": 0.0758
+          },
+          {
+            "Nombre del Asesor": "ANDREA CELESTE IBAÐEZ RINCON",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 1,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 32.67,
+            "Prima_Pagada_Año_Actual": 28.12,
+            "Crec_Prima_Pagada": -4.55,
+            "%_Crec_Prima_Pagada": -0.1393
+          },
+          {
+            "Nombre del Asesor": "JOCELYN URIBE VARGAS",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 1,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": -1,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 11.53,
+            "Prima_Pagada_Año_Actual": 20.73,
+            "Crec_Prima_Pagada": 9.2,
+            "%_Crec_Prima_Pagada": 0.7979
+          },
+          {
+            "Nombre del Asesor": "DARINKA UREÐA CASILLAS",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 12,
+            "Polizas_Pagadas_Año_Actual": 12,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 582.91,
+            "Prima_Pagada_Año_Actual": 591.73,
+            "Crec_Prima_Pagada": 8.82,
+            "%_Crec_Prima_Pagada": 0.0151
+          },
+          {
+            "Nombre del Asesor": "MARIA TERESA ASENCIO LOZANO",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 1,
+            "Polizas_Pagadas_Año_Actual": 3,
+            "Crec_Polizas_Pagadas": 2,
+            "%_Crec_Polizas_Pagadas": 2,
+            "Prima_Pagada_Año_Anterior": 22.28,
+            "Prima_Pagada_Año_Actual": 76.09,
+            "Crec_Prima_Pagada": 53.81,
+            "%_Crec_Prima_Pagada": 2.4152
+          },
+          {
+            "Nombre del Asesor": "JOSE ALBERTO CORONADO ROSAS",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 11.23,
+            "Prima_Pagada_Año_Actual": 10.21,
+            "Crec_Prima_Pagada": -1.02,
+            "%_Crec_Prima_Pagada": -0.0908
+          },
+          {
+            "Nombre del Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 4,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": -3,
+            "%_Crec_Polizas_Pagadas": -0.75,
+            "Prima_Pagada_Año_Anterior": 1507.86,
+            "Prima_Pagada_Año_Actual": 28.05,
+            "Crec_Prima_Pagada": -1479.81,
+            "%_Crec_Prima_Pagada": -0.9814
+          },
+          {
+            "Nombre del Asesor": "FERNANDO JAVIER DAVALOS FLORES",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 1,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": -1,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 111.18,
+            "Prima_Pagada_Año_Actual": 0,
+            "Crec_Prima_Pagada": -111.18,
+            "%_Crec_Prima_Pagada": -1
+          },
+          {
+            "Nombre del Asesor": "WENDY SUSANA SANCHEZ VAZQUEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 4.42,
+            "Prima_Pagada_Año_Actual": 0,
+            "Crec_Prima_Pagada": -4.42,
+            "%_Crec_Prima_Pagada": -1
+          },
+          {
+            "Nombre del Asesor": "JULIANA RIASCOS VALENCIA",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 4,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": -3,
+            "%_Crec_Polizas_Pagadas": -0.75,
+            "Prima_Pagada_Año_Anterior": 90.18,
+            "Prima_Pagada_Año_Actual": 100.42,
+            "Crec_Prima_Pagada": 10.24,
+            "%_Crec_Prima_Pagada": 0.1136
+          },
+          {
+            "Nombre del Asesor": "SAMUEL NUÐO RIVERA",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 2,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": -2,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 162.13,
+            "Prima_Pagada_Año_Actual": 37.45,
+            "Crec_Prima_Pagada": -124.68,
+            "%_Crec_Prima_Pagada": -0.769
+          },
+          {
+            "Nombre del Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": 1,
+            "%_Crec_Polizas_Pagadas": 1,
+            "Prima_Pagada_Año_Anterior": 3.09,
+            "Prima_Pagada_Año_Actual": 44.06,
+            "Crec_Prima_Pagada": 40.97,
+            "%_Crec_Prima_Pagada": 13.2589
+          },
+          {
+            "Nombre del Asesor": "MARIA FERNANDA RIOS BERNAL",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": 1,
+            "%_Crec_Polizas_Pagadas": 1,
+            "Prima_Pagada_Año_Anterior": 0,
+            "Prima_Pagada_Año_Actual": 32.94,
+            "Crec_Prima_Pagada": 32.94,
+            "%_Crec_Prima_Pagada": 1
+          },
+          {
+            "Nombre del Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 5,
+            "Polizas_Pagadas_Año_Actual": 2,
+            "Crec_Polizas_Pagadas": -3,
+            "%_Crec_Polizas_Pagadas": -0.6,
+            "Prima_Pagada_Año_Anterior": 288.69,
+            "Prima_Pagada_Año_Actual": 61.93,
+            "Crec_Prima_Pagada": -226.76,
+            "%_Crec_Prima_Pagada": -0.7855
+          },
+          {
+            "Nombre del Asesor": "ROGELIO TORRES ORTIZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 11,
+            "Polizas_Pagadas_Año_Actual": 4,
+            "Crec_Polizas_Pagadas": -7,
+            "%_Crec_Polizas_Pagadas": -0.6364,
+            "Prima_Pagada_Año_Anterior": 358.34,
+            "Prima_Pagada_Año_Actual": 135.15,
+            "Crec_Prima_Pagada": -223.19,
+            "%_Crec_Prima_Pagada": -0.6228
+          },
+          {
+            "Nombre del Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 10,
+            "Polizas_Pagadas_Año_Actual": 8,
+            "Crec_Polizas_Pagadas": -2,
+            "%_Crec_Polizas_Pagadas": -0.2,
+            "Prima_Pagada_Año_Anterior": 277.25,
+            "Prima_Pagada_Año_Actual": 183.24,
+            "Crec_Prima_Pagada": -94.01,
+            "%_Crec_Prima_Pagada": -0.3391
+          },
+          {
+            "Nombre del Asesor": "GABRIELA CASTAÐEDA SALAZAR",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 3,
+            "Polizas_Pagadas_Año_Actual": 7,
+            "Crec_Polizas_Pagadas": 4,
+            "%_Crec_Polizas_Pagadas": 1.3333,
+            "Prima_Pagada_Año_Anterior": 99.79,
+            "Prima_Pagada_Año_Actual": 166,
+            "Crec_Prima_Pagada": 66.21,
+            "%_Crec_Prima_Pagada": 0.6635
+          },
+          {
+            "Nombre del Asesor": "MIREYA LIZETTE TORRES GARCIA",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 2,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": -1,
+            "%_Crec_Polizas_Pagadas": -0.5,
+            "Prima_Pagada_Año_Anterior": 73,
+            "Prima_Pagada_Año_Actual": 59.02,
+            "Crec_Prima_Pagada": -13.98,
+            "%_Crec_Prima_Pagada": -0.1915
+          },
+          {
+            "Nombre del Asesor": "ORLANDA JIMENA CERVANTES NUÐEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 16,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": -16,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 389.34,
+            "Prima_Pagada_Año_Actual": 182.58,
+            "Crec_Prima_Pagada": -206.76,
+            "%_Crec_Prima_Pagada": -0.5311
+          },
+          {
+            "Nombre del Asesor": "ARMANDO JONATHAN DE LA CRUZ DIAZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 2.19,
+            "Prima_Pagada_Año_Actual": 0,
+            "Crec_Prima_Pagada": -2.19,
+            "%_Crec_Prima_Pagada": -1
+          },
+          {
+            "Nombre del Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 11,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": -10,
+            "%_Crec_Polizas_Pagadas": -0.9091,
+            "Prima_Pagada_Año_Anterior": 462.03,
+            "Prima_Pagada_Año_Actual": 78.86,
+            "Crec_Prima_Pagada": -383.17,
+            "%_Crec_Prima_Pagada": -0.8293
+          },
+          {
+            "Nombre del Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 9,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": -8,
+            "%_Crec_Polizas_Pagadas": -0.8889,
+            "Prima_Pagada_Año_Anterior": 192.24,
+            "Prima_Pagada_Año_Actual": 158.69,
+            "Crec_Prima_Pagada": -33.55,
+            "%_Crec_Prima_Pagada": -0.1745
+          },
+          {
+            "Nombre del Asesor": "ROCIO IVON RUIZ GARCIA",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 6,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": -6,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 172.99,
+            "Prima_Pagada_Año_Actual": 10.45,
+            "Crec_Prima_Pagada": -162.54,
+            "%_Crec_Prima_Pagada": -0.9396
+          },
+          {
+            "Nombre del Asesor": "ANGELICA YADIRA ROMERO JAUREGUI",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 3,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": -3,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 54.52,
+            "Prima_Pagada_Año_Actual": 0,
+            "Crec_Prima_Pagada": -54.52,
+            "%_Crec_Prima_Pagada": -1
+          },
+          {
+            "Nombre del Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 1,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": -1,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 54.83,
+            "Prima_Pagada_Año_Actual": 37.91,
+            "Crec_Prima_Pagada": -16.92,
+            "%_Crec_Prima_Pagada": -0.3086
+          },
+          {
+            "Nombre del Asesor": "RODRIGO RAMON ALVAREZ JIMENEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 7.45,
+            "Prima_Pagada_Año_Actual": 0,
+            "Crec_Prima_Pagada": -7.45,
+            "%_Crec_Prima_Pagada": -1
+          },
+          {
+            "Nombre del Asesor": "MIRIAM ROCIO LOMELI CHAVEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 3,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": -3,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 193.76,
+            "Prima_Pagada_Año_Actual": 0,
+            "Crec_Prima_Pagada": -193.76,
+            "%_Crec_Prima_Pagada": -1
+          },
+          {
+            "Nombre del Asesor": "EVELYN CAROLINA VENEGAS IÐIGUEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 4,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": -4,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 116.89,
+            "Prima_Pagada_Año_Actual": 17.38,
+            "Crec_Prima_Pagada": -99.51,
+            "%_Crec_Prima_Pagada": -0.8513
+          },
+          {
+            "Nombre del Asesor": "ROCIO YANETH OCHOA IBARRA",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 3,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": -3,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 57.5,
+            "Prima_Pagada_Año_Actual": 43.06,
+            "Crec_Prima_Pagada": -14.44,
+            "%_Crec_Prima_Pagada": -0.2511
+          },
+          {
+            "Nombre del Asesor": "ANAIS LUA MORENO",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 15.5,
+            "Polizas_Pagadas_Año_Actual": 10,
+            "Crec_Polizas_Pagadas": -5.5,
+            "%_Crec_Polizas_Pagadas": -0.3548,
+            "Prima_Pagada_Año_Anterior": 290.86,
+            "Prima_Pagada_Año_Actual": 303.78,
+            "Crec_Prima_Pagada": 12.92,
+            "%_Crec_Prima_Pagada": 0.0444
+          },
+          {
+            "Nombre del Asesor": "JOSE RENE DE ALBA MORALES",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 2,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": -2,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 358.71,
+            "Prima_Pagada_Año_Actual": 71.81,
+            "Crec_Prima_Pagada": -286.9,
+            "%_Crec_Prima_Pagada": -0.7998
+          },
+          {
+            "Nombre del Asesor": "LUIS FERNANDO HERNANDEZ AYALA",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 16.01,
+            "Prima_Pagada_Año_Actual": 0,
+            "Crec_Prima_Pagada": -16.01,
+            "%_Crec_Prima_Pagada": -1
+          },
+          {
+            "Nombre del Asesor": "JORGE ANTONIO LUNA LARA",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 3,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": -2,
+            "%_Crec_Polizas_Pagadas": -0.6667,
+            "Prima_Pagada_Año_Anterior": 109.52,
+            "Prima_Pagada_Año_Actual": 101.47,
+            "Crec_Prima_Pagada": -8.05,
+            "%_Crec_Prima_Pagada": -0.0735
+          },
+          {
+            "Nombre del Asesor": "CLAUDIA VALERIA HERNANDEZ MACIAS",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 7,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": -7,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 205.32,
+            "Prima_Pagada_Año_Actual": 13.5,
+            "Crec_Prima_Pagada": -191.82,
+            "%_Crec_Prima_Pagada": -0.9342
+          },
+          {
+            "Nombre del Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 5,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": -4,
+            "%_Crec_Polizas_Pagadas": -0.8,
+            "Prima_Pagada_Año_Anterior": 153.3,
+            "Prima_Pagada_Año_Actual": 3.61,
+            "Crec_Prima_Pagada": -149.69,
+            "%_Crec_Prima_Pagada": -0.9765
+          },
+          {
+            "Nombre del Asesor": "MARIO ALBERTO VILLASEÐOR SANCHEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 1,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": -1,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 9.61,
+            "Prima_Pagada_Año_Actual": 0,
+            "Crec_Prima_Pagada": -9.61,
+            "%_Crec_Prima_Pagada": -1
+          },
+          {
+            "Nombre del Asesor": "LAURA DOLORES MONTAÐO MONTAÐO",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 4,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": -4,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 59.74,
+            "Prima_Pagada_Año_Actual": 18.58,
+            "Crec_Prima_Pagada": -41.16,
+            "%_Crec_Prima_Pagada": -0.689
+          },
+          {
+            "Nombre del Asesor": "BRUNO BRAULIO MACIAS ALVAREZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 4,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": -4,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 106.57,
+            "Prima_Pagada_Año_Actual": 31.26,
+            "Crec_Prima_Pagada": -75.31,
+            "%_Crec_Prima_Pagada": -0.7067
+          },
+          {
+            "Nombre del Asesor": "ORLANDA JIMENA CERVANTES NUÐEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 3.75,
+            "Prima_Pagada_Año_Actual": 0,
+            "Crec_Prima_Pagada": -3.75,
+            "%_Crec_Prima_Pagada": -1
+          },
+          {
+            "Nombre del Asesor": "ANA LAURA CONTRERAS IÐIGUEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 2,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": -1,
+            "%_Crec_Polizas_Pagadas": -0.5,
+            "Prima_Pagada_Año_Anterior": 15.34,
+            "Prima_Pagada_Año_Actual": 84.58,
+            "Crec_Prima_Pagada": 69.24,
+            "%_Crec_Prima_Pagada": 4.5137
+          },
+          {
+            "Nombre del Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": 1,
+            "%_Crec_Polizas_Pagadas": 1,
+            "Prima_Pagada_Año_Anterior": 0,
+            "Prima_Pagada_Año_Actual": 109.75,
+            "Crec_Prima_Pagada": 109.75,
+            "%_Crec_Prima_Pagada": 1
+          },
+          {
+            "Nombre del Asesor": "HANA SOFIA LOPEZ QUIÐONEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": 1,
+            "%_Crec_Polizas_Pagadas": 1,
+            "Prima_Pagada_Año_Anterior": 0,
+            "Prima_Pagada_Año_Actual": 39.49,
+            "Crec_Prima_Pagada": 39.49,
+            "%_Crec_Prima_Pagada": 1
+          },
+          {
+            "Nombre del Asesor": "MARIA JOSE GUZMAN ZAMORA",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 0,
+            "Prima_Pagada_Año_Actual": 27.56,
+            "Crec_Prima_Pagada": 27.56,
+            "%_Crec_Prima_Pagada": 1
+          },
+          {
+            "Nombre del Asesor": "LINDA TANIA MIROSLAVA ENRIQUEZ PRECIADO",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 0,
+            "Prima_Pagada_Año_Actual": 0,
+            "Crec_Prima_Pagada": 0,
+            "%_Crec_Prima_Pagada": 0
+          },
+          {
+            "Nombre del Asesor": "VELIA PATRICIA BERNAL RAMOS",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 3,
+            "Crec_Polizas_Pagadas": 3,
+            "%_Crec_Polizas_Pagadas": 1,
+            "Prima_Pagada_Año_Anterior": 0,
+            "Prima_Pagada_Año_Actual": 196.93,
+            "Crec_Prima_Pagada": 196.93,
+            "%_Crec_Prima_Pagada": 1
+          },
+          {
+            "Nombre del Asesor": "ANA VERONICA GONZALEZ GAYTAN",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": 1,
+            "%_Crec_Polizas_Pagadas": 1,
+            "Prima_Pagada_Año_Anterior": 0,
+            "Prima_Pagada_Año_Actual": 58.02,
+            "Crec_Prima_Pagada": 58.02,
+            "%_Crec_Prima_Pagada": 1
+          },
+          {
+            "Nombre del Asesor": "LUVIA PATRICIA FIGUEROA CASTRO",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 2,
+            "Crec_Polizas_Pagadas": 2,
+            "%_Crec_Polizas_Pagadas": 1,
+            "Prima_Pagada_Año_Anterior": 0,
+            "Prima_Pagada_Año_Actual": 96.12,
+            "Crec_Prima_Pagada": 96.12,
+            "%_Crec_Prima_Pagada": 1
+          },
+          {
+            "Nombre del Asesor": "GERARDO DANIEL BARAJAS TORRES",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 0,
+            "Prima_Pagada_Año_Actual": 7.96,
+            "Crec_Prima_Pagada": 7.96,
+            "%_Crec_Prima_Pagada": 1
+          },
+          {
+            "Nombre del Asesor": "PAULA ANGELICA LOMELI CAZARES",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 5,
+            "Crec_Polizas_Pagadas": 5,
+            "%_Crec_Polizas_Pagadas": 1,
+            "Prima_Pagada_Año_Anterior": 0,
+            "Prima_Pagada_Año_Actual": 76.15,
+            "Crec_Prima_Pagada": 76.15,
+            "%_Crec_Prima_Pagada": 1
+          },
+          {
+            "Nombre del Asesor": "SOFIA CAMPILLO VASCONCELOS",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 8,
+            "Crec_Polizas_Pagadas": 8,
+            "%_Crec_Polizas_Pagadas": 1,
+            "Prima_Pagada_Año_Anterior": 0,
+            "Prima_Pagada_Año_Actual": 73.75,
+            "Crec_Prima_Pagada": 73.75,
+            "%_Crec_Prima_Pagada": 1
+          },
+          {
+            "Nombre del Asesor": "MONSERRAT VELASCO SANTOS",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 5,
+            "Crec_Polizas_Pagadas": 5,
+            "%_Crec_Polizas_Pagadas": 1,
+            "Prima_Pagada_Año_Anterior": 0,
+            "Prima_Pagada_Año_Actual": 44.52,
+            "Crec_Prima_Pagada": 44.52,
+            "%_Crec_Prima_Pagada": 1
+          },
+          {
+            "Nombre del Asesor": "MARIO IVAN ROMERO GONZALEZ",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 4,
+            "Crec_Polizas_Pagadas": 4,
+            "%_Crec_Polizas_Pagadas": 1,
+            "Prima_Pagada_Año_Anterior": 0,
+            "Prima_Pagada_Año_Actual": 54.11,
+            "Crec_Prima_Pagada": 54.11,
+            "%_Crec_Prima_Pagada": 1
+          },
+          {
+            "Nombre del Asesor": "JOSE ANTEMIO OLIVA SANTOS",
+            "Sucursal": 2043,
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": 1,
+            "%_Crec_Polizas_Pagadas": 1,
+            "Prima_Pagada_Año_Anterior": 0,
+            "Prima_Pagada_Año_Actual": 19.02,
+            "Crec_Prima_Pagada": 19.02,
+            "%_Crec_Prima_Pagada": 1
+          }
+        ]
+      }
     },
     "fechas_corte": {
       "asesores_sin_emision": "28 de may de 2026",
-      "proactivos": "28 de mayo de 2026"
+      "proactivos": "28 de mayo de 2026",
+      "comparativo_vida": "27 de mayo de 2026"
     },
     "campaigns": {
       "mdrt": [
@@ -1297,7 +2112,7 @@
           "PA_Acumulada": 9579.48
         },
         {
-          "Asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+          "Asesor": "Asesor 64502",
           "Clave": "64502",
           "PA_Acumulada": 8705.04
         },
@@ -1332,7 +2147,7 @@
           "PA_Acumulada": 0
         },
         {
-          "Asesor": "MIRIAM ROCIO LOMELI CHAVEZ",
+          "Asesor": "Asesor 109819",
           "Clave": "109819",
           "PA_Acumulada": 0
         },
@@ -1475,7 +2290,7 @@
           "Lugar_28": 2062207.66
         },
         {
-          "Asesor": "MIRIAM ROCIO LOMELI CHAVEZ",
+          "Asesor": "Asesor 109819",
           "Clave": "109819",
           "PA_Total": 36757.05,
           "Polizas": 3,
@@ -2176,7 +2991,7 @@
           "EnMeta": false
         },
         {
-          "Asesor": "MIRIAM ROCIO LOMELI CHAVEZ",
+          "Asesor": "Asesor 109819",
           "Clave": "109819",
           "Total_Polizas": 0,
           "Mes_Actual": 5,
@@ -2498,7 +3313,7 @@
           "Premio": "PENDIENTE"
         },
         {
-          "Asesor": "BRUNO BRAULIO MACIAS ALVAREZ",
+          "Asesor": "Asesor 113076",
           "Clave": "113076",
           "Total_Polizas": 0,
           "Condicion": false,
@@ -2519,7 +3334,7 @@
           "Premio": "PENDIENTE"
         },
         {
-          "Asesor": "CLAUDIA VALERIA HERNANDEZ MACIAS",
+          "Asesor": "Asesor 111960",
           "Clave": "111960",
           "Total_Polizas": 0,
           "Condicion": false,
@@ -2540,7 +3355,7 @@
           "Premio": "PENDIENTE"
         },
         {
-          "Asesor": "MIRIAM ROCIO LOMELI CHAVEZ",
+          "Asesor": "Asesor 109819",
           "Clave": "109819",
           "Total_Polizas": 0,
           "Condicion": false,
@@ -2554,7 +3369,7 @@
           "Premio": "PENDIENTE"
         },
         {
-          "Asesor": "ROCIO IVON RUIZ GARCIA",
+          "Asesor": "Asesor 108658",
           "Clave": "108658",
           "Total_Polizas": 0,
           "Condicion": false,
@@ -2568,7 +3383,7 @@
           "Premio": "PENDIENTE"
         },
         {
-          "Asesor": "JOSE ALBERTO CORONADO ROSAS",
+          "Asesor": "Asesor 94205",
           "Clave": "94205",
           "Total_Polizas": 0,
           "Condicion": false,
@@ -2738,7 +3553,7 @@
           "Premio": ""
         },
         {
-          "Asesor": "ROCIO IVON RUIZ GARCIA",
+          "Asesor": "Asesor 108658",
           "Clave": "108658",
           "Polizas": 0,
           "Comisiones": 0,
@@ -2773,21 +3588,21 @@
           "Premio": ""
         },
         {
-          "Asesor": "JOSE ALBERTO CORONADO ROSAS",
+          "Asesor": "Asesor 94205",
           "Clave": "94205",
           "Polizas": 0,
           "Comisiones": 0,
           "Premio": ""
         },
         {
-          "Asesor": "CLAUDIA VALERIA HERNANDEZ MACIAS",
+          "Asesor": "Asesor 111960",
           "Clave": "111960",
           "Polizas": 0,
           "Comisiones": 0,
           "Premio": ""
         },
         {
-          "Asesor": "BRUNO BRAULIO MACIAS ALVAREZ",
+          "Asesor": "Asesor 113076",
           "Clave": "113076",
           "Polizas": 0,
           "Comisiones": 0,
@@ -2801,7 +3616,7 @@
           "Premio": ""
         },
         {
-          "Asesor": "MIRIAM ROCIO LOMELI CHAVEZ",
+          "Asesor": "Asesor 109819",
           "Clave": "109819",
           "Polizas": 0,
           "Comisiones": 0,

@@ -84,6 +84,7 @@ const run = async () => {
         // 1. Cargar Directorio de Asesores
         const dirPath = path.join(BASE_PATH, 'administrador', 'directorio_asesores.xlsx');
         const directory = {};
+        const directoryFechas = {};
         if (fs.existsSync(dirPath)) {
             const wbDir = XLSX.readFile(dirPath);
             const dataDir = XLSX.utils.sheet_to_json(wbDir.Sheets[wbDir.SheetNames[0]]);
@@ -91,6 +92,25 @@ const run = async () => {
                 const clave = row.Clave || row.CLAVE || row.clave;
                 const nombre = row.Nombre_Completo || row['Nombre Completo'] || row.nombre;
                 if (clave && nombre) directory[String(clave).trim()] = String(nombre).trim();
+                
+                const fechaConexion = row.FECHA_CONEXION || row.Fecha_Conexion || row.fecha_conexion || '';
+                if (clave && fechaConexion) {
+                    let fechaConexionStr = fechaConexion;
+                    if (typeof fechaConexion === 'number' && fechaConexion > 30000) {
+                        const dateObj = new Date((fechaConexion - 25569) * 86400 * 1000);
+                        // Convert to ISO without timezone shifting it back a day
+                        const year = dateObj.getFullYear();
+                        const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+                        const day = String(dateObj.getDate()).padStart(2, '0');
+                        fechaConexionStr = `${year}-${month}-${day}`;
+                    } else if (fechaConexion instanceof Date) {
+                        const year = fechaConexion.getFullYear();
+                        const month = String(fechaConexion.getMonth() + 1).padStart(2, '0');
+                        const day = String(fechaConexion.getDate()).padStart(2, '0');
+                        fechaConexionStr = `${year}-${month}-${day}`;
+                    }
+                    directoryFechas[String(clave).trim()] = String(fechaConexionStr).trim();
+                }
             });
         }
 
@@ -221,27 +241,34 @@ const run = async () => {
                     const sucId = String(r[2] || r[3] || '').trim();
                     return r[4] && (SUCURSALES_ADMIN.includes(sucId) || !!directory[claveStr]);
                 })
-                .map(r => ({
-                    ASESOR: resolveName(r[4], null, directory),
-                    SUC: r[3],
-                    'Polizas_Acumuladas_Mes_Ant.': Number(r[9] || 0),
-                    'Polizas_Del_mes': Number(r[10] || 0),
-                    'Polizas_Acumuladas_Total': Number(r[11] || 0),
-                    'Proactivo_al_mes': r[12],
-                    'Pólizas_Faltantes': Number(r[13] || 0),
-                    'Proactivo_a_Dic': r[14],
-                    'Pólizas_Faltantes_Para_Dic': Number(r[15] || 0)
-                }));
+                .map(r => {
+                    const claveStr = String(r[4] || '').trim();
+                    return {
+                        ASESOR: resolveName(r[4], null, directory),
+                        SUC: r[3],
+                        'Polizas_Acumuladas_Mes_Ant.': Number(r[9] || 0),
+                        'Polizas_Del_mes': Number(r[10] || 0),
+                        'Polizas_Acumuladas_Total': Number(r[11] || 0),
+                        'Proactivo_al_mes': r[12],
+                        'Pólizas_Faltantes': Number(r[13] || 0),
+                        'Proactivo_a_Dic': r[14],
+                        'Pólizas_Faltantes_Para_Dic': Number(r[15] || 0),
+                        'Fecha_Conexion': directoryFechas[claveStr] || 'N/A'
+                    };
+                });
             fc.proactivos = extractCutoffDate(wb);
         }
 
         // 5. Comparativo de Vida
-        const cvPath = path.join(BASE_PATH, 'administrador', 'comparativo_vida', 'comparativo vida.xlsx');
+        let cvPath = path.join(BASE_PATH, 'administrador', 'comparativo_vida', 'Comparativo Vida.xlsm');
+        if (!fs.existsSync(cvPath)) {
+            cvPath = path.join(BASE_PATH, 'administrador', 'comparativo_vida', 'comparativo vida.xlsx');
+        }
         if (fs.existsSync(cvPath)) {
             const wb = XLSX.readFile(cvPath);
-            const wsP = wb.Sheets['promotoria'] || wb.Sheets[wb.SheetNames[0]];
+            const wsP = wb.Sheets['Resumen x Prom'] || wb.Sheets['promotoria'] || wb.Sheets[wb.SheetNames[1]];
             const rawP = XLSX.utils.sheet_to_json(wsP, { header: 1 });
-            const dataRow = rawP[4];
+            const dataRow = rawP.find(r => r && (String(r[3]).trim() === '2043' || String(r[1]).includes('2043') || String(r[2]).includes('2043'))) || [];
             
             if (dataRow) {
                 const parseVal = (v) => {
@@ -252,49 +279,61 @@ const run = async () => {
                     return isNaN(n) ? 0 : (String(v).includes('%') ? n / 100 : n);
                 };
 
-                rg.comparativo_vida = {
-                    generalSummary: {
-                        Polizas_Pagadas_Año_Anterior: parseVal(dataRow[0]),
-                        Polizas_Pagadas_Año_Actual: parseVal(dataRow[1]),
-                        Crec_Polizas_Pagadas: parseVal(dataRow[2]),
-                        '%_Crec_Polizas_Pagadas': parseVal(dataRow[3]),
-                        Prima_Pagada_Año_Anterior: parseVal(dataRow[4]),
-                        'Prima_Pagada_Añoa_Actual': parseVal(dataRow[5]),
-                        Crec_Prima_Pagada: parseVal(dataRow[6]),
-                        '%_Crec_Prima_Pagada': parseVal(dataRow[7]),
-                        Recluta_Año_Anterior: parseVal(dataRow[8]),
-                        Recluta_Año_Actual: parseVal(dataRow[9]),
-                        Crec_Recluta: parseVal(dataRow[10]),
-                        '%_Crec_Recluta': parseVal(dataRow[11]),
-                        Prima_Pagada_Reclutas_Año_Anterior: parseVal(dataRow[12]),
-                        Prima_Pagada_Reclutas_Año_Actual: parseVal(dataRow[13]),
-                        Crec_Prima_Pagada_Reclutas: parseVal(dataRow[14]),
-                        '%_Crec_Prima_Pagada_Reclutas': parseVal(dataRow[15])
-                    },
-                    individuals: []
-                };
+                const isRaw = !!wb.Sheets['Detalle de Asesores'];
+                
+                if (isRaw) {
+                    rg.comparativo_vida = {
+                        generalSummary: {
+                            Polizas_Pagadas_Año_Anterior: parseVal(dataRow[9]),
+                            Polizas_Pagadas_Año_Actual: parseVal(dataRow[10]),
+                            Crec_Polizas_Pagadas: parseVal(dataRow[11]),
+                            '%_Crec_Polizas_Pagadas': parseVal(dataRow[12]),
+                            Prima_Pagada_Año_Anterior: parseVal(dataRow[21]),
+                            Prima_Pagada_Año_Actual: parseVal(dataRow[22]),
+                            Crec_Prima_Pagada: parseVal(dataRow[23]),
+                            '%_Crec_Prima_Pagada': parseVal(dataRow[24])
+                        },
+                        individuals: []
+                    };
+                } else {
+                    rg.comparativo_vida = {
+                        generalSummary: {
+                            Polizas_Pagadas_Año_Anterior: parseVal(dataRow[0]),
+                            Polizas_Pagadas_Año_Actual: parseVal(dataRow[1]),
+                            Crec_Polizas_Pagadas: parseVal(dataRow[2]),
+                            '%_Crec_Polizas_Pagadas': parseVal(dataRow[3]),
+                            Prima_Pagada_Año_Anterior: parseVal(dataRow[4]),
+                            Prima_Pagada_Año_Actual: parseVal(dataRow[5]),
+                            Crec_Prima_Pagada: parseVal(dataRow[6]),
+                            '%_Crec_Prima_Pagada': parseVal(dataRow[7])
+                        },
+                        individuals: []
+                    };
+                }
             }
 
-            const wsA = wb.Sheets['asesores'];
+            const wsA = wb.Sheets['Detalle de Asesores'] || wb.Sheets['asesores'];
             if (wsA) {
                 const rawA = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 6 });
+                const isRaw = !!wb.Sheets['Detalle de Asesores'];
+                
                 rg.comparativo_vida.individuals = rawA
                     .filter(r => {
-                        const claveStr = String(r[5] || '').trim();
-                        const sucId = String(r[3] || r[4] || '').trim();
-                        return r[6] && r[6] !== 'TOTAL' && (SUCURSALES_ADMIN.includes(sucId) || !!directory[claveStr]);
+                        const claveStr = String(r[isRaw ? 7 : 5] || '').trim();
+                        const sucId = String(r[isRaw ? 4 : 3] || r[isRaw ? 5 : 4] || '').trim();
+                        return r[isRaw ? 8 : 6] && r[isRaw ? 8 : 6] !== 'TOTAL' && (SUCURSALES_ADMIN.includes(sucId) || !!directory[claveStr]);
                     })
                     .map(r => ({
-                        'Nombre del Asesor': resolveName(r[5], r[6], directory),
-                        'Sucursal': r[3],
-                        'Polizas_Pagadas_Año_Anterior': Number(r[15] || 0),
-                        'Polizas_Pagadas_Año_Actual': Number(r[16] || 0),
-                        'Crec_Polizas_Pagadas': Number(r[17] || 0),
-                        '%_Crec_Polizas_Pagadas': Number(r[18] || 0),
-                        'Prima_Pagada_Año_Anterior': Number(r[23] || 0),
-                        'Prima_Pagada_Año_Actual': Number(r[24] || 0),
-                        'Crec_Prima_Pagada': Number(r[25] || 0),
-                        '%_Crec_Prima_Pagada': Number(r[26] || 0)
+                        'Nombre del Asesor': resolveName(r[isRaw ? 7 : 5], r[isRaw ? 8 : 6], directory),
+                        'Sucursal': r[isRaw ? 4 : 3],
+                        'Polizas_Pagadas_Año_Anterior': Number(r[isRaw ? 17 : 15] || 0),
+                        'Polizas_Pagadas_Año_Actual': Number(r[isRaw ? 18 : 16] || 0),
+                        'Crec_Polizas_Pagadas': Number(r[isRaw ? 19 : 17] || 0),
+                        '%_Crec_Polizas_Pagadas': Number(r[isRaw ? 20 : 18] || 0),
+                        'Prima_Pagada_Año_Anterior': Number(r[isRaw ? 25 : 23] || 0),
+                        'Prima_Pagada_Año_Actual': Number(r[isRaw ? 26 : 24] || 0),
+                        'Crec_Prima_Pagada': Number(r[isRaw ? 27 : 25] || 0),
+                        '%_Crec_Prima_Pagada': Number(r[isRaw ? 28 : 26] || 0)
                     }));
             }
             fc.comparativo_vida = extractCutoffDate(wb);

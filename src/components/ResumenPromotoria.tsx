@@ -694,19 +694,45 @@ const ProactivoCopyButton: React.FC<{
 
 /* ========== SECTION 3: PROACTIVOS ========== */
 const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDate: string | null; onDateSelect: (d: string | null) => void; themeMode: 'dark' | 'light' }> = ({ data, fechaCorte, selectedDate, onDateSelect, themeMode }) => {
+    const [filterStatus, setFilterStatus] = React.useState('all');
+    const [sortMode, setSortMode] = React.useState('polizas_desc');
+
     if (!data || !data.length) return <div>No hay datos</div>;
 
     const proactivosMes = data.filter((r: any) => r.Proactivo_al_mes === 'p').length;
-    const noProactivosMes = data.filter((r: any) => r.Proactivo_al_mes === 'i').length;
+    const noProactivosMes = data.filter((r: any) => r.Proactivo_al_mes !== 'p').length;
     const proactivosDic = data.filter((r: any) => r.Proactivo_a_Dic === 'p').length;
 
     const chartData = [{ name: 'Proactivos', value: proactivosMes, fill: '#00E676' }, { name: 'No Proactivos', value: noProactivosMes, fill: '#FF6B6B' }];
-    const sortedData = [...data].sort((a: any, b: any) => (Number(b.Polizas_Acumuladas_Total) || 0) - (Number(a.Polizas_Acumuladas_Total) || 0));
-    const barData = sortedData.filter((r: any) => Number(r.Polizas_Acumuladas_Total) > 0).map((r: any) => ({
+    
+    const barData = [...data].sort((a: any, b: any) => (Number(b.Polizas_Acumuladas_Total) || 0) - (Number(a.Polizas_Acumuladas_Total) || 0))
+        .filter((r: any) => Number(r.Polizas_Acumuladas_Total) > 0).map((r: any) => ({
         name: (r.ASESOR || '').split(' ').slice(0, 2).join(' '),
         fullName: r.ASESOR || '',
         polizas: Number(r.Polizas_Acumuladas_Total) || 0,
     }));
+
+    let filteredData = [...data];
+    if (filterStatus === 'p') filteredData = filteredData.filter((r: any) => r.Proactivo_al_mes === 'p');
+    if (filterStatus === 'i') filteredData = filteredData.filter((r: any) => r.Proactivo_al_mes !== 'p');
+
+    const sortedData = filteredData.sort((a: any, b: any) => {
+        if (sortMode === 'polizas_desc') return (Number(b.Polizas_Acumuladas_Total) || 0) - (Number(a.Polizas_Acumuladas_Total) || 0);
+        if (sortMode === 'polizas_asc') return (Number(a.Polizas_Acumuladas_Total) || 0) - (Number(b.Polizas_Acumuladas_Total) || 0);
+        if (sortMode === 'alpha_asc') return (a.ASESOR || '').localeCompare(b.ASESOR || '');
+        if (sortMode === 'alpha_desc') return (b.ASESOR || '').localeCompare(a.ASESOR || '');
+        if (sortMode === 'date_desc') {
+            const da = a.Fecha_Conexion && a.Fecha_Conexion !== 'N/A' ? new Date(a.Fecha_Conexion).getTime() : 0;
+            const db = b.Fecha_Conexion && b.Fecha_Conexion !== 'N/A' ? new Date(b.Fecha_Conexion).getTime() : 0;
+            return db - da;
+        }
+        if (sortMode === 'date_asc') {
+            const da = a.Fecha_Conexion && a.Fecha_Conexion !== 'N/A' ? new Date(a.Fecha_Conexion).getTime() : Infinity;
+            const db = b.Fecha_Conexion && b.Fecha_Conexion !== 'N/A' ? new Date(b.Fecha_Conexion).getTime() : Infinity;
+            return da - db;
+        }
+        return 0;
+    });
 
     // Calculate month requirement from fechaCorte
     const monthsArr = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
@@ -717,12 +743,13 @@ const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDate: stri
         if (idx !== -1) { mesRequisito = idx + 1; break; }
     }
 
-    const headers = ['#', 'Asesor', 'Suc', 'Acum. Ant.', 'Del Mes', 'Acum. Total', 'Proactivo Mes', 'Falt. Mes', 'Proactivo Dic', 'Falt. Dic', 'Acción'];
+    const headers = ['#', 'Asesor', 'F. Conexión', 'Suc', 'Acum. Ant.', 'Del Mes', 'Acum. Total', 'Proactivo Mes', 'Falt. Mes', 'Proactivo Dic', 'Falt. Dic', 'Acción'];
     const rows = sortedData.map((r: any, i: number) => {
         const polizasAcum = Number(r.Polizas_Acumuladas_Total) || 0;
         const faltantesMes = Math.max(0, Math.ceil(mesRequisito - polizasAcum));
+        const fechaDisplay = r.Fecha_Conexion && r.Fecha_Conexion !== 'N/A' ? r.Fecha_Conexion.split('-').reverse().join('/') : 'N/A';
         return [
-            i + 1, r.ASESOR, r.SUC, fmtNum(r['Polizas_Acumuladas_Mes_Ant.']), fmtNum(r.Polizas_Del_mes), fmtNum(polizasAcum),
+            i + 1, r.ASESOR, fechaDisplay, r.SUC, fmtNum(r['Polizas_Acumuladas_Mes_Ant.']), fmtNum(r.Polizas_Del_mes), fmtNum(polizasAcum),
             r.Proactivo_al_mes === 'p' ? '✅ Sí' : '❌ No', 
             fmtNum(faltantesMes), 
             r.Proactivo_a_Dic === 'p' ? '✅ Sí' : '❌ No', 
@@ -771,6 +798,36 @@ const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDate: stri
                         </div>
                     </div>
                 )}
+            </div>
+
+            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '-12px', alignItems: 'center', background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Filtrar Estado</label>
+                    <select 
+                        value={filterStatus} 
+                        onChange={e => setFilterStatus(e.target.value)}
+                        style={{ padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--glass-border)', background: 'var(--bg-card)', color: 'var(--text-primary)', outline: 'none' }}
+                    >
+                        <option value="all">Todos los Asesores</option>
+                        <option value="p">Sólo Proactivos ✅</option>
+                        <option value="i">No Proactivos ❌</option>
+                    </select>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Ordenar por</label>
+                    <select 
+                        value={sortMode} 
+                        onChange={e => setSortMode(e.target.value)}
+                        style={{ padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--glass-border)', background: 'var(--bg-card)', color: 'var(--text-primary)', outline: 'none' }}
+                    >
+                        <option value="polizas_desc">Pólizas (Mayor a Menor)</option>
+                        <option value="polizas_asc">Pólizas (Menor a Mayor)</option>
+                        <option value="alpha_asc">Nombre (A - Z)</option>
+                        <option value="alpha_desc">Nombre (Z - A)</option>
+                        <option value="date_desc">F. Conexión (Más Recientes)</option>
+                        <option value="date_asc">F. Conexión (Más Antiguos)</option>
+                    </select>
+                </div>
             </div>
 
             <SearchableTable title="📋 Detalle Completo" headers={headers} rows={rows} />
