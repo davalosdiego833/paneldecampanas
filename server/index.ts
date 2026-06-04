@@ -370,6 +370,55 @@ const getCaminoDate = (worksheet: any) => {
 
 // --- Endpoints ---
 
+app.get('/api/bases_campanas', (req, res) => {
+    const publicPath = path.join(BASE_PATH, 'public', 'bases_campanas');
+    const distPath = path.join(BASE_PATH, 'dist', 'bases_campanas');
+    const prodPath = path.join(BASE_PATH, 'bases_campanas');
+    
+    let targetPath = fs.existsSync(prodPath) ? prodPath : fs.existsSync(publicPath) ? publicPath : fs.existsSync(distPath) ? distPath : null;
+
+    if (!targetPath) {
+        return res.json([]);
+    }
+
+    const scanDirectory = (dir: string, route: string) => {
+        const items: any[] = [];
+        try {
+            const dirents = fs.readdirSync(dir, { withFileTypes: true });
+            for (const dirent of dirents) {
+                if (dirent.name.startsWith('.')) continue; // ignore hidden
+                
+                const fullPath = path.join(dir, dirent.name);
+                const fileRoute = `${route}/${dirent.name}`;
+                
+                if (dirent.isDirectory()) {
+                    const children = scanDirectory(fullPath, fileRoute);
+                    if (children.length > 0) {
+                        items.push({
+                            type: 'directory',
+                            name: dirent.name,
+                            path: fileRoute,
+                            children: children
+                        });
+                    }
+                } else if (dirent.name.toLowerCase().endsWith('.pdf') || dirent.name.toLowerCase().endsWith('.png') || dirent.name.toLowerCase().endsWith('.jpg') || dirent.name.toLowerCase().endsWith('.jpeg')) {
+                    items.push({
+                        type: 'file',
+                        name: dirent.name,
+                        path: fileRoute
+                    });
+                }
+            }
+        } catch (e) {
+            console.error("Error scanning dir:", e);
+        }
+        return items;
+    };
+
+    const tree = scanDirectory(targetPath, '/bases_campanas');
+    res.json(tree);
+});
+
 app.get('/api/campaigns', (req, res) => {
     const exclude = ['assets', 'themes', 'server', 'node_modules', 'src', 'public', '.git', 'dist', '.conda', 'administrador', 'tmp', '.cache', '.npm', 'estatus polizas', 'estatus_polizas'];
     try {
