@@ -111,8 +111,8 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                     </li>
                     <li>
                         <span style={{ marginRight: '10px' }}>🛡️</span>
-                        <strong style={{ color: 'var(--text-primary)' }}>Legión Centurión — ¡Objetivo Abril!</strong>
-                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>La meta para este mes es de <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>16 pólizas acumuladas</span>. Mantén el ritmo y asegura tu lugar en la élite de la promotoría.</div>
+                        <strong style={{ color: 'var(--text-primary)' }}>Legión Centurión — ¡Objetivo Mayo!</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>La meta para este mes es de <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>24 pólizas acumuladas</span> como mínimo. Mantén el ritmo y asegura tu lugar en la élite de la promotoría.</div>
                     </li>
                 </ul>
             </div>
