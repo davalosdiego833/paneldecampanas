@@ -80,36 +80,39 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                 </h4>
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: '20px', fontSize: '1rem', color: 'var(--text-secondary)', padding: '0 8px' }}>
                     <li>
-                        <span style={{ marginRight: '12px', fontSize: '1.2rem' }}>🌟</span>
-                        <strong style={{ color: 'var(--text-primary)', fontSize: '1.1rem' }}>MDRT DAY — ¡Alcanza la Gloria Mundial!</strong>
-                        <div style={{ marginLeft: '34px', marginTop: '6px', fontSize: '0.95rem', lineHeight: '1.5' }}>
+                        <span style={{ marginRight: '10px' }}>🌟</span>
+                        <strong style={{ color: 'var(--text-primary)' }}>MDRT DAY — ¡Alcanza la Gloria Mundial!</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
                             El MDRT DAY es tu pasaporte a la élite internacional de asesores. Tu lugar en la Mesa del Millón te espera este junio en CDMX. 
                             <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}> Cierre en junio</span>. ¡Transforma hoy tu carrera y trasciende fronteras! 
-                            Revisa las bases completas abajo.
+                            Chequen las bases completas en el grupo de campañas.
                         </div>
                     </li>
                     <li>
-                        <span style={{ marginRight: '12px', fontSize: '1.2rem' }}>🚀</span>
-                        <strong style={{ color: 'var(--text-primary)', fontSize: '1.1rem' }}>Convenciones al Doble — ¡Acelera tu Vuelo al Éxito!</strong>
-                        <div style={{ marginLeft: '34px', marginTop: '6px', fontSize: '0.95rem', lineHeight: '1.5' }}>
-                            ¡Aprovecha el impulso de abril! Durante todo el mes, tus créditos valen <span style={{ color: '#FF6B6B', fontWeight: 700 }}>X2 para Convenciones</span>. 
-                            Es tu momento de brillar y escalar posiciones en el ranking. ¡Haz que cada esfuerzo cuente el doble!
+                        <span style={{ marginRight: '10px' }}>📱</span>
+                        <strong style={{ color: 'var(--text-primary)' }}>Campaña ProactivaTech 2.0 (Junio – Agosto 2026)</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
+                            ¡Tus logros te pueden llevar a estrenar el nuevo iPhone! Cumple con tus metas de pólizas y comisiones para ganar desde unos <span style={{ fontWeight: 700 }}>AirPods Pro 3</span> hasta el <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>iPhone 17 Pro Max</span>.
                         </div>
                     </li>
                     <li>
-                        <span style={{ marginRight: '12px', fontSize: '1.2rem' }}>⚽</span>
-                        <strong style={{ color: 'var(--text-primary)', fontSize: '1.1rem' }}>Campaña Fan Fest (Ene - Abr)</strong>
-                        <div style={{ marginLeft: '34px', marginTop: '6px', fontSize: '0.95rem', lineHeight: '1.5' }}>¡Vive la pasión del Mundial! Vende <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>6 pólizas</span> y gana un **Pase al Evento** y un **Jersey Exclusivo de SMNYL**.</div>
+                        <span style={{ marginRight: '10px' }}>⚽</span>
+                        <strong style={{ color: 'var(--text-primary)' }}>Vive Tu Pasión: 8vos de Final en NY (15 May - 10 Jun 2026)</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
+                            ¡Seguros Monterrey te lleva a Nueva York a 8vos de Final! Los <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>10 Asesores</span> con mayor comisión pagada (mín. $350,000) ganan vuelo, hospedaje y entrada al partido.
+                        </div>
                     </li>
                     <li>
-                        <span style={{ marginRight: '12px', fontSize: '1.2rem' }}>🔥</span>
-                        <strong style={{ color: 'var(--text-primary)', fontSize: '1.1rem' }}>Vive Tu Pasión (Mar - May)</strong>
-                        <div style={{ marginLeft: '34px', marginTop: '6px', fontSize: '0.95rem', lineHeight: '1.5' }}>¡4 niveles de premios esperándote! Cumple con tus metas de pólizas y comisiones para ganar desde **Tecnología SONOS** hasta una **TV de 65"**.</div>
+                        <span style={{ marginRight: '10px' }}>🤝</span>
+                        <strong style={{ color: 'var(--text-primary)' }}>Bono de Conexión (Junio - Octubre 2026)</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
+                            ¡Obtén <span style={{ color: '#FF6B6B', fontWeight: 700 }}>$10,000 adicionales</span> de Bono de Conexión por cada Asesor referido conectado! (Aplica en el mes 1).
+                        </div>
                     </li>
                     <li>
-                        <span style={{ marginRight: '12px', fontSize: '1.2rem' }}>🛡️</span>
-                        <strong style={{ color: 'var(--text-primary)', fontSize: '1.1rem' }}>Legión Centurión — ¡Objetivo Abril!</strong>
-                        <div style={{ marginLeft: '34px', marginTop: '6px', fontSize: '0.95rem', lineHeight: '1.5' }}>La meta para este mes es de <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>16 pólizas acumuladas</span>. Mantén el ritmo y asegura tu lugar en la élite de la promotoría.</div>
+                        <span style={{ marginRight: '10px' }}>🛡️</span>
+                        <strong style={{ color: 'var(--text-primary)' }}>Legión Centurión — ¡Objetivo Abril!</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>La meta para este mes es de <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>16 pólizas acumuladas</span>. Mantén el ritmo y asegura tu lugar en la élite de la promotoría.</div>
                     </li>
                 </ul>
             </div>
