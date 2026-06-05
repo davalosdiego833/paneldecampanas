@@ -1103,7 +1103,7 @@ app.post('/api/admin/snapshot', async (req, res) => {
                             if (isNaN(num)) return 0;
                             return String(v).includes('%') ? num / 100 : num;
                         };
-                        const dataRow = rawP[4] || rawP.find((row, idx) => idx > 0 && row.length > 4 && typeof row[0] === 'number');
+                        const dataRow = rawP.find(r => r && (String(r[3]).trim() === '2043' || String(r[1]).includes('2043') || String(r[2]).includes('2043'))) || [];
                         if (dataRow) {
                             // LITERAL MAPPING FROM EXCEL SCREENSHOT (Row 5 = index 4)
                             sum = {
@@ -1130,23 +1130,50 @@ app.post('/api/admin/snapshot', async (req, res) => {
                     }
                     let inds: any[] = [];
                     if (wsA) {
-                        const rawFormat = XLSX.utils.sheet_to_json(wsA, { header: 1 }) as any[][];
-                        if (rawFormat.length > 2 && rawFormat[2][2] === 'Mat') {
-                            inds = rawFormat.slice(6).filter((r: any) => String(r[6] || r[5] || '') !== '' && r[6] !== 'TOTAL').map((r: any) => ({
-                                'Nombre del Asesor': r[6] || r[5],
-                                'Sucursal': r[3],
-                                'Polizas_Pagadas_Año_Anterior': Number(r[15] || 0),
-                                'Polizas_Pagadas_Año_Actual': Number(r[16] || 0),
-                                'Crec_Polizas_Pagadas': Number(r[17] || 0),
-                                '%_Crec_Polizas_Pagadas': Number(r[18] || 0),
-                                'Prima_Pagada_Año_Anterior': Number(r[23] || 0),
-                                'Prima_Pagada_Año_Actual': Number(r[24] || 0),
-                                'Crec_Prima_Pagada': Number(r[25] || 0),
-                                '%_Crec_Prima_Pagada': Number(r[26] || 0)
-                            }));
-                        } else {
-                            inds = XLSX.utils.sheet_to_json(wsA, { range: 1 }).filter((r: any) => String(r['MAT'] || '') === '2043').map((r: any) => ({ 'Nombre del Asesor': r['Nombre'], 'Sucursal': r['Sucursal'], 'Polizas_Pagadas_Año_Anterior': Number(r['Pzs Pag Ant'] || 0), 'Polizas_Pagadas_Año_Actual': Number(r['Pzs Pag Act'] || 0), 'Prima_Pagada_Año_Anterior': Number(r['Pri Pag Ant'] || 0), 'Prima_Pagada_Año_Actual': Number(r['Pri Pag Act'] || 0) }));
-                        }
+                        const isRaw = !!wbComp.Sheets['Detalle de Asesores'];
+                        const rawFormat = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 6 }) as any[][];
+                        const PROMO_SUCURSALES = ['2043', '2856', '2511'];
+                        inds = rawFormat
+                            .filter((r: any) => {
+                                const sucId2 = String(r[isRaw ? 5 : 4] || '').trim();
+                                return r[isRaw ? 8 : 6] && r[isRaw ? 8 : 6] !== 'TOTAL' && 
+                                       (PROMO_SUCURSALES.includes(sucId2));
+                            })
+                            .map((r: any) => {
+                                const sucId2 = String(r[isRaw ? 5 : 4] || '').trim();
+                                const clave = String(r[isRaw ? 7 : 5] || '').trim();
+                                const name = r[isRaw ? 8 : 6];
+                                return {
+                                    'Nombre del Asesor': dir[clave] || name || `Asesor ${clave}`,
+                                    'Sucursal': sucId2,
+                                    'Polizas_Pagadas_Año_Anterior': Number(r[isRaw ? 17 : 15] || 0),
+                                    'Polizas_Pagadas_Año_Actual': Number(r[isRaw ? 18 : 16] || 0),
+                                    'Crec_Polizas_Pagadas': Number(r[isRaw ? 19 : 17] || 0),
+                                    '%_Crec_Polizas_Pagadas': Number(r[isRaw ? 20 : 18] || 0),
+                                    'Prima_Pagada_Año_Anterior': Number(r[isRaw ? 25 : 23] || 0),
+                                    'Prima_Pagada_Año_Actual': Number(r[isRaw ? 26 : 24] || 0),
+                                    'Crec_Prima_Pagada': Number(r[isRaw ? 27 : 25] || 0),
+                                    '%_Crec_Prima_Pagada': Number(r[isRaw ? 28 : 26] || 0)
+                                };
+                            });
+
+                        // Recalculate summary to represent ONLY promo sucursales (2043, 2856, 2511)
+                        const sumField = (key: string) => inds.reduce((s: number, r: any) => s + (Number(r[key]) || 0), 0);
+                        const polAnt = sumField('Polizas_Pagadas_Año_Anterior');
+                        const polAct = sumField('Polizas_Pagadas_Año_Actual');
+                        const primaAnt = sumField('Prima_Pagada_Año_Anterior');
+                        const primaAct = sumField('Prima_Pagada_Año_Actual');
+                        const safePct = (crec: number, ant: number) => ant !== 0 ? crec / ant : 0;
+                        sum = {
+                            Polizas_Pagadas_Año_Anterior: polAnt,
+                            Polizas_Pagadas_Año_Actual: polAct,
+                            Crec_Polizas_Pagadas: polAct - polAnt,
+                            '%_Crec_Polizas_Pagadas': safePct(polAct - polAnt, polAnt),
+                            Prima_Pagada_Año_Anterior: primaAnt,
+                            'Prima_Pagada_Añoa_Actual': primaAct,
+                            Crec_Prima_Pagada: primaAct - primaAnt,
+                            '%_Crec_Prima_Pagada': safePct(primaAct - primaAnt, primaAnt)
+                        };
                     } else {
                         console.warn('[SNAPSHOT] comparativo_vida: Sheet "asesores" NOT found. Available sheets:', wbComp.SheetNames);
                     }
@@ -1347,8 +1374,7 @@ app.get('/api/resumen-general', (req, res) => {
                         if (isNaN(num)) return 0;
                         return String(v).includes('%') ? num / 100 : num;
                     };
-                    // Try Row 5 (index 4) first, then fallback to finding number row
-                    const dataRow = rawP[4] || rawP.find((row, idx) => idx > 0 && row.length > 4 && typeof row[0] === 'number');
+                    const dataRow = rawP.find(r => r && (String(r[3]).trim() === '2043' || String(r[1]).includes('2043') || String(r[2]).includes('2043'))) || [];
                     if (dataRow) {
                         // LITERAL MAPPING FROM EXCEL SCREENSHOT (Row 5 = index 4)
                         sum = {
@@ -1385,32 +1411,50 @@ app.get('/api/resumen-general', (req, res) => {
             }
             let inds: any[] = [];
             if (wsA) {
-                const rawFormat = XLSX.utils.sheet_to_json(wsA, { header: 1 }) as any[][];
-                if (rawFormat.length > 2 && rawFormat[2][2] === 'Mat') {
-                    // Nuevo formato complejo (Comparativo Vida original)
-                    inds = rawFormat.slice(6).filter((r: any) => String(r[6] || r[5] || '') !== '' && r[6] !== 'TOTAL').map((r: any) => ({
-                        'Nombre del Asesor': r[6] || r[5],
-                        'Sucursal': r[3],
-                        'Polizas_Pagadas_Año_Anterior': Number(r[15] || 0),
-                        'Polizas_Pagadas_Año_Actual': Number(r[16] || 0),
-                        'Crec_Polizas_Pagadas': Number(r[17] || 0),
-                        '%_Crec_Polizas_Pagadas': Number(r[18] || 0),
-                        'Prima_Pagada_Año_Anterior': Number(r[23] || 0),
-                        'Prima_Pagada_Año_Actual': Number(r[24] || 0),
-                        'Crec_Prima_Pagada': Number(r[25] || 0),
-                        '%_Crec_Prima_Pagada': Number(r[26] || 0)
-                    }));
-                } else {
-                    // Formato antiguo limpio
-                    inds = XLSX.utils.sheet_to_json(wsA, { range: 1 }).filter((r: any) => String(r['MAT'] || '') === '2043').map((r: any) => ({
-                        'Nombre del Asesor': r['Nombre'],
-                        'Sucursal': r['Sucursal'],
-                        'Polizas_Pagadas_Año_Anterior': Number(r['Pzs Pag Ant'] || 0),
-                        'Polizas_Pagadas_Año_Actual': Number(r['Pzs Pag Act'] || 0),
-                        'Prima_Pagada_Año_Anterior': Number(r['Pri Pag Ant'] || 0),
-                        'Prima_Pagada_Año_Actual': Number(r['Pri Pag Act'] || 0)
-                    }));
-                }
+                const isRaw = !!wbComp.Sheets['Detalle de Asesores'];
+                const rawFormat = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 6 }) as any[][];
+                const PROMO_SUCURSALES = ['2043', '2856', '2511'];
+                inds = rawFormat
+                    .filter((r: any) => {
+                        const sucId2 = String(r[isRaw ? 5 : 4] || '').trim();
+                        return r[isRaw ? 8 : 6] && r[isRaw ? 8 : 6] !== 'TOTAL' && 
+                               (PROMO_SUCURSALES.includes(sucId2));
+                    })
+                    .map((r: any) => {
+                        const sucId2 = String(r[isRaw ? 5 : 4] || '').trim();
+                        const clave = String(r[isRaw ? 7 : 5] || '').trim();
+                        const name = r[isRaw ? 8 : 6];
+                        return {
+                            'Nombre del Asesor': dir[clave] || name || `Asesor ${clave}`,
+                            'Sucursal': sucId2,
+                            'Polizas_Pagadas_Año_Anterior': Number(r[isRaw ? 17 : 15] || 0),
+                            'Polizas_Pagadas_Año_Actual': Number(r[isRaw ? 18 : 16] || 0),
+                            'Crec_Polizas_Pagadas': Number(r[isRaw ? 19 : 17] || 0),
+                            '%_Crec_Polizas_Pagadas': Number(r[isRaw ? 20 : 18] || 0),
+                            'Prima_Pagada_Año_Anterior': Number(r[isRaw ? 25 : 23] || 0),
+                            'Prima_Pagada_Año_Actual': Number(r[isRaw ? 26 : 24] || 0),
+                            'Crec_Prima_Pagada': Number(r[isRaw ? 27 : 25] || 0),
+                            '%_Crec_Prima_Pagada': Number(r[isRaw ? 28 : 26] || 0)
+                        };
+                    });
+
+                // Recalculate summary to represent ONLY promo sucursales (2043, 2856, 2511)
+                const sumField = (key: string) => inds.reduce((s: number, r: any) => s + (Number(r[key]) || 0), 0);
+                const polAnt = sumField('Polizas_Pagadas_Año_Anterior');
+                const polAct = sumField('Polizas_Pagadas_Año_Actual');
+                const primaAnt = sumField('Prima_Pagada_Año_Anterior');
+                const primaAct = sumField('Prima_Pagada_Año_Actual');
+                const safePct = (crec: number, ant: number) => ant !== 0 ? crec / ant : 0;
+                sum = {
+                    Polizas_Pagadas_Año_Anterior: polAnt,
+                    Polizas_Pagadas_Año_Actual: polAct,
+                    Crec_Polizas_Pagadas: polAct - polAnt,
+                    '%_Crec_Polizas_Pagadas': safePct(polAct - polAnt, polAnt),
+                    Prima_Pagada_Año_Anterior: primaAnt,
+                    'Prima_Pagada_Añoa_Actual': primaAct,
+                    Crec_Prima_Pagada: primaAct - primaAnt,
+                    '%_Crec_Prima_Pagada': safePct(primaAct - primaAnt, primaAnt)
+                };
             }
             result.comparativo_vida = { individuals: inds, generalSummary: sum };
         }

@@ -317,33 +317,49 @@ const run = async () => {
                 const rawA = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 6 });
                 const isRaw = !!wb.Sheets['Detalle de Asesores'];
                 
-                rg.comparativo_vida.individuals = rawA
+                const PROMO_SUCURSALES = ['2043', '2856', '2511'];
+                
+                const individuals = rawA
                     .filter(r => {
-                        const claveStr = String(r[isRaw ? 7 : 5] || '').trim();
-                        const sucId1 = String(r[isRaw ? 4 : 3] || '').trim();
                         const sucId2 = String(r[isRaw ? 5 : 4] || '').trim();
                         return r[isRaw ? 8 : 6] && r[isRaw ? 8 : 6] !== 'TOTAL' && 
-                               (SUCURSALES_ADMIN.includes(sucId1) || SUCURSALES_ADMIN.includes(sucId2) || !!directory[claveStr]);
+                               (PROMO_SUCURSALES.includes(sucId2));
                     })
                     .map(r => {
-                        const sucId1 = String(r[isRaw ? 4 : 3] || '').trim();
                         const sucId2 = String(r[isRaw ? 5 : 4] || '').trim();
-                        // Tomamos el segundo ID como sucursal específica si es distinto al de la promotoría (ej. 2856 en lugar de 2043)
-                        const finalSuc = (sucId2 && SUCURSALES_ADMIN.includes(sucId2)) ? sucId2 : sucId1;
-                        
                         return {
                             'Nombre del Asesor': resolveName(r[isRaw ? 7 : 5], r[isRaw ? 8 : 6], directory),
-                            'Sucursal': finalSuc,
-                        'Polizas_Pagadas_Año_Anterior': Number(r[isRaw ? 17 : 15] || 0),
-                        'Polizas_Pagadas_Año_Actual': Number(r[isRaw ? 18 : 16] || 0),
-                        'Crec_Polizas_Pagadas': Number(r[isRaw ? 19 : 17] || 0),
-                        '%_Crec_Polizas_Pagadas': Number(r[isRaw ? 20 : 18] || 0),
-                        'Prima_Pagada_Año_Anterior': Number(r[isRaw ? 25 : 23] || 0),
-                        'Prima_Pagada_Año_Actual': Number(r[isRaw ? 26 : 24] || 0),
-                        'Crec_Prima_Pagada': Number(r[isRaw ? 27 : 25] || 0),
-                        '%_Crec_Prima_Pagada': Number(r[isRaw ? 28 : 26] || 0)
+                            'Sucursal': sucId2,
+                            'Polizas_Pagadas_Año_Anterior': Number(r[isRaw ? 17 : 15] || 0),
+                            'Polizas_Pagadas_Año_Actual': Number(r[isRaw ? 18 : 16] || 0),
+                            'Crec_Polizas_Pagadas': Number(r[isRaw ? 19 : 17] || 0),
+                            '%_Crec_Polizas_Pagadas': Number(r[isRaw ? 20 : 18] || 0),
+                            'Prima_Pagada_Año_Anterior': Number(r[isRaw ? 25 : 23] || 0),
+                            'Prima_Pagada_Año_Actual': Number(r[isRaw ? 26 : 24] || 0),
+                            'Crec_Prima_Pagada': Number(r[isRaw ? 27 : 25] || 0),
+                            '%_Crec_Prima_Pagada': Number(r[isRaw ? 28 : 26] || 0)
                         };
                     });
+
+                rg.comparativo_vida.individuals = individuals;
+
+                // Recalculate summary from individuals to represent ONLY promo sucursales (2043, 2856, 2511)
+                const sumField = (key) => individuals.reduce((s, r) => s + (Number(r[key]) || 0), 0);
+                const polAnt = sumField('Polizas_Pagadas_Año_Anterior');
+                const polAct = sumField('Polizas_Pagadas_Año_Actual');
+                const primaAnt = sumField('Prima_Pagada_Año_Anterior');
+                const primaAct = sumField('Prima_Pagada_Año_Actual');
+                const safePct = (crec, ant) => ant !== 0 ? crec / ant : 0;
+                rg.comparativo_vida.generalSummary = {
+                    Polizas_Pagadas_Año_Anterior: polAnt,
+                    Polizas_Pagadas_Año_Actual: polAct,
+                    Crec_Polizas_Pagadas: polAct - polAnt,
+                    '%_Crec_Polizas_Pagadas': safePct(polAct - polAnt, polAnt),
+                    Prima_Pagada_Año_Anterior: primaAnt,
+                    'Prima_Pagada_Añoa_Actual': primaAct,
+                    Crec_Prima_Pagada: primaAct - primaAnt,
+                    '%_Crec_Prima_Pagada': safePct(primaAct - primaAnt, primaAnt)
+                };
             }
             fc.comparativo_vida = extractCutoffDate(wb);
         }
