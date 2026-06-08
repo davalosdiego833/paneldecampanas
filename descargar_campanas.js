@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import AdmZip from 'adm-zip';
+import { execSync } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -70,7 +71,10 @@ async function main() {
         // Clic en la carpeta en el menú izquierdo (Tree View)
         const success = await page.evaluate((folderName) => {
             const spans = Array.from(document.querySelectorAll('span.rtIn'));
-            const target = spans.find(s => s.innerText.trim() === folderName);
+            let target = spans.find(s => s.innerText.trim() === folderName);
+            if (!target && folderName === 'Pagado Pendiente') {
+                target = spans.find(s => s.innerText.trim().toUpperCase() === 'PAGADO Y EMITIDO' || s.innerText.trim().toUpperCase() === 'PAGADO PENDIENTE');
+            }
             if (target) {
                 target.click();
                 return true;
@@ -221,7 +225,23 @@ async function main() {
         fs.rmdirSync(downloadDir);
     } catch(e) {}
 
-    console.log('\n🎉 ¡Proceso de descarga automatizado finalizado!');
+    console.log('\n🔄 Consolidando localmente...');
+    try {
+        execSync('node actualizar_snapshot.js', { stdio: 'inherit' });
+        console.log('✅ Consolidación local completada.');
+    } catch (e) {
+        console.error('❌ Error en consolidación local:', e.message);
+    }
+
+    console.log('\n🚀 Desplegando a producción...');
+    try {
+        execSync('./deploy.sh', { stdio: 'inherit' });
+        console.log('✅ Despliegue completado.');
+    } catch (e) {
+        console.error('❌ Error en despliegue:', e.message);
+    }
+
+    console.log('\n🎉 ¡Proceso de descarga, consolidación y despliegue finalizado!');
     browser.disconnect();
 }
 

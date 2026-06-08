@@ -3,6 +3,7 @@ import os
 import msoffcrypto
 import xlrd
 import openpyxl
+import re
 
 def process_file(xls_path):
     print(f"[PROCESS] Recibido archivo para procesar: {xls_path}")
@@ -31,6 +32,28 @@ def process_file(xls_path):
     print("[PROCESS] Leyendo y filtrando datos...")
     try:
         wb = xlrd.open_workbook(decrypted_path)
+        
+        # Extraer fecha de corte desde la hoja Resumen
+        cutoff_date_str = ""
+        if 'Resumen' in wb.sheet_names():
+            res_sheet = wb.sheet_by_name('Resumen')
+            for r in range(min(50, res_sheet.nrows)):
+                for c in range(res_sheet.ncols):
+                    val = res_sheet.cell_value(r, c)
+                    if val:
+                        val_str = str(val).strip()
+                        if re.search(r'(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)', val_str, re.IGNORECASE):
+                            match = re.search(r'([a-zA-ZáéíóúñÁÉÍÓÚÑ]+),?\s+(\d{1,2}),?\s+(\d{4})', val_str)
+                            if match:
+                                month = match.group(1).lower()
+                                day = int(match.group(2))
+                                year = match.group(3)
+                                cutoff_date_str = f"{day} de {month} de {year}"
+                                break
+                if cutoff_date_str:
+                    break
+        print(f"[PROCESS] Fecha de corte extraída: {cutoff_date_str}")
+
         if 'Res_lp' not in wb.sheet_names():
             print("[PROCESS] Error: No se encontró la hoja Res_lp.")
             os.remove(decrypted_path)
@@ -112,10 +135,12 @@ def process_file(xls_path):
         wb_new = openpyxl.Workbook()
         ws_new = wb_new.active
         
-        # 3 filas vacías al inicio para cumplir con data.slice(3) en el backend
-        for _ in range(3):
-            ws_new.append([''] * 13)
-            
+        # 3 filas vacías al inicio para cumplir con data.slice(3) en el backend.
+        # Ponemos la fecha de corte en A1 para que actualizar_snapshot y el server la puedan leer.
+        ws_new.append([cutoff_date_str] + [''] * 12)
+        ws_new.append([''] * 13)
+        ws_new.append([''] * 13)
+        
         for row in filtered_rows:
             ws_new.append([
                 row['Clave'],
