@@ -1357,6 +1357,18 @@ app.get('/api/daniela/resumen', (req, res) => {
         res.status(500).send("Error al procesar el resumen: " + e.message);
     }
 });
+app.get('/api/daniela/datos', (req, res) => {
+    try {
+        if (!fs.existsSync(SNAPSHOT_PATH)) {
+            return res.status(404).json({ error: 'Snapshot not found' });
+        }
+        const snapshot = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
+        res.json(snapshot);
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Error reading snapshot: ' + e.message });
+    }
+});
 app.get('/api/resumen-general', (req, res) => {
     try {
         const { dates, useSnapshot } = req.query;
