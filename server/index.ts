@@ -1059,7 +1059,9 @@ app.post('/api/admin/snapshot', async (req, res) => {
                     console.log('[SNAPSHOT] Encontrado PagPend.xls original. Decriptando y filtrando...');
                     try {
                         const scriptPath = path.join(BASE_PATH, 'scripts', 'process_pagado_pendiente.py');
-                        const pythonBin = path.join(BASE_PATH, '.venv', 'bin', 'python');
+                        const localVenv = path.join(BASE_PATH, '.venv', 'bin', 'python');
+                        const hostingerAlt = '/opt/alt/python311/bin/python3';
+                        const pythonBin = fs.existsSync(localVenv) ? localVenv : (fs.existsSync(hostingerAlt) ? hostingerAlt : 'python3');
                         execSync(`"${pythonBin}" "${scriptPath}" "${xlsPath}"`, { stdio: 'inherit' });
                     } catch (peErr) {
                         console.error('[SNAPSHOT] Error al procesar PagPend.xls:', peErr);
@@ -1359,7 +1361,9 @@ app.get('/api/resumen-general', (req, res) => {
             console.log('[API] Encontrado PagPend.xls original. Decriptando y filtrando...');
             try {
                 const scriptPath = path.join(BASE_PATH, 'scripts', 'process_pagado_pendiente.py');
-                const pythonBin = path.join(BASE_PATH, '.venv', 'bin', 'python');
+                const localVenv = path.join(BASE_PATH, '.venv', 'bin', 'python');
+                const hostingerAlt = '/opt/alt/python311/bin/python3';
+                const pythonBin = fs.existsSync(localVenv) ? localVenv : (fs.existsSync(hostingerAlt) ? hostingerAlt : 'python3');
                 execSync(`"${pythonBin}" "${scriptPath}" "${xlsPath}"`, { stdio: 'inherit' });
             } catch (peErr) {
                 console.error('[API] Error al procesar PagPend.xls:', peErr);

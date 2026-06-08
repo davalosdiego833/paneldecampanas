@@ -135,7 +135,9 @@ const run = async () => {
             console.log('🔄 [SNAPSHOT] Encontrado PagPend.xls original. Decriptando y filtrando...');
             try {
                 const scriptPath = path.join(BASE_PATH, 'scripts', 'process_pagado_pendiente.py');
-                const pythonBin = path.join(BASE_PATH, '.venv', 'bin', 'python');
+                const localVenv = path.join(BASE_PATH, '.venv', 'bin', 'python');
+                const hostingerAlt = '/opt/alt/python311/bin/python3';
+                const pythonBin = fs.existsSync(localVenv) ? localVenv : (fs.existsSync(hostingerAlt) ? hostingerAlt : 'python3');
                 execSync(`"${pythonBin}" "${scriptPath}" "${xlsPath}"`, { stdio: 'inherit' });
             } catch (e) {
                 console.error('❌ [SNAPSHOT] Error al procesar PagPend.xls:', e.message);
