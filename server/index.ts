@@ -1284,6 +1284,53 @@ app.get('/api/historico-metas', (req, res) => {
     }
 });
 
+app.get('/api/daniela/resumen', (req, res) => {
+    try {
+        if (!fs.existsSync(SNAPSHOT_PATH)) {
+            return res.send("Hola Diego. Aún no se ha compilado ningún snapshot de base de datos.");
+        }
+        const snapshot = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
+        const pag = snapshot.data?.resumen_general?.pagado_pendiente || [];
+        
+        let polPag = 0, riPag = 0, roPag = 0, totPag = 0;
+        let polPend = 0, riPend = 0, roPend = 0, totPend = 0;
+        
+        pag.forEach((r: any) => {
+            polPag += Number(r['Pólizas-Pagadas']) || 0;
+            riPag += Number(r['Recibo_Inicial_Pagado']) || 0;
+            roPag += Number(r['Recibo_Ordinario_Pagado']) || 0;
+            totPag += Number(r['Total _Prima_Pagada']) || 0;
+            
+            polPend += Number(r['Pólizas_Pendinetes']) || 0;
+            riPend += Number(r['Recibo_Inicial_Pendiente']) || 0;
+            roPend += Number(r['Recibo_Ordinario_Pendiente']) || 0;
+            totPend += Number(r['Total _Prima_Pendiente']) || 0;
+        });
+        
+        const fecha = snapshot.data?.fechas_corte?.pagado_pendiente || "desconocida";
+        
+        const text = `💰 *RESUMEN PAGADO / PENDIENTE*
+📅 *Corte:* ${fecha}
+
+🟢 *PAGADO:*
+- Pólizas: ${polPag}
+- Recibo Inicial: $${riPag.toLocaleString('es-MX', { minimumFractionDigits: 2 })}
+- Recibo Ordinario: $${roPag.toLocaleString('es-MX', { minimumFractionDigits: 2 })}
+- Total Prima Pagada: $${totPag.toLocaleString('es-MX', { minimumFractionDigits: 2 })}
+
+🔴 *PENDIENTE:*
+- Pólizas: ${polPend}
+- Recibo Inicial: $${riPend.toLocaleString('es-MX', { minimumFractionDigits: 2 })}
+- Recibo Ordinario: $${roPend.toLocaleString('es-MX', { minimumFractionDigits: 2 })}
+- Total Prima Pendiente: $${totPend.toLocaleString('es-MX', { minimumFractionDigits: 2 })}`;
+        
+        res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+        res.send(text);
+    } catch (e: any) {
+        res.status(500).send("Error al procesar el resumen: " + e.message);
+    }
+});
+
 app.get('/api/resumen-general', (req, res) => {
     try {
         const { dates, useSnapshot } = req.query;
