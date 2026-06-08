@@ -1,6 +1,7 @@
 import XLSX from 'xlsx';
 import fs from 'fs';
 import path from 'path';
+import { execSync } from 'child_process';
 
 const BASE_PATH = process.cwd();
 const DB_PATH = path.join(BASE_PATH, 'db');
@@ -9,7 +10,7 @@ const SNAPSHOT_FILE = path.join(DB_PATH, 'resumen_snapshot.json');
 // FILTRO ÚNICO: Solo Matriz 2043
 // FILTRO ÚNICO: Solo Matriz 2043
 const VALID_SUCURSAL = '2043';
-const SUCURSALES_ADMIN = ['2043', '2856', '2692', '2511', '313']; // IDs conocidos de la promo
+const SUCURSALES_ADMIN = ['2043', '2856', '2511']; // IDs conocidos de la promo
 
 // Helper to resolve advisor name using the directory
 const resolveName = (clave, fallbackName, directory) => {
@@ -126,6 +127,21 @@ const run = async () => {
         const fc = snapshot.data.fechas_corte;
 
         // 2. Reporte Pagado y Pendiente
+        const xlsPath1 = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'PagPend.xls');
+        const xlsPath2 = path.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'PagPend.xls');
+        const xlsPath = fs.existsSync(xlsPath1) ? xlsPath1 : (fs.existsSync(xlsPath2) ? xlsPath2 : null);
+
+        if (xlsPath) {
+            console.log('🔄 [SNAPSHOT] Encontrado PagPend.xls original. Decriptando y filtrando...');
+            try {
+                const scriptPath = path.join(BASE_PATH, 'scripts', 'process_pagado_pendiente.py');
+                const pythonBin = path.join(BASE_PATH, '.venv', 'bin', 'python');
+                execSync(`"${pythonBin}" "${scriptPath}" "${xlsPath}"`, { stdio: 'inherit' });
+            } catch (e) {
+                console.error('❌ [SNAPSHOT] Error al procesar PagPend.xls:', e.message);
+            }
+        }
+
         const pePath = path.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'pagado_emitido.xlsx');
         if (fs.existsSync(pePath)) {
             const wb = XLSX.readFile(pePath);

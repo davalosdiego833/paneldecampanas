@@ -7,6 +7,7 @@ import os from 'os';
 import XLSX from 'xlsx';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // Detect if we are running in the Hostinger remote environment
@@ -30,7 +31,7 @@ const localEnv = path.join(BASE_PATH, '.env');
 const hostingerEnv = path.join(BASE_PATH, '../.env');
 dotenv.config({ path: fs.existsSync(localEnv) ? localEnv : hostingerEnv });
 // Helper to reliably find protected folders in Distributed Architecture
-const SUCURSALES_PROMO = ['2043', '2856', '2692', '2511', '313'];
+const SUCURSALES_PROMO = ['2043', '2856', '2511'];
 const getProtectedPath = (folder) => {
     if (isHostinger) {
         const hostingerNodeJS = path.join(BASE_PATH, '../nodejs', folder);
@@ -1062,12 +1063,26 @@ app.post('/api/admin/snapshot', async (req, res) => {
             }
             // --- Pagado y Emitido ---
             try {
+                const xlsPath1 = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'PagPend.xls');
+                const xlsPath2 = path.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'PagPend.xls');
+                const xlsPath = fs.existsSync(xlsPath1) ? xlsPath1 : (fs.existsSync(xlsPath2) ? xlsPath2 : null);
+                if (xlsPath) {
+                    console.log('[SNAPSHOT] Encontrado PagPend.xls original. Decriptando y filtrando...');
+                    try {
+                        const scriptPath = path.join(BASE_PATH, 'scripts', 'process_pagado_pendiente.py');
+                        const pythonBin = path.join(BASE_PATH, '.venv', 'bin', 'python');
+                        execSync(`"${pythonBin}" "${scriptPath}" "${xlsPath}"`, { stdio: 'inherit' });
+                    }
+                    catch (peErr) {
+                        console.error('[SNAPSHOT] Error al procesar PagPend.xls:', peErr);
+                    }
+                }
                 const pagPath = 'administrador/pagado_emitidido';
                 const wbPag = readExcelData(pagPath, { skipJson: true });
                 if (wbPag) {
                     const data = XLSX.utils.sheet_to_json(wbPag.Sheets[wbPag.SheetNames[0]], { header: 1 });
                     rg.fechas_corte['pagado_pendiente'] = formatExcelDate(extractCutoffDate(wbPag, 'pagado_pendiente'));
-                    const validSucursales = ['2043', '2692', '2856', '2511'];
+                    const validSucursales = ['2043', '2856', '2511'];
                     rg.pagado_pendiente = data.slice(3)
                         .filter(r => r[2] != null && validSucursales.includes(String(r[1])))
                         .map(r => ({ 'Nombre Asesor': r[2], 'Sucursal': r[1], 'Pólizas-Pagadas': Number(r[5] || 0), 'Recibo_Inicial_Pagado': Number(r[6] || 0), 'Recibo_Ordinario_Pagado': Number(r[7] || 0), 'Total _Prima_Pagada': Number(r[8] || 0), 'Pólizas_Pendinetes': Number(r[9] || 0), 'Recibo_Inicial_Pendiente': Number(r[10] || 0), 'Recibo_Ordinario_Pendiente': Number(r[11] || 0), 'Total _Prima_Pendiente': Number(r[12] || 0) }));
@@ -1364,13 +1379,28 @@ app.get('/api/resumen-general', (req, res) => {
                 }));
             }
         }
+        const xlsPath1 = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'PagPend.xls');
+        const xlsPath2 = path.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'PagPend.xls');
+        const xlsPath = fs.existsSync(xlsPath1) ? xlsPath1 : (fs.existsSync(xlsPath2) ? xlsPath2 : null);
+        if (xlsPath) {
+            console.log('[API] Encontrado PagPend.xls original. Decriptando y filtrando...');
+            try {
+                const scriptPath = path.join(BASE_PATH, 'scripts', 'process_pagado_pendiente.py');
+                const pythonBin = path.join(BASE_PATH, '.venv', 'bin', 'python');
+                execSync(`"${pythonBin}" "${scriptPath}" "${xlsPath}"`, { stdio: 'inherit' });
+            }
+            catch (peErr) {
+                console.error('[API] Error al procesar PagPend.xls:', peErr);
+            }
+        }
         const pagPath = 'administrador/pagado_emitidido';
         const wbPag = readExcelData(pagPath, { skipJson: true, date: selectedDates.pagado_pendiente });
         if (wbPag) {
-            const data = XLSX.utils.sheet_to_json(wbPag.Sheets[wbPag.Sheets[wbPag.SheetNames[0]] ? wbPag.SheetNames[0] : wbPag.SheetNames[0]], { header: 1 });
+            const data = XLSX.utils.sheet_to_json(wbPag.Sheets[wbPag.SheetNames[0]], { header: 1 });
             result.fechas_corte['pagado_pendiente'] = formatExcelDate(extractCutoffDate(wbPag, 'pagado_pendiente'));
+            const validSucursales = ['2043', '2856', '2511'];
             result.pagado_pendiente = data.slice(3)
-                .filter(r => r[2] != null && String(r[1]) === VALID_SUCURSAL)
+                .filter(r => r[2] != null && validSucursales.includes(String(r[1])))
                 .map(r => ({ 'Nombre Asesor': r[2], 'Sucursal': r[1], 'Pólizas-Pagadas': Number(r[5] || 0), 'Recibo_Inicial_Pagado': Number(r[6] || 0), 'Recibo_Ordinario_Pagado': Number(r[7] || 0), 'Total _Prima_Pagada': Number(r[8] || 0), 'Pólizas_Pendinetes': Number(r[9] || 0), 'Recibo_Inicial_Pendiente': Number(r[10] || 0), 'Recibo_Ordinario_Pendiente': Number(r[11] || 0), 'Total _Prima_Pendiente': Number(r[12] || 0) }));
         }
         const dir = getAdvisorDirectory();

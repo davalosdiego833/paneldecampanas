@@ -61,6 +61,8 @@ rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" "estatus poliza
 echo "📤 Subiendo scripts de procesamiento..."
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" actualizar_snapshot.js $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" generar_alertas.js $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" scripts/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/scripts/
+
 
 # 5. Configurar Servidor via SSH
 ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT $SERVER_USER@$SERVER_IP << EOF
