@@ -2,7 +2,7 @@ import sys
 import os
 import msoffcrypto
 import xlrd
-import pandas as pd
+import openpyxl
 
 def process_file(xls_path):
     print(f"[PROCESS] Recibido archivo para procesar: {xls_path}")
@@ -108,13 +108,31 @@ def process_file(xls_path):
                     
         print(f"[PROCESS] Filtrado completado. {len(filtered_rows)} registros de la promotoría encontrados.")
         
-        # 3. Construir el DataFrame y guardarlo
-        df_data = pd.DataFrame(filtered_rows)
+        # 3. Construir el archivo Excel final usando openpyxl directamente (sin pandas/numpy)
+        wb_new = openpyxl.Workbook()
+        ws_new = wb_new.active
         
-        # Insertar 3 filas vacías al inicio para cumplir con data.slice(3) en el backend
-        empty_rows = pd.DataFrame([[''] * 13] * 3, columns=df_data.columns)
-        df_final = pd.concat([empty_rows, df_data], ignore_index=True)
-        
+        # 3 filas vacías al inicio para cumplir con data.slice(3) en el backend
+        for _ in range(3):
+            ws_new.append([''] * 13)
+            
+        for row in filtered_rows:
+            ws_new.append([
+                row['Clave'],
+                row['Sucursal'],
+                row['Nombre Asesor'],
+                row['Dummy1'],
+                row['Dummy2'],
+                row['POLPAG'],
+                row['PRIPAGINI'],
+                row['PRIPAGORD'],
+                row['PRIMPAG'],
+                row['POLPEN'],
+                row['PRIPENINI'],
+                row['PRIPENORD'],
+                row['PRIMPEN']
+            ])
+            
         # Rutas destino
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         
@@ -128,8 +146,8 @@ def process_file(xls_path):
         path2 = os.path.join(dest_dir2, 'pagado_emitido.xlsx')
         
         # Guardar en ambas carpetas
-        df_final.to_excel(path1, index=False, header=False, engine='openpyxl')
-        df_final.to_excel(path2, index=False, header=False, engine='openpyxl')
+        wb_new.save(path1)
+        wb_new.save(path2)
         
         print(f"[PROCESS] Guardado exitosamente en:\n  - {path1}\n  - {path2}")
         return True
