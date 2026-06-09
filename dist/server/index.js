@@ -1370,10 +1370,143 @@ app.get('/api/daniela/datos', (req, res) => {
             return res.status(404).json({ error: 'Snapshot not found' });
         }
         const snapshot = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
-        res.json(snapshot);
+        const originalData = snapshot.data || {};
+        const rg = originalData.resumen_general || {};
+        const originalCampaigns = originalData.campaigns || {};
+        // 1. Fechas de corte
+        const fechas_corte = originalData.fechas_corte || {};
+        // 2. Resumen Pagado / Pendiente
+        const pag = rg.pagado_pendiente || [];
+        let polPag = 0, riPag = 0, roPag = 0, totPag = 0;
+        let polPend = 0, riPend = 0, roPend = 0, totPend = 0;
+        pag.forEach((r) => {
+            polPag += Number(r['Pólizas-Pagadas']) || 0;
+            riPag += Number(r['Recibo_Inicial_Pagado']) || 0;
+            roPag += Number(r['Recibo_Ordinario_Pagado']) || 0;
+            totPag += Number(r['Total _Prima_Pagada']) || 0;
+            polPend += Number(r['Pólizas_Pendinetes']) || 0;
+            riPend += Number(r['Recibo_Inicial_Pendiente']) || 0;
+            roPend += Number(r['Recibo_Ordinario_Pendiente']) || 0;
+            totPend += Number(r['Total _Prima_Pendiente']) || 0;
+        });
+        const pagado_pendiente_consolidado = {
+            pagado: { polizas: polPag, recibo_inicial: riPag, recibo_ordinario: roPag, total_prima: totPag },
+            pendiente: { polizas: polPend, recibo_inicial: riPend, recibo_ordinario: roPend, total_prima: totPend }
+        };
+        const pagado_pendiente_por_asesor = pag.map((r) => ({
+            asesor: r['Nombre Asesor'],
+            pagado: { polizas: Number(r['Pólizas-Pagadas']) || 0, total_prima: Number(r['Total _Prima_Pagada']) || 0 },
+            pendiente: { polizas: Number(r['Pólizas_Pendinetes']) || 0, total_prima: Number(r['Total _Prima_Pendiente']) || 0 }
+        })).filter((r) => r.pagado.polizas > 0 || r.pendiente.polizas > 0);
+        // 3. Proactivos
+        const proactivos_list = rg.proactivos || [];
+        const proactivos_activos = proactivos_list
+            .filter((p) => String(p.Proactivo_al_mes).trim().toUpperCase() === 'SÍ')
+            .map((p) => ({
+            asesor: p.ASESOR,
+            sucursal: p.SUC,
+            polizas_del_mes: p.Polizas_Del_mes,
+            polizas_acumuladas: p.Polizas_Acumuladas_Total,
+            faltantes_mes: p.Pólizas_Faltantes,
+            faltantes_dic: p.Pólizas_Faltantes_Para_Dic,
+            fecha_conexion: p.Fecha_Conexion
+        }));
+        const proactivos_inactivos = proactivos_list
+            .filter((p) => String(p.Proactivo_al_mes).trim().toUpperCase() !== 'SÍ')
+            .map((p) => ({
+            asesor: p.ASESOR,
+            sucursal: p.SUC,
+            polizas_del_mes: p.Polizas_Del_mes,
+            polizas_acumuladas: p.Polizas_Acumuladas_Total,
+            faltantes_mes: p.Pólizas_Faltantes,
+            faltantes_dic: p.Pólizas_Faltantes_Para_Dic,
+            fecha_conexion: p.Fecha_Conexion
+        }));
+        // 4. Campañas simplificadas
+        const campaigns = {};
+        if (originalCampaigns.mdrt) {
+            campaigns.mdrt = originalCampaigns.mdrt
+                .filter((c) => Number(c.PA_Acumulada) > 0)
+                .map((c) => ({ asesor: c.Asesor, clave: c.Clave, pa_acumulada: c.PA_Acumulada }));
+        }
+        if (originalCampaigns.convenciones) {
+            campaigns.convenciones = originalCampaigns.convenciones
+                .filter((c) => Number(c.PA_Total) > 0 || Number(c.Polizas) > 0)
+                .map((c) => ({
+                asesor: c.Asesor,
+                clave: c.Clave,
+                pa_total: c.PA_Total,
+                polizas: c.Polizas,
+                lugar: c.Lugar,
+                lugar_meta_28: c.Lugar_28
+            }));
+        }
+        if (originalCampaigns.legion_centurion) {
+            campaigns.legion_centurion = originalCampaigns.legion_centurion
+                .filter((c) => Number(c.Total_Polizas) > 0)
+                .map((c) => ({
+                asesor: c.Asesor,
+                clave: c.Clave,
+                total_polizas: c.Total_Polizas,
+                mes_actual: c.Mes_Actual,
+                nivel: c.Nivel,
+                en_meta: c.EnMeta
+            }));
+        }
+        if (originalCampaigns.camino_cumbre) {
+            campaigns.camino_cumbre = originalCampaigns.camino_cumbre
+                .filter((c) => Number(c.Polizas_Totales) > 0)
+                .map((c) => ({
+                asesor: c.Asesor,
+                clave: c.Clave,
+                mes_asesor: c.Mes_Asesor,
+                polizas_totales: c.Polizas_Totales
+            }));
+        }
+        if (originalCampaigns.fanfest) {
+            campaigns.fanfest = originalCampaigns.fanfest
+                .filter((c) => Number(c.Total_Polizas) > 0 || String(c.Premio).trim() === 'GANADO')
+                .map((c) => ({
+                asesor: c.Asesor,
+                clave: c.Clave,
+                total_polizas: c.Total_Polizas,
+                premio: c.Premio
+            }));
+        }
+        if (originalCampaigns.vive_tu_pasion) {
+            campaigns.vive_tu_pasion = originalCampaigns.vive_tu_pasion
+                .filter((c) => Number(c.Polizas) > 0 || String(c.Premio).trim() !== '')
+                .map((c) => ({
+                asesor: c.Asesor,
+                clave: c.Clave,
+                polizas: c.Polizas,
+                premio: c.Premio
+            }));
+        }
+        if (originalCampaigns.graduacion) {
+            campaigns.graduacion = originalCampaigns.graduacion.map((c) => ({
+                asesor: c.Asesor,
+                clave: c.Clave,
+                mes_asesor: c.Mes_Asesor,
+                polizas_totales: c.Polizas_Totales,
+                fecha_limite: c.Fecha_Limite_Meta,
+                comisiones: c.Comisones
+            }));
+        }
+        // 5. Consolidación de respuesta
+        res.json({
+            fechas_corte,
+            resumen_general: {
+                pagado_pendiente_consolidado,
+                pagado_pendiente_por_asesor,
+                proactivos_activos,
+                proactivos_inactivos
+            },
+            campaigns
+        });
     }
     catch (e) {
-        res.status(500).json({ error: 'Error reading snapshot: ' + e.message });
+        res.status(500).json({ error: 'Error reading and processing snapshot: ' + e.message });
     }
 });
 app.get('/api/resumen-general', (req, res) => {
