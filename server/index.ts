@@ -1292,6 +1292,9 @@ app.get('/api/historico-metas', (req, res) => {
 });
 
 app.get('/api/daniela/resumen', (req, res) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
     try {
         if (!fs.existsSync(SNAPSHOT_PATH)) {
             return res.send("Hola Diego. Aún no se ha compilado ningún snapshot de base de datos.");
@@ -1339,6 +1342,9 @@ app.get('/api/daniela/resumen', (req, res) => {
 });
 
 app.get('/api/daniela/datos', (req, res) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
     try {
         if (!fs.existsSync(SNAPSHOT_PATH)) {
             return res.status(404).json({ error: 'Snapshot not found' });
