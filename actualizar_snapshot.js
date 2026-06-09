@@ -273,9 +273,9 @@ const run = async () => {
                         'Polizas_Acumuladas_Mes_Ant.': Number(r[9] || 0),
                         'Polizas_Del_mes': Number(r[10] || 0),
                         'Polizas_Acumuladas_Total': Number(r[11] || 0),
-                        'Proactivo_al_mes': r[12],
+                        'Proactivo_al_mes': String(r[12] || '').trim().toUpperCase() === 'P' ? 'SÍ' : 'NO',
                         'Pólizas_Faltantes': Number(r[13] || 0),
-                        'Proactivo_a_Dic': r[14],
+                        'Proactivo_a_Dic': String(r[14] || '').trim().toUpperCase() === 'P' ? 'SÍ' : 'NO',
                         'Pólizas_Faltantes_Para_Dic': Number(r[15] || 0),
                         'Fecha_Conexion': directoryFechas[claveStr] || 'N/A'
                     };

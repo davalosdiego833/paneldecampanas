@@ -1113,7 +1113,7 @@ app.post('/api/admin/snapshot', async (req, res) => {
                     if (ws) {
                         const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
                         rg.fechas_corte['proactivos'] = formatExcelDate(extractCutoffDate(wbPro, 'proactivos'));
-                        rg.proactivos = data.slice(7).filter(r => String(r[2] || '') === '2043').map(r => ({ 'ASESOR': dir[String(r[4])] || `Asesor ${r[4]}`, 'SUC': r[3], 'Polizas_Acumuladas_Mes_Ant.': Number(r[9] || 0), 'Polizas_Del_mes': Number(r[10] || 0), 'Polizas_Acumuladas_Total': Number(r[11] || 0), 'Proactivo_al_mes': r[12] || '', 'Pólizas_Faltantes': Number(r[13] || 0) }));
+                        rg.proactivos = data.slice(7).filter(r => String(r[2] || '') === '2043').map(r => ({ 'ASESOR': dir[String(r[4])] || `Asesor ${r[4]}`, 'SUC': r[3], 'Polizas_Acumuladas_Mes_Ant.': Number(r[9] || 0), 'Polizas_Del_mes': Number(r[10] || 0), 'Polizas_Acumuladas_Total': Number(r[11] || 0), 'Proactivo_al_mes': String(r[12] || '').trim().toUpperCase() === 'P' ? 'SÍ' : 'NO', 'Pólizas_Faltantes': Number(r[13] || 0) }));
                         console.log(`[SNAPSHOT] proactivos: ${rg.proactivos.length} rows`);
                     }
                     else {
@@ -1475,7 +1475,7 @@ app.get('/api/resumen-general', (req, res) => {
             if (ws) {
                 const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
                 result.fechas_corte['proactivos'] = formatExcelDate(extractCutoffDate(wbPro, 'proactivos'));
-                result.proactivos = data.slice(7).filter(r => String(r[2] || '') === '2043').map(r => ({ 'ASESOR': dir[String(r[4])] || `Asesor ${r[4]}`, 'SUC': r[3], 'Polizas_Acumuladas_Mes_Ant.': Number(r[9] || 0), 'Polizas_Del_mes': Number(r[10] || 0), 'Polizas_Acumuladas_Total': Number(r[11] || 0), 'Proactivo_al_mes': r[12] || '', 'Pólizas_Faltantes': Number(r[13] || 0) }));
+                result.proactivos = data.slice(7).filter(r => String(r[2] || '') === '2043').map(r => ({ 'ASESOR': dir[String(r[4])] || `Asesor ${r[4]}`, 'SUC': r[3], 'Polizas_Acumuladas_Mes_Ant.': Number(r[9] || 0), 'Polizas_Del_mes': Number(r[10] || 0), 'Polizas_Acumuladas_Total': Number(r[11] || 0), 'Proactivo_al_mes': String(r[12] || '').trim().toUpperCase() === 'P' ? 'SÍ' : 'NO', 'Pólizas_Faltantes': Number(r[13] || 0) }));
             }
         }
         const compPath = 'administrador/comparativo_vida';
