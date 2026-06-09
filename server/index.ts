@@ -1399,7 +1399,8 @@ app.get('/api/daniela/datos', (req, res) => {
 
             // Intentar emparejar apodos primero
             for (const nick in nicknames) {
-                if (queryNorm.includes(nick)) {
+                const regex = new RegExp('\\b' + nick + '\\b', 'i');
+                if (regex.test(queryNorm)) {
                     filterAdvisor = nicknames[nick];
                     break;
                 }
@@ -1411,7 +1412,8 @@ app.get('/api/daniela/datos', (req, res) => {
                     const advNorm = advisor.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
                     const words = advNorm.split(/\s+/).filter(w => w.length > 2 && w !== 'del' && w !== 'las' && w !== 'los' && w !== 'maria');
                     for (const word of words) {
-                        if (queryNorm.includes(word)) {
+                        const regex = new RegExp('\\b' + word + '\\b', 'i');
+                        if (regex.test(queryNorm)) {
                             filterAdvisor = advisor;
                             break;
                         }
