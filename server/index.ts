@@ -1419,10 +1419,13 @@ app.get('/api/daniela/datos', (req, res) => {
                 .map((c: any) => ({
                     asesor: c.Asesor,
                     clave: c.Clave,
-                    pa_total: c.PA_Total,
-                    polizas: c.Polizas,
-                    lugar: c.Lugar,
-                    lugar_meta_28: c.Lugar_28
+                    creditos: Number(c.PA_Total || 0),
+                    polizas: Number(c.Polizas || 0),
+                    lugar_ranking: Number(c.Lugar || 9999),
+                    meta_creditos_lugar_480: Number(c.Lugar_480 || 0),
+                    meta_creditos_lugar_228: Number(c.Lugar_228 || 0),
+                    meta_creditos_lugar_108: Number(c.Lugar_108 || 0),
+                    meta_creditos_lugar_28: Number(c.Lugar_28 || 0)
                 }));
         }
         if (originalCampaigns.legion_centurion) {
