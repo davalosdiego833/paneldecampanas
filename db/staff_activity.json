@@ -119,6 +119,32 @@
           "contratos_firmados": 0,
           "observaciones": "Miroslava cierra el mes de mayo consolidando un sólido desempeño con un acumulado final de 92 tareas/actividades completadas en agenda (+1 en este último corte). Las demás métricas clave se mantuvieron estables, garantizando el seguimiento constante de su equipo.\n\nÁrea de mejora: Con vistas al inicio de junio, el reto principal consistirá en reactivar la parte alta del embudo generando nuevas citas iniciales y empujar de forma proactiva el cierre de los trámites y contratos pendientes en su gerencia."
         }
+      },
+      {
+        "date": "2026-06-01",
+        "type": "lunes_cierre",
+        "month_start": true,
+        "data": {
+          "citas_iniciales": 0,
+          "citas_cierre": 0,
+          "sesiones_11": 0,
+          "arranque_rapido": 0,
+          "tareas_actividades": 0
+        }
+      },
+      {
+        "date": "2026-06-08",
+        "type": "lunes_cierre",
+        "data": {
+          "citas_iniciales": 3,
+          "citas_cierre": 2,
+          "sesiones_11": 5,
+          "arranque_rapido": 2,
+          "tareas_actividades": 20,
+          "polizas": 0,
+          "contratos_firmados": 0,
+          "observaciones": "Buen inicio de mes para Miros. Arranca junio con una sólida actividad de seguimiento, logrando completar 20 tareas y actividades en su agenda y realizando 5 Sesiones 1:1. Además, sumó 3 Citas Iniciales y 2 Citas de Cierre, junto con 2 Arranques Rápidos para impulsar el desarrollo de sus asesores en esta primera semana.\n\nÁrea de mejora: Con 2 Citas de Cierre y 5 Sesiones 1:1 en marcha, el reto inmediato es concretar el cierre de negocios y firmas de contratos de sus asesores, manteniendo en 0 las conversiones reales de este mes."
+        }
       }
     ],
     "goals": {
@@ -239,6 +265,32 @@
           "arranque_rapido": 16,
           "tareas_actividades": 46,
           "observaciones": "Fernanda cierra el mes de mayo consolidando su actividad. Mantuvo sus cifras constantes respecto al corte anterior, cerrando con un excelente volumen de 36 citas iniciales y 19 citas de cierre acumuladas en el mes.\n\nÁrea de mejora: De cara al inicio de junio, el objetivo crítico será reactivar los procesos de acompañamiento y empujar la conversión final de las 19 citas de cierre para concretar firmas."
+        }
+      },
+      {
+        "date": "2026-06-01",
+        "type": "lunes_cierre",
+        "month_start": true,
+        "data": {
+          "citas_iniciales": 0,
+          "citas_cierre": 0,
+          "polizas": 0,
+          "contratos_firmados": 0,
+          "arranque_rapido": 0,
+          "tareas_actividades": 0
+        }
+      },
+      {
+        "date": "2026-06-08",
+        "type": "lunes_cierre",
+        "data": {
+          "citas_iniciales": 11,
+          "citas_cierre": 4,
+          "polizas": 0,
+          "contratos_firmados": 0,
+          "arranque_rapido": 4,
+          "tareas_actividades": 19,
+          "observaciones": "Buen inicio de mes para Fer. Arranca junio con una sólida base de 11 Citas Iniciales y 4 Citas de Cierre acumuladas en esta primera semana. Además, muestra un acompañamiento constante sumando 4 Arranques Rápidos y completando 19 tareas y actividades en su agenda.\n\nÁrea de mejora: Con 4 citas de cierre ya generadas en el arranque del mes, el enfoque prioritario debe ser concretar las primeras pólizas y firmas de contratos de junio, los cuales se mantuvieron en 0 en esta primera semana."
         }
       }
     ],
@@ -369,6 +421,35 @@
           "recluta_contactos": 506,
           "recluta_entrevistas": 18,
           "observaciones": "Shelsea cierra el mes de mayo consolidando su gran volumen de prospección. En este último corte sumó +1 entrevista realizada para un total acumulado de 18 en el mes, manteniendo además su base de 506 contactos prospectados y 30 enamoramientos.\n\nÁrea de mejora: Al iniciar junio, el reto prioritario es reactivar y acelerar la conversión de la parte media y baja del embudo (compensaciones y procesos administrativos), para capitalizar la enorme cantidad de contactos generados en mayo en nuevos activos."
+        }
+      },
+      {
+        "date": "2026-06-01",
+        "type": "lunes_cierre",
+        "month_start": true,
+        "data": {
+          "activos_mes": 0,
+          "ent_enamoramiento": 0,
+          "ent_entrevista": 0,
+          "ent_compensacion": 0,
+          "ent_administrativa": 0,
+          "recluta_contactos": 0,
+          "recluta_entrevistas": 0
+        }
+      },
+      {
+        "date": "2026-06-08",
+        "type": "lunes_cierre",
+        "data": {
+          "activos_mes": 19,
+          "ent_enamoramiento": 7,
+          "ent_entrevista": 0,
+          "ent_compensacion": 0,
+          "ent_administrativa": 0,
+          "sesiones_rda": 0,
+          "recluta_contactos": 205,
+          "recluta_entrevistas": 1,
+          "observaciones": "Buen inicio de mes para Shelsea. Arranca junio con una excelente actividad de prospección en frío, registrando 205 contactos acumulados en su base de datos. De estos, ha logrado generar 7 enamoramientos en la primera semana del mes y concretar 1 entrevista de reclutamiento.\n\nÁrea de mejora: Con 7 enamoramientos activos pero 0 en compensación y administrativa, el objetivo prioritario para esta semana debe ser acelerar el avance de estos candidatos a través de las entrevistas y filtros correspondientes, logrando incrementar las citas concretadas y formalizar sus primeras contrataciones de junio."
         }
       }
     ]
