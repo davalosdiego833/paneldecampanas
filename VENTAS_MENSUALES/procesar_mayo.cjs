@@ -15,7 +15,7 @@ const confirmacion = [];
 function cleanName(name) {
     if(!name) return '';
     // Remove numbers and trailing spaces
-    return name.replace(/[0-9]+/g, '').replace(/Ð/g, 'Ñ').trim().toUpperCase();
+    return name.replace(/[0-9]+/g, '').replace(/Ñ/g, 'Ñ').trim().toUpperCase();
 }
 
 // Extract Ventas (Row 2 to 47 approx)

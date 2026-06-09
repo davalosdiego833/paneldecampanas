@@ -12,11 +12,17 @@ const SNAPSHOT_FILE = path.join(DB_PATH, 'resumen_snapshot.json');
 const VALID_SUCURSAL = '2043';
 const SUCURSALES_ADMIN = ['2043', '2856', '2511']; // IDs conocidos de la promo
 
+const cleanNameText = (text) => {
+    if (!text) return '';
+    return String(text).replace(/Ð/g, 'Ñ').replace(/ð/g, 'ñ').trim();
+};
+
 // Helper to resolve advisor name using the directory
 const resolveName = (clave, fallbackName, directory) => {
-    if (!clave) return fallbackName || 'Asesor Desconocido';
+    if (!clave) return cleanNameText(fallbackName || 'Asesor Desconocido');
     const claveStr = String(clave).trim();
-    return directory[claveStr] || fallbackName || `Asesor ${claveStr}`;
+    const resolved = directory[claveStr] || fallbackName || `Asesor ${claveStr}`;
+    return cleanNameText(resolved);
 };
 
 // Helper to get the most recent file in a folder
@@ -556,11 +562,17 @@ const run = async () => {
                     return SUCURSALES_PROMO.includes(String(r[matKey] || r[3] || ''));
                 }).map(r => {
                     const paKey = Object.keys(r).find(k => k && (k.trim().toUpperCase().includes('TOTAL') || k.trim().toUpperCase().includes('VIGOR')));
-                    const nameKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'NOMBRE DEL ASESOR' || k.trim().toUpperCase() === 'ASESOR' || k.trim().toUpperCase() === 'NOMBRE'));
-                    const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'ASESOR' || k.trim().toUpperCase() === 'CLAVE')) || nameKey);
+                    const nameKey = Object.keys(r).find(k => k && k.trim().toUpperCase() === 'NOMBRE DEL ASESOR')
+                        || Object.keys(r).find(k => k && k.trim().toUpperCase() === 'NOMBRE')
+                        || Object.keys(r).find(k => k && k.trim().toUpperCase() === 'ASESOR');
+                    const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toUpperCase() === 'CLAVE')
+                        || Object.keys(r).find(k => k && k.trim().toUpperCase() === 'ASESOR')
+                        || nameKey);
                     const limitKey = Object.keys(r).find(k => k && (k.trim().toUpperCase().includes('LÍMITE') || k.trim().toUpperCase().includes('LIMITE')));
+                    const rawName = r[nameKey] && String(r[nameKey]).trim();
+                    const isNameNumeric = rawName && !isNaN(Number(rawName));
                     return {
-                        Asesor: r.Asesor || r[nameKey] ? String(r.Asesor || r[nameKey]) : resolveName(r.Clave || r[claveKey] || r[6], null, directory), Clave: String(r.Clave || r[claveKey] || r[6] || ''),
+                        Asesor: cleanNameText(!isNameNumeric && rawName ? rawName : resolveName(r.Clave || r[claveKey] || r[6], null, directory)), Clave: String(r[claveKey] || r.Clave || r[6] || ''),
                         Mes_Asesor: Number(r.Mes_Asesor || r['Mes'] || r['mes'] || r['MES'] || 1), Polizas_Totales: Number(r.Polizas_Totales || r[paKey] || r['EN VIGOR'] || 0),
                         Fecha_Limite_Meta: r[limitKey] ? formatExcelDate(r[limitKey]) : '',
                         Comisones: Number(r.Comisones || r['TOTAL_1'] || Object.keys(r).reverse().find(k => k && k.trim().toUpperCase().includes('TOTAL')) ? r[Object.keys(r).reverse().find(k => k && k.trim().toUpperCase().includes('TOTAL'))] : 0)

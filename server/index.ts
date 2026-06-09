@@ -89,7 +89,8 @@ const getAdvisorDirectory = () => {
             const nombreKey = keys.find(k => k.toLowerCase().trim() === 'nombre_completo' || k.toLowerCase().trim() === 'nombre completo');
 
             if (claveKey && nombreKey && row[claveKey] && row[nombreKey]) {
-                directory[String(row[claveKey])] = String(row[nombreKey]).trim();
+                const cleanName = String(row[nombreKey]).replace(/Ð/g, 'Ñ').replace(/ð/g, 'ñ').trim();
+                directory[String(row[claveKey])] = cleanName;
             }
         });
 
@@ -806,7 +807,10 @@ app.get('/api/admin/summary', (req, res) => {
 
         const result: Record<string, any> = { dates: {} };
         const dir = getAdvisorDirectory();
-        const resolveName = (cl: any) => dir[String(cl)] || `Asesor ${cl}`;
+        const resolveName = (cl: any) => {
+            const name = dir[String(cl)] || `Asesor ${cl}`;
+            return name.replace(/Ð/g, 'Ñ').replace(/ð/g, 'ñ');
+        };
 
         const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion'];
         cams.forEach(c => {
@@ -941,7 +945,10 @@ app.post('/api/admin/snapshot', async (req, res) => {
         // Simulating a fetch or just calling the internal logic would be best
         // To keep it simple and clean, let's just use the current data state
         const dir = getAdvisorDirectory();
-        const resolveName = (cl: any) => dir[String(cl)] || `Asesor ${cl}`;
+        const resolveName = (cl: any) => {
+            const name = dir[String(cl)] || `Asesor ${cl}`;
+            return name.replace(/Ð/g, 'Ñ').replace(/ð/g, 'ñ');
+        };
         const result: Record<string, any> = { dates: {} };
         const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion'];
 
