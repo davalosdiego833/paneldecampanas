@@ -478,7 +478,7 @@ const run = async () => {
                 campaigns.legion_centurion = data.slice(1).filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
                     Asesor: resolveName(r[6], null, directory), Clave: String(r[6] || ''),
                     Total_Polizas: Number(r[10] || 0), Mes_Actual: mIndex,
-                    Nivel: r[13] || '', EnMeta: String(r[12] || '').toLowerCase() === 'p'
+                    Nivel: r[13] || '', EnMeta: String(r[11] || '').toLowerCase() === 'p'
                 }));
                 campaignDates.legion_centurion = String(b9).match(/\d{1,2}\s+de\s+[a-z]+\s+de\s+\d{4}/i)?.[0] || '';
             }

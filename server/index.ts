@@ -588,16 +588,22 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const mIndex = mMatch ? MONTHS_ES.indexOf(mMatch[1]) + 1 : 1;
         const dir = getAdvisorDirectory();
         const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
-        const row = json.find(r => SUCURSALES_PROMO.includes(String(r['Matriz'] || '')) && (String(r['Asesor'] || '') === advisor || advisorKeys.includes(String(r['Asesor'] || ''))));
+        const row = json.find(r => {
+            const matVal = r['MATRIZ'] || r['Matriz'] || r['matriz'] || '';
+            const advisorVal = r['ASESOR'] || r['Asesor'] || r['asesor'] || '';
+            return SUCURSALES_PROMO.includes(String(matVal)) && 
+                   (String(advisorVal) === advisor || advisorKeys.includes(String(advisorVal)));
+        });
         if (!row) return res.status(404).json({ error: 'Advisor not found' });
-        const totalPol = Number(row['Total Pólizas'] || 0);
-        const clave = String(row['Asesor'] || '');
+        const totalPol = Number(row['TOTAL_POLIZAS'] || row['Total Pólizas'] || row['Total_Polizas'] || 0);
+        const clave = String(row['ASESOR'] || row['Asesor'] || row['asesor'] || '');
+        const cumpleVal = row['CUMPLE'] || row['Cumple Meta Proporc.'] || row['Cumple'] || '';
         return res.json({
             'Asesor': dir[clave] || clave, 'Clave': clave, 'Fecha_Corte': getLegionDate(ws) || "",
             'Mes_Actual': mIndex, 'Total_Polizas': totalPol, 'Bronce': Math.max(0, (4 * mIndex) - totalPol),
             'Plata': Math.max(0, (6 * mIndex) - totalPol), 'Oro': Math.max(0, (7.5 * mIndex) - totalPol),
             'Platino': Math.max(0, (10 * mIndex) - totalPol), 'Promedio_Mensual': totalPol / mIndex,
-            'Va_En_Meta': String(row['Cumple Meta Proporc.'] || '').toLowerCase() === 'p' ? "✅ EN META" : "❌ POR DEBAJO"
+            'Va_En_Meta': String(cumpleVal).toLowerCase() === 'p' ? "✅ EN META" : "❌ POR DEBAJO"
         });
     }
 

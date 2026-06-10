@@ -1,5 +1,5 @@
 {
-  "updatedAt": "10/6/2026, 11:50:31 a.m.",
+  "updatedAt": "10/6/2026, 2:30:50 p.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -3208,7 +3208,7 @@
           "Total_Polizas": 21,
           "Mes_Actual": 5,
           "Nivel": "VM BRONCE",
-          "EnMeta": false
+          "EnMeta": true
         },
         {
           "Asesor": "DESIREE DE LA PEÑA OROZCO",
@@ -3216,7 +3216,7 @@
           "Total_Polizas": 20,
           "Mes_Actual": 5,
           "Nivel": "VM BRONCE",
-          "EnMeta": false
+          "EnMeta": true
         },
         {
           "Asesor": "DARINKA UREÑA CASILLAS",
