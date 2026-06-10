@@ -416,9 +416,9 @@ const run = async () => {
         try {
             console.log('Processing mdrt');
             const mdrtPath = path.join(BASE_PATH, 'mdrt');
-            const files = fs.readdirSync(mdrtPath).filter(f => f.endsWith('.xlsx') || f.endsWith('.xlsm'));
-            if (files.length > 0) {
-                const wb = XLSX.readFile(path.join(mdrtPath, files[0]));
+            const recentFile = getMostRecentFile(mdrtPath);
+            if (recentFile) {
+                const wb = XLSX.readFile(path.join(mdrtPath, recentFile));
                 const sheetName = wb.SheetNames.find(n => n.toUpperCase() === 'MDRT') || wb.SheetNames[0];
                 const ws = wb.Sheets[sheetName];
                 const data = extractData(ws);

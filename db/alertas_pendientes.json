@@ -1,5 +1,146 @@
 {
-  "generatedAt": "8/6/2026, 6:58:18 p.m.",
-  "totalNew": 0,
-  "alerts": []
+  "generatedAt": "10/6/2026, 11:01:53 a.m.",
+  "totalNew": 14,
+  "alerts": [
+    {
+      "id": "4b23db19-50bc-4fd0-8f8f-3bbe71325875",
+      "asesor": "ANAIS LUA MORENO",
+      "firstName": "Anais",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "Prima pagada subió $1.37M",
+      "message": "Hola Anais, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 8 de junio de 2026, noté que tu prima pagada subió *$1.37M*. Ahora llevas un total de *$1.37M*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "39579941-1a5e-4e10-b4b5-325933ee9a5a",
+      "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+      "firstName": "Rafael",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "Prima pagada subió $16.4k",
+      "message": "Hola Rafael, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 8 de junio de 2026, noté que tu prima pagada subió *$16.4k*. Ahora llevas un total de *$22.7k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "1d7b2311-1ef7-4ca9-8f6a-a86fc8dfedd6",
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "firstName": "Monica",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "Prima pagada subió $8.4k",
+      "message": "Hola Monica, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 8 de junio de 2026, noté que tu prima pagada subió *$8.4k*. Ahora llevas un total de *$11.1k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "916fee36-266d-423a-a1a5-182ee22068e8",
+      "asesor": "DARINKA UREÑA CASILLAS",
+      "firstName": "Darinka",
+      "campaign": "convenciones",
+      "type": "risk",
+      "event": "Salió del Top 480 (ahora lugar #492)",
+      "message": "Hola Darinka, ¿cómo estás? 👋\nOye, estuve checando tus números al 31 de mayo de 2026 en *Convenciones* y noté que bajaste al lugar *#492*.\n\nPara volver al Top 480 (1 Diamante) necesitas *$10.6k* créditos adicionales.\n\n¡Vamos con todo para recuperar tu lugar! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "cc334c8c-f60b-4f5c-a9fb-a0720af2e3a4",
+      "asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
+      "firstName": "Ana",
+      "campaign": "convenciones",
+      "type": "positive",
+      "event": "Subió 413 lugares (ahora #2390)",
+      "message": "Hola Ana, ¿cómo estás? 👋\n¡Oye, buen avance! 📈\n\nEstuve checando tus números al 31 de mayo de 2026 en *Convenciones* y subiste *413 lugares*. Ahora estás en el *#2390*.\n\nCréditos totales: *$121.4k*\n\n¡Vamos por ese diamante! 💎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "cb8e779e-5956-4e6b-9fc2-81e15a9a3f56",
+      "asesor": "MARICELA ARREOLA LOPEZ",
+      "firstName": "Maricela",
+      "campaign": "convenciones",
+      "type": "positive",
+      "event": "Subió 76 lugares (ahora #3197)",
+      "message": "Hola Maricela, ¿cómo estás? 👋\n¡Oye, buen avance! 📈\n\nEstuve checando tus números al 31 de mayo de 2026 en *Convenciones* y subiste *76 lugares*. Ahora estás en el *#3197*.\n\nCréditos totales: *$88.1k*\n\n¡Vamos por ese diamante! 💎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "8835031d-ae21-415b-b0a0-7d01fa1b0ee3",
+      "asesor": "SOFIA CAMPILLO VASCONCELOS",
+      "firstName": "Sofia",
+      "campaign": "convenciones",
+      "type": "positive",
+      "event": "Subió 590 lugares (ahora #4641)",
+      "message": "Hola Sofia, ¿cómo estás? 👋\n¡Oye, buen avance! 📈\n\nEstuve checando tus números al 31 de mayo de 2026 en *Convenciones* y subiste *590 lugares*. Ahora estás en el *#4641*.\n\nCréditos totales: *$54.4k*\n\n¡Vamos por ese diamante! 💎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "24e77f71-bdb6-4ed1-880d-ed6e6ad3db3d",
+      "asesor": "MONSERRAT VELASCO SANTOS",
+      "firstName": "Monserrat",
+      "campaign": "convenciones",
+      "type": "positive",
+      "event": "Subió 1247 lugares (ahora #6679)",
+      "message": "Hola Monserrat, ¿cómo estás? 👋\n¡Oye, buen avance! 📈\n\nEstuve checando tus números al 31 de mayo de 2026 en *Convenciones* y subiste *1247 lugares*. Ahora estás en el *#6679*.\n\nCréditos totales: *$26.8k*\n\n¡Vamos por ese diamante! 💎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "aebbb00c-321e-40fa-873c-9b6d48d61b79",
+      "asesor": "PAULA ANGELICA LOMELI CAZARES",
+      "firstName": "Paula",
+      "campaign": "convenciones",
+      "type": "positive",
+      "event": "Subió 555 lugares (ahora #6449)",
+      "message": "Hola Paula, ¿cómo estás? 👋\n¡Oye, buen avance! 📈\n\nEstuve checando tus números al 31 de mayo de 2026 en *Convenciones* y subiste *555 lugares*. Ahora estás en el *#6449*.\n\nCréditos totales: *$29.2k*\n\n¡Vamos por ese diamante! 💎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "d42eb016-a7c1-4a26-b07c-b5906582cb84",
+      "asesor": "MARIA FERNANDA RIOS BERNAL",
+      "firstName": "Maria",
+      "campaign": "convenciones",
+      "type": "positive",
+      "event": "Subió 113 lugares (ahora #6912)",
+      "message": "Hola Maria, ¿cómo estás? 👋\n¡Oye, buen avance! 📈\n\nEstuve checando tus números al 31 de mayo de 2026 en *Convenciones* y subiste *113 lugares*. Ahora estás en el *#6912*.\n\nCréditos totales: *$24.3k*\n\n¡Vamos por ese diamante! 💎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "aef8c0a6-8bbc-4011-a19e-33703513b46a",
+      "asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
+      "firstName": "Jose",
+      "campaign": "convenciones",
+      "type": "positive",
+      "event": "Subió 56 lugares (ahora #6306)",
+      "message": "Hola Jose, ¿cómo estás? 👋\n¡Oye, buen avance! 📈\n\nEstuve checando tus números al 31 de mayo de 2026 en *Convenciones* y subiste *56 lugares*. Ahora estás en el *#6306*.\n\nCréditos totales: *$31.0k*\n\n¡Vamos por ese diamante! 💎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "3037032e-f325-417d-b1a9-d5fc9a41d00c",
+      "asesor": "VELIA PATRICIA BERNAL RAMOS",
+      "firstName": "Velia",
+      "campaign": "camino_cumbre",
+      "type": "positive",
+      "event": "¡Llegó al Mes 9 en Camino a la Cumbre!",
+      "message": "Hola Velia, ¿cómo estás? 👋\n¡Excelentes noticias! ⛰️🎉\n\nEstuve checando tus números al 05 de junio de 2026 en *Camino a la Cumbre* y ¡ya llegaste al *Mes 9*!\n\nEsto significa que alcanzaste *tres cuartos del camino* 🏔️\nLlevas *15.5 pólizas* acumuladas.\n\n¡Vamos con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "92f6b849-7426-434e-a57e-57ef92a902eb",
+      "asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
+      "firstName": "Adriana",
+      "campaign": "camino_cumbre",
+      "type": "positive",
+      "event": "¡Llegó al Mes 12 en Camino a la Cumbre!",
+      "message": "Hola Adriana, ¿cómo estás? 👋\n¡Excelentes noticias! ⛰️🎉\n\nEstuve checando tus números al 05 de junio de 2026 en *Camino a la Cumbre* y ¡ya llegaste al *Mes 12*!\n\nEsto significa que alcanzaste *el penúltimo mes* 🏔️\nLlevas *14.5 pólizas* acumuladas.\n\n¡Vamos con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "e7978995-8ba1-4a79-a12a-20e2f066c445",
+      "asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
+      "firstName": "Ana",
+      "campaign": "camino_cumbre",
+      "type": "positive",
+      "event": "¡Llegó al Mes 12 en Camino a la Cumbre!",
+      "message": "Hola Ana, ¿cómo estás? 👋\n¡Excelentes noticias! ⛰️🎉\n\nEstuve checando tus números al 05 de junio de 2026 en *Camino a la Cumbre* y ¡ya llegaste al *Mes 12*!\n\nEsto significa que alcanzaste *el penúltimo mes* 🏔️\nLlevas *14 pólizas* acumuladas.\n\n¡Vamos con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    }
+  ]
 }
