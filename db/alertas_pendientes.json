@@ -1,26 +1,5 @@
 {
-  "generatedAt": "10/6/2026, 2:32:55 p.m.",
-  "totalNew": 2,
-  "alerts": [
-    {
-      "id": "ba29da13-ab96-4ff1-81fd-aae7bbced92b",
-      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-      "firstName": "Monica",
-      "campaign": "legion_centurion",
-      "type": "positive",
-      "event": "¡Se puso en meta del mes en Legión!",
-      "message": "Hola Monica, ¿cómo estás? 👋\n¡Gran noticia! 🛡️\n\nEstuve checando tus números al 31 de Mayo de 2026 en *Legión Centurión* y ¡ya estás *en meta del mes*! 🎯\n\nLlevas *21 pólizas* en el año. ¡Sigue con ese ritmo!\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "505580db-f1cd-4c5b-9186-3fcfc758c51d",
-      "asesor": "DESIREE DE LA PEÑA OROZCO",
-      "firstName": "Desiree",
-      "campaign": "legion_centurion",
-      "type": "positive",
-      "event": "¡Se puso en meta del mes en Legión!",
-      "message": "Hola Desiree, ¿cómo estás? 👋\n¡Gran noticia! 🛡️\n\nEstuve checando tus números al 31 de Mayo de 2026 en *Legión Centurión* y ¡ya estás *en meta del mes*! 🎯\n\nLlevas *20 pólizas* en el año. ¡Sigue con ese ritmo!\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    }
-  ]
+  "generatedAt": "12/6/2026, 2:13:19 p.m.",
+  "totalNew": 0,
+  "alerts": []
 }

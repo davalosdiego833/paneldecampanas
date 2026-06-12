@@ -77,6 +77,43 @@ const extractCutoffDate = (wb) => {
     return '';
 };
 
+const readExcelSheetMemorySafe = (filePath, sheetSelector) => {
+    const tempWb = XLSX.readFile(filePath, { bookSheets: true });
+    let targetSheet = null;
+    if (typeof sheetSelector === 'function') {
+        targetSheet = tempWb.SheetNames.find(sheetSelector);
+    } else if (typeof sheetSelector === 'string') {
+        targetSheet = tempWb.SheetNames.find(n => n.toUpperCase() === sheetSelector.toUpperCase());
+    } else if (typeof sheetSelector === 'number') {
+        targetSheet = tempWb.SheetNames[sheetSelector];
+    }
+    if (!targetSheet) {
+        targetSheet = tempWb.SheetNames[0];
+    }
+    return XLSX.readFile(filePath, { sheets: [targetSheet] });
+};
+
+const SUCURSALES_PROMO = ['2043'];
+const MONTHS_ES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+
+// Helper para leer excels que traen basura (logos, fechas) en las primeras filas
+const extractData = (ws) => {
+    const rawData = XLSX.utils.sheet_to_json(ws, { header: 1 });
+    let headerIdx = -1;
+    for (let i = 0; i < Math.min(30, rawData.length); i++) {
+        const row = rawData[i];
+        if (row && row.some(cell => {
+            const c = String(cell).toLowerCase().trim();
+            return c === 'asesor' || c === 'mat' || c === 'mat / unidad' || c === 'nombre del asesor';
+        })) {
+            headerIdx = i;
+            break;
+        }
+    }
+    if (headerIdx === -1) headerIdx = 0;
+    return XLSX.utils.sheet_to_json(ws, { range: headerIdx });
+};
+
 const run = async () => {
     try {
         console.log('🚀 Iniciando restauración de Snapshot (Solo Matriz 2043)...');
@@ -119,6 +156,183 @@ const run = async () => {
                     directoryFechas[String(clave).trim()] = String(fechaConexionStr).trim();
                 }
             });
+        }
+
+        const args = process.argv.slice(2);
+        const stepArg = args.find(arg => arg.startsWith('--step='));
+        const step = stepArg ? stepArg.split('=')[1] : null;
+
+        if (step) {
+            console.log(`[SNAPSHOT SUBPROCESS] Running step: ${step}`);
+            const campaigns = {};
+            const campaignDates = {};
+
+            if (step === 'mdrt') {
+                try {
+                    console.log('Processing mdrt');
+                    const mdrtPath = path.join(BASE_PATH, 'mdrt');
+                    const recentFile = getMostRecentFile(mdrtPath);
+                    if (recentFile) {
+                        const wb = readExcelSheetMemorySafe(path.join(mdrtPath, recentFile), n => n.toUpperCase() === 'MDRT');
+                        const ws = wb.Sheets[wb.SheetNames[0]];
+                        const data = extractData(ws);
+                        campaigns.mdrt = data.filter(r => {
+                            const matKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MATRIZ' || k.trim().toUpperCase() === 'MAT' || k.trim().toUpperCase() === 'MAT / UNIDAD'));
+                            return SUCURSALES_PROMO.includes(String(r[matKey] || ''));
+                        }).map(r => {
+                            const paKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'TOTAL PRIMA' || k.trim().toUpperCase() === 'CAMINO PRIMA' || k.trim().toUpperCase() === 'PRIMA ANUALIZADA' || k.trim().toUpperCase() === 'PRIMA PONDERADA MDRT'));
+                            const nameKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'NOMBRE DEL ASESOR' || k.trim().toUpperCase() === 'ASESOR'));
+                            const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toUpperCase() === 'ASESOR') || nameKey);
+                            return { Asesor: resolveName(r[claveKey] || r[nameKey], null, directory), Clave: String(r[claveKey] || ''), PA_Acumulada: Number(r[paKey] || 0) };
+                        });
+                        campaignDates.mdrt = extractCutoffDate(wb);
+                    }
+                } catch(e) { console.warn('⚠️ MDRT skip:', e.message); }
+            } else if (step === 'convenciones') {
+                try {
+                    console.log('Processing convenciones');
+                    const convPath = path.join(BASE_PATH, 'convenciones');
+                    const recentFile = getMostRecentFile(convPath);
+                    if (recentFile) {
+                        const wb = readExcelSheetMemorySafe(path.join(convPath, recentFile), 0);
+                        const ws = wb.Sheets[wb.SheetNames[0]];
+                        const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
+                        const allRows = data.slice(1);
+                        let c480 = 0, c228 = 0, c108 = 0, c28 = 0;
+                        allRows.forEach(r => {
+                            const l = Number(r[32]);
+                            if (l === 480) c480 = Number(r[24] || 0);
+                            if (l === 228) c228 = Number(r[24] || 0);
+                            if (l === 108) c108 = Number(r[24] || 0);
+                            if (l === 28) c28 = Number(r[24] || 0);
+                        });
+                        campaigns.convenciones = allRows.filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
+                            Asesor: resolveName(r[7], null, directory), Clave: String(r[7] || ''),
+                            PA_Total: Number(r[24] || 0), Polizas: Number(r[28] || 0),
+                            Lugar: Number(r[32] || 9999), Lugar_480: c480, Lugar_228: c228, Lugar_108: c108, Lugar_28: c28,
+                            Comision_Vida: Number(r[11] || 0), RDA: Number(r[18] || 0)
+                        }));
+                        campaignDates.convenciones = extractCutoffDate(wb);
+                    }
+                } catch(e) { console.warn('⚠️ Convenciones skip:', e.message); }
+            } else if (step === 'legion_centurion') {
+                try {
+                    console.log('Processing legion_centurion');
+                    const legPath = path.join(BASE_PATH, 'legion_centurion');
+                    const recentFile = getMostRecentFile(legPath);
+                    if (recentFile) {
+                        const wb = readExcelSheetMemorySafe(path.join(legPath, recentFile), 0);
+                        const ws = wb.Sheets[wb.SheetNames[0]];
+                        const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 11 });
+                        const b9 = ws['B9']?.v || '';
+                        const mMatch = String(b9).toLowerCase().match(/(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/);
+                        const mIndex = mMatch ? MONTHS_ES.indexOf(mMatch[1]) + 1 : 1;
+                        campaigns.legion_centurion = data.slice(1).filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
+                            Asesor: resolveName(r[6], null, directory), Clave: String(r[6] || ''),
+                            Total_Polizas: Number(r[10] || 0), Mes_Actual: mIndex,
+                            Nivel: r[13] || '', EnMeta: String(r[11] || '').toLowerCase() === 'p'
+                        }));
+                        campaignDates.legion_centurion = String(b9).match(/\d{1,2}\s+de\s+[a-z]+\s+de\s+\d{4}/i)?.[0] || '';
+                    }
+                } catch(e) { console.warn('⚠️ Legión skip:', e.message); }
+            } else if (step === 'camino_cumbre') {
+                try {
+                    console.log('Processing camino_cumbre');
+                    const ccPath = path.join(BASE_PATH, 'camino_cumbre');
+                    const recentFile = getMostRecentFile(ccPath);
+                    if (recentFile) {
+                        const wb = readExcelSheetMemorySafe(path.join(ccPath, recentFile), 0);
+                        const ws = wb.Sheets[wb.SheetNames[0]];
+                        const data = extractData(ws);
+                        campaigns.camino_cumbre = data.filter(r => {
+                            const matKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MATRIZ' || k.trim().toUpperCase() === 'MAT' || k.trim().toUpperCase() === 'MAT / UNIDAD'));
+                            return SUCURSALES_PROMO.includes(String(r[matKey] || r[3] || ''));
+                        }).map(r => {
+                            const paKey = Object.keys(r).find(k => k && k.trim().toUpperCase().includes('TOTAL'));
+                            const nameKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'NOMBRE DEL ASESOR' || k.trim().toUpperCase() === 'ASESOR'));
+                            const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toUpperCase() === 'ASESOR') || nameKey);
+                            return {
+                                Asesor: resolveName(r[nameKey] || r[claveKey] || r[5], null, directory), Clave: String(r[claveKey] || r[5] || ''),
+                                Mes_Asesor: Number(r.Mes_Asesor || r['Mes'] || r['MES'] || r[10] || 1), Polizas_Totales: Number(r.Polizas_Totales || r[paKey] || r[13] || 0)
+                            };
+                        });
+                        campaignDates.camino_cumbre = extractCutoffDate(wb);
+                    }
+                } catch(e) { console.warn('⚠️ Camino skip:', e.message); }
+            } else if (step === 'fanfest') {
+                try {
+                    console.log('Processing fanfest');
+                    const ffPath = path.join(BASE_PATH, 'fanfest');
+                    const recentFile = getMostRecentFile(ffPath);
+                    if (recentFile) {
+                        const wb = readExcelSheetMemorySafe(path.join(ffPath, recentFile), n => n.toUpperCase() === 'ASESORES');
+                        const ws = wb.Sheets[wb.SheetNames[0]];
+                        const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
+                        campaigns.fanfest = data.slice(2).filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
+                            Asesor: resolveName(r[6], null, directory), Clave: String(r[6] || ''),
+                            Total_Polizas: Number(r[13] || 0),
+                            Condicion: String(r[12] || '').toLowerCase() === 'p',
+                            Premio: String(r[14] || '').toLowerCase() === 'p' ? 'GANADO' : 'PENDIENTE'
+                        }));
+                        campaignDates.fanfest = extractCutoffDate(wb);
+                    }
+                } catch(e) { console.warn('⚠️ FanFest skip:', e.message); }
+            } else if (step === 'vive_tu_pasion') {
+                try {
+                    console.log('Processing vive_tu_pasion');
+                    const vtpPath = path.join(BASE_PATH, 'vive_tu_pasion');
+                    const recentFile = getMostRecentFile(vtpPath);
+                    if (recentFile) {
+                        const wb = readExcelSheetMemorySafe(path.join(vtpPath, recentFile), n => n.toUpperCase() === 'ASESORES');
+                        const ws = wb.Sheets[wb.SheetNames[0]];
+                        const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
+                        campaigns.vive_tu_pasion = data.slice(2).filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
+                            Asesor: resolveName(r[6], null, directory), Clave: String(r[6] || ''),
+                            Polizas: Number(r[8] || 0), Comisiones: Number(r[9] || 0),
+                            Premio: r[10] || ''
+                        }));
+                        campaignDates.vive_tu_pasion = extractCutoffDate(wb);
+                    }
+                } catch(e) { console.warn('⚠️ VTP skip:', e.message); }
+            } else if (step === 'graduacion') {
+                try {
+                    console.log('Processing graduacion');
+                    const gradPath = path.join(BASE_PATH, 'graduacion');
+                    const recentFile = getMostRecentFile(gradPath);
+                    if (recentFile) {
+                        const selector = n => n.toLowerCase().includes('encuentroii') || n.toLowerCase().includes('desarrollo (2)') || n.toLowerCase().includes('detalle') || n.toLowerCase().includes('asesores');
+                        const wb = readExcelSheetMemorySafe(path.join(gradPath, recentFile), selector);
+                        const ws = wb.Sheets[wb.SheetNames[0]];
+                        const data = extractData(ws);
+                        campaigns.graduacion = data.filter(r => {
+                            const matKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MATRIZ' || k.trim().toUpperCase() === 'MAT' || k.trim().toUpperCase() === 'MAT / UNIDAD'));
+                            return SUCURSALES_PROMO.includes(String(r[matKey] || r[3] || ''));
+                        }).map(r => {
+                            const paKey = Object.keys(r).find(k => k && (k.trim().toUpperCase().includes('TOTAL') || k.trim().toUpperCase().includes('VIGOR')));
+                            const nameKey = Object.keys(r).find(k => k && k.trim().toUpperCase() === 'NOMBRE DEL ASESOR' || k.trim().toUpperCase() === 'NOMBRE' || k.trim().toUpperCase() === 'ASESOR');
+                            const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toUpperCase() === 'CLAVE') || Object.keys(r).find(k => k && k.trim().toUpperCase() === 'ASESOR') || nameKey);
+                            const limitKey = Object.keys(r).find(k => k && (k.trim().toUpperCase().includes('LÍMITE') || k.trim().toUpperCase().includes('LIMITE')));
+                            const rawName = r[nameKey] && String(r[nameKey]).trim();
+                            const isNameNumeric = rawName && !isNaN(Number(rawName));
+                            return {
+                                Asesor: cleanNameText(!isNameNumeric && rawName ? rawName : resolveName(r.Clave || r[claveKey] || r[6], null, directory)), Clave: String(r[claveKey] || r.Clave || r[6] || ''),
+                                Mes_Asesor: Number(r.Mes_Asesor || r['Mes'] || r['mes'] || r['MES'] || 1), Polizas_Totales: Number(r.Polizas_Totales || r[paKey] || r['EN VIGOR'] || 0),
+                                Fecha_Limite_Meta: r[limitKey] ? formatExcelDate(r[limitKey]) : '',
+                                Comisones: Number(r.Comisones || r['TOTAL_1'] || Object.keys(r).reverse().find(k => k && k.trim().toUpperCase().includes('TOTAL')) ? r[Object.keys(r).reverse().find(k => k && k.trim().toUpperCase().includes('TOTAL'))] : 0)
+                            };
+                        });
+                        campaignDates.graduacion = extractCutoffDate(wb);
+                    }
+                } catch(e) { console.warn('⚠️ Graduación skip:', e.message); }
+            }
+
+            const stepFile = path.join(DB_PATH, `step_${step}.json`);
+            fs.writeFileSync(stepFile, JSON.stringify({
+                campaigns: campaigns[step] || [],
+                date: campaignDates[step] || ''
+            }, null, 2));
+            console.log(`[SNAPSHOT SUBPROCESS] Step ${step} finished and saved to ${stepFile}`);
+            process.exit(0);
         }
 
         const snapshot = {
@@ -389,198 +603,28 @@ const run = async () => {
         }
 
         // ===================== CAMPAÑAS =====================
-        const SUCURSALES_PROMO = ['2043'];
-        const MONTHS_ES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
         const campaigns = {};
         const campaignDates = {};
 
-        // Helper para leer excels que traen basura (logos, fechas) en las primeras filas
-        const extractData = (ws) => {
-            const rawData = XLSX.utils.sheet_to_json(ws, { header: 1 });
-            let headerIdx = -1;
-            for (let i = 0; i < Math.min(30, rawData.length); i++) {
-                const row = rawData[i];
-                if (row && row.some(cell => {
-                    const c = String(cell).toLowerCase().trim();
-                    return c === 'asesor' || c === 'mat' || c === 'mat / unidad' || c === 'nombre del asesor';
-                })) {
-                    headerIdx = i;
-                    break;
+        const steps = ['mdrt', 'convenciones', 'legion_centurion', 'camino_cumbre', 'fanfest', 'vive_tu_pasion', 'graduacion'];
+        for (const s of steps) {
+            try {
+                console.log(`Spawning subprocess for campaign step: ${s}...`);
+                const nodeBin = process.execPath;
+                execSync(`"${nodeBin}" --max-old-space-size=350 "${path.join(BASE_PATH, 'actualizar_snapshot.js')}" --step=${s}`, { stdio: 'inherit' });
+                
+                const stepFile = path.join(DB_PATH, `step_${s}.json`);
+                if (fs.existsSync(stepFile)) {
+                    const stepData = JSON.parse(fs.readFileSync(stepFile, 'utf-8'));
+                    campaigns[s] = stepData.campaigns;
+                    campaignDates[s] = stepData.date;
+                    fs.unlinkSync(stepFile);
+                    console.log(`Successfully merged step data for ${s}.`);
                 }
+            } catch (e) {
+                console.error(`❌ Error executing campaign step ${s}:`, e.message);
             }
-            if (headerIdx === -1) headerIdx = 0;
-            return XLSX.utils.sheet_to_json(ws, { range: headerIdx });
-        };
-
-        // MDRT
-        try {
-            console.log('Processing mdrt');
-            const mdrtPath = path.join(BASE_PATH, 'mdrt');
-            const recentFile = getMostRecentFile(mdrtPath);
-            if (recentFile) {
-                const wb = XLSX.readFile(path.join(mdrtPath, recentFile));
-                const sheetName = wb.SheetNames.find(n => n.toUpperCase() === 'MDRT') || wb.SheetNames[0];
-                const ws = wb.Sheets[sheetName];
-                const data = extractData(ws);
-                campaigns.mdrt = data.filter(r => {
-                    const matKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MATRIZ' || k.trim().toUpperCase() === 'MAT' || k.trim().toUpperCase() === 'MAT / UNIDAD'));
-                    return SUCURSALES_PROMO.includes(String(r[matKey] || ''));
-                }).map(r => {
-                    const paKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'TOTAL PRIMA' || k.trim().toUpperCase() === 'CAMINO PRIMA' || k.trim().toUpperCase() === 'PRIMA ANUALIZADA' || k.trim().toUpperCase() === 'PRIMA PONDERADA MDRT'));
-                    const nameKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'NOMBRE DEL ASESOR' || k.trim().toUpperCase() === 'ASESOR'));
-                    const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toUpperCase() === 'ASESOR') || nameKey);
-                    return { Asesor: resolveName(r[claveKey] || r[nameKey], null, directory), Clave: String(r[claveKey] || ''), PA_Acumulada: Number(r[paKey] || 0) };
-                });
-                campaignDates.mdrt = extractCutoffDate(wb);
-            }
-        } catch(e) { console.warn('⚠️ MDRT skip:', e.message); }
-
-        // Convenciones
-        try {
-            console.log('Processing convenciones');
-            const convPath = path.join(BASE_PATH, 'convenciones');
-            const recentFile = getMostRecentFile(convPath);
-            if (recentFile) {
-                const wb = XLSX.readFile(path.join(convPath, recentFile));
-                const ws = wb.Sheets[wb.SheetNames[0]];
-                const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
-                const allRows = data.slice(1);
-                let c480 = 0, c228 = 0, c108 = 0, c28 = 0;
-                allRows.forEach(r => {
-                    const l = Number(r[32]);
-                    if (l === 480) c480 = Number(r[24] || 0);
-                    if (l === 228) c228 = Number(r[24] || 0);
-                    if (l === 108) c108 = Number(r[24] || 0);
-                    if (l === 28) c28 = Number(r[24] || 0);
-                });
-                campaigns.convenciones = allRows.filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
-                    Asesor: resolveName(r[7], null, directory), Clave: String(r[7] || ''),
-                    PA_Total: Number(r[24] || 0), Polizas: Number(r[28] || 0),
-                    Lugar: Number(r[32] || 9999), Lugar_480: c480, Lugar_228: c228, Lugar_108: c108, Lugar_28: c28,
-                    Comision_Vida: Number(r[11] || 0), RDA: Number(r[18] || 0)
-                }));
-                campaignDates.convenciones = extractCutoffDate(wb);
-            }
-        } catch(e) { console.warn('⚠️ Convenciones skip:', e.message); }
-
-        // Legión Centurión
-        try {
-            console.log('Processing legion_centurion');
-            const legPath = path.join(BASE_PATH, 'legion_centurion');
-            const recentFile = getMostRecentFile(legPath);
-            if (recentFile) {
-                const wb = XLSX.readFile(path.join(legPath, recentFile));
-                const ws = wb.Sheets[wb.SheetNames[0]];
-                const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 11 });
-                const b9 = ws['B9']?.v || '';
-                const mMatch = String(b9).toLowerCase().match(/(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/);
-                const mIndex = mMatch ? MONTHS_ES.indexOf(mMatch[1]) + 1 : 1;
-                campaigns.legion_centurion = data.slice(1).filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
-                    Asesor: resolveName(r[6], null, directory), Clave: String(r[6] || ''),
-                    Total_Polizas: Number(r[10] || 0), Mes_Actual: mIndex,
-                    Nivel: r[13] || '', EnMeta: String(r[11] || '').toLowerCase() === 'p'
-                }));
-                campaignDates.legion_centurion = String(b9).match(/\d{1,2}\s+de\s+[a-z]+\s+de\s+\d{4}/i)?.[0] || '';
-            }
-        } catch(e) { console.warn('⚠️ Legión skip:', e.message); }
-
-        // Camino a la Cumbre
-        try {
-            console.log('Processing camino_cumbre');
-            const ccPath = path.join(BASE_PATH, 'camino_cumbre');
-            const recentFile = getMostRecentFile(ccPath);
-            if (recentFile) {
-                const wb = XLSX.readFile(path.join(ccPath, recentFile));
-                const ws = wb.Sheets[wb.SheetNames[0]];
-                const data = extractData(ws);
-                campaigns.camino_cumbre = data.filter(r => {
-                    const matKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MATRIZ' || k.trim().toUpperCase() === 'MAT' || k.trim().toUpperCase() === 'MAT / UNIDAD'));
-                    return SUCURSALES_PROMO.includes(String(r[matKey] || r[3] || ''));
-                }).map(r => {
-                    const paKey = Object.keys(r).find(k => k && k.trim().toUpperCase().includes('TOTAL'));
-                    const nameKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'NOMBRE DEL ASESOR' || k.trim().toUpperCase() === 'ASESOR'));
-                    const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toUpperCase() === 'ASESOR') || nameKey);
-                    return {
-                        Asesor: resolveName(r[nameKey] || r[claveKey] || r[5], null, directory), Clave: String(r[claveKey] || r[5] || ''),
-                        Mes_Asesor: Number(r.Mes_Asesor || r['Mes'] || r['MES'] || r[10] || 1), Polizas_Totales: Number(r.Polizas_Totales || r[paKey] || r[13] || 0)
-                    };
-                });
-                campaignDates.camino_cumbre = extractCutoffDate(wb);
-            }
-        } catch(e) { console.warn('⚠️ Camino skip:', e.message); }
-
-        // Fan Fest
-        try {
-            console.log('Processing fanfest');
-            const ffPath = path.join(BASE_PATH, 'fanfest');
-            const recentFile = getMostRecentFile(ffPath);
-            if (recentFile) {
-                const wb = XLSX.readFile(path.join(ffPath, recentFile));
-                const ws = wb.Sheets['ASESORES'] || wb.Sheets[wb.SheetNames[0]];
-                const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
-                campaigns.fanfest = data.slice(2).filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
-                    Asesor: resolveName(r[6], null, directory), Clave: String(r[6] || ''),
-                    Total_Polizas: Number(r[13] || 0),
-                    Condicion: String(r[12] || '').toLowerCase() === 'p',
-                    Premio: String(r[14] || '').toLowerCase() === 'p' ? 'GANADO' : 'PENDIENTE'
-                }));
-                campaignDates.fanfest = extractCutoffDate(wb);
-            }
-        } catch(e) { console.warn('⚠️ FanFest skip:', e.message); }
-
-        // Vive Tu Pasión
-        try {
-            console.log('Processing vive_tu_pasion');
-            const vtpPath = path.join(BASE_PATH, 'vive_tu_pasion');
-            const recentFile = getMostRecentFile(vtpPath);
-            if (recentFile) {
-                const wb = XLSX.readFile(path.join(vtpPath, recentFile));
-                const ws = wb.Sheets['ASESORES'] || wb.Sheets[wb.SheetNames[0]];
-                const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
-                campaigns.vive_tu_pasion = data.slice(2).filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
-                    Asesor: resolveName(r[6], null, directory), Clave: String(r[6] || ''),
-                    Polizas: Number(r[8] || 0), Comisiones: Number(r[9] || 0),
-                    Premio: r[10] || ''
-                }));
-                campaignDates.vive_tu_pasion = extractCutoffDate(wb);
-            }
-        } catch(e) { console.warn('⚠️ VTP skip:', e.message); }
-
-        // Graduación
-        try {
-            console.log('Processing graduacion');
-            const gradPath = path.join(BASE_PATH, 'graduacion');
-            const recentFile = getMostRecentFile(gradPath);
-            if (recentFile) {
-                const wb = XLSX.readFile(path.join(gradPath, recentFile));
-                let wsName = wb.SheetNames.find(n => n.toLowerCase().includes('encuentroii') || n.toLowerCase().includes('desarrollo (2)') || n.toLowerCase().includes('detalle') || n.toLowerCase().includes('asesores'));
-                if (!wsName) wsName = wb.SheetNames[0];
-                const ws = wb.Sheets[wsName];
-                const data = extractData(ws);
-                campaigns.graduacion = data.filter(r => {
-                    const matKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MATRIZ' || k.trim().toUpperCase() === 'MAT' || k.trim().toUpperCase() === 'MAT / UNIDAD'));
-                    return SUCURSALES_PROMO.includes(String(r[matKey] || r[3] || ''));
-                }).map(r => {
-                    const paKey = Object.keys(r).find(k => k && (k.trim().toUpperCase().includes('TOTAL') || k.trim().toUpperCase().includes('VIGOR')));
-                    const nameKey = Object.keys(r).find(k => k && k.trim().toUpperCase() === 'NOMBRE DEL ASESOR')
-                        || Object.keys(r).find(k => k && k.trim().toUpperCase() === 'NOMBRE')
-                        || Object.keys(r).find(k => k && k.trim().toUpperCase() === 'ASESOR');
-                    const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toUpperCase() === 'CLAVE')
-                        || Object.keys(r).find(k => k && k.trim().toUpperCase() === 'ASESOR')
-                        || nameKey);
-                    const limitKey = Object.keys(r).find(k => k && (k.trim().toUpperCase().includes('LÍMITE') || k.trim().toUpperCase().includes('LIMITE')));
-                    const rawName = r[nameKey] && String(r[nameKey]).trim();
-                    const isNameNumeric = rawName && !isNaN(Number(rawName));
-                    return {
-                        Asesor: cleanNameText(!isNameNumeric && rawName ? rawName : resolveName(r.Clave || r[claveKey] || r[6], null, directory)), Clave: String(r[claveKey] || r.Clave || r[6] || ''),
-                        Mes_Asesor: Number(r.Mes_Asesor || r['Mes'] || r['mes'] || r['MES'] || 1), Polizas_Totales: Number(r.Polizas_Totales || r[paKey] || r['EN VIGOR'] || 0),
-                        Fecha_Limite_Meta: r[limitKey] ? formatExcelDate(r[limitKey]) : '',
-                        Comisones: Number(r.Comisones || r['TOTAL_1'] || Object.keys(r).reverse().find(k => k && k.trim().toUpperCase().includes('TOTAL')) ? r[Object.keys(r).reverse().find(k => k && k.trim().toUpperCase().includes('TOTAL'))] : 0)
-                    };
-                });
-                campaignDates.graduacion = extractCutoffDate(wb);
-            }
-        } catch(e) { console.warn('⚠️ Graduación skip:', e.message); }
+        }
 
         snapshot.data.campaigns = campaigns;
         snapshot.data.campaignDates = campaignDates;

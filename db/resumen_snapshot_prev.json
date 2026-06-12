@@ -1,5 +1,5 @@
 {
-  "updatedAt": "10/6/2026, 11:50:31 a.m.",
+  "updatedAt": "12/6/2026, 1:18:42 p.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -2418,228 +2418,6 @@
       "comparativo_vida": "27 de mayo de 2026"
     },
     "campaigns": {
-      "mdrt": [
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 1576892.56
-        },
-        {
-          "Asesor": "DESIREE DE LA PEÑA OROZCO",
-          "Clave": "80122",
-          "PA_Acumulada": 781829.47
-        },
-        {
-          "Asesor": "DARINKA UREÑA CASILLAS",
-          "Clave": "90355",
-          "PA_Acumulada": 668994.18
-        },
-        {
-          "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
-          "Clave": "104750",
-          "PA_Acumulada": 398405.6
-        },
-        {
-          "Asesor": "ANAIS LUA MORENO",
-          "Clave": "110453",
-          "PA_Acumulada": 384184.56
-        },
-        {
-          "Asesor": "JORGE ANTONIO LUNA LARA",
-          "Clave": "111056",
-          "PA_Acumulada": 338553.69
-        },
-        {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "PA_Acumulada": 288665.59
-        },
-        {
-          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
-          "Clave": "116883",
-          "PA_Acumulada": 286257.84
-        },
-        {
-          "Asesor": "MARIA TERESA ASENCIO LOZANO",
-          "Clave": "94156",
-          "PA_Acumulada": 258088.63
-        },
-        {
-          "Asesor": "MONSERRAT VELASCO SANTOS",
-          "Clave": "117440",
-          "PA_Acumulada": 255891.9
-        },
-        {
-          "Asesor": "MARIA FERNANDA RIOS BERNAL",
-          "Clave": "103982",
-          "PA_Acumulada": 246675.09
-        },
-        {
-          "Asesor": "GABRIELA CASTAÑEDA SALAZAR",
-          "Clave": "105696",
-          "PA_Acumulada": 243673.15
-        },
-        {
-          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
-          "Clave": "116876",
-          "PA_Acumulada": 186487.08
-        },
-        {
-          "Asesor": "ROGELIO TORRES ORTIZ",
-          "Clave": "104718",
-          "PA_Acumulada": 182053.69
-        },
-        {
-          "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
-          "Clave": "113450",
-          "PA_Acumulada": 178122.09
-        },
-        {
-          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
-          "Clave": "115047",
-          "PA_Acumulada": 144302.53
-        },
-        {
-          "Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
-          "Clave": "102825",
-          "PA_Acumulada": 114189.41
-        },
-        {
-          "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
-          "Clave": "115404",
-          "PA_Acumulada": 109214.09
-        },
-        {
-          "Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
-          "Clave": "107488",
-          "PA_Acumulada": 98628.89
-        },
-        {
-          "Asesor": "JULIANA RIASCOS VALENCIA",
-          "Clave": "100677",
-          "PA_Acumulada": 97588.37
-        },
-        {
-          "Asesor": "MARICELA ARREOLA LOPEZ",
-          "Clave": "80925",
-          "PA_Acumulada": 91498.09
-        },
-        {
-          "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
-          "Clave": "104343",
-          "PA_Acumulada": 71394.39
-        },
-        {
-          "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
-          "Clave": "108404",
-          "PA_Acumulada": 69624.37
-        },
-        {
-          "Asesor": "JOCELYN URIBE VARGAS",
-          "Clave": "90177",
-          "PA_Acumulada": 65218.56
-        },
-        {
-          "Asesor": "ANDREA CELESTE IBAÑEZ RINCON",
-          "Clave": "88234",
-          "PA_Acumulada": 49452.89
-        },
-        {
-          "Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
-          "Clave": "114157",
-          "PA_Acumulada": 44459.95
-        },
-        {
-          "Asesor": "PAULINA RODRIGUEZ DE LA MORA",
-          "Clave": "65046",
-          "PA_Acumulada": 42730.56
-        },
-        {
-          "Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
-          "Clave": "114100",
-          "PA_Acumulada": 41068.42
-        },
-        {
-          "Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
-          "Clave": "108405",
-          "PA_Acumulada": 35008.68
-        },
-        {
-          "Asesor": "MIREYA LIZETTE TORRES GARCIA",
-          "Clave": "106018",
-          "PA_Acumulada": 34656.56
-        },
-        {
-          "Asesor": "ROCIO YANETH OCHOA IBARRA",
-          "Clave": "110105",
-          "PA_Acumulada": 26966.54
-        },
-        {
-          "Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
-          "Clave": "112083",
-          "PA_Acumulada": 21630.84
-        },
-        {
-          "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
-          "Clave": "98797",
-          "PA_Acumulada": 15849.19
-        },
-        {
-          "Asesor": "SAMUEL NUÑO RIVERA",
-          "Clave": "101640",
-          "PA_Acumulada": 9579.48
-        },
-        {
-          "Asesor": "Asesor 64502",
-          "Clave": "64502",
-          "PA_Acumulada": 8705.04
-        },
-        {
-          "Asesor": "KAREN MUÑOZ GARCIA",
-          "Clave": "81044",
-          "PA_Acumulada": 2301.18
-        },
-        {
-          "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
-          "Clave": "63441",
-          "PA_Acumulada": 2264.86
-        },
-        {
-          "Asesor": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
-          "Clave": "109998",
-          "PA_Acumulada": 162.5
-        },
-        {
-          "Asesor": "MARIO ALFONSO SARMIENTO OROZCO",
-          "Clave": "69684",
-          "PA_Acumulada": 142.55
-        },
-        {
-          "Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
-          "Clave": "109007",
-          "PA_Acumulada": 9.86
-        },
-        {
-          "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
-          "Clave": "59120",
-          "PA_Acumulada": 0
-        },
-        {
-          "Asesor": "JOSE RENE DE ALBA MORALES",
-          "Clave": "110575",
-          "PA_Acumulada": 0
-        },
-        {
-          "Asesor": "LAURA DOLORES MONTAÑO MONTAÑO",
-          "Clave": "112522",
-          "PA_Acumulada": 0
-        },
-        {
-          "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
-          "Clave": "95148",
-          "PA_Acumulada": -634.16
-        }
-      ],
       "convenciones": [
         {
           "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
@@ -3208,7 +2986,7 @@
           "Total_Polizas": 21,
           "Mes_Actual": 5,
           "Nivel": "VM BRONCE",
-          "EnMeta": false
+          "EnMeta": true
         },
         {
           "Asesor": "DESIREE DE LA PEÑA OROZCO",
@@ -3216,7 +2994,7 @@
           "Total_Polizas": 20,
           "Mes_Actual": 5,
           "Nivel": "VM BRONCE",
-          "EnMeta": false
+          "EnMeta": true
         },
         {
           "Asesor": "DARINKA UREÑA CASILLAS",
@@ -4375,7 +4153,6 @@
       ]
     },
     "campaignDates": {
-      "mdrt": "31 de mayo de 2026",
       "convenciones": "31 de mayo de 2026",
       "legion_centurion": "31 de Mayo de 2026",
       "camino_cumbre": "05 de junio de 2026",
