@@ -1412,19 +1412,32 @@ app.get('/api/daniela/datos', (req, res) => {
                 }
             }
 
-            // Si no coincide apodo, buscar por coincidencias de palabras en nombres de asesores
+            // Si no coincide apodo, buscar por coincidencia de palabras utilizando un sistema de puntuación (scoring)
+            // para evitar colisiones (por ejemplo, que "Jorge Preciado" coincida con "Jorge Luna" si este aparece primero)
             if (!filterAdvisor) {
+                let bestAdvisor: string | null = null;
+                let maxScore = 0;
+
                 for (const advisor of allAdvisors) {
                     const advNorm = advisor.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
                     const words = advNorm.split(/\s+/).filter(w => w.length > 2 && w !== 'del' && w !== 'las' && w !== 'los' && w !== 'maria');
+                    
+                    let score = 0;
                     for (const word of words) {
                         const regex = new RegExp('\\b' + word + '\\b', 'i');
                         if (regex.test(queryNorm)) {
-                            filterAdvisor = advisor;
-                            break;
+                            score += 1;
                         }
                     }
-                    if (filterAdvisor) break;
+                    
+                    if (score > maxScore) {
+                        maxScore = score;
+                        bestAdvisor = advisor;
+                    }
+                }
+
+                if (maxScore > 0) {
+                    filterAdvisor = bestAdvisor;
                 }
             }
 
