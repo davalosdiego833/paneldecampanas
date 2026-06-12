@@ -666,7 +666,7 @@ const ProactivoCopyButton: React.FC<{
             }
         }
 
-        const faltantesMes = Math.max(0, Math.ceil(requisitoMes - polizasAcumuladas));
+        const faltantesMes = Math.max(0, requisitoMes - polizasAcumuladas);
 
         const msg = `AVISO DE PROACTIVOS\n\nEspero que estés teniendo un excelente día.\n\nTe escribo personalmente porque, al revisar nuestro cierre al ${fmtFecha}, noté que todavía no figuras en la Lista de Proactivos de la promotoria.\n\nComo sabes, para nosotros en Ambriz Asesores, mantener un ritmo constante de producción no es solo una métrica; es la garantía de que tu negocio sigue sano y protegiendo familias.\n\nAl cierre de cada semestre del año haremos evaluación de proactivos y con esto se considerara seguir teniendo derecho a:\n - TENER PRP INDIVIDUAL CON EMMANUEL (PARA ASESORES +2AÑOS)\n - HACER USO DE HERRAMIENTAS DE LA PROMOTORIA PARA TU NEGOCIO (PANEL DE CAMPAÑAS, PAGINA DE ANF, ETC)\n\nPara el mes de ${mesCorte}, el requisito mínimo es contar con ${requisitoMes} pólizas vendidas para mantener el estatus de proactivo.\n\nAl corte mencionado:\nTe hizo falta: ${faltantesMes} póliza(s) para ser asesor proactivo en ${mesCorte}.\n\nDéjame un pulgarcito arriba de enterad@ 🙂`;
 
@@ -748,7 +748,7 @@ const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDate: stri
     const headers = ['#', 'Asesor', 'F. Conexión', 'Suc', 'Acum. Ant.', 'Del Mes', 'Acum. Total', 'Proactivo Mes', 'Falt. Mes', 'Proactivo Dic', 'Falt. Dic', 'Acción'];
     const rows = sortedData.map((r: any, i: number) => {
         const polizasAcum = Number(r.Polizas_Acumuladas_Total) || 0;
-        const faltantesMes = Math.max(0, Math.ceil(mesRequisito - polizasAcum));
+        const faltantesMes = Math.max(0, mesRequisito - polizasAcum);
         const fechaDisplay = r.Fecha_Conexion && r.Fecha_Conexion !== 'N/A' ? r.Fecha_Conexion.split('-').reverse().join('/') : 'N/A';
         return [
             i + 1, r.ASESOR, fechaDisplay, r.SUC, fmtNum(r['Polizas_Acumuladas_Mes_Ant.']), fmtNum(r.Polizas_Del_mes), fmtNum(polizasAcum),

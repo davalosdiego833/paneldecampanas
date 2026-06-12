@@ -1552,31 +1552,59 @@ app.get('/api/daniela/datos', (req, res) => {
             : [];
         // 3. Proactivos
         const proactivos_list = rg.proactivos || [];
+        // Calculate mesRequisito based on the proactivos cutoff date
+        const monthsArr = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+        let mesRequisito = new Date().getMonth() + 1;
+        const fCorteProactivos = fechas_corte.proactivos || '';
+        const parts = fCorteProactivos.split('-');
+        if (parts.length === 3 && parts[0].length === 4) {
+            const monthNum = parseInt(parts[1], 10);
+            if (monthNum >= 1 && monthNum <= 12)
+                mesRequisito = monthNum;
+        }
+        else {
+            const words = fCorteProactivos.replace(/,/g, '').split(/\s+/);
+            for (const word of words) {
+                const idx = monthsArr.indexOf(word.toLowerCase());
+                if (idx !== -1) {
+                    mesRequisito = idx + 1;
+                    break;
+                }
+            }
+        }
         const proactivos_activos = includeProactivos()
             ? proactivos_list
                 .filter((p) => String(p.Proactivo_al_mes).trim().toUpperCase() === 'SÍ' && matchAsesor(p.ASESOR))
-                .map((p) => ({
-                asesor: p.ASESOR,
-                sucursal: p.SUC,
-                polizas_del_mes: p.Polizas_Del_mes,
-                polizas_acumuladas: p.Polizas_Acumuladas_Total,
-                faltantes_mes: p.Pólizas_Faltantes,
-                faltantes_dic: p.Pólizas_Faltantes_Para_Dic,
-                fecha_conexion: p.Fecha_Conexion
-            }))
+                .map((p) => {
+                const polizasAcum = Number(p.Polizas_Acumuladas_Total) || 0;
+                return {
+                    asesor: p.ASESOR,
+                    sucursal: p.SUC,
+                    polizas_del_mes: p.Polizas_Del_mes,
+                    polizas_acumuladas: polizasAcum,
+                    requisito_mes: mesRequisito,
+                    faltantes_mes: Math.max(0, mesRequisito - polizasAcum),
+                    faltantes_dic: p.Pólizas_Faltantes_Para_Dic,
+                    fecha_conexion: p.Fecha_Conexion
+                };
+            })
             : [];
         const proactivos_inactivos = includeProactivos()
             ? proactivos_list
                 .filter((p) => String(p.Proactivo_al_mes).trim().toUpperCase() !== 'SÍ' && matchAsesor(p.ASESOR))
-                .map((p) => ({
-                asesor: p.ASESOR,
-                sucursal: p.SUC,
-                polizas_del_mes: p.Polizas_Del_mes,
-                polizas_acumuladas: p.Polizas_Acumuladas_Total,
-                faltantes_mes: p.Pólizas_Faltantes,
-                faltantes_dic: p.Pólizas_Faltantes_Para_Dic,
-                fecha_conexion: p.Fecha_Conexion
-            }))
+                .map((p) => {
+                const polizasAcum = Number(p.Polizas_Acumuladas_Total) || 0;
+                return {
+                    asesor: p.ASESOR,
+                    sucursal: p.SUC,
+                    polizas_del_mes: p.Polizas_Del_mes,
+                    polizas_acumuladas: polizasAcum,
+                    requisito_mes: mesRequisito,
+                    faltantes_mes: Math.max(0, mesRequisito - polizasAcum),
+                    faltantes_dic: p.Pólizas_Faltantes_Para_Dic,
+                    fecha_conexion: p.Fecha_Conexion
+                };
+            })
             : [];
         // 4. Campañas simplificadas
         const campaigns = {};
