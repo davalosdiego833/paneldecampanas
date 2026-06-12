@@ -696,12 +696,14 @@ const ProactivoCopyButton: React.FC<{
 const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDate: string | null; onDateSelect: (d: string | null) => void; themeMode: 'dark' | 'light' }> = ({ data, fechaCorte, selectedDate, onDateSelect, themeMode }) => {
     const [filterStatus, setFilterStatus] = React.useState('all');
     const [sortMode, setSortMode] = React.useState('polizas_desc');
+    const isProactive = (val: any) => {
+        const v = String(val || '').trim().toLowerCase();
+        return v === 'p' || v === 'sí' || v === 'si';
+    };
 
-    if (!data || !data.length) return <div>No hay datos</div>;
-
-    const proactivosMes = data.filter((r: any) => r.Proactivo_al_mes === 'p').length;
-    const noProactivosMes = data.filter((r: any) => r.Proactivo_al_mes !== 'p').length;
-    const proactivosDic = data.filter((r: any) => r.Proactivo_a_Dic === 'p').length;
+    const proactivosMes = data.filter((r: any) => isProactive(r.Proactivo_al_mes)).length;
+    const noProactivosMes = data.filter((r: any) => !isProactive(r.Proactivo_al_mes)).length;
+    const proactivosDic = data.filter((r: any) => isProactive(r.Proactivo_a_Dic)).length;
 
     const chartData = [{ name: 'Proactivos', value: proactivosMes, fill: '#00E676' }, { name: 'No Proactivos', value: noProactivosMes, fill: '#FF6B6B' }];
     
@@ -713,8 +715,8 @@ const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDate: stri
     }));
 
     let filteredData = [...data];
-    if (filterStatus === 'p') filteredData = filteredData.filter((r: any) => r.Proactivo_al_mes === 'p');
-    if (filterStatus === 'i') filteredData = filteredData.filter((r: any) => r.Proactivo_al_mes !== 'p');
+    if (filterStatus === 'p') filteredData = filteredData.filter((r: any) => isProactive(r.Proactivo_al_mes));
+    if (filterStatus === 'i') filteredData = filteredData.filter((r: any) => !isProactive(r.Proactivo_al_mes));
 
     const sortedData = filteredData.sort((a: any, b: any) => {
         if (sortMode === 'polizas_desc') return (Number(b.Polizas_Acumuladas_Total) || 0) - (Number(a.Polizas_Acumuladas_Total) || 0);
@@ -750,11 +752,11 @@ const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDate: stri
         const fechaDisplay = r.Fecha_Conexion && r.Fecha_Conexion !== 'N/A' ? r.Fecha_Conexion.split('-').reverse().join('/') : 'N/A';
         return [
             i + 1, r.ASESOR, fechaDisplay, r.SUC, fmtNum(r['Polizas_Acumuladas_Mes_Ant.']), fmtNum(r.Polizas_Del_mes), fmtNum(polizasAcum),
-            r.Proactivo_al_mes === 'p' ? '✅ Sí' : '❌ No', 
+            isProactive(r.Proactivo_al_mes) ? '✅ Sí' : '❌ No', 
             fmtNum(faltantesMes), 
-            r.Proactivo_a_Dic === 'p' ? '✅ Sí' : '❌ No', 
+            isProactive(r.Proactivo_a_Dic) ? '✅ Sí' : '❌ No', 
             fmtNum(r.Pólizas_Faltantes_Para_Dic),
-            r.Proactivo_al_mes !== 'p' && faltantesMes > 0 ? <ProactivoCopyButton fechaCorte={fechaCorte} polizasAcumuladas={polizasAcum} /> : ''
+            !isProactive(r.Proactivo_al_mes) && faltantesMes > 0 ? <ProactivoCopyButton fechaCorte={fechaCorte} polizasAcumuladas={polizasAcum} /> : ''
         ];
     });
 
