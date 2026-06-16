@@ -127,7 +127,7 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor, themeMode }) => {
 
                 <div style={{ width: '120px', flexShrink: 0 }}>
                     <img
-                        src={`/assets/logos/campanas/${campaign}.png`}
+                        src={`/assets/logos/campanas/${campaign}.png?v=2`}
                         alt={campaign}
                         style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
                         onError={(e) => {
