@@ -17,7 +17,7 @@ const CampaignSelector: React.FC<Props> = ({ advisor, onCampaignSelect }) => {
         "convenciones": "/assets/logos/campanas/convenciones.png",
         "camino_cumbre": "/assets/logos/campanas/camino_cumbre.png",
         "graduacion": "/assets/logos/campanas/graduacion.png",
-        "proactiva_tech": "/assets/logos/campanas/proactiva_tech.png"
+        "proactiva_tech": "/assets/logos/campanas/proactiva_tech.png?v=2"
     };
 
     useEffect(() => {
