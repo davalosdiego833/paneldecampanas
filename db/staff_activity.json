@@ -478,6 +478,21 @@
           "recluta_entrevistas": 1,
           "observaciones": "Buen inicio de mes para Shelsea. Arranca junio con una excelente actividad de prospección en frío, registrando 205 contactos acumulados en su base de datos. De estos, ha logrado generar 7 enamoramientos en la primera semana del mes y concretar 1 entrevista de reclutamiento.\n\nÁrea de mejora: Con 7 enamoramientos activos pero 0 en compensación y administrativa, el objetivo prioritario para esta semana debe ser acelerar el avance de estos candidatos a través de las entrevistas y filtros correspondientes, logrando incrementar las citas concretadas y formalizar sus primeras contrataciones de junio."
         }
+      },
+      {
+        "date": "2026-06-15",
+        "type": "lunes_cierre",
+        "data": {
+          "activos_mes": 27,
+          "ent_enamoramiento": 13,
+          "ent_compensacion": 0,
+          "ent_administrativa": 0,
+          "sesiones_rda": 0,
+          "recluta_contactos": 335,
+          "recluta_citas": 31,
+          "recluta_entrevistas": 5,
+          "observaciones": "Excelente semana de prospección y crecimiento de equipo para Shelsea. Sumó +130 nuevos contactos en frío y concretó +16 nuevas citas en su bitácora, logrando realizar +4 entrevistas de reclutamiento. Este flujo constante de candidatos se tradujo en un incremento importante en los activos del mes, pasando de 19 a 27 (+8) y sumando +6 nuevos enamoramientos en junio.\n\nÁrea de mejora: Con 13 enamoramientos acumulados y 27 activos en junio, la prioridad de la semana es reactivar las siguientes etapas del embudo (compensación y trámites administrativos) que se mantuvieron estables en 0, para consolidar estas postulaciones y seguir incrementando el equipo."
+        }
       }
     ]
   }
