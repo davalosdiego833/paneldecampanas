@@ -33,8 +33,6 @@ const campaignLabels: Record<string, { label: string; icon: string }> = {
     camino_cumbre: { label: 'Camino a la Cumbre', icon: '⛰️' },
     legion_centurion: { label: 'Legión Centurión', icon: '🛡️' },
     graduacion: { label: 'Graduación', icon: '🎓' },
-    fanfest: { label: 'Fan Fest', icon: '🎉' },
-    vive_tu_pasion: { label: 'Vive tu Pasión', icon: '🔥' },
 };
 
 const CentroAvisos: React.FC<Props> = ({ onBack, themeMode }) => {

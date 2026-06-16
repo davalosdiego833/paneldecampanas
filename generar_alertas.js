@@ -313,40 +313,6 @@ export const generateAlerts = () => {
         }
     });
 
-    // --- FAN FEST ---
-    const prevFF = prevCamps.fanfest || [];
-    const currFF = currCamps.fanfest || [];
-    const prevFFMap = {}; prevFF.forEach(r => { prevFFMap[r.Asesor] = r; });
-    const fecha_ff = campDates.fanfest || '';
-
-    currFF.forEach(r => {
-        const old = prevFFMap[r.Asesor];
-        if (!old) return;
-        const fn = getFirst(r.Asesor);
-
-        // Positivo: ganó la campaña (pasó a GANADO)
-        if (r.Premio === 'GANADO' && old.Premio !== 'GANADO') {
-            alerts.push({
-                id: uid(), asesor: r.Asesor, firstName: fn,
-                campaign: 'fanfest', type: 'positive',
-                event: `¡Ganó Fan Fest!`,
-                message: `Hola ${fn}, ¿cómo estás? 👋\n¡FELICIDADES ENORMES! ⚽🏆\n\nEstuve checando tus números al ${fecha_ff} en *Fan Fest* y ¡ya *GANASTE* la campaña!\n\nLlevas *${r.Total_Polizas} pólizas*. ¡Qué orgullo! 🎉\n\ndéjame un pulgarcito arriba de enterad@ 🙂`,
-                sent: false
-            });
-        }
-
-        // Positivo: cumplió condición mensual (no la tenía)
-        if (r.Condicion && !old.Condicion) {
-            alerts.push({
-                id: uid(), asesor: r.Asesor, firstName: fn,
-                campaign: 'fanfest', type: 'positive',
-                event: `¡Cumplió condición del mes en Fan Fest!`,
-                message: `Hola ${fn}, ¿cómo estás? 👋\n¡Buenas noticias! ⚽\n\nEstuve checando tus números al ${fecha_ff} en *Fan Fest* y ¡ya *cumpliste la condición del mes*! 🎯\n\nLlevas *${r.Total_Polizas} pólizas* acumuladas. ¡Sigue así!\n\ndéjame un pulgarcito arriba de enterad@ 🙂`,
-                sent: false
-            });
-        }
-    });
-
     // --- CAMINO A LA CUMBRE ---
     const prevCC = prevCamps.camino_cumbre || [];
     const currCC = currCamps.camino_cumbre || [];

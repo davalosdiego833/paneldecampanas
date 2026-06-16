@@ -90,7 +90,9 @@ const readExcelSheetMemorySafe = (filePath, sheetSelector) => {
     if (!targetSheet) {
         targetSheet = tempWb.SheetNames[0];
     }
-    return XLSX.readFile(filePath, { sheets: [targetSheet] });
+    const wb = XLSX.readFile(filePath, { sheets: [targetSheet] });
+    wb.SheetNames = [targetSheet];
+    return wb;
 };
 
 const SUCURSALES_PROMO = ['2043'];
@@ -259,41 +261,7 @@ const run = async () => {
                         campaignDates.camino_cumbre = extractCutoffDate(wb);
                     }
                 } catch(e) { console.warn('⚠️ Camino skip:', e.message); }
-            } else if (step === 'fanfest') {
-                try {
-                    console.log('Processing fanfest');
-                    const ffPath = path.join(BASE_PATH, 'fanfest');
-                    const recentFile = getMostRecentFile(ffPath);
-                    if (recentFile) {
-                        const wb = readExcelSheetMemorySafe(path.join(ffPath, recentFile), n => n.toUpperCase() === 'ASESORES');
-                        const ws = wb.Sheets[wb.SheetNames[0]];
-                        const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
-                        campaigns.fanfest = data.slice(2).filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
-                            Asesor: resolveName(r[6], null, directory), Clave: String(r[6] || ''),
-                            Total_Polizas: Number(r[13] || 0),
-                            Condicion: String(r[12] || '').toLowerCase() === 'p',
-                            Premio: String(r[14] || '').toLowerCase() === 'p' ? 'GANADO' : 'PENDIENTE'
-                        }));
-                        campaignDates.fanfest = extractCutoffDate(wb);
-                    }
-                } catch(e) { console.warn('⚠️ FanFest skip:', e.message); }
-            } else if (step === 'vive_tu_pasion') {
-                try {
-                    console.log('Processing vive_tu_pasion');
-                    const vtpPath = path.join(BASE_PATH, 'vive_tu_pasion');
-                    const recentFile = getMostRecentFile(vtpPath);
-                    if (recentFile) {
-                        const wb = readExcelSheetMemorySafe(path.join(vtpPath, recentFile), n => n.toUpperCase() === 'ASESORES');
-                        const ws = wb.Sheets[wb.SheetNames[0]];
-                        const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
-                        campaigns.vive_tu_pasion = data.slice(2).filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
-                            Asesor: resolveName(r[6], null, directory), Clave: String(r[6] || ''),
-                            Polizas: Number(r[8] || 0), Comisiones: Number(r[9] || 0),
-                            Premio: r[10] || ''
-                        }));
-                        campaignDates.vive_tu_pasion = extractCutoffDate(wb);
-                    }
-                } catch(e) { console.warn('⚠️ VTP skip:', e.message); }
+
             } else if (step === 'graduacion') {
                 try {
                     console.log('Processing graduacion');
@@ -606,7 +574,7 @@ const run = async () => {
         const campaigns = {};
         const campaignDates = {};
 
-        const steps = ['mdrt', 'convenciones', 'legion_centurion', 'camino_cumbre', 'fanfest', 'vive_tu_pasion', 'graduacion'];
+        const steps = ['mdrt', 'convenciones', 'legion_centurion', 'camino_cumbre', 'graduacion'];
         for (const s of steps) {
             try {
                 console.log(`Spawning subprocess for campaign step: ${s}...`);

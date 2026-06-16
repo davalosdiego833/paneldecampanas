@@ -26,8 +26,6 @@ const CAMPAIGN_LABELS: Record<string, string> = {
     convenciones: 'Convenciones',
     graduacion: 'Graduación',
     legion_centurion: 'Legión Centurión',
-    fanfest: 'Fan Fest SMNYL',
-    vive_tu_pasion: 'Vive Tu Pasión',
 };
 
 const CAMPAIGN_ICONS: Record<string, string> = {
@@ -36,8 +34,6 @@ const CAMPAIGN_ICONS: Record<string, string> = {
     convenciones: '✈️',
     graduacion: '🎓',
     legion_centurion: '🛡️',
-    fanfest: '⚽',
-    vive_tu_pasion: '🔥',
 };
 
 const CAMPAIGN_COLORS: Record<string, string> = {
@@ -46,8 +42,6 @@ const CAMPAIGN_COLORS: Record<string, string> = {
     convenciones: '#007AFF',
     graduacion: '#FF6B35',
     legion_centurion: '#9C27B0',
-    fanfest: '#007AFF', // Blue/Green theme
-    vive_tu_pasion: '#00E676', // Passionate Green/Gold
 };
 
 // Classify advisors by status per campaign with enriched detail lines
@@ -266,50 +260,6 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
                 }
             }
         }
-
-        else if (campaign === 'fanfest') {
-            const total = Number(row.Total_Polizas || 0);
-            const condicion = !!row.Condicion;
-            const premio = String(row.Premio || 'Pendiente');
-            const ene = Number(row.Enero || 0);
-            const feb = Number(row.Febrero || 0);
-            const mar = Number(row.Marzo || 0);
-            const abr = Number(row.Abril || 0);
-
-            const details: string[] = [
-                `Total: ${total} Pólizas · ${condicion ? 'Condición OK' : 'Falta Condición Mar-Abr'}`,
-                `Ene: ${ene} · Feb: ${feb} · Mar: ${mar} · Abr: ${abr}`,
-                `Estatus: ${premio}`
-            ];
-
-            if (total >= 6 && condicion) {
-                ganando.push({ name, value: total, details, row });
-            } else if (total >= 4) {
-                cerca.push({ name, value: total, details, row });
-            } else {
-                lejos.push({ name, value: total, details, row });
-            }
-        }
-
-        else if (campaign === 'vive_tu_pasion') {
-            const pols = Number(row.Polizas || 0);
-            const coms = Number(row.Comisiones || 0);
-            const premio = String(row.Premio || 'Sin premio aún');
-
-            const details: string[] = [
-                `${pols} Pólizas · ${formatCurrency(coms)} en Comisiones`,
-                `Premio Actual: ${premio}`
-            ];
-
-            // Nivel 1: 5 pols & 15k coms
-            if (pols >= 5 && coms >= 15000) {
-                ganando.push({ name, value: pols, details, row });
-            } else if (pols >= 3) {
-                cerca.push({ name, value: pols, details, row });
-            } else {
-                lejos.push({ name, value: pols, details, row });
-            }
-        }
     });
 
     // Sort each category
@@ -361,7 +311,7 @@ const AdminDashboard: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTh
 
     if (!data) return <div style={{ color: 'white', padding: '40px' }}>Error cargando datos.</div>;
 
-    const knownCampaigns = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion'];
+    const knownCampaigns = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion'];
     const campaigns = Object.keys(data).filter(k => knownCampaigns.includes(k) && Array.isArray(data[k]));
     const totalAdvisors = new Set(campaigns.flatMap(c => (data[c] as any[]).map((r: any) => r.Asesor))).size;
 
@@ -944,59 +894,6 @@ const CampaignCopyButton: React.FC<{
                 msg += `Vas muy bien: ya cumples con los candados de pólizas y créditos mínimos. Sin embargo, estás en el lugar #${lugar}. Para entrar a la zona de calificación (lugar 480) te faltan *${formatCurrency(faltanteCred)}* créditos. ¡Estás muy cerca! ⚡`;
             } else {
                 msg += `Estás en el lugar #${lugar}, pero para poder validar ese lugar necesitamos liberar los candados mínimos. Te faltan *${missingPol}* pólizas y *${formatCurrency(missingCred)}* créditos. ¡Enfoquémonos en esos mínimos para asegurar tu lugar! 🎯`;
-            }
-        }
-        else if (campaign === 'vive_tu_pasion') {
-            const pols = Number(row.Polizas || 0);
-            const coms = Number(row.Comisiones || 0);
-            const niveles = [
-                { id: 1, pols: 5, com: 15000 },
-                { id: 2, pols: 7, com: 25000 },
-                { id: 3, pols: 9, com: 40000 },
-                { id: 4, pols: 12, com: 50000 }
-            ];
-            const currentLevel = [...niveles].reverse().find(n => pols >= n.pols && coms >= n.com);
-            const nextLevel = niveles.find(n => pols < n.pols || coms < n.com);
-
-            msg += `*Vive tu Pasión*: 🔥\n\nLlevas ${pols} pólizas y ${formatCurrency(coms)} en comisiones. `;
-            if (currentLevel) {
-                msg += `¡Ya tienes ganado el Nivel ${currentLevel.id}! 🏆 `;
-                if (nextLevel) {
-                    msg += `Para subir al siguiente nivel de premio (Nivel ${nextLevel.id}) te faltan ${nextLevel.pols - pols} pólizas y ${formatCurrency(nextLevel.com - coms)} en comisión. ✨`;
-                } else {
-                    msg += `¡Has alcanzado el nivel máximo de la campaña! 🎉`;
-                }
-            } else {
-                msg += `Para alcanzar el primer nivel de premio te faltan ${5 - pols} pólizas y ${formatCurrency(15000 - coms)} en comisión. ¡A meterle velocidad! 🚀`;
-            }
-        }
-        else if (campaign === 'fanfest') {
-            const total = Number(row.Total_Polizas || 0);
-            const condicion = !!row.Condicion;
-            const premio = String(row.Premio || 'PENDIENTE ⏳');
-            const ene = Number(row.Enero || 0);
-            const feb = Number(row.Febrero || 0);
-            const mar = Number(row.Marzo || 0);
-            const abr = Number(row.Abril || 0);
-            const faltantePols = Math.max(0, 6 - total);
-
-            msg += `*Fan Fest*: 🎉\n\nAsí vas en tu producción mes a mes:\n📌 Enero: ${ene} | Febrero: ${feb} | Marzo: ${mar} | Abril: ${abr}\n📊 Total acumulado: *${total} pólizas*\n\n`;
-
-            if (total >= 6 && condicion) {
-                // Ya ganó
-                msg += `🏆 ¡Felicidades! Ya cumpliste con las 6 pólizas y la condición de Marzo-Abril está cubierta. Tu premio está: *${premio}*. ¡Sigue así, eres un ejemplo para la promotoría! 🔥`;
-            } else if (total >= 6 && !condicion) {
-                // Tiene pólizas pero le falta condición
-                msg += `Llevas ${total} pólizas, ¡ya superaste las 6 requeridas! 💪 Sin embargo, aún te falta cumplir la *condición de producción en Marzo-Abril*. Necesitas asegurarte de tener actividad en esos meses para que tu premio quede validado. ¡Estás muy cerca! ⚡`;
-            } else {
-                // Le faltan pólizas
-                msg += `Te faltan *${faltantePols} pólizas* para llegar a las 6 que pide la campaña.`;
-                if (!condicion) {
-                    msg += ` Además, necesitas cubrir la *condición de producción en Marzo-Abril* para validar tu premio.`;
-                } else {
-                    msg += ` La buena noticia es que ya tienes cubierta la condición de Marzo-Abril. 👍`;
-                }
-                msg += `\n\n¡Vamos a cerrar con todo para llevarte el premio! 🎯`;
             }
         } else {
             msg += `la campaña *${campaign}*. Llevas un gran avance. ¡Sigue así!`;

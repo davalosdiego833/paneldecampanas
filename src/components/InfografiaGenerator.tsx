@@ -14,8 +14,8 @@ const TEMPLATES = [
     { id: 'top5_legion', label: 'Top 5 Legión Centurión', icon: '🛡️', color: '#9C27B0', sortKey: 'Total_Polizas', sortAsc: false, campaign: 'legion_centurion', valueLabel: 'Pólizas', valueKey: 'Total_Polizas' },
     { id: 'top5_camino', label: 'Top 5 Camino a la Cumbre', icon: '⛰️', color: '#00E676', sortKey: 'Polizas_Totales', sortAsc: false, campaign: 'camino_cumbre', valueLabel: 'Pólizas', valueKey: 'Polizas_Totales' },
     { id: 'top5_graduacion', label: 'Top 5 Graduación', icon: '🎓', color: '#FF6B35', sortKey: 'Polizas_Totales', sortAsc: false, campaign: 'graduacion', valueLabel: 'Pólizas', valueKey: 'Polizas_Totales' },
-    { id: 'top5_fanfest', label: 'Top 5 Fan Fest', icon: '⚽', color: '#2196F3', sortKey: 'Total_Polizas', sortAsc: false, campaign: 'fanfest', valueLabel: 'Pólizas', valueKey: 'Total_Polizas' },
     { id: 'top5_pagado', label: 'Top 5 Prima Pagada', icon: '💰', color: '#00C853', sortKey: 'Total _Prima_Pagada', sortAsc: false, campaign: '_pagado', valueLabel: 'Prima Pagada', valueKey: 'Total _Prima_Pagada', isCurrency: true },
+
     { id: 'proactivos_mes', label: 'Asesores Proactivos del Mes', icon: '📊', color: '#FF9800', campaign: '_proactivos', valueLabel: 'Pólizas', valueKey: 'Polizas_Acumuladas_Total' },
 ];
 

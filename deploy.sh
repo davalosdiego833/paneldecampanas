@@ -50,11 +50,9 @@ rsync -avz --exclude "comentarios_polizas.json" --exclude "actividad.json" --exc
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" administrador/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/administrador/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" camino_cumbre/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/camino_cumbre/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" convenciones/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/convenciones/
-rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" fanfest/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/fanfest/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" graduacion/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/graduacion/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" legion_centurion/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/legion_centurion/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" mdrt/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/mdrt/
-rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" vive_tu_pasion/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/vive_tu_pasion/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" "estatus polizas/" $SERVER_USER@$SERVER_IP:"'$PARENT_DIR/nodejs/estatus polizas/'"
 
 # 4. Subir scripts de generación al servidor
