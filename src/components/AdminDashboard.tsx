@@ -26,6 +26,7 @@ const CAMPAIGN_LABELS: Record<string, string> = {
     convenciones: 'Convenciones',
     graduacion: 'Graduación',
     legion_centurion: 'Legión Centurión',
+    proactiva_tech: 'Proactiva Tech',
 };
 
 const CAMPAIGN_ICONS: Record<string, string> = {
@@ -34,6 +35,7 @@ const CAMPAIGN_ICONS: Record<string, string> = {
     convenciones: '✈️',
     graduacion: '🎓',
     legion_centurion: '🛡️',
+    proactiva_tech: '💻',
 };
 
 const CAMPAIGN_COLORS: Record<string, string> = {
@@ -42,6 +44,7 @@ const CAMPAIGN_COLORS: Record<string, string> = {
     convenciones: '#007AFF',
     graduacion: '#FF6B35',
     legion_centurion: '#9C27B0',
+    proactiva_tech: '#007AFF',
 };
 
 // Classify advisors by status per campaign with enriched detail lines
@@ -260,12 +263,73 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
                 }
             }
         }
+
+        else if (campaign === 'proactiva_tech') {
+            const rank = Number(row.Ranking || 99999);
+            const polizas = Number(row.Polizas || 0);
+            const comisiones = Number(row.Comisiones || 0);
+
+            const PROACTIVA_NIVELES = [
+                { id: 4, name: 'iPhone 17 Pro Max (256GB) + $10,000', pols: 15, com: 45000, minRank: 1, maxRank: 15 },
+                { id: 3, name: 'iPhone 17 (256GB) + $7,500', pols: 12, com: 30000, minRank: 16, maxRank: 35 },
+                { id: 2, name: 'Apple Watch Serie 11 + $5,000', pols: 9, com: 15000, minRank: 36, maxRank: 85 },
+                { id: 1, name: 'AirPods Pro 3 + $2,500', pols: 6, com: 9000, minRank: 86, maxRank: 195 }
+            ];
+
+            const targetLevel = PROACTIVA_NIVELES.find(n => rank >= n.minRank && rank <= n.maxRank);
+
+            let prizeWon = null;
+            if (rank <= 195) {
+                const maxLevelAllowed = targetLevel ? targetLevel.id : 1;
+                const allowedLevels = PROACTIVA_NIVELES.filter(n => n.id <= maxLevelAllowed);
+                for (const lvl of allowedLevels) {
+                    if (polizas >= lvl.pols && comisiones >= lvl.com) {
+                        prizeWon = lvl;
+                        break;
+                    }
+                }
+            }
+
+            const details: string[] = [];
+            const infoLine = `${polizas} pólizas · ${formatCurrency(comisiones)} com.`;
+
+            if (prizeWon) {
+                details.push(`🏅 Lugar #${rank} · ${prizeWon.name}`);
+                details.push(infoLine);
+                ganando.push({ name, value: polizas, details, row });
+            } else {
+                const prizeLabel = targetLevel ? `Potencial: ${targetLevel.name}` : 'Sin premio';
+                details.push(`Lugar #${rank} · ${prizeLabel}`);
+                details.push(infoLine);
+
+                // Cerca si está en el top 195 y tiene al menos 4 pólizas
+                const isNear = rank <= 195 && polizas >= 4;
+                if (isNear) {
+                    const nextLevel = targetLevel || PROACTIVA_NIVELES[3]; // AirPods
+                    const missingPols = Math.max(0, nextLevel.pols - polizas);
+                    const missingCom = Math.max(0, nextLevel.com - comisiones);
+                    
+                    if (missingPols > 0) details.push(`⚠️ Faltan ${missingPols.toFixed(1)} pólizas`);
+                    if (missingCom > 0) details.push(`⚠️ Falta ${formatCurrency(missingCom)} com.`);
+                    
+                    cerca.push({ name, value: polizas, details, row });
+                } else {
+                    lejos.push({ name, value: polizas, details, row });
+                }
+            }
+        }
     });
 
     // Sort each category
-    ganando.sort((a, b) => b.value - a.value);
-    cerca.sort((a, b) => b.value - a.value);
-    lejos.sort((a, b) => b.value - a.value);
+    if (campaign === 'proactiva_tech') {
+        ganando.sort((a, b) => (a.row.Ranking || 99999) - (b.row.Ranking || 99999));
+        cerca.sort((a, b) => (a.row.Ranking || 99999) - (b.row.Ranking || 99999));
+        lejos.sort((a, b) => (a.row.Ranking || 99999) - (b.row.Ranking || 99999));
+    } else {
+        ganando.sort((a, b) => b.value - a.value);
+        cerca.sort((a, b) => b.value - a.value);
+        lejos.sort((a, b) => b.value - a.value);
+    }
 
     return { ganando, cerca, lejos };
 };
@@ -311,7 +375,7 @@ const AdminDashboard: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTh
 
     if (!data) return <div style={{ color: 'white', padding: '40px' }}>Error cargando datos.</div>;
 
-    const knownCampaigns = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion'];
+    const knownCampaigns = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'proactiva_tech'];
     const campaigns = Object.keys(data).filter(k => knownCampaigns.includes(k) && Array.isArray(data[k]));
     const totalAdvisors = new Set(campaigns.flatMap(c => (data[c] as any[]).map((r: any) => r.Asesor))).size;
 
@@ -894,6 +958,53 @@ const CampaignCopyButton: React.FC<{
                 msg += `Vas muy bien: ya cumples con los candados de pólizas y créditos mínimos. Sin embargo, estás en el lugar #${lugar}. Para entrar a la zona de calificación (lugar 480) te faltan *${formatCurrency(faltanteCred)}* créditos. ¡Estás muy cerca! ⚡`;
             } else {
                 msg += `Estás en el lugar #${lugar}, pero para poder validar ese lugar necesitamos liberar los candados mínimos. Te faltan *${missingPol}* pólizas y *${formatCurrency(missingCred)}* créditos. ¡Enfoquémonos en esos mínimos para asegurar tu lugar! 🎯`;
+            }
+        }
+        else if (campaign === 'proactiva_tech') {
+            const rank = Number(row.Ranking || 99999);
+            const pols = Number(row.Polizas || 0);
+            const coms = Number(row.Comisiones || 0);
+
+            const PROACTIVA_NIVELES = [
+                { id: 4, name: 'iPhone 17 Pro Max (256GB) + $10,000', pols: 15, com: 45000, minRank: 1, maxRank: 15 },
+                { id: 3, name: 'iPhone 17 (256GB) + $7,500', pols: 12, com: 30000, minRank: 16, maxRank: 35 },
+                { id: 2, name: 'Apple Watch Serie 11 + $5,000', pols: 9, com: 15000, minRank: 36, maxRank: 85 },
+                { id: 1, name: 'AirPods Pro 3 + $2,500', pols: 6, com: 9000, minRank: 86, maxRank: 195 }
+            ];
+
+            const targetLevel = PROACTIVA_NIVELES.find(n => rank >= n.minRank && rank <= n.maxRank);
+
+            let prizeWon = null;
+            if (rank <= 195) {
+                const maxLevelAllowed = targetLevel ? targetLevel.id : 1;
+                const allowedLevels = PROACTIVA_NIVELES.filter(n => n.id <= maxLevelAllowed);
+                for (const lvl of allowedLevels) {
+                    if (pols >= lvl.pols && coms >= lvl.com) {
+                        prizeWon = lvl;
+                        break;
+                    }
+                }
+            }
+
+            msg += `la campaña *Proactiva Tech*: 💻\n\n`;
+            if (rank > 195) {
+                msg += `Actualmente estás en el Lugar #${rank} con ${pols} pólizas y ${formatCurrency(coms)} en comisiones. Para entrar a la zona de premios y calificar, necesitas entrar al Top 195 general y cumplir con el mínimo del primer nivel (6 pólizas y ${formatCurrency(9000)} en comisiones). ¡Vamos por ese Top 195! 🚀`;
+            } else if (prizeWon) {
+                msg += `🎉 ¡Felicidades! Estás en el Lugar #${rank} con ${pols} pólizas y ${formatCurrency(coms)} en comisiones. Con esto estás ganando: *${prizeWon.name}*.\n`;
+                if (targetLevel && prizeWon.id < targetLevel.id) {
+                    msg += `Por tu lugar en el ranking podrías aspirar al *${targetLevel.name}*, para el cual te faltan: *${(targetLevel.pols - pols).toFixed(1)}* pólizas y *${formatCurrency(targetLevel.com - coms)}* en comisiones. ¡A apretar el paso para ganarte el premio mayor! 🏆`;
+                } else if (targetLevel) {
+                    const higherLevel = PROACTIVA_NIVELES.find(n => n.id === targetLevel.id + 1);
+                    if (higherLevel) {
+                        msg += `Para alcanzar el siguiente nivel (*${higherLevel.name}*), el objetivo es subir al Lugar #${higherLevel.maxRank} en el ranking y lograr un mínimo de ${higherLevel.pols} pólizas y ${formatCurrency(higherLevel.com)} en comisiones. ¡Sigue así! 💪`;
+                    } else {
+                        msg += `¡Has alcanzado el máximo nivel de premio posible para tu rango! ¡Espectacular! ✨`;
+                    }
+                }
+            } else {
+                const potentialName = targetLevel ? targetLevel.name : 'AirPods Pro 3 + $2,500';
+                const nextLevel = targetLevel || PROACTIVA_NIVELES[3];
+                msg += `Estás en el Lugar #${rank} con ${pols} pólizas y ${formatCurrency(coms)} en comisiones. Estás dentro del Top 195, pero aún no has liberado ningún premio porque te faltan cumplir los mínimos.\nPara calificar al premio de tu rango (*${potentialName}*), te faltan: *${(nextLevel.pols - pols).toFixed(1)}* pólizas y *${formatCurrency(nextLevel.com - coms)}* en comisiones. ¡Vamos a cerrar esos mínimos para asegurar tu premio! 🎯`;
             }
         } else {
             msg += `la campaña *${campaign}*. Llevas un gran avance. ¡Sigue así!`;

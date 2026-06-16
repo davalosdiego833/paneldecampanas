@@ -10,6 +10,7 @@ interface Props {
 
 const TEMPLATES = [
     { id: 'top5_convenciones', label: 'Top 5 Convenciones', icon: '✈️', color: '#007AFF', sortKey: 'Lugar', sortAsc: true, campaign: 'convenciones', valueLabel: 'Lugar', valueKey: 'Lugar' },
+    { id: 'top5_proactiva', label: 'Top 5 Proactiva Tech', icon: '💻', color: '#007AFF', sortKey: 'Ranking', sortAsc: true, campaign: 'proactiva_tech', valueLabel: 'Lugar', valueKey: 'Ranking' },
     { id: 'top5_mdrt', label: 'Top 5 MDRT', icon: '🏆', color: '#D4AF37', sortKey: 'PA_Acumulada', sortAsc: false, campaign: 'mdrt', valueLabel: 'Prima Acumulada', valueKey: 'PA_Acumulada', isCurrency: true },
     { id: 'top5_legion', label: 'Top 5 Legión Centurión', icon: '🛡️', color: '#9C27B0', sortKey: 'Total_Polizas', sortAsc: false, campaign: 'legion_centurion', valueLabel: 'Pólizas', valueKey: 'Total_Polizas' },
     { id: 'top5_camino', label: 'Top 5 Camino a la Cumbre', icon: '⛰️', color: '#00E676', sortKey: 'Polizas_Totales', sortAsc: false, campaign: 'camino_cumbre', valueLabel: 'Pólizas', valueKey: 'Polizas_Totales' },
@@ -184,7 +185,7 @@ const InfografiaGenerator: React.FC<Props> = ({ onBack, themeMode }) => {
                                         {rows.map((row: any, i: number) => {
                                             const medals = ['🥇', '🥈', '🥉'];
                                             const firstName = row.name ? row.name.split(' ').slice(0, 2).map((w: string) => w.charAt(0) + w.slice(1).toLowerCase()).join(' ') : 'Asesor';
-                                            const displayValue = selected.isCurrency ? formatCurrency(row.value) : (selected.campaign === 'convenciones' ? `#${row.value}` : `${row.value} pólizas`);
+                                            const displayValue = selected.isCurrency ? formatCurrency(row.value) : (selected.valueLabel === 'Lugar' ? `#${row.value}` : `${row.value} pólizas`);
 
                                             return (
                                                 <div key={i} style={{

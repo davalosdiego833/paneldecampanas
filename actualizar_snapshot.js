@@ -292,6 +292,42 @@ const run = async () => {
                         campaignDates.graduacion = extractCutoffDate(wb);
                     }
                 } catch(e) { console.warn('⚠️ Graduación skip:', e.message); }
+            } else if (step === 'proactiva_tech') {
+                try {
+                    console.log('Processing proactiva_tech');
+                    const ptPath = path.join(BASE_PATH, 'proactivatech');
+                    const recentFile = getMostRecentFile(ptPath);
+                    if (recentFile) {
+                        const selector = n => n.toLowerCase().includes('asesores');
+                        const wb = readExcelSheetMemorySafe(path.join(ptPath, recentFile), selector);
+                        const ws = wb.Sheets[wb.SheetNames[0]];
+                        const data = XLSX.utils.sheet_to_json(ws, { range: 6 });
+                        const advisorsData = data.slice(1);
+                        campaigns.proactiva_tech = advisorsData.filter(r => {
+                            const matVal = String(r.MATRIZ || '').trim();
+                            return matVal === '2043';
+                        }).map(r => ({
+                            Asesor: resolveName(r.ASESOR, null, directory),
+                            Clave: String(r.ASESOR || ''),
+                            Polizas: Number(r['PÓLIZAS'] || 0),
+                            Comisiones: Number(r.COMISIONES || 0),
+                            Ranking: Number(r.RANKING || 99999)
+                        }));
+                        const wsRes = wb.Sheets['RESUMEN'] || wb.Sheets[wb.SheetNames[0]];
+                        const rawRes = XLSX.utils.sheet_to_json(wsRes, { header: 1 });
+                        let cutoffStr = '';
+                        if (rawRes && rawRes[2] && rawRes[2][0]) {
+                            const val = String(rawRes[2][0]).toUpperCase();
+                            const match = val.match(/AL\s+(.+)$/);
+                            if (match) {
+                                cutoffStr = match[1].trim().toLowerCase()
+                                    .replace('20256', '2026')
+                                    .replace('2025', '2026');
+                            }
+                        }
+                        campaignDates.proactiva_tech = cutoffStr || '12 de junio de 2026';
+                    }
+                } catch(e) { console.warn('⚠️ Proactiva Tech skip:', e.message); }
             }
 
             const stepFile = path.join(DB_PATH, `step_${step}.json`);
@@ -574,7 +610,7 @@ const run = async () => {
         const campaigns = {};
         const campaignDates = {};
 
-        const steps = ['mdrt', 'convenciones', 'legion_centurion', 'camino_cumbre', 'graduacion'];
+        const steps = ['mdrt', 'convenciones', 'legion_centurion', 'camino_cumbre', 'graduacion', 'proactiva_tech'];
         for (const s of steps) {
             try {
                 console.log(`Spawning subprocess for campaign step: ${s}...`);

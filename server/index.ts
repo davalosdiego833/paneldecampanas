@@ -533,21 +533,12 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
                         });
                     }
 
-                    if (name === 'fanfest') {
-                        return res.json({
-                            Asesor: row.Asesor, Clave: row.Clave, Fecha_Corte: fechaCorte,
-                            Total_Polizas: Number(row.Total_Polizas || 0),
-                            Condicion: row.Condicion || false,
-                            Premio: row.Premio === 'GANADO' ? "GANADO 🏆" : "PENDIENTE ⏳"
-                        });
-                    }
-
-                    if (name === 'vive_tu_pasion') {
+                    if (name === 'proactiva_tech') {
                         return res.json({
                             Asesor: row.Asesor, Clave: row.Clave, Fecha_Corte: fechaCorte,
                             Polizas: Number(row.Polizas || 0),
                             Comisiones: Number(row.Comisiones || 0),
-                            Premio_Actual: row.Premio || "Ninguno aún"
+                            Ranking: Number(row.Ranking || 99999)
                         });
                     }
 

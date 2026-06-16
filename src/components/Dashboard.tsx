@@ -6,6 +6,7 @@ import LegionCenturion from './Dashboards/LegionCenturion';
 import Convenciones from './Dashboards/Convenciones';
 import CaminoCumbre from './Dashboards/CaminoCumbre';
 import Graduacion from './Dashboards/Graduacion';
+import ProactivaTech from './Dashboards/ProactivaTech';
 
 
 interface Props {
@@ -55,6 +56,7 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor, themeMode }) => {
             case 'convenciones': return <Convenciones data={data} />;
             case 'camino_cumbre': return <CaminoCumbre data={data} />;
             case 'graduacion': return <Graduacion data={data} />;
+            case 'proactiva_tech': return <ProactivaTech data={data} />;
             default: return (
                 <div style={{
                     display: 'grid',
