@@ -1,5 +1,5 @@
 {
-  "updatedAt": "16/6/2026, 3:02:08 p.m.",
+  "updatedAt": "17/6/2026, 9:31:04 a.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -3699,13 +3699,6 @@
           "Ranking": 62
         },
         {
-          "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
-          "Clave": "95148",
-          "Polizas": 0.5,
-          "Comisiones": 593.75,
-          "Ranking": 399
-        },
-        {
           "Asesor": "JOSE RENE DE ALBA MORALES",
           "Clave": "110575",
           "Polizas": 0,
@@ -3762,25 +3755,11 @@
           "Ranking": 709
         },
         {
-          "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
-          "Clave": "59120",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 2616
-        },
-        {
           "Asesor": "GABRIELA CASTAÑEDA SALAZAR",
           "Clave": "105696",
           "Polizas": 0,
           "Comisiones": 0,
           "Ranking": 2844
-        },
-        {
-          "Asesor": "PAULINA RODRIGUEZ DE LA MORA",
-          "Clave": "65046",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 936
         },
         {
           "Asesor": "ROGELIO TORRES ORTIZ",
@@ -3795,13 +3774,6 @@
           "Polizas": 0,
           "Comisiones": 0,
           "Ranking": 2920
-        },
-        {
-          "Asesor": "MARIO ALFONSO SARMIENTO OROZCO",
-          "Clave": "69684",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 2943
         },
         {
           "Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
@@ -3837,27 +3809,6 @@
           "Polizas": 0,
           "Comisiones": 0,
           "Ranking": 1190
-        },
-        {
-          "Asesor": "KAREN MUÑOZ GARCIA",
-          "Clave": "81044",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 3157
-        },
-        {
-          "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
-          "Clave": "63441",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 3282
-        },
-        {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 4223
         },
         {
           "Asesor": "SOFIA CAMPILLO VASCONCELOS",

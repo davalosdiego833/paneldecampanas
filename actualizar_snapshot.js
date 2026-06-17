@@ -303,9 +303,29 @@ const run = async () => {
                         const ws = wb.Sheets[wb.SheetNames[0]];
                         const data = XLSX.utils.sheet_to_json(ws, { range: 6 });
                         const advisorsData = data.slice(1);
+
+                        const getExcelYear = (val) => {
+                            if (!val) return 0;
+                            const num = Number(val);
+                            if (!isNaN(num)) {
+                                const date = new Date(Math.round((num - 25569) * 86400 * 1000));
+                                return date.getUTCFullYear();
+                            }
+                            const str = String(val).trim();
+                            const match = str.match(/\b(20\d{2})\b/);
+                            if (match) {
+                                return parseInt(match[1], 10);
+                            }
+                            return 0;
+                        };
+
                         campaigns.proactiva_tech = advisorsData.filter(r => {
                             const matVal = String(r.MATRIZ || '').trim();
-                            return matVal === '2043';
+                            if (matVal !== '2043') return false;
+
+                            const conVal = r['CONEXIÓN'];
+                            const year = getExcelYear(conVal);
+                            return year >= 2023;
                         }).map(r => ({
                             Asesor: resolveName(r.ASESOR, null, directory),
                             Clave: String(r.ASESOR || ''),
