@@ -1,5 +1,36 @@
 {
-  "generatedAt": "17/6/2026, 9:34:24 a.m.",
-  "totalNew": 0,
-  "alerts": []
+  "generatedAt": "17/6/2026, 10:45:56 a.m.",
+  "totalNew": 3,
+  "alerts": [
+    {
+      "id": "bd357dd1-3730-46d0-b8a4-b3d659581379",
+      "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+      "firstName": "Rafael",
+      "campaign": "comparativo_vida",
+      "type": "risk",
+      "event": "Decrecimiento de -52% vs año anterior",
+      "message": "Hola Rafael, ¿cómo estás? 👋\nOye, estuve checando tu Comparativo de Vida al 12 de junio de 2026 y noté que estás un *52% por debajo* de lo que traías el año pasado en pólizas pagadas.\n\nEl año pasado a estas fechas traías 14.5 y ahora llevas 7.\n\n¡Sé que puedes revertir esto! ¿En qué te podemos apoyar para retomar el ritmo? 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "31d1cd02-0799-4e0f-946a-54ab38bb4539",
+      "asesor": "ANDREA CELESTE IBAÑEZ RINCON",
+      "firstName": "Andrea",
+      "campaign": "comparativo_vida",
+      "type": "risk",
+      "event": "Decrecimiento de -50% vs año anterior",
+      "message": "Hola Andrea, ¿cómo estás? 👋\nOye, estuve checando tu Comparativo de Vida al 12 de junio de 2026 y noté que estás un *50% por debajo* de lo que traías el año pasado en pólizas pagadas.\n\nEl año pasado a estas fechas traías 2 y ahora llevas 1.\n\n¡Sé que puedes revertir esto! ¿En qué te podemos apoyar para retomar el ritmo? 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "223c99ec-d1de-4bbf-8cbc-7a7287dcfdab",
+      "asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
+      "firstName": "Adriana",
+      "campaign": "comparativo_vida",
+      "type": "risk",
+      "event": "Decrecimiento de -50% vs año anterior",
+      "message": "Hola Adriana, ¿cómo estás? 👋\nOye, estuve checando tu Comparativo de Vida al 12 de junio de 2026 y noté que estás un *50% por debajo* de lo que traías el año pasado en pólizas pagadas.\n\nEl año pasado a estas fechas traías 2 y ahora llevas 1.\n\n¡Sé que puedes revertir esto! ¿En qué te podemos apoyar para retomar el ritmo? 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    }
+  ]
 }
