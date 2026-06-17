@@ -42,12 +42,28 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor, themeMode }) => {
         </div>
     );
 
-    if (!data) return (
-        <div className="glass-card" style={{ padding: '60px', textAlign: 'center' }}>
-            <h2 className="text-gold" style={{ fontSize: '1.5rem', marginBottom: '16px' }}>Datos no encontrados</h2>
-            <p className="text-muted">No se encontró información para esta campaña y asesor.</p>
-        </div>
-    );
+    if (!data) {
+        if (campaign === 'proactiva_tech') {
+            return (
+                <div className="glass-card" style={{ padding: '60px', textAlign: 'center', maxWidth: '600px', margin: '40px auto' }}>
+                    <div style={{ fontSize: '3rem', marginBottom: '20px' }}>💻</div>
+                    <h2 className="text-gold" style={{ fontSize: '1.5rem', marginBottom: '16px', fontWeight: 800 }}>No participas en esta campaña</h2>
+                    <p className="text-muted" style={{ fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '24px' }}>
+                        La campaña <b>Proactiva Tech 2.0</b> está dirigida exclusivamente a asesores cuya fecha de conexión con la promotoría sea del año <b>2023 en adelante</b>.
+                    </p>
+                    <p className="text-muted" style={{ fontSize: '0.85rem' }}>
+                        Si crees que esto es un error, por favor ponte en contacto con la administración para verificar tu fecha de conexión registrada.
+                    </p>
+                </div>
+            );
+        }
+        return (
+            <div className="glass-card" style={{ padding: '60px', textAlign: 'center' }}>
+                <h2 className="text-gold" style={{ fontSize: '1.5rem', marginBottom: '16px' }}>Datos no encontrados</h2>
+                <p className="text-muted">No se encontró información para esta campaña y asesor.</p>
+            </div>
+        );
+    }
 
     const renderDashboard = () => {
         switch (campaign.toLowerCase()) {
