@@ -40,6 +40,7 @@ rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" dist/ $SERVER_U
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" assets/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/assets/ 2>/dev/null || true
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" themes/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/themes/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" package.json $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" package.json $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/package.json
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" package.json $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/backup_package.json
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" .htaccess $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" .htaccess $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/backup_htaccess
