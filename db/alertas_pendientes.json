@@ -1,75 +1,35 @@
 {
-  "generatedAt": "17/6/2026, 1:02:25 p.m.",
-  "totalNew": 7,
+  "generatedAt": "19/6/2026, 11:14:53 a.m.",
+  "totalNew": 3,
   "alerts": [
     {
-      "id": "0b15444d-2bd2-4f0b-a6a1-52698621fc75",
-      "asesor": "ANAIS LUA MORENO",
-      "firstName": "Anais",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "Prima pagada subió $11.2k",
-      "message": "Hola Anais, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 16 de junio de 2026, noté que tu prima pagada subió *$11.2k*. Ahora llevas un total de *$1.39M*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "4f173dd6-6386-4157-9e0e-8cadb6dda53b",
+      "id": "7dbd1200-844a-4149-8d15-8f3a51d467d1",
       "asesor": "DESIREE DE LA PEÑA OROZCO",
       "firstName": "Desiree",
       "campaign": "pagado_emitido",
       "type": "positive",
-      "event": "Prima pagada subió $13.2k",
-      "message": "Hola Desiree, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 16 de junio de 2026, noté que tu prima pagada subió *$13.2k*. Ahora llevas un total de *$45.4k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "event": "Prima pagada subió $6.4k",
+      "message": "Hola Desiree, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 17 de junio de 2026, noté que tu prima pagada subió *$6.4k*. Ahora llevas un total de *$51.8k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
       "sent": false
     },
     {
-      "id": "139d6d3a-d59b-48a9-8e22-9fce26bdc9ce",
-      "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-      "firstName": "Rafael",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "Prima pagada subió $21.9k",
-      "message": "Hola Rafael, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 16 de junio de 2026, noté que tu prima pagada subió *$21.9k*. Ahora llevas un total de *$44.6k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "5d8456bb-3708-4b02-bbba-3da402f074e5",
+      "id": "abecffa5-d540-41eb-9c7c-b71c637c9543",
       "asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
       "firstName": "Orlanda",
       "campaign": "pagado_emitido",
       "type": "positive",
-      "event": "Prima pagada subió $13.1k",
-      "message": "Hola Orlanda, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 16 de junio de 2026, noté que tu prima pagada subió *$13.1k*. Ahora llevas un total de *$22.7k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "event": "Prima pagada subió $10.8k",
+      "message": "Hola Orlanda, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 17 de junio de 2026, noté que tu prima pagada subió *$10.8k*. Ahora llevas un total de *$33.5k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
       "sent": false
     },
     {
-      "id": "7e1e7008-0d07-4b69-8b54-4fc7dd1997fd",
-      "asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
-      "firstName": "Hana",
+      "id": "65d08698-12e8-46a2-8bd3-22f616354488",
+      "asesor": "MARIO IVAN ROMERO GONZALEZ",
+      "firstName": "Mario",
       "campaign": "pagado_emitido",
       "type": "positive",
-      "event": "Prima pagada subió $6.3k",
-      "message": "Hola Hana, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 16 de junio de 2026, noté que tu prima pagada subió *$6.3k*. Ahora llevas un total de *$11.8k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "b577ad68-cebe-493e-8159-ea7d0d27dbfe",
-      "asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
-      "firstName": "Enrique",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "Prima pagada subió $8.0k",
-      "message": "Hola Enrique, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 16 de junio de 2026, noté que tu prima pagada subió *$8.0k*. Ahora llevas un total de *$8.0k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "bd56b9fc-7653-4336-bf0f-67649be3ca1b",
-      "asesor": "ROCIO YANETH OCHOA IBARRA",
-      "firstName": "Rocio",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "Prima pagada subió $7.4k",
-      "message": "Hola Rocio, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 16 de junio de 2026, noté que tu prima pagada subió *$7.4k*. Ahora llevas un total de *$7.4k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "event": "Prima pagada subió $17.1k",
+      "message": "Hola Mario, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 17 de junio de 2026, noté que tu prima pagada subió *$17.1k*. Ahora llevas un total de *$18.7k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
       "sent": false
     }
   ]
