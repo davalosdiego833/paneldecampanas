@@ -366,8 +366,8 @@ const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string; selectedDate:
     const sumRoPend = data.reduce((s, r) => s + roPend(r), 0);
     const sumTotalPend = data.reduce((s, r) => s + totalPend(r), 0);
 
-    const asesoresConPago = data.filter(r => polPag(r) !== 0 || totalPag(r) !== 0).length;
-    const asesoresConPendiente = data.filter(r => polPend(r) !== 0 || totalPend(r) !== 0).length;
+    const asesoresConPago = data.filter(r => polPag(r) > 0 || totalPag(r) > 0).length;
+    const asesoresConPendiente = data.filter(r => polPend(r) > 0 || totalPend(r) > 0).length;
 
     // Charts
     const pieInicial = [
@@ -384,12 +384,12 @@ const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string; selectedDate:
 
     // Tables
     const pendHeaders = ['#', 'Asesor', 'Suc', 'Pólizas Pendientes', 'Recibo Inicial Pendiente'];
-    const pendRows = data.filter(r => polPend(r) !== 0 || riPend(r) !== 0)
+    const pendRows = data.filter(r => polPend(r) > 0 || riPend(r) > 0)
         .sort((a, b) => Math.abs(riPend(b)) - Math.abs(riPend(a)))
         .map((r, i) => [i + 1, r['Nombre Asesor'], r.Sucursal, fmtNum(polPend(r)), fmt(riPend(r))]);
 
     const pagHeaders = ['#', 'Asesor', 'Suc', 'Pólizas Pagadas', 'Recibo Inicial Pagado'];
-    const pagRows = data.filter(r => polPag(r) !== 0 || riPag(r) !== 0)
+    const pagRows = data.filter(r => polPag(r) > 0 || riPag(r) > 0)
         .sort((a, b) => Math.abs(riPag(b)) - Math.abs(riPag(a)))
         .map((r, i) => [i + 1, r['Nombre Asesor'], r.Sucursal, fmtNum(polPag(r)), fmt(riPag(r))]);
 
