@@ -1,25 +1,35 @@
 {
-  "generatedAt": "22/6/2026, 9:11:50 a.m.",
-  "totalNew": 2,
+  "generatedAt": "22/6/2026, 10:25:14 a.m.",
+  "totalNew": 3,
   "alerts": [
     {
-      "id": "f1ade726-41b0-4ff5-a3e2-f76b68ba20ca",
-      "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-      "firstName": "Rafael",
-      "campaign": "pagado_emitido",
+      "id": "378c3096-bf41-4f13-ab63-683297318118",
+      "asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
+      "firstName": "Ana",
+      "campaign": "convenciones",
       "type": "positive",
-      "event": "Prima pagada subió $263.0k",
-      "message": "Hola Rafael, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 18 de junio de 2026, noté que tu prima pagada subió *$263.0k*. Ahora llevas un total de *$307.6k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "event": "Subió 91 lugares (ahora #2314)",
+      "message": "Hola Ana, ¿cómo estás? 👋\n¡Oye, buen avance! 📈\n\nEstuve checando tus números al 12 de junio de 2026 en *Convenciones* y subiste *91 lugares*. Ahora estás en el *#2314*.\n\nCréditos totales: *$127.9k*\n\n¡Vamos por ese diamante! 💎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
       "sent": false
     },
     {
-      "id": "dea12297-fae8-40c0-a012-8498600bb8cf",
-      "asesor": "JULIANA RIASCOS VALENCIA",
-      "firstName": "Juliana",
-      "campaign": "pagado_emitido",
+      "id": "36c33612-115e-4b03-bb8c-d848de9efef5",
+      "asesor": "SOFIA CAMPILLO VASCONCELOS",
+      "firstName": "Sofia",
+      "campaign": "convenciones",
       "type": "positive",
-      "event": "Prima pagada subió $17.9k",
-      "message": "Hola Juliana, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 18 de junio de 2026, noté que tu prima pagada subió *$17.9k*. Ahora llevas un total de *$31.5k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "event": "Subió 70 lugares (ahora #4595)",
+      "message": "Hola Sofia, ¿cómo estás? 👋\n¡Oye, buen avance! 📈\n\nEstuve checando tus números al 12 de junio de 2026 en *Convenciones* y subiste *70 lugares*. Ahora estás en el *#4595*.\n\nCréditos totales: *$56.2k*\n\n¡Vamos por ese diamante! 💎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "cf866370-c5b1-4b3d-ab6f-82037acb525f",
+      "asesor": "JOCELYN URIBE VARGAS",
+      "firstName": "Jocelyn",
+      "campaign": "convenciones",
+      "type": "positive",
+      "event": "Subió 59 lugares (ahora #7374)",
+      "message": "Hola Jocelyn, ¿cómo estás? 👋\n¡Oye, buen avance! 📈\n\nEstuve checando tus números al 12 de junio de 2026 en *Convenciones* y subiste *59 lugares*. Ahora estás en el *#7374*.\n\nCréditos totales: *$20.0k*\n\n¡Vamos por ese diamante! 💎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
       "sent": false
     }
   ]

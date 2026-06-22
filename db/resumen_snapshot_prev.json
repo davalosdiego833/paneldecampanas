@@ -1,5 +1,5 @@
 {
-  "updatedAt": "19/6/2026, 11:13:29 a.m.",
+  "updatedAt": "22/6/2026, 9:10:14 a.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -16,6 +16,18 @@
           "Total _Prima_Pendiente": 165437.93
         },
         {
+          "Nombre Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 3,
+          "Recibo_Inicial_Pagado": 283131.64,
+          "Recibo_Ordinario_Pagado": 24430.88,
+          "Total _Prima_Pagada": 307562.52,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 79686.28,
+          "Total _Prima_Pendiente": 79686.28
+        },
+        {
           "Nombre Asesor": "JORGE ANTONIO LUNA LARA",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 1,
@@ -28,30 +40,6 @@
           "Total _Prima_Pendiente": 5478.23
         },
         {
-          "Nombre Asesor": "DESIREE DE LA PEÑA OROZCO",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 51819.85,
-          "Total _Prima_Pagada": 51819.85,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 95286.8,
-          "Total _Prima_Pendiente": 95286.8
-        },
-        {
-          "Nombre Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 1,
-          "Recibo_Inicial_Pagado": 20152.56,
-          "Recibo_Ordinario_Pagado": 24430.88,
-          "Total _Prima_Pagada": 44583.44,
-          "Pólizas_Pendinetes": 2,
-          "Recibo_Inicial_Pendiente": 262979.08,
-          "Recibo_Ordinario_Pendiente": 79686.28,
-          "Total _Prima_Pendiente": 342665.36
-        },
-        {
           "Nombre Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 1,
@@ -62,6 +50,30 @@
           "Recibo_Inicial_Pendiente": 23108.1,
           "Recibo_Ordinario_Pendiente": 120415.19,
           "Total _Prima_Pendiente": 143523.29
+        },
+        {
+          "Nombre Asesor": "JULIANA RIASCOS VALENCIA",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 31470.98,
+          "Total _Prima_Pagada": 31470.98,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 8009.05,
+          "Total _Prima_Pendiente": 8009.05
+        },
+        {
+          "Nombre Asesor": "JOSE ALBERTO CORONADO ROSAS",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 27662.22,
+          "Total _Prima_Pagada": 27662.22,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 0,
+          "Total _Prima_Pendiente": 0
         },
         {
           "Nombre Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
@@ -124,16 +136,16 @@
           "Total _Prima_Pendiente": 21113.57
         },
         {
-          "Nombre Asesor": "JULIANA RIASCOS VALENCIA",
+          "Nombre Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 13575.59,
-          "Total _Prima_Pagada": 13575.59,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 17895.39,
-          "Recibo_Ordinario_Pendiente": 8009.05,
-          "Total _Prima_Pendiente": 25904.44
+          "Recibo_Ordinario_Pagado": 13535.98,
+          "Total _Prima_Pagada": 13535.98,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 42194.48,
+          "Total _Prima_Pendiente": 42194.48
         },
         {
           "Nombre Asesor": "ROGELIO TORRES ORTIZ",
@@ -146,18 +158,6 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 77390.42,
           "Total _Prima_Pendiente": 77390.42
-        },
-        {
-          "Nombre Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 11827.87,
-          "Total _Prima_Pagada": 11827.87,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 43902.59,
-          "Total _Prima_Pendiente": 43902.59
         },
         {
           "Nombre Asesor": "VELIA PATRICIA BERNAL RAMOS",
@@ -316,6 +316,30 @@
           "Total _Prima_Pendiente": 12486.85
         },
         {
+          "Nombre Asesor": "MIREYA LIZETTE TORRES GARCIA",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 3519.8,
+          "Total _Prima_Pagada": 3519.8,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 13960.61,
+          "Total _Prima_Pendiente": 13960.61
+        },
+        {
+          "Nombre Asesor": "DESIREE DE LA PEÑA OROZCO",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": -1986.88,
+          "Recibo_Ordinario_Pagado": 5321.25,
+          "Total _Prima_Pagada": 3334.37,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 95286.8,
+          "Total _Prima_Pendiente": 95286.8
+        },
+        {
           "Nombre Asesor": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -398,18 +422,6 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 8746.04,
           "Total _Prima_Pendiente": 8746.04
-        },
-        {
-          "Nombre Asesor": "MIREYA LIZETTE TORRES GARCIA",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 48.79,
-          "Total _Prima_Pagada": 48.79,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 16842.35,
-          "Total _Prima_Pendiente": 16842.35
         },
         {
           "Nombre Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
@@ -520,8 +532,8 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 1,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 32389,
-            "Prima_Pagada_GMM": 9852.07,
+            "Prima_Pagada_Vida": 32404.8,
+            "Prima_Pagada_GMM": 9852,
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
           },
@@ -534,8 +546,8 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 8851,
-            "Prima_Pagada_GMM": 1262.54,
+            "Prima_Pagada_Vida": 8855.81,
+            "Prima_Pagada_GMM": 1263,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_Vida": "i",
@@ -548,10 +560,10 @@
             "Suc": 2043,
             "Emitido_Vida": 1,
             "Emitido_GMM": 0,
-            "Pagado_Vida": 1,
+            "Pagado_Vida": 2,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 22730,
-            "Prima_Pagada_GMM": 3352.89,
+            "Prima_Pagada_Vida": 25269.1,
+            "Prima_Pagada_GMM": 3353,
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
           },
@@ -562,10 +574,10 @@
             "Suc": 2043,
             "Emitido_Vida": 3,
             "Emitido_GMM": 3,
-            "Pagado_Vida": 2,
+            "Pagado_Vida": 3,
             "Pagado_GMM": 3,
-            "Prima_Pagada_Vida": 39014,
-            "Prima_Pagada_GMM": 70335.92
+            "Prima_Pagada_Vida": 42632.12,
+            "Prima_Pagada_GMM": 70336
           },
           {
             "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
@@ -576,8 +588,8 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 13214,
-            "Prima_Pagada_GMM": 2324.98,
+            "Prima_Pagada_Vida": 14264.35,
+            "Prima_Pagada_GMM": 2325,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
@@ -587,13 +599,12 @@
             "Clave": 104718,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
-            "Emitido_Vida": 0,
+            "Emitido_Vida": 1,
             "Emitido_GMM": 0,
-            "Pagado_Vida": 0,
+            "Pagado_Vida": 1,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 15439,
+            "Prima_Pagada_Vida": 34765.47,
             "Prima_Pagada_GMM": 0,
-            "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
           },
@@ -606,20 +617,20 @@
             "Emitido_GMM": 1,
             "Pagado_Vida": 1,
             "Pagado_GMM": 1,
-            "Prima_Pagada_Vida": 23723,
-            "Prima_Pagada_GMM": 58009.09
+            "Prima_Pagada_Vida": 23734.41,
+            "Prima_Pagada_GMM": 58009
           },
           {
             "Asesor": "GABRIELA CASTAÑEDA SALAZAR",
             "Clave": 105696,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
-            "Emitido_Vida": 1,
+            "Emitido_Vida": 2,
             "Emitido_GMM": 0,
-            "Pagado_Vida": 1,
+            "Pagado_Vida": 2,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 35802,
-            "Prima_Pagada_GMM": 0,
+            "Prima_Pagada_Vida": 48159.32,
+            "Prima_Pagada_GMM": 1367,
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
           },
@@ -632,7 +643,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 9316,
+            "Prima_Pagada_Vida": 9320.11,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -647,8 +658,8 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 22805,
-            "Prima_Pagada_GMM": 2280.4,
+            "Prima_Pagada_Vida": 22724.61,
+            "Prima_Pagada_GMM": 2280,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_Vida": "i",
@@ -663,7 +674,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 3982,
+            "Prima_Pagada_Vida": 5931.75,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -679,7 +690,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 5556,
+            "Prima_Pagada_Vida": 5559.19,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -695,8 +706,8 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 6933,
-            "Prima_Pagada_GMM": 1557.85,
+            "Prima_Pagada_Vida": 6936.55,
+            "Prima_Pagada_GMM": 1558,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_Vida": "i",
@@ -711,7 +722,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 2975,
+            "Prima_Pagada_Vida": 2976.13,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -727,7 +738,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 7483,
+            "Prima_Pagada_Vida": 7486.24,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -743,8 +754,8 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 1,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 60274,
-            "Prima_Pagada_GMM": 14332.39,
+            "Prima_Pagada_Vida": 60303.81,
+            "Prima_Pagada_GMM": 14332,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i"
           },
@@ -774,7 +785,7 @@
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
             "Prima_Pagada_Vida": 0,
-            "Prima_Pagada_GMM": 3002.97,
+            "Prima_Pagada_GMM": 5997,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i"
           },
@@ -787,7 +798,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 1806,
+            "Prima_Pagada_Vida": 1806.57,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -802,7 +813,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 1761,
+            "Prima_Pagada_Vida": 1761.4,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -815,13 +826,11 @@
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
             "Emitido_Vida": 1,
-            "Emitido_GMM": 0,
-            "Pagado_Vida": 0,
-            "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 4884,
-            "Prima_Pagada_GMM": 0,
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Emitido_GMM": 1,
+            "Pagado_Vida": 1,
+            "Pagado_GMM": 1,
+            "Prima_Pagada_Vida": 75040.06,
+            "Prima_Pagada_GMM": 2725
           },
           {
             "Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
@@ -832,7 +841,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 1,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 29070,
+            "Prima_Pagada_Vida": 29084.49,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -847,7 +856,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 8174,
+            "Prima_Pagada_Vida": 8177.7,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i"
@@ -861,8 +870,8 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 1,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 46668,
-            "Prima_Pagada_GMM": 5515.07,
+            "Prima_Pagada_Vida": 46691.46,
+            "Prima_Pagada_GMM": 5515,
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
           },
@@ -875,8 +884,8 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 2411,
-            "Prima_Pagada_GMM": 5989.4,
+            "Prima_Pagada_Vida": 2412.12,
+            "Prima_Pagada_GMM": 5989,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_Vida": "i"
@@ -890,7 +899,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 2,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 22942,
+            "Prima_Pagada_Vida": 22953.42,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
@@ -900,11 +909,11 @@
             "Clave": 116883,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2856,
-            "Emitido_Vida": 1,
+            "Emitido_Vida": 2,
             "Emitido_GMM": 0,
-            "Pagado_Vida": 1,
+            "Pagado_Vida": 2,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 5592,
+            "Prima_Pagada_Vida": 32937.16,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_GMM": "i"
           },
@@ -917,7 +926,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 1,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 54186,
+            "Prima_Pagada_Vida": 54212.69,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
@@ -931,8 +940,8 @@
             "Emitido_GMM": 1,
             "Pagado_Vida": 2,
             "Pagado_GMM": 1,
-            "Prima_Pagada_Vida": 60905,
-            "Prima_Pagada_GMM": 25666.3
+            "Prima_Pagada_Vida": 62513.25,
+            "Prima_Pagada_GMM": 25666
           },
           {
             "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
@@ -957,8 +966,8 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 3703,
-            "Prima_Pagada_GMM": 6908.64,
+            "Prima_Pagada_Vida": 3705.24,
+            "Prima_Pagada_GMM": 6909,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_Vida": "i",
@@ -973,8 +982,8 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 1,
-            "Prima_Pagada_Vida": 1752,
-            "Prima_Pagada_GMM": 19825.63,
+            "Prima_Pagada_Vida": 2797.01,
+            "Prima_Pagada_GMM": 19826,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i"
           },
@@ -1001,7 +1010,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 2,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 92224,
+            "Prima_Pagada_Vida": 92269.84,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
@@ -1011,11 +1020,11 @@
             "Clave": 80925,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
-            "Emitido_Vida": 2,
+            "Emitido_Vida": 3,
             "Emitido_GMM": 0,
             "Pagado_Vida": 1,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 27877,
+            "Prima_Pagada_Vida": 32250.64,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
@@ -1043,8 +1052,8 @@
             "Emitido_GMM": 1,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 71500,
-            "Prima_Pagada_GMM": 6986.98,
+            "Prima_Pagada_Vida": 71151.91,
+            "Prima_Pagada_GMM": 6971,
             "Sin_Emisión_Vida": "i"
           },
           {
@@ -1056,7 +1065,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 7740,
+            "Prima_Pagada_Vida": 7743.36,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -1072,7 +1081,7 @@
             "Pagado_Vida": 0,
             "Pagado_GMM": 1,
             "Prima_Pagada_Vida": 0,
-            "Prima_Pagada_GMM": 12608.92,
+            "Prima_Pagada_GMM": 12609,
             "Sin_Emisión_Vida": "i",
             "3_Meses_Sin_Emisión_Vida": "i"
           },
@@ -1085,8 +1094,8 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 4,
             "Pagado_GMM": 1,
-            "Prima_Pagada_Vida": 198099,
-            "Prima_Pagada_GMM": 2339.79,
+            "Prima_Pagada_Vida": 214573.9,
+            "Prima_Pagada_GMM": 2340,
             "Sin_Emisión_GMM": "i"
           },
           {
@@ -1098,7 +1107,7 @@
             "Emitido_GMM": 1,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 2316,
+            "Prima_Pagada_Vida": 2316.84,
             "Prima_Pagada_GMM": 1828,
             "Sin_Emisión_Vida": "i"
           },
@@ -1111,8 +1120,8 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 3909,
-            "Prima_Pagada_GMM": 1626.61,
+            "Prima_Pagada_Vida": 3911.28,
+            "Prima_Pagada_GMM": 1627,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_Vida": "i",
@@ -2436,8 +2445,8 @@
       }
     },
     "fechas_corte": {
-      "pagado_pendiente": "17 de junio de 2026",
-      "asesores_sin_emision": "28 de may de 2026",
+      "pagado_pendiente": "18 de junio de 2026",
+      "asesores_sin_emision": "31 de may de 2026",
       "proactivos": "15 de junio de 2026",
       "comparativo_vida": "12 de junio de 2026"
     },
