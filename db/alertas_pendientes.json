@@ -1,35 +1,25 @@
 {
-  "generatedAt": "19/6/2026, 11:14:53 a.m.",
-  "totalNew": 3,
+  "generatedAt": "22/6/2026, 9:11:50 a.m.",
+  "totalNew": 2,
   "alerts": [
     {
-      "id": "7dbd1200-844a-4149-8d15-8f3a51d467d1",
-      "asesor": "DESIREE DE LA PEÑA OROZCO",
-      "firstName": "Desiree",
+      "id": "f1ade726-41b0-4ff5-a3e2-f76b68ba20ca",
+      "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+      "firstName": "Rafael",
       "campaign": "pagado_emitido",
       "type": "positive",
-      "event": "Prima pagada subió $6.4k",
-      "message": "Hola Desiree, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 17 de junio de 2026, noté que tu prima pagada subió *$6.4k*. Ahora llevas un total de *$51.8k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "event": "Prima pagada subió $263.0k",
+      "message": "Hola Rafael, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 18 de junio de 2026, noté que tu prima pagada subió *$263.0k*. Ahora llevas un total de *$307.6k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
       "sent": false
     },
     {
-      "id": "abecffa5-d540-41eb-9c7c-b71c637c9543",
-      "asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
-      "firstName": "Orlanda",
+      "id": "dea12297-fae8-40c0-a012-8498600bb8cf",
+      "asesor": "JULIANA RIASCOS VALENCIA",
+      "firstName": "Juliana",
       "campaign": "pagado_emitido",
       "type": "positive",
-      "event": "Prima pagada subió $10.8k",
-      "message": "Hola Orlanda, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 17 de junio de 2026, noté que tu prima pagada subió *$10.8k*. Ahora llevas un total de *$33.5k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "65d08698-12e8-46a2-8bd3-22f616354488",
-      "asesor": "MARIO IVAN ROMERO GONZALEZ",
-      "firstName": "Mario",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "Prima pagada subió $17.1k",
-      "message": "Hola Mario, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 17 de junio de 2026, noté que tu prima pagada subió *$17.1k*. Ahora llevas un total de *$18.7k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "event": "Prima pagada subió $17.9k",
+      "message": "Hola Juliana, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 18 de junio de 2026, noté que tu prima pagada subió *$17.9k*. Ahora llevas un total de *$31.5k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
       "sent": false
     }
   ]
