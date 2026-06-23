@@ -1,5 +1,56 @@
 {
-  "generatedAt": "23/6/2026, 3:07:56 p.m.",
-  "totalNew": 0,
-  "alerts": []
+  "generatedAt": "23/6/2026, 3:52:03 p.m.",
+  "totalNew": 5,
+  "alerts": [
+    {
+      "id": "6044261d-43f8-4b8d-8d58-5da5700ebf13",
+      "asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
+      "firstName": "Hana",
+      "campaign": "convenciones",
+      "type": "positive",
+      "event": "Subió 72 lugares (ahora #4532)",
+      "message": "Hola Hana, ¿cómo estás? 👋\n¡Oye, buen avance! 📈\n\nEstuve checando tus números al 17 de junio de 2026 en *Convenciones* y subiste *72 lugares*. Ahora estás en el *#4532*.\n\nCréditos totales: *$57.9k*\n\n¡Vamos por ese diamante! 💎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "55d58bc8-3326-4cd7-87bd-74433a038ddf",
+      "asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
+      "firstName": "Enrique",
+      "campaign": "convenciones",
+      "type": "positive",
+      "event": "Subió 166 lugares (ahora #5385)",
+      "message": "Hola Enrique, ¿cómo estás? 👋\n¡Oye, buen avance! 📈\n\nEstuve checando tus números al 17 de junio de 2026 en *Convenciones* y subiste *166 lugares*. Ahora estás en el *#5385*.\n\nCréditos totales: *$43.6k*\n\n¡Vamos por ese diamante! 💎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "6c81ebea-c8ec-4f28-98b0-a1f7ff17cda1",
+      "asesor": "ROCIO YANETH OCHOA IBARRA",
+      "firstName": "Rocio",
+      "campaign": "convenciones",
+      "type": "positive",
+      "event": "Subió 104 lugares (ahora #5082)",
+      "message": "Hola Rocio, ¿cómo estás? 👋\n¡Oye, buen avance! 📈\n\nEstuve checando tus números al 17 de junio de 2026 en *Convenciones* y subiste *104 lugares*. Ahora estás en el *#5082*.\n\nCréditos totales: *$48.9k*\n\n¡Vamos por ese diamante! 💎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "e89fa660-5ca4-4fb7-a485-31edcfc3961a",
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "firstName": "Monica",
+      "campaign": "legion_centurion",
+      "type": "risk",
+      "event": "Perdió meta del mes en Legión",
+      "message": "Hola Monica, ¿cómo estás? 👋\nOye, estuve checando tus números al 17 de Junio de 2026 en *Legión Centurión* y noté que este corte *ya no estás en meta del mes*.\n\nLlevas *20.5 pólizas*. ¡Hay que meter el acelerador para no perder el ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "2c91f53e-d14d-4813-a103-573ef9a17988",
+      "asesor": "DESIREE DE LA PEÑA OROZCO",
+      "firstName": "Desiree",
+      "campaign": "legion_centurion",
+      "type": "risk",
+      "event": "Perdió meta del mes en Legión",
+      "message": "Hola Desiree, ¿cómo estás? 👋\nOye, estuve checando tus números al 17 de Junio de 2026 en *Legión Centurión* y noté que este corte *ya no estás en meta del mes*.\n\nLlevas *20 pólizas*. ¡Hay que meter el acelerador para no perder el ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    }
+  ]
 }

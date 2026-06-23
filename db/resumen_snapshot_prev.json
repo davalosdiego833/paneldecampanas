@@ -1,5 +1,5 @@
 {
-  "updatedAt": "22/6/2026, 2:39:31 p.m.",
+  "updatedAt": "23/6/2026, 3:06:41 p.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -8,20 +8,20 @@
           "Sucursal": "2856",
           "Pólizas-Pagadas": 3,
           "Recibo_Inicial_Pagado": 1404181.49,
-          "Recibo_Ordinario_Pagado": 13221.58,
-          "Total _Prima_Pagada": 1417403.07,
+          "Recibo_Ordinario_Pagado": 15284.04,
+          "Total _Prima_Pagada": 1419465.53,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 138826.25,
-          "Total _Prima_Pendiente": 138826.25
+          "Recibo_Ordinario_Pendiente": 136763.79,
+          "Total _Prima_Pendiente": 136763.79
         },
         {
           "Nombre Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 3,
           "Recibo_Inicial_Pagado": 283131.64,
-          "Recibo_Ordinario_Pagado": 24430.88,
-          "Total _Prima_Pagada": 307562.52,
+          "Recibo_Ordinario_Pagado": 25296.38,
+          "Total _Prima_Pagada": 308428.02,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 79686.28,
@@ -214,10 +214,10 @@
           "Recibo_Inicial_Pagado": 0,
           "Recibo_Ordinario_Pagado": 9791.14,
           "Total _Prima_Pagada": 9791.14,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 105140.07,
-          "Total _Prima_Pendiente": 105140.07
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 1742.84,
+          "Recibo_Ordinario_Pendiente": 124311.35,
+          "Total _Prima_Pendiente": 126054.19
         },
         {
           "Nombre Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
@@ -256,6 +256,30 @@
           "Total _Prima_Pendiente": 0
         },
         {
+          "Nombre Asesor": "MARIA TERESA ASENCIO LOZANO",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 6987.82,
+          "Total _Prima_Pagada": 6987.82,
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 79362.39,
+          "Recibo_Ordinario_Pendiente": 0,
+          "Total _Prima_Pendiente": 79362.39
+        },
+        {
+          "Nombre Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 6257.28,
+          "Total _Prima_Pagada": 6257.28,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 28945.76,
+          "Total _Prima_Pendiente": 28945.76
+        },
+        {
           "Nombre Asesor": "DESIREE DE LA PEÑA OROZCO",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -290,30 +314,6 @@
           "Recibo_Inicial_Pendiente": 4983.76,
           "Recibo_Ordinario_Pendiente": 3224.48,
           "Total _Prima_Pendiente": 8208.24
-        },
-        {
-          "Nombre Asesor": "MARIA TERESA ASENCIO LOZANO",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 4670.98,
-          "Total _Prima_Pagada": 4670.98,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 79362.39,
-          "Recibo_Ordinario_Pendiente": 2316.79,
-          "Total _Prima_Pendiente": 81679.18
-        },
-        {
-          "Nombre Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 4480.67,
-          "Total _Prima_Pagada": 4480.67,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 30607.01,
-          "Total _Prima_Pendiente": 30607.01
         },
         {
           "Nombre Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
@@ -412,6 +412,30 @@
           "Total _Prima_Pendiente": 10748.48
         },
         {
+          "Nombre Asesor": "GERARDO DANIEL BARAJAS TORRES",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 1603.9,
+          "Total _Prima_Pagada": 1603.9,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 0,
+          "Total _Prima_Pendiente": 0
+        },
+        {
+          "Nombre Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 1075.86,
+          "Total _Prima_Pagada": 1075.86,
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 1433.08,
+          "Recibo_Ordinario_Pendiente": 0,
+          "Total _Prima_Pendiente": 1433.08
+        },
+        {
           "Nombre Asesor": "ANA VERONICA GONZALEZ GAYTAN",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -446,30 +470,6 @@
           "Recibo_Inicial_Pendiente": 15585.09,
           "Recibo_Ordinario_Pendiente": 71404.87,
           "Total _Prima_Pendiente": 86989.96
-        },
-        {
-          "Nombre Asesor": "GERARDO DANIEL BARAJAS TORRES",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 4811.58,
-          "Total _Prima_Pendiente": 4811.58
-        },
-        {
-          "Nombre Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 4865.25,
-          "Total _Prima_Pendiente": 4865.25
         },
         {
           "Nombre Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
@@ -2445,7 +2445,7 @@
       }
     },
     "fechas_corte": {
-      "pagado_pendiente": "19 de junio de 2026",
+      "pagado_pendiente": "22 de junio de 2026",
       "asesores_sin_emision": "31 de may de 2026",
       "proactivos": "15 de junio de 2026",
       "comparativo_vida": "12 de junio de 2026"
