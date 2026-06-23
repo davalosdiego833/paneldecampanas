@@ -1,36 +1,5 @@
 {
-  "generatedAt": "22/6/2026, 2:40:53 p.m.",
-  "totalNew": 3,
-  "alerts": [
-    {
-      "id": "dd3b0628-1a5b-4d2a-83dd-7c915d02de87",
-      "asesor": "ANAIS LUA MORENO",
-      "firstName": "Anais",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "Prima pagada subió $26.6k",
-      "message": "Hola Anais, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 19 de junio de 2026, noté que tu prima pagada subió *$26.6k*. Ahora llevas un total de *$1.42M*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "20267059-9246-400c-bd0e-d318f93bcf17",
-      "asesor": "MARICELA ARREOLA LOPEZ",
-      "firstName": "Maricela",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "Prima pagada subió $5.4k",
-      "message": "Hola Maricela, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 19 de junio de 2026, noté que tu prima pagada subió *$5.4k*. Ahora llevas un total de *$19.1k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "005fe14c-3086-4c31-a7f7-c633c40ae4ee",
-      "asesor": "GABRIELA CASTAÑEDA SALAZAR",
-      "firstName": "Gabriela",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "Prima pagada subió $6.1k",
-      "message": "Hola Gabriela, ¿cómo estás? 👋\n¡Grandes noticias! 🎉\n\nAl revisar los números al 19 de junio de 2026, noté que tu prima pagada subió *$6.1k*. Ahora llevas un total de *$14.2k*.\n\n¡Excelente trabajo, sigue con ese ritmo! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    }
-  ]
+  "generatedAt": "23/6/2026, 3:07:56 p.m.",
+  "totalNew": 0,
+  "alerts": []
 }

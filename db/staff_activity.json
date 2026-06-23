@@ -159,6 +159,20 @@
           "contratos_firmados": 0,
           "observaciones": "Miros mantiene un excelente avance esta semana sumando +14 actividades en agenda y logrando un fuerte empuje en acompañamiento con +3 nuevos Arranques Rápidos. También destacó en el cierre logrando generar +2 Citas de Cierre adicionales.\n\nÁrea de mejora: La prospección de nuevos prospectos (Citas Iniciales) y Sesiones 1:1 se mantuvieron estables sin crecimiento. Para mantener un embudo saludable, el reto es reactivar el flujo de nuevos asesores con citas iniciales y comenzar a concretar las firmas y pólizas de los cierres acumulados."
         }
+      },
+      {
+        "date": "2026-06-22",
+        "type": "lunes_cierre",
+        "data": {
+          "citas_iniciales": 3,
+          "citas_cierre": 4,
+          "sesiones_11": 12,
+          "arranque_rapido": 6,
+          "tareas_actividades": 51,
+          "polizas": 0,
+          "contratos_firmados": 0,
+          "observaciones": "Excelente semana de acompañamiento y desarrollo. Miros logró un gran avance con +7 nuevas Sesiones 1:1 y +1 Arranque Rápido. Además, se observa un ritmo constante de seguimiento en agenda con +17 nuevas actividades completadas.\n\nÁrea de mejora: La generación de nuevas Citas Iniciales (se mantuvo en 3) y el avance de Citas de Cierre (estable en 4) siguen en pausa. El reto inmediato es reactivar la parte alta del embudo y empujar agresivamente estos cierres acumulados hacia la firma de pólizas y contratos."
+        }
       }
     ],
     "goals": {
@@ -318,6 +332,19 @@
           "arranque_rapido": 9,
           "tareas_actividades": 33,
           "observaciones": "Fer tuvo una semana con excelente dinamismo comercial, sumando +9 Citas Iniciales y logrando concretar +5 Citas de Cierre adicionales. Además, mantuvo un fuerte ritmo de acompañamiento sumando +5 Arranques Rápidos y completando +14 tareas/actividades en agenda. El embudo medio y alto se está alimentando con muy buen volumen.\n\nÁrea de mejora: A pesar del alto flujo en la prospección y en los arranques, las pólizas y los contratos firmados se mantuvieron en 0. El enfoque prioritario de la próxima semana debe centrarse en empujar el cierre definitivo de esas 9 citas acumuladas y formalizar las firmas."
+        }
+      },
+      {
+        "date": "2026-06-22",
+        "type": "lunes_cierre",
+        "data": {
+          "citas_iniciales": 25,
+          "citas_cierre": 13,
+          "polizas": 0,
+          "contratos_firmados": 0,
+          "arranque_rapido": 13,
+          "tareas_actividades": 37,
+          "observaciones": "Muy buen dinamismo comercial de Fer esta semana. Logró expandir su pipeline sumando +5 Citas Iniciales y generando +4 Citas de Cierre adicionales. Asimismo, mantuvo un gran compromiso en el desarrollo de equipo con +4 nuevos Arranques Rápidos y +4 actividades completadas en su bitácora.\n\nÁrea de mejora: Con 13 citas de cierre acumuladas en el mes, la prioridad estratégica indiscutible debe ser empujar la conversión final. Es crítico enfocar los esfuerzos en formalizar la firma de contratos y el cobro de pólizas para capitalizar todo este esfuerzo de prospección."
         }
       }
     ],
@@ -492,6 +519,21 @@
           "recluta_citas": 31,
           "recluta_entrevistas": 5,
           "observaciones": "Excelente semana de prospección y crecimiento de equipo para Shelsea. Sumó +130 nuevos contactos en frío y concretó +16 nuevas citas en su bitácora, logrando realizar +4 entrevistas de reclutamiento. Este flujo constante de candidatos se tradujo en un incremento importante en los activos del mes, pasando de 19 a 27 (+8) y sumando +6 nuevos enamoramientos en junio.\n\nÁrea de mejora: Con 13 enamoramientos acumulados y 27 activos en junio, la prioridad de la semana es reactivar las siguientes etapas del embudo (compensación y trámites administrativos) que se mantuvieron estables en 0, para consolidar estas postulaciones y seguir incrementando el equipo."
+        }
+      },
+      {
+        "date": "2026-06-22",
+        "type": "lunes_cierre",
+        "data": {
+          "activos_mes": 36,
+          "ent_enamoramiento": 15,
+          "ent_compensacion": 1,
+          "ent_administrativa": 1,
+          "sesiones_rda": 0,
+          "recluta_contactos": 469,
+          "recluta_citas": 37,
+          "recluta_entrevistas": 8,
+          "observaciones": "Excelente avance semanal de Shelsea. Destacó con una altísima actividad de prospección sumando +134 nuevos contactos en frío (llegando a 469) y agendando +6 nuevas citas. También se reflejó avance en la conversión con +3 entrevistas de reclutamiento completadas y +2 candidatos enamorados adicionales. Lo más importante de esta semana es que logró destrabar la parte baja del embudo posicionando a 1 candidato en Compensación y 1 en etapa Administrativa, impulsando la base de activos a 36.\n\nÁrea de mejora: Con los primeros candidatos llegando a Compensación y Administrativa, el objetivo crítico de esta semana es darles un seguimiento sumamente cercano y ágil para concretar sus firmas de contrato y formalizar su ingreso al equipo."
         }
       }
     ]

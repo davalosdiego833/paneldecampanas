@@ -1,19 +1,19 @@
 {
-  "updatedAt": "22/6/2026, 10:23:32 a.m.",
+  "updatedAt": "22/6/2026, 2:39:31 p.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
         {
           "Nombre Asesor": "ANAIS LUA MORENO",
           "Sucursal": "2856",
-          "Pólizas-Pagadas": 2,
-          "Recibo_Inicial_Pagado": 1377569.81,
+          "Pólizas-Pagadas": 3,
+          "Recibo_Inicial_Pagado": 1404181.49,
           "Recibo_Ordinario_Pagado": 13221.58,
-          "Total _Prima_Pagada": 1390791.39,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 26611.68,
+          "Total _Prima_Pagada": 1417403.07,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 138826.25,
-          "Total _Prima_Pendiente": 165437.93
+          "Total _Prima_Pendiente": 138826.25
         },
         {
           "Nombre Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
@@ -78,14 +78,26 @@
         {
           "Nombre Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
           "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 2078.9,
           "Recibo_Ordinario_Pagado": 21748.19,
-          "Total _Prima_Pagada": 21748.19,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 2078.9,
+          "Total _Prima_Pagada": 23827.09,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 24159.87,
-          "Total _Prima_Pendiente": 26238.77
+          "Total _Prima_Pendiente": 24159.87
+        },
+        {
+          "Nombre Asesor": "MARICELA ARREOLA LOPEZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 3,
+          "Recibo_Inicial_Pagado": 8406.72,
+          "Recibo_Ordinario_Pagado": 10655.41,
+          "Total _Prima_Pagada": 19062.13,
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 5488.87,
+          "Recibo_Ordinario_Pendiente": 10200.24,
+          "Total _Prima_Pendiente": 15689.11
         },
         {
           "Nombre Asesor": "MARIO IVAN ROMERO GONZALEZ",
@@ -112,6 +124,18 @@
           "Total _Prima_Pendiente": 4501846.5
         },
         {
+          "Nombre Asesor": "GABRIELA CASTAÑEDA SALAZAR",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 3021.65,
+          "Recibo_Ordinario_Pagado": 11199.79,
+          "Total _Prima_Pagada": 14221.44,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 116584.96,
+          "Total _Prima_Pendiente": 116584.96
+        },
+        {
           "Nombre Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -124,18 +148,6 @@
           "Total _Prima_Pendiente": 280923.56
         },
         {
-          "Nombre Asesor": "MARICELA ARREOLA LOPEZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 2,
-          "Recibo_Inicial_Pagado": 5165.6,
-          "Recibo_Ordinario_Pagado": 8472.3,
-          "Total _Prima_Pagada": 13637.9,
-          "Pólizas_Pendinetes": 2,
-          "Recibo_Inicial_Pendiente": 10913.33,
-          "Recibo_Ordinario_Pendiente": 10200.24,
-          "Total _Prima_Pendiente": 21113.57
-        },
-        {
           "Nombre Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -144,8 +156,8 @@
           "Total _Prima_Pagada": 13535.98,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 42194.48,
-          "Total _Prima_Pendiente": 42194.48
+          "Recibo_Ordinario_Pendiente": 39672.88,
+          "Total _Prima_Pendiente": 39672.88
         },
         {
           "Nombre Asesor": "ROGELIO TORRES ORTIZ",
@@ -232,18 +244,6 @@
           "Total _Prima_Pendiente": 9644.06
         },
         {
-          "Nombre Asesor": "GABRIELA CASTAÑEDA SALAZAR",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 8122.72,
-          "Total _Prima_Pagada": 8122.72,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 2948.64,
-          "Recibo_Ordinario_Pendiente": 118397.75,
-          "Total _Prima_Pendiente": 121346.39
-        },
-        {
           "Nombre Asesor": "ROCIO YANETH OCHOA IBARRA",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -254,6 +254,18 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 0,
           "Total _Prima_Pendiente": 0
+        },
+        {
+          "Nombre Asesor": "DESIREE DE LA PEÑA OROZCO",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": -1986.88,
+          "Recibo_Ordinario_Pagado": 7906.44,
+          "Total _Prima_Pagada": 5919.56,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 92701.61,
+          "Total _Prima_Pendiente": 92701.61
         },
         {
           "Nombre Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
@@ -326,18 +338,6 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 13960.61,
           "Total _Prima_Pendiente": 13960.61
-        },
-        {
-          "Nombre Asesor": "DESIREE DE LA PEÑA OROZCO",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": -1986.88,
-          "Recibo_Ordinario_Pagado": 5321.25,
-          "Total _Prima_Pagada": 3334.37,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 95286.8,
-          "Total _Prima_Pendiente": 95286.8
         },
         {
           "Nombre Asesor": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
@@ -2445,7 +2445,7 @@
       }
     },
     "fechas_corte": {
-      "pagado_pendiente": "18 de junio de 2026",
+      "pagado_pendiente": "19 de junio de 2026",
       "asesores_sin_emision": "31 de may de 2026",
       "proactivos": "15 de junio de 2026",
       "comparativo_vida": "12 de junio de 2026"
