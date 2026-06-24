@@ -63,7 +63,7 @@ export const generateAlerts = () => {
         if (newPend > 0 && oldPend === 0) {
             alerts.push({
                 id: uid(), asesor: name, firstName: firstName,
-                campaign: 'pagado_emitido', type: 'info',
+                campaign: 'pagado_emitido', type: 'positive',
                 event: '¡Nueva póliza emitida (pendiente de pago)!',
                 message: `Hola ${firstName}, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *${newPend} póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂`,
                 sent: false
@@ -175,7 +175,12 @@ export const generateAlerts = () => {
     if (fs.existsSync(ALERTS_FILE)) {
         try {
             const existing = JSON.parse(fs.readFileSync(ALERTS_FILE, 'utf-8'));
-            existingAlerts = (existing.alerts || []).filter(a => a.sent); // Conservar solo las ya enviadas
+            existingAlerts = (existing.alerts || []).filter(a => {
+                if (a.sent) return true;
+                // Conservar alertas no enviadas si no se está generando una nueva para el mismo asesor y campaña
+                const hasNew = alerts.some(newAlert => newAlert.asesor === a.asesor && newAlert.campaign === a.campaign);
+                return !hasNew;
+            });
         } catch { }
     }
 

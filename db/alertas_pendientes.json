@@ -1,13 +1,13 @@
 {
-  "generatedAt": "24/6/2026, 1:42:50 p.m.",
+  "generatedAt": "24/6/2026, 2:03:47 p.m.",
   "totalNew": 1,
   "alerts": [
     {
-      "id": "6d52bc8c-e9ef-45ad-8cf3-a53ce456f89a",
+      "id": "34680270-2e44-4dc7-bb7b-4c6f88b61884",
       "asesor": "DESIREE DE LA PEÑA OROZCO",
       "firstName": "Desiree",
       "campaign": "pagado_emitido",
-      "type": "info",
+      "type": "positive",
       "event": "¡Nueva póliza emitida (pendiente de pago)!",
       "message": "Hola Desiree, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
       "sent": false
