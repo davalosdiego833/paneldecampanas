@@ -1,7 +1,37 @@
 {
-  "generatedAt": "24/6/2026, 2:03:47 p.m.",
-  "totalNew": 1,
+  "generatedAt": "25/6/2026, 12:50:18 p.m.",
+  "totalNew": 3,
   "alerts": [
+    {
+      "id": "cf0fc168-7df1-4caf-9c19-b53e7db4f64d",
+      "asesor": "JOSE RENE DE ALBA MORALES",
+      "firstName": "Jose",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Jose, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "6870d172-8a02-44a0-8703-21265ca77241",
+      "asesor": "ISAI ANTONIO ROJAS MARTINEZ",
+      "firstName": "Isai",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Isai, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "1ae011ca-3404-4bac-85a1-9d4bfc88b52d",
+      "asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+      "firstName": "Liliana",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Liliana, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
     {
       "id": "34680270-2e44-4dc7-bb7b-4c6f88b61884",
       "asesor": "DESIREE DE LA PEÑA OROZCO",
