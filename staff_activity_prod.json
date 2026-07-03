@@ -186,6 +186,32 @@
           "contratos_firmados": 0,
           "observaciones": "Miros tuvo otra destacada semana de acompañamiento y seguimiento comercial. Incrementó significativamente las Sesiones 1:1 con +8 adicionales para alcanzar un acumulado de 20, y sumó +3 nuevos Arranques Rápidos para llegar a 9. En el cierre, logró avanzar con +2 Citas de Cierre adicionales (llegando a 6), manteniendo una altísima actividad en su agenda con +24 tareas y actividades completadas para cerrar en 75.\n\nÁrea de mejora: La generación de nuevas Citas Iniciales se mantuvo estable en 3 y las pólizas/contratos firmados siguen en 0. Para balancear su embudo, es importante reactivar la prospección de nuevos asesores y comenzar a convertir las 6 citas de cierre acumuladas en pólizas pagadas y contratos firmados."
         }
+      },
+      {
+        "date": "2026-06-30",
+        "type": "lunes_cierre",
+        "data": {
+          "citas_iniciales": 4,
+          "citas_cierre": 6,
+          "sesiones_11": 21,
+          "arranque_rapido": 10,
+          "tareas_actividades": 81,
+          "polizas": 0,
+          "contratos_firmados": 0,
+          "observaciones": "Miros cierra el mes de junio con un destacado avance en el acompañamiento y desarrollo de sus asesores, logrando completar 81 tareas/actividades (+6 en este último corte) y alcanzando un total de 21 sesiones 1:1 y 10 arranques rápidos. Además, registró 4 citas iniciales y 6 citas de cierre acumuladas.\n\nÁrea de mejora: Con 6 citas de cierre acumuladas en el mes pero sin registrar pólizas ni contratos concretados, la prioridad estratégica para iniciar julio será presionar el cierre de estos prospectos para convertirlos en firmas reales."
+        }
+      },
+      {
+        "date": "2026-07-01",
+        "type": "lunes_cierre",
+        "month_start": true,
+        "data": {
+          "citas_iniciales": 0,
+          "citas_cierre": 0,
+          "sesiones_11": 2,
+          "arranque_rapido": 0,
+          "tareas_actividades": 10
+        }
       }
     ],
     "goals": {
@@ -370,6 +396,32 @@
           "arranque_rapido": 18,
           "tareas_actividades": 56,
           "observaciones": "Fer tuvo otra semana de excelente dinamismo en su actividad. Incrementó su prospección con +7 nuevas Citas Iniciales para llegar a 32, y sumó +4 Citas de Cierre adicionales alcanzando 17 en total. Asimismo, logró un gran empuje en el desarrollo de equipo con +5 nuevos Arranques Rápidos y completó +19 tareas y actividades en su agenda, cerrando con 56.\n\nÁrea de mejora: Las pólizas y los contratos firmados continúan en 0. Con un embudo tan robusto de 17 citas de cierre acumuladas, el enfoque absoluto y prioritario debe ser empujar la conversión final para materializar firmas y cobros de pólizas."
+        }
+      },
+      {
+        "date": "2026-06-30",
+        "type": "lunes_cierre",
+        "data": {
+          "citas_iniciales": 26,
+          "citas_cierre": 14,
+          "polizas": 0,
+          "contratos_firmados": 0,
+          "arranque_rapido": 18,
+          "tareas_actividades": 56,
+          "observaciones": "Fer cierra el mes de junio consolidando 26 citas iniciales y 14 citas de cierre. En el acompañamiento de equipo, logró un destacado desempeño acumulando 18 arranques rápidos y completando un total de 56 tareas y actividades en su agenda.\n\nÁrea de mejora: Al cerrar junio con 0 pólizas y contratos firmados, la prioridad de cara a julio debe enfocarse en destrabar y dar seguimiento a las 14 citas de cierre para concretar firmas y cobros reales."
+        }
+      },
+      {
+        "date": "2026-07-01",
+        "type": "lunes_cierre",
+        "month_start": true,
+        "data": {
+          "citas_iniciales": 0,
+          "citas_cierre": 0,
+          "polizas": 0,
+          "contratos_firmados": 0,
+          "arranque_rapido": 0,
+          "tareas_actividades": 0
         }
       }
     ],
@@ -573,6 +625,34 @@
           "recluta_citas": 43,
           "recluta_entrevistas": 11,
           "observaciones": "Shelsea tuvo otra excelente semana de reclutamiento. Logró sumar +42 nuevos contactos en frío para alcanzar un total de 511 en el mes, y concretó +6 citas adicionales de reclutamiento (llegando a 43) y +3 entrevistas realizadas (alcanzando 11). Este gran flujo constante permitió sumar +8 nuevos candidatos enamorados para un acumulado de 23 en junio, impulsando la base de asesores activos del mes de 36 a 41 (+5 nuevos ingresos/activos).\n\nÁrea de mejora: Las etapas finales de Compensación (1) y Administrativa (1) se mantuvieron sin cambios respecto a la semana pasada. Con un volumen creciente de 23 enamorados, la prioridad clave es agilizar el seguimiento para mover a estos candidatos hacia compensación y contratación, maximizando la conversión de la alta prospección de este mes."
+        }
+      },
+      {
+        "date": "2026-06-30",
+        "type": "lunes_cierre",
+        "data": {
+          "activos_mes": 32,
+          "ent_enamoramiento": 30,
+          "ent_compensacion": 3,
+          "ent_administrativa": 1,
+          "sesiones_rda": 0,
+          "recluta_contactos": 697,
+          "recluta_citas": 43,
+          "recluta_entrevistas": 14,
+          "observaciones": "Shelsea cierra el mes de junio consolidando un fuerte volumen de prospección con 697 contactos en frío en su base de datos (+186 en este último corte) y alcanzando un acumulado de 14 entrevistas realizadas. En la conversión del embudo, logró avanzar a 30 candidatos enamorados (+7), posicionando a 3 en Compensación (+2) y manteniendo 1 en etapa Administrativa, con un total de 32 asesores activos en el mes.\n\nÁrea de mejora: Con 30 enamorados y la etapa baja del embudo con candidatos en compensación y administrativa, el objetivo principal al iniciar julio será agilizar los cierres de contratación de estos perfiles para formalizar sus claves e integrarlos activamente al equipo."
+        }
+      },
+      {
+        "date": "2026-07-01",
+        "type": "lunes_cierre",
+        "month_start": true,
+        "data": {
+          "activos_mes": 1,
+          "ent_enamoramiento": 0,
+          "ent_compensacion": 0,
+          "ent_administrativa": 0,
+          "recluta_contactos": 53,
+          "recluta_entrevistas": 0
         }
       }
     ]
