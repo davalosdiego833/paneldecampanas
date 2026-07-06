@@ -13,17 +13,36 @@ const fmt = (n: number) => '$' + n.toLocaleString('es-MX', { minimumFractionDigi
 const MetaDespacho: React.FC<Props> = ({ onBack, themeMode }) => {
     const [historico, setHistorico] = useState<Record<string, number>>({});
     const [livePagado, setLivePagado] = useState<number>(0);
+    const [snapshotDate, setSnapshotDate] = useState<string>('');
     const [loading, setLoading] = useState(true);
 
     const META_MENSUAL = 2000000;
     const META_ANUAL = 24000000;
 
-    // Obtener mes actual del sistema (6 = Julio, etc.)
-    const currentMonthIndex = new Date().getMonth(); 
-
     const MONTH_KEYS = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
     const MONTH_LABELS = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
     const MONTH_NAMES_FULL = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+    // Obtener mes actual basado en la fecha de corte del reporte "En Vivo"
+    const getMonthIndexFromDateString = (dateStr: string): number => {
+        if (!dateStr) return new Date().getMonth();
+        const lower = dateStr.toLowerCase();
+        if (lower.includes('enero') || lower.includes('ene')) return 0;
+        if (lower.includes('febrero') || lower.includes('feb')) return 1;
+        if (lower.includes('marzo') || lower.includes('mar')) return 2;
+        if (lower.includes('abril') || lower.includes('abr')) return 3;
+        if (lower.includes('mayo') || lower.includes('may')) return 4;
+        if (lower.includes('junio') || lower.includes('jun')) return 5;
+        if (lower.includes('julio') || lower.includes('jul')) return 6;
+        if (lower.includes('agosto') || lower.includes('ago')) return 7;
+        if (lower.includes('septiembre') || lower.includes('sep')) return 8;
+        if (lower.includes('octubre') || lower.includes('oct')) return 9;
+        if (lower.includes('noviembre') || lower.includes('nov')) return 10;
+        if (lower.includes('diciembre') || lower.includes('dic')) return 11;
+        return new Date().getMonth();
+    };
+
+    const currentMonthIndex = getMonthIndexFromDateString(snapshotDate);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -45,6 +64,10 @@ const MetaDespacho: React.FC<Props> = ({ onBack, themeMode }) => {
                         return sum + Math.max(Number(row['Total _Prima_Pagada']) || 0, 0);
                     }, 0);
                     setLivePagado(totalLive);
+                }
+
+                if (d && d.fechas_corte && d.fechas_corte.pagado_pendiente) {
+                    setSnapshotDate(d.fechas_corte.pagado_pendiente);
                 }
             } catch (err) {
                 console.error("Error fetching meta data:", err);
