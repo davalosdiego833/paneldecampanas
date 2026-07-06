@@ -12,11 +12,18 @@ const fmt = (n: number) => '$' + n.toLocaleString('es-MX', { minimumFractionDigi
 
 const MetaDespacho: React.FC<Props> = ({ onBack, themeMode }) => {
     const [historico, setHistorico] = useState<Record<string, number>>({});
-    const [abrilPagado, setAbrilPagado] = useState<number>(0);
+    const [livePagado, setLivePagado] = useState<number>(0);
     const [loading, setLoading] = useState(true);
 
     const META_MENSUAL = 2000000;
     const META_ANUAL = 24000000;
+
+    // Obtener mes actual del sistema (6 = Julio, etc.)
+    const currentMonthIndex = new Date().getMonth(); 
+
+    const MONTH_KEYS = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+    const MONTH_LABELS = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+    const MONTH_NAMES_FULL = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,17 +34,17 @@ const MetaDespacho: React.FC<Props> = ({ onBack, themeMode }) => {
                 const year2026 = histData["2026"] || {};
                 setHistorico(year2026);
 
-                // 2. Fetch Live data (Current month: April)
+                // 2. Fetch Live data (Current month)
                 const snapRes = await fetch('/api/admin/snapshot-status');
                 const snapStatus = await snapRes.json();
                 const res = await fetch(`/api/resumen-general?useSnapshot=${snapStatus.exists}`);
                 const d = await res.json();
 
                 if (d && d.pagado_pendiente) {
-                    const totalApril = d.pagado_pendiente.reduce((sum: number, row: any) => {
+                    const totalLive = d.pagado_pendiente.reduce((sum: number, row: any) => {
                         return sum + Math.max(Number(row['Total _Prima_Pagada']) || 0, 0);
                     }, 0);
-                    setAbrilPagado(totalApril);
+                    setLivePagado(totalLive);
                 }
             } catch (err) {
                 console.error("Error fetching meta data:", err);
@@ -49,34 +56,37 @@ const MetaDespacho: React.FC<Props> = ({ onBack, themeMode }) => {
         fetchData();
     }, []);
 
-    // Derived values from JSON + Live
-    const eneroPagado = historico.ene || 0;
-    const febreroPagado = historico.feb || 0;
-    const marzoPagado = historico.mar || 0;
+    // Calcular valores dinámicos mes a mes
+    let acumuladoTotal = 0;
+    const chartData = MONTH_KEYS.map((key, index) => {
+        let pagado = 0;
+        let isLive = false;
+        
+        if (index < currentMonthIndex) {
+            pagado = historico[key] || 0;
+        } else if (index === currentMonthIndex) {
+            pagado = livePagado;
+            isLive = true;
+        } else {
+            pagado = 0;
+        }
+        
+        acumuladoTotal += pagado;
 
-    const acumuladoTotal = eneroPagado + febreroPagado + marzoPagado + abrilPagado;
-    const metaAcumuladaEsperada = META_MENSUAL * 4; // Ene, Feb, Mar, Abr
+        return {
+            mes: MONTH_LABELS[index] + (isLive ? ' (Vivo)' : ''),
+            pagado,
+            meta: META_MENSUAL,
+            isLive
+        };
+    });
+
+    const metaAcumuladaEsperada = META_MENSUAL * (currentMonthIndex + 1);
     const diferencialAcumulado = acumuladoTotal - metaAcumuladaEsperada;
 
-    const faltanteMes = Math.max(0, META_MENSUAL - abrilPagado);
-    const pctMes = Math.min((abrilPagado / META_MENSUAL) * 100, 100);
+    const faltanteMes = Math.max(0, META_MENSUAL - livePagado);
+    const pctMes = Math.min((livePagado / META_MENSUAL) * 100, 100);
     const pctAnual = Math.min((acumuladoTotal / META_ANUAL) * 100, 100);
-
-    // Chart Dataset
-    const chartData = [
-        { mes: 'Ene', pagado: eneroPagado, meta: META_MENSUAL },
-        { mes: 'Feb', pagado: febreroPagado, meta: META_MENSUAL },
-        { mes: 'Mar', pagado: marzoPagado, meta: META_MENSUAL },
-        { mes: 'Abr (Vivo)', pagado: abrilPagado, meta: META_MENSUAL },
-        { mes: 'May', pagado: 0, meta: META_MENSUAL },
-        { mes: 'Jun', pagado: 0, meta: META_MENSUAL },
-        { mes: 'Jul', pagado: 0, meta: META_MENSUAL },
-        { mes: 'Ago', pagado: 0, meta: META_MENSUAL },
-        { mes: 'Sep', pagado: 0, meta: META_MENSUAL },
-        { mes: 'Oct', pagado: 0, meta: META_MENSUAL },
-        { mes: 'Nov', pagado: 0, meta: META_MENSUAL },
-        { mes: 'Dic', pagado: 0, meta: META_MENSUAL },
-    ];
 
     const getBarColor = (val: number, meta: number) => {
         if (val === 0) return 'rgba(255,255,255,0.05)';
@@ -116,7 +126,7 @@ const MetaDespacho: React.FC<Props> = ({ onBack, themeMode }) => {
 
                     {/* Ring Progress (Yearly) */}
                     <div className="glass-card" style={{ padding: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(145deg, rgba(20,25,35,0.8), rgba(10,12,18,0.9))', border: '1px solid rgba(255,255,255,0.05)' }}>
-                        <h3 style={{ color: 'var(--text-secondary)', fontSize: '1rem', fontWeight: 600, marginBottom: '24px' }}>Acumulado Anual (Ene - Abr)</h3>
+                        <h3 style={{ color: 'var(--text-secondary)', fontSize: '1rem', fontWeight: 600, marginBottom: '24px' }}>Acumulado Anual (Ene - {MONTH_LABELS[currentMonthIndex]})</h3>
                         <div style={{ position: 'relative', width: '220px', height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             <svg width="220" height="220" viewBox="0 0 220 220" style={{ transform: 'rotate(-90deg)' }}>
                                 {/* Background Circle */}
@@ -161,16 +171,16 @@ const MetaDespacho: React.FC<Props> = ({ onBack, themeMode }) => {
                     {/* Right column: Current Month & Accumulator analysis */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
 
-                        {/* En Vivo Abril */}
+                        {/* En Vivo Mes Actual */}
                         <div className="glass-card" style={{ padding: '32px', flex: 1, position: 'relative', overflow: 'hidden' }}>
                             <div style={{ position: 'absolute', top: 0, right: 0, padding: '12px 16px', background: 'rgba(0,122,255,0.1)', color: '#42A5F5', fontWeight: 700, fontSize: '0.75rem', borderBottomLeftRadius: '16px' }}>En Vivo (Reporte Hoy)</div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
                                 <Calendar size={24} color="#42A5F5" />
-                                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff', margin: 0 }}>Abril 2026</h3>
+                                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff', margin: 0 }}>{MONTH_NAMES_FULL[currentMonthIndex]} 2026</h3>
                             </div>
 
                             <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px', marginBottom: '24px' }}>
-                                <span style={{ fontSize: '3rem', fontWeight: 900, color: '#fff', lineHeight: 1 }}>{fmt(abrilPagado)}</span>
+                                <span style={{ fontSize: '3rem', fontWeight: 900, color: '#fff', lineHeight: 1 }}>{fmt(livePagado)}</span>
                             </div>
 
                             <div style={{ marginBottom: '16px' }}>
@@ -196,10 +206,10 @@ const MetaDespacho: React.FC<Props> = ({ onBack, themeMode }) => {
                         <div className="glass-card" style={{ padding: '32px', flex: 1, borderTop: `4px solid ${diferencialAcumulado >= 0 ? '#00E676' : '#FF6B6B'}` }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
                                 <TrendingUp size={24} color={diferencialAcumulado >= 0 ? '#00E676' : '#FF6B6B'} />
-                                <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', margin: 0 }}>Balance Acumulado T1</h3>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', margin: 0 }}>Balance Acumulado Trimestre {Math.floor(currentMonthIndex / 3) + 1}</h3>
                             </div>
                             <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '16px', lineHeight: 1.5 }}>
-                                Comparando el total acumulado de Ene-Abr ({fmt(acumuladoTotal)}) contra lo que deberíamos llevar cobrado al cierre de este período ({fmt(metaAcumuladaEsperada)}):
+                                Comparando el total acumulado de Ene-{MONTH_LABELS[currentMonthIndex]} ({fmt(acumuladoTotal)}) contra lo que deberíamos llevar cobrado al cierre de este período ({fmt(metaAcumuladaEsperada)}):
                             </p>
                             <div style={{ padding: '16px', borderRadius: '12px', background: diferencialAcumulado >= 0 ? 'rgba(0,230,118,0.1)' : 'rgba(255,107,107,0.1)', color: diferencialAcumulado >= 0 ? '#00E676' : '#FF6B6B', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontWeight: 700, fontSize: '1.2rem' }}>
                                 <span>{diferencialAcumulado >= 0 ? 'Superávit a favor:' : 'Déficit acumulado:'}</span>
