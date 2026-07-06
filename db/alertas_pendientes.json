@@ -1,7 +1,307 @@
 {
-  "generatedAt": "25/6/2026, 1:22:12 p.m.",
-  "totalNew": 0,
+  "generatedAt": "6/7/2026, 2:03:31 p.m.",
+  "totalNew": 30,
   "alerts": [
+    {
+      "id": "5eb1ea69-a717-459c-81f4-00c4b0035efd",
+      "asesor": "ANAIS LUA MORENO",
+      "firstName": "Anais",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Anais, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "335bf838-ec32-4d2d-a236-ef95b87167a4",
+      "asesor": "ANAIS LUA MORENO",
+      "firstName": "Anais",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Anais, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *4 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "822e56a7-3109-4b94-aa67-4defa961a4e7",
+      "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+      "firstName": "Rafael",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Rafael, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *3 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "e71d78a2-34b7-4dfc-ac31-11dc6c8b5585",
+      "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+      "firstName": "Rafael",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Rafael, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *6 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "39993ebd-4850-4c92-9ee9-45f48b011d7c",
+      "asesor": "DESIREE DE LA PEÑA OROZCO",
+      "firstName": "Desiree",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Desiree, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "a3cfeb23-4c1b-4ab8-8a41-17768acfb3b1",
+      "asesor": "DARINKA UREÑA CASILLAS",
+      "firstName": "Darinka",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Darinka, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *2 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "ea926e2d-cb9b-4128-8ec3-61cf7620df91",
+      "asesor": "MONSERRAT VELASCO SANTOS",
+      "firstName": "Monserrat",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Monserrat, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *2 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "5ebb4d6e-8d20-467c-b3d1-607383f2553e",
+      "asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
+      "firstName": "Orlanda",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Orlanda, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *2 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "f42721bf-f9f4-46a9-bdfa-eba4748568de",
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "firstName": "Monica",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Monica, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *2 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "485292cb-435f-4012-8cff-1a48085aa3a4",
+      "asesor": "MARICELA ARREOLA LOPEZ",
+      "firstName": "Maricela",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Maricela, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *4 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "b0536aed-e4b7-410f-b9c6-af2e92a17812",
+      "asesor": "SOFIA CAMPILLO VASCONCELOS",
+      "firstName": "Sofia",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Sofia, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *2 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "b5adce89-9f8a-45ff-98ae-1edd36ac04dc",
+      "asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
+      "firstName": "Humberto",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Humberto, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *2 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "0419f577-7203-4f73-b988-71ff464c5ae6",
+      "asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+      "firstName": "Liliana",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Liliana, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *2 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "d73ddeca-0cd2-4c15-b95f-60cfa39f671a",
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "firstName": "Monica",
+      "campaign": "convenciones",
+      "type": "positive",
+      "event": "Top 10 Convenciones (Lugar #134)",
+      "message": "Hola Monica, ¿cómo estás? 👋\n¡Estás dentro del TOP 10 de Convenciones de la Promotoría! 🚀\n\nRevisando el último corte, actualmente estás en el *Lugar #134* de la tabla. Comparado con el reporte anterior, *te mantuviste en el mismo lugar* e *incrementaste $28.2k créditos*.\n\nLlevas un total de *$1.22M créditos*.\n¡Sigue así, estamos muy orgullosos! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "6731459d-4962-453a-8873-2ef601f43fe4",
+      "asesor": "ANAIS LUA MORENO",
+      "firstName": "Anais",
+      "campaign": "convenciones",
+      "type": "risk",
+      "event": "Top 10 Convenciones (Lugar #185)",
+      "message": "Hola Anais, ¿cómo estás? 👋\n¡Estás dentro del TOP 10 de Convenciones de la Promotoría! ⚠️\n\nRevisando el último corte, actualmente estás en el *Lugar #185* de la tabla. Comparado con el reporte anterior, *bajaste 5 lugares* e *incrementaste $9.4k créditos*.\n\nLlevas un total de *$999.8k créditos*.\n¡Sigue así, estamos muy orgullosos! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "cf718ed1-3666-4bca-8810-1f02a4548b66",
+      "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+      "firstName": "Rafael",
+      "campaign": "convenciones",
+      "type": "risk",
+      "event": "Top 10 Convenciones (Lugar #267)",
+      "message": "Hola Rafael, ¿cómo estás? 👋\n¡Estás dentro del TOP 10 de Convenciones de la Promotoría! ⚠️\n\nRevisando el último corte, actualmente estás en el *Lugar #267* de la tabla. Comparado con el reporte anterior, *bajaste 1 lugares* e *incrementaste $5.8k créditos*.\n\nLlevas un total de *$803.8k créditos*.\n¡Sigue así, estamos muy orgullosos! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "d5d4c556-17e7-4e62-8b7f-e08d102a5f70",
+      "asesor": "DESIREE DE LA PEÑA OROZCO",
+      "firstName": "Desiree",
+      "campaign": "convenciones",
+      "type": "positive",
+      "event": "Top 10 Convenciones (Lugar #305)",
+      "message": "Hola Desiree, ¿cómo estás? 👋\n¡Estás dentro del TOP 10 de Convenciones de la Promotoría! 🚀\n\nRevisando el último corte, actualmente estás en el *Lugar #305* de la tabla. Comparado con el reporte anterior, *subiste 19 lugares* e *incrementaste $37.4k créditos*.\n\nLlevas un total de *$750.6k créditos*.\n¡Sigue así, estamos muy orgullosos! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "6dae79cb-9cb5-46f8-b6cf-1cb30657e6f1",
+      "asesor": "DARINKA UREÑA CASILLAS",
+      "firstName": "Darinka",
+      "campaign": "convenciones",
+      "type": "risk",
+      "event": "Top 10 Convenciones (Lugar #530)",
+      "message": "Hola Darinka, ¿cómo estás? 👋\n¡Estás dentro del TOP 10 de Convenciones de la Promotoría! ⚠️\n\nRevisando el último corte, actualmente estás en el *Lugar #530* de la tabla. Comparado con el reporte anterior, *bajaste 12 lugares* e *tus créditos variaron por $0.00 créditos*.\n\nLlevas un total de *$515.2k créditos*.\n¡Sigue así, estamos muy orgullosos! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "de842cc6-9854-4338-9a21-bd3b45cd3da6",
+      "asesor": "JOSE RENE DE ALBA MORALES",
+      "firstName": "Jose",
+      "campaign": "convenciones",
+      "type": "positive",
+      "event": "Top 10 Convenciones (Lugar #791)",
+      "message": "Hola Jose, ¿cómo estás? 👋\n¡Estás dentro del TOP 10 de Convenciones de la Promotoría! 🚀\n\nRevisando el último corte, actualmente estás en el *Lugar #791* de la tabla. Comparado con el reporte anterior, *subiste 181 lugares* e *incrementaste $72.6k créditos*.\n\nLlevas un total de *$365.1k créditos*.\n¡Sigue así, estamos muy orgullosos! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "0111b97c-ea95-4df8-80d2-b1bba9b9dbbd",
+      "asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
+      "firstName": "Orlanda",
+      "campaign": "convenciones",
+      "type": "risk",
+      "event": "Top 10 Convenciones (Lugar #1094)",
+      "message": "Hola Orlanda, ¿cómo estás? 👋\n¡Estás dentro del TOP 10 de Convenciones de la Promotoría! ⚠️\n\nRevisando el último corte, actualmente estás en el *Lugar #1094* de la tabla. Comparado con el reporte anterior, *bajaste 21 lugares* e *tus créditos variaron por $0.00 créditos*.\n\nLlevas un total de *$264.2k créditos*.\n¡Sigue así, estamos muy orgullosos! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "51d83fcc-a7c0-4786-b64e-06b4b246fc4f",
+      "asesor": "JORGE ANTONIO LUNA LARA",
+      "firstName": "Jorge",
+      "campaign": "convenciones",
+      "type": "risk",
+      "event": "Top 10 Convenciones (Lugar #1383)",
+      "message": "Hola Jorge, ¿cómo estás? 👋\n¡Estás dentro del TOP 10 de Convenciones de la Promotoría! ⚠️\n\nRevisando el último corte, actualmente estás en el *Lugar #1383* de la tabla. Comparado con el reporte anterior, *bajaste 24 lugares* e *tus créditos variaron por $0.00 créditos*.\n\nLlevas un total de *$214.2k créditos*.\n¡Sigue así, estamos muy orgullosos! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "1c206332-79f5-46c1-a07a-5cffa5194a80",
+      "asesor": "ROGELIO TORRES ORTIZ",
+      "firstName": "Rogelio",
+      "campaign": "convenciones",
+      "type": "risk",
+      "event": "Top 10 Convenciones (Lugar #1396)",
+      "message": "Hola Rogelio, ¿cómo estás? 👋\n¡Estás dentro del TOP 10 de Convenciones de la Promotoría! ⚠️\n\nRevisando el último corte, actualmente estás en el *Lugar #1396* de la tabla. Comparado con el reporte anterior, *bajaste 15 lugares* e *incrementaste $742.22 créditos*.\n\nLlevas un total de *$211.7k créditos*.\n¡Sigue así, estamos muy orgullosos! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "a49b8109-0926-4d28-b80d-c8467fa08d04",
+      "asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+      "firstName": "Paulina",
+      "campaign": "convenciones",
+      "type": "risk",
+      "event": "Top 10 Convenciones (Lugar #1685)",
+      "message": "Hola Paulina, ¿cómo estás? 👋\n¡Estás dentro del TOP 10 de Convenciones de la Promotoría! ⚠️\n\nRevisando el último corte, actualmente estás en el *Lugar #1685* de la tabla. Comparado con el reporte anterior, *bajaste 17 lugares* e *incrementaste $545.56 créditos*.\n\nLlevas un total de *$177.5k créditos*.\n¡Sigue así, estamos muy orgullosos! 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "3d72cc98-f0c3-4fb8-96c6-7110bf415e32",
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "firstName": "Monica",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #1)",
+      "message": "Hola Monica, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #1*. Respecto a la medición anterior, *subiste 1 posiciones* y *sumaste $168.8k* a tu meta.\n\nTu Prima Acumulada actual es de *$1.83M*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "91fb7264-0c26-42bf-98e3-ee843d2517d2",
+      "asesor": "ANAIS LUA MORENO",
+      "firstName": "Anais",
+      "campaign": "mdrt",
+      "type": "risk",
+      "event": "Top 10 MDRT (Lugar #2)",
+      "message": "Hola Anais, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! ⚠️\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #2*. Respecto a la medición anterior, *bajaste 1 posiciones* y *sumaste $26.4k* a tu meta.\n\nTu Prima Acumulada actual es de *$1.82M*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "ef6d5b59-7afb-4551-ba74-a27788fda3d8",
+      "asesor": "DESIREE DE LA PEÑA OROZCO",
+      "firstName": "Desiree",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #3)",
+      "message": "Hola Desiree, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #3*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $468.24* a tu meta.\n\nTu Prima Acumulada actual es de *$784.8k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "9f47c64d-fa00-4552-a20d-db6c8a472245",
+      "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+      "firstName": "Rafael",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #5)",
+      "message": "Hola Rafael, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #5*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $62.84* a tu meta.\n\nTu Prima Acumulada actual es de *$570.4k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "7742176f-b974-4cd2-9824-d0c468c88a44",
+      "asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+      "firstName": "Paulina",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #7)",
+      "message": "Hola Paulina, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #7*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $264.63* a tu meta.\n\nTu Prima Acumulada actual es de *$398.7k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "57cc64c9-c0d8-4198-a83d-7aeb4e9b6ddd",
+      "asesor": "MARIA TERESA ASENCIO LOZANO",
+      "firstName": "Maria",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #8)",
+      "message": "Hola Maria, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #8*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $377.35* a tu meta.\n\nTu Prima Acumulada actual es de *$329.1k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "e263be2a-797d-4564-9778-8977a07bebfa",
+      "asesor": "GABRIELA CASTAÑEDA SALAZAR",
+      "firstName": "Gabriela",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #10)",
+      "message": "Hola Gabriela, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #10*. Respecto a la medición anterior, *subiste 2 posiciones* y *sumaste $36.5k* a tu meta.\n\nTu Prima Acumulada actual es de *$280.2k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
     {
       "id": "cf0fc168-7df1-4caf-9c19-b53e7db4f64d",
       "asesor": "JOSE RENE DE ALBA MORALES",
@@ -20,26 +320,6 @@
       "type": "positive",
       "event": "¡Nueva póliza pagada!",
       "message": "Hola Isai, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "1ae011ca-3404-4bac-85a1-9d4bfc88b52d",
-      "asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
-      "firstName": "Liliana",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "¡Nueva póliza emitida (pendiente de pago)!",
-      "message": "Hola Liliana, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "34680270-2e44-4dc7-bb7b-4c6f88b61884",
-      "asesor": "DESIREE DE LA PEÑA OROZCO",
-      "firstName": "Desiree",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "¡Nueva póliza emitida (pendiente de pago)!",
-      "message": "Hola Desiree, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
       "sent": false
     }
   ]
