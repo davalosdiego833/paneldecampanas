@@ -88,6 +88,25 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
 
     const hasEnoughData = prevIndex !== -1 && currIndex !== -1;
 
+    const getDayName = (dateStr: string): string => {
+        if (!dateStr) return '';
+        const parts = dateStr.split('-');
+        if (parts.length !== 3) return '';
+        const dateObj = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+        const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        return days[dateObj.getDay()];
+    };
+
+    const getHeaderLabel = (index: number) => {
+        if (index === -1 || !person?.history) return '';
+        const entry = person.history[index];
+        if (entry.month_start || entry.type === 'month_start') {
+            return 'ARRANQUE MES';
+        }
+        const dayName = getDayName(entry.date);
+        return dayName ? `CIERRE ${dayName.toUpperCase()}` : 'CIERRE';
+    };
+
     const devMetrics = [
         { key: 'citas_iniciales', label: 'Citas Iniciales', icon: '📞' },
         { key: 'citas_cierre', label: 'Citas de Cierre', icon: '🎯' },
@@ -161,8 +180,8 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                     <thead>
                         <tr style={{ background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid var(--glass-border)' }}>
                             <th style={{ padding: '20px 24px', fontSize: '0.8rem', opacity: 0.6, fontWeight: 600 }}>TIPO DE ACTIVIDAD</th>
-                            <th style={{ padding: '20px 24px', fontSize: '0.8rem', opacity: 0.6, fontWeight: 600, textAlign: 'center' }}>CIERRE MARTES</th>
-                            <th style={{ padding: '20px 24px', fontSize: '0.8rem', opacity: 0.6, fontWeight: 600, textAlign: 'center' }}>CIERRE LUNES</th>
+                            <th style={{ padding: '20px 24px', fontSize: '0.8rem', opacity: 0.6, fontWeight: 600, textAlign: 'center' }}>{getHeaderLabel(prevIndex)}</th>
+                            <th style={{ padding: '20px 24px', fontSize: '0.8rem', opacity: 0.6, fontWeight: 600, textAlign: 'center' }}>{getHeaderLabel(currIndex)}</th>
                             <th style={{ padding: '20px 24px', fontSize: '0.8rem', opacity: 0.6, fontWeight: 600, textAlign: 'right' }}>CRECIMIENTO</th>
                         </tr>
                     </thead>
@@ -265,7 +284,7 @@ const StaffActivity: React.FC<Props> = ({ onBack, themeMode }) => {
                                 </h1>
                                 <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginTop: '6px' }}>
                                     {selectedPeriod === 'latest' 
-                                        ? `Comparativo: Martes ${person?.history?.[prevIndex]?.date || '?'} vs lunes ${person?.history?.[currIndex]?.date || '?'}`
+                                        ? `Comparativo: ${getDayName(person?.history?.[prevIndex]?.date) || 'Cierre'} ${person?.history?.[prevIndex]?.date || '?'} vs ${getDayName(person?.history?.[currIndex]?.date) || 'Cierre'} ${person?.history?.[currIndex]?.date || '?'}`
                                         : `Comparativo Mensual: ${person?.history?.[prevIndex]?.date || '?'} vs ${person?.history?.[currIndex]?.date || '?'}`}
                                 </p>
                             </div>
