@@ -212,6 +212,19 @@
           "arranque_rapido": 0,
           "tareas_actividades": 10
         }
+      },
+      {
+        "date": "2026-07-07",
+        "data": {
+          "citas_iniciales": 0,
+          "citas_cierre": 1,
+          "sesiones_11": 3,
+          "arranque_rapido": 3,
+          "tareas_actividades": 20,
+          "polizas": 0,
+          "contratos_firmados": 0,
+          "observaciones": "Miros arranca la actividad de julio con buen ritmo en el desarrollo de su equipo, logrando +3 Arranques Rápidos y sumando 1 Cita de Cierre. Mantiene la constancia en el seguimiento completando +10 tareas/actividades (acumulando 20) y sumando +1 Sesión 1:1.\n\nÁrea de mejora: La generación de Citas Iniciales se mantuvo en 0. Es clave reactivar la prospección de nuevos perfiles en frío esta semana para asegurar que el flujo de reclutas y el embudo sigan activos."
+        }
       }
     ],
     "goals": {
@@ -422,6 +435,18 @@
           "contratos_firmados": 0,
           "arranque_rapido": 0,
           "tareas_actividades": 0
+        }
+      },
+      {
+        "date": "2026-07-07",
+        "data": {
+          "citas_iniciales": 3,
+          "citas_cierre": 2,
+          "polizas": 0,
+          "contratos_firmados": 0,
+          "arranque_rapido": 2,
+          "tareas_actividades": 5,
+          "observaciones": "Fer arranca el mes de julio reactivando positivamente el reclutamiento, sumando +3 nuevas Citas Iniciales y logrando +2 Citas de Cierre en su primer corte. En el desarrollo de su equipo, impulsó +2 nuevos Arranques Rápidos y completó +5 tareas/actividades en agenda.\n\nÁrea de mejora: Las conversiones a pólizas y contratos firmados se mantienen en 0. Con 2 citas de cierre ya generadas, el enfoque estratégico de la semana entrante debe ser dar un seguimiento estrecho a esos prospectos para concretar los cierres del mes."
         }
       }
     ],
@@ -653,6 +678,19 @@
           "ent_administrativa": 0,
           "recluta_contactos": 53,
           "recluta_entrevistas": 0
+        }
+      },
+      {
+        "date": "2026-07-07",
+        "data": {
+          "activos_mes": 4,
+          "ent_enamoramiento": 8,
+          "ent_compensacion": 0,
+          "ent_administrativa": 0,
+          "recluta_contactos": 160,
+          "recluta_citas": 0,
+          "recluta_entrevistas": 0,
+          "observaciones": "Shelsea arranca el mes de julio con un fuerte ritmo en prospección inicial, sumando +107 nuevos contactos (para un acumulado de 160 en el mes). Destacó notablemente en enamoramiento, logrando avanzar a +8 nuevos candidatos enamorados y sumando +3 nuevos asesores activos para llegar a un total de 4.\n\nÁrea de mejora: En este primer corte, tanto las citas/llamadas como las entrevistas y etapas finales (compensación/administrativas) se mantuvieron en 0. Con 8 candidatos ya en etapa de enamoramiento, el reto estratégico de la semana entrante es acelerar las entrevistas y comenzar a mover a estos perfiles hacia la compensación y contratación."
         }
       }
     ]
