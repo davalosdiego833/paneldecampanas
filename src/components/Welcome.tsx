@@ -80,15 +80,6 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                 </h4>
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: '20px', fontSize: '1rem', color: 'var(--text-secondary)', padding: '0 8px' }}>
                     <li>
-                        <span style={{ marginRight: '10px' }}>🌟</span>
-                        <strong style={{ color: 'var(--text-primary)' }}>MDRT DAY — ¡Alcanza la Gloria Mundial!</strong>
-                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
-                            El MDRT DAY es tu pasaporte a la élite internacional de asesores. Tu lugar en la Mesa del Millón te espera este junio en CDMX. 
-                            <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}> Cierre en junio</span>. ¡Transforma hoy tu carrera y trasciende fronteras! 
-                            Chequen las bases completas en el grupo de campañas.
-                        </div>
-                    </li>
-                    <li>
                         <span style={{ marginRight: '10px' }}>📱</span>
                         <strong style={{ color: 'var(--text-primary)' }}>Campaña ProactivaTech 2.0 (Junio – Agosto 2026)</strong>
                         <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
@@ -96,10 +87,10 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                         </div>
                     </li>
                     <li>
-                        <span style={{ marginRight: '10px' }}>⚽</span>
-                        <strong style={{ color: 'var(--text-primary)' }}>Vive Tu Pasión: 8vos de Final en NY (15 May - 10 Jun 2026)</strong>
+                        <span style={{ marginRight: '10px' }}>📈</span>
+                        <strong style={{ color: 'var(--text-primary)' }}>Campaña Reto Por Ciento</strong>
                         <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
-                            ¡Seguros Monterrey te lleva a Nueva York a 8vos de Final! Los <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>10 Asesores</span> con mayor comisión pagada (mín. $350,000) ganan vuelo, hospedaje y entrada al partido.
+                            <span style={{ color: '#FF6B6B', fontWeight: 700 }}>"GANA EXTRA COMISIÓN"</span> SOLO ASESORES CONSOLIDADOS.
                         </div>
                     </li>
                     <li>
@@ -111,8 +102,8 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                     </li>
                     <li>
                         <span style={{ marginRight: '10px' }}>🛡️</span>
-                        <strong style={{ color: 'var(--text-primary)' }}>Legión Centurión — ¡Objetivo Junio!</strong>
-                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>La meta para este mes es de <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>24 pólizas acumuladas</span> como mínimo. Mantén el ritmo y asegura tu lugar en la élite de la promotoría.</div>
+                        <strong style={{ color: 'var(--text-primary)' }}>Legión Centurión — ¡Objetivo Julio!</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>La meta para este mes es de <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>28 pólizas acumuladas</span> como mínimo. Mantén el ritmo y asegura tu lugar en la élite de la promotoría.</div>
                     </li>
                 </ul>
             </div>
