@@ -3,7 +3,10 @@ import fs from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
 
-const BASE_PATH = process.cwd();
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const BASE_PATH = __dirname;
 const DB_PATH = path.join(BASE_PATH, 'db');
 const SNAPSHOT_FILE = path.join(DB_PATH, 'resumen_snapshot.json');
 
@@ -377,7 +380,7 @@ const run = async () => {
             try {
                 console.log(`Spawning subprocess for campaign step: ${s}...`);
                 const nodeBin = process.execPath;
-                const child = execSync(`"${nodeBin}" --max-old-space-size=350 "${path.join(BASE_PATH, 'actualizar_snapshot.js')}" --step=${s}`, { stdio: 'pipe' });
+                const child = execSync(`"${nodeBin}" --experimental-vm-modules --max-old-space-size=350 "${path.join(BASE_PATH, 'actualizar_snapshot.js')}" --step=${s}`, { stdio: 'pipe', cwd: BASE_PATH });
                 
                 const stepFile = path.join(DB_PATH, `step_${s}.json`);
                 if (fs.existsSync(stepFile)) {
