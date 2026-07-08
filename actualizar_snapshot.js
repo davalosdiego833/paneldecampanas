@@ -368,6 +368,30 @@ const run = async () => {
             process.exit(0);
         }
 
+        // ===================== CAMPAÑAS (SPAWN SUBPROCESSES FIRST WHEN MEMORY IS LOW) =====================
+        const campaigns = {};
+        const campaignDates = {};
+
+        const steps = ['mdrt', 'convenciones', 'legion_centurion', 'camino_cumbre', 'graduacion', 'proactiva_tech'];
+        for (const s of steps) {
+            try {
+                console.log(`Spawning subprocess for campaign step: ${s}...`);
+                const nodeBin = process.execPath;
+                execSync(`"${nodeBin}" --max-old-space-size=350 "${path.join(BASE_PATH, 'actualizar_snapshot.js')}" --step=${s}`, { stdio: 'inherit' });
+                
+                const stepFile = path.join(DB_PATH, `step_${s}.json`);
+                if (fs.existsSync(stepFile)) {
+                    const stepData = JSON.parse(fs.readFileSync(stepFile, 'utf-8'));
+                    campaigns[s] = stepData.campaigns;
+                    campaignDates[s] = stepData.date;
+                    fs.unlinkSync(stepFile);
+                    console.log(`Successfully merged step data for ${s}.`);
+                }
+            } catch (e) {
+                console.error(`❌ Error executing campaign step ${s}:`, e.message);
+            }
+        }
+
         const snapshot = {
             updatedAt: new Date().toLocaleString('es-MX', { timeZone: 'America/Mexico_City' }),
             data: {
@@ -633,30 +657,6 @@ const run = async () => {
                 };
             }
             fc.comparativo_vida = extractCutoffDate(wb);
-        }
-
-        // ===================== CAMPAÑAS =====================
-        const campaigns = {};
-        const campaignDates = {};
-
-        const steps = ['mdrt', 'convenciones', 'legion_centurion', 'camino_cumbre', 'graduacion', 'proactiva_tech'];
-        for (const s of steps) {
-            try {
-                console.log(`Spawning subprocess for campaign step: ${s}...`);
-                const nodeBin = process.execPath;
-                execSync(`"${nodeBin}" --max-old-space-size=350 "${path.join(BASE_PATH, 'actualizar_snapshot.js')}" --step=${s}`, { stdio: 'inherit' });
-                
-                const stepFile = path.join(DB_PATH, `step_${s}.json`);
-                if (fs.existsSync(stepFile)) {
-                    const stepData = JSON.parse(fs.readFileSync(stepFile, 'utf-8'));
-                    campaigns[s] = stepData.campaigns;
-                    campaignDates[s] = stepData.date;
-                    fs.unlinkSync(stepFile);
-                    console.log(`Successfully merged step data for ${s}.`);
-                }
-            } catch (e) {
-                console.error(`❌ Error executing campaign step ${s}:`, e.message);
-            }
         }
 
         snapshot.data.campaigns = campaigns;
