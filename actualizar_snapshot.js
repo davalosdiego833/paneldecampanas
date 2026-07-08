@@ -160,7 +160,10 @@ const run = async () => {
                     }
                     directoryFechas[String(clave).trim()] = String(fechaConexionStr).trim();
                 }
-           const runStepInline = (step, campaigns, campaignDates, directory, directoryFechas) => {
+            });
+        }
+
+        const runStepInline = (step, campaigns, campaignDates, directory, directoryFechas) => {
             if (step === 'mdrt') {
                 try {
                     console.log('Processing mdrt');
@@ -362,10 +365,6 @@ const run = async () => {
             }
             if (global.gc) global.gc();
         };
-                    directoryFechas[String(clave).trim()] = String(fechaConexionStr).trim();
-                }
-            });
-        }
 
         const args = process.argv.slice(2);
         const stepArg = args.find(arg => arg.startsWith('--step='));
