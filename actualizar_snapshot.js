@@ -377,7 +377,7 @@ const run = async () => {
             try {
                 console.log(`Spawning subprocess for campaign step: ${s}...`);
                 const nodeBin = process.execPath;
-                execSync(`"${nodeBin}" --max-old-space-size=350 "${path.join(BASE_PATH, 'actualizar_snapshot.js')}" --step=${s}`, { stdio: 'inherit' });
+                const child = execSync(`"${nodeBin}" --max-old-space-size=350 "${path.join(BASE_PATH, 'actualizar_snapshot.js')}" --step=${s}`, { stdio: 'pipe' });
                 
                 const stepFile = path.join(DB_PATH, `step_${s}.json`);
                 if (fs.existsSync(stepFile)) {
@@ -389,6 +389,8 @@ const run = async () => {
                 }
             } catch (e) {
                 console.error(`❌ Error executing campaign step ${s}:`, e.message);
+                if (e.stdout) console.error(`Stdout:`, e.stdout.toString());
+                if (e.stderr) console.error(`Stderr:`, e.stderr.toString());
             }
         }
 
