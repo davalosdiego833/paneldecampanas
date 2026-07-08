@@ -33,15 +33,16 @@ dotenv.config({ path: fs.existsSync(localEnv) ? localEnv : hostingerEnv });
 // Helper to reliably find protected folders in Distributed Architecture
 const SUCURSALES_PROMO = ['2043', '2856', '2511'];
 const getProtectedPath = (folder) => {
+    const f = folder === 'proactiva_tech' ? 'proactivatech' : folder;
     if (isHostinger) {
-        const hostingerNodeJS = path.join(BASE_PATH, '../nodejs', folder);
-        const hostingerParent = path.join(BASE_PATH, '..', folder);
+        const hostingerNodeJS = path.join(BASE_PATH, '../nodejs', f);
+        const hostingerParent = path.join(BASE_PATH, '..', f);
         if (fs.existsSync(hostingerNodeJS))
             return hostingerNodeJS;
         if (fs.existsSync(hostingerParent))
             return hostingerParent;
     }
-    const local = path.join(BASE_PATH, folder);
+    const local = path.join(BASE_PATH, f);
     return local;
 };
 const DB_PATH_DYNAMIC = getProtectedPath('db');
@@ -263,7 +264,7 @@ const extractCutoffDate = (wb, type) => {
             const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
             return parseSpanishDate(formatExcelDate(data[0]?.[0] || data[1]?.[2] || ""));
         }
-        if (type === 'fanfest' || type === 'vive_tu_pasion') {
+        if (type === 'fanfest' || type === 'vive_tu_pasion' || type === 'proactiva_tech') {
             const ws = wb.Sheets[wb.SheetNames[0]];
             const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
             for (let i = 0; i < 15; i++) {
@@ -789,7 +790,7 @@ app.get('/api/admin/summary', (req, res) => {
             const name = dir[String(cl)] || `Asesor ${cl}`;
             return name.replace(/Ð/g, 'Ñ').replace(/ð/g, 'ñ');
         };
-        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion'];
+        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion', 'proactiva_tech'];
         cams.forEach(c => {
             try {
                 const wb = readExcelData(c, { skipJson: true, date: date });
@@ -895,6 +896,39 @@ app.get('/api/admin/summary', (req, res) => {
                             Premio: r[10] || ""
                         }));
                     }
+                    else if (c === 'proactiva_tech') {
+                        const selector = (n) => n.toLowerCase().includes('asesores');
+                        const sheetName = wb.SheetNames.find(selector) || wb.SheetNames[0];
+                        const ws = wb.Sheets[sheetName];
+                        const data = XLSX.utils.sheet_to_json(ws, { range: 6 });
+                        const advisorsData = data.slice(1);
+                        const getExcelYear = (val) => {
+                            if (!val)
+                                return 0;
+                            const num = Number(val);
+                            if (!isNaN(num)) {
+                                const date = new Date(Math.round((num - 25569) * 86400 * 1000));
+                                return date.getUTCFullYear();
+                            }
+                            const str = String(val).trim();
+                            const match = str.match(/\b(20\d{2})\b/);
+                            return match ? parseInt(match[1], 10) : 0;
+                        };
+                        result.proactiva_tech = advisorsData.filter(r => {
+                            const matVal = String(r.MATRIZ || r.Matriz || '').trim();
+                            if (!SUCURSALES_PROMO.includes(matVal))
+                                return false;
+                            const conVal = r['CONEXIÓN'] || r['Conexión'] || r['CONEXION'] || r['conexion'];
+                            const year = getExcelYear(conVal);
+                            return year >= 2023;
+                        }).map(r => ({
+                            Asesor: resolveName(r.ASESOR || r.Asesor || ''),
+                            Clave: String(r.ASESOR || r.Asesor || ''),
+                            Polizas: Number(r['PÓLIZAS'] || r['Pólizas'] || r['Polizas'] || 0),
+                            Comisiones: Number(r.COMISIONES || r.Comisiones || r.comisiones || 0),
+                            Ranking: Number(r.RANKING || r.Ranking || r.ranking || 99999)
+                        }));
+                    }
                 }
                 else
                     result[c] = [];
@@ -948,7 +982,7 @@ app.post('/api/admin/snapshot', async (req, res) => {
             return name.replace(/Ð/g, 'Ñ').replace(/ð/g, 'ñ');
         };
         const result = { dates: {} };
-        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion'];
+        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion', 'proactiva_tech'];
         for (const c of cams) {
             const wb = readExcelData(c, { skipJson: true });
             if (wb) {
@@ -1015,6 +1049,39 @@ app.post('/api/admin/snapshot', async (req, res) => {
                     const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
                     result.vive_tu_pasion = data.slice(2).filter(r => String(r[4] || '') === '2043').map(r => ({
                         Asesor: resolveName(r[6]), Clave: r[6] || '', Polizas: Number(r[8] || 0), Comisiones: Number(r[9] || 0), Premio: r[10] || ""
+                    }));
+                }
+                else if (c === 'proactiva_tech') {
+                    const selector = (n) => n.toLowerCase().includes('asesores');
+                    const sheetName = wb.SheetNames.find(selector) || wb.SheetNames[0];
+                    const ws = wb.Sheets[sheetName];
+                    const data = XLSX.utils.sheet_to_json(ws, { range: 6 });
+                    const advisorsData = data.slice(1);
+                    const getExcelYear = (val) => {
+                        if (!val)
+                            return 0;
+                        const num = Number(val);
+                        if (!isNaN(num)) {
+                            const date = new Date(Math.round((num - 25569) * 86400 * 1000));
+                            return date.getUTCFullYear();
+                        }
+                        const str = String(val).trim();
+                        const match = str.match(/\b(20\d{2})\b/);
+                        return match ? parseInt(match[1], 10) : 0;
+                    };
+                    result.proactiva_tech = advisorsData.filter(r => {
+                        const matVal = String(r.MATRIZ || r.Matriz || '').trim();
+                        if (matVal !== '2043')
+                            return false;
+                        const conVal = r['CONEXIÓN'] || r['Conexión'] || r['CONEXION'] || r['conexion'];
+                        const year = getExcelYear(conVal);
+                        return year >= 2023;
+                    }).map(r => ({
+                        Asesor: resolveName(r.ASESOR || r.Asesor || ''),
+                        Clave: String(r.ASESOR || r.Asesor || ''),
+                        Polizas: Number(r['PÓLIZAS'] || r['Pólizas'] || r['Polizas'] || 0),
+                        Comisiones: Number(r.COMISIONES || r.Comisiones || r.comisiones || 0),
+                        Ranking: Number(r.RANKING || r.Ranking || r.ranking || 99999)
                     }));
                 }
                 // Extract cutoff date for snapshot
@@ -1280,7 +1347,7 @@ app.get('/api/campaigns/dates', (req, res) => {
                 return res.json(snapshotData.data.campaignDates);
             }
         }
-        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion'];
+        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion', 'proactiva_tech'];
         const result = {};
         cams.forEach(c => {
             const wb = readExcelData(c, { skipJson: true });
@@ -1660,6 +1727,17 @@ app.get('/api/daniela/datos', (req, res) => {
                 clave: c.Clave,
                 polizas: c.Polizas,
                 premio: c.Premio
+            }));
+        }
+        if (originalCampaigns.proactiva_tech && includeCampaign('proactiva_tech')) {
+            campaigns.proactiva_tech = originalCampaigns.proactiva_tech
+                .filter((c) => (Number(c.Polizas) > 0 || Number(c.Comisiones) > 0) && matchAsesor(c.Asesor))
+                .map((c) => ({
+                asesor: c.Asesor,
+                clave: c.Clave,
+                polizas: c.Polizas,
+                comisiones: c.Comisiones,
+                ranking: c.Ranking
             }));
         }
         if (originalCampaigns.graduacion && includeCampaign('graduacion')) {
@@ -2220,7 +2298,7 @@ app.use((req, res) => {
 const preloadCampaigns = () => {
     console.log('[CACHE WARMER] Inicializando precarga de campañas en segundo plano para máxima velocidad...');
     getCachedAdvisors(); // Precarga instántanea de asesores en memoria
-    const campaigns = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion'];
+    const campaigns = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'proactiva_tech'];
     let idx = 0;
     const loadNext = () => {
         if (idx >= campaigns.length) {
@@ -2255,6 +2333,13 @@ const preloadCampaigns = () => {
                     const ws = wb.Sheets[wb.SheetNames[0]];
                     if (!ws._cachedJson)
                         ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 'A11:Z10000' });
+                }
+                else if (c === 'proactiva_tech') {
+                    const selector = (n) => n.toLowerCase().includes('asesores');
+                    const sheetName = wb.SheetNames.find(selector) || wb.SheetNames[0];
+                    const ws = wb.Sheets[sheetName];
+                    if (!ws._cachedJson)
+                        ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 6 });
                 }
             }
         }
