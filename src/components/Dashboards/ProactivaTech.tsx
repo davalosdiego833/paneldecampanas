@@ -48,20 +48,32 @@ interface Level {
     customMsg?: string;
 }
 
-    // Determine next target level to show instructions
+    // Determine next target level sequentially
     let nextLevel: Level | null = null;
-    if (rank > 195) {
-        // Not in top 195 yet - objective is to enter the AirPods bracket (level 1) and meet mins
-        nextLevel = { ...NIVELES[3], customMsg: 'Entrar al Top 195 del Ranking' }; // Level 1 (AirPods is NIVELES[3] in index, as id is 1)
-    } else if (targetLevel) {
-        if (!prizeWon || prizeWon.id < targetLevel.id) {
-            // They are in the rank range but haven't unlocked the prize, or only unlocked a lower one
-            nextLevel = targetLevel;
-        } else {
-            // They got their maximum possible prize for their rank. To get a higher one, they need to rank higher
-            const higherLevel = NIVELES.find(n => n.id === targetLevel.id + 1);
-            if (higherLevel) {
-                nextLevel = { ...higherLevel, customMsg: `Subir al Lugar ${higherLevel.maxRank} en el Ranking` };
+    if (!prizeWon) {
+        // Si no han ganado ningún premio, el primer objetivo es calificar al premio más bajo (AirPods Pro 3)
+        const lowestLevel = NIVELES.find(n => n.id === 1);
+        if (lowestLevel) {
+            nextLevel = { 
+                ...lowestLevel, 
+                customMsg: rank > 195 ? 'Entrar al Top 195 del Ranking' : undefined 
+            };
+        }
+    } else {
+        // Si ya tienen un premio ganado, el objetivo es el siguiente nivel de premio
+        const currentPrizeId = prizeWon.id;
+        const nextPrizeLevel = NIVELES.find(n => n.id === currentPrizeId + 1);
+        
+        if (nextPrizeLevel) {
+            if (rank <= nextPrizeLevel.maxRank) {
+                // Su ranking ya es suficiente para el siguiente premio, solo falta producción
+                nextLevel = nextPrizeLevel;
+            } else {
+                // Necesitan subir en el ranking para poder aspirar a este siguiente premio
+                nextLevel = {
+                    ...nextPrizeLevel,
+                    customMsg: `Subir al Lugar ${nextPrizeLevel.maxRank} en el Ranking`
+                };
             }
         }
     }
