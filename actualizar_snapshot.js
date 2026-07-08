@@ -336,16 +336,25 @@ const run = async () => {
                         const wsRes = wb.Sheets['RESUMEN'] || wb.Sheets[wb.SheetNames[0]];
                         const rawRes = XLSX.utils.sheet_to_json(wsRes, { header: 1 });
                         let cutoffStr = '';
-                        if (rawRes && rawRes[2] && rawRes[2][0]) {
-                            const val = String(rawRes[2][0]).toUpperCase();
-                            const match = val.match(/AL\s+(.+)$/);
-                            if (match) {
-                                cutoffStr = match[1].trim().toLowerCase()
-                                    .replace('20256', '2026')
-                                    .replace('2025', '2026');
+                        for (let r = 0; r < Math.min(15, rawRes.length); r++) {
+                            const row = rawRes[r];
+                            if (!row) continue;
+                            for (const val of row) {
+                                if (!val) continue;
+                                const str = String(val).toUpperCase();
+                                if (str.includes('AVANCE AL') || str.includes('CORTE AL') || str.includes('AL ')) {
+                                    const match = str.match(/AL\s+(.+)$/);
+                                    if (match) {
+                                        cutoffStr = match[1].trim().toLowerCase()
+                                            .replace('20256', '2026')
+                                            .replace('2025', '2026');
+                                        break;
+                                    }
+                                }
                             }
+                            if (cutoffStr) break;
                         }
-                        campaignDates.proactiva_tech = cutoffStr || '12 de junio de 2026';
+                        campaignDates.proactiva_tech = cutoffStr || '30 de junio de 2026';
                     }
                 } catch(e) { console.warn('⚠️ Proactiva Tech skip:', e.message); }
             }

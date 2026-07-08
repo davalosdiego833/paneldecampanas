@@ -1,0 +1,208 @@
+{
+  "campaigns": [
+    {
+      "Asesor": "ANAIS LUA MORENO",
+      "Clave": "110453",
+      "Polizas": 4,
+      "Comisiones": 507338.17,
+      "Ranking": 55
+    },
+    {
+      "Asesor": "MONSERRAT VELASCO SANTOS",
+      "Clave": "117440",
+      "Polizas": 2,
+      "Comisiones": 17901.71,
+      "Ranking": 339
+    },
+    {
+      "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+      "Clave": "108404",
+      "Polizas": 2,
+      "Comisiones": 4229.91,
+      "Ranking": 430
+    },
+    {
+      "Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
+      "Clave": "107488",
+      "Polizas": 2,
+      "Comisiones": 1369.96,
+      "Ranking": 476
+    },
+    {
+      "Asesor": "SOFIA CAMPILLO VASCONCELOS",
+      "Clave": "116883",
+      "Polizas": 2,
+      "Comisiones": 908.47,
+      "Ranking": 491
+    },
+    {
+      "Asesor": "JULIANA RIASCOS VALENCIA",
+      "Clave": "100677",
+      "Polizas": 1.5,
+      "Comisiones": 9870.11,
+      "Ranking": 533
+    },
+    {
+      "Asesor": "JOSE RENE DE ALBA MORALES",
+      "Clave": "110575",
+      "Polizas": 1,
+      "Comisiones": 67554.97,
+      "Ranking": 587
+    },
+    {
+      "Asesor": "JORGE ANTONIO LUNA LARA",
+      "Clave": "111056",
+      "Polizas": 1,
+      "Comisiones": 39391.21,
+      "Ranking": 590
+    },
+    {
+      "Asesor": "MARIO IVAN ROMERO GONZALEZ",
+      "Clave": "118069",
+      "Polizas": 1,
+      "Comisiones": 5259.88,
+      "Ranking": 835
+    },
+    {
+      "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
+      "Clave": "104343",
+      "Polizas": 1,
+      "Comisiones": 1138.66,
+      "Ranking": 973
+    },
+    {
+      "Asesor": "GABRIELA CASTAÑEDA SALAZAR",
+      "Clave": "105696",
+      "Polizas": 1,
+      "Comisiones": 1105.7,
+      "Ranking": 976
+    },
+    {
+      "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
+      "Clave": "113450",
+      "Polizas": 1,
+      "Comisiones": 658.97,
+      "Ranking": 1067
+    },
+    {
+      "Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
+      "Clave": "109007",
+      "Polizas": 1,
+      "Comisiones": 463.48,
+      "Ranking": 1140
+    },
+    {
+      "Asesor": "MARIA FERNANDA RIOS BERNAL",
+      "Clave": "103982",
+      "Polizas": 0,
+      "Comisiones": 0,
+      "Ranking": 1546
+    },
+    {
+      "Asesor": "LAURA DOLORES MONTAÑO MONTAÑO",
+      "Clave": "112522",
+      "Polizas": 0,
+      "Comisiones": 0,
+      "Ranking": 1560
+    },
+    {
+      "Asesor": "MIREYA LIZETTE TORRES GARCIA",
+      "Clave": "106018",
+      "Polizas": 0,
+      "Comisiones": 0,
+      "Ranking": 1644
+    },
+    {
+      "Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
+      "Clave": "114157",
+      "Polizas": 0,
+      "Comisiones": 0,
+      "Ranking": 1683
+    },
+    {
+      "Asesor": "VELIA PATRICIA BERNAL RAMOS",
+      "Clave": "115047",
+      "Polizas": 0,
+      "Comisiones": 0,
+      "Ranking": 1690
+    },
+    {
+      "Asesor": "SAMUEL NUÑO RIVERA",
+      "Clave": "101640",
+      "Polizas": 0,
+      "Comisiones": 0,
+      "Ranking": 4494
+    },
+    {
+      "Asesor": "PAULA ANGELICA LOMELI CAZARES",
+      "Clave": "116876",
+      "Polizas": 0,
+      "Comisiones": 0,
+      "Ranking": 4675
+    },
+    {
+      "Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
+      "Clave": "102825",
+      "Polizas": 0,
+      "Comisiones": 0,
+      "Ranking": 5005
+    },
+    {
+      "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+      "Clave": "104750",
+      "Polizas": 0,
+      "Comisiones": 0,
+      "Ranking": 2345
+    },
+    {
+      "Asesor": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
+      "Clave": "109998",
+      "Polizas": 0,
+      "Comisiones": 0,
+      "Ranking": 2403
+    },
+    {
+      "Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
+      "Clave": "112083",
+      "Polizas": 0,
+      "Comisiones": 0,
+      "Ranking": 2543
+    },
+    {
+      "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
+      "Clave": "115404",
+      "Polizas": 0,
+      "Comisiones": 0,
+      "Ranking": 3842
+    },
+    {
+      "Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
+      "Clave": "108405",
+      "Polizas": 0,
+      "Comisiones": 0,
+      "Ranking": 3218
+    },
+    {
+      "Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
+      "Clave": "114100",
+      "Polizas": 0,
+      "Comisiones": 0,
+      "Ranking": 3333
+    },
+    {
+      "Asesor": "ROGELIO TORRES ORTIZ",
+      "Clave": "104718",
+      "Polizas": 0,
+      "Comisiones": 0,
+      "Ranking": 2920
+    },
+    {
+      "Asesor": "ROCIO YANETH OCHOA IBARRA",
+      "Clave": "110105",
+      "Polizas": 0,
+      "Comisiones": 0,
+      "Ranking": 4105
+    }
+  ],
+  "date": "12 de junio de 2026"
+}

@@ -293,7 +293,7 @@ const extractCutoffDate = (wb: any, type: string): string => {
             const data: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1 });
             for (let i = 0; i < 15; i++) {
                 if (!data[i]) continue;
-                const rowStr = data[i].join(' ');
+                const rowStr = data[i].join(' ').replace('20256', '2026').replace('2025', '2026');
                 const m = String(rowStr).match(/\d{1,2}\s+de\s+[a-z]+(\s+de)?\s+(\d{4})/i);
                 if (m) return parseSpanishDate(m[0]);
             }
