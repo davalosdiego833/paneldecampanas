@@ -342,8 +342,8 @@ const run = async () => {
                             for (const val of row) {
                                 if (!val) continue;
                                 const str = String(val).toUpperCase();
-                                if (str.includes('AVANCE AL') || str.includes('CORTE AL') || str.includes('AL ')) {
-                                    const match = str.match(/AL\s+(.+)$/);
+                                if (str.includes('AVANCE AL') || str.includes('CORTE AL')) {
+                                    const match = str.match(/(?:AVANCE|CORTE)\s+AL\s+(.+)$/);
                                     if (match) {
                                         cutoffStr = match[1].trim().toLowerCase()
                                             .replace('20256', '2026')
