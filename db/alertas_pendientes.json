@@ -1,7 +1,27 @@
 {
-  "generatedAt": "9/7/2026, 11:43:51 a.m.",
-  "totalNew": 10,
+  "generatedAt": "10/7/2026, 4:56:20 p.m.",
+  "totalNew": 2,
   "alerts": [
+    {
+      "id": "5ca18d2e-7bb4-4e73-a423-ccd75f2ba705",
+      "asesor": "JULIANA RIASCOS VALENCIA",
+      "firstName": "Juliana",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Juliana, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "b523d863-3454-4cd2-b02a-395f4c897e8d",
+      "asesor": "JOSE ANTEMIO OLIVA SANTOS",
+      "firstName": "Jose",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Jose, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *3 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
     {
       "id": "5f14e73f-26b3-40fa-8937-4ed419e7f9e5",
       "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
@@ -110,16 +130,6 @@
       "type": "positive",
       "event": "¡Nueva póliza pagada!",
       "message": "Hola Maria, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "18dd49ce-7e9a-4045-bff1-d08eb50a04f5",
-      "asesor": "JULIANA RIASCOS VALENCIA",
-      "firstName": "Juliana",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "¡Nueva póliza emitida (pendiente de pago)!",
-      "message": "Hola Juliana, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
       "sent": false
     },
     {

@@ -225,6 +225,19 @@
           "contratos_firmados": 0,
           "observaciones": "Miros arranca la actividad de julio con buen ritmo en el desarrollo de su equipo, logrando +3 Arranques Rápidos y sumando 1 Cita de Cierre. Mantiene la constancia en el seguimiento completando +10 tareas/actividades (acumulando 20) y sumando +1 Sesión 1:1.\n\nÁrea de mejora: La generación de Citas Iniciales se mantuvo en 0. Es clave reactivar la prospección de nuevos perfiles en frío esta semana para asegurar que el flujo de reclutas y el embudo sigan activos."
         }
+      },
+      {
+        "date": "2026-07-10",
+        "data": {
+          "citas_iniciales": 0,
+          "citas_cierre": 1,
+          "sesiones_11": 8,
+          "arranque_rapido": 4,
+          "tareas_actividades": 22,
+          "polizas": 0,
+          "contratos_firmados": 0,
+          "observaciones": "Miros tuvo un excelente avance en el desarrollo y acompañamiento de su equipo esta semana, destacando con **+5 nuevas Sesiones 1:1** para un acumulado de 8 en el mes, y sumando **+1 nuevo Arranque Rápido** (llegando a 4). También completó +2 tareas/actividades adicionales en su bitácora.\n\nÁrea de mejora: La generación de Citas Iniciales y Citas de Cierre se mantuvo sin movimiento. El reto prioritario es balancear el tiempo de capacitación con prospección en frío para inyectar nuevos candidatos al embudo."
+        }
       }
     ],
     "goals": {
@@ -447,6 +460,18 @@
           "arranque_rapido": 2,
           "tareas_actividades": 5,
           "observaciones": "Fer arranca el mes de julio reactivando positivamente el reclutamiento, sumando +3 nuevas Citas Iniciales y logrando +2 Citas de Cierre en su primer corte. En el desarrollo de su equipo, impulsó +2 nuevos Arranques Rápidos y completó +5 tareas/actividades en agenda.\n\nÁrea de mejora: Las conversiones a pólizas y contratos firmados se mantienen en 0. Con 2 citas de cierre ya generadas, el enfoque estratégico de la semana entrante debe ser dar un seguimiento estrecho a esos prospectos para concretar los cierres del mes."
+        }
+      },
+      {
+        "date": "2026-07-10",
+        "data": {
+          "citas_iniciales": 3,
+          "citas_cierre": 2,
+          "polizas": 0,
+          "contratos_firmados": 0,
+          "arranque_rapido": 2,
+          "tareas_actividades": 5,
+          "observaciones": "Fer se mantuvo con la misma actividad comercial en este corte, acumulando 3 Citas Iniciales, 2 Citas de Cierre, 2 Arranques Rápidos y 5 tareas/actividades en el mes.\n\nÁrea de mejora: Es crítico reactivar la prospección y dar seguimiento activo a los perfiles ya contactados para generar movimiento en el embudo y avanzar en la concreción de pólizas y contratos firmados."
         }
       }
     ],
@@ -691,6 +716,19 @@
           "recluta_citas": 0,
           "recluta_entrevistas": 0,
           "observaciones": "Shelsea arranca el mes de julio con un fuerte ritmo en prospección inicial, sumando +107 nuevos contactos (para un acumulado de 160 en el mes). Destacó notablemente en enamoramiento, logrando avanzar a +8 nuevos candidatos enamorados y sumando +3 nuevos asesores activos para llegar a un total de 4.\n\nÁrea de mejora: En este primer corte, tanto las citas/llamadas como las entrevistas y etapas finales (compensación/administrativas) se mantuvieron en 0. Con 8 candidatos ya en etapa de enamoramiento, el reto estratégico de la semana entrante es acelerar las entrevistas y comenzar a mover a estos perfiles hacia la compensación y contratación."
+        }
+      },
+      {
+        "date": "2026-07-10",
+        "data": {
+          "activos_mes": 7,
+          "ent_enamoramiento": 13,
+          "ent_compensacion": 1,
+          "ent_administrativa": 0,
+          "recluta_contactos": 249,
+          "recluta_citas": 0,
+          "recluta_entrevistas": 1,
+          "observaciones": "Shelsea tuvo una excelente semana de crecimiento y reclutamiento. Sumó **+89 nuevos contactos en frío** (alcanzando 249) y concretó **+1 nueva entrevista** de reclutamiento. En la conversión del embudo, avanzó notablemente con **+5 nuevos candidatos enamorados** (llegando a 13) y logró destrabar la parte baja posicionando a **1 candidato en Compensación**. Esto se reflejó en un sólido aumento de asesores activos, sumando **+3 nuevos activos** en julio para un total de 7.\n\nÁrea de mejora: Las llamadas de reclutamiento (citas) se mantuvieron en 0. Con un volumen tan grande de nuevos contactos (+89) y enamorados (+5), la prioridad es agendar llamadas para canalizar estos prospectos y avanzar al candidato en compensación hacia el cierre administrativo."
         }
       }
     ]
