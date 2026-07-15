@@ -1,7 +1,37 @@
 {
-  "generatedAt": "14/7/2026, 4:05:23 p.m.",
-  "totalNew": 0,
+  "generatedAt": "15/7/2026, 12:07:18 p.m.",
+  "totalNew": 3,
   "alerts": [
+    {
+      "id": "038ac8ca-43f4-4737-bd89-4246909523c3",
+      "asesor": "VELIA PATRICIA BERNAL RAMOS",
+      "firstName": "Velia",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Velia, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "ba0429d9-9122-4eaf-be12-a15a19353b8d",
+      "asesor": "JOSE ANTEMIO OLIVA SANTOS",
+      "firstName": "Jose",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Jose, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "030522a9-ab2d-4142-8174-ed1660d3cb7a",
+      "asesor": "MIREYA LIZETTE TORRES GARCIA",
+      "firstName": "Mireya",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Mireya, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
     {
       "id": "5ca18d2e-7bb4-4e73-a423-ccd75f2ba705",
       "asesor": "JULIANA RIASCOS VALENCIA",
@@ -10,16 +40,6 @@
       "type": "positive",
       "event": "¡Nueva póliza pagada!",
       "message": "Hola Juliana, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "b523d863-3454-4cd2-b02a-395f4c897e8d",
-      "asesor": "JOSE ANTEMIO OLIVA SANTOS",
-      "firstName": "Jose",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "¡Nueva póliza emitida (pendiente de pago)!",
-      "message": "Hola Jose, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *3 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
       "sent": false
     },
     {
@@ -130,16 +150,6 @@
       "type": "positive",
       "event": "¡Nueva póliza pagada!",
       "message": "Hola Maria, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "c6c513a2-a689-4027-bd9b-0c5a144942f4",
-      "asesor": "MIREYA LIZETTE TORRES GARCIA",
-      "firstName": "Mireya",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "¡Nueva póliza pagada!",
-      "message": "Hola Mireya, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
       "sent": false
     },
     {
