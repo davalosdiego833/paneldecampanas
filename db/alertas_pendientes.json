@@ -1,7 +1,27 @@
 {
-  "generatedAt": "15/7/2026, 12:07:18 p.m.",
-  "totalNew": 3,
+  "generatedAt": "16/7/2026, 1:13:59 p.m.",
+  "totalNew": 2,
   "alerts": [
+    {
+      "id": "3f374ac4-f639-4c6f-ab48-e7e17c3a9890",
+      "asesor": "ROGELIO TORRES ORTIZ",
+      "firstName": "Rogelio",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Rogelio, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "2f9f6fcb-da1f-4d94-96fb-9db0b938c942",
+      "asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+      "firstName": "Liliana",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Liliana, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
     {
       "id": "038ac8ca-43f4-4737-bd89-4246909523c3",
       "asesor": "VELIA PATRICIA BERNAL RAMOS",
@@ -270,16 +290,6 @@
       "type": "positive",
       "event": "¡Nueva póliza pagada!",
       "message": "Hola Humberto, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *2 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "0419f577-7203-4f73-b988-71ff464c5ae6",
-      "asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
-      "firstName": "Liliana",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "¡Nueva póliza pagada!",
-      "message": "Hola Liliana, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *2 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
       "sent": false
     },
     {
