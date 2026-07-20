@@ -44,6 +44,7 @@
         radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.12) 0%, transparent 40%);
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
+      overflow-x: hidden;
     }
 
     /* Print Header Controls */
@@ -244,6 +245,7 @@
       font-size: 0.78rem;
       font-weight: 700;
       transition: all 0.2s ease;
+      word-break: break-word;
     }
 
     .card.blue .card-link-btn:hover { background: #007AFF; border-color: #007AFF; color: #fff; }
@@ -260,20 +262,56 @@
     /* Footer */
     .footer {
       border-top: 1px solid var(--glass-border);
-      padding-top: 18px;
+      padding-top: 16px;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       color: var(--text-muted);
       font-size: 0.75rem;
+      text-align: center;
     }
 
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 700;
-      color: var(--text-white);
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      body {
+        padding: 12px 10px;
+        align-items: stretch;
+      }
+      .action-bar {
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .btn-action {
+        width: 100%;
+        justify-content: center;
+      }
+      .container {
+        padding: 24px 18px 20px 18px;
+        border-radius: 18px;
+      }
+      .logo {
+        height: 38px;
+        margin-bottom: 8px;
+      }
+      .title {
+        font-size: 1.4rem;
+      }
+      .subtitle {
+        font-size: 0.8rem;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .card {
+        padding: 16px;
+      }
+      .card-link-btn {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
     }
 
     /* Print Specific Styling - Exactly 1 Portrait Page */
@@ -314,6 +352,9 @@
         transform: scale(0.95) !important;
         transform-origin: top center !important;
       }
+      .grid {
+        grid-template-columns: 1fr 1fr !important;
+      }
       .card {
         break-inside: avoid !important;
       }
@@ -344,7 +385,7 @@
       <p class="subtitle">Conoce las herramientas oficiales de Promotoría Ambriz & Dávalos para potenciar tu desempeño comercial y operativo.</p>
     </div>
 
-    <!-- Grid Layout (2x2) -->
+    <!-- Grid Layout (2x2 on Desktop, 1 Col on Mobile) -->
     <div class="grid">
 
       <!-- 1. Panel de Campañas -->
@@ -423,14 +464,7 @@
 
     <!-- Footer -->
     <div class="footer">
-      <div class="footer-brand">
-        <span>AMBRIZ & DÁVALOS</span>
-        <span>•</span>
-        <span>PROMOTORÍA 2043</span>
-      </div>
-      <div>
-        <span>Herramientas Oficiales para Asesores</span>
-      </div>
+      <span>Herramientas Oficiales para Asesores</span>
     </div>
   </div>
 
