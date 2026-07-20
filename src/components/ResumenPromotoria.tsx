@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Sun, Moon, LogOut, ArrowLeft, DollarSign, Users, TrendingUp, Activity, AlertTriangle, CheckCircle, XCircle, Search, Calendar, Shield, MessageSquare } from 'lucide-react';
+import { Sun, Moon, LogOut, ArrowLeft, DollarSign, Users, TrendingUp, Activity, AlertTriangle, CheckCircle, XCircle, Search, Calendar, Shield, MessageSquare, ChevronLeft, ChevronRight } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 import EstatusPolizasContent from './EstatusPolizas';
 
@@ -61,7 +61,7 @@ const SearchInput: React.FC<{ value: string; onChange: (v: string) => void; plac
         <input
             type="text"
             value={value}
-            onChange={e => onChange(e.target.value)}
+            onChange={(e) => onChange(e.target.value)}
             placeholder={placeholder || 'Buscar asesor...'}
             style={{ width: '100%', padding: '10px 14px 10px 36px', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--glass-border)', borderRadius: '10px', color: 'var(--text-primary)', fontSize: '0.85rem', outline: 'none', fontFamily: 'inherit' }}
         />
@@ -71,6 +71,7 @@ const SearchInput: React.FC<{ value: string; onChange: (v: string) => void; plac
 
 const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggleTheme, sucursalFilter, gerenciaName }) => {
     const [section, setSection] = useState<Section>('pagado_pendiente');
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [historicalDates, setHistoricalDates] = useState<Record<string, string | null>>({
@@ -240,9 +241,69 @@ const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggl
     };
 
     return (
-        <div className="app-layout" data-theme={themeMode}>
-            <aside className="sidebar" style={{ width: '260px' }}>
-                <div style={{ padding: '0 10px 20px 10px', textAlign: 'center' }}>
+        <div className="app-layout" data-theme={themeMode} style={{ position: 'relative' }}>
+            {sidebarCollapsed && (
+                <button
+                    onClick={() => setSidebarCollapsed(false)}
+                    style={{
+                        position: 'fixed',
+                        top: '18px',
+                        left: '18px',
+                        zIndex: 999,
+                        background: 'var(--glass-bg)',
+                        backdropFilter: 'blur(16px)',
+                        border: '1px solid var(--glass-border)',
+                        borderRadius: '12px',
+                        color: '#007AFF',
+                        padding: '10px 16px',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+                        fontSize: '0.85rem',
+                        fontWeight: 700
+                    }}
+                >
+                    <ChevronRight size={18} />
+                    <span>Mostrar Menú</span>
+                </button>
+            )}
+            <aside 
+                className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`} 
+                style={{ 
+                    width: sidebarCollapsed ? '0px' : '260px',
+                    minWidth: sidebarCollapsed ? '0px' : '260px',
+                    padding: sidebarCollapsed ? '0px' : undefined,
+                    margin: sidebarCollapsed ? '0px' : undefined,
+                    opacity: sidebarCollapsed ? 0 : 1,
+                    border: sidebarCollapsed ? 'none' : undefined,
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)', 
+                    overflow: 'hidden' 
+                }}
+            >
+                <div style={{ position: 'relative', padding: '0 10px 20px 10px', textAlign: 'center' }}>
+                    <button
+                        onClick={() => setSidebarCollapsed(true)}
+                        title="Ocultar Menú Lateral"
+                        style={{
+                            position: 'absolute',
+                            top: '-4px',
+                            right: '0px',
+                            background: 'rgba(255,255,255,0.06)',
+                            border: '1px solid var(--glass-border)',
+                            borderRadius: '8px',
+                            color: 'var(--text-secondary)',
+                            padding: '6px',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'all 0.2s ease'
+                        }}
+                    >
+                        <ChevronLeft size={16} />
+                    </button>
                     <img src="/assets/logos/empresa/ambriz_logo.png" alt="Ambriz" style={{ maxWidth: '140px', width: '100%', filter: 'brightness(1.1)' }} />
                     <div style={{ marginTop: '12px', display: 'inline-block', padding: '4px 12px', background: 'rgba(0,122,255,0.15)', border: '1px solid rgba(0,122,255,0.3)', borderRadius: '12px', fontSize: '0.7rem', fontWeight: 700, color: '#007AFF', letterSpacing: '0.08em' }}>
                         {sidebarLabel}
@@ -273,7 +334,17 @@ const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggl
                     </div>
                 </div>
             </aside>
-            <main className="main-content" style={{ padding: '32px 40px', overflowY: 'auto' }}>
+            <main 
+                className={`main-content ${sidebarCollapsed ? 'expanded' : ''}`} 
+                style={{ 
+                    padding: sidebarCollapsed ? '32px 32px 32px 80px' : '32px 40px',
+                    maxWidth: sidebarCollapsed ? '100%' : '1400px',
+                    margin: sidebarCollapsed ? '0' : '0 auto',
+                    width: '100%',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    overflowY: 'auto' 
+                }}
+            >
                 {renderContent()}
             </main>
         </div>

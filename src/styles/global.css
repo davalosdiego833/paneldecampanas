@@ -199,7 +199,18 @@ button {
   border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
   z-index: 50;
-  transition: var(--transition-smooth);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar.collapsed {
+  width: 0 !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  opacity: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
 }
 
 .main-content {
@@ -208,6 +219,13 @@ button {
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main-content.expanded {
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 32px 24px !important;
 }
 
 /* Glass Card */

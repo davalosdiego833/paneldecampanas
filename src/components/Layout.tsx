@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Home, FolderOpen, Settings, LogOut, Sun, Moon } from 'lucide-react';
+import { Home, FolderOpen, Settings, LogOut, Sun, Moon, ChevronLeft, ChevronRight } from 'lucide-react';
 import { ThemeConfig, Page } from '../types';
 import SeasonalEffects from './SeasonalEffects';
 
@@ -19,6 +19,7 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
     const [showAdminLogin, setShowAdminLogin] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     const [password, setPassword] = useState('');
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
     const handleAdminLogin = () => {
         if (password === 'Diego080303') {
@@ -28,12 +29,78 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
     };
 
     return (
-        <div className="app-layout" data-theme={themeMode}>
+        <div className="app-layout" data-theme={themeMode} style={{ position: 'relative' }}>
             <SeasonalEffects effect={theme?.efecto} themeId={theme?.id} />
 
+            {/* Botón flotante para mostrar menú cuando está oculto */}
+            {sidebarCollapsed && (
+                <button
+                    onClick={() => setSidebarCollapsed(false)}
+                    title="Mostrar Menú Lateral"
+                    style={{
+                        position: 'fixed',
+                        top: '18px',
+                        left: '18px',
+                        zIndex: 999,
+                        background: 'var(--glass-bg)',
+                        backdropFilter: 'blur(16px)',
+                        WebkitBackdropFilter: 'blur(16px)',
+                        border: '1px solid var(--glass-border)',
+                        borderRadius: '12px',
+                        color: '#007AFF',
+                        padding: '10px 16px',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+                        fontSize: '0.85rem',
+                        fontWeight: 700,
+                        transition: 'all 0.2s ease'
+                    }}
+                >
+                    <ChevronRight size={18} />
+                    <span>Mostrar Menú</span>
+                </button>
+            )}
+
             {/* Sidebar */}
-            <aside className="sidebar">
-                <div style={{ padding: '0 10px 20px 10px', textAlign: 'center' }}>
+            <aside 
+                className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}
+                style={{
+                    width: sidebarCollapsed ? '0px' : undefined,
+                    minWidth: sidebarCollapsed ? '0px' : undefined,
+                    padding: sidebarCollapsed ? '0px' : undefined,
+                    margin: sidebarCollapsed ? '0px' : undefined,
+                    opacity: sidebarCollapsed ? 0 : 1,
+                    border: sidebarCollapsed ? 'none' : undefined,
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    overflow: 'hidden'
+                }}
+            >
+                <div style={{ position: 'relative', padding: '0 10px 20px 10px', textAlign: 'center' }}>
+                    <button
+                        onClick={() => setSidebarCollapsed(true)}
+                        title="Ocultar Menú Lateral"
+                        style={{
+                            position: 'absolute',
+                            top: '-4px',
+                            right: '0px',
+                            background: 'rgba(255,255,255,0.06)',
+                            border: '1px solid var(--glass-border)',
+                            borderRadius: '8px',
+                            color: 'var(--text-secondary)',
+                            padding: '6px',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'all 0.2s ease'
+                        }}
+                    >
+                        <ChevronLeft size={16} />
+                    </button>
+
                     <img
                         src="/assets/logos/empresa/ambriz_logo.png"
                         alt="Ambriz"
@@ -67,9 +134,6 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
 
                 {/* Theme Toggle & Admin */}
                 <div style={{ borderTop: '1px solid var(--glass-border)', paddingTop: '20px', marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-
-
-
                     {!isAdmin ? (
                         <>
                             {showAdminLogin ? (
@@ -128,7 +192,16 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
             </aside>
 
             {/* Main Content */}
-            <main className="main-content">
+            <main 
+                className={`main-content ${sidebarCollapsed ? 'expanded' : ''}`}
+                style={{
+                    padding: sidebarCollapsed ? '32px 32px 32px 80px' : '32px 48px',
+                    maxWidth: sidebarCollapsed ? '100%' : '1400px',
+                    margin: sidebarCollapsed ? '0' : '0 auto',
+                    width: '100%',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+                }}
+            >
                 {children}
             </main>
         </div>

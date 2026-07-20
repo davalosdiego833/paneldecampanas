@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Home, BarChart3, Users, Activity, LogOut, ChevronRight, TrendingUp, TrendingDown, Target, AlertTriangle, Trophy, Award, Shield, Sun, Moon, Search, X, MessageSquare } from 'lucide-react';
+import { Home, BarChart3, Users, Activity, LogOut, ChevronRight, ChevronLeft, TrendingUp, TrendingDown, Target, AlertTriangle, Trophy, Award, Shield, Sun, Moon, Search, X, MessageSquare } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 interface Props {
@@ -339,6 +339,7 @@ const AdminDashboard: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTh
     const [view, setView] = useState<AdminView>('resumen');
     const [data, setData] = useState<CampaignData | null>(null);
     const [loading, setLoading] = useState(true);
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
     const fetchData = async (useSnapshot: boolean = true) => {
         setLoading(true);
@@ -386,10 +387,74 @@ const AdminDashboard: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTh
     }, {} as Record<string, ReturnType<typeof classifyAdvisors>>);
 
     return (
-        <div className="app-layout" data-theme={themeMode}>
+        <div className="app-layout" data-theme={themeMode} style={{ position: 'relative' }}>
+            {sidebarCollapsed && (
+                <button
+                    onClick={() => setSidebarCollapsed(false)}
+                    title="Mostrar Menú Lateral"
+                    style={{
+                        position: 'fixed',
+                        top: '18px',
+                        left: '18px',
+                        zIndex: 999,
+                        background: 'var(--glass-bg)',
+                        backdropFilter: 'blur(16px)',
+                        WebkitBackdropFilter: 'blur(16px)',
+                        border: '1px solid var(--glass-border)',
+                        borderRadius: '12px',
+                        color: '#007AFF',
+                        padding: '10px 16px',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+                        fontSize: '0.85rem',
+                        fontWeight: 700,
+                        transition: 'all 0.2s ease'
+                    }}
+                >
+                    <ChevronRight size={18} />
+                    <span>Mostrar Menú</span>
+                </button>
+            )}
+
             {/* Admin Sidebar */}
-            <aside className="sidebar" style={{ width: '260px' }}>
-                <div style={{ padding: '0 10px 20px 10px', textAlign: 'center' }}>
+            <aside 
+                className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}
+                style={{ 
+                    width: sidebarCollapsed ? '0px' : '260px',
+                    minWidth: sidebarCollapsed ? '0px' : '260px',
+                    padding: sidebarCollapsed ? '0px' : undefined,
+                    margin: sidebarCollapsed ? '0px' : undefined,
+                    opacity: sidebarCollapsed ? 0 : 1,
+                    border: sidebarCollapsed ? 'none' : undefined,
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)', 
+                    overflow: 'hidden' 
+                }}
+            >
+                <div style={{ position: 'relative', padding: '0 10px 20px 10px', textAlign: 'center' }}>
+                    <button
+                        onClick={() => setSidebarCollapsed(true)}
+                        title="Ocultar Menú Lateral"
+                        style={{
+                            position: 'absolute',
+                            top: '-4px',
+                            right: '0px',
+                            background: 'rgba(255,255,255,0.06)',
+                            border: '1px solid var(--glass-border)',
+                            borderRadius: '8px',
+                            color: 'var(--text-secondary)',
+                            padding: '6px',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'all 0.2s ease'
+                        }}
+                    >
+                        <ChevronLeft size={16} />
+                    </button>
                     <img
                         src="/assets/logos/empresa/ambriz_logo.png"
                         alt="Ambriz"
@@ -447,7 +512,18 @@ const AdminDashboard: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTh
             </aside>
 
             {/* Main Content */}
-            <main className="main-content" style={{ overflowY: 'auto', maxHeight: '100vh', padding: '32px 40px' }}>
+            <main 
+                className={`main-content ${sidebarCollapsed ? 'expanded' : ''}`}
+                style={{ 
+                    overflowY: 'auto', 
+                    maxHeight: '100vh', 
+                    padding: sidebarCollapsed ? '32px 32px 32px 80px' : '32px 40px',
+                    maxWidth: sidebarCollapsed ? '100%' : '1400px',
+                    margin: sidebarCollapsed ? '0' : '0 auto',
+                    width: '100%',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+                }}
+            >
                 {view === 'resumen' ? (
                     <ResumenGeneral data={data} classifications={classifications} totalAdvisors={totalAdvisors} />
                 ) : (
