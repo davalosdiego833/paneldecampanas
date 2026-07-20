@@ -242,16 +242,16 @@ const run = async () => {
                     const recentFile = getMostRecentFile(ccPath);
                     if (recentFile) {
                         let wb = readExcelSheetMemorySafe(path.join(ccPath, recentFile), 0);
-                        let ws = wb.Sheets[wb.SheetNames[0]];
+                        let ws = wb.Sheets['Participante'] || wb.Sheets[wb.SheetNames[0]];
                         let data = extractData(ws);
                         campaigns.camino_cumbre = data.filter(r => {
-                            const matKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MATRIZ' || k.trim().toUpperCase() === 'MAT' || k.trim().toUpperCase() === 'MAT / UNIDAD'));
+                            const matKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MATRIZ' || k.trim().toUpperCase() === 'MAT' || k.trim().toUpperCase() === 'MAT / UNIDAD' || k.trim().toUpperCase() === 'PROM_MAT'));
                             return SUCURSALES_PROMO.includes(String(r[matKey] || ''));
                         }).map(r => {
-                            const nameKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'NOMBRE DEL ASESOR' || k.trim().toUpperCase() === 'ASESOR'));
-                            const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toUpperCase() === 'ASESOR') || nameKey);
+                            const nameKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'NOMBRE DEL ASESOR' || k.trim().toUpperCase() === 'ASESOR' || k.trim().toUpperCase() === 'NOMBRE'));
+                            const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'NUM_AGENTE' || k.trim().toUpperCase() === 'CLAVE')) || nameKey);
                             const mesAsesorKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MES ASESOR' || k.trim().toUpperCase() === 'MES_ASESOR' || k.trim().toUpperCase() === 'MES'));
-                            const polizasKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'TOTAL POLIZAS' || k.trim().toUpperCase() === 'POLIZAS TOTALES' || k.trim().toUpperCase() === 'POLIZAS_TOTALES' || k.trim().toUpperCase() === 'POLIZAS ACUMULADAS'));
+                            const polizasKey = Object.keys(r).find(k => k && (k.trim().toUpperCase().includes('POLIZA') || k.trim().toUpperCase().includes('PÓLIZA') || k.trim().toUpperCase() === 'TOTAL POLIZAS' || k.trim().toUpperCase() === 'POLIZAS TOTALES' || k.trim().toUpperCase() === 'POLIZAS ACUMULADAS'));
                             
                             // trimestres
                             const m1Key = Object.keys(r).find(k => k && k.trim().toUpperCase() === 'MES 1');
@@ -273,27 +273,49 @@ const run = async () => {
                     const gradPath = path.join(BASE_PATH, 'graduacion');
                     const recentFile = getMostRecentFile(gradPath);
                     if (recentFile) {
-                        let wb = readExcelSheetMemorySafe(path.join(gradPath, recentFile), 0);
+                        const selector = n => n.toLowerCase().includes('desarrollo');
+                        let wb = readExcelSheetMemorySafe(path.join(gradPath, recentFile), selector);
                         let ws = wb.Sheets[wb.SheetNames[0]];
-                        let data = XLSX.utils.sheet_to_json(ws, { range: 2 });
-                        campaigns.graduacion = data.filter(r => {
-                            const matKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MATRIZ' || k.trim().toUpperCase() === 'MAT' || k.trim().toUpperCase() === 'MAT / UNIDAD'));
-                            return SUCURSALES_PROMO.includes(String(r[matKey] || ''));
+                        
+                        const rawGradRows = XLSX.utils.sheet_to_json(ws, { header: 1 });
+                        let hIdx = -1;
+                        for (let i = 0; i < Math.min(30, rawGradRows.length); i++) {
+                            const row = rawGradRows[i];
+                            if (row && row.some(cell => {
+                                const c = String(cell).toLowerCase().trim();
+                                return c === 'asesor' || c === 'mat' || c === 'promotor / partner' || c === 'nombre';
+                            })) {
+                                hIdx = i;
+                                break;
+                            }
+                        }
+                        if (hIdx === -1) hIdx = 0;
+                        const rawHeaderRow = rawGradRows[hIdx] || [];
+                        const headers = Array.from({ length: rawHeaderRow.length }, (_, i) => String(rawHeaderRow[i] || '').trim().toUpperCase());
+                        
+                        const matIdx = headers.findIndex(h => h === 'MAT' || h === 'MATRIZ');
+                        const claveIdx = headers.findIndex(h => h === 'ASESOR' || h === 'NUM_AGENTE');
+                        const nameIdx = headers.findIndex(h => h === 'NOMBRE' || h === 'NOMBRE DEL ASESOR');
+                        const mesIdx = headers.findIndex(h => h === 'MES' || h === 'MES ASESOR');
+                        const limiteIdx = headers.findIndex(h => h.includes('LÍMITE') || h.includes('LIMITE'));
+                        const polizasIdx = headers.findIndex(h => h === 'TOTAL' || h.includes('POLIZA'));
+                        const comIdx = headers.findIndex((h, idx) => idx > polizasIdx && (h === 'TOTAL' || h.includes('COMISION')));
+
+                        campaigns.graduacion = rawGradRows.slice(hIdx + 1).filter(r => {
+                            const matVal = String(r[matIdx] || '').trim();
+                            return SUCURSALES_PROMO.includes(matVal) && r[claveIdx];
                         }).map(r => {
-                            const nameKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'NOMBRE DEL ASESOR' || k.trim().toUpperCase() === 'ASESOR'));
-                            const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && k.trim().toUpperCase() === 'ASESOR') || nameKey);
-                            const mesAsesorKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MES ASESOR' || k.trim().toUpperCase() === 'MES_ASESOR' || k.trim().toUpperCase() === 'MES'));
-                            const polizasKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'TOTAL POLIZAS' || k.trim().toUpperCase() === 'POLIZAS TOTALES' || k.trim().toUpperCase() === 'POLIZAS_TOTALES' || k.trim().toUpperCase() === 'POLIZAS ACUMULADAS'));
-                            const comKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'COMISION' || k.trim().toUpperCase() === 'COMISIONES'));
-                            const limiteKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'FECHA LIMITE' || k.trim().toUpperCase() === 'FECHA_LIMITE' || k.trim().toUpperCase() === 'FECHA LIMITE META'));
                             return {
-                                Asesor: resolveName(r[claveKey] || r[nameKey], null, directory), Clave: String(r[claveKey] || ''),
-                                Mes_Asesor: Number(r[mesAsesorKey] || 0), Polizas_Totales: Number(r[polizasKey] || 0),
-                                Comisones: Number(r[comKey] || 0), Fecha_Limite_Meta: formatExcelDate(r[limiteKey])
+                                Asesor: resolveName(r[claveIdx], r[nameIdx], directory),
+                                Clave: String(r[claveIdx] || ''),
+                                Mes_Asesor: Number(r[mesIdx] || 0),
+                                Polizas_Totales: Number(r[polizasIdx] || 0),
+                                Comisones: Number(r[comIdx] || 0),
+                                Fecha_Limite_Meta: formatExcelDate(r[limiteIdx])
                             };
                         });
                         campaignDates.graduacion = extractCutoffDate(wb);
-                        wb = null; ws = null; data = null;
+                        wb = null; ws = null;
                     }
                 } catch(e) { console.warn('⚠️ Graduación skip:', e.message); }
             } else if (step === 'proactiva_tech') {
