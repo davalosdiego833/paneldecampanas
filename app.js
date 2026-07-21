@@ -34,16 +34,26 @@ dotenv.config({ path: fs.existsSync(localEnv) ? localEnv : hostingerEnv });
 const SUCURSALES_PROMO = ['2043', '2856', '2511'];
 const getProtectedPath = (folder) => {
     const f = folder === 'proactiva_tech' ? 'proactivatech' : folder;
-    if (isHostinger) {
-        const hostingerNodeJS = path.join(BASE_PATH, '../nodejs', f);
-        const hostingerParent = path.join(BASE_PATH, '..', f);
-        if (fs.existsSync(hostingerNodeJS))
-            return hostingerNodeJS;
-        if (fs.existsSync(hostingerParent))
-            return hostingerParent;
-    }
-    const local = path.join(BASE_PATH, f);
-    return local;
+    const cwd = process.cwd();
+    const candidates = [
+        // Hostinger nodejs/ zone (deploy.sh puts data here)
+        path.join(BASE_PATH, '../nodejs', f),
+        path.join(BASE_PATH, '..', f),
+        // public_html/ zone (git auto-deploy puts data here)
+        path.join(BASE_PATH, f),
+        path.join(cwd, f),
+        path.join(__dirname, f),
+        path.join(__dirname, '..', f),
+        path.join(__dirname, '../..', f),
+        // Absolute Hostinger paths
+        `/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/${f}`,
+        `/home/u211138134/domains/panel.ambrizydavalos.com/public_html/${f}`,
+    ];
+    const found = candidates.find(p => fs.existsSync(p));
+    if (found)
+        return found;
+    // Fallback to local
+    return path.join(BASE_PATH, f);
 };
 const DB_PATH_DYNAMIC = getProtectedPath('db');
 const ASSETS_PATH = path.join(BASE_PATH, 'assets');
