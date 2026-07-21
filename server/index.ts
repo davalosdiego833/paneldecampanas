@@ -65,8 +65,8 @@ const getProtectedPath = (folder: string) => {
 };
 
 const DB_PATH_DYNAMIC = getProtectedPath('db');
-const ASSETS_PATH = path.join(BASE_PATH, 'assets');
-const THEMES_PATH = path.join(BASE_PATH, 'themes');
+const ASSETS_PATH = getProtectedPath('assets');
+const THEMES_PATH = getProtectedPath('themes');
 const ADMIN_PATH = getProtectedPath('administrador');
 
 app.use(cors());

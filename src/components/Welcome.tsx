@@ -57,11 +57,11 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: theme?.colores.acentos || 'var(--accent-gold)' }}>
+                <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: theme?.colores?.acentos || 'var(--accent-gold)' }}>
                     ¡Hola!
                 </h1>
                 <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)' }}>
-                    {theme?.config_home.icono} {theme?.config_home.subtitulo}
+                    {theme?.config_home?.icono} {theme?.config_home?.subtitulo}
                 </p>
                 <p style={{ fontStyle: 'italic', opacity: 0.6, fontSize: '0.95rem', marginTop: '10px' }}>"{quote}"</p>
             </div>
@@ -71,11 +71,11 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                 className="glass-card"
                 style={{
                     textAlign: 'left',
-                    borderLeft: `4px solid ${theme?.colores.acentos || 'var(--accent-gold)'}`,
+                    borderLeft: `4px solid ${theme?.colores?.acentos || 'var(--accent-gold)'}`,
                     padding: '24px'
                 }}
             >
-                <h4 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '20px', color: theme?.colores.acentos || 'var(--accent-gold)', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <h4 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '20px', color: theme?.colores?.acentos || 'var(--accent-gold)', display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <Bell size={26} /> Centro de Avisos
                 </h4>
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: '20px', fontSize: '1rem', color: 'var(--text-secondary)', padding: '0 8px' }}>
@@ -109,7 +109,7 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
             </div>
 
             {/* Componente Dinámico de Bases */}
-            <BasesCampanasExplorer themeColor={theme?.colores.acentos || '#42A5F5'} />
+            <BasesCampanasExplorer themeColor={theme?.colores?.acentos || '#42A5F5'} />
 
             {/* Sección de Login forzada al final */}
             <div className="glass-card" style={{ maxWidth: '600px', margin: '20px auto 0', width: '100%', position: 'relative', padding: '32px' }}>
