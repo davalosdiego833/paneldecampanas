@@ -2326,8 +2326,8 @@ const preloadCampaigns = () => {
     setTimeout(loadNext, 2000); // Start preloading 2 seconds after boot
 };
 
-// Final catch-all for React (Express 5 requires named wildcard)
-app.get('/{*path}', (req, res) => {
+// Final catch-all for React SPA
+app.get('*', (req, res) => {
     res.sendFile(path.join(DIST_PATH, 'index.html'));
 });
 
