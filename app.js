@@ -114,9 +114,7 @@ const setMimeHeaders = (res, filePath) => {
         res.setHeader('Content-Type', mimeTypes[ext]);
     }
 };
-// Serve static assets
-app.use('/assets', express.static(ASSETS_PATH, { setHeaders: setMimeHeaders }));
-// Serve Frontend Build
+// Serve Frontend Build & Assets
 const possibleDistPaths = [
     path.join(__dirname, 'dist'),
     path.join(__dirname, '../dist'),
@@ -126,6 +124,8 @@ const possibleDistPaths = [
     path.join(BASE_PATH, 'public_html', 'dist')
 ];
 const DIST_PATH = possibleDistPaths.find(p => fs.existsSync(path.join(p, 'index.html'))) || path.join(BASE_PATH, 'dist');
+app.use('/assets', express.static(path.join(DIST_PATH, 'assets'), { setHeaders: setMimeHeaders }));
+app.use('/assets', express.static(ASSETS_PATH, { setHeaders: setMimeHeaders }));
 app.use(express.static(DIST_PATH, { setHeaders: setMimeHeaders }));
 const extractData = (ws) => {
     const rawData = XLSX.utils.sheet_to_json(ws, { header: 1 });
