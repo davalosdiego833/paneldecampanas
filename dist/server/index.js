@@ -333,8 +333,21 @@ const extractCutoffDate = (wb, type) => {
 };
 // Helper to read Excel with optional date (history)
 const readExcelData = (folderName, options = {}) => {
-    const folderPath = getProtectedPath(folderName);
-    if (!fs.existsSync(folderPath))
+    const cwd = process.cwd();
+    const candidateFolders = [
+        getProtectedPath(folderName),
+        path.join(BASE_PATH, folderName),
+        path.join(cwd, folderName),
+        path.join(__dirname, folderName),
+        path.join(__dirname, 'dist', folderName)
+    ];
+    const folderPath = candidateFolders.find(p => safeExists(p) && (() => { try {
+        return fs.readdirSync(p).some(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm') || f.endsWith('.xls')) && !f.startsWith('~$'));
+    }
+    catch {
+        return false;
+    } })());
+    if (!folderPath)
         return null;
     try {
         let fileName = '';
@@ -346,7 +359,14 @@ const readExcelData = (folderName, options = {}) => {
             const files = fs.readdirSync(folderPath).filter(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm') || f.endsWith('.xls')) && !f.startsWith('~$'));
             if (files.length === 0)
                 return null;
-            fileName = files.sort((a, b) => fs.statSync(path.join(folderPath, b)).mtimeMs - fs.statSync(path.join(folderPath, a)).mtimeMs)[0];
+            fileName = files.sort((a, b) => {
+                try {
+                    return fs.statSync(path.join(folderPath, b)).mtimeMs - fs.statSync(path.join(folderPath, a)).mtimeMs;
+                }
+                catch {
+                    return 0;
+                }
+            })[0];
         }
         const filePath = path.join(folderPath, fileName);
         const stats = fs.statSync(filePath);
