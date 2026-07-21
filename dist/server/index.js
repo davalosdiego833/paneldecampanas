@@ -2308,13 +2308,24 @@ app.use((req, res) => {
         return res.status(404).json({ error: 'API not found' });
     if (path.extname(req.path))
         return res.status(404).send('Not found');
-    const p = path.join(DIST_PATH, 'index.html');
-    if (fs.existsSync(p)) {
+    const cwd = process.cwd();
+    const candidateIndexFiles = [
+        path.join(DIST_PATH, 'index.html'),
+        path.join(cwd, 'index.html'),
+        path.join(cwd, 'dist', 'index.html'),
+        path.join(__dirname, 'index.html'),
+        path.join(__dirname, 'dist', 'index.html'),
+        path.join(BASE_PATH, 'index.html'),
+        path.join(BASE_PATH, 'dist', 'index.html'),
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/index.html',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist/index.html'
+    ];
+    const foundIndex = candidateIndexFiles.find(p => fs.existsSync(p));
+    if (foundIndex) {
         res.setHeader('Content-Type', 'text/html');
-        res.sendFile(p);
+        return res.sendFile(foundIndex);
     }
-    else
-        res.status(404).send('Frontend not built.');
+    res.status(404).send('Frontend not built.');
 });
 const preloadCampaigns = () => {
     console.log('[CACHE WARMER] Inicializando precarga de campañas en segundo plano para máxima velocidad...');
