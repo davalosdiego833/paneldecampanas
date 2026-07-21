@@ -149,7 +149,7 @@ const possibleDistPaths = [
     path.join(BASE_PATH, 'dist'),
     path.join(BASE_PATH, 'public_html', 'dist')
 ];
-const DIST_PATH = possibleDistPaths.find(p => fs.existsSync(path.join(p, 'index.html'))) || path.join(BASE_PATH, 'dist');
+const DIST_PATH = possibleDistPaths.find(p => safeExists(path.join(p, 'index.html'))) || path.join(BASE_PATH, 'dist');
 app.use('/assets', (req, res, next) => {
     const filename = req.path.replace(/^\//, '');
     const cwd = process.cwd();
@@ -165,7 +165,7 @@ app.use('/assets', (req, res, next) => {
         path.join('/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist/assets', filename),
         path.join('/home/u211138134/domains/panel.ambrizydavalos.com/public_html/assets', filename)
     ];
-    const found = candidates.find(p => fs.existsSync(p));
+    const found = candidates.find(p => safeExists(p));
     if (found) {
         setMimeHeaders(res, found);
         return res.sendFile(found);
@@ -2443,7 +2443,7 @@ app.get('*', (req, res) => {
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/index.html',
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist/index.html'
     ];
-    const foundIndex = candidateIndexFiles.find(p => fs.existsSync(p));
+    const foundIndex = candidateIndexFiles.find(p => safeExists(p));
     if (foundIndex) {
         return res.sendFile(foundIndex);
     }
