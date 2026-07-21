@@ -251,7 +251,7 @@ const run = async () => {
                             const nameKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'NOMBRE DEL ASESOR' || k.trim().toUpperCase() === 'ASESOR' || k.trim().toUpperCase() === 'NOMBRE'));
                             const claveKey = r['Clave'] ? 'Clave' : (Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'NUM_AGENTE' || k.trim().toUpperCase() === 'CLAVE')) || nameKey);
                             const mesAsesorKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MES ASESOR' || k.trim().toUpperCase() === 'MES_ASESOR' || k.trim().toUpperCase() === 'MES'));
-                            const polizasKey = Object.keys(r).find(k => k && (k.trim().toUpperCase().includes('POLIZA') || k.trim().toUpperCase().includes('PÓLIZA') || k.trim().toUpperCase() === 'TOTAL POLIZAS' || k.trim().toUpperCase() === 'POLIZAS TOTALES' || k.trim().toUpperCase() === 'POLIZAS ACUMULADAS'));
+                            const polizasKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'TOTAL' || k.trim().toUpperCase() === 'PÓLIZAS TOTALES' || k.trim().toUpperCase() === 'TOTAL POLIZAS' || k.trim().toUpperCase() === 'POLIZAS TOTALES')) || Object.keys(r).find(k => k && (k.trim().toUpperCase().includes('POLIZA') || k.trim().toUpperCase().includes('PÓLIZA')));
                             
                             // trimestres
                             const m1Key = Object.keys(r).find(k => k && k.trim().toUpperCase() === 'MES 1');
