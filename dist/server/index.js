@@ -123,11 +123,28 @@ const possibleDistPaths = [
     path.join(BASE_PATH, 'public_html', 'dist')
 ];
 const DIST_PATH = possibleDistPaths.find(p => fs.existsSync(path.join(p, 'index.html'))) || path.join(BASE_PATH, 'dist');
-app.use('/assets', express.static(path.join(__dirname, 'dist', 'assets'), { setHeaders: setMimeHeaders }));
-app.use('/assets', express.static(path.join(__dirname, 'assets'), { setHeaders: setMimeHeaders }));
-app.use('/assets', express.static(path.join(BASE_PATH, 'dist', 'assets'), { setHeaders: setMimeHeaders }));
-app.use('/assets', express.static(path.join(DIST_PATH, 'assets'), { setHeaders: setMimeHeaders }));
-app.use('/assets', express.static(ASSETS_PATH, { setHeaders: setMimeHeaders }));
+app.use('/assets', (req, res, next) => {
+    const filename = req.path.replace(/^\//, '');
+    const cwd = process.cwd();
+    const candidates = [
+        path.join(DIST_PATH, 'assets', filename),
+        path.join(DIST_PATH, filename),
+        path.join(__dirname, 'dist', 'assets', filename),
+        path.join(__dirname, 'assets', filename),
+        path.join(BASE_PATH, 'dist', 'assets', filename),
+        path.join(BASE_PATH, 'assets', filename),
+        path.join(cwd, 'dist', 'assets', filename),
+        path.join(cwd, 'assets', filename),
+        path.join('/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist/assets', filename),
+        path.join('/home/u211138134/domains/panel.ambrizydavalos.com/public_html/assets', filename)
+    ];
+    const found = candidates.find(p => fs.existsSync(p));
+    if (found) {
+        setMimeHeaders(res, found);
+        return res.sendFile(found);
+    }
+    next();
+});
 app.use(express.static(DIST_PATH, { setHeaders: setMimeHeaders }));
 const extractData = (ws) => {
     const rawData = XLSX.utils.sheet_to_json(ws, { header: 1 });
