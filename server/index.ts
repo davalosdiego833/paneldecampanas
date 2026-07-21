@@ -57,10 +57,7 @@ const getProtectedPath = (folder: string) => {
         path.join(BASE_PATH, f),
         path.join(cwd, f),
         path.join(__dirname, f),
-        path.join(__dirname, '..', f),
-        path.join(BASE_PATH, '../nodejs', f),
-        `/home/u211138134/domains/panel.ambrizydavalos.com/public_html/${f}`,
-        `/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/${f}`
+        path.join(__dirname, 'dist', f)
     ];
     const found = candidates.find(p => safeExists(p));
     if (found) return found;
@@ -91,10 +88,7 @@ const getAdvisorDirectory = () => {
         path.join(ADMIN_PATH, 'directorio_asesores.xlsx'),
         path.join(BASE_PATH, 'administrador', 'directorio_asesores.xlsx'),
         path.join(cwd, 'administrador', 'directorio_asesores.xlsx'),
-        path.join(__dirname, 'administrador', 'directorio_asesores.xlsx'),
-        path.join(__dirname, '..', 'administrador', 'directorio_asesores.xlsx'),
-        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/administrador/directorio_asesores.xlsx',
-        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/administrador/directorio_asesores.xlsx'
+        path.join(__dirname, 'administrador', 'directorio_asesores.xlsx')
     ];
     const filePath = candidateFiles.find(p => safeExists(p)) || path.join(ADMIN_PATH, 'directorio_asesores.xlsx');
     if (!safeExists(filePath)) return {};
