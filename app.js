@@ -2374,18 +2374,23 @@ const preloadCampaigns = () => {
 };
 // Final catch-all for React SPA
 app.get('*', (req, res) => {
+    const cwd = process.cwd();
     const candidateIndexFiles = [
         path.join(DIST_PATH, 'index.html'),
+        path.join(cwd, 'index.html'),
+        path.join(cwd, 'dist', 'index.html'),
         path.join(__dirname, 'index.html'),
         path.join(__dirname, 'dist', 'index.html'),
         path.join(BASE_PATH, 'index.html'),
-        path.join(BASE_PATH, 'dist', 'index.html')
+        path.join(BASE_PATH, 'dist', 'index.html'),
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/index.html',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist/index.html'
     ];
     const foundIndex = candidateIndexFiles.find(p => fs.existsSync(p));
     if (foundIndex) {
         return res.sendFile(foundIndex);
     }
-    res.status(404).send('Frontend not built.');
+    res.status(404).send(`Frontend not built. CWD: ${cwd}, __dirname: ${__dirname}, BASE_PATH: ${BASE_PATH}`);
 });
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Fortress Server running on port ${PORT}`);
