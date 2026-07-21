@@ -384,6 +384,44 @@ const run = async () => {
                         wb = null; ws = null; data = null;
                     }
                 } catch(e) { console.warn('⚠️ Proactiva Tech skip:', e.message); }
+            } else if (step === 'reto_por_ciento') {
+                try {
+                    console.log('Processing reto_por_ciento');
+                    const rpcPath = path.join(BASE_PATH, 'reto_por_ciento');
+                    const recentFile = getMostRecentFile(rpcPath);
+                    if (recentFile) {
+                        let wb = readExcelSheetMemorySafe(path.join(rpcPath, recentFile), n => n.toUpperCase() === 'ASESORES');
+                        let ws = wb.Sheets[wb.SheetNames[0]];
+                        let raw = XLSX.utils.sheet_to_json(ws, { range: 7 });
+                        campaigns.reto_por_ciento = raw.filter(r => {
+                            const matKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MATRIZ' || k.trim().toUpperCase() === 'PROM_MAT'));
+                            const sucKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'SUCURSAL' || k.trim().toUpperCase() === 'PROM_SUC'));
+                            return SUCURSALES_PROMO.includes(String(r[matKey] || '')) || SUCURSALES_PROMO.includes(String(r[sucKey] || ''));
+                        }).map(r => {
+                            const claveKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'ASESOR' || k.trim().toUpperCase() === 'NUM_AGENTE'));
+                            const conexionKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'CONEXIÓN' || k.trim().toUpperCase() === 'CONEXION'));
+                            const conteoKey = Object.keys(r).find(k => k && k.trim().toUpperCase() === 'CONTEO');
+                            const cumpleKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'CUMPLIMIENTO' || k.trim().toUpperCase() === 'CUMPLE'));
+                            const sumaKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'SUMA COMISIÓN' || k.trim().toUpperCase() === 'SUMA'));
+                            const pctKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'PORCENTAJE' || k.trim().toUpperCase() === 'PORCENTAJES'));
+                            const extraKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'EXTRACOMISION' || k.trim().toUpperCase() === 'EXTRA COMISION'));
+
+                            const clave = String(r[claveKey] || '');
+                            return {
+                                Asesor: resolveName(clave, null, directory),
+                                Clave: clave,
+                                Conexion: formatExcelDate(r[conexionKey]),
+                                Conteo: Number(r[conteoKey] || 0),
+                                Cumplimiento: String(r[cumpleKey] || '').toUpperCase() === 'P',
+                                Suma_Comision: Number(r[sumaKey] || 0),
+                                Porcentaje: Number(r[pctKey] || 0),
+                                Extracomision: Number(r[extraKey] || 0)
+                            };
+                        });
+                        campaignDates.reto_por_ciento = extractCutoffDate(wb) || '15 de julio de 2026';
+                        wb = null; ws = null; raw = null;
+                    }
+                } catch(e) { console.warn('⚠️ Reto Por Ciento skip:', e.message); }
             }
             if (global.gc) global.gc();
         };
@@ -412,7 +450,7 @@ const run = async () => {
         const campaigns = {};
         const campaignDates = {};
 
-        const steps = ['mdrt', 'convenciones', 'legion_centurion', 'camino_cumbre', 'graduacion', 'proactiva_tech'];
+        const steps = ['mdrt', 'convenciones', 'legion_centurion', 'camino_cumbre', 'graduacion', 'proactiva_tech', 'reto_por_ciento'];
         for (const s of steps) {
             runStepInline(s, campaigns, campaignDates, directory, directoryFechas);
         }

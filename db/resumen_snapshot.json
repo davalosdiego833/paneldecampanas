@@ -1,5 +1,5 @@
 {
-  "updatedAt": "21/7/2026, 1:02:17 p.m.",
+  "updatedAt": "21/7/2026, 3:11:52 p.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -3949,6 +3949,118 @@
           "Comisiones": 0,
           "Ranking": 4105
         }
+      ],
+      "reto_por_ciento": [
+        {
+          "Asesor": "MARICELA ARREOLA LOPEZ",
+          "Clave": "80925",
+          "Conexion": "5 de Diciembre de 2018",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+          "Clave": "87538",
+          "Conexion": "23 de Septiembre de 2019",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
+          "Clave": "95148",
+          "Conexion": "21 de Diciembre de 2022",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
+          "Clave": "63441",
+          "Conexion": "21 de Junio de 2022",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "KAREN MUÑOZ GARCIA",
+          "Clave": "81044",
+          "Conexion": "7 de Noviembre de 2022",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+          "Clave": "47116",
+          "Conexion": "24 de Febrero de 2022",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "MARIA TERESA ASENCIO LOZANO",
+          "Clave": "94156",
+          "Conexion": "24 de Noviembre de 2020",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "DESIREE DE LA PEÑA OROZCO",
+          "Clave": "80122",
+          "Conexion": "28 de Septiembre de 2018",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
+          "Clave": "59120",
+          "Conexion": "27 de Mayo de 2022",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "DARINKA UREÑA CASILLAS",
+          "Clave": "90355",
+          "Conexion": "28 de Abril de 2020",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
+          "Clave": "98797",
+          "Conexion": "26 de Mayo de 2021",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        }
       ]
     },
     "campaignDates": {
@@ -3957,7 +4069,8 @@
       "legion_centurion": "10 de Julio de 2026",
       "camino_cumbre": "10 de julio de 2026",
       "graduacion": "10 de julio de 2026",
-      "proactiva_tech": "30 de junio 2026"
+      "proactiva_tech": "30 de junio 2026",
+      "reto_por_ciento": "15 de julio 2026"
     }
   }
 }

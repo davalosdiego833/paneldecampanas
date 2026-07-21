@@ -810,7 +810,7 @@ app.get('/api/admin/summary', (req, res) => {
             return name.replace(/Ð/g, 'Ñ').replace(/ð/g, 'ñ');
         };
 
-        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion', 'proactiva_tech'];
+        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion', 'proactiva_tech', 'reto_por_ciento'];
         cams.forEach(c => {
             try {
                 const wb = readExcelData(c, { skipJson: true, date: date as string });
@@ -980,7 +980,7 @@ app.post('/api/admin/snapshot', async (req, res) => {
             return name.replace(/Ð/g, 'Ñ').replace(/ð/g, 'ñ');
         };
         const result: Record<string, any> = { dates: {} };
-        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion', 'proactiva_tech'];
+        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion', 'proactiva_tech', 'reto_por_ciento'];
 
         for (const c of cams) {
             const wb = readExcelData(c, { skipJson: true });
@@ -1319,7 +1319,7 @@ app.get('/api/campaigns/dates', (req, res) => {
             }
         }
         
-        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion', 'proactiva_tech'];
+        const cams = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'fanfest', 'vive_tu_pasion', 'proactiva_tech', 'reto_por_ciento'];
         const result: Record<string, string> = {};
         cams.forEach(c => {
             const wb = readExcelData(c, { skipJson: true });
@@ -1709,6 +1709,19 @@ app.get('/api/daniela/datos', (req, res) => {
                     polizas: c.Polizas,
                     comisiones: c.Comisiones,
                     ranking: c.Ranking
+                }));
+        }
+        if (originalCampaigns.reto_por_ciento && includeCampaign('reto_por_ciento')) {
+            campaigns.reto_por_ciento = originalCampaigns.reto_por_ciento
+                .filter((c: any) => matchAsesor(c.Asesor))
+                .map((c: any) => ({
+                    asesor: c.Asesor,
+                    clave: c.Clave,
+                    conteo: c.Conteo,
+                    cumplimiento: c.Cumplimiento,
+                    suma_comision: c.Suma_Comision,
+                    porcentaje: c.Porcentaje,
+                    extracomision: c.Extracomision
                 }));
         }
         if (originalCampaigns.graduacion && includeCampaign('graduacion')) {
@@ -2261,7 +2274,7 @@ const preloadCampaigns = () => {
     console.log('[CACHE WARMER] Inicializando precarga de campañas en segundo plano para máxima velocidad...');
     getCachedAdvisors(); // Precarga instántanea de asesores en memoria
 
-    const campaigns = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'proactiva_tech'];
+    const campaigns = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'proactiva_tech', 'reto_por_ciento'];
     let idx = 0;
 
     const loadNext = () => {

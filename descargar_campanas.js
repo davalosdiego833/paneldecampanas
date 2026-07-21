@@ -11,7 +11,8 @@ const __dirname = path.dirname(__filename);
 const CARPETAS_DESTINO = {
     'Campañas': [
         { regex: /camino/i, dir: 'camino_cumbre', hist: 'Camino a la Cumbre' },
-        { regex: /vive/i, dir: 'vive_tu_pasion', hist: 'Vive tu pasion' }
+        { regex: /vive/i, dir: 'vive_tu_pasion', hist: 'Vive tu pasion' },
+        { regex: /reto/i, dir: 'reto_por_ciento', hist: 'Reto Por Ciento' }
         // Agrega otras campañas según necesites
     ],
     'Esparcimiento': [

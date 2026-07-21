@@ -55,6 +55,7 @@ rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" graduacion/ $SE
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" legion_centurion/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/legion_centurion/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" mdrt/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/mdrt/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" proactivatech/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/proactivatech/
+rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" reto_por_ciento/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/reto_por_ciento/
 rsync -avz -e "ssh -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT" "estatus polizas/" $SERVER_USER@$SERVER_IP:"'$PARENT_DIR/nodejs/estatus polizas/'"
 
 # 4. Subir scripts de generación al servidor

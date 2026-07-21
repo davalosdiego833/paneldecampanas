@@ -9,7 +9,7 @@ SUCURSALES_ADMIN = ['2043', '2856', '2692', '2511', '313']
 PASSWORDS = ['2043', 'ADA181016KD6']
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CAMPAIGN_DIRS = ['mdrt', 'camino_cumbre', 'graduacion']
+CAMPAIGN_DIRS = ['mdrt', 'camino_cumbre', 'graduacion', 'reto_por_ciento']
 
 def decrypt_excel(file_path):
     try:

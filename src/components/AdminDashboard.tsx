@@ -27,6 +27,7 @@ const CAMPAIGN_LABELS: Record<string, string> = {
     graduacion: 'Graduación',
     legion_centurion: 'Legión Centurión',
     proactiva_tech: 'Proactiva Tech',
+    reto_por_ciento: 'Reto Por Ciento',
 };
 
 const CAMPAIGN_ICONS: Record<string, string> = {
@@ -36,6 +37,7 @@ const CAMPAIGN_ICONS: Record<string, string> = {
     graduacion: '🎓',
     legion_centurion: '🛡️',
     proactiva_tech: '💻',
+    reto_por_ciento: '🎯',
 };
 
 const CAMPAIGN_COLORS: Record<string, string> = {
@@ -45,6 +47,7 @@ const CAMPAIGN_COLORS: Record<string, string> = {
     graduacion: '#FF6B35',
     legion_centurion: '#9C27B0',
     proactiva_tech: '#007AFF',
+    reto_por_ciento: '#FF9800',
 };
 
 // Classify advisors by status per campaign with enriched detail lines
@@ -318,6 +321,27 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
                 }
             }
         }
+        else if (campaign === 'reto_por_ciento') {
+            const conteo = Number(row.Conteo || 0);
+            const porcentaje = Number(row.Porcentaje || 0);
+            const extra = Number(row.Extracomision || 0);
+            const cumplitud = Boolean(row.Cumplimiento);
+
+            const details: string[] = [
+                `${conteo} pólizas · ${(porcentaje * 100).toFixed(0)}% Extra`,
+                `Extra comisión: ${formatCurrency(extra)}`
+            ];
+
+            if (cumplitud || conteo >= 4) {
+                ganando.push({ name, value: extra || conteo, details, row });
+            } else if (conteo >= 2) {
+                details.push(`Faltan ${4 - conteo} pólizas para 20% Extra`);
+                cerca.push({ name, value: conteo, details, row });
+            } else {
+                details.push(`Sin pólizas contabilizadas`);
+                lejos.push({ name, value: 0, details, row });
+            }
+        }
     });
 
     // Sort each category
@@ -376,7 +400,7 @@ const AdminDashboard: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTh
 
     if (!data) return <div style={{ color: 'white', padding: '40px' }}>Error cargando datos.</div>;
 
-    const knownCampaigns = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'proactiva_tech'];
+    const knownCampaigns = ['mdrt', 'camino_cumbre', 'convenciones', 'graduacion', 'legion_centurion', 'proactiva_tech', 'reto_por_ciento'];
     const campaigns = Object.keys(data).filter(k => knownCampaigns.includes(k) && Array.isArray(data[k]));
     const totalAdvisors = new Set(campaigns.flatMap(c => (data[c] as any[]).map((r: any) => r.Asesor))).size;
 
