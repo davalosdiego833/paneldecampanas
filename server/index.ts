@@ -32,8 +32,20 @@ const PORT = Number(process.env.PORT) || 5005;
 
 // Load .env from parent dir if it doesn't exist locally
 const localEnv = path.join(BASE_PATH, '.env');
+const safeExists = (p: string) => {
+    try {
+        return Boolean(p && fs.existsSync(p));
+    } catch {
+        return false;
+    }
+};
+
 const hostingerEnv = path.join(BASE_PATH, '../.env');
-dotenv.config({ path: fs.existsSync(localEnv) ? localEnv : hostingerEnv });
+if (safeExists(localEnv)) {
+    dotenv.config({ path: localEnv });
+} else if (safeExists(hostingerEnv)) {
+    dotenv.config({ path: hostingerEnv });
+}
 
 // Helper to reliably find protected folders in Distributed Architecture
 const SUCURSALES_PROMO = ['2043', '2856', '2511'];
@@ -42,17 +54,15 @@ const getProtectedPath = (folder: string) => {
     const f = folder === 'proactiva_tech' ? 'proactivatech' : folder;
     const cwd = process.cwd();
     const candidates = [
-        path.join(BASE_PATH, '../nodejs', f),
-        path.join(BASE_PATH, '..', f),
         path.join(BASE_PATH, f),
         path.join(cwd, f),
         path.join(__dirname, f),
         path.join(__dirname, '..', f),
-        path.join(__dirname, '../..', f),
-        `/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/${f}`,
+        path.join(BASE_PATH, '../nodejs', f),
         `/home/u211138134/domains/panel.ambrizydavalos.com/public_html/${f}`,
+        `/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/${f}`
     ];
-    const found = candidates.find(p => fs.existsSync(p));
+    const found = candidates.find(p => safeExists(p));
     if (found) return found;
     return path.join(BASE_PATH, f);
 };
@@ -86,8 +96,8 @@ const getAdvisorDirectory = () => {
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/administrador/directorio_asesores.xlsx',
         '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/administrador/directorio_asesores.xlsx'
     ];
-    const filePath = candidateFiles.find(p => fs.existsSync(p)) || path.join(ADMIN_PATH, 'directorio_asesores.xlsx');
-    if (!fs.existsSync(filePath)) return {};
+    const filePath = candidateFiles.find(p => safeExists(p)) || path.join(ADMIN_PATH, 'directorio_asesores.xlsx');
+    if (!safeExists(filePath)) return {};
 
     try {
         const mtime = fs.statSync(filePath).mtimeMs;
