@@ -36,23 +36,19 @@ const getProtectedPath = (folder) => {
     const f = folder === 'proactiva_tech' ? 'proactivatech' : folder;
     const cwd = process.cwd();
     const candidates = [
-        // Hostinger nodejs/ zone (deploy.sh puts data here)
         path.join(BASE_PATH, '../nodejs', f),
         path.join(BASE_PATH, '..', f),
-        // public_html/ zone (git auto-deploy puts data here)
         path.join(BASE_PATH, f),
         path.join(cwd, f),
         path.join(__dirname, f),
         path.join(__dirname, '..', f),
         path.join(__dirname, '../..', f),
-        // Absolute Hostinger paths
         `/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/${f}`,
         `/home/u211138134/domains/panel.ambrizydavalos.com/public_html/${f}`,
     ];
     const found = candidates.find(p => fs.existsSync(p));
     if (found)
         return found;
-    // Fallback to local
     return path.join(BASE_PATH, f);
 };
 const DB_PATH_DYNAMIC = getProtectedPath('db');
@@ -61,46 +57,6 @@ const THEMES_PATH = path.join(BASE_PATH, 'themes');
 const ADMIN_PATH = getProtectedPath('administrador');
 app.use(cors());
 app.use(express.json());
-// Temporary debug endpoint to diagnose path issues on Hostinger
-app.get('/api/debug/paths', (req, res) => {
-    const cwd = process.cwd();
-    const folder = 'administrador';
-    const candidates = [
-        path.join(BASE_PATH, '../nodejs', folder),
-        path.join(BASE_PATH, '..', folder),
-        path.join(BASE_PATH, folder),
-        path.join(cwd, folder),
-        path.join(__dirname, folder),
-        path.join(__dirname, '..', folder),
-        path.join(__dirname, '../..', folder),
-        `/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/${folder}`,
-        `/home/u211138134/domains/panel.ambrizydavalos.com/public_html/${folder}`,
-    ];
-    const candidateResults = candidates.map(p => ({ path: p, exists: fs.existsSync(p) }));
-    // Also check what's in public_html
-    const publicHtml = '/home/u211138134/domains/panel.ambrizydavalos.com/public_html';
-    let publicHtmlContents = [];
-    try {
-        publicHtmlContents = fs.readdirSync(publicHtml).slice(0, 40);
-    }
-    catch (e) {
-        publicHtmlContents = ['ERROR: ' + String(e)];
-    }
-    let nodejsContents = [];
-    try {
-        nodejsContents = fs.readdirSync(cwd).slice(0, 40);
-    }
-    catch (e) {
-        nodejsContents = ['ERROR: ' + String(e)];
-    }
-    res.json({
-        __dirname, BASE_PATH, cwd, isHostinger, isProd,
-        DB_PATH_DYNAMIC, ADMIN_PATH,
-        candidateResults,
-        publicHtmlContents,
-        nodejsContents,
-    });
-});
 let cachedAdvisors = [];
 let cachedDirectoryMap = {};
 let lastDirectoryMtime = 0;
@@ -110,7 +66,17 @@ const getCachedAdvisors = () => {
 };
 // Helper to get advisor directory
 const getAdvisorDirectory = () => {
-    const filePath = path.join(ADMIN_PATH, 'directorio_asesores.xlsx');
+    const cwd = process.cwd();
+    const candidateFiles = [
+        path.join(ADMIN_PATH, 'directorio_asesores.xlsx'),
+        path.join(BASE_PATH, 'administrador', 'directorio_asesores.xlsx'),
+        path.join(cwd, 'administrador', 'directorio_asesores.xlsx'),
+        path.join(__dirname, 'administrador', 'directorio_asesores.xlsx'),
+        path.join(__dirname, '..', 'administrador', 'directorio_asesores.xlsx'),
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/administrador/directorio_asesores.xlsx',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/administrador/directorio_asesores.xlsx'
+    ];
+    const filePath = candidateFiles.find(p => fs.existsSync(p)) || path.join(ADMIN_PATH, 'directorio_asesores.xlsx');
     if (!fs.existsSync(filePath))
         return {};
     try {
