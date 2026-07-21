@@ -60,6 +60,28 @@ const ADMIN_PATH = getProtectedPath('administrador');
 app.use(cors());
 app.use(express.json());
 
+// Temporary debug endpoint to diagnose path issues on Hostinger
+app.get('/api/debug/paths', (req, res) => {
+    const cwd = process.cwd();
+    res.json({
+        __dirname,
+        BASE_PATH,
+        cwd,
+        isHostinger,
+        isProd,
+        DB_PATH_DYNAMIC,
+        ADMIN_PATH,
+        ASSETS_PATH,
+        THEMES_PATH,
+        DIST_PATH: 'deferred',
+        db_exists: fs.existsSync(DB_PATH_DYNAMIC),
+        admin_exists: fs.existsSync(ADMIN_PATH),
+        directorio_exists: fs.existsSync(path.join(ADMIN_PATH, 'directorio_asesores.xlsx')),
+        themes_exists: fs.existsSync(THEMES_PATH),
+        assets_exists: fs.existsSync(ASSETS_PATH),
+    });
+});
+
 let cachedAdvisors: string[] = [];
 let cachedDirectoryMap: Record<string, string> = {};
 let lastDirectoryMtime = 0;
