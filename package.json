@@ -10,7 +10,7 @@
     "start": "node dist/server/index.js",
     "prebuild": "mv index.dev.html index.html 2>/dev/null || true",
     "compile": "npm run prebuild && tsc && vite build && tsc -p tsconfig.server.json && mv index.html index.dev.html",
-    "build": "echo 'Hostinger Auto-Build Skipped by System'",
+    "build": "npm run compile",
     "preview": "vite preview"
   },
   "keywords": [],
