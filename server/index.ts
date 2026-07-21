@@ -135,7 +135,15 @@ const setMimeHeaders = (res: any, filePath: string) => {
 app.use('/assets', express.static(ASSETS_PATH, { setHeaders: setMimeHeaders }));
 
 // Serve Frontend Build
-const DIST_PATH = path.join(BASE_PATH, 'dist');
+const possibleDistPaths = [
+    path.join(__dirname, 'dist'),
+    path.join(__dirname, '../dist'),
+    path.join(__dirname, 'public_html/dist'),
+    path.join(__dirname, '../public_html/dist'),
+    path.join(BASE_PATH, 'dist'),
+    path.join(BASE_PATH, 'public_html', 'dist')
+];
+const DIST_PATH = possibleDistPaths.find(p => fs.existsSync(path.join(p, 'index.html'))) || path.join(BASE_PATH, 'dist');
 app.use(express.static(DIST_PATH, { setHeaders: setMimeHeaders }));
 
 
