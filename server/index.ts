@@ -810,6 +810,43 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         });
     }
 
+    if (name === 'reto_por_ciento') {
+        const wb = readExcelData(name, { skipJson: true, date: date as string });
+        if (!wb) return res.status(404).json({ error: 'Raw file not found' });
+        const sheetName = wb.SheetNames.find((n: string) => n.toUpperCase() === 'ASESORES') || wb.SheetNames[0];
+        const ws = wb.Sheets[sheetName];
+        const raw: any[] = XLSX.utils.sheet_to_json(ws, { range: 7 });
+        const dir = getAdvisorDirectory();
+        const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
+        const row = raw.find((r: any) => {
+            const matKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MATRIZ' || k.trim().toUpperCase() === 'PROM_MAT'));
+            const sucKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'SUCURSAL' || k.trim().toUpperCase() === 'PROM_SUC'));
+            const matchesPromo = SUCURSALES_PROMO.includes(String(matKey ? r[matKey] : '')) || SUCURSALES_PROMO.includes(String(sucKey ? r[sucKey] : ''));
+            const claveKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'ASESOR' || k.trim().toUpperCase() === 'NUM_AGENTE'));
+            const clave = String(claveKey ? r[claveKey] : '');
+            return matchesPromo && (clave === advisor || advisorKeys.includes(clave));
+        });
+        if (!row) return res.status(404).json({ error: 'Advisor not found' });
+        const claveKey = Object.keys(row).find(k => k && (k.trim().toUpperCase() === 'ASESOR' || k.trim().toUpperCase() === 'NUM_AGENTE'));
+        const conexionKey = Object.keys(row).find(k => k && (k.trim().toUpperCase() === 'CONEXIÓN' || k.trim().toUpperCase() === 'CONEXION'));
+        const conteoKey = Object.keys(row).find(k => k && k.trim().toUpperCase() === 'CONTEO');
+        const cumpleKey = Object.keys(row).find(k => k && (k.trim().toUpperCase() === 'CUMPLIMIENTO' || k.trim().toUpperCase() === 'CUMPLE'));
+        const sumaKey = Object.keys(row).find(k => k && (k.trim().toUpperCase() === 'SUMA COMISIÓN' || k.trim().toUpperCase() === 'SUMA'));
+        const pctKey = Object.keys(row).find(k => k && (k.trim().toUpperCase() === 'PORCENTAJE' || k.trim().toUpperCase() === 'PORCENTAJES'));
+        const extraKey = Object.keys(row).find(k => k && (k.trim().toUpperCase() === 'EXTRACOMISION' || k.trim().toUpperCase() === 'EXTRA COMISION'));
+        return res.json({
+            'Asesor': advisor,
+            'Clave': String(claveKey ? row[claveKey] : ''),
+            'Conexion': formatExcelDate(conexionKey ? row[conexionKey] : null),
+            'Conteo': Number(conteoKey ? row[conteoKey] : 0),
+            'Cumplimiento': String(cumpleKey ? row[cumpleKey] : '').toUpperCase() === 'P',
+            'Suma_Comision': Number(sumaKey ? row[sumaKey] : 0),
+            'Porcentaje': Number(pctKey ? row[pctKey] : 0),
+            'Extracomision': Number(extraKey ? row[extraKey] : 0),
+            'Fecha_Corte': extractCutoffDate(wb, 'reto_por_ciento') || '15 de julio de 2026'
+        });
+    }
+
     const json = readExcelData(name, { date: date as string });
     if (!json) return res.status(404).json({ error: 'Campaign not found' });
     const dir = getAdvisorDirectory();
