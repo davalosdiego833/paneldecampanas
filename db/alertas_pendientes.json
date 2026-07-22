@@ -1,7 +1,47 @@
 {
-  "generatedAt": "21/7/2026, 7:59:00 p.m.",
-  "totalNew": 0,
+  "generatedAt": "21/7/2026, 10:07:42 p.m.",
+  "totalNew": 4,
   "alerts": [
+    {
+      "id": "217f0db8-ed33-46a3-ba27-d4a443ec9bfc",
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "firstName": "Monica",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #1)",
+      "message": "Hola Monica, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #1*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $79.7k* a tu meta.\n\nTu Prima Acumulada actual es de *$2.06M*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "a1c8cd21-2f69-40bb-b90b-81079b479bfd",
+      "asesor": "DESIREE DE LA PEÑA OROZCO",
+      "firstName": "Desiree",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #3)",
+      "message": "Hola Desiree, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #3*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $427.68* a tu meta.\n\nTu Prima Acumulada actual es de *$856.7k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "f7a5d57e-0e81-47eb-a81f-457a93bb85fb",
+      "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+      "firstName": "Rafael",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #5)",
+      "message": "Hola Rafael, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #5*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $254.37* a tu meta.\n\nTu Prima Acumulada actual es de *$661.2k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "b3c49ba8-761b-437c-bcb9-e686ff3108c4",
+      "asesor": "MARIA TERESA ASENCIO LOZANO",
+      "firstName": "Maria",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #7)",
+      "message": "Hola Maria, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #7*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $31.03* a tu meta.\n\nTu Prima Acumulada actual es de *$463.2k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
     {
       "id": "17aa3bbb-1479-4183-bbbf-58f632578ba2",
       "asesor": "MARIO IVAN ROMERO GONZALEZ",
@@ -53,16 +93,6 @@
       "sent": false
     },
     {
-      "id": "eb0caa95-21cf-4ef6-ab03-6a7950566fed",
-      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-      "firstName": "Monica",
-      "campaign": "mdrt",
-      "type": "positive",
-      "event": "Top 10 MDRT (Lugar #1)",
-      "message": "Hola Monica, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #1*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $155.9k* a tu meta.\n\nTu Prima Acumulada actual es de *$1.98M*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
       "id": "b1cf780d-d59a-46c7-92ea-76402de508f4",
       "asesor": "ANAIS LUA MORENO",
       "firstName": "Anais",
@@ -73,16 +103,6 @@
       "sent": false
     },
     {
-      "id": "48a4ba12-50e1-4009-8dff-775f178d261b",
-      "asesor": "DESIREE DE LA PEÑA OROZCO",
-      "firstName": "Desiree",
-      "campaign": "mdrt",
-      "type": "positive",
-      "event": "Top 10 MDRT (Lugar #3)",
-      "message": "Hola Desiree, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #3*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $71.4k* a tu meta.\n\nTu Prima Acumulada actual es de *$856.3k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
       "id": "a59b414d-9c09-4fc8-ad95-2f4ab9436cc9",
       "asesor": "DARINKA UREÑA CASILLAS",
       "firstName": "Darinka",
@@ -90,26 +110,6 @@
       "type": "positive",
       "event": "Top 10 MDRT (Lugar #4)",
       "message": "Hola Darinka, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #4*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $132.8k* a tu meta.\n\nTu Prima Acumulada actual es de *$805.4k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "cb737034-f91b-49fc-b3bd-0c0cd26dec76",
-      "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-      "firstName": "Rafael",
-      "campaign": "mdrt",
-      "type": "positive",
-      "event": "Top 10 MDRT (Lugar #5)",
-      "message": "Hola Rafael, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #5*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $90.5k* a tu meta.\n\nTu Prima Acumulada actual es de *$660.9k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "89d99061-cd87-4ead-ae9f-6251d955f62d",
-      "asesor": "MARIA TERESA ASENCIO LOZANO",
-      "firstName": "Maria",
-      "campaign": "mdrt",
-      "type": "positive",
-      "event": "Top 10 MDRT (Lugar #7)",
-      "message": "Hola Maria, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #7*. Respecto a la medición anterior, *subiste 1 posiciones* y *sumaste $134.1k* a tu meta.\n\nTu Prima Acumulada actual es de *$463.2k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
       "sent": false
     },
     {
