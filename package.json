@@ -9,7 +9,7 @@
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "start": "node dist/server/index.js",
     "prebuild": "echo 'Prebuild clean'",
-    "compile": "tsc && vite build && tsc -p tsconfig.server.json && cp dist/index.html ./index.html",
+    "compile": "cp index.template.html index.html && tsc && vite build && tsc -p tsconfig.server.json && cp dist/index.html ./index.html",
     "build": "echo 'Hostinger Auto-Deploy Instant'",
     "preview": "vite preview"
   },

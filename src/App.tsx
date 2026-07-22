@@ -84,8 +84,17 @@ const App: React.FC = () => {
     useEffect(() => {
         fetch('/api/active-theme')
             .then(res => res.json())
-            .then(data => setTheme(data))
-            .catch(err => console.error('Error fetching theme:', err));
+            .then(data => {
+                if (data && typeof data === 'object' && data.colores && data.config_home) {
+                    setTheme(data);
+                } else {
+                    setTheme(null);
+                }
+            })
+            .catch(err => {
+                console.error('Error fetching theme:', err);
+                setTheme(null);
+            });
     }, []);
 
     // Login screen — full page, outside layout
