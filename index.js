@@ -2520,11 +2520,20 @@ app.get('*', (req, res) => {
     }
     res.status(404).send(`Frontend not built. CWD: ${cwd}, __dirname: ${__dirname}, BASE_PATH: ${BASE_PATH}`);
 });
+const listenPort = process.env.PORT || PORT;
+if (typeof listenPort === 'string' && listenPort.startsWith('/')) {
+    try {
+        if (fs.existsSync(listenPort)) {
+            fs.unlinkSync(listenPort);
+        }
+    }
+    catch (e) { }
+}
 if (typeof (PhusionPassenger) !== 'undefined') {
     app.listen('passenger');
 }
 else {
-    app.listen(PORT, () => {
-        console.log(`🚀 Fortress Server running on port ${PORT}`);
+    app.listen(listenPort, () => {
+        console.log(`🚀 Fortress Server running on port ${listenPort}`);
     });
 }
