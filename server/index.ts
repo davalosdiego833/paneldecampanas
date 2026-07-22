@@ -2470,21 +2470,8 @@ app.get('*', (req, res) => {
     res.status(404).send(`Frontend not built. CWD: ${cwd}, __dirname: ${__dirname}, BASE_PATH: ${BASE_PATH}`);
 });
 
-declare var PhusionPassenger: any;
-
-if (fs.existsSync('passenger')) {
-    try { fs.unlinkSync('passenger'); } catch (e) {}
-}
-
 const listenPort = process.env.PORT || 5005;
-if (typeof listenPort === 'string' && listenPort.startsWith('/') && fs.existsSync(listenPort)) {
-    try { fs.unlinkSync(listenPort); } catch (e) {}
-}
 
-if (typeof (PhusionPassenger) !== 'undefined' || process.env.PORT === 'passenger') {
-    app.listen('passenger');
-} else {
-    app.listen(listenPort, () => {
-        console.log(`🚀 Fortress Server running on port ${listenPort}`);
-    });
-}
+app.listen(listenPort, () => {
+    console.log(`🚀 Fortress Server running on port ${listenPort}`);
+});
