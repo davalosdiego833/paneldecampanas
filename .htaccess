@@ -1,3 +1,4 @@
+PassengerNodejs /opt/alt/alt-nodejs20/root/usr/bin/node
 PassengerAppRoot /home/u211138134/domains/panel.ambrizydavalos.com/public_html
 PassengerAppType node
 PassengerStartupFile app.js
