@@ -2474,19 +2474,10 @@ app.get('*', (req, res) => {
 
 declare var PhusionPassenger: any;
 
-const port = process.env.PORT || 5005;
-
-if (typeof (PhusionPassenger) !== 'undefined') {
+if (typeof (PhusionPassenger) !== 'undefined' || process.env.PORT === 'passenger') {
     app.listen('passenger');
-} else if (typeof port === 'string' && port.startsWith('/')) {
-    if (safeExists(port)) {
-        try { fs.unlinkSync(port); } catch (e) {}
-    }
-    app.listen(port, () => {
-        console.log(`🚀 Fortress Server bound to socket ${port}`);
-    });
+} else if (process.env.PORT) {
+    app.listen(process.env.PORT);
 } else {
-    app.listen(Number(port) || 5005, () => {
-        console.log(`🚀 Fortress Server running on port ${port}`);
-    });
+    app.listen(5005);
 }
