@@ -93,11 +93,16 @@ export const BasesCampanasExplorer: React.FC<Props> = ({ themeColor }) => {
         fetch('/api/bases_campanas')
             .then(res => res.json())
             .then(data => {
-                setFileTree(data);
+                if (Array.isArray(data)) {
+                    setFileTree(data);
+                } else {
+                    setFileTree([]);
+                }
                 setLoading(false);
             })
             .catch(err => {
                 console.error("Error fetching bases:", err);
+                setFileTree([]);
                 setLoading(false);
             });
     }, []);

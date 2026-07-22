@@ -60,8 +60,8 @@ const getProtectedPath = (folder) => {
     return path.join(BASE_PATH, f);
 };
 const DB_PATH_DYNAMIC = getProtectedPath('db');
-const ASSETS_PATH = getProtectedPath('assets');
-const THEMES_PATH = getProtectedPath('themes');
+const ASSETS_PATH = path.join(BASE_PATH, 'assets');
+const THEMES_PATH = path.join(BASE_PATH, 'themes');
 const ADMIN_PATH = getProtectedPath('administrador');
 app.use(cors());
 app.use(express.json());

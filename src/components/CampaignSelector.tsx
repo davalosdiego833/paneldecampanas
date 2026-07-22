@@ -25,8 +25,17 @@ const CampaignSelector: React.FC<Props> = ({ advisor, onCampaignSelect }) => {
         // Disparamos la carga de fechas sin detener la interfaz visual
         fetch('/api/campaigns/dates')
             .then(res => res.json())
-            .then(d => setDates(d))
-            .catch(err => console.error('Error fetching campaign dates:', err));
+            .then(d => {
+                if (d && typeof d === 'object' && !d.error) {
+                    setDates(d);
+                } else {
+                    setDates({});
+                }
+            })
+            .catch(err => {
+                console.error('Error fetching campaign dates:', err);
+                setDates({});
+            });
     }, []);
 
     return (
