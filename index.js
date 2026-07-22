@@ -2501,7 +2501,12 @@ app.get('*', (req, res) => {
     }
     res.status(404).send(`Frontend not built. CWD: ${cwd}, __dirname: ${__dirname}, BASE_PATH: ${BASE_PATH}`);
 });
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 Fortress Server running on port ${PORT}`);
-    // preloadCampaigns(); // Disabled temporarily to prevent 7MB file deadlock on boot
-});
+if (typeof (PhusionPassenger) !== 'undefined') {
+    PhusionPassenger.configure({ autoInstall: false });
+    app.listen('passenger');
+}
+else {
+    app.listen(PORT, () => {
+        console.log(`🚀 Fortress Server running on port ${PORT}`);
+    });
+}
