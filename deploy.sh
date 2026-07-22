@@ -6,7 +6,7 @@ SERVER_IP="195.35.10.40"
 SERVER_USER="u211138134"
 SERVER_PORT="65002"
 SERVER_PATH="domains/panel.ambrizydavalos.com/nodejs"
-SSH_KEY="~/.ssh/id_rsa_panel"
+SSH_KEY="$HOME/.ssh/id_rsa_panel"
 
 echo "🚀 Iniciando despliegue automático..."
 
