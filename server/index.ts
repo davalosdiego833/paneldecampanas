@@ -2471,13 +2471,19 @@ app.get('*', (req, res) => {
 });
 
 declare var PhusionPassenger: any;
+
+if (fs.existsSync('passenger')) {
+    try { fs.unlinkSync('passenger'); } catch (e) {}
+}
+
+const listenPort = process.env.PORT || 5005;
+if (typeof listenPort === 'string' && listenPort.startsWith('/') && fs.existsSync(listenPort)) {
+    try { fs.unlinkSync(listenPort); } catch (e) {}
+}
+
 if (typeof (PhusionPassenger) !== 'undefined' || process.env.PORT === 'passenger') {
     app.listen('passenger');
 } else {
-    const listenPort = process.env.PORT || PORT;
-    if (typeof listenPort === 'string' && safeExists(listenPort)) {
-        try { fs.unlinkSync(listenPort); } catch (e) {}
-    }
     app.listen(listenPort, () => {
         console.log(`🚀 Fortress Server running on port ${listenPort}`);
     });
