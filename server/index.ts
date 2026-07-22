@@ -54,8 +54,8 @@ const getProtectedPath = (folder: string) => {
     const candidates = [
         path.join(BASE_PATH, f),
         path.join(cwd, f),
-        path.join(__dirname, f),
-        path.join(__dirname, 'dist', f)
+        path.join(safeDirname, f),
+        path.join(safeDirname, 'dist', f)
     ];
     const found = candidates.find(p => safeExists(p));
     if (found) return found;
@@ -87,7 +87,7 @@ const getAdvisorDirectory = () => {
         path.join(ADMIN_PATH, 'directorio_asesores.xlsx'),
         path.join(BASE_PATH, 'administrador', 'directorio_asesores.xlsx'),
         path.join(cwd, 'administrador', 'directorio_asesores.xlsx'),
-        path.join(__dirname, 'administrador', 'directorio_asesores.xlsx')
+        path.join(safeDirname, 'administrador', 'directorio_asesores.xlsx')
     ];
     const filePath = candidateFiles.find(p => safeExists(p)) || path.join(ADMIN_PATH, 'directorio_asesores.xlsx');
     if (!safeExists(filePath)) return {};
@@ -150,29 +150,32 @@ const setMimeHeaders = (res: any, filePath: string) => {
 };
 
 // Serve Frontend Build & Assets
+const cwd = process.cwd();
 const possibleDistPaths = [
-    path.join(__dirname, 'dist'),
-    path.join(__dirname, '../dist'),
-    path.join(__dirname, 'public_html', 'dist'),
+    path.join(safeDirname, 'dist'),
+    path.join(safeDirname, '../dist'),
+    path.join(safeDirname, 'public_html', 'dist'),
     path.join(BASE_PATH, 'dist'),
     path.join(BASE_PATH, 'public_html', 'dist')
 ];
 const DIST_PATH = possibleDistPaths.find(p => safeExists(path.join(p, 'index.html'))) || path.join(BASE_PATH, 'dist');
 
-app.use('/assets', (req, res, next) => {
-    const filename = req.path.replace(/^\//, '');
-    const cwd = process.cwd();
+app.use(express.static(DIST_PATH, { setHeaders: setMimeHeaders }));
+app.use('/assets', express.static(ASSETS_PATH, { setHeaders: setMimeHeaders }));
+app.use('/assets', express.static(path.join(DIST_PATH, 'assets'), { setHeaders: setMimeHeaders }));
+
+// Special route for assets files if lost
+app.get('/assets/:filename', (req, res, next) => {
+    const { filename } = req.params;
     const candidates = [
         path.join(DIST_PATH, 'assets', filename),
         path.join(DIST_PATH, filename),
-        path.join(__dirname, 'dist', 'assets', filename),
-        path.join(__dirname, 'assets', filename),
+        path.join(safeDirname, 'dist', 'assets', filename),
+        path.join(safeDirname, 'assets', filename),
         path.join(BASE_PATH, 'dist', 'assets', filename),
         path.join(BASE_PATH, 'assets', filename),
         path.join(cwd, 'dist', 'assets', filename),
-        path.join(cwd, 'assets', filename),
-        path.join('/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist/assets', filename),
-        path.join('/home/u211138134/domains/panel.ambrizydavalos.com/public_html/assets', filename)
+        path.join(cwd, 'assets', filename)
     ];
     const found = candidates.find(p => safeExists(p));
     if (found) {
@@ -181,7 +184,6 @@ app.use('/assets', (req, res, next) => {
     }
     next();
 });
-app.use(express.static(DIST_PATH, { setHeaders: setMimeHeaders }));
 
 
 
@@ -357,8 +359,8 @@ const readExcelData = (folderName: string, options: { skipJson?: boolean, date?:
         getProtectedPath(folderName),
         path.join(BASE_PATH, folderName),
         path.join(cwd, folderName),
-        path.join(__dirname, folderName),
-        path.join(__dirname, 'dist', folderName)
+        path.join(safeDirname, folderName),
+        path.join(safeDirname, 'dist', folderName)
     ];
     const folderPath = candidateFolders.find(p => safeExists(p) && (() => { try { return fs.readdirSync(p).some(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm') || f.endsWith('.xls')) && !f.startsWith('~$')); } catch { return false; } })());
     if (!folderPath) return null;
@@ -517,7 +519,7 @@ const findSnapshotPath = () => {
         path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json'),
         path.join(BASE_PATH, 'db', 'resumen_snapshot.json'),
         path.join(cwd, 'db', 'resumen_snapshot.json'),
-        path.join(__dirname, 'db', 'resumen_snapshot.json')
+        path.join(safeDirname, 'db', 'resumen_snapshot.json')
     ];
     return candidates.find(p => safeExists(p)) || SNAPSHOT_PATH;
 };
@@ -2386,8 +2388,8 @@ app.use((req, res) => {
         path.join(DIST_PATH, 'index.html'),
         path.join(cwd, 'index.html'),
         path.join(cwd, 'dist', 'index.html'),
-        path.join(__dirname, 'index.html'),
-        path.join(__dirname, 'dist', 'index.html'),
+        path.join(safeDirname, 'index.html'),
+        path.join(safeDirname, 'dist', 'index.html'),
         path.join(BASE_PATH, 'index.html'),
         path.join(BASE_PATH, 'dist', 'index.html'),
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/index.html',
@@ -2456,8 +2458,8 @@ app.get('*', (req, res) => {
         path.join(DIST_PATH, 'index.html'),
         path.join(cwd, 'index.html'),
         path.join(cwd, 'dist', 'index.html'),
-        path.join(__dirname, 'index.html'),
-        path.join(__dirname, 'dist', 'index.html'),
+        path.join(safeDirname, 'index.html'),
+        path.join(safeDirname, 'dist', 'index.html'),
         path.join(BASE_PATH, 'index.html'),
         path.join(BASE_PATH, 'dist', 'index.html'),
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/index.html',
@@ -2467,7 +2469,7 @@ app.get('*', (req, res) => {
     if (foundIndex) {
         return res.sendFile(foundIndex);
     }
-    res.status(404).send(`Frontend not built. CWD: ${cwd}, __dirname: ${__dirname}, BASE_PATH: ${BASE_PATH}`);
+    res.status(404).send(`Frontend not built. CWD: ${cwd}, safeDirname: ${safeDirname}, BASE_PATH: ${BASE_PATH}`);
 });
 
 const listenPort = process.env.PORT || 5005;
