@@ -28,7 +28,7 @@ if (isProd) {
 }
 
 const app = express();
-const PORT = Number(process.env.PORT) || 5005;
+const PORT = process.env.PORT || 5005;
 
 // Load .env from parent dir if it doesn't exist locally
 const localEnv = path.join(BASE_PATH, '.env');
