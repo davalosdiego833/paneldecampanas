@@ -171,23 +171,12 @@ export const generateAlerts = () => {
     });
 
     // ===================== GUARDAR ALERTAS =====================
-    let existingAlerts = [];
-    if (fs.existsSync(ALERTS_FILE)) {
-        try {
-            const existing = JSON.parse(fs.readFileSync(ALERTS_FILE, 'utf-8'));
-            existingAlerts = (existing.alerts || []).filter(a => {
-                if (a.sent) return true;
-                // Conservar alertas no enviadas si no se está generando una nueva para el mismo asesor y campaña
-                const hasNew = alerts.some(newAlert => newAlert.asesor === a.asesor && newAlert.campaign === a.campaign);
-                return !hasNew;
-            });
-        } catch { }
-    }
-
+    // Cada nueva actualización reemplaza completamente las alertas anteriores
+    // mostrando únicamente los cambios entre la medición pasada y la actual.
     const output = {
         generatedAt: new Date().toLocaleString('es-MX', { timeZone: 'America/Mexico_City' }),
         totalNew: alerts.length,
-        alerts: [...alerts, ...existingAlerts]
+        alerts: alerts
     };
 
     fs.writeFileSync(ALERTS_FILE, JSON.stringify(output, null, 2));

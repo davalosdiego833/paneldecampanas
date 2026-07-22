@@ -1,5 +1,5 @@
 {
-  "updatedAt": "21/7/2026, 7:58:53 p.m.",
+  "updatedAt": "21/7/2026, 10:07:37 p.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -32,8 +32,8 @@
           "Sucursal": "2043",
           "Pólizas-Pagadas": 1,
           "Recibo_Inicial_Pagado": 4019.13,
-          "Recibo_Ordinario_Pagado": 48439.14,
-          "Total _Prima_Pagada": 52458.27,
+          "Recibo_Ordinario_Pagado": 51315.46,
+          "Total _Prima_Pagada": 55334.59,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 50355.05,
@@ -68,24 +68,36 @@
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 15796.53,
-          "Total _Prima_Pagada": 15796.53,
+          "Recibo_Ordinario_Pagado": 18810.1,
+          "Total _Prima_Pagada": 18810.1,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 103903.95,
-          "Total _Prima_Pendiente": 103903.95
+          "Recibo_Ordinario_Pendiente": 100890.38,
+          "Total _Prima_Pendiente": 100890.38
         },
         {
           "Nombre Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 14925.31,
-          "Total _Prima_Pagada": 14925.31,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 23046.35,
-          "Recibo_Ordinario_Pendiente": 110627.88,
-          "Total _Prima_Pendiente": 133674.23
+          "Recibo_Ordinario_Pagado": 16663.14,
+          "Total _Prima_Pagada": 16663.14,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 85843.7,
+          "Total _Prima_Pendiente": 85843.7
+        },
+        {
+          "Nombre Asesor": "MARICELA ARREOLA LOPEZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": -3232.45,
+          "Recibo_Ordinario_Pagado": 17991,
+          "Total _Prima_Pagada": 14758.55,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 12931.03,
+          "Total _Prima_Pendiente": 12931.03
         },
         {
           "Nombre Asesor": "ANA VERONICA GONZALEZ GAYTAN",
@@ -136,6 +148,18 @@
           "Total _Prima_Pendiente": 51253.23
         },
         {
+          "Nombre Asesor": "DARINKA UREÑA CASILLAS",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 10152.32,
+          "Total _Prima_Pagada": 10152.32,
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 57661.97,
+          "Recibo_Ordinario_Pendiente": 52737.61,
+          "Total _Prima_Pendiente": 110399.58
+        },
+        {
           "Nombre Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -158,18 +182,6 @@
           "Recibo_Inicial_Pendiente": 1793.28,
           "Recibo_Ordinario_Pendiente": 25194.79,
           "Total _Prima_Pendiente": 26988.07
-        },
-        {
-          "Nombre Asesor": "MARICELA ARREOLA LOPEZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": -3232.45,
-          "Recibo_Ordinario_Pagado": 12516.83,
-          "Total _Prima_Pagada": 9284.38,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 18405.23,
-          "Total _Prima_Pendiente": 18405.23
         },
         {
           "Nombre Asesor": "ANDREA CELESTE IBAÑEZ RINCON",
@@ -244,6 +256,18 @@
           "Total _Prima_Pendiente": 3588.95
         },
         {
+          "Nombre Asesor": "MIREYA LIZETTE TORRES GARCIA",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 1774.15,
+          "Recibo_Ordinario_Pagado": 3682.12,
+          "Total _Prima_Pagada": 5456.27,
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 20794.19,
+          "Recibo_Ordinario_Pendiente": 30935.53,
+          "Total _Prima_Pendiente": 51729.72
+        },
+        {
           "Nombre Asesor": "ROCIO YANETH OCHOA IBARRA",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -316,6 +340,18 @@
           "Total _Prima_Pendiente": 3215.87
         },
         {
+          "Nombre Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 2073.34,
+          "Total _Prima_Pagada": 2073.34,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 20733.41,
+          "Total _Prima_Pendiente": 20733.41
+        },
+        {
           "Nombre Asesor": "PAULA ANGELICA LOMELI CAZARES",
           "Sucursal": "2856",
           "Pólizas-Pagadas": 0,
@@ -338,18 +374,6 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 14413.95,
           "Total _Prima_Pendiente": 14413.95
-        },
-        {
-          "Nombre Asesor": "MIREYA LIZETTE TORRES GARCIA",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 1,
-          "Recibo_Inicial_Pagado": 1774.15,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 1774.15,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 20794.19,
-          "Recibo_Ordinario_Pendiente": 36313.01,
-          "Total _Prima_Pendiente": 57107.2
         },
         {
           "Nombre Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
@@ -412,18 +436,6 @@
           "Total _Prima_Pendiente": 25651.43
         },
         {
-          "Nombre Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 22806.75,
-          "Total _Prima_Pendiente": 22806.75
-        },
-        {
           "Nombre Asesor": "JOSE RENE DE ALBA MORALES",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -470,18 +482,6 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 28176.54,
           "Total _Prima_Pendiente": 28176.54
-        },
-        {
-          "Nombre Asesor": "DARINKA UREÑA CASILLAS",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 57661.97,
-          "Recibo_Ordinario_Pendiente": 59518.06,
-          "Total _Prima_Pendiente": 117180.03
         },
         {
           "Nombre Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
@@ -2439,7 +2439,7 @@
       }
     },
     "fechas_corte": {
-      "pagado_pendiente": "17 de julio de 2026",
+      "pagado_pendiente": "20 de julio de 2026",
       "asesores_sin_emision": "09 de jul de 2026",
       "proactivos": "08 de julio de 2026",
       "comparativo_vida": "30 de junio de 2026"
@@ -2449,7 +2449,7 @@
         {
           "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
           "Clave": "87538",
-          "PA_Acumulada": 1983040.57
+          "PA_Acumulada": 2062720.68
         },
         {
           "Asesor": "ANAIS LUA MORENO",
@@ -2459,7 +2459,7 @@
         {
           "Asesor": "DESIREE DE LA PEÑA OROZCO",
           "Clave": "80122",
-          "PA_Acumulada": 856255.38
+          "PA_Acumulada": 856683.06
         },
         {
           "Asesor": "DARINKA UREÑA CASILLAS",
@@ -2469,7 +2469,7 @@
         {
           "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
           "Clave": "47116",
-          "PA_Acumulada": 660903.94
+          "PA_Acumulada": 661158.31
         },
         {
           "Asesor": "JORGE ANTONIO LUNA LARA",
@@ -2479,7 +2479,7 @@
         {
           "Asesor": "MARIA TERESA ASENCIO LOZANO",
           "Clave": "94156",
-          "PA_Acumulada": 463174.94
+          "PA_Acumulada": 463205.97
         },
         {
           "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
@@ -2497,6 +2497,11 @@
           "PA_Acumulada": 308689.08
         },
         {
+          "Asesor": "ROGELIO TORRES ORTIZ",
+          "Clave": "104718",
+          "PA_Acumulada": 300836.03
+        },
+        {
           "Asesor": "MARICELA ARREOLA LOPEZ",
           "Clave": "80925",
           "PA_Acumulada": 291535.01
@@ -2512,14 +2517,14 @@
           "PA_Acumulada": 246675.09
         },
         {
-          "Asesor": "JULIANA RIASCOS VALENCIA",
-          "Clave": "100677",
-          "PA_Acumulada": 229355.92
+          "Asesor": "MARIO IVAN ROMERO GONZALEZ",
+          "Clave": "118069",
+          "PA_Acumulada": 207538.27
         },
         {
           "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
           "Clave": "113450",
-          "PA_Acumulada": 206519.19
+          "PA_Acumulada": 206647.34
         },
         {
           "Asesor": "JOSE RENE DE ALBA MORALES",
@@ -2532,14 +2537,9 @@
           "PA_Acumulada": 186487.08
         },
         {
-          "Asesor": "ROGELIO TORRES ORTIZ",
-          "Clave": "104718",
-          "PA_Acumulada": 166489.58
-        },
-        {
-          "Asesor": "MARIO IVAN ROMERO GONZALEZ",
-          "Clave": "118069",
-          "PA_Acumulada": 151348.23
+          "Asesor": "JULIANA RIASCOS VALENCIA",
+          "Clave": "100677",
+          "PA_Acumulada": 155808.24
         },
         {
           "Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
@@ -2549,12 +2549,12 @@
         {
           "Asesor": "VELIA PATRICIA BERNAL RAMOS",
           "Clave": "115047",
-          "PA_Acumulada": 144508.32
+          "PA_Acumulada": 145057.22
         },
         {
           "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
           "Clave": "104343",
-          "PA_Acumulada": 135284.81
+          "PA_Acumulada": 136043.4
         },
         {
           "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
@@ -2572,29 +2572,9 @@
           "PA_Acumulada": 103923.64
         },
         {
-          "Asesor": "ANDREA CELESTE IBAÑEZ RINCON",
-          "Clave": "88234",
-          "PA_Acumulada": 86777.97
-        },
-        {
-          "Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
-          "Clave": "102825",
-          "PA_Acumulada": 86447.86
-        },
-        {
-          "Asesor": "JOCELYN URIBE VARGAS",
-          "Clave": "90177",
-          "PA_Acumulada": 65218.56
-        },
-        {
           "Asesor": "MIREYA LIZETTE TORRES GARCIA",
           "Clave": "106018",
           "PA_Acumulada": 59012.56
-        },
-        {
-          "Asesor": "PAULINA RODRIGUEZ DE LA MORA",
-          "Clave": "65046",
-          "PA_Acumulada": 42730.56
         },
         {
           "Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
@@ -2602,34 +2582,9 @@
           "PA_Acumulada": 39589.27
         },
         {
-          "Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
-          "Clave": "108405",
-          "PA_Acumulada": 35008.68
-        },
-        {
           "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
           "Clave": "98797",
           "PA_Acumulada": 27846.94
-        },
-        {
-          "Asesor": "ROCIO YANETH OCHOA IBARRA",
-          "Clave": "110105",
-          "PA_Acumulada": 26966.54
-        },
-        {
-          "Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
-          "Clave": "112083",
-          "PA_Acumulada": 21630.84
-        },
-        {
-          "Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
-          "Clave": "109007",
-          "PA_Acumulada": 17530.8
-        },
-        {
-          "Asesor": "SAMUEL NUÑO RIVERA",
-          "Clave": "101640",
-          "PA_Acumulada": 9579.48
         },
         {
           "Asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
@@ -2647,24 +2602,9 @@
           "PA_Acumulada": 2301.18
         },
         {
-          "Asesor": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
-          "Clave": "109998",
-          "PA_Acumulada": 162.5
-        },
-        {
-          "Asesor": "MARIO ALFONSO SARMIENTO OROZCO",
-          "Clave": "69684",
-          "PA_Acumulada": 142.55
-        },
-        {
           "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
           "Clave": "59120",
           "PA_Acumulada": 0
-        },
-        {
-          "Asesor": "LAURA DOLORES MONTAÑO MONTAÑO",
-          "Clave": "112522",
-          "PA_Acumulada": -3133.48
         }
       ],
       "convenciones": [
@@ -3625,15 +3565,6 @@
           "Mes_3_Prod": 0
         },
         {
-          "Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
-          "Clave": "112083",
-          "Mes_Asesor": 17,
-          "Polizas_Totales": 10,
-          "Mes_1_Prod": 5.5,
-          "Mes_2_Prod": 0,
-          "Mes_3_Prod": 1.5
-        },
-        {
           "Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
           "Clave": "114157",
           "Mes_Asesor": 11,
@@ -3668,15 +3599,6 @@
           "Mes_1_Prod": 6,
           "Mes_2_Prod": 0,
           "Mes_3_Prod": 0
-        },
-        {
-          "Asesor": "LAURA DOLORES MONTAÑO MONTAÑO",
-          "Clave": "112522",
-          "Mes_Asesor": 16,
-          "Polizas_Totales": 6,
-          "Mes_1_Prod": 4,
-          "Mes_2_Prod": 0,
-          "Mes_3_Prod": 2
         }
       ],
       "graduacion": [
@@ -3751,203 +3673,140 @@
           "Clave": "110453",
           "Polizas": 4,
           "Comisiones": 507338.17,
-          "Ranking": 55
+          "Ranking": 82
+        },
+        {
+          "Asesor": "MARIO IVAN ROMERO GONZALEZ",
+          "Clave": "118069",
+          "Polizas": 2,
+          "Comisiones": 26560.29,
+          "Ranking": 370
         },
         {
           "Asesor": "MONSERRAT VELASCO SANTOS",
           "Clave": "117440",
           "Polizas": 2,
           "Comisiones": 17901.71,
-          "Ranking": 339
+          "Ranking": 411
+        },
+        {
+          "Asesor": "ROGELIO TORRES ORTIZ",
+          "Clave": "104718",
+          "Polizas": 2,
+          "Comisiones": 17635.3,
+          "Ranking": 413
         },
         {
           "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
           "Clave": "108404",
           "Polizas": 2,
           "Comisiones": 4229.91,
-          "Ranking": 430
+          "Ranking": 546
         },
         {
           "Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
           "Clave": "107488",
           "Polizas": 2,
           "Comisiones": 1369.96,
-          "Ranking": 476
+          "Ranking": 586
         },
         {
           "Asesor": "SOFIA CAMPILLO VASCONCELOS",
           "Clave": "116883",
           "Polizas": 2,
           "Comisiones": 908.47,
-          "Ranking": 491
+          "Ranking": 599
         },
         {
           "Asesor": "JULIANA RIASCOS VALENCIA",
           "Clave": "100677",
           "Polizas": 1.5,
-          "Comisiones": 9870.11,
-          "Ranking": 533
+          "Comisiones": 10182.13,
+          "Ranking": 647
         },
         {
           "Asesor": "JOSE RENE DE ALBA MORALES",
           "Clave": "110575",
           "Polizas": 1,
           "Comisiones": 67554.97,
-          "Ranking": 587
+          "Ranking": 732
         },
         {
           "Asesor": "JORGE ANTONIO LUNA LARA",
           "Clave": "111056",
           "Polizas": 1,
           "Comisiones": 39391.21,
-          "Ranking": 590
-        },
-        {
-          "Asesor": "MARIO IVAN ROMERO GONZALEZ",
-          "Clave": "118069",
-          "Polizas": 1,
-          "Comisiones": 5259.88,
-          "Ranking": 835
+          "Ranking": 737
         },
         {
           "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
           "Clave": "104343",
           "Polizas": 1,
           "Comisiones": 1138.66,
-          "Ranking": 973
+          "Ranking": 1250
         },
         {
           "Asesor": "GABRIELA CASTAÑEDA SALAZAR",
           "Clave": "105696",
           "Polizas": 1,
           "Comisiones": 1105.7,
-          "Ranking": 976
+          "Ranking": 1255
         },
         {
           "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
           "Clave": "113450",
           "Polizas": 1,
           "Comisiones": 658.97,
-          "Ranking": 1067
-        },
-        {
-          "Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
-          "Clave": "109007",
-          "Polizas": 1,
-          "Comisiones": 463.48,
-          "Ranking": 1140
-        },
-        {
-          "Asesor": "MARIA FERNANDA RIOS BERNAL",
-          "Clave": "103982",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 1546
-        },
-        {
-          "Asesor": "LAURA DOLORES MONTAÑO MONTAÑO",
-          "Clave": "112522",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 1560
+          "Ranking": 1324
         },
         {
           "Asesor": "MIREYA LIZETTE TORRES GARCIA",
           "Clave": "106018",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 1644
+          "Polizas": 1,
+          "Comisiones": 609.35,
+          "Ranking": 1339
         },
         {
           "Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
           "Clave": "114157",
           "Polizas": 0,
           "Comisiones": 0,
-          "Ranking": 1683
-        },
-        {
-          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
-          "Clave": "115047",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 1690
-        },
-        {
-          "Asesor": "SAMUEL NUÑO RIVERA",
-          "Clave": "101640",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 4494
+          "Ranking": 4112
         },
         {
           "Asesor": "PAULA ANGELICA LOMELI CAZARES",
           "Clave": "116876",
           "Polizas": 0,
           "Comisiones": 0,
-          "Ranking": 4675
+          "Ranking": 2990
         },
         {
-          "Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
-          "Clave": "102825",
+          "Asesor": "MARIA FERNANDA RIOS BERNAL",
+          "Clave": "103982",
           "Polizas": 0,
           "Comisiones": 0,
-          "Ranking": 5005
-        },
-        {
-          "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
-          "Clave": "104750",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 2345
-        },
-        {
-          "Asesor": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
-          "Clave": "109998",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 2403
-        },
-        {
-          "Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
-          "Clave": "112083",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 2543
+          "Ranking": 2584
         },
         {
           "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
           "Clave": "115404",
           "Polizas": 0,
           "Comisiones": 0,
-          "Ranking": 3842
+          "Ranking": 2819
         },
         {
-          "Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
-          "Clave": "108405",
+          "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+          "Clave": "104750",
           "Polizas": 0,
           "Comisiones": 0,
-          "Ranking": 3218
+          "Ranking": 4688
         },
         {
-          "Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
-          "Clave": "114100",
+          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
+          "Clave": "115047",
           "Polizas": 0,
           "Comisiones": 0,
-          "Ranking": 3333
-        },
-        {
-          "Asesor": "ROGELIO TORRES ORTIZ",
-          "Clave": "104718",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 2920
-        },
-        {
-          "Asesor": "ROCIO YANETH OCHOA IBARRA",
-          "Clave": "110105",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 4105
+          "Ranking": 4784
         }
       ],
       "reto_por_ciento": [
@@ -4064,12 +3923,12 @@
       ]
     },
     "campaignDates": {
-      "mdrt": "10 de julio de 2026",
+      "mdrt": "17 de julio de 2026",
       "convenciones": "30 de junio de 2026",
       "legion_centurion": "10 de Julio de 2026",
-      "camino_cumbre": "10 de julio de 2026",
+      "camino_cumbre": "17 de julio de 2026",
       "graduacion": "10 de julio de 2026",
-      "proactiva_tech": "30 de junio 2026",
+      "proactiva_tech": "17 de julio 2026",
       "reto_por_ciento": "15 de julio 2026"
     }
   }
