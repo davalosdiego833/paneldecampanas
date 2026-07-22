@@ -522,8 +522,8 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
     if (!date && fs.existsSync(SNAPSHOT_PATH)) {
         try {
             const snapshotData = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
-            const campaigns = snapshotData.data?.campaigns;
-            const campaignDates = snapshotData.data?.campaignDates || {};
+            const campaigns = snapshotData.campaigns || snapshotData.data?.campaigns;
+            const campaignDates = snapshotData.campaignDates || snapshotData.data?.campaignDates || {};
 
             if (campaigns && campaigns[name] && campaigns[name].length > 0) {
                 const campData: any[] = campaigns[name];
@@ -1408,8 +1408,9 @@ app.get('/api/campaigns/dates', (req, res) => {
     try {
         if (fs.existsSync(SNAPSHOT_PATH)) {
             const snapshotData = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
-            if (snapshotData.data && snapshotData.data.campaignDates && Object.keys(snapshotData.data.campaignDates).length > 0) {
-                return res.json(snapshotData.data.campaignDates);
+            const dates = snapshotData.campaignDates || snapshotData.data?.campaignDates;
+            if (dates && Object.keys(dates).length > 0) {
+                return res.json(dates);
             }
         }
         
