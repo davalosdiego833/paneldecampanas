@@ -2474,10 +2474,11 @@ app.get('*', (req, res) => {
 
 declare var PhusionPassenger: any;
 
-if (typeof (PhusionPassenger) !== 'undefined' || process.env.PORT === 'passenger') {
+if (typeof (PhusionPassenger) !== 'undefined') {
+    PhusionPassenger.configure({ autoInstall: false });
     app.listen('passenger');
-} else if (process.env.PORT) {
-    app.listen(process.env.PORT);
 } else {
-    app.listen(5005);
+    app.listen(PORT, () => {
+        console.log(`🚀 Fortress Server running on port ${PORT}`);
+    });
 }
