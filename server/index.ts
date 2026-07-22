@@ -2472,19 +2472,14 @@ app.get('*', (req, res) => {
     res.status(404).send(`Frontend not built. CWD: ${cwd}, __dirname: ${__dirname}, BASE_PATH: ${BASE_PATH}`);
 });
 
-const listenPort = process.env.PORT || PORT;
-if (typeof listenPort === 'string' && listenPort.startsWith('/')) {
-    try {
-        if (fs.existsSync(listenPort)) {
-            fs.unlinkSync(listenPort);
-        }
-    } catch (e) {}
-}
-
 declare var PhusionPassenger: any;
-if (typeof (PhusionPassenger) !== 'undefined') {
+if (typeof (PhusionPassenger) !== 'undefined' || process.env.PORT === 'passenger') {
     app.listen('passenger');
 } else {
+    const listenPort = process.env.PORT || PORT;
+    if (typeof listenPort === 'string' && safeExists(listenPort)) {
+        try { fs.unlinkSync(listenPort); } catch (e) {}
+    }
     app.listen(listenPort, () => {
         console.log(`🚀 Fortress Server running on port ${listenPort}`);
     });
