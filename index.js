@@ -2502,12 +2502,6 @@ app.get('*', (req, res) => {
     }
     res.status(404).send(`Frontend not built. CWD: ${cwd}, __dirname: ${__dirname}, BASE_PATH: ${BASE_PATH}`);
 });
-if (typeof (PhusionPassenger) !== 'undefined') {
-    PhusionPassenger.configure({ autoInstall: false });
-    app.listen('passenger');
-}
-else {
-    app.listen(PORT, () => {
-        console.log(`🚀 Fortress Server running on port ${PORT}`);
-    });
-}
+app.listen(PORT, () => {
+    console.log(`🚀 Fortress Server running on port ${PORT}`);
+});
