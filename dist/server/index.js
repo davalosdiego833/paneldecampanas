@@ -2518,13 +2518,12 @@ app.get('*', (req, res) => {
     }
     res.status(404).send(`Frontend not built. CWD: ${cwd}, safeDirname: ${safeDirname}, BASE_PATH: ${BASE_PATH}`);
 });
-const listenPort = process.env.PORT || 5005;
-const server = app.listen(listenPort, () => {
-    console.log(`🚀 Fortress Server running on port ${listenPort}`);
-});
-server.on('error', (err) => {
-    if (err.code === 'EADDRINUSE') {
-        console.warn(`[PORT] ${listenPort} in use, fallback to random port`);
-        app.listen(0);
-    }
-});
+if (typeof (PhusionPassenger) !== 'undefined') {
+    app.listen('passenger');
+}
+else {
+    const listenPort = process.env.PORT || 5005;
+    app.listen(listenPort, () => {
+        console.log(`🚀 Fortress Server running on port ${listenPort}`);
+    });
+}
