@@ -9,22 +9,20 @@ import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const safeFilename = typeof __filename !== 'undefined' ? __filename : '';
+const safeDirname = typeof __dirname !== 'undefined' ? __dirname : process.cwd();
 
 // Detect if we are running in the Hostinger remote environment
-const isHostinger = __dirname.includes('domains/panel.ambrizydavalos.com');
-const isProd = __dirname.includes('/dist/server');
+const isHostinger = safeDirname.includes('domains/panel.ambrizydavalos.com');
+const isProd = safeDirname.includes('/dist/server');
 
 // Reliable BASE_PATH detection
-// In dev mode, __dirname is 'server/' so we go up one level to project root
-// In prod (dist/server), we go up 3 levels to project root
-let BASE_PATH = __dirname;
+let BASE_PATH = safeDirname;
 if (isProd) {
-    BASE_PATH = path.join(__dirname, '../../..');
+    BASE_PATH = path.join(safeDirname, '../../..');
 } else if (!isHostinger) {
     // Dev mode: server/ → project root
-    BASE_PATH = path.join(__dirname, '..');
+    BASE_PATH = path.join(safeDirname, '..');
 }
 
 const app = express();

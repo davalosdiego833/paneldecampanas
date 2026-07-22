@@ -1,47 +1,49 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 // Version: 1.3.9_the_fortress
-import express from 'express';
-import cors from 'cors';
-import path from 'path';
-import fs from 'fs';
-import os from 'os';
-import XLSX from 'xlsx';
-import dotenv from 'dotenv';
-import { fileURLToPath } from 'url';
-import { execSync } from 'child_process';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
+const path_1 = __importDefault(require("path"));
+const fs_1 = __importDefault(require("fs"));
+const os_1 = __importDefault(require("os"));
+const xlsx_1 = __importDefault(require("xlsx"));
+const dotenv_1 = __importDefault(require("dotenv"));
+const child_process_1 = require("child_process");
+const safeFilename = typeof __filename !== 'undefined' ? __filename : '';
+const safeDirname = typeof __dirname !== 'undefined' ? __dirname : process.cwd();
 // Detect if we are running in the Hostinger remote environment
-const isHostinger = __dirname.includes('domains/panel.ambrizydavalos.com');
-const isProd = __dirname.includes('/dist/server');
+const isHostinger = safeDirname.includes('domains/panel.ambrizydavalos.com');
+const isProd = safeDirname.includes('/dist/server');
 // Reliable BASE_PATH detection
-// In dev mode, __dirname is 'server/' so we go up one level to project root
-// In prod (dist/server), we go up 3 levels to project root
-let BASE_PATH = __dirname;
+let BASE_PATH = safeDirname;
 if (isProd) {
-    BASE_PATH = path.join(__dirname, '../../..');
+    BASE_PATH = path_1.default.join(safeDirname, '../../..');
 }
 else if (!isHostinger) {
     // Dev mode: server/ → project root
-    BASE_PATH = path.join(__dirname, '..');
+    BASE_PATH = path_1.default.join(safeDirname, '..');
 }
-const app = express();
+const app = (0, express_1.default)();
 const PORT = process.env.PORT || 5005;
 // Load .env from parent dir if it doesn't exist locally
-const localEnv = path.join(BASE_PATH, '.env');
+const localEnv = path_1.default.join(BASE_PATH, '.env');
 const safeExists = (p) => {
     try {
-        return Boolean(p && fs.existsSync(p));
+        return Boolean(p && fs_1.default.existsSync(p));
     }
     catch {
         return false;
     }
 };
-const hostingerEnv = path.join(BASE_PATH, '../.env');
+const hostingerEnv = path_1.default.join(BASE_PATH, '../.env');
 if (safeExists(localEnv)) {
-    dotenv.config({ path: localEnv });
+    dotenv_1.default.config({ path: localEnv });
 }
 else if (safeExists(hostingerEnv)) {
-    dotenv.config({ path: hostingerEnv });
+    dotenv_1.default.config({ path: hostingerEnv });
 }
 // Helper to reliably find protected folders in Distributed Architecture
 const SUCURSALES_PROMO = ['2043', '2856', '2511'];
@@ -49,23 +51,23 @@ const getProtectedPath = (folder) => {
     const f = folder === 'proactiva_tech' ? 'proactivatech' : folder;
     const cwd = process.cwd();
     const candidates = [
-        path.join(BASE_PATH, f),
-        path.join(cwd, f),
-        path.join(__dirname, f),
-        path.join(__dirname, 'dist', f)
+        path_1.default.join(BASE_PATH, f),
+        path_1.default.join(cwd, f),
+        path_1.default.join(__dirname, f),
+        path_1.default.join(__dirname, 'dist', f)
     ];
     const found = candidates.find(p => safeExists(p));
     if (found)
         return found;
-    return path.join(BASE_PATH, f);
+    return path_1.default.join(BASE_PATH, f);
 };
 const DB_PATH_DYNAMIC = getProtectedPath('db');
-const SNAPSHOT_PATH = path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json');
-const ASSETS_PATH = path.join(BASE_PATH, 'assets');
-const THEMES_PATH = path.join(BASE_PATH, 'themes');
+const SNAPSHOT_PATH = path_1.default.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json');
+const ASSETS_PATH = path_1.default.join(BASE_PATH, 'assets');
+const THEMES_PATH = path_1.default.join(BASE_PATH, 'themes');
 const ADMIN_PATH = getProtectedPath('administrador');
-app.use(cors());
-app.use(express.json());
+app.use((0, cors_1.default)());
+app.use(express_1.default.json());
 let cachedAdvisors = [];
 let cachedDirectoryMap = {};
 let lastDirectoryMtime = 0;
@@ -77,22 +79,22 @@ const getCachedAdvisors = () => {
 const getAdvisorDirectory = () => {
     const cwd = process.cwd();
     const candidateFiles = [
-        path.join(ADMIN_PATH, 'directorio_asesores.xlsx'),
-        path.join(BASE_PATH, 'administrador', 'directorio_asesores.xlsx'),
-        path.join(cwd, 'administrador', 'directorio_asesores.xlsx'),
-        path.join(__dirname, 'administrador', 'directorio_asesores.xlsx')
+        path_1.default.join(ADMIN_PATH, 'directorio_asesores.xlsx'),
+        path_1.default.join(BASE_PATH, 'administrador', 'directorio_asesores.xlsx'),
+        path_1.default.join(cwd, 'administrador', 'directorio_asesores.xlsx'),
+        path_1.default.join(__dirname, 'administrador', 'directorio_asesores.xlsx')
     ];
-    const filePath = candidateFiles.find(p => safeExists(p)) || path.join(ADMIN_PATH, 'directorio_asesores.xlsx');
+    const filePath = candidateFiles.find(p => safeExists(p)) || path_1.default.join(ADMIN_PATH, 'directorio_asesores.xlsx');
     if (!safeExists(filePath))
         return {};
     try {
-        const mtime = fs.statSync(filePath).mtimeMs;
+        const mtime = fs_1.default.statSync(filePath).mtimeMs;
         if (mtime === lastDirectoryMtime && Object.keys(cachedDirectoryMap).length > 0) {
             return cachedDirectoryMap;
         }
-        const workbook = XLSX.readFile(filePath);
+        const workbook = xlsx_1.default.readFile(filePath);
         const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-        const data = XLSX.utils.sheet_to_json(worksheet);
+        const data = xlsx_1.default.utils.sheet_to_json(worksheet);
         const directory = {};
         data.forEach(row => {
             const keys = Object.keys(row);
@@ -131,34 +133,34 @@ const mimeTypes = {
     '.ttf': 'font/ttf',
 };
 const setMimeHeaders = (res, filePath) => {
-    const ext = path.extname(filePath).toLowerCase();
+    const ext = path_1.default.extname(filePath).toLowerCase();
     if (mimeTypes[ext]) {
         res.setHeader('Content-Type', mimeTypes[ext]);
     }
 };
 // Serve Frontend Build & Assets
 const possibleDistPaths = [
-    path.join(__dirname, 'dist'),
-    path.join(__dirname, '../dist'),
-    path.join(__dirname, 'public_html', 'dist'),
-    path.join(BASE_PATH, 'dist'),
-    path.join(BASE_PATH, 'public_html', 'dist')
+    path_1.default.join(__dirname, 'dist'),
+    path_1.default.join(__dirname, '../dist'),
+    path_1.default.join(__dirname, 'public_html', 'dist'),
+    path_1.default.join(BASE_PATH, 'dist'),
+    path_1.default.join(BASE_PATH, 'public_html', 'dist')
 ];
-const DIST_PATH = possibleDistPaths.find(p => safeExists(path.join(p, 'index.html'))) || path.join(BASE_PATH, 'dist');
+const DIST_PATH = possibleDistPaths.find(p => safeExists(path_1.default.join(p, 'index.html'))) || path_1.default.join(BASE_PATH, 'dist');
 app.use('/assets', (req, res, next) => {
     const filename = req.path.replace(/^\//, '');
     const cwd = process.cwd();
     const candidates = [
-        path.join(DIST_PATH, 'assets', filename),
-        path.join(DIST_PATH, filename),
-        path.join(__dirname, 'dist', 'assets', filename),
-        path.join(__dirname, 'assets', filename),
-        path.join(BASE_PATH, 'dist', 'assets', filename),
-        path.join(BASE_PATH, 'assets', filename),
-        path.join(cwd, 'dist', 'assets', filename),
-        path.join(cwd, 'assets', filename),
-        path.join('/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist/assets', filename),
-        path.join('/home/u211138134/domains/panel.ambrizydavalos.com/public_html/assets', filename)
+        path_1.default.join(DIST_PATH, 'assets', filename),
+        path_1.default.join(DIST_PATH, filename),
+        path_1.default.join(__dirname, 'dist', 'assets', filename),
+        path_1.default.join(__dirname, 'assets', filename),
+        path_1.default.join(BASE_PATH, 'dist', 'assets', filename),
+        path_1.default.join(BASE_PATH, 'assets', filename),
+        path_1.default.join(cwd, 'dist', 'assets', filename),
+        path_1.default.join(cwd, 'assets', filename),
+        path_1.default.join('/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist/assets', filename),
+        path_1.default.join('/home/u211138134/domains/panel.ambrizydavalos.com/public_html/assets', filename)
     ];
     const found = candidates.find(p => safeExists(p));
     if (found) {
@@ -167,9 +169,9 @@ app.use('/assets', (req, res, next) => {
     }
     next();
 });
-app.use(express.static(DIST_PATH, { setHeaders: setMimeHeaders }));
+app.use(express_1.default.static(DIST_PATH, { setHeaders: setMimeHeaders }));
 const extractData = (ws) => {
-    const rawData = XLSX.utils.sheet_to_json(ws, { header: 1 });
+    const rawData = xlsx_1.default.utils.sheet_to_json(ws, { header: 1 });
     let headerIdx = -1;
     for (let i = 0; i < Math.min(25, rawData.length); i++) {
         if (rawData[i] && rawData[i].some(cell => {
@@ -184,7 +186,7 @@ const extractData = (ws) => {
     }
     if (headerIdx === -1)
         headerIdx = 0;
-    return XLSX.utils.sheet_to_json(ws, { range: headerIdx });
+    return xlsx_1.default.utils.sheet_to_json(ws, { range: headerIdx });
 };
 const MONTHS_ES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 const parseSpanishDate = (str) => {
@@ -208,7 +210,7 @@ const parseSpanishDate = (str) => {
 const formatExcelDate = (val) => {
     const monthsNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     if (typeof val === 'number') {
-        const d = XLSX.SSF.parse_date_code(val);
+        const d = xlsx_1.default.SSF.parse_date_code(val);
         if (d) {
             const year = d.y < 100 ? (d.y < 30 ? 2000 + d.y : 1900 + d.y) : d.y;
             return `${d.d} de ${monthsNames[d.m - 1]} de ${year}`;
@@ -256,7 +258,7 @@ const extractCutoffDate = (wb, type) => {
             if (sheetsToScan.length === 0)
                 sheetsToScan = wb.SheetNames.slice(0, 3).map((n) => wb.Sheets[n]);
             for (let sheet of sheetsToScan) {
-                const rawRows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
+                const rawRows = xlsx_1.default.utils.sheet_to_json(sheet, { header: 1, defval: '' });
                 for (let i = 0; i < Math.min(25, rawRows.length); i++) {
                     for (let j = 0; j < Math.min(10, rawRows[i].length); j++) {
                         const text = String(rawRows[i][j]).trim();
@@ -293,29 +295,29 @@ const extractCutoffDate = (wb, type) => {
             const ws = wb.Sheets['Detalle Asesores'];
             if (!ws)
                 return '';
-            const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+            const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1 });
             return parseSpanishDate(formatExcelDate(data[2]?.[2] || data[2]?.[0] || ""));
         }
         if (type === 'pagado_pendiente') {
             const ws = wb.Sheets[wb.SheetNames[0]];
-            const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+            const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1 });
             return parseSpanishDate(formatExcelDate(data[0]?.[1] || data[0]?.[0] || ws?.['A1']?.v || ""));
         }
         if (type === 'asesores_sin_emision') {
             const ws = wb.Sheets['Promotores'] || wb.Sheets[wb.SheetNames[0]];
-            const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+            const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1 });
             return parseSpanishDate(formatExcelDate(data[1]?.[0] || data[0]?.[0] || ""));
         }
         if (type === 'comparativo_vida') {
             const ws = findSheet(wb, 'asesores');
             if (!ws)
                 return '';
-            const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+            const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1 });
             return parseSpanishDate(formatExcelDate(data[0]?.[0] || data[1]?.[2] || ""));
         }
         if (type === 'fanfest' || type === 'vive_tu_pasion' || type === 'proactiva_tech') {
             const ws = wb.Sheets[wb.SheetNames[0]];
-            const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+            const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1 });
             for (let i = 0; i < 15; i++) {
                 if (!data[i])
                     continue;
@@ -337,13 +339,13 @@ const readExcelData = (folderName, options = {}) => {
     const cwd = process.cwd();
     const candidateFolders = [
         getProtectedPath(folderName),
-        path.join(BASE_PATH, folderName),
-        path.join(cwd, folderName),
-        path.join(__dirname, folderName),
-        path.join(__dirname, 'dist', folderName)
+        path_1.default.join(BASE_PATH, folderName),
+        path_1.default.join(cwd, folderName),
+        path_1.default.join(__dirname, folderName),
+        path_1.default.join(__dirname, 'dist', folderName)
     ];
     const folderPath = candidateFolders.find(p => safeExists(p) && (() => { try {
-        return fs.readdirSync(p).some(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm') || f.endsWith('.xls')) && !f.startsWith('~$'));
+        return fs_1.default.readdirSync(p).some(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm') || f.endsWith('.xls')) && !f.startsWith('~$'));
     }
     catch {
         return false;
@@ -357,20 +359,20 @@ const readExcelData = (folderName, options = {}) => {
         }
         else {
             // Default: get latest file (by mtime)
-            const files = fs.readdirSync(folderPath).filter(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm') || f.endsWith('.xls')) && !f.startsWith('~$'));
+            const files = fs_1.default.readdirSync(folderPath).filter(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm') || f.endsWith('.xls')) && !f.startsWith('~$'));
             if (files.length === 0)
                 return null;
             fileName = files.sort((a, b) => {
                 try {
-                    return fs.statSync(path.join(folderPath, b)).mtimeMs - fs.statSync(path.join(folderPath, a)).mtimeMs;
+                    return fs_1.default.statSync(path_1.default.join(folderPath, b)).mtimeMs - fs_1.default.statSync(path_1.default.join(folderPath, a)).mtimeMs;
                 }
                 catch {
                     return 0;
                 }
             })[0];
         }
-        const filePath = path.join(folderPath, fileName);
-        const stats = fs.statSync(filePath);
+        const filePath = path_1.default.join(folderPath, fileName);
+        const stats = fs_1.default.statSync(filePath);
         const mtime = stats.mtimeMs;
         const cacheKey = `${folderName}_${fileName}`;
         // Return from cache if file hasn't changed
@@ -381,17 +383,17 @@ const readExcelData = (folderName, options = {}) => {
                 return excelCache[cacheKey].json;
             const workbook = excelCache[cacheKey].workbook;
             const sheetNames = workbook.SheetNames;
-            const json = XLSX.utils.sheet_to_json(workbook.Sheets[sheetNames[0]]);
+            const json = xlsx_1.default.utils.sheet_to_json(workbook.Sheets[sheetNames[0]]);
             excelCache[cacheKey].json = json;
             return json;
         }
         console.log(`[DEBUG] Cache miss for ${cacheKey}. Reading file: ${filePath}`);
-        const workbook = XLSX.readFile(filePath, { cellFormula: false, cellStyles: false, cellNF: false });
+        const workbook = xlsx_1.default.readFile(filePath, { cellFormula: false, cellStyles: false, cellNF: false });
         excelCache[cacheKey] = { mtime, workbook };
         if (options.skipJson)
             return workbook;
         const sheetNames = workbook.SheetNames;
-        const json = XLSX.utils.sheet_to_json(workbook.Sheets[sheetNames[0]]);
+        const json = xlsx_1.default.utils.sheet_to_json(workbook.Sheets[sheetNames[0]]);
         excelCache[cacheKey].json = json;
         return json;
     }
@@ -417,21 +419,21 @@ const getCaminoDate = (worksheet) => {
 };
 // --- Endpoints ---
 app.get('/api/bases_campanas', (req, res) => {
-    const publicPath = path.join(BASE_PATH, 'public', 'bases_campanas');
-    const distPath = path.join(BASE_PATH, 'dist', 'bases_campanas');
-    const prodPath = path.join(BASE_PATH, 'bases_campanas');
-    let targetPath = fs.existsSync(prodPath) ? prodPath : fs.existsSync(publicPath) ? publicPath : fs.existsSync(distPath) ? distPath : null;
+    const publicPath = path_1.default.join(BASE_PATH, 'public', 'bases_campanas');
+    const distPath = path_1.default.join(BASE_PATH, 'dist', 'bases_campanas');
+    const prodPath = path_1.default.join(BASE_PATH, 'bases_campanas');
+    let targetPath = fs_1.default.existsSync(prodPath) ? prodPath : fs_1.default.existsSync(publicPath) ? publicPath : fs_1.default.existsSync(distPath) ? distPath : null;
     if (!targetPath) {
         return res.json([]);
     }
     const scanDirectory = (dir, route) => {
         const items = [];
         try {
-            const dirents = fs.readdirSync(dir, { withFileTypes: true });
+            const dirents = fs_1.default.readdirSync(dir, { withFileTypes: true });
             for (const dirent of dirents) {
                 if (dirent.name.startsWith('.'))
                     continue; // ignore hidden
-                const fullPath = path.join(dir, dirent.name);
+                const fullPath = path_1.default.join(dir, dirent.name);
                 const fileRoute = `${route}/${dirent.name}`;
                 if (dirent.isDirectory()) {
                     const children = scanDirectory(fullPath, fileRoute);
@@ -464,13 +466,13 @@ app.get('/api/bases_campanas', (req, res) => {
 app.get('/api/campaigns', (req, res) => {
     const exclude = ['assets', 'themes', 'server', 'node_modules', 'src', 'public', '.git', 'dist', '.conda', 'administrador', 'tmp', '.cache', '.npm', 'estatus polizas', 'estatus_polizas'];
     try {
-        const publicFolders = fs.readdirSync(BASE_PATH, { withFileTypes: true })
+        const publicFolders = fs_1.default.readdirSync(BASE_PATH, { withFileTypes: true })
             .filter(dirent => dirent.isDirectory() && !exclude.includes(dirent.name) && !dirent.name.startsWith('.'))
             .map(dirent => dirent.name);
         const protectedPath = getProtectedPath('.');
         let protectedFolders = [];
-        if (fs.existsSync(protectedPath)) {
-            protectedFolders = fs.readdirSync(protectedPath, { withFileTypes: true })
+        if (fs_1.default.existsSync(protectedPath)) {
+            protectedFolders = fs_1.default.readdirSync(protectedPath, { withFileTypes: true })
                 .filter(dirent => dirent.isDirectory() && !exclude.includes(dirent.name) && !dirent.name.startsWith('.') && dirent.name !== 'public_html' && dirent.name !== 'nodejs' && dirent.name !== 'db')
                 .map(dirent => dirent.name);
         }
@@ -496,10 +498,10 @@ const findSnapshotPath = () => {
     const cwd = process.cwd();
     const candidates = [
         SNAPSHOT_PATH,
-        path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json'),
-        path.join(BASE_PATH, 'db', 'resumen_snapshot.json'),
-        path.join(cwd, 'db', 'resumen_snapshot.json'),
-        path.join(__dirname, 'db', 'resumen_snapshot.json')
+        path_1.default.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json'),
+        path_1.default.join(BASE_PATH, 'db', 'resumen_snapshot.json'),
+        path_1.default.join(cwd, 'db', 'resumen_snapshot.json'),
+        path_1.default.join(__dirname, 'db', 'resumen_snapshot.json')
     ];
     return candidates.find(p => safeExists(p)) || SNAPSHOT_PATH;
 };
@@ -513,7 +515,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
     const snapPath = findSnapshotPath();
     if (!date && safeExists(snapPath)) {
         try {
-            const snapshotData = JSON.parse(fs.readFileSync(snapPath, 'utf-8'));
+            const snapshotData = JSON.parse(fs_1.default.readFileSync(snapPath, 'utf-8'));
             const campaigns = snapshotData.campaigns || snapshotData.data?.campaigns;
             const campaignDates = snapshotData.campaignDates || snapshotData.data?.campaignDates || {};
             if (campaigns && campaigns[name] && campaigns[name].length > 0) {
@@ -613,7 +615,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const sheetName = wb.SheetNames.find((n) => n.toUpperCase() === 'ASESORES') || wb.SheetNames[0];
         const ws = wb.Sheets[sheetName];
         if (!ws._cachedJson)
-            ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 'A11:Z10000' });
+            ws._cachedJson = xlsx_1.default.utils.sheet_to_json(ws, { range: 'A11:Z10000' });
         const json = ws._cachedJson;
         const b9 = ws['B9']?.v || "";
         const mMatch = String(b9).toLowerCase().match(/(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/);
@@ -646,7 +648,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const sheetName = wb.SheetNames.find((n) => n.toUpperCase() === 'TODOS LOS RAMOS') || wb.SheetNames[0];
         const ws = wb.Sheets[sheetName];
         if (!ws._cachedData)
-            ws._cachedData = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
+            ws._cachedData = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
         const data = ws._cachedData;
         const dir = getAdvisorDirectory();
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
@@ -685,7 +687,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
             return res.status(404).json({ error: 'Raw file not found' });
         const ws = wb.Sheets[wb.SheetNames[0]];
         if (!ws._cachedData) {
-            const rawData = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+            const rawData = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, defval: '' });
             let headerIdx = -1;
             for (let i = 0; i < Math.min(30, rawData.length); i++) {
                 if (rawData[i] && rawData[i].some(c => String(c).toLowerCase().trim() === 'asesor')) {
@@ -695,7 +697,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
             }
             if (headerIdx === -1)
                 headerIdx = 0;
-            ws._cachedData = XLSX.utils.sheet_to_json(ws, { range: headerIdx, defval: '' });
+            ws._cachedData = xlsx_1.default.utils.sheet_to_json(ws, { range: headerIdx, defval: '' });
         }
         const data = ws._cachedData;
         const dir = getAdvisorDirectory();
@@ -718,7 +720,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
             wsName = wb.SheetNames[0];
         const ws = wb.Sheets[wsName];
         if (!ws._cachedData) {
-            const rawData = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+            const rawData = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, defval: '' });
             let headerIdx = -1;
             for (let i = 0; i < Math.min(30, rawData.length); i++) {
                 if (rawData[i] && rawData[i].some(c => String(c).toLowerCase().trim() === 'asesor' || String(c).toLowerCase().trim() === 'clave')) {
@@ -728,7 +730,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
             }
             if (headerIdx === -1)
                 headerIdx = 0;
-            ws._cachedData = XLSX.utils.sheet_to_json(ws, { range: headerIdx, defval: '' });
+            ws._cachedData = xlsx_1.default.utils.sheet_to_json(ws, { range: headerIdx, defval: '' });
         }
         const data = ws._cachedData;
         const dir = getAdvisorDirectory();
@@ -751,7 +753,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
             return res.status(404).json({ error: 'Raw file not found' });
         const sheetName = wb.SheetNames.find((n) => n.toUpperCase() === 'ASESORES') || wb.SheetNames[0];
         const ws = wb.Sheets[sheetName];
-        const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
+        const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, range: 7 });
         const dir = getAdvisorDirectory();
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
         const row = data.find(r => SUCURSALES_PROMO.includes(String(r[4] || '')) && (String(r[6] || '') === advisor || advisorIds.includes(String(r[6] || ''))));
@@ -772,7 +774,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
             return res.status(404).json({ error: 'Raw file not found' });
         const sheetName = wb.SheetNames.find((n) => n.toUpperCase() === 'ASESORES') || wb.SheetNames[0];
         const ws = wb.Sheets[sheetName];
-        const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
+        const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, range: 7 });
         const dir = getAdvisorDirectory();
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
         const row = data.find(r => SUCURSALES_PROMO.includes(String(r[4] || '')) && (String(r[6] || '') === advisor || advisorIds.includes(String(r[6] || ''))));
@@ -817,7 +819,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
             return res.status(404).json({ error: 'Raw file not found' });
         const sheetName = wb.SheetNames.find((n) => n.toUpperCase() === 'ASESORES') || wb.SheetNames[0];
         const ws = wb.Sheets[sheetName];
-        const raw = XLSX.utils.sheet_to_json(ws, { range: 7 });
+        const raw = xlsx_1.default.utils.sheet_to_json(ws, { range: 7 });
         const dir = getAdvisorDirectory();
         const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
         const row = raw.find((r) => {
@@ -861,9 +863,9 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
 });
 app.get('/api/themes', (req, res) => {
     try {
-        const files = fs.readdirSync(THEMES_PATH).filter(f => f.endsWith('.json'));
+        const files = fs_1.default.readdirSync(THEMES_PATH).filter(f => f.endsWith('.json'));
         const themes = files.map(f => {
-            const content = fs.readFileSync(path.join(THEMES_PATH, f), 'utf-8');
+            const content = fs_1.default.readFileSync(path_1.default.join(THEMES_PATH, f), 'utf-8');
             return { file: f, ...JSON.parse(content) };
         });
         res.json(themes);
@@ -873,18 +875,18 @@ app.get('/api/themes', (req, res) => {
     }
 });
 app.get('/api/active-theme', (req, res) => {
-    const activePath = path.join(THEMES_PATH, 'active_theme.txt');
-    let themeFile = fs.existsSync(activePath) ? fs.readFileSync(activePath, 'utf-8').trim() : 'modo_neon.json';
-    const themePath = path.join(THEMES_PATH, themeFile);
-    if (fs.existsSync(themePath)) {
-        res.json({ file: themeFile, ...JSON.parse(fs.readFileSync(themePath, 'utf-8')) });
+    const activePath = path_1.default.join(THEMES_PATH, 'active_theme.txt');
+    let themeFile = fs_1.default.existsSync(activePath) ? fs_1.default.readFileSync(activePath, 'utf-8').trim() : 'modo_neon.json';
+    const themePath = path_1.default.join(THEMES_PATH, themeFile);
+    if (fs_1.default.existsSync(themePath)) {
+        res.json({ file: themeFile, ...JSON.parse(fs_1.default.readFileSync(themePath, 'utf-8')) });
     }
     else
         res.status(404).json({ error: 'Theme not found' });
 });
 app.post('/api/active-theme', (req, res) => {
     try {
-        fs.writeFileSync(path.join(THEMES_PATH, 'active_theme.txt'), req.body.themeFile);
+        fs_1.default.writeFileSync(path_1.default.join(THEMES_PATH, 'active_theme.txt'), req.body.themeFile);
         res.json({ success: true });
     }
     catch (e) {
@@ -895,8 +897,8 @@ app.get('/api/admin/summary', (req, res) => {
     try {
         const { date, useSnapshot } = req.query;
         // Performance optimization: always use snapshot when no historical date is set
-        if (!date && fs.existsSync(SNAPSHOT_PATH)) {
-            const snapshotData = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
+        if (!date && fs_1.default.existsSync(SNAPSHOT_PATH)) {
+            const snapshotData = JSON.parse(fs_1.default.readFileSync(SNAPSHOT_PATH, 'utf-8'));
             const data = snapshotData.data || snapshotData;
             if (data && data.campaigns && (data.campaigns.mdrt || data.campaigns.camino_cumbre || data.campaigns.graduacion)) {
                 // Return campaigns + dates in flat structure compatible with frontend
@@ -929,12 +931,12 @@ app.get('/api/admin/summary', (req, res) => {
                     }
                     else if (c === 'camino_cumbre') {
                         const ws = wb.Sheets[wb.SheetNames[0]];
-                        const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 3 });
+                        const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, range: 3 });
                         result.camino_cumbre = data.slice(1).filter(r => SUCURSALES_PROMO.includes(String(r[3] || ''))).map(r => ({ Asesor: resolveName(r[5]), Clave: r[5] || '', Mes_Asesor: Number(r[12] || r[10] || 1), Polizas_Totales: Number(r[16] || r[14] || 0), Mes_1_Prod: Number(r[24] || r[21] || 0), Mes_2_Prod: Number(r[25] || r[22] || 0), Mes_3_Prod: Number(r[26] || r[23] || 0) }));
                     }
                     else if (c === 'convenciones') {
                         const ws = wb.Sheets[wb.SheetNames[0]];
-                        const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
+                        const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
                         // Global thresholds
                         const allRows = data.slice(1);
                         let c480 = 0, c228 = 0, c108 = 0, c28 = 0;
@@ -971,12 +973,12 @@ app.get('/api/admin/summary', (req, res) => {
                     }
                     else if (c === 'graduacion') {
                         const ws = wb.Sheets[wb.SheetNames[0]];
-                        const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 2 });
+                        const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, range: 2 });
                         result.graduacion = data.slice(1).filter(r => SUCURSALES_PROMO.includes(String(r[3] || ''))).map(r => ({ Asesor: r[7] ? String(r[7]) : resolveName(r[6]), Clave: r[6] || '', Mes_Asesor: Number(r[8] || 1), Polizas_Totales: Number(r[16] || 0) }));
                     }
                     else if (c === 'legion_centurion') {
                         const ws = wb.Sheets[wb.SheetNames[0]];
-                        const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 11 });
+                        const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, range: 11 });
                         const b9 = ws['B9']?.v || "";
                         const mMatch = String(b9).toLowerCase().match(/(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/);
                         const mIndex = mMatch ? MONTHS_ES.indexOf(mMatch[1]) + 1 : 1;
@@ -991,7 +993,7 @@ app.get('/api/admin/summary', (req, res) => {
                     }
                     else if (c === 'fanfest') {
                         const ws = wb.Sheets['ASESORES'] || wb.Sheets[wb.SheetNames[0]];
-                        const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
+                        const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, range: 7 });
                         result.fanfest = data.slice(2).filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
                             Asesor: resolveName(r[6]),
                             Clave: r[6] || '',
@@ -1006,7 +1008,7 @@ app.get('/api/admin/summary', (req, res) => {
                     }
                     else if (c === 'vive_tu_pasion') {
                         const ws = wb.Sheets['ASESORES'] || wb.Sheets[wb.SheetNames[0]];
-                        const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
+                        const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, range: 7 });
                         result.vive_tu_pasion = data.slice(2).filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
                             Asesor: resolveName(r[6]),
                             Clave: r[6] || '',
@@ -1019,7 +1021,7 @@ app.get('/api/admin/summary', (req, res) => {
                         const selector = (n) => n.toLowerCase().includes('asesores');
                         const sheetName = wb.SheetNames.find(selector) || wb.SheetNames[0];
                         const ws = wb.Sheets[sheetName];
-                        const data = XLSX.utils.sheet_to_json(ws, { range: 6 });
+                        const data = xlsx_1.default.utils.sheet_to_json(ws, { range: 6 });
                         const advisorsData = data.slice(1);
                         const getExcelYear = (val) => {
                             if (!val)
@@ -1076,9 +1078,9 @@ app.get('/api/admin/summary', (req, res) => {
     }
 });
 app.get('/api/admin/snapshot-status', (req, res) => {
-    if (fs.existsSync(SNAPSHOT_PATH)) {
-        const stats = fs.statSync(SNAPSHOT_PATH);
-        const data = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
+    if (fs_1.default.existsSync(SNAPSHOT_PATH)) {
+        const stats = fs_1.default.statSync(SNAPSHOT_PATH);
+        const data = JSON.parse(fs_1.default.readFileSync(SNAPSHOT_PATH, 'utf-8'));
         return res.json({
             exists: true,
             updatedAt: data.updatedAt,
@@ -1115,13 +1117,13 @@ app.post('/api/admin/snapshot', async (req, res) => {
                 }
                 else if (c === 'camino_cumbre') {
                     const ws = wb.Sheets[wb.SheetNames[0]];
-                    const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 3 });
+                    const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, range: 3 });
                     result.camino_cumbre = data.slice(1).filter(r => String(r[3] || '') === '2043').map(r => ({ Asesor: resolveName(r[5]), Clave: r[5] || '', Mes_Asesor: Number(r[12] || r[10] || 1), Polizas_Totales: Number(r[16] || r[14] || 0), Mes_1_Prod: Number(r[24] || r[21] || 0), Mes_2_Prod: Number(r[25] || r[22] || 0), Mes_3_Prod: Number(r[26] || r[23] || 0) }));
                 }
                 else if (c === 'convenciones') {
                     const sheetName = wb.SheetNames.find((n) => n.toUpperCase() === 'TODOS LOS RAMOS') || wb.SheetNames[0];
                     const ws = wb.Sheets[sheetName];
-                    const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
+                    const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
                     const allRows = data.slice(1);
                     let c480 = 0, c228 = 0, c108 = 0, c28 = 0;
                     allRows.forEach(r => {
@@ -1142,13 +1144,13 @@ app.post('/api/admin/snapshot', async (req, res) => {
                 }
                 else if (c === 'graduacion') {
                     const ws = wb.Sheets[wb.SheetNames[0]];
-                    const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 2 });
+                    const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, range: 2 });
                     result.graduacion = data.slice(1).filter(r => String(r[3] || '') === '2043').map(r => ({ Asesor: r[7] ? String(r[7]) : resolveName(r[6]), Clave: r[6] || '', Mes_Asesor: Number(r[8] || 1), Polizas_Totales: Number(r[16] || 0) }));
                 }
                 else if (c === 'legion_centurion') {
                     const sheetName = wb.SheetNames.find((n) => n.toUpperCase() === 'ASESORES') || wb.SheetNames[0];
                     const ws = wb.Sheets[sheetName];
-                    const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 11 });
+                    const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, range: 11 });
                     const b9 = ws['B9']?.v || "";
                     const mMatch = String(b9).toLowerCase().match(/(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/);
                     const mIndex = mMatch ? MONTHS_ES.indexOf(mMatch[1]) + 1 : 1;
@@ -1158,14 +1160,14 @@ app.post('/api/admin/snapshot', async (req, res) => {
                 }
                 else if (c === 'fanfest') {
                     const ws = wb.Sheets['ASESORES'] || wb.Sheets[wb.SheetNames[0]];
-                    const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
+                    const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, range: 7 });
                     result.fanfest = data.slice(2).filter(r => String(r[4] || '') === '2043').map(r => ({
                         Asesor: resolveName(r[6]), Clave: r[6] || '', Total_Polizas: Number(r[13] || 0), Enero: Number(r[8] || 0), Febrero: Number(r[9] || 0), Marzo: Number(r[10] || 0), Abril: Number(r[11] || 0), Condicion: String(r[12] || '').toLowerCase() === 'p', Premio: String(r[14] || '').toLowerCase() === 'p' ? "GANADO 🏆" : "PENDIENTE ⏳"
                     }));
                 }
                 else if (c === 'vive_tu_pasion') {
                     const ws = wb.Sheets['ASESORES'] || wb.Sheets[wb.SheetNames[0]];
-                    const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
+                    const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, range: 7 });
                     result.vive_tu_pasion = data.slice(2).filter(r => String(r[4] || '') === '2043').map(r => ({
                         Asesor: resolveName(r[6]), Clave: r[6] || '', Polizas: Number(r[8] || 0), Comisiones: Number(r[9] || 0), Premio: r[10] || ""
                     }));
@@ -1174,7 +1176,7 @@ app.post('/api/admin/snapshot', async (req, res) => {
                     const selector = (n) => n.toLowerCase().includes('asesores');
                     const sheetName = wb.SheetNames.find(selector) || wb.SheetNames[0];
                     const ws = wb.Sheets[sheetName];
-                    const data = XLSX.utils.sheet_to_json(ws, { range: 6 });
+                    const data = xlsx_1.default.utils.sheet_to_json(ws, { range: 6 });
                     const advisorsData = data.slice(1);
                     const getExcelYear = (val) => {
                         if (!val)
@@ -1236,11 +1238,11 @@ app.post('/api/admin/snapshot', async (req, res) => {
                     rg.fechas_corte['asesores_sin_emision'] = formatExcelDate(extractCutoffDate(wbSin, 'asesores_sin_emision'));
                     rg.asesores_sin_emision = { summaryBySucursal: [], individuals: [] };
                     if (wsP) {
-                        const dat = XLSX.utils.sheet_to_json(wsP, { header: 1, range: 3 });
+                        const dat = xlsx_1.default.utils.sheet_to_json(wsP, { header: 1, range: 3 });
                         rg.asesores_sin_emision.summaryBySucursal = dat.filter((r) => String(r[3] || '') === '2043').map((r) => ({ Sucursal: r[5] || 'Descon', Suc: r[4], Agentes: Number(r[6] || 0), Asesores_con_Emisión_Vida: Number(r[7] || 0), '%_Asesores_con_Emisión_Vida': Number(r[8] || 0), Asesores_con_Emisión_GMM: Number(r[9] || 0), '%_Asesores_con_Emisión_GMM': Number(r[10] || 0), Asesores_con_pol_Pagada_Vida: Number(r[11] || 0), '%_Asesores_con_pol_Pagada_Vida': Number(r[12] || 0), Asesores_con_pol_Pagada_GMM: Number(r[13] || 0), '%_Asesores_con_pol_Pagada_GMM': Number(r[14] || 0), Prima_Pagada_Vida: Number(r[15] || 0), Prima_Pagada_GMM: Number(r[16] || 0) }));
                     }
                     if (wsA) {
-                        const dat = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 4 });
+                        const dat = xlsx_1.default.utils.sheet_to_json(wsA, { header: 1, range: 4 });
                         rg.asesores_sin_emision.individuals = dat.filter((r) => String(r[3] || '') === '2043').map((r) => ({ Asesor: r[7] || 'Descon', Clave: r[6] || '', Sucursal: r[5] || 'General', Suc: r[4], Emitido_Vida: Number(r[10] || 0), Emitido_GMM: Number(r[11] || 0), Pagado_Vida: Number(r[12] || 0), Pagado_GMM: Number(r[13] || 0), Prima_Pagada_Vida: Number(r[14] || 0), Prima_Pagada_GMM: Number(r[15] || 0), Sin_Emisión_Vida: r[16] || '', Sin_Emisión_GMM: r[17] || '', '3_Meses_Sin_Emisión_Vida': r[18] || '', '3_Meses_Sin_Emisión_GMM': r[19] || '' }));
                     }
                     console.log(`[SNAPSHOT] asesores_sin_emision: ${rg.asesores_sin_emision.individuals.length} individuals`);
@@ -1254,17 +1256,17 @@ app.post('/api/admin/snapshot', async (req, res) => {
             }
             // --- Pagado y Emitido ---
             try {
-                const xlsPath1 = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'PagPend.xls');
-                const xlsPath2 = path.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'PagPend.xls');
-                const xlsPath = fs.existsSync(xlsPath1) ? xlsPath1 : (fs.existsSync(xlsPath2) ? xlsPath2 : null);
+                const xlsPath1 = path_1.default.join(BASE_PATH, 'administrador', 'pagado_emitido', 'PagPend.xls');
+                const xlsPath2 = path_1.default.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'PagPend.xls');
+                const xlsPath = fs_1.default.existsSync(xlsPath1) ? xlsPath1 : (fs_1.default.existsSync(xlsPath2) ? xlsPath2 : null);
                 if (xlsPath) {
                     console.log('[SNAPSHOT] Encontrado PagPend.xls original. Decriptando y filtrando...');
                     try {
-                        const scriptPath = path.join(BASE_PATH, 'scripts', 'process_pagado_pendiente.py');
-                        const localVenv = path.join(BASE_PATH, '.venv', 'bin', 'python');
+                        const scriptPath = path_1.default.join(BASE_PATH, 'scripts', 'process_pagado_pendiente.py');
+                        const localVenv = path_1.default.join(BASE_PATH, '.venv', 'bin', 'python');
                         const hostingerAlt = '/opt/alt/python311/bin/python3';
-                        const pythonBin = fs.existsSync(localVenv) ? localVenv : (fs.existsSync(hostingerAlt) ? hostingerAlt : 'python3');
-                        execSync(`"${pythonBin}" "${scriptPath}" "${xlsPath}"`, { stdio: 'inherit' });
+                        const pythonBin = fs_1.default.existsSync(localVenv) ? localVenv : (fs_1.default.existsSync(hostingerAlt) ? hostingerAlt : 'python3');
+                        (0, child_process_1.execSync)(`"${pythonBin}" "${scriptPath}" "${xlsPath}"`, { stdio: 'inherit' });
                     }
                     catch (peErr) {
                         console.error('[SNAPSHOT] Error al procesar PagPend.xls:', peErr);
@@ -1273,7 +1275,7 @@ app.post('/api/admin/snapshot', async (req, res) => {
                 const pagPath = 'administrador/pagado_emitidido';
                 const wbPag = readExcelData(pagPath, { skipJson: true });
                 if (wbPag) {
-                    const data = XLSX.utils.sheet_to_json(wbPag.Sheets[wbPag.SheetNames[0]], { header: 1 });
+                    const data = xlsx_1.default.utils.sheet_to_json(wbPag.Sheets[wbPag.SheetNames[0]], { header: 1 });
                     rg.fechas_corte['pagado_pendiente'] = formatExcelDate(extractCutoffDate(wbPag, 'pagado_pendiente'));
                     const validSucursales = ['2043', '2856', '2511'];
                     rg.pagado_pendiente = data.slice(3)
@@ -1295,7 +1297,7 @@ app.post('/api/admin/snapshot', async (req, res) => {
                 if (wbPro) {
                     const ws = wbPro.Sheets['Detalle Asesores'];
                     if (ws) {
-                        const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+                        const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1 });
                         rg.fechas_corte['proactivos'] = formatExcelDate(extractCutoffDate(wbPro, 'proactivos'));
                         rg.proactivos = data.slice(7).filter(r => String(r[2] || '') === '2043').map(r => ({ 'ASESOR': dir[String(r[4])] || `Asesor ${r[4]}`, 'SUC': r[3], 'Polizas_Acumuladas_Mes_Ant.': Number(r[9] || 0), 'Polizas_Del_mes': Number(r[10] || 0), 'Polizas_Acumuladas_Total': Number(r[11] || 0), 'Proactivo_al_mes': String(r[12] || '').trim().toUpperCase() === 'P' ? 'SÍ' : 'NO', 'Pólizas_Faltantes': Number(r[13] || 0) }));
                         console.log(`[SNAPSHOT] proactivos: ${rg.proactivos.length} rows`);
@@ -1321,7 +1323,7 @@ app.post('/api/admin/snapshot', async (req, res) => {
                     rg.fechas_corte['comparativo_vida'] = formatExcelDate(extractCutoffDate(wbComp, 'comparativo_vida'));
                     let sum = null;
                     if (wsP) {
-                        const rawP = XLSX.utils.sheet_to_json(wsP, { header: 1 });
+                        const rawP = xlsx_1.default.utils.sheet_to_json(wsP, { header: 1 });
                         const parseVal = (v) => {
                             if (v === undefined || v === null || v === '')
                                 return 0;
@@ -1362,7 +1364,7 @@ app.post('/api/admin/snapshot', async (req, res) => {
                     let inds = [];
                     if (wsA) {
                         const isRaw = !!wbComp.Sheets['Detalle de Asesores'];
-                        const rawFormat = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 6 });
+                        const rawFormat = xlsx_1.default.utils.sheet_to_json(wsA, { header: 1, range: 6 });
                         const PROMO_SUCURSALES = ['2043', '2856', '2511'];
                         inds = rawFormat
                             .filter((r) => {
@@ -1424,8 +1426,8 @@ app.post('/api/admin/snapshot', async (req, res) => {
             console.error('Error during snapshot resumen_general:', rgError);
         }
         const dbDir = DB_PATH_DYNAMIC;
-        if (!fs.existsSync(dbDir))
-            fs.mkdirSync(dbDir);
+        if (!fs_1.default.existsSync(dbDir))
+            fs_1.default.mkdirSync(dbDir);
         // --- AUTOMATIC ACTIVITY LOG FOR SNAPSHOT/PUSH ---
         try {
             const now = new Date();
@@ -1450,7 +1452,7 @@ app.post('/api/admin/snapshot', async (req, res) => {
             console.error('Error logging snapshot activity:', actErr);
         }
         // ----------------------------------------------
-        fs.writeFileSync(SNAPSHOT_PATH, JSON.stringify(snapshot, null, 2));
+        fs_1.default.writeFileSync(SNAPSHOT_PATH, JSON.stringify(snapshot, null, 2));
         res.json({ success: true, updatedAt: snapshot.updatedAt });
     }
     catch (e) {
@@ -1462,7 +1464,7 @@ app.get('/api/campaigns/dates', (req, res) => {
     try {
         const snapPath = findSnapshotPath();
         if (safeExists(snapPath)) {
-            const snapshotData = JSON.parse(fs.readFileSync(snapPath, 'utf-8'));
+            const snapshotData = JSON.parse(fs_1.default.readFileSync(snapPath, 'utf-8'));
             const dates = snapshotData.campaignDates || snapshotData.data?.campaignDates;
             if (dates && Object.keys(dates).length > 0) {
                 return res.json(dates);
@@ -1502,12 +1504,12 @@ app.post('/api/admin/verify-password', (req, res) => {
         res.status(401).json({ success: false, error: 'Contraseña incorrecta' });
 });
 app.get('/api/historico-metas', (req, res) => {
-    const filePath = path.join(DB_PATH_DYNAMIC, 'historico_metas.json');
-    if (!fs.existsSync(filePath)) {
+    const filePath = path_1.default.join(DB_PATH_DYNAMIC, 'historico_metas.json');
+    if (!fs_1.default.existsSync(filePath)) {
         return res.json({ "2026": {} });
     }
     try {
-        const data = fs.readFileSync(filePath, 'utf8');
+        const data = fs_1.default.readFileSync(filePath, 'utf8');
         res.json(JSON.parse(data));
     }
     catch (e) {
@@ -1519,10 +1521,10 @@ app.get('/api/daniela/resumen', (req, res) => {
     res.setHeader('Pragma', 'no-cache');
     res.setHeader('Expires', '0');
     try {
-        if (!fs.existsSync(SNAPSHOT_PATH)) {
+        if (!fs_1.default.existsSync(SNAPSHOT_PATH)) {
             return res.send("Hola Diego. Aún no se ha compilado ningún snapshot de base de datos.");
         }
-        const snapshot = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
+        const snapshot = JSON.parse(fs_1.default.readFileSync(SNAPSHOT_PATH, 'utf-8'));
         const pag = snapshot.data?.resumen_general?.pagado_pendiente || [];
         let polPag = 0, riPag = 0, roPag = 0, totPag = 0;
         let polPend = 0, riPend = 0, roPend = 0, totPend = 0;
@@ -1563,10 +1565,10 @@ app.get('/api/daniela/datos', (req, res) => {
     res.setHeader('Pragma', 'no-cache');
     res.setHeader('Expires', '0');
     try {
-        if (!fs.existsSync(SNAPSHOT_PATH)) {
+        if (!fs_1.default.existsSync(SNAPSHOT_PATH)) {
             return res.status(404).json({ error: 'Snapshot not found' });
         }
-        const snapshot = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
+        const snapshot = JSON.parse(fs_1.default.readFileSync(SNAPSHOT_PATH, 'utf-8'));
         const originalData = snapshot.data || {};
         const rg = originalData.resumen_general || {};
         const originalCampaigns = originalData.campaigns || {};
@@ -1911,8 +1913,8 @@ app.get('/api/resumen-general', (req, res) => {
     try {
         const { dates, useSnapshot } = req.query;
         // Performance optimization: check for frozen snapshot
-        if (useSnapshot === 'true' && fs.existsSync(SNAPSHOT_PATH)) {
-            const snapshotData = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
+        if (useSnapshot === 'true' && fs_1.default.existsSync(SNAPSHOT_PATH)) {
+            const snapshotData = JSON.parse(fs_1.default.readFileSync(SNAPSHOT_PATH, 'utf-8'));
             if (snapshotData.data?.resumen_general) {
                 // Return flat structure compatible with frontend
                 return res.json({
@@ -1931,7 +1933,7 @@ app.get('/api/resumen-general', (req, res) => {
             result.fechas_corte['asesores_sin_emision'] = formatExcelDate(extractCutoffDate(wbSin, 'asesores_sin_emision'));
             result.asesores_sin_emision = { summaryBySucursal: [], individuals: [] };
             if (wsP) {
-                const dat = XLSX.utils.sheet_to_json(wsP, { header: 1, range: 3 });
+                const dat = xlsx_1.default.utils.sheet_to_json(wsP, { header: 1, range: 3 });
                 result.asesores_sin_emision.summaryBySucursal = dat
                     .filter((r) => String(r[1]) === VALID_SUCURSAL || String(r[4]) === VALID_SUCURSAL)
                     .map((r) => ({
@@ -1951,7 +1953,7 @@ app.get('/api/resumen-general', (req, res) => {
                 }));
             }
             if (wsA) {
-                const dat = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 4 });
+                const dat = xlsx_1.default.utils.sheet_to_json(wsA, { header: 1, range: 4 });
                 result.asesores_sin_emision.individuals = dat
                     .filter((r) => String(r[3]) === VALID_SUCURSAL || String(r[4]) === VALID_SUCURSAL)
                     .map((r) => ({
@@ -1972,17 +1974,17 @@ app.get('/api/resumen-general', (req, res) => {
                 }));
             }
         }
-        const xlsPath1 = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'PagPend.xls');
-        const xlsPath2 = path.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'PagPend.xls');
-        const xlsPath = fs.existsSync(xlsPath1) ? xlsPath1 : (fs.existsSync(xlsPath2) ? xlsPath2 : null);
+        const xlsPath1 = path_1.default.join(BASE_PATH, 'administrador', 'pagado_emitido', 'PagPend.xls');
+        const xlsPath2 = path_1.default.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'PagPend.xls');
+        const xlsPath = fs_1.default.existsSync(xlsPath1) ? xlsPath1 : (fs_1.default.existsSync(xlsPath2) ? xlsPath2 : null);
         if (xlsPath) {
             console.log('[API] Encontrado PagPend.xls original. Decriptando y filtrando...');
             try {
-                const scriptPath = path.join(BASE_PATH, 'scripts', 'process_pagado_pendiente.py');
-                const localVenv = path.join(BASE_PATH, '.venv', 'bin', 'python');
+                const scriptPath = path_1.default.join(BASE_PATH, 'scripts', 'process_pagado_pendiente.py');
+                const localVenv = path_1.default.join(BASE_PATH, '.venv', 'bin', 'python');
                 const hostingerAlt = '/opt/alt/python311/bin/python3';
-                const pythonBin = fs.existsSync(localVenv) ? localVenv : (fs.existsSync(hostingerAlt) ? hostingerAlt : 'python3');
-                execSync(`"${pythonBin}" "${scriptPath}" "${xlsPath}"`, { stdio: 'inherit' });
+                const pythonBin = fs_1.default.existsSync(localVenv) ? localVenv : (fs_1.default.existsSync(hostingerAlt) ? hostingerAlt : 'python3');
+                (0, child_process_1.execSync)(`"${pythonBin}" "${scriptPath}" "${xlsPath}"`, { stdio: 'inherit' });
             }
             catch (peErr) {
                 console.error('[API] Error al procesar PagPend.xls:', peErr);
@@ -1991,7 +1993,7 @@ app.get('/api/resumen-general', (req, res) => {
         const pagPath = 'administrador/pagado_emitidido';
         const wbPag = readExcelData(pagPath, { skipJson: true, date: selectedDates.pagado_pendiente });
         if (wbPag) {
-            const data = XLSX.utils.sheet_to_json(wbPag.Sheets[wbPag.SheetNames[0]], { header: 1 });
+            const data = xlsx_1.default.utils.sheet_to_json(wbPag.Sheets[wbPag.SheetNames[0]], { header: 1 });
             result.fechas_corte['pagado_pendiente'] = formatExcelDate(extractCutoffDate(wbPag, 'pagado_pendiente'));
             const validSucursales = ['2043', '2856', '2511'];
             result.pagado_pendiente = data.slice(3)
@@ -2004,7 +2006,7 @@ app.get('/api/resumen-general', (req, res) => {
         if (wbPro) {
             const ws = wbPro.Sheets['Detalle Asesores'];
             if (ws) {
-                const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+                const data = xlsx_1.default.utils.sheet_to_json(ws, { header: 1 });
                 result.fechas_corte['proactivos'] = formatExcelDate(extractCutoffDate(wbPro, 'proactivos'));
                 result.proactivos = data.slice(7).filter(r => String(r[2] || '') === '2043').map(r => ({ 'ASESOR': dir[String(r[4])] || `Asesor ${r[4]}`, 'SUC': r[3], 'Polizas_Acumuladas_Mes_Ant.': Number(r[9] || 0), 'Polizas_Del_mes': Number(r[10] || 0), 'Polizas_Acumuladas_Total': Number(r[11] || 0), 'Proactivo_al_mes': String(r[12] || '').trim().toUpperCase() === 'P' ? 'SÍ' : 'NO', 'Pólizas_Faltantes': Number(r[13] || 0) }));
             }
@@ -2016,7 +2018,7 @@ app.get('/api/resumen-general', (req, res) => {
             result.fechas_corte['comparativo_vida'] = formatExcelDate(extractCutoffDate(wbComp, 'comparativo_vida'));
             let sum = null;
             if (wsP) {
-                const rawP = XLSX.utils.sheet_to_json(wsP, { header: 1 });
+                const rawP = xlsx_1.default.utils.sheet_to_json(wsP, { header: 1 });
                 if (rawP.length > 2) {
                     const parseVal = (v) => {
                         if (v === undefined || v === null || v === '')
@@ -2054,7 +2056,7 @@ app.get('/api/resumen-general', (req, res) => {
                     }
                 }
                 if (!sum) {
-                    const d = XLSX.utils.sheet_to_json(wsP, { range: 2 })[0] || {};
+                    const d = xlsx_1.default.utils.sheet_to_json(wsP, { range: 2 })[0] || {};
                     sum = {
                         Polizas_Pagadas_Año_Anterior: Number(d['Polizas Pagadas Año Anterior'] || d[0] || 0),
                         Polizas_Pagadas_Año_Actual: Number(d['Polizas Pagadas Año Actual'] || d[1] || 0),
@@ -2066,7 +2068,7 @@ app.get('/api/resumen-general', (req, res) => {
             let inds = [];
             if (wsA) {
                 const isRaw = !!wbComp.Sheets['Detalle de Asesores'];
-                const rawFormat = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 6 });
+                const rawFormat = xlsx_1.default.utils.sheet_to_json(wsA, { header: 1, range: 6 });
                 const PROMO_SUCURSALES = ['2043', '2856', '2511'];
                 inds = rawFormat
                     .filter((r) => {
@@ -2121,20 +2123,20 @@ app.get('/api/resumen-general', (req, res) => {
 // Dual-write system: data is stored in BOTH db/ (in the repo) AND
 // ~/.panel_campanas_data/ (outside repo, survives git deploys).
 // On read, both locations are merged so data is never lost.
-const PERSISTENT_DIR = path.join(os.homedir(), '.panel_campanas_data');
+const PERSISTENT_DIR = path_1.default.join(os_1.default.homedir(), '.panel_campanas_data');
 const LOCAL_DB_DIR = DB_PATH_DYNAMIC;
 // Ensure both directories exist
 [PERSISTENT_DIR, LOCAL_DB_DIR].forEach(dir => {
-    if (!fs.existsSync(dir))
-        fs.mkdirSync(dir, { recursive: true });
+    if (!fs_1.default.existsSync(dir))
+        fs_1.default.mkdirSync(dir, { recursive: true });
 });
 console.log(`[STORAGE] Local DB: ${LOCAL_DB_DIR}`);
 console.log(`[STORAGE] Persistent backup: ${PERSISTENT_DIR}`);
 // --- Generic helpers for dual-read/write ---
 const readJsonFile = (filePath) => {
     try {
-        if (fs.existsSync(filePath)) {
-            const raw = fs.readFileSync(filePath, 'utf-8').trim();
+        if (fs_1.default.existsSync(filePath)) {
+            const raw = fs_1.default.readFileSync(filePath, 'utf-8').trim();
             if (raw)
                 return JSON.parse(raw);
         }
@@ -2146,10 +2148,10 @@ const readJsonFile = (filePath) => {
 };
 const writeJsonFile = (filePath, data) => {
     try {
-        const dir = path.dirname(filePath);
-        if (!fs.existsSync(dir))
-            fs.mkdirSync(dir, { recursive: true });
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+        const dir = path_1.default.dirname(filePath);
+        if (!fs_1.default.existsSync(dir))
+            fs_1.default.mkdirSync(dir, { recursive: true });
+        fs_1.default.writeFileSync(filePath, JSON.stringify(data, null, 2));
     }
     catch (e) {
         console.error(`[STORAGE] Error writing ${filePath}:`, e);
@@ -2170,30 +2172,30 @@ const mergeComentarios = (a, b) => {
 };
 // Dual-read: merge from both locations
 const dualReadArray = (filename) => {
-    const localPath = path.join(LOCAL_DB_DIR, filename);
-    const persistPath = path.join(PERSISTENT_DIR, filename);
+    const localPath = path_1.default.join(LOCAL_DB_DIR, filename);
+    const persistPath = path_1.default.join(PERSISTENT_DIR, filename);
     const local = readJsonFile(localPath) || [];
     const persist = readJsonFile(persistPath) || [];
     return mergeActivities(Array.isArray(local) ? local : [], Array.isArray(persist) ? persist : []);
 };
 const dualReadObject = (filename) => {
-    const localPath = path.join(LOCAL_DB_DIR, filename);
-    const persistPath = path.join(PERSISTENT_DIR, filename);
+    const localPath = path_1.default.join(LOCAL_DB_DIR, filename);
+    const persistPath = path_1.default.join(PERSISTENT_DIR, filename);
     const local = readJsonFile(localPath) || {};
     const persist = readJsonFile(persistPath) || {};
     return mergeComentarios(typeof persist === 'object' && !Array.isArray(persist) ? persist : {}, typeof local === 'object' && !Array.isArray(local) ? local : {});
 };
 // Dual-write: save to both locations
 const dualWrite = (filename, data) => {
-    writeJsonFile(path.join(LOCAL_DB_DIR, filename), data);
-    writeJsonFile(path.join(PERSISTENT_DIR, filename), data);
+    writeJsonFile(path_1.default.join(LOCAL_DB_DIR, filename), data);
+    writeJsonFile(path_1.default.join(PERSISTENT_DIR, filename), data);
 };
 // ===================== CENTRO DE AVISOS =====================
-const ALERTS_FILE_PATH = path.join(DB_PATH_DYNAMIC, 'alertas_pendientes.json');
+const ALERTS_FILE_PATH = path_1.default.join(DB_PATH_DYNAMIC, 'alertas_pendientes.json');
 app.get('/api/admin/alertas', (req, res) => {
     try {
-        if (fs.existsSync(ALERTS_FILE_PATH)) {
-            const data = JSON.parse(fs.readFileSync(ALERTS_FILE_PATH, 'utf-8'));
+        if (fs_1.default.existsSync(ALERTS_FILE_PATH)) {
+            const data = JSON.parse(fs_1.default.readFileSync(ALERTS_FILE_PATH, 'utf-8'));
             return res.json(data);
         }
         res.json({ generatedAt: null, totalNew: 0, alerts: [] });
@@ -2204,13 +2206,13 @@ app.get('/api/admin/alertas', (req, res) => {
 });
 app.post('/api/admin/alertas/:id/sent', (req, res) => {
     try {
-        if (!fs.existsSync(ALERTS_FILE_PATH))
+        if (!fs_1.default.existsSync(ALERTS_FILE_PATH))
             return res.status(404).json({ error: 'No alerts file' });
-        const data = JSON.parse(fs.readFileSync(ALERTS_FILE_PATH, 'utf-8'));
+        const data = JSON.parse(fs_1.default.readFileSync(ALERTS_FILE_PATH, 'utf-8'));
         const alert = (data.alerts || []).find((a) => a.id === req.params.id);
         if (alert) {
             alert.sent = true;
-            fs.writeFileSync(ALERTS_FILE_PATH, JSON.stringify(data, null, 2));
+            fs_1.default.writeFileSync(ALERTS_FILE_PATH, JSON.stringify(data, null, 2));
         }
         res.json({ success: true });
     }
@@ -2220,11 +2222,11 @@ app.post('/api/admin/alertas/:id/sent', (req, res) => {
 });
 app.delete('/api/admin/alertas/clear-sent', (req, res) => {
     try {
-        if (!fs.existsSync(ALERTS_FILE_PATH))
+        if (!fs_1.default.existsSync(ALERTS_FILE_PATH))
             return res.json({ success: true });
-        const data = JSON.parse(fs.readFileSync(ALERTS_FILE_PATH, 'utf-8'));
+        const data = JSON.parse(fs_1.default.readFileSync(ALERTS_FILE_PATH, 'utf-8'));
         data.alerts = (data.alerts || []).filter((a) => !a.sent);
-        fs.writeFileSync(ALERTS_FILE_PATH, JSON.stringify(data, null, 2));
+        fs_1.default.writeFileSync(ALERTS_FILE_PATH, JSON.stringify(data, null, 2));
         res.json({ success: true, remaining: data.alerts.length });
     }
     catch (e) {
@@ -2298,12 +2300,12 @@ const POLIZAS_PATH = getProtectedPath('estatus polizas');
 app.get('/api/estatus-polizas/fechas', (req, res) => {
     try {
         const { inactivos } = req.query;
-        const reportesPath = path.join(POLIZAS_PATH, 'reportes');
-        if (!fs.existsSync(reportesPath))
+        const reportesPath = path_1.default.join(POLIZAS_PATH, 'reportes');
+        if (!fs_1.default.existsSync(reportesPath))
             return res.json([]);
         const fechas = [];
-        fs.readdirSync(reportesPath, { withFileTypes: true }).filter(d => d.isDirectory() && /^\d{4}-\d{2}$/.test(d.name)).forEach(dir => {
-            fs.readdirSync(path.join(reportesPath, dir.name)).filter(f => {
+        fs_1.default.readdirSync(reportesPath, { withFileTypes: true }).filter(d => d.isDirectory() && /^\d{4}-\d{2}$/.test(d.name)).forEach(dir => {
+            fs_1.default.readdirSync(path_1.default.join(reportesPath, dir.name)).filter(f => {
                 if (!f.startsWith('reporte_') || !f.endsWith('.json') || f.includes('summary'))
                     return false;
                 return inactivos === 'true' ? f.includes('_inactivos') : !f.includes('_inactivos');
@@ -2325,15 +2327,15 @@ app.get('/api/estatus-polizas/reporte/:fecha', (req, res) => {
         const { summary, inactivos } = req.query;
         const suffix = summary === 'true' ? '_summary.json' : '.json';
         const inactivoStr = inactivos === 'true' ? '_inactivos' : '';
-        const p = path.join(POLIZAS_PATH, 'reportes', fecha.substring(0, 7), `reporte_${fecha}${inactivoStr}${suffix}`);
-        if (!fs.existsSync(p)) {
+        const p = path_1.default.join(POLIZAS_PATH, 'reportes', fecha.substring(0, 7), `reporte_${fecha}${inactivoStr}${suffix}`);
+        if (!fs_1.default.existsSync(p)) {
             // Fallback to full if summary doesn't exist
-            const fullP = path.join(POLIZAS_PATH, 'reportes', fecha.substring(0, 7), `reporte_${fecha}${inactivoStr}.json`);
-            if (!fs.existsSync(fullP))
+            const fullP = path_1.default.join(POLIZAS_PATH, 'reportes', fecha.substring(0, 7), `reporte_${fecha}${inactivoStr}.json`);
+            if (!fs_1.default.existsSync(fullP))
                 return res.status(404).json({ error: 'Not found' });
-            return res.json(JSON.parse(fs.readFileSync(fullP, 'utf-8')));
+            return res.json(JSON.parse(fs_1.default.readFileSync(fullP, 'utf-8')));
         }
-        res.json(JSON.parse(fs.readFileSync(p, 'utf-8')));
+        res.json(JSON.parse(fs_1.default.readFileSync(p, 'utf-8')));
     }
     catch (e) {
         res.status(500).json({ error: 'Read error' });
@@ -2344,10 +2346,10 @@ app.get('/api/estatus-polizas/cambios/:fecha', (req, res) => {
         const { fecha } = req.params;
         const { inactivos } = req.query;
         const inactivoStr = inactivos === 'true' ? '_inactivos' : '';
-        const p = path.join(POLIZAS_PATH, 'cambios', fecha.substring(0, 7), `cambios_${fecha}${inactivoStr}.json`);
-        if (!fs.existsSync(p))
+        const p = path_1.default.join(POLIZAS_PATH, 'cambios', fecha.substring(0, 7), `cambios_${fecha}${inactivoStr}.json`);
+        if (!fs_1.default.existsSync(p))
             return res.json(null);
-        res.json(JSON.parse(fs.readFileSync(p, 'utf-8')));
+        res.json(JSON.parse(fs_1.default.readFileSync(p, 'utf-8')));
     }
     catch (e) {
         res.status(500).json({ error: 'Read error' });
@@ -2355,10 +2357,10 @@ app.get('/api/estatus-polizas/cambios/:fecha', (req, res) => {
 });
 app.get('/api/estatus-polizas/seguimiento', (req, res) => {
     try {
-        const p = path.join(POLIZAS_PATH, 'seguimiento', 'seguimiento_activo.json');
-        if (!fs.existsSync(p))
+        const p = path_1.default.join(POLIZAS_PATH, 'seguimiento', 'seguimiento_activo.json');
+        if (!fs_1.default.existsSync(p))
             return res.json({ ultima_actualizacion: null, pendientes_recuperar: [], recuperadas_este_mes: [] });
-        res.json(JSON.parse(fs.readFileSync(p, 'utf-8')));
+        res.json(JSON.parse(fs_1.default.readFileSync(p, 'utf-8')));
     }
     catch (e) {
         res.status(500).json({ error: 'Read error' });
@@ -2401,10 +2403,10 @@ app.post('/api/estatus-polizas/comentarios', (req, res) => {
 const STAFF_FILE = 'staff_activity.json';
 app.get('/api/admin/staff-activity', (req, res) => {
     try {
-        const filePath = path.join(DB_PATH_DYNAMIC, STAFF_FILE);
-        if (!fs.existsSync(filePath))
+        const filePath = path_1.default.join(DB_PATH_DYNAMIC, STAFF_FILE);
+        if (!fs_1.default.existsSync(filePath))
             return res.json({});
-        res.json(JSON.parse(fs.readFileSync(filePath, 'utf-8')));
+        res.json(JSON.parse(fs_1.default.readFileSync(filePath, 'utf-8')));
     }
     catch (e) {
         res.status(500).json({ error: 'Read error' });
@@ -2412,8 +2414,8 @@ app.get('/api/admin/staff-activity', (req, res) => {
 });
 app.post('/api/admin/staff-activity', (req, res) => {
     try {
-        const filePath = path.join(DB_PATH_DYNAMIC, STAFF_FILE);
-        fs.writeFileSync(filePath, JSON.stringify(req.body, null, 2));
+        const filePath = path_1.default.join(DB_PATH_DYNAMIC, STAFF_FILE);
+        fs_1.default.writeFileSync(filePath, JSON.stringify(req.body, null, 2));
         res.json({ success: true });
     }
     catch (e) {
@@ -2423,21 +2425,21 @@ app.post('/api/admin/staff-activity', (req, res) => {
 app.use((req, res) => {
     if (req.path.startsWith('/api'))
         return res.status(404).json({ error: 'API not found' });
-    if (path.extname(req.path))
+    if (path_1.default.extname(req.path))
         return res.status(404).send('Not found');
     const cwd = process.cwd();
     const candidateIndexFiles = [
-        path.join(DIST_PATH, 'index.html'),
-        path.join(cwd, 'index.html'),
-        path.join(cwd, 'dist', 'index.html'),
-        path.join(__dirname, 'index.html'),
-        path.join(__dirname, 'dist', 'index.html'),
-        path.join(BASE_PATH, 'index.html'),
-        path.join(BASE_PATH, 'dist', 'index.html'),
+        path_1.default.join(DIST_PATH, 'index.html'),
+        path_1.default.join(cwd, 'index.html'),
+        path_1.default.join(cwd, 'dist', 'index.html'),
+        path_1.default.join(__dirname, 'index.html'),
+        path_1.default.join(__dirname, 'dist', 'index.html'),
+        path_1.default.join(BASE_PATH, 'index.html'),
+        path_1.default.join(BASE_PATH, 'dist', 'index.html'),
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/index.html',
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist/index.html'
     ];
-    const foundIndex = candidateIndexFiles.find(p => fs.existsSync(p));
+    const foundIndex = candidateIndexFiles.find(p => fs_1.default.existsSync(p));
     if (foundIndex) {
         res.setHeader('Content-Type', 'text/html');
         return res.sendFile(foundIndex);
@@ -2461,17 +2463,17 @@ const preloadCampaigns = () => {
                 if (c === 'convenciones') {
                     const ws = wb.Sheets[wb.SheetNames[0]];
                     if (!ws._cachedData)
-                        ws._cachedData = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
+                        ws._cachedData = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
                 }
                 else if (c === 'camino_cumbre') {
                     const ws = wb.Sheets[wb.SheetNames[0]];
                     if (!ws._cachedData)
-                        ws._cachedData = XLSX.utils.sheet_to_json(ws, { header: 1, range: 3 });
+                        ws._cachedData = xlsx_1.default.utils.sheet_to_json(ws, { header: 1, range: 3 });
                 }
                 else if (c === 'graduacion') {
                     const ws = wb.Sheets[wb.SheetNames[0]];
                     if (!ws._cachedJson)
-                        ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 2 });
+                        ws._cachedJson = xlsx_1.default.utils.sheet_to_json(ws, { range: 2 });
                 }
                 else if (c === 'mdrt') {
                     const ws = wb.Sheets[wb.SheetNames.find((n) => n.toUpperCase() === 'MDRT') || wb.SheetNames[0]];
@@ -2481,14 +2483,14 @@ const preloadCampaigns = () => {
                 else if (c === 'legion_centurion') {
                     const ws = wb.Sheets[wb.SheetNames[0]];
                     if (!ws._cachedJson)
-                        ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 'A11:Z10000' });
+                        ws._cachedJson = xlsx_1.default.utils.sheet_to_json(ws, { range: 'A11:Z10000' });
                 }
                 else if (c === 'proactiva_tech') {
                     const selector = (n) => n.toLowerCase().includes('asesores');
                     const sheetName = wb.SheetNames.find(selector) || wb.SheetNames[0];
                     const ws = wb.Sheets[sheetName];
                     if (!ws._cachedJson)
-                        ws._cachedJson = XLSX.utils.sheet_to_json(ws, { range: 6 });
+                        ws._cachedJson = xlsx_1.default.utils.sheet_to_json(ws, { range: 6 });
                 }
             }
         }
@@ -2504,13 +2506,13 @@ const preloadCampaigns = () => {
 app.get('*', (req, res) => {
     const cwd = process.cwd();
     const candidateIndexFiles = [
-        path.join(DIST_PATH, 'index.html'),
-        path.join(cwd, 'index.html'),
-        path.join(cwd, 'dist', 'index.html'),
-        path.join(__dirname, 'index.html'),
-        path.join(__dirname, 'dist', 'index.html'),
-        path.join(BASE_PATH, 'index.html'),
-        path.join(BASE_PATH, 'dist', 'index.html'),
+        path_1.default.join(DIST_PATH, 'index.html'),
+        path_1.default.join(cwd, 'index.html'),
+        path_1.default.join(cwd, 'dist', 'index.html'),
+        path_1.default.join(__dirname, 'index.html'),
+        path_1.default.join(__dirname, 'dist', 'index.html'),
+        path_1.default.join(BASE_PATH, 'index.html'),
+        path_1.default.join(BASE_PATH, 'dist', 'index.html'),
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/index.html',
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist/index.html'
     ];
@@ -2527,7 +2529,7 @@ else {
     const listenPort = process.env.PORT || PORT;
     if (typeof listenPort === 'string' && safeExists(listenPort)) {
         try {
-            fs.unlinkSync(listenPort);
+            fs_1.default.unlinkSync(listenPort);
         }
         catch (e) { }
     }
