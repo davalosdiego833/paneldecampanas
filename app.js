@@ -2518,6 +2518,12 @@ app.get('*', (req, res) => {
     res.status(404).send(`Frontend not built. CWD: ${cwd}, __dirname: ${__dirname}, BASE_PATH: ${BASE_PATH}`);
 });
 const listenPort = process.env.PORT || 5005;
-app.listen(listenPort, () => {
+const server = app.listen(listenPort, () => {
     console.log(`🚀 Fortress Server running on port ${listenPort}`);
+});
+server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+        console.warn(`[PORT] ${listenPort} in use, fallback to random port`);
+        app.listen(0);
+    }
 });

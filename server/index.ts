@@ -2472,6 +2472,13 @@ app.get('*', (req, res) => {
 
 const listenPort = process.env.PORT || 5005;
 
-app.listen(listenPort, () => {
+const server = app.listen(listenPort, () => {
     console.log(`🚀 Fortress Server running on port ${listenPort}`);
+});
+
+server.on('error', (err: any) => {
+    if (err.code === 'EADDRINUSE') {
+        console.warn(`[PORT] ${listenPort} in use, fallback to random port`);
+        app.listen(0);
+    }
 });
