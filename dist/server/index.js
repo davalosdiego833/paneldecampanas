@@ -497,11 +497,7 @@ const findSnapshotPath = () => {
         SNAPSHOT_PATH,
         path.join(BASE_PATH, 'db', 'resumen_snapshot.json'),
         path.join(cwd, 'db', 'resumen_snapshot.json'),
-        path.join(__dirname, 'db', 'resumen_snapshot.json'),
-        path.join(__dirname, '..', 'db', 'resumen_snapshot.json'),
-        path.join(__dirname, '../..', 'db', 'resumen_snapshot.json'),
-        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/resumen_snapshot.json',
-        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json'
+        path.join(__dirname, 'db', 'resumen_snapshot.json')
     ];
     return candidates.find(p => safeExists(p)) || SNAPSHOT_PATH;
 };
