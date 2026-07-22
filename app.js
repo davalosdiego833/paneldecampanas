@@ -60,6 +60,7 @@ const getProtectedPath = (folder) => {
     return path.join(BASE_PATH, f);
 };
 const DB_PATH_DYNAMIC = getProtectedPath('db');
+const SNAPSHOT_PATH = path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json');
 const ASSETS_PATH = path.join(BASE_PATH, 'assets');
 const THEMES_PATH = path.join(BASE_PATH, 'themes');
 const ADMIN_PATH = getProtectedPath('administrador');
@@ -495,6 +496,7 @@ const findSnapshotPath = () => {
     const cwd = process.cwd();
     const candidates = [
         SNAPSHOT_PATH,
+        path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json'),
         path.join(BASE_PATH, 'db', 'resumen_snapshot.json'),
         path.join(cwd, 'db', 'resumen_snapshot.json'),
         path.join(__dirname, 'db', 'resumen_snapshot.json')
@@ -2231,7 +2233,6 @@ app.delete('/api/admin/alertas/clear-sent', (req, res) => {
 });
 // ===================== LOG DE ACTIVIDAD =====================
 const ACTIVITY_FILE = 'actividad.json';
-const SNAPSHOT_PATH = path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json');
 app.post('/api/activity', (req, res) => {
     try {
         const { asesor, accion } = req.body;
