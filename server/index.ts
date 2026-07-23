@@ -1930,10 +1930,15 @@ app.get('/api/daniela/datos', (req, res) => {
 app.get('/api/resumen-general', (req, res) => {
     try {
         const { dates } = req.query;
+        let selectedDates: Record<string, any> = {};
+        if (dates) {
+            try { selectedDates = JSON.parse(dates as string); } catch (e) {}
+        }
+        const hasHistorical = Object.values(selectedDates).some(v => v !== null && v !== undefined && v !== '');
 
         // Performance optimization: check for frozen snapshot
         const snapPath = findSnapshotPath();
-        if (!dates && safeExists(snapPath)) {
+        if (!hasHistorical && safeExists(snapPath)) {
             const snapshotData = JSON.parse(fs.readFileSync(snapPath, 'utf-8'));
             const rg = snapshotData.data?.resumen_general || snapshotData.resumen_general;
             if (rg) {
@@ -1946,7 +1951,6 @@ app.get('/api/resumen-general', (req, res) => {
         }
 
         const VALID_SUCURSAL = '2043';
-        const selectedDates = dates ? JSON.parse(dates as string) : {};
         const result: Record<string, any> = { fechas_corte: {} };
 
         const sinEmPath = 'administrador/asesores_sin_emision';
