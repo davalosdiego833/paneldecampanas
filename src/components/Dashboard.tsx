@@ -25,13 +25,21 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor, themeMode }) => {
         setLoading(true);
         const url = `/api/campaign/${campaign}/data/${advisor}${selectedDate ? `?date=${selectedDate}` : ''}`;
         fetch(url)
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) return null;
+                return res.json();
+            })
             .then(d => {
-                setData(d);
+                if (d && !d.error) {
+                    setData(d);
+                } else {
+                    setData(null);
+                }
                 setLoading(false);
             })
             .catch(err => {
                 console.error('Error fetching dashboard data:', err);
+                setData(null);
                 setLoading(false);
             });
     }, [campaign, advisor, selectedDate]);

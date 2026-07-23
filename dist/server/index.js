@@ -68,6 +68,39 @@ let cachedDirectoryMap = {};
 let lastDirectoryMtime = 0;
 const getCachedAdvisors = () => {
     getAdvisorDirectory(); // This populates the caches if needed
+    if (cachedAdvisors.length > 0)
+        return cachedAdvisors;
+    const snapPath = findSnapshotPath();
+    if (safeExists(snapPath)) {
+        try {
+            const snap = JSON.parse(fs.readFileSync(snapPath, 'utf-8'));
+            const data = snap.data || snap;
+            const namesSet = new Set();
+            if (data.advisors && Array.isArray(data.advisors)) {
+                data.advisors.forEach((a) => namesSet.add(a));
+            }
+            if (data.campaigns) {
+                Object.values(data.campaigns).forEach((arr) => {
+                    if (Array.isArray(arr)) {
+                        arr.forEach((r) => {
+                            if (r.Asesor)
+                                namesSet.add(r.Asesor);
+                        });
+                    }
+                });
+            }
+            if (data.resumen_general?.pagado_pendiente) {
+                data.resumen_general.pagado_pendiente.forEach((r) => {
+                    if (r['Nombre Asesor'])
+                        namesSet.add(r['Nombre Asesor']);
+                });
+            }
+            if (namesSet.size > 0) {
+                cachedAdvisors = Array.from(namesSet).sort();
+            }
+        }
+        catch (e) { }
+    }
     return cachedAdvisors;
 };
 // Helper to get advisor directory
@@ -891,10 +924,11 @@ app.post('/api/active-theme', (req, res) => {
 });
 app.get('/api/admin/summary', (req, res) => {
     try {
-        const { date, useSnapshot } = req.query;
+        const { date } = req.query;
         // Performance optimization: always use snapshot when no historical date is set
-        if (!date && fs.existsSync(SNAPSHOT_PATH)) {
-            const snapshotData = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
+        const snapPath = findSnapshotPath();
+        if (!date && safeExists(snapPath)) {
+            const snapshotData = JSON.parse(fs.readFileSync(snapPath, 'utf-8'));
             const data = snapshotData.data || snapshotData;
             if (data && data.campaigns && (data.campaigns.mdrt || data.campaigns.camino_cumbre || data.campaigns.graduacion)) {
                 // Return campaigns + dates in flat structure compatible with frontend
@@ -1074,9 +1108,10 @@ app.get('/api/admin/summary', (req, res) => {
     }
 });
 app.get('/api/admin/snapshot-status', (req, res) => {
-    if (fs.existsSync(SNAPSHOT_PATH)) {
-        const stats = fs.statSync(SNAPSHOT_PATH);
-        const data = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
+    const snapPath = findSnapshotPath();
+    if (safeExists(snapPath)) {
+        const stats = fs.statSync(snapPath);
+        const data = JSON.parse(fs.readFileSync(snapPath, 'utf-8'));
         return res.json({
             exists: true,
             updatedAt: data.updatedAt,
@@ -1907,15 +1942,17 @@ app.get('/api/daniela/datos', (req, res) => {
 });
 app.get('/api/resumen-general', (req, res) => {
     try {
-        const { dates, useSnapshot } = req.query;
+        const { dates } = req.query;
         // Performance optimization: check for frozen snapshot
-        if (useSnapshot === 'true' && fs.existsSync(SNAPSHOT_PATH)) {
-            const snapshotData = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf-8'));
-            if (snapshotData.data?.resumen_general) {
+        const snapPath = findSnapshotPath();
+        if (!dates && safeExists(snapPath)) {
+            const snapshotData = JSON.parse(fs.readFileSync(snapPath, 'utf-8'));
+            const rg = snapshotData.data?.resumen_general || snapshotData.resumen_general;
+            if (rg) {
                 // Return flat structure compatible with frontend
                 return res.json({
-                    ...snapshotData.data.resumen_general,
-                    fechas_corte: snapshotData.data.resumen_general.fechas_corte || snapshotData.data.fechas_corte || {}
+                    ...rg,
+                    fechas_corte: rg.fechas_corte || snapshotData.data?.fechas_corte || snapshotData.fechas_corte || {}
                 });
             }
         }

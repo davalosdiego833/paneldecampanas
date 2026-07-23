@@ -380,9 +380,17 @@ const AdminDashboard: React.FC<Props> = ({ onLogout, onBack, themeMode, toggleTh
 
     useEffect(() => {
         const checkAndFetch = async () => {
-            const res = await fetch('/api/admin/snapshot-status');
-            const status = await res.json();
-            fetchData(status?.exists || false);
+            try {
+                const res = await fetch('/api/admin/snapshot-status');
+                if (res.ok) {
+                    const status = await res.json();
+                    fetchData(status?.exists !== false);
+                } else {
+                    fetchData(true);
+                }
+            } catch {
+                fetchData(true);
+            }
         };
         checkAndFetch();
     }, []);
