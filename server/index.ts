@@ -75,16 +75,15 @@ let cachedAdvisors: string[] = [];
 let cachedDirectoryMap: Record<string, string> = {};
 let lastDirectoryMtime = 0;
 
-const getCachedAdvisors = () => {
-    getAdvisorDirectory(); // This populates the caches if needed
-    if (cachedAdvisors.length > 0) return cachedAdvisors;
-
+const populateDirectoryFromSnapshot = () => {
     const snapPath = findSnapshotPath();
     if (safeExists(snapPath)) {
         try {
             const snap = JSON.parse(fs.readFileSync(snapPath, 'utf-8'));
             const data = snap.data || snap;
+            const dir: Record<string, string> = {};
             const namesSet = new Set<string>();
+
             if (data.advisors && Array.isArray(data.advisors)) {
                 data.advisors.forEach((a: string) => namesSet.add(a));
             }
@@ -93,6 +92,7 @@ const getCachedAdvisors = () => {
                     if (Array.isArray(arr)) {
                         arr.forEach((r: any) => {
                             if (r.Asesor) namesSet.add(r.Asesor);
+                            if (r.Clave && r.Asesor) dir[String(r.Clave)] = String(r.Asesor).trim();
                         });
                     }
                 });
@@ -100,12 +100,21 @@ const getCachedAdvisors = () => {
             if (data.resumen_general?.pagado_pendiente) {
                 data.resumen_general.pagado_pendiente.forEach((r: any) => {
                     if (r['Nombre Asesor']) namesSet.add(r['Nombre Asesor']);
+                    if (r.Clave && r['Nombre Asesor']) dir[String(r.Clave)] = String(r['Nombre Asesor']).trim();
                 });
             }
-            if (namesSet.size > 0) {
-                cachedAdvisors = Array.from(namesSet).sort();
+            if (namesSet.size > 0 || Object.keys(dir).length > 0) {
+                cachedDirectoryMap = dir;
+                cachedAdvisors = Array.from(namesSet.size > 0 ? namesSet : new Set(Object.values(dir))).sort();
             }
         } catch (e) {}
+    }
+};
+
+const getCachedAdvisors = () => {
+    getAdvisorDirectory(); // This populates the caches if needed
+    if (cachedAdvisors.length === 0) {
+        populateDirectoryFromSnapshot();
     }
     return cachedAdvisors;
 };
@@ -117,10 +126,17 @@ const getAdvisorDirectory = () => {
         path.join(ADMIN_PATH, 'directorio_asesores.xlsx'),
         path.join(BASE_PATH, 'administrador', 'directorio_asesores.xlsx'),
         path.join(cwd, 'administrador', 'directorio_asesores.xlsx'),
-        path.join(safeDirname, 'administrador', 'directorio_asesores.xlsx')
+        path.join(safeDirname, 'administrador', 'directorio_asesores.xlsx'),
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/administrador/directorio_asesores.xlsx',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/administrador/directorio_asesores.xlsx'
     ];
-    const filePath = candidateFiles.find(p => safeExists(p)) || path.join(ADMIN_PATH, 'directorio_asesores.xlsx');
-    if (!safeExists(filePath)) return {};
+    const filePath = candidateFiles.find(p => safeExists(p));
+    if (!filePath) {
+        if (Object.keys(cachedDirectoryMap).length === 0) {
+            populateDirectoryFromSnapshot();
+        }
+        return cachedDirectoryMap;
+    }
 
     try {
         const mtime = fs.statSync(filePath).mtimeMs;
@@ -135,7 +151,7 @@ const getAdvisorDirectory = () => {
         data.forEach(row => {
             const keys = Object.keys(row);
             const claveKey = keys.find(k => k.toLowerCase().trim() === 'clave');
-            const nombreKey = keys.find(k => k.toLowerCase().trim() === 'nombre_completo' || k.toLowerCase().trim() === 'nombre completo');
+            const nombreKey = keys.find(k => k.toLowerCase().trim() === 'nombre_completo' || k.toLowerCase().trim() === 'nombre completo' || k.toLowerCase().trim() === 'nombre');
 
             if (claveKey && nombreKey && row[claveKey] && row[nombreKey]) {
                 const cleanName = String(row[nombreKey]).replace(/Ð/g, 'Ñ').replace(/ð/g, 'ñ').trim();
@@ -143,14 +159,19 @@ const getAdvisorDirectory = () => {
             }
         });
 
-        cachedDirectoryMap = directory;
-        cachedAdvisors = Object.values(directory).sort();
-        lastDirectoryMtime = mtime;
+        if (Object.keys(directory).length > 0) {
+            cachedDirectoryMap = directory;
+            cachedAdvisors = Object.values(directory).sort();
+            lastDirectoryMtime = mtime;
+        } else {
+            populateDirectoryFromSnapshot();
+        }
 
-        return directory;
+        return cachedDirectoryMap;
     } catch (e) {
-        console.error('Error reading director:', e);
-        return {};
+        console.error('Error reading directory:', e);
+        populateDirectoryFromSnapshot();
+        return cachedDirectoryMap;
     }
 };
 
