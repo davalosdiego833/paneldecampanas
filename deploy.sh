@@ -49,7 +49,8 @@ rsync -avz -e "ssh $SSH_OPTS" .htaccess $SERVER_USER@$SERVER_IP:$PARENT_DIR/node
 
 # 3.1 Blindaje de Datos (Zona Inmune en folder nodejs)
 echo "🛡️ Protegiendo archivos de datos y campañas..."
-rsync -avz --exclude "comentarios_polizas.json" --exclude "actividad.json" --exclude "staff_activity.json" --exclude "alertas_pendientes.json" --exclude "resumen_snapshot.json" --exclude "resumen_snapshot_prev.json" -e "ssh $SSH_OPTS" db/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/db/
+rsync -avz --exclude "comentarios_polizas.json" --exclude "actividad.json" --exclude "staff_activity.json" -e "ssh $SSH_OPTS" db/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/db/
+rsync -avz --exclude "comentarios_polizas.json" --exclude "actividad.json" --exclude "staff_activity.json" -e "ssh $SSH_OPTS" db/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/db/ 2>/dev/null || true
 rsync -avz -e "ssh $SSH_OPTS" administrador/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/administrador/
 rsync -avz -e "ssh $SSH_OPTS" camino_cumbre/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/camino_cumbre/
 rsync -avz -e "ssh $SSH_OPTS" convenciones/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/convenciones/
@@ -73,16 +74,12 @@ ssh $SSH_OPTS $SERVER_USER@$SERVER_IP << EOF
     
     # Preparar ejecución en raíz (public_html)
     # Copiamos todos los archivos del servidor para que los imports relativos funcionen
-    cp \$PARENT_DIR/public_html/dist/server/*.js \$PARENT_DIR/public_html/
+    cp \$PARENT_DIR/public_html/dist/server/*.js \$PARENT_DIR/public_html/ 2>/dev/null || true
+    cp \$PARENT_DIR/public_html/dist/server/*.js \$PARENT_DIR/nodejs/ 2>/dev/null || true
     # Hostinger busca app.js
-    cp \$PARENT_DIR/public_html/index.js \$PARENT_DIR/public_html/app.js
+    cp \$PARENT_DIR/public_html/index.js \$PARENT_DIR/public_html/app.js 2>/dev/null || true
     
-    ln -sfn \$PARENT_DIR/nodejs/node_modules \$PARENT_DIR/public_html/node_modules
-    
-    # GENERAR ALERTAS EN SERVIDOR (compara snapshot anterior real vs datos nuevos)
-    cd \$PARENT_DIR/nodejs
-    echo "🔔 Regenerando snapshot y alertas en servidor..."
-    /opt/alt/alt-nodejs18/root/usr/bin/node --experimental-vm-modules actualizar_snapshot.js 2>&1 || echo "⚠️ Alertas: ejecución con warnings (puede ser normal)"
+    ln -sfn \$PARENT_DIR/nodejs/node_modules \$PARENT_DIR/public_html/node_modules 2>/dev/null || true
     
     # REINICIO DE PASSENGER (Solo touch, sin pkill)
     mkdir -p \$PARENT_DIR/public_html/tmp
