@@ -1,5 +1,5 @@
 {
-  "updatedAt": "28/7/2026, 10:02:24 a.m.",
+  "updatedAt": "28/7/2026, 11:40:11 a.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -506,6 +506,44 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 3695.34,
           "Total _Prima_Pendiente": 3695.34
+        }
+      ],
+      "pagado_pendiente_reclutas": [
+        {
+          "Nombre Asesor": "JOSE ANTEMIO OLIVA SANTOS",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 3,
+          "Recibo_Inicial_Pagado": 5863.45,
+          "Recibo_Ordinario_Pagado": 1160.7,
+          "Total _Prima_Pagada": 7024.15,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 47128.14,
+          "Total _Prima_Pendiente": 47128.14
+        },
+        {
+          "Nombre Asesor": "GERARDO DANIEL BARAJAS TORRES",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 1599.61,
+          "Total _Prima_Pagada": 1599.61,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 0,
+          "Total _Prima_Pendiente": 0
+        },
+        {
+          "Nombre Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 0,
+          "Total _Prima_Pagada": 0,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 49140.03,
+          "Total _Prima_Pendiente": 49140.03
         }
       ],
       "asesores_sin_emision": {
@@ -2118,6 +2156,7 @@
     },
     "fechas_corte": {
       "pagado_pendiente": "24 de julio de 2026",
+      "pagado_pendiente_reclutas": "24 de julio de 2026",
       "asesores_sin_emision": "15 de jul de 2026",
       "proactivos": "17 de julio de 2026",
       "comparativo_vida": "30 de junio de 2026"
