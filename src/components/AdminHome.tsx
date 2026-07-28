@@ -156,53 +156,6 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                         <span style={{ fontSize: '1.4rem', color: '#D4AF37', zIndex: 1 }}>→</span>
                     </motion.button>
 
-                    {/* Centro de Avisos */}
-                    <motion.button
-                        whileHover={{ scale: 1.02, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => {
-                            fetch('/api/activity', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({
-                                    asesor: "Administrador",
-                                    accion: "Consultó Centro de Avisos"
-                                })
-                            }).catch(e => console.error('Error', e));
-                            onSelectOption('centro_avisos');
-                        }}
-                        style={{
-                            width: '100%',
-                            padding: '20px 24px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '16px',
-                            background: 'linear-gradient(135deg, rgba(255, 159, 67, 0.15) 0%, rgba(255, 107, 107, 0.08) 100%)',
-                            border: '1px solid rgba(255, 159, 67, 0.3)',
-                            borderRadius: '16px',
-                            cursor: 'pointer',
-                            fontFamily: 'inherit',
-                            position: 'relative',
-                            overflow: 'hidden',
-                        }}
-                    >
-                        <div style={{
-                            width: '44px', height: '44px', borderRadius: '12px',
-                            background: 'rgba(255, 159, 67, 0.2)',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            fontSize: '1.3rem',
-                        }}>🔔</div>
-                        <div style={{ textAlign: 'left', flex: 1 }}>
-                            <div style={{ fontSize: '1rem', fontWeight: 800, color: '#FF9F43' }}>Centro de Avisos</div>
-                            <div style={{ fontSize: '0.78rem', color: '#e5e7eb', marginTop: '2px', fontWeight: 500 }}>
-                                Mensajes inteligentes para asesores
-                            </div>
-                        </div>
-                        <span style={{ fontSize: '1.2rem', color: '#FF9F43' }}>→</span>
-                    </motion.button>
-
-
-
                     {/* Resumen de Asesores */}
                     <motion.button
                         whileHover={{ scale: 1.02, y: -2 }}
@@ -367,8 +320,9 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                 top: '24px',
                 right: '24px',
                 display: 'flex',
-                gap: '12px',
-                alignItems: 'flex-start',
+                gap: '10px',
+                alignItems: 'center',
+                flexWrap: 'wrap',
                 zIndex: 20
             }}>
 
@@ -381,7 +335,7 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                         alignItems: 'center',
                         justifyContent: 'center',
                         background: 'rgba(0, 122, 255, 0.05)',
-                        border: '1px solid rgba(0, 122, 255, 0.1)',
+                        border: '1px solid rgba(0, 122, 255, 0.15)',
                         borderRadius: '20px',
                         color: '#9ca3af',
                         cursor: 'pointer',
@@ -399,7 +353,7 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                     onMouseLeave={(e) => {
                         e.currentTarget.style.background = 'rgba(0, 122, 255, 0.05)';
                         e.currentTarget.style.color = '#9ca3af';
-                        e.currentTarget.style.borderColor = 'rgba(0, 122, 255, 0.1)';
+                        e.currentTarget.style.borderColor = 'rgba(0, 122, 255, 0.15)';
                     }}
                 >
                     ACTIVIDAD STAFF
@@ -436,6 +390,50 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                     }}
                 >
                     ACTIVIDAD PÁGINA
+                </button>
+
+                {/* Centro de Avisos Button */}
+                <button
+                    onClick={() => {
+                        fetch('/api/activity', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                asesor: "Administrador",
+                                accion: "Consultó Centro de Avisos"
+                            })
+                        }).catch(e => console.error('Error', e));
+                        onSelectOption('centro_avisos');
+                    }}
+                    style={{
+                        padding: '8px 16px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        justifyContent: 'center',
+                        background: 'rgba(255, 159, 67, 0.1)',
+                        border: '1px solid rgba(255, 159, 67, 0.25)',
+                        borderRadius: '20px',
+                        color: '#FF9F43',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        fontSize: '0.8rem',
+                        fontWeight: 700,
+                        letterSpacing: '0.05em',
+                    }}
+                    title="Centro de Avisos"
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(255, 159, 67, 0.25)';
+                        e.currentTarget.style.color = '#FFA952';
+                        e.currentTarget.style.borderColor = 'rgba(255, 159, 67, 0.5)';
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(255, 159, 67, 0.1)';
+                        e.currentTarget.style.color = '#FF9F43';
+                        e.currentTarget.style.borderColor = 'rgba(255, 159, 67, 0.25)';
+                    }}
+                >
+                    🔔 CENTRO DE AVISOS
                 </button>
             </div>
         </div>
