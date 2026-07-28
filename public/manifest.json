@@ -1,0 +1,23 @@
+{
+  "name": "Ambriz Asesores — Panel de Campañas",
+  "short_name": "Ambriz Asesores",
+  "description": "Panel de seguimiento de campañas y métricas para asesores y administración",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/assets/logos/empresa/ambriz_logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/logos/empresa/ambriz_logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

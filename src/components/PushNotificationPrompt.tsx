@@ -103,17 +103,43 @@ export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave,
         }
     };
 
+    const requestPermissionSafely = (): Promise<NotificationPermission> => {
+        return new Promise((resolve) => {
+            if (typeof Notification.requestPermission === 'function') {
+                try {
+                    const res = Notification.requestPermission((permission) => {
+                        resolve(permission);
+                    });
+                    if (res && typeof (res as any).then === 'function') {
+                        (res as any).then(resolve).catch(() => resolve(Notification.permission));
+                    }
+                } catch (e) {
+                    resolve(Notification.permission);
+                }
+            } else {
+                resolve(Notification.permission);
+            }
+        });
+    };
+
     const handleEnable = async () => {
+        setStatus('loading');
+        setStatusMsg('Solicitando permiso en tu dispositivo...');
         try {
-            const permission = await Notification.requestPermission();
+            const permission = await requestPermissionSafely();
             if (permission === 'granted') {
                 await registerSubscription();
-            } else {
+            } else if (permission === 'denied') {
                 setStatus('denied');
-                setStatusMsg('El permiso de notificaciones fue denegado en tu navegador.');
+                setStatusMsg('Las notificaciones están bloqueadas en tu celular. Habilítalas en Ajustes > Safari / Chrome.');
+            } else {
+                setStatus('idle');
+                setStatusMsg('');
             }
-        } catch (err) {
+        } catch (err: any) {
             console.error('[PUSH PROMPT] Error solicitando permiso:', err);
+            setStatus('denied');
+            setStatusMsg('No se pudo activar: ' + (err.message || 'Sin permisos'));
         }
     };
 
