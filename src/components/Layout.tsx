@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Home, FolderOpen, Settings, LogOut, Sun, Moon, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Home, FolderOpen, Settings, LogOut, Sun, Moon, ChevronLeft, ChevronRight, Bell } from 'lucide-react';
 import { ThemeConfig, Page } from '../types';
 import SeasonalEffects from './SeasonalEffects';
 
@@ -167,6 +167,18 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
                             </button>
                         </div>
                     )}
+
+                    {/* Botón Notificaciones Push */}
+                    <button
+                        onClick={() => {
+                            if ((window as any).openPushPrompt) (window as any).openPushPrompt();
+                        }}
+                        className="nav-item"
+                        style={{ fontSize: '0.85rem', justifyContent: 'center', marginTop: '4px', color: '#FF9F43' }}
+                    >
+                        <Bell size={16} className="nav-icon" color="#FF9F43" />
+                        <span>Notificaciones</span>
+                    </button>
 
                     {/* Botón Toggle Tema */}
                     <button

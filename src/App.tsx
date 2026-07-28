@@ -98,63 +98,23 @@ const App: React.FC = () => {
             });
     }, []);
 
-    // Login screen — full page, outside layout
-    if (page === 'login') {
-        return <LoginScreen onSelectRole={handleRoleSelect} />;
-    }
-
-    // Admin Home — full page, outside layout  
-    if (page === 'admin_home') {
-        return <AdminHome onSelectOption={handleAdminOption} onLogout={handleLogout} />;
-    }
-
-    // Admin Dashboard — has its own layout/sidebar
-    if (page === 'admin_dashboard') {
-        return <AdminDashboard onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} />;
-    }
-
-    // Resumen de Promotoría — has its own layout/sidebar
-    if (page === 'resumen_promotoria') {
-        return <ResumenPromotoria onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} />;
-    }
-
-    // Gerencia Karen — filtered by sucursal 2856
-    if (page === 'gerencia_karen') {
-        return <ResumenPromotoria onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} sucursalFilter={[2856]} gerenciaName="GERENCIA KAREN" />;
-    }
-
-    // Admin Activity Tracker
-    if (page === 'admin_actividad') {
-        return <AdminActivity onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} />;
-    }
-
-    // Meta 24M Tracker
-    if (page === 'admin_meta') {
-        return <MetaDespacho onBack={() => setPage('admin_home')} themeMode={themeMode} />;
-    }
-
-    // Staff Activity Dashboard
-    if (page === 'admin_staff') {
-        return <StaffActivity onBack={() => setPage('admin_home')} themeMode={themeMode} />;
-    }
-
-    // Centro de Avisos
-    if (page === 'centro_avisos') {
-        return <CentroAvisos onBack={() => setPage('admin_home')} themeMode={themeMode} />;
-    }
-
-    // Generador de Infografías
-    if (page === 'infografias') {
-        return <InfografiaGenerator onBack={() => setPage('admin_home')} themeMode={themeMode} />;
-    }
-
     const pageStr = page as string;
     const isAdminRole = pageStr.startsWith('admin_') || pageStr === 'resumen_promotoria' || pageStr === 'gerencia_karen' || pageStr === 'centro_avisos';
     const activePushRole: 'admin' | 'asesor' = isAdminRole ? 'admin' : 'asesor';
 
-    return (
-        <>
-            <PushNotificationPrompt role={activePushRole} clave={selectedAdvisor || undefined} name={selectedAdvisor || undefined} />
+    const renderMainContent = () => {
+        if (page === 'login') return <LoginScreen onSelectRole={handleRoleSelect} />;
+        if (page === 'admin_home') return <AdminHome onSelectOption={handleAdminOption} onLogout={handleLogout} />;
+        if (page === 'admin_dashboard') return <AdminDashboard onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} />;
+        if (page === 'resumen_promotoria') return <ResumenPromotoria onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} />;
+        if (page === 'gerencia_karen') return <ResumenPromotoria onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} sucursalFilter={[2856]} gerenciaName="GERENCIA KAREN" />;
+        if (page === 'admin_actividad') return <AdminActivity onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} />;
+        if (page === 'admin_meta') return <MetaDespacho onBack={() => setPage('admin_home')} themeMode={themeMode} />;
+        if (page === 'admin_staff') return <StaffActivity onBack={() => setPage('admin_home')} themeMode={themeMode} />;
+        if (page === 'centro_avisos') return <CentroAvisos onBack={() => setPage('admin_home')} themeMode={themeMode} />;
+        if (page === 'infografias') return <InfografiaGenerator onBack={() => setPage('admin_home')} themeMode={themeMode} />;
+
+        return (
             <Layout
                 theme={theme}
                 onGoHome={handleGoHome}
@@ -182,6 +142,13 @@ const App: React.FC = () => {
                     />
                 )}
             </Layout>
+        );
+    };
+
+    return (
+        <>
+            <PushNotificationPrompt role={activePushRole} clave={selectedAdvisor || undefined} name={selectedAdvisor || undefined} />
+            {renderMainContent()}
         </>
     );
 };

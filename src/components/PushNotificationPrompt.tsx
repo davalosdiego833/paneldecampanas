@@ -23,27 +23,34 @@ export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave,
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'denied'>('idle');
 
     useEffect(() => {
+        const handleForceOpen = () => {
+            setShowPrompt(true);
+            setStatus('idle');
+        };
+        window.addEventListener('open_push_prompt', handleForceOpen);
+        (window as any).openPushPrompt = handleForceOpen;
+
         if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
-            return;
+            return () => window.removeEventListener('open_push_prompt', handleForceOpen);
         }
 
         // Check current permission
         if (Notification.permission === 'granted') {
-            // Already granted, silently register subscription in case token changed
             registerSubscription();
-            return;
+            return () => window.removeEventListener('open_push_prompt', handleForceOpen);
         }
 
         if (Notification.permission === 'default') {
-            // Show prompt banner after 3 seconds
             const timer = setTimeout(() => {
-                const dismissed = localStorage.getItem('push_prompt_dismissed');
-                if (!dismissed) {
-                    setShowPrompt(true);
-                }
-            }, 3000);
-            return () => clearTimeout(timer);
+                setShowPrompt(true);
+            }, 1000);
+            return () => {
+                clearTimeout(timer);
+                window.removeEventListener('open_push_prompt', handleForceOpen);
+            };
         }
+
+        return () => window.removeEventListener('open_push_prompt', handleForceOpen);
     }, [role, clave]);
 
     const registerSubscription = async () => {

@@ -325,6 +325,34 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                 flexWrap: 'wrap',
                 zIndex: 20
             }}>
+                {/* Push Notification Button */}
+                <button
+                    onClick={() => {
+                        if ((window as any).openPushPrompt) {
+                            (window as any).openPushPrompt();
+                        } else {
+                            alert('Notificaciones Web Push listadas para este dispositivo.');
+                        }
+                    }}
+                    style={{
+                        padding: '8px 16px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '6px',
+                        background: 'linear-gradient(135deg, rgba(255, 159, 67, 0.15) 0%, rgba(255, 82, 82, 0.15) 100%)',
+                        border: '1px solid rgba(255, 159, 67, 0.4)',
+                        borderRadius: '20px',
+                        color: '#FF9F43',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        fontSize: '0.8rem',
+                        fontWeight: 800,
+                        letterSpacing: '0.05em',
+                    }}
+                >
+                    🔔 NOTIFICACIONES CELULAR
+                </button>
 
                 {/* Staff Activity Button */}
                 <button
