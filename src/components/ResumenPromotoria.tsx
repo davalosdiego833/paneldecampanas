@@ -205,9 +205,11 @@ const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggl
 
         switch (section) {
             case 'pagado_pendiente':
-                return <PagadoPendiente
-                    data={filterData(data.pagado_pendiente)}
-                    fechaCorte={sectionFecha}
+                return <PagadoPendienteWrapper
+                    dataGeneral={filterData(data.pagado_pendiente)}
+                    dataReclutas={filterData(data.pagado_pendiente_reclutas)}
+                    fechaCorteGeneral={sectionFecha}
+                    fechaCorteReclutas={data.fechas_corte?.pagado_pendiente_reclutas || sectionFecha}
                     selectedDate={historicalDates.pagado_pendiente}
                     onDateSelect={(d: string | null) => handleDateSelect('pagado_pendiente', d)}
                     themeMode={themeMode}
@@ -412,8 +414,73 @@ const SectionHeader: React.FC<{ label: string; color: string; icon: string }> = 
     </div>
 );
 
-const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string; selectedDate: string | null; onDateSelect: (d: string | null) => void; themeMode: 'dark' | 'light' }> = ({ data, fechaCorte, selectedDate, onDateSelect, themeMode }) => {
-    if (!data || !data.length) return <div>No hay datos</div>;
+const PagadoPendienteWrapper: React.FC<{
+    dataGeneral: any[];
+    dataReclutas: any[];
+    fechaCorteGeneral: string;
+    fechaCorteReclutas: string;
+    selectedDate: string | null;
+    onDateSelect: (d: string | null) => void;
+    themeMode: 'dark' | 'light';
+}> = ({ dataGeneral, dataReclutas, fechaCorteGeneral, fechaCorteReclutas, selectedDate, onDateSelect, themeMode }) => {
+    const [tab, setTab] = useState<'general' | 'reclutas'>('general');
+
+    const activeData = tab === 'reclutas' ? (dataReclutas || []) : (dataGeneral || []);
+    const activeFecha = tab === 'reclutas' ? (fechaCorteReclutas || fechaCorteGeneral) : fechaCorteGeneral;
+
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            {dataReclutas && dataReclutas.length > 0 && (
+                <div style={{ display: 'flex', gap: '8px', background: 'rgba(255,255,255,0.03)', padding: '6px', borderRadius: '14px', border: '1px solid var(--glass-border)', width: 'fit-content' }}>
+                    <button
+                        onClick={() => setTab('general')}
+                        style={{
+                            padding: '8px 18px',
+                            borderRadius: '10px',
+                            border: 'none',
+                            background: tab === 'general' ? '#007AFF' : 'transparent',
+                            color: tab === 'general' ? '#FFF' : 'var(--text-secondary)',
+                            fontWeight: 700,
+                            fontSize: '0.85rem',
+                            cursor: 'pointer',
+                            transition: 'all 0.2s'
+                        }}
+                    >
+                        🏢 Promotoría General ({dataGeneral?.length || 0})
+                    </button>
+                    <button
+                        onClick={() => setTab('reclutas')}
+                        style={{
+                            padding: '8px 18px',
+                            borderRadius: '10px',
+                            border: 'none',
+                            background: tab === 'reclutas' ? '#FF9F43' : 'transparent',
+                            color: tab === 'reclutas' ? '#FFF' : 'var(--text-secondary)',
+                            fontWeight: 700,
+                            fontSize: '0.85rem',
+                            cursor: 'pointer',
+                            transition: 'all 0.2s'
+                        }}
+                    >
+                        🎯 Reclutas y Temporales ({dataReclutas.length})
+                    </button>
+                </div>
+            )}
+
+            <PagadoPendiente
+                data={activeData}
+                fechaCorte={activeFecha}
+                selectedDate={selectedDate}
+                onDateSelect={onDateSelect}
+                themeMode={themeMode}
+                isReclutas={tab === 'reclutas'}
+            />
+        </div>
+    );
+};
+
+const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string; selectedDate: string | null; onDateSelect: (d: string | null) => void; themeMode: 'dark' | 'light'; isReclutas?: boolean }> = ({ data, fechaCorte, selectedDate, onDateSelect, themeMode, isReclutas = false }) => {
+    if (!data || !data.length) return <div className="glass-card" style={{ padding: '32px', textAlign: 'center', color: 'var(--text-secondary)' }}>No hay datos registrados para esta sección.</div>;
 
     // Column accessors (matching exact Excel column names including typos)
     const get = (r: any, key: string) => Number(r[key]) || 0;
@@ -469,8 +536,12 @@ const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string; selectedDate:
             {/* Header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px' }}>
                 <div>
-                    <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '4px' }}>💰 Pagado / Pendiente</h2>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Desglose de recibos iniciales, ordinarios y totales</p>
+                    <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: isReclutas ? '#FF9F43' : 'var(--text-primary)', marginBottom: '4px' }}>
+                        {isReclutas ? '🎯 Pagado / Pendiente — Reclutas y Temporales' : '💰 Pagado / Pendiente'}
+                    </h2>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                        {isReclutas ? 'Desglose exclusivo de pólizas y recibos para nuevos asesores' : 'Desglose de recibos iniciales, ordinarios y totales'}
+                    </p>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <FechaCorte fecha={fechaCorte} />

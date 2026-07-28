@@ -522,6 +522,56 @@ const run = async () => {
             fc.pagado_pendiente = extractCutoffDate(wb);
         }
 
+        // 2b. Reporte Pagado y Pendiente — Reclutas y Temporales
+        const xlsReclutasPath1 = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'PagPendReclutas.xls');
+        const xlsReclutasPath2 = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'PagPen Recluta y Temp.xls');
+        const xlsReclutasPath = fs.existsSync(xlsReclutasPath1) ? xlsReclutasPath1 : (fs.existsSync(xlsReclutasPath2) ? xlsReclutasPath2 : null);
+
+        if (xlsReclutasPath) {
+            console.log('🔄 [SNAPSHOT] Encontrado PagPendReclutas.xls original. Decriptando y filtrando Reclutas...');
+            try {
+                const scriptPath = path.join(BASE_PATH, 'scripts', 'process_pagado_pendiente.py');
+                const localVenv = path.join(BASE_PATH, '.venv', 'bin', 'python');
+                const hostingerAlt = '/opt/alt/python311/bin/python3';
+                const pythonBin = fs.existsSync(localVenv) ? localVenv : (fs.existsSync(hostingerAlt) ? hostingerAlt : 'python3');
+                execSync(`"${pythonBin}" "${scriptPath}" "${xlsReclutasPath}"`, { stdio: 'inherit' });
+            } catch (e) {
+                console.error('❌ [SNAPSHOT] Error al procesar PagPendReclutas.xls:', e.message);
+            }
+        }
+
+        const peReclutasPath = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'pagado_emitido_reclutas.xlsx');
+        if (fs.existsSync(peReclutasPath)) {
+            const wb = XLSX.readFile(peReclutasPath);
+            const ws = wb.Sheets[wb.SheetNames[0]];
+            const rawData = XLSX.utils.sheet_to_json(ws, { header: 1 });
+
+            const dataRowsReclutas = rawData.slice(3).filter(r => {
+                const claveStr = String(r[0] || '').trim();
+                const sucursalStr = String(r[1] || '').trim();
+                const nameInExcel = String(r[2] || '').trim();
+
+                const isOurSucursal = sucursalStr === VALID_SUCURSAL || sucursalStr === '2856' || sucursalStr === '2511';
+                const isInDirectory = !!directory[claveStr];
+
+                return nameInExcel && (isOurSucursal || isInDirectory);
+            });
+
+            rg.pagado_pendiente_reclutas = dataRowsReclutas.map(r => ({
+                'Nombre Asesor': resolveName(r[0], r[2], directory),
+                'Sucursal': r[1],
+                'Pólizas-Pagadas': Number(r[5] || 0),
+                'Recibo_Inicial_Pagado': Number(r[6] || 0),
+                'Recibo_Ordinario_Pagado': Number(r[7] || 0),
+                'Total _Prima_Pagada': Number(r[8] || 0),
+                'Pólizas_Pendinetes': Number(r[9] || 0),
+                'Recibo_Inicial_Pendiente': Number(r[10] || 0),
+                'Recibo_Ordinario_Pendiente': Number(r[11] || 0),
+                'Total _Prima_Pendiente': Number(r[12] || 0)
+            }));
+            fc.pagado_pendiente_reclutas = extractCutoffDate(wb);
+        }
+
         // 3. Asesores sin Emisión
         let sinEmPath = path.join(BASE_PATH, 'administrador', 'asesores_sin_emision', 'Asesores sin Emision.xlsx');
         if (!fs.existsSync(sinEmPath)) {
