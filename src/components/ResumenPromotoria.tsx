@@ -748,9 +748,27 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate
                             headers={['#', 'Asesor', 'Suc', 'Prima Vida', 'Prima GMM', 'Estatus', 'Acción']}
                             rows={sinEmisionList.map((r: any, i: number) => {
                                 const firstName = (r.Asesor || '').split(' ')[0];
-                                const isCritical = r['3_Meses_Sin_Emisión_Vida'] === 'i' || r['3_Meses_Sin_Emisión_GMM'] === 'i';
-                                const hasPrima = (Number(r.Prima_Pagada_Vida) || 0) > 0 || (Number(r.Prima_Pagada_GMM) || 0) > 0;
-                                const status = isCritical ? '🚨 Crítico (3+ Meses Sin Emisión)' : (hasPrima ? '💰 Con Prima (Sin Póliza Emitida)' : '❌ Sin Actividad');
+                                const isCritVida = r['3_Meses_Sin_Emisión_Vida'] === 'i' || r['3_Meses_Sin_Emisión_Vida'] === 'x';
+                                const isCritGMM = r['3_Meses_Sin_Emisión_GMM'] === 'i' || r['3_Meses_Sin_Emisión_GMM'] === 'x';
+                                const primaVida = Number(r.Prima_Pagada_Vida) || 0;
+                                const primaGMM = Number(r.Prima_Pagada_GMM) || 0;
+
+                                let status = '';
+                                if (ramoMode === 'vida') {
+                                    if (isCritVida) status = '🚨 Crítico (3+ Meses Sin Emisión Vida)';
+                                    else if (primaVida > 0) status = '💰 Con Prima (Sin Póliza Vida)';
+                                    else status = '❌ Sin Emisión ni Pago (Vida)';
+                                } else if (ramoMode === 'gmm') {
+                                    if (isCritGMM) status = '🚨 Crítico (3+ Meses Sin Emisión GMM)';
+                                    else if (primaGMM > 0) status = '💰 Con Prima (Sin Póliza GMM)';
+                                    else status = '❌ Sin Emisión ni Pago (GMM)';
+                                } else {
+                                    if (isCritVida && isCritGMM) status = '🚨 Crítico (3+ Meses Sin Emisión Vida y GMM)';
+                                    else if (isCritVida) status = '🚨 Crítico (3+ Meses Sin Emisión Vida)';
+                                    else if (isCritGMM) status = '🚨 Crítico (3+ Meses Sin Emisión GMM)';
+                                    else if (primaVida > 0 || primaGMM > 0) status = '💰 Con Prima (Sin Póliza Emitida)';
+                                    else status = '❌ Sin Emisión ni Pago';
+                                }
 
                                 return [
                                     i + 1,
@@ -787,9 +805,27 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate
                             headers={['#', 'Asesor', 'Suc', 'Prima Vida', 'Prima GMM', 'Estatus', 'Acción']}
                             rows={sinPagosList.map((r: any, i: number) => {
                                 const firstName = (r.Asesor || '').split(' ')[0];
-                                const isCritical = r['3_Meses_Sin_Emisión_Vida'] === 'i' || r['3_Meses_Sin_Emisión_GMM'] === 'i';
-                                const hasPrima = (Number(r.Prima_Pagada_Vida) || 0) > 0 || (Number(r.Prima_Pagada_GMM) || 0) > 0;
-                                const status = isCritical ? '🚨 Crítico (3+ Meses Sin Emisión)' : (hasPrima ? '💰 Con Prima (Sin Póliza)' : '❌ Sin Actividad');
+                                const isCritVida = r['3_Meses_Sin_Emisión_Vida'] === 'i' || r['3_Meses_Sin_Emisión_Vida'] === 'x';
+                                const isCritGMM = r['3_Meses_Sin_Emisión_GMM'] === 'i' || r['3_Meses_Sin_Emisión_GMM'] === 'x';
+                                const primaVida = Number(r.Prima_Pagada_Vida) || 0;
+                                const primaGMM = Number(r.Prima_Pagada_GMM) || 0;
+
+                                let status = '';
+                                if (ramoMode === 'vida') {
+                                    if (isCritVida) status = '🚨 Crítico (3+ Meses Sin Emisión Vida)';
+                                    else if (primaVida > 0) status = '💰 Con Prima (Sin Póliza Vida)';
+                                    else status = '❌ Sin Póliza Pagada (Vida)';
+                                } else if (ramoMode === 'gmm') {
+                                    if (isCritGMM) status = '🚨 Crítico (3+ Meses Sin Emisión GMM)';
+                                    else if (primaGMM > 0) status = '💰 Con Prima (Sin Póliza GMM)';
+                                    else status = '❌ Sin Póliza Pagada (GMM)';
+                                } else {
+                                    if (isCritVida && isCritGMM) status = '🚨 Crítico (3+ Meses Sin Emisión Vida y GMM)';
+                                    else if (isCritVida) status = '🚨 Crítico (3+ Meses Sin Emisión Vida)';
+                                    else if (isCritGMM) status = '🚨 Crítico (3+ Meses Sin Emisión GMM)';
+                                    else if (primaVida > 0 || primaGMM > 0) status = '💰 Con Prima (Sin Póliza Pagada)';
+                                    else status = '❌ Sin Póliza Pagada';
+                                }
 
                                 return [
                                     i + 1,
