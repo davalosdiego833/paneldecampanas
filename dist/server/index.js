@@ -2541,6 +2541,53 @@ app.post('/api/push/send', async (req, res) => {
         res.status(500).json({ error: e.message || 'Error sending push' });
     }
 });
+app.post('/api/push/test-device', async (req, res) => {
+    try {
+        const { subscription, role } = req.body;
+        if (!subscription || !subscription.endpoint) {
+            return res.status(400).json({ error: 'Subscription missing' });
+        }
+        const vapidPath = path.join(DB_PATH_DYNAMIC, 'vapid_keys.json');
+        if (!fs.existsSync(vapidPath))
+            return res.status(404).json({ error: 'VAPID keys not generated' });
+        const vapidKeys = JSON.parse(fs.readFileSync(vapidPath, 'utf-8'));
+        const webpush = (await import('web-push')).default;
+        webpush.setVapidDetails('mailto:soporte@ambrizydavalos.com', vapidKeys.publicKey, vapidKeys.privateKey);
+        const groupLabel = role === 'admin' ? 'Administrador' : 'Asesor';
+        const payload = JSON.stringify({
+            title: 'Ambriz Asesores — Notificaciones Activas',
+            body: `Prueba de conectividad exitosa. Tu dispositivo (Grupo: ${groupLabel}) está listo para recibir notificaciones.`,
+            icon: '/assets/logos/empresa/ambriz_logo.png',
+            url: '/'
+        });
+        await webpush.sendNotification(subscription, payload);
+        res.json({ success: true });
+    }
+    catch (e) {
+        console.error('[PUSH TEST] Error sending test notification:', e.message);
+        res.status(500).json({ error: e.message || 'Error sending test push' });
+    }
+});
+app.post('/api/push/unsubscribe', (req, res) => {
+    try {
+        const { subscription } = req.body;
+        if (!subscription || !subscription.endpoint) {
+            return res.status(400).json({ error: 'Subscription missing' });
+        }
+        const subsPath = path.join(DB_PATH_DYNAMIC, 'push_subscriptions.json');
+        if (fs.existsSync(subsPath)) {
+            let subs = JSON.parse(fs.readFileSync(subsPath, 'utf-8'));
+            if (Array.isArray(subs)) {
+                subs = subs.filter((s) => s.subscription?.endpoint !== subscription.endpoint);
+                fs.writeFileSync(subsPath, JSON.stringify(subs, null, 2));
+            }
+        }
+        res.json({ success: true });
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Unsubscribe error' });
+    }
+});
 app.use((req, res) => {
     if (req.path.startsWith('/api'))
         return res.status(404).json({ error: 'API not found' });

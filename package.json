@@ -49,6 +49,7 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@types/web-push": "^3.6.4",
     "concurrently": "^9.2.1"
   }
 }

@@ -330,8 +330,6 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                     onClick={() => {
                         if ((window as any).openPushPrompt) {
                             (window as any).openPushPrompt();
-                        } else {
-                            alert('Notificaciones Web Push listadas para este dispositivo.');
                         }
                     }}
                     style={{
@@ -340,18 +338,26 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                         alignItems: 'center',
                         justifyContent: 'center',
                         gap: '6px',
-                        background: 'linear-gradient(135deg, rgba(255, 159, 67, 0.15) 0%, rgba(255, 82, 82, 0.15) 100%)',
-                        border: '1px solid rgba(255, 159, 67, 0.4)',
+                        background: 'rgba(0, 122, 255, 0.08)',
+                        border: '1px solid rgba(0, 122, 255, 0.25)',
                         borderRadius: '20px',
-                        color: '#FF9F43',
+                        color: '#60A5FA',
                         cursor: 'pointer',
                         transition: 'all 0.2s ease',
                         fontSize: '0.8rem',
-                        fontWeight: 800,
+                        fontWeight: 700,
                         letterSpacing: '0.05em',
                     }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(0, 122, 255, 0.2)';
+                        e.currentTarget.style.borderColor = 'rgba(0, 122, 255, 0.5)';
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(0, 122, 255, 0.08)';
+                        e.currentTarget.style.borderColor = 'rgba(0, 122, 255, 0.25)';
+                    }}
                 >
-                    🔔 NOTIFICACIONES CELULAR
+                    NOTIFICACIONES
                 </button>
 
                 {/* Staff Activity Button */}
