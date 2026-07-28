@@ -564,6 +564,9 @@ const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string; selectedDate:
 
 /* ========== SECTION 2: ASESORES SIN EMISIÓN ========== */
 const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate: string | null; onDateSelect: (d: string | null) => void; themeMode: 'dark' | 'light' }> = ({ data, fechaCorte, selectedDate, onDateSelect, themeMode }) => {
+    const [viewMode, setViewMode] = useState<'emision' | 'pagos'>('emision');
+    const [ramoMode, setRamoMode] = useState<'todos' | 'vida' | 'gmm'>('todos');
+
     if (!data) return <div>No hay datos</div>;
     const individuals = data.individuals || [];
     const summaryBySucursal = data.summaryBySucursal || [];
@@ -579,16 +582,36 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate
     const pieVida = [{ name: 'Sin Emisión', value: sinEmisionVida, fill: '#FF6B6B' }, { name: 'Con Emisión', value: totalAgentes - sinEmisionVida, fill: '#00E676' }];
     const pieGMM = [{ name: 'Sin Emisión', value: sinEmisionGMM, fill: '#FF6B6B' }, { name: 'Con Emisión', value: totalAgentes - sinEmisionGMM, fill: '#00E676' }];
 
-    // Grouping for categorized tables based on PAID POLICIES (> 0 or == 0)
-    const conPolizasVida = individuals.filter((r: any) => (Number(r.Pagado_Vida) || 0) > 0);
-    const sinPolizasVida = individuals.filter((r: any) => (Number(r.Pagado_Vida) || 0) <= 0);
+    // Filter helpers per mode and ramo
+    const isEmitido = (r: any) => {
+        const ev = (Number(r.Emitido_Vida) || 0) > 0;
+        const eg = (Number(r.Emitido_GMM) || 0) > 0;
+        if (ramoMode === 'vida') return ev;
+        if (ramoMode === 'gmm') return eg;
+        return ev || eg;
+    };
+
+    const isPagado = (r: any) => {
+        const pv = (Number(r.Pagado_Vida) || 0) > 0;
+        const pg = (Number(r.Pagado_GMM) || 0) > 0;
+        if (ramoMode === 'vida') return pv;
+        if (ramoMode === 'gmm') return pg;
+        return pv || pg;
+    };
+
+    // Arrays according to viewMode
+    const conEmisionList = individuals.filter((r: any) => isEmitido(r));
+    const sinEmisionList = individuals.filter((r: any) => !isEmitido(r));
+
+    const conPagosList = individuals.filter((r: any) => isPagado(r));
+    const sinPagosList = individuals.filter((r: any) => !isPagado(r));
 
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px' }}>
                 <div>
                     <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '4px' }}>⚠️ Asesores sin Emisión</h2>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Estado de emisión y producción pagada por asesor</p>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Estado de emisión y producción pagada por asesor (Vida y GMM)</p>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <FechaCorte fecha={fechaCorte} />
@@ -597,8 +620,8 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
                 <KPICard title="Total Asesores" value={String(totalAgentes)} color="#007AFF" icon={<Users size={24} color="#007AFF" />} />
-                <KPICard title="Sin Emisión Vida" value={`${sinEmisionVida} / ${totalAgentes}`} subtitle={`${((sinEmisionVida / totalAgentes) * 100).toFixed(0)}% del total`} color="#FF6B6B" icon={<XCircle size={24} color="#FF6B6B" />} />
-                <KPICard title="Sin Emisión GMM" value={`${sinEmisionGMM} / ${totalAgentes}`} subtitle={`${((sinEmisionGMM / totalAgentes) * 100).toFixed(0)}% del total`} color="#FF6B6B" icon={<XCircle size={24} color="#FF6B6B" />} />
+                <KPICard title="Sin Emisión Vida" value={`${sinEmisionVida} / ${totalAgentes}`} subtitle={`${((sinEmisionVida / (totalAgentes || 1)) * 100).toFixed(0)}% del total`} color="#FF6B6B" icon={<XCircle size={24} color="#FF6B6B" />} />
+                <KPICard title="Sin Emisión GMM" value={`${sinEmisionGMM} / ${totalAgentes}`} subtitle={`${((sinEmisionGMM / (totalAgentes || 1)) * 100).toFixed(0)}% del total`} color="#FF6B6B" icon={<XCircle size={24} color="#FF6B6B" />} />
                 <KPICard title="3+ Meses Sin Vida" value={String(tresMesesVida)} color="#FFD93D" icon={<AlertTriangle size={24} color="#FFD93D" />} />
                 <KPICard title="3+ Meses Sin GMM" value={String(tresMesesGMM)} color="#FFD93D" icon={<AlertTriangle size={24} color="#FFD93D" />} />
                 <KPICard title="Prima Pagada Vida" value={fmt(totalPrimaPagVida)} color="#00E676" />
@@ -611,7 +634,7 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate
                     <DataTable headers={['Nombre', 'Sucursal', 'Agentes', 'Em. Vida', '% Em. Vida', 'Em. GMM', '% Em. GMM', 'Pag. Vida', '% Pag. Vida', 'Pag. GMM', '% Pag. GMM', 'Prima Vida', 'Prima GMM']}
                         rows={summaryBySucursal.map((r: any) => {
                             const id = Number(r.Suc);
-                            let managerName = r.Sucursal; // fallback
+                            let managerName = r.Sucursal;
                             if (id === 2043 || id === 2511) managerName = 'Alejandra';
                             else if (id === 2856) managerName = 'Karen';
 
@@ -631,33 +654,155 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate
                 </div>
             </div>
 
-            {/* Categorized Advisor Tables */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-                {conPolizasVida.length > 0 && (
-                    <SearchableTable
-                        title={`✅ Asesores con Pólizas Pagadas Vida (${conPolizasVida.length})`}
-                        headers={['#', 'Asesor', 'Suc', 'Emitido Vida', 'Pólizas Pagadas', 'Prima Pagada Vida']}
-                        rows={conPolizasVida.map((r: any, i: number) => [i + 1, r.Asesor, r.Suc, fmtNum(r.Emitido_Vida), fmtNum(r.Pagado_Vida), fmt(r.Prima_Pagada_Vida)])}
-                    />
-                )}
+            {/* CONTROLES DE PESTAÑAS Y SELECCIÓN DE RAMO */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', background: 'rgba(255,255,255,0.03)', padding: '16px 20px', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+                <div style={{ display: 'flex', gap: '8px', background: 'rgba(0,0,0,0.3)', padding: '4px', borderRadius: '12px' }}>
+                    <button
+                        onClick={() => setViewMode('emision')}
+                        style={{
+                            padding: '8px 16px',
+                            borderRadius: '8px',
+                            border: 'none',
+                            background: viewMode === 'emision' ? '#007AFF' : 'transparent',
+                            color: viewMode === 'emision' ? '#FFF' : 'var(--text-secondary)',
+                            fontWeight: 700,
+                            fontSize: '0.85rem',
+                            cursor: 'pointer',
+                            transition: 'all 0.2s'
+                        }}
+                    >
+                        📋 Pólizas Emitidas (Con vs Sin Emisión)
+                    </button>
+                    <button
+                        onClick={() => setViewMode('pagos')}
+                        style={{
+                            padding: '8px 16px',
+                            borderRadius: '8px',
+                            border: 'none',
+                            background: viewMode === 'pagos' ? '#007AFF' : 'transparent',
+                            color: viewMode === 'pagos' ? '#FFF' : 'var(--text-secondary)',
+                            fontWeight: 700,
+                            fontSize: '0.85rem',
+                            cursor: 'pointer',
+                            transition: 'all 0.2s'
+                        }}
+                    >
+                        💰 Pólizas Pagadas (Con vs Sin Pago)
+                    </button>
+                </div>
 
-                {sinPolizasVida.length > 0 && (
-                    <SearchableTable
-                        title={`⚪ Asesores sin Pólizas Pagadas Vida (${sinPolizasVida.length})`}
-                        headers={['#', 'Asesor', 'Suc', 'Prima Pagada Vida', 'Estatus', 'Acción']}
-                        rows={sinPolizasVida.map((r: any, i: number) => {
-                            const firstName = (r.Asesor || '').split(' ')[0];
-                            const status = r['3_Meses_Sin_Emisión_Vida'] === 'i' ? '🚨 Crítico (3 meses+)' : (Number(r.Prima_Pagada_Vida) > 0 ? '💰 Con Prima (Sin Póliza)' : '❌ Sin Actividad');
-                            return [
+                <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontWeight: 600, marginRight: '4px' }}>Ramo:</span>
+                    {(['todos', 'vida', 'gmm'] as const).map(r => (
+                        <button
+                            key={r}
+                            onClick={() => setRamoMode(r)}
+                            style={{
+                                padding: '6px 14px',
+                                borderRadius: '8px',
+                                border: '1px solid',
+                                borderColor: ramoMode === r ? '#007AFF' : 'var(--glass-border)',
+                                background: ramoMode === r ? 'rgba(0,122,255,0.15)' : 'transparent',
+                                color: ramoMode === r ? '#007AFF' : 'var(--text-primary)',
+                                fontWeight: ramoMode === r ? 700 : 500,
+                                fontSize: '0.8rem',
+                                cursor: 'pointer',
+                                textTransform: 'uppercase'
+                            }}
+                        >
+                            {r === 'todos' ? '🌐 Todos' : (r === 'vida' ? '💙 Vida' : '🏥 GMM')}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            {/* TABLAS CATEGORIZADAS */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+                {viewMode === 'emision' ? (
+                    <>
+                        {/* TABLA 1: ASESORES CON EMISIÓN */}
+                        <SearchableTable
+                            title={`✅ Asesores CON EMISIÓN DE PÓLIZAS ${ramoMode === 'vida' ? '(Vida)' : ramoMode === 'gmm' ? '(GMM)' : '(Vida y GMM)'} (${conEmisionList.length})`}
+                            headers={['#', 'Asesor', 'Suc', 'Emitido Vida', 'Emitido GMM', 'Pagado Vida', 'Pagado GMM', 'Prima Vida', 'Prima GMM', 'Estatus Comercial']}
+                            rows={conEmisionList.map((r: any, i: number) => {
+                                const pagVal = (Number(r.Pagado_Vida) || 0) + (Number(r.Pagado_GMM) || 0);
+                                const status = pagVal > 0 ? '✅ Emitido y Pagado' : '⏳ Emitido (Pendiente de Cobro)';
+                                return [
+                                    i + 1,
+                                    r.Asesor,
+                                    r.Suc,
+                                    fmtNum(r.Emitido_Vida),
+                                    fmtNum(r.Emitido_GMM),
+                                    fmtNum(r.Pagado_Vida),
+                                    fmtNum(r.Pagado_GMM),
+                                    fmt(r.Prima_Pagada_Vida),
+                                    fmt(r.Prima_Pagada_GMM),
+                                    status
+                                ];
+                            })}
+                        />
+
+                        {/* TABLA 2: ASESORES SIN EMISIÓN */}
+                        <SearchableTable
+                            title={`⚪ Asesores SIN EMISIÓN DE PÓLIZAS ${ramoMode === 'vida' ? '(Vida)' : ramoMode === 'gmm' ? '(GMM)' : '(Vida y GMM)'} (${sinEmisionList.length})`}
+                            headers={['#', 'Asesor', 'Suc', 'Prima Vida', 'Prima GMM', 'Estatus', 'Acción']}
+                            rows={sinEmisionList.map((r: any, i: number) => {
+                                const firstName = (r.Asesor || '').split(' ')[0];
+                                const isCritical = r['3_Meses_Sin_Emisión_Vida'] === 'i' || r['3_Meses_Sin_Emisión_GMM'] === 'i';
+                                const hasPrima = (Number(r.Prima_Pagada_Vida) || 0) > 0 || (Number(r.Prima_Pagada_GMM) || 0) > 0;
+                                const status = isCritical ? '🚨 Crítico (3+ Meses Sin Emisión)' : (hasPrima ? '💰 Con Prima (Sin Póliza Emitida)' : '❌ Sin Actividad');
+
+                                return [
+                                    i + 1,
+                                    r.Asesor,
+                                    r.Suc,
+                                    fmt(r.Prima_Pagada_Vida),
+                                    fmt(r.Prima_Pagada_GMM),
+                                    status,
+                                    <SinEmisionCopyButton fechaCorte={fechaCorte} asesorNombre={firstName} />
+                                ];
+                            })}
+                        />
+                    </>
+                ) : (
+                    <>
+                        {/* TABLA 3: ASESORES CON PÓLIZAS PAGADAS */}
+                        <SearchableTable
+                            title={`✅ Asesores CON PÓLIZAS PAGADAS ${ramoMode === 'vida' ? '(Vida)' : ramoMode === 'gmm' ? '(GMM)' : '(Vida y GMM)'} (${conPagosList.length})`}
+                            headers={['#', 'Asesor', 'Suc', 'Pagado Vida', 'Pagado GMM', 'Prima Vida', 'Prima GMM']}
+                            rows={conPagosList.map((r: any, i: number) => [
                                 i + 1,
                                 r.Asesor,
                                 r.Suc,
+                                fmtNum(r.Pagado_Vida),
+                                fmtNum(r.Pagado_GMM),
                                 fmt(r.Prima_Pagada_Vida),
-                                status,
-                                <SinEmisionCopyButton fechaCorte={fechaCorte} asesorNombre={firstName} />
-                            ];
-                        })}
-                    />
+                                fmt(r.Prima_Pagada_GMM)
+                            ])}
+                        />
+
+                        {/* TABLA 4: ASESORES SIN PÓLIZAS PAGADAS */}
+                        <SearchableTable
+                            title={`⚪ Asesores SIN PÓLIZAS PAGADAS ${ramoMode === 'vida' ? '(Vida)' : ramoMode === 'gmm' ? '(GMM)' : '(Vida y GMM)'} (${sinPagosList.length})`}
+                            headers={['#', 'Asesor', 'Suc', 'Prima Vida', 'Prima GMM', 'Estatus', 'Acción']}
+                            rows={sinPagosList.map((r: any, i: number) => {
+                                const firstName = (r.Asesor || '').split(' ')[0];
+                                const isCritical = r['3_Meses_Sin_Emisión_Vida'] === 'i' || r['3_Meses_Sin_Emisión_GMM'] === 'i';
+                                const hasPrima = (Number(r.Prima_Pagada_Vida) || 0) > 0 || (Number(r.Prima_Pagada_GMM) || 0) > 0;
+                                const status = isCritical ? '🚨 Crítico (3+ Meses Sin Emisión)' : (hasPrima ? '💰 Con Prima (Sin Póliza)' : '❌ Sin Actividad');
+
+                                return [
+                                    i + 1,
+                                    r.Asesor,
+                                    r.Suc,
+                                    fmt(r.Prima_Pagada_Vida),
+                                    fmt(r.Prima_Pagada_GMM),
+                                    status,
+                                    <SinEmisionCopyButton fechaCorte={fechaCorte} asesorNombre={firstName} />
+                                ];
+                            })}
+                        />
+                    </>
                 )}
             </div>
         </motion.div>
