@@ -787,6 +787,25 @@ const run = async () => {
             console.warn('⚠️ No se pudieron generar alertas (generar_alertas.js):', e.message);
         }
 
+        // DISPARAR NOTIFICACIONES PUSH AUTOMÁTICAS AL CELULAR
+        try {
+            const { sendPushNotification } = await import('./scripts/send_push_notification.js');
+            // Avisar a todos los dispositivos (Admin y Asesores) sobre actualización de campañas
+            await sendPushNotification({
+                group: 'all',
+                title: '🚀 Ambriz Asesores — Campañas Actualizadas',
+                body: 'Se han publicado los nuevos números y posiciones en las campañas al corte de hoy.'
+            });
+            // Avisar a Admins sobre reportes de administración
+            await sendPushNotification({
+                group: 'admin',
+                title: '📊 Reportes Administrativos Actualizados',
+                body: 'Se han actualizado los reportes de Pagado/Pendiente, Proactivos y Sin Emisión.'
+            });
+        } catch (e) {
+            console.warn('⚠️ No se pudieron enviar notificaciones push:', e.message);
+        }
+
     } catch (e) {
         console.error('❌ Error en consolidación:', e);
     }

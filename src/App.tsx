@@ -14,6 +14,7 @@ import AdminActivity from './components/AdminActivity';
 import StaffActivity from './components/StaffActivity';
 import CentroAvisos from './components/CentroAvisos';
 import InfografiaGenerator from './components/InfografiaGenerator';
+import { PushNotificationPrompt } from './components/PushNotificationPrompt';
 
 const App: React.FC = () => {
     const [page, setPage] = useState<Page>('login');
@@ -147,35 +148,41 @@ const App: React.FC = () => {
         return <InfografiaGenerator onBack={() => setPage('admin_home')} themeMode={themeMode} />;
     }
 
-    // Advisor flow: uses regular Layout
+    const pageStr = page as string;
+    const isAdminRole = pageStr.startsWith('admin_') || pageStr === 'resumen_promotoria' || pageStr === 'gerencia_karen' || pageStr === 'centro_avisos';
+    const activePushRole: 'admin' | 'asesor' = isAdminRole ? 'admin' : 'asesor';
+
     return (
-        <Layout
-            theme={theme}
-            onGoHome={handleGoHome}
-            page={page}
-            setPage={setPage}
-            selectedCampaign={selectedCampaign}
-            themeMode={themeMode}
-            toggleTheme={toggleTheme}
-            onLogout={handleLogout}
-        >
-            {page === 'welcome' && (
-                <Welcome theme={theme} onAdvisorSelect={handleAdvisorSelect} />
-            )}
-            {page === 'campaign_selector' && (
-                <CampaignSelector
-                    advisor={selectedAdvisor!}
-                    onCampaignSelect={handleCampaignSelect}
-                />
-            )}
-            {page === 'dashboard' && (
-                <Dashboard
-                    campaign={selectedCampaign!}
-                    advisor={selectedAdvisor!}
-                    themeMode={themeMode}
-                />
-            )}
-        </Layout>
+        <>
+            <PushNotificationPrompt role={activePushRole} clave={selectedAdvisor || undefined} name={selectedAdvisor || undefined} />
+            <Layout
+                theme={theme}
+                onGoHome={handleGoHome}
+                page={page}
+                setPage={setPage}
+                selectedCampaign={selectedCampaign}
+                themeMode={themeMode}
+                toggleTheme={toggleTheme}
+                onLogout={handleLogout}
+            >
+                {page === 'welcome' && (
+                    <Welcome theme={theme} onAdvisorSelect={handleAdvisorSelect} />
+                )}
+                {page === 'campaign_selector' && (
+                    <CampaignSelector
+                        advisor={selectedAdvisor!}
+                        onCampaignSelect={handleCampaignSelect}
+                    />
+                )}
+                {page === 'dashboard' && (
+                    <Dashboard
+                        campaign={selectedCampaign!}
+                        advisor={selectedAdvisor!}
+                        themeMode={themeMode}
+                    />
+                )}
+            </Layout>
+        </>
     );
 };
 

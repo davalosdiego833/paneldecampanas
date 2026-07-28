@@ -2439,6 +2439,53 @@ app.post('/api/admin/staff-activity', (req, res) => {
     } catch (e) { res.status(500).json({ error: 'Write error' }); }
 });
 
+// ===================== NOTIFICACIONES PUSH =====================
+app.get('/api/push/vapid-public-key', (req, res) => {
+    try {
+        const vapidPath = path.join(DB_PATH_DYNAMIC, 'vapid_keys.json');
+        if (!fs.existsSync(vapidPath)) return res.status(404).json({ error: 'VAPID keys not generated' });
+        const keys = JSON.parse(fs.readFileSync(vapidPath, 'utf-8'));
+        res.json({ publicKey: keys.publicKey });
+    } catch (e) { res.status(500).json({ error: 'Error reading VAPID key' }); }
+});
+
+app.post('/api/push/subscribe', (req, res) => {
+    try {
+        const { subscription, role, clave, name } = req.body;
+        if (!subscription || !subscription.endpoint) {
+            return res.status(400).json({ error: 'Subscription object missing' });
+        }
+        const subsPath = path.join(DB_PATH_DYNAMIC, 'push_subscriptions.json');
+        let subs: any[] = [];
+        if (fs.existsSync(subsPath)) {
+            try { subs = JSON.parse(fs.readFileSync(subsPath, 'utf-8')); } catch { subs = []; }
+        }
+        if (!Array.isArray(subs)) subs = [];
+
+        subs = subs.filter(s => s.subscription?.endpoint !== subscription.endpoint);
+        subs.push({
+            subscription,
+            role: role === 'admin' ? 'admin' : 'asesor',
+            clave: clave || 'UNKNOWN',
+            name: name || 'Usuario',
+            subscribedAt: new Date().toISOString()
+        });
+
+        fs.writeFileSync(subsPath, JSON.stringify(subs, null, 2));
+        res.json({ success: true });
+    } catch (e) { res.status(500).json({ error: 'Error saving subscription' }); }
+});
+
+app.post('/api/push/send', async (req, res) => {
+    try {
+        const { group = 'all', title, body, url } = req.body;
+        const scriptPath = path.join(BASE_PATH, 'scripts', 'send_push_notification.js');
+        const { sendPushNotification } = await import(`file://${scriptPath}`);
+        const result = await sendPushNotification({ group, title, body, url });
+        res.json(result);
+    } catch (e: any) { res.status(500).json({ error: e.message || 'Error sending push' }); }
+});
+
 app.use((req, res) => {
     if (req.path.startsWith('/api')) return res.status(404).json({ error: 'API not found' });
     if (path.extname(req.path)) return res.status(404).send('Not found');
