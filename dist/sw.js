@@ -1,4 +1,4 @@
-// Ambriz Asesores — Service Worker para Notificaciones Push
+// Ambriz Asesores — Service Worker para Notificaciones Push (iOS & Android Compatible)
 self.addEventListener('push', function(event) {
     if (!event.data) return;
 
@@ -6,7 +6,6 @@ self.addEventListener('push', function(event) {
         title: 'Ambriz Asesores',
         body: 'Notificación de actualización de campañas',
         icon: '/assets/logos/empresa/ambriz_logo.png',
-        badge: '/assets/logos/empresa/ambriz_logo.png',
         url: '/'
     };
 
@@ -16,17 +15,16 @@ self.addEventListener('push', function(event) {
         payload.body = event.data.text();
     }
 
+    // Opciones estándar compatibles 100% con iOS Apple APNs y Android Chrome
     const options = {
         body: payload.body,
         icon: payload.icon || '/assets/logos/empresa/ambriz_logo.png',
         badge: payload.badge || '/assets/logos/empresa/ambriz_logo.png',
-        vibrate: [200, 100, 200],
         data: {
             url: payload.url || '/'
         },
-        actions: [
-            { action: 'open', title: 'Ver actualización 🚀' }
-        ]
+        tag: 'ambriz-push-' + Date.now(),
+        renotify: true
     };
 
     event.waitUntil(
@@ -42,7 +40,10 @@ self.addEventListener('notificationclick', function(event) {
         clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function(clientList) {
             for (let i = 0; i < clientList.length; i++) {
                 const client = clientList[i];
-                if ('focus' in client) {
+                if (client.url.includes(self.location.origin) && 'focus' in client) {
+                    if ('navigate' in client) {
+                        client.navigate(targetUrl);
+                    }
                     return client.focus();
                 }
             }
