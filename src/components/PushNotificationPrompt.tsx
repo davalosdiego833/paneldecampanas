@@ -59,6 +59,19 @@ export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave,
                 if (sub) {
                     setIsSubscribed(true);
                     localStorage.setItem('push_notifications_enabled', 'true');
+                    // Auto-actualización silenciosa si el usuario ingresó como Administrador
+                    if (role === 'admin') {
+                        fetch('/api/push/subscribe', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                subscription: sub,
+                                role: 'admin',
+                                clave: clave || 'ADMIN',
+                                name: name || 'Administrador'
+                            })
+                        }).catch(() => {});
+                    }
                 } else {
                     setIsSubscribed(false);
                 }
