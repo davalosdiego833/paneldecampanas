@@ -1,16 +1,12 @@
-import webpush from 'web-push';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+const webpush = require('web-push');
+const fs = require('fs');
+const path = require('path');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 const BASE_PATH = path.join(__dirname, '..');
-
 const vapidKeysPath = path.join(BASE_PATH, 'db', 'vapid_keys.json');
 const subscriptionsPath = path.join(BASE_PATH, 'db', 'push_subscriptions.json');
 
-export const sendPushNotification = async ({ group = 'all', title, body, url = '/', icon = '/assets/logos/empresa/ambriz_logo.png' }) => {
+const sendPushNotification = async ({ group = 'all', title, body, url = '/', icon = '/assets/logos/empresa/ambriz_logo.png' }) => {
     if (!fs.existsSync(vapidKeysPath) || !fs.existsSync(subscriptionsPath)) {
         console.log('[PUSH] No se encontraron llaves VAPID o base de datos de suscripciones.');
         return { success: false, sent: 0 };
@@ -49,7 +45,7 @@ export const sendPushNotification = async ({ group = 'all', title, body, url = '
                 await webpush.sendNotification(sub.subscription, payload, pushOptions);
                 successCount++;
                 activeSubs.push(sub);
-            } catch (err: any) {
+            } catch (err) {
                 console.error(`[PUSH] Error al enviar a ${sub.name || sub.role}:`, err.message);
                 if (err.statusCode !== 410 && err.statusCode !== 404) {
                     activeSubs.push(sub);
@@ -69,9 +65,11 @@ export const sendPushNotification = async ({ group = 'all', title, body, url = '
     return { success: true, sent: successCount };
 };
 
-if (process.argv[1] && process.argv[1].endsWith('send_push_notification.js')) {
+module.exports = { sendPushNotification };
+
+if (require.main === module) {
     const group = process.argv[2] || 'all';
-    const title = process.argv[3] || '🚀 Ambriz Asesores — Actualización';
+    const title = process.argv[3] || 'Ambriz Asesores — Actualización';
     const body = process.argv[4] || 'Se han publicado nuevos datos en la plataforma.';
     sendPushNotification({ group, title, body }).then(res => console.log('Resultado CLI Push:', res));
 }

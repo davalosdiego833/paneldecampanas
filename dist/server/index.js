@@ -2611,9 +2611,20 @@ app.post('/api/push/send-custom', async (req, res) => {
         if (!scriptPath) {
             return res.status(500).json({ error: 'Script de notificaciones no encontrado' });
         }
-        const fileUrl = pathToFileURL(scriptPath).href;
-        const { sendPushNotification } = await import(fileUrl);
-        const result = await sendPushNotification({ group, title, body, url: url || '/' });
+        let sendPushNotificationFn;
+        try {
+            const mod = require(scriptPath);
+            sendPushNotificationFn = mod.sendPushNotification || mod.default;
+        }
+        catch (e1) {
+            const fileUrl = pathToFileURL(scriptPath).href;
+            const mod = await import(fileUrl);
+            sendPushNotificationFn = mod.sendPushNotification || mod.default;
+        }
+        if (typeof sendPushNotificationFn !== 'function') {
+            return res.status(500).json({ error: 'No se pudo cargar la función de envío de notificaciones' });
+        }
+        const result = await sendPushNotificationFn({ group, title, body, url: url || '/' });
         // Guardar en historial
         const historyPath = path.join(DB_PATH_DYNAMIC, 'comunicados_history.json');
         let history = [];
