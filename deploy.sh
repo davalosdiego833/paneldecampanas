@@ -37,6 +37,7 @@ SSH_OPTS="-o KexAlgorithms=curve25519-sha256,ecdh-sha2-nistp256,diffie-hellman-g
 # 3. Despliegue Directo via RSYNC (Evita el Auto-Builder)
 echo "🌐 Sincronizando archivos críticos al servidor..."
 rsync -avz -e "ssh $SSH_OPTS" dist/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/dist/
+rsync -avz -e "ssh $SSH_OPTS" dist/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/dist/
 # Respaldo de seguridad en zona blindada para auto-restauración
 rsync -avz -e "ssh $SSH_OPTS" dist/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/backup_dist/
 rsync -avz -e "ssh $SSH_OPTS" assets/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/assets/ 2>/dev/null || true
@@ -72,12 +73,11 @@ rsync -avz -e "ssh $SSH_OPTS" scripts/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodej
 ssh $SSH_OPTS $SERVER_USER@$SERVER_IP << EOF
     PARENT_DIR="/home/u211138134/domains/panel.ambrizydavalos.com"
     
-    # Preparar ejecución en raíz (public_html)
-    # Copiamos todos los archivos del servidor para que los imports relativos funcionen
-    cp \$PARENT_DIR/public_html/dist/server/*.js \$PARENT_DIR/public_html/ 2>/dev/null || true
-    cp \$PARENT_DIR/public_html/dist/server/*.js \$PARENT_DIR/nodejs/ 2>/dev/null || true
-    # Hostinger busca app.js
-    cp \$PARENT_DIR/public_html/index.js \$PARENT_DIR/public_html/app.js 2>/dev/null || true
+    # Preparar ejecución en ambas carpetas (nodejs y public_html)
+    cp \$PARENT_DIR/nodejs/dist/server/index.js \$PARENT_DIR/nodejs/index.js 2>/dev/null || true
+    cp \$PARENT_DIR/nodejs/dist/server/index.js \$PARENT_DIR/nodejs/app.js 2>/dev/null || true
+    cp \$PARENT_DIR/nodejs/dist/server/index.js \$PARENT_DIR/public_html/index.js 2>/dev/null || true
+    cp \$PARENT_DIR/nodejs/dist/server/index.js \$PARENT_DIR/public_html/app.js 2>/dev/null || true
     
     ln -sfn \$PARENT_DIR/nodejs/node_modules \$PARENT_DIR/public_html/node_modules 2>/dev/null || true
     
