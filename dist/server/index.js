@@ -2688,6 +2688,8 @@ app.use((req, res) => {
         path.join(safeDirname, 'dist', 'index.html'),
         path.join(BASE_PATH, 'index.html'),
         path.join(BASE_PATH, 'dist', 'index.html'),
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/index.html',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/dist/index.html',
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/index.html',
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist/index.html'
     ];
