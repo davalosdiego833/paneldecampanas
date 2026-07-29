@@ -50,8 +50,8 @@ rsync -avz -e "ssh $SSH_OPTS" .htaccess $SERVER_USER@$SERVER_IP:$PARENT_DIR/node
 
 # 3.1 Blindaje de Datos (Zona Inmune en folder nodejs)
 echo "🛡️ Protegiendo archivos de datos y campañas..."
-rsync -avz --exclude "comentarios_polizas.json" --exclude "actividad.json" --exclude "staff_activity.json" -e "ssh $SSH_OPTS" db/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/db/
-rsync -avz --exclude "comentarios_polizas.json" --exclude "actividad.json" --exclude "staff_activity.json" -e "ssh $SSH_OPTS" db/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/db/ 2>/dev/null || true
+rsync -avz --exclude "comentarios_polizas.json" --exclude "actividad.json" --exclude "staff_activity.json" --exclude "push_subscriptions.json" --exclude "comunicados_history.json" -e "ssh $SSH_OPTS" db/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/db/
+rsync -avz --exclude "comentarios_polizas.json" --exclude "actividad.json" --exclude "staff_activity.json" --exclude "push_subscriptions.json" --exclude "comunicados_history.json" -e "ssh $SSH_OPTS" db/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/db/ 2>/dev/null || true
 rsync -avz -e "ssh $SSH_OPTS" administrador/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/administrador/
 rsync -avz -e "ssh $SSH_OPTS" camino_cumbre/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/camino_cumbre/
 rsync -avz -e "ssh $SSH_OPTS" convenciones/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/convenciones/
