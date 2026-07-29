@@ -67,6 +67,7 @@ echo "📤 Subiendo scripts de procesamiento..."
 rsync -avz -e "ssh $SSH_OPTS" actualizar_snapshot.js $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/
 rsync -avz -e "ssh $SSH_OPTS" generar_alertas.js $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/
 rsync -avz -e "ssh $SSH_OPTS" scripts/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/scripts/
+rsync -avz -e "ssh $SSH_OPTS" scripts/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/scripts/
 
 
 # 5. Configurar Servidor via SSH
