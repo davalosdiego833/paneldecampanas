@@ -2588,6 +2588,60 @@ app.post('/api/push/unsubscribe', (req, res) => {
         res.status(500).json({ error: 'Unsubscribe error' });
     }
 });
+app.post('/api/push/send-custom', async (req, res) => {
+    try {
+        const { group = 'all', title, body, url } = req.body;
+        if (!title || !body) {
+            return res.status(400).json({ error: 'Título y mensaje son requeridos' });
+        }
+        const scriptPath = path.join(BASE_PATH, 'scripts', 'send_push_notification.js');
+        const { sendPushNotification } = await import(`file://${scriptPath}`);
+        const result = await sendPushNotification({ group, title, body, url: url || '/' });
+        // Guardar en historial
+        const historyPath = path.join(DB_PATH_DYNAMIC, 'comunicados_history.json');
+        let history = [];
+        if (fs.existsSync(historyPath)) {
+            try {
+                history = JSON.parse(fs.readFileSync(historyPath, 'utf-8'));
+            }
+            catch {
+                history = [];
+            }
+        }
+        if (!Array.isArray(history))
+            history = [];
+        history.unshift({
+            id: Date.now().toString(),
+            title,
+            body,
+            url: url || '/',
+            group,
+            timestamp: new Date().toISOString(),
+            successCount: result.successCount || 0
+        });
+        if (history.length > 50)
+            history = history.slice(0, 50);
+        fs.writeFileSync(historyPath, JSON.stringify(history, null, 2));
+        res.json({ success: true, result });
+    }
+    catch (e) {
+        console.error('[PUSH CUSTOM] Error:', e.message);
+        res.status(500).json({ error: e.message || 'Error al enviar comunicado' });
+    }
+});
+app.get('/api/push/history', (req, res) => {
+    try {
+        const historyPath = path.join(DB_PATH_DYNAMIC, 'comunicados_history.json');
+        if (fs.existsSync(historyPath)) {
+            const history = JSON.parse(fs.readFileSync(historyPath, 'utf-8'));
+            return res.json(history);
+        }
+        res.json([]);
+    }
+    catch (e) {
+        res.json([]);
+    }
+});
 app.use((req, res) => {
     if (req.path.startsWith('/api'))
         return res.status(404).json({ error: 'API not found' });

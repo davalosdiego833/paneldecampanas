@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { NotificationBroadcastModal } from './NotificationBroadcastModal';
 
 interface Props {
     onSelectOption: (option: 'asesores' | 'promotoria' | 'karen' | 'actividad' | 'meta24m' | 'staff' | 'centro_avisos' | 'infografias') => void;
@@ -7,6 +8,7 @@ interface Props {
 }
 
 const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
+    const [isBroadcastOpen, setIsBroadcastOpen] = useState(false);
 
     return (
         <div
@@ -360,6 +362,38 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                     NOTIFICACIONES
                 </button>
 
+                {/* Broadcast Custom Notifications Button */}
+                <button
+                    onClick={() => setIsBroadcastOpen(true)}
+                    style={{
+                        padding: '8px 16px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '6px',
+                        background: 'linear-gradient(135deg, rgba(0, 122, 255, 0.2) 0%, rgba(0, 122, 255, 0.05) 100%)',
+                        border: '1px solid rgba(0, 122, 255, 0.4)',
+                        borderRadius: '20px',
+                        color: '#60A5FA',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        fontSize: '0.8rem',
+                        fontWeight: 700,
+                        letterSpacing: '0.05em',
+                        boxShadow: '0 4px 12px rgba(0, 122, 255, 0.15)'
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'linear-gradient(135deg, rgba(0, 122, 255, 0.35) 0%, rgba(0, 122, 255, 0.15) 100%)';
+                        e.currentTarget.style.borderColor = 'rgba(0, 122, 255, 0.6)';
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'linear-gradient(135deg, rgba(0, 122, 255, 0.2) 0%, rgba(0, 122, 255, 0.05) 100%)';
+                        e.currentTarget.style.borderColor = 'rgba(0, 122, 255, 0.4)';
+                    }}
+                >
+                    ENVIAR COMUNICADO
+                </button>
+
                 {/* Staff Activity Button */}
                 <button
                     onClick={() => onSelectOption('staff')}
@@ -467,9 +501,15 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                         e.currentTarget.style.borderColor = 'rgba(255, 159, 67, 0.25)';
                     }}
                 >
-                    🔔 CENTRO DE AVISOS
+                    CENTRO DE AVISOS
                 </button>
             </div>
+
+            {/* Notification Broadcast Modal */}
+            <NotificationBroadcastModal
+                isOpen={isBroadcastOpen}
+                onClose={() => setIsBroadcastOpen(false)}
+            />
         </div>
     );
 };
