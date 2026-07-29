@@ -789,19 +789,30 @@ const run = async () => {
 
         // DISPARAR NOTIFICACIONES PUSH AUTOMÁTICAS AL CELULAR
         try {
-            const { sendPushNotification } = await import('./scripts/send_push_notification.js');
-            // Avisar a todos los dispositivos (Admin y Asesores) sobre actualización de campañas
-            await sendPushNotification({
-                group: 'all',
-                title: '🚀 Ambriz Asesores — Campañas Actualizadas',
-                body: 'Se han publicado los nuevos números y posiciones en las campañas al corte de hoy.'
-            });
-            // Avisar a Admins sobre reportes de administración
-            await sendPushNotification({
-                group: 'admin',
-                title: '📊 Reportes Administrativos Actualizados',
-                body: 'Se han actualizado los reportes de Pagado/Pendiente, Proactivos y Sin Emisión.'
-            });
+            let sendFn;
+            try {
+                const mod = await import('./scripts/send_push_notification.cjs');
+                sendFn = mod.sendPushNotification || mod.default;
+            } catch {
+                const mod = await import('./scripts/send_push_notification.js');
+                sendFn = mod.sendPushNotification || mod.default;
+            }
+            if (typeof sendFn === 'function') {
+                // 1. Avisar a TODOS los dispositivos (Administradores y Asesores) sobre actualización de campañas
+                await sendFn({
+                    group: 'all',
+                    title: 'Ambriz Asesores — Campañas Actualizadas',
+                    body: 'Se han publicado los nuevos números y posiciones en las campañas al corte de hoy.',
+                    url: '/campanas'
+                });
+                // 2. Avisar EXCLUSIVAMENTE a Administradores sobre reportes de administración
+                await sendFn({
+                    group: 'admin',
+                    title: 'Reportes Administrativos Actualizados',
+                    body: 'Se han actualizado los reportes de Pagado/Pendiente, Proactivos y Sin Emisión.',
+                    url: '/resumen-promotoria'
+                });
+            }
         } catch (e) {
             console.warn('⚠️ No se pudieron enviar notificaciones push:', e.message);
         }
