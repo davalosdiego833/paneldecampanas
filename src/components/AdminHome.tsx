@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { NotificationBroadcastModal } from './NotificationBroadcastModal';
+import { SlidersHorizontal, Bell, Send, Users, Activity, Info, ChevronDown } from 'lucide-react';
 
 interface Props {
     onSelectOption: (option: 'asesores' | 'promotoria' | 'karen' | 'actividad' | 'meta24m' | 'staff' | 'centro_avisos' | 'infografias') => void;
@@ -9,6 +10,18 @@ interface Props {
 
 const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
     const [isBroadcastOpen, setIsBroadcastOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const menuRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                setIsMenuOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     return (
         <div
@@ -316,193 +329,216 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                 </div>
             </motion.div>
 
-            {/* Admin Controls Layer */}
-            <div style={{
+            {/* Admin Controls Dropdown Layer */}
+            <div ref={menuRef} style={{
                 position: 'absolute',
                 top: '24px',
                 right: '24px',
-                display: 'flex',
-                gap: '10px',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-                zIndex: 20
+                zIndex: 50
             }}>
-                {/* Push Notification Button */}
+                {/* Single Executive Dropdown Button */}
                 <button
-                    onClick={() => {
-                        if ((window as any).openPushPrompt) {
-                            (window as any).openPushPrompt();
-                        }
-                    }}
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
                     style={{
-                        padding: '8px 16px',
+                        padding: '10px 18px',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        gap: '6px',
-                        background: 'rgba(0, 122, 255, 0.08)',
-                        border: '1px solid rgba(0, 122, 255, 0.25)',
-                        borderRadius: '20px',
-                        color: '#60A5FA',
+                        gap: '8px',
+                        background: isMenuOpen ? 'rgba(0, 122, 255, 0.25)' : 'rgba(15, 23, 42, 0.85)',
+                        backdropFilter: 'blur(12px)',
+                        border: isMenuOpen ? '1px solid rgba(0, 122, 255, 0.5)' : '1px solid rgba(255, 255, 255, 0.15)',
+                        borderRadius: '24px',
+                        color: '#FFFFFF',
                         cursor: 'pointer',
                         transition: 'all 0.2s ease',
-                        fontSize: '0.8rem',
+                        fontSize: '0.82rem',
                         fontWeight: 700,
                         letterSpacing: '0.05em',
-                    }}
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'rgba(0, 122, 255, 0.2)';
-                        e.currentTarget.style.borderColor = 'rgba(0, 122, 255, 0.5)';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'rgba(0, 122, 255, 0.08)';
-                        e.currentTarget.style.borderColor = 'rgba(0, 122, 255, 0.25)';
+                        boxShadow: '0 4px 16px rgba(0, 0, 0, 0.4)'
                     }}
                 >
-                    NOTIFICACIONES
+                    <SlidersHorizontal size={15} color="#60A5FA" />
+                    <span>HERRAMIENTAS</span>
+                    <ChevronDown size={14} color="#60A5FA" style={{ transform: isMenuOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }} />
                 </button>
 
-                {/* Broadcast Custom Notifications Button */}
-                <button
-                    onClick={() => setIsBroadcastOpen(true)}
-                    style={{
-                        padding: '8px 16px',
+                {/* Executive Dropdown Menu */}
+                {isMenuOpen && (
+                    <div style={{
+                        position: 'absolute',
+                        top: 'calc(100% + 8px)',
+                        right: 0,
+                        width: '240px',
+                        background: 'rgba(15, 23, 42, 0.98)',
+                        backdropFilter: 'blur(20px)',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        borderRadius: '14px',
+                        padding: '8px',
+                        boxShadow: '0 20px 48px rgba(0, 0, 0, 0.6)',
                         display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '6px',
-                        background: 'linear-gradient(135deg, rgba(0, 122, 255, 0.2) 0%, rgba(0, 122, 255, 0.05) 100%)',
-                        border: '1px solid rgba(0, 122, 255, 0.4)',
-                        borderRadius: '20px',
-                        color: '#60A5FA',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease',
-                        fontSize: '0.8rem',
-                        fontWeight: 700,
-                        letterSpacing: '0.05em',
-                        boxShadow: '0 4px 12px rgba(0, 122, 255, 0.15)'
-                    }}
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'linear-gradient(135deg, rgba(0, 122, 255, 0.35) 0%, rgba(0, 122, 255, 0.15) 100%)';
-                        e.currentTarget.style.borderColor = 'rgba(0, 122, 255, 0.6)';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'linear-gradient(135deg, rgba(0, 122, 255, 0.2) 0%, rgba(0, 122, 255, 0.05) 100%)';
-                        e.currentTarget.style.borderColor = 'rgba(0, 122, 255, 0.4)';
-                    }}
-                >
-                    ENVIAR COMUNICADO
-                </button>
+                        flexDirection: 'column',
+                        gap: '4px',
+                        zIndex: 100
+                    }}>
+                        <button
+                            onClick={() => {
+                                setIsMenuOpen(false);
+                                if ((window as any).openPushPrompt) {
+                                    (window as any).openPushPrompt();
+                                }
+                            }}
+                            style={{
+                                width: '100%',
+                                padding: '10px 14px',
+                                borderRadius: '10px',
+                                border: 'none',
+                                background: 'transparent',
+                                color: '#FFFFFF',
+                                fontSize: '0.83rem',
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                textAlign: 'left',
+                                transition: 'background 0.2s'
+                            }}
+                            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(0, 122, 255, 0.15)'}
+                            onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                        >
+                            <Bell size={16} color="#60A5FA" /> Notificaciones en Dispositivo
+                        </button>
 
-                {/* Staff Activity Button */}
-                <button
-                    onClick={() => onSelectOption('staff')}
-                    style={{
-                        padding: '8px 16px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        background: 'rgba(0, 122, 255, 0.05)',
-                        border: '1px solid rgba(0, 122, 255, 0.15)',
-                        borderRadius: '20px',
-                        color: '#9ca3af',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease',
-                        fontSize: '0.8rem',
-                        fontWeight: 600,
-                        letterSpacing: '0.05em',
-                    }}
-                    title="Mina de Oro Staff"
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'rgba(0, 122, 255, 0.15)';
-                        e.currentTarget.style.color = '#007AFF';
-                        e.currentTarget.style.borderColor = 'rgba(0, 122, 255, 0.3)';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'rgba(0, 122, 255, 0.05)';
-                        e.currentTarget.style.color = '#9ca3af';
-                        e.currentTarget.style.borderColor = 'rgba(0, 122, 255, 0.15)';
-                    }}
-                >
-                    ACTIVIDAD STAFF
-                </button>
+                        <button
+                            onClick={() => {
+                                setIsMenuOpen(false);
+                                setIsBroadcastOpen(true);
+                            }}
+                            style={{
+                                width: '100%',
+                                padding: '10px 14px',
+                                borderRadius: '10px',
+                                border: 'none',
+                                background: 'transparent',
+                                color: '#FFFFFF',
+                                fontSize: '0.83rem',
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                textAlign: 'left',
+                                transition: 'background 0.2s'
+                            }}
+                            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(0, 122, 255, 0.15)'}
+                            onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                        >
+                            <Send size={16} color="#60A5FA" /> Enviar Comunicado
+                        </button>
 
-                {/* Discreet Activity Tracker Button */}
-                <button
-                    onClick={() => onSelectOption('actividad')}
-                    style={{
-                        padding: '8px 16px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        background: 'rgba(255, 255, 255, 0.05)',
-                        border: '1px solid rgba(255, 255, 255, 0.1)',
-                        borderRadius: '20px',
-                        color: '#9ca3af',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease',
-                        fontSize: '0.8rem',
-                        fontWeight: 600,
-                        letterSpacing: '0.05em',
-                    }}
-                    title="Log de Actividad"
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'rgba(212, 175, 55, 0.1)';
-                        e.currentTarget.style.color = '#D4AF37';
-                        e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                        e.currentTarget.style.color = '#9ca3af';
-                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                    }}
-                >
-                    ACTIVIDAD PÁGINA
-                </button>
+                        <button
+                            onClick={() => {
+                                setIsMenuOpen(false);
+                                onSelectOption('staff');
+                            }}
+                            style={{
+                                width: '100%',
+                                padding: '10px 14px',
+                                borderRadius: '10px',
+                                border: 'none',
+                                background: 'transparent',
+                                color: '#94A3B8',
+                                fontSize: '0.83rem',
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                textAlign: 'left',
+                                transition: 'background 0.2s'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)';
+                                e.currentTarget.style.color = '#FFFFFF';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.background = 'transparent';
+                                e.currentTarget.style.color = '#94A3B8';
+                            }}
+                        >
+                            <Users size={16} color="#94A3B8" /> Actividad Staff
+                        </button>
 
-                {/* Centro de Avisos Button */}
-                <button
-                    onClick={() => {
-                        fetch('/api/activity', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                asesor: "Administrador",
-                                accion: "Consultó Centro de Avisos"
-                            })
-                        }).catch(e => console.error('Error', e));
-                        onSelectOption('centro_avisos');
-                    }}
-                    style={{
-                        padding: '8px 16px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        justifyContent: 'center',
-                        background: 'rgba(255, 159, 67, 0.1)',
-                        border: '1px solid rgba(255, 159, 67, 0.25)',
-                        borderRadius: '20px',
-                        color: '#FF9F43',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease',
-                        fontSize: '0.8rem',
-                        fontWeight: 700,
-                        letterSpacing: '0.05em',
-                    }}
-                    title="Centro de Avisos"
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'rgba(255, 159, 67, 0.25)';
-                        e.currentTarget.style.color = '#FFA952';
-                        e.currentTarget.style.borderColor = 'rgba(255, 159, 67, 0.5)';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'rgba(255, 159, 67, 0.1)';
-                        e.currentTarget.style.color = '#FF9F43';
-                        e.currentTarget.style.borderColor = 'rgba(255, 159, 67, 0.25)';
-                    }}
-                >
-                    CENTRO DE AVISOS
-                </button>
+                        <button
+                            onClick={() => {
+                                setIsMenuOpen(false);
+                                onSelectOption('actividad');
+                            }}
+                            style={{
+                                width: '100%',
+                                padding: '10px 14px',
+                                borderRadius: '10px',
+                                border: 'none',
+                                background: 'transparent',
+                                color: '#94A3B8',
+                                fontSize: '0.83rem',
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                textAlign: 'left',
+                                transition: 'background 0.2s'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)';
+                                e.currentTarget.style.color = '#FFFFFF';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.background = 'transparent';
+                                e.currentTarget.style.color = '#94A3B8';
+                            }}
+                        >
+                            <Activity size={16} color="#94A3B8" /> Actividad de la Página
+                        </button>
+
+                        <button
+                            onClick={() => {
+                                setIsMenuOpen(false);
+                                fetch('/api/activity', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({
+                                        asesor: "Administrador",
+                                        accion: "Consultó Centro de Avisos"
+                                    })
+                                }).catch(e => console.error('Error', e));
+                                onSelectOption('centro_avisos');
+                            }}
+                            style={{
+                                width: '100%',
+                                padding: '10px 14px',
+                                borderRadius: '10px',
+                                border: 'none',
+                                background: 'transparent',
+                                color: '#FF9F43',
+                                fontSize: '0.83rem',
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                textAlign: 'left',
+                                transition: 'background 0.2s'
+                            }}
+                            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 159, 67, 0.12)'}
+                            onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                        >
+                            <Info size={16} color="#FF9F43" /> Centro de Avisos
+                        </button>
+                    </div>
+                )}
             </div>
 
             {/* Notification Broadcast Modal */}
