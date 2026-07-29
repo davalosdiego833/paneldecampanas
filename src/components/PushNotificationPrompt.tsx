@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Bell, CheckCircle2, X, Send, Power, ShieldCheck, Smartphone, RefreshCw } from 'lucide-react';
+import { Bell, CheckCircle2, X, Send, Power, ShieldCheck, Smartphone, RefreshCw, Share } from 'lucide-react';
 
 interface PushPromptProps {
     role: 'admin' | 'asesor';
@@ -18,10 +18,14 @@ const urlBase64ToUint8Array = (base64String: string) => {
     return outputArray;
 };
 
+const hasNotificationSupport = () => {
+    return typeof window !== 'undefined' && 'Notification' in window && typeof window.Notification !== 'undefined';
+};
+
 export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave, name }) => {
     const [showPrompt, setShowPrompt] = useState(false);
     const [isSubscribed, setIsSubscribed] = useState(false);
-    const [status, setStatus] = useState<'idle' | 'loading' | 'testing' | 'success' | 'denied' | 'unsubscribed'>('idle');
+    const [status, setStatus] = useState<'idle' | 'loading' | 'testing' | 'success' | 'denied' | 'unsupported'>('idle');
     const [statusMsg, setStatusMsg] = useState('');
 
     useEffect(() => {
@@ -39,24 +43,34 @@ export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave,
 
     const checkSubscriptionStatus = async () => {
         if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+            setStatus('unsupported');
             return;
         }
 
-        if (Notification.permission === 'granted') {
-            const reg = await navigator.serviceWorker.ready;
-            const sub = await reg.pushManager.getSubscription();
-            if (sub) {
-                setIsSubscribed(true);
-                localStorage.setItem('push_notifications_enabled', 'true');
-            } else {
+        if (!hasNotificationSupport()) {
+            setStatus('unsupported');
+            return;
+        }
+
+        try {
+            if (window.Notification.permission === 'granted') {
+                const reg = await navigator.serviceWorker.ready;
+                const sub = await reg.pushManager.getSubscription();
+                if (sub) {
+                    setIsSubscribed(true);
+                    localStorage.setItem('push_notifications_enabled', 'true');
+                } else {
+                    setIsSubscribed(false);
+                }
+            } else if (window.Notification.permission === 'default') {
                 setIsSubscribed(false);
+                const enabled = localStorage.getItem('push_notifications_enabled');
+                if (!enabled) {
+                    setTimeout(() => setShowPrompt(true), 1500);
+                }
             }
-        } else if (Notification.permission === 'default') {
-            setIsSubscribed(false);
-            const enabled = localStorage.getItem('push_notifications_enabled');
-            if (!enabled) {
-                setTimeout(() => setShowPrompt(true), 1500);
-            }
+        } catch (e) {
+            console.warn('[PUSH PROMPT] Notification check fallback:', e);
         }
     };
 
@@ -67,7 +81,7 @@ export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave,
             await navigator.serviceWorker.ready;
 
             const resKey = await fetch('/api/push/vapid-public-key');
-            if (!resKey.ok) throw new Error('Could not fetch public key');
+            if (!resKey.ok) throw new Error('No se pudo obtener la llave del servidor');
             const { publicKey } = await resKey.json();
 
             let sub = await reg.pushManager.getSubscription();
@@ -100,24 +114,25 @@ export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave,
         } catch (err: any) {
             console.error('[PUSH PROMPT] Error al suscribir:', err);
             setStatus('idle');
+            setStatusMsg('Error al registrar: ' + (err.message || 'Intenta nuevamente'));
         }
     };
 
-    const requestPermissionSafely = (): Promise<NotificationPermission> => {
+    const requestPermissionSafely = (): Promise<NotificationPermission | 'unsupported'> => {
         return new Promise((resolve) => {
-            if (typeof Notification.requestPermission === 'function') {
-                try {
-                    const res = Notification.requestPermission((permission) => {
-                        resolve(permission);
-                    });
-                    if (res && typeof (res as any).then === 'function') {
-                        (res as any).then(resolve).catch(() => resolve(Notification.permission));
-                    }
-                } catch (e) {
-                    resolve(Notification.permission);
+            if (!hasNotificationSupport()) {
+                resolve('unsupported');
+                return;
+            }
+            try {
+                const res = window.Notification.requestPermission((permission) => {
+                    resolve(permission);
+                });
+                if (res && typeof (res as any).then === 'function') {
+                    (res as any).then(resolve).catch(() => resolve(window.Notification ? window.Notification.permission : 'unsupported'));
                 }
-            } else {
-                resolve(Notification.permission);
+            } catch (e) {
+                resolve(window.Notification ? window.Notification.permission : 'unsupported');
             }
         });
     };
@@ -132,6 +147,9 @@ export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave,
             } else if (permission === 'denied') {
                 setStatus('denied');
                 setStatusMsg('Las notificaciones están bloqueadas en tu celular. Habilítalas en Ajustes > Safari / Chrome.');
+            } else if (permission === 'unsupported') {
+                setStatus('unsupported');
+                setStatusMsg('Para recibir notificaciones en iPhone: toca el botón Compartir 📤 en Safari y selecciona "Agregar a Inicio".');
             } else {
                 setStatus('idle');
                 setStatusMsg('');
@@ -192,7 +210,7 @@ export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave,
             }
             setIsSubscribed(false);
             localStorage.removeItem('push_notifications_enabled');
-            setStatus('unsubscribed');
+            setStatus('idle');
             setStatusMsg('Notificaciones desactivadas para este dispositivo.');
             setTimeout(() => {
                 setStatus('idle');
@@ -285,8 +303,31 @@ export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave,
                 </span>
             </div>
 
+            {/* Special Instructions for iPhone when Notification variable is absent */}
+            {status === 'unsupported' && (
+                <div style={{
+                    background: 'rgba(0, 122, 255, 0.1)',
+                    border: '1px solid rgba(0, 122, 255, 0.3)',
+                    borderRadius: '10px',
+                    padding: '12px 14px',
+                    fontSize: '0.8rem',
+                    color: '#93C5FD',
+                    lineHeight: '1.4',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '8px'
+                }}>
+                    <div style={{ fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px', color: '#FFFFFF' }}>
+                        <Share size={15} color="#007AFF" /> Requisito de iPhone (iOS):
+                    </div>
+                    <div>1. Toca el botón <strong>Compartir 📤</strong> en la barra de Safari.</div>
+                    <div>2. Selecciona <strong>"Agregar a Inicio"</strong>.</div>
+                    <div>3. Abre la App desde la pantalla de inicio de tu celular para activar notificaciones.</div>
+                </div>
+            )}
+
             {/* Status Messages */}
-            {statusMsg && (
+            {statusMsg && status !== 'unsupported' && (
                 <div style={{
                     fontSize: '0.8rem',
                     color: status === 'success' ? '#00E676' : (status === 'denied' ? '#FF6B6B' : '#60A5FA'),
