@@ -2551,6 +2551,10 @@ app.post('/api/push/send-custom', async (req, res) => {
             return res.status(400).json({ error: 'Título y mensaje son requeridos' });
         }
         const candidateScriptPaths = [
+            path.join(BASE_PATH, 'scripts', 'send_push_notification.cjs'),
+            path.join(BASE_PATH, 'public_html', 'scripts', 'send_push_notification.cjs'),
+            path.join(BASE_PATH, 'nodejs', 'scripts', 'send_push_notification.cjs'),
+            path.join(safeDirname, 'scripts', 'send_push_notification.cjs'),
             path.join(BASE_PATH, 'scripts', 'send_push_notification.js'),
             path.join(BASE_PATH, 'public_html', 'scripts', 'send_push_notification.js'),
             path.join(BASE_PATH, 'nodejs', 'scripts', 'send_push_notification.js'),
