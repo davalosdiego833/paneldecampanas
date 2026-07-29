@@ -6,6 +6,7 @@ import fs from 'fs';
 import os from 'os';
 import XLSX from 'xlsx';
 import dotenv from 'dotenv';
+import { pathToFileURL } from 'url';
 import { execSync } from 'child_process';
 const safeFilename = typeof __filename !== 'undefined' ? __filename : '';
 const safeDirname = typeof __dirname !== 'undefined' ? __dirname : process.cwd();
@@ -2600,8 +2601,18 @@ app.post('/api/push/send-custom', async (req, res) => {
         if (!title || !body) {
             return res.status(400).json({ error: 'Título y mensaje son requeridos' });
         }
-        const scriptPath = path.join(BASE_PATH, 'scripts', 'send_push_notification.js');
-        const { sendPushNotification } = await import(`file://${scriptPath}`);
+        const candidateScriptPaths = [
+            path.join(BASE_PATH, 'scripts', 'send_push_notification.js'),
+            path.join(BASE_PATH, 'public_html', 'scripts', 'send_push_notification.js'),
+            path.join(BASE_PATH, 'nodejs', 'scripts', 'send_push_notification.js'),
+            path.join(safeDirname, 'scripts', 'send_push_notification.js'),
+        ];
+        const scriptPath = candidateScriptPaths.find(p => fs.existsSync(p));
+        if (!scriptPath) {
+            return res.status(500).json({ error: 'Script de notificaciones no encontrado' });
+        }
+        const fileUrl = pathToFileURL(scriptPath).href;
+        const { sendPushNotification } = await import(fileUrl);
         const result = await sendPushNotification({ group, title, body, url: url || '/' });
         // Guardar en historial
         const historyPath = path.join(DB_PATH_DYNAMIC, 'comunicados_history.json');

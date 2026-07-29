@@ -85,7 +85,14 @@ export const NotificationBroadcastModal: React.FC<BroadcastModalProps> = ({ isOp
                 })
             });
 
-            const data = await res.json();
+            const text = await res.text();
+            let data: any = {};
+            try {
+                data = JSON.parse(text);
+            } catch (e) {
+                throw new Error(res.ok ? 'Respuesta procesada' : (text.slice(0, 100) || 'Error en la respuesta del servidor'));
+            }
+
             if (res.ok && data.success) {
                 setFeedback({
                     type: 'success',
