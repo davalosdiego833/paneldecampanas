@@ -207,13 +207,17 @@ const possibleDistPaths = [
     path.join(safeDirname, '../dist'),
     path.join(safeDirname, 'public_html', 'dist'),
     path.join(BASE_PATH, 'dist'),
-    path.join(BASE_PATH, 'public_html', 'dist')
+    path.join(BASE_PATH, 'public_html', 'dist'),
+    '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/dist',
+    '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist'
 ];
 const DIST_PATH = possibleDistPaths.find(p => safeExists(path.join(p, 'index.html'))) || path.join(BASE_PATH, 'dist');
 
 app.use(express.static(DIST_PATH, { setHeaders: setMimeHeaders }));
 app.use('/assets', express.static(ASSETS_PATH, { setHeaders: setMimeHeaders }));
 app.use('/assets', express.static(path.join(DIST_PATH, 'assets'), { setHeaders: setMimeHeaders }));
+app.use('/assets', express.static('/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/dist/assets', { setHeaders: setMimeHeaders }));
+app.use('/assets', express.static('/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist/assets', { setHeaders: setMimeHeaders }));
 
 // Special route for assets files if lost
 app.get('/assets/:filename', (req, res, next) => {
@@ -226,7 +230,11 @@ app.get('/assets/:filename', (req, res, next) => {
         path.join(BASE_PATH, 'dist', 'assets', filename),
         path.join(BASE_PATH, 'assets', filename),
         path.join(cwd, 'dist', 'assets', filename),
-        path.join(cwd, 'assets', filename)
+        path.join(cwd, 'assets', filename),
+        `/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/dist/assets/${filename}`,
+        `/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/assets/${filename}`,
+        `/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist/assets/${filename}`,
+        `/home/u211138134/domains/panel.ambrizydavalos.com/public_html/assets/${filename}`
     ];
     const found = candidates.find(p => safeExists(p));
     if (found) {

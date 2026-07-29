@@ -80,6 +80,13 @@ ssh $SSH_OPTS $SERVER_USER@$SERVER_IP << EOF
     cp \$PARENT_DIR/nodejs/dist/server/index.js \$PARENT_DIR/public_html/index.js 2>/dev/null || true
     cp \$PARENT_DIR/nodejs/dist/server/index.js \$PARENT_DIR/public_html/app.js 2>/dev/null || true
     
+    cp \$PARENT_DIR/nodejs/dist/index.html \$PARENT_DIR/nodejs/index.html 2>/dev/null || true
+    cp \$PARENT_DIR/nodejs/dist/index.html \$PARENT_DIR/public_html/index.html 2>/dev/null || true
+    
+    mkdir -p \$PARENT_DIR/public_html/assets
+    cp -r \$PARENT_DIR/nodejs/dist/assets/* \$PARENT_DIR/public_html/assets/ 2>/dev/null || true
+    cp -r \$PARENT_DIR/nodejs/dist/assets/* \$PARENT_DIR/public_html/dist/assets/ 2>/dev/null || true
+    
     ln -sfn \$PARENT_DIR/nodejs/node_modules \$PARENT_DIR/public_html/node_modules 2>/dev/null || true
     
     # REINICIO DE PASSENGER (Solo touch, sin pkill)
