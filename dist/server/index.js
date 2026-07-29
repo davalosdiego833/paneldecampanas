@@ -2560,7 +2560,13 @@ app.post('/api/push/test-device', async (req, res) => {
             icon: '/assets/logos/empresa/ambriz_logo.png',
             url: '/'
         });
-        await webpush.sendNotification(subscription, payload);
+        const pushOptions = {
+            TTL: 86400,
+            headers: {
+                'Urgency': 'high'
+            }
+        };
+        await webpush.sendNotification(subscription, payload, pushOptions);
         res.json({ success: true });
     }
     catch (e) {

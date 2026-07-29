@@ -2512,7 +2512,13 @@ app.post('/api/push/test-device', async (req, res) => {
             url: '/'
         });
 
-        await webpush.sendNotification(subscription, payload);
+        const pushOptions = {
+            TTL: 86400,
+            headers: {
+                'Urgency': 'high'
+            }
+        };
+        await webpush.sendNotification(subscription, payload, pushOptions);
         res.json({ success: true });
     } catch (e: any) {
         console.error('[PUSH TEST] Error sending test notification:', e.message);

@@ -40,10 +40,16 @@ export const sendPushNotification = async ({ group = 'all', title, body, url = '
         const isTarget = group === 'all' || (group === 'admin' && sub.role === 'admin') || (group === 'asesor' && sub.role === 'asesor');
         if (isTarget && sub.subscription && sub.subscription.endpoint) {
             try {
-                await webpush.sendNotification(sub.subscription, payload);
+                const pushOptions = {
+                    TTL: 86400,
+                    headers: {
+                        'Urgency': 'high'
+                    }
+                };
+                await webpush.sendNotification(sub.subscription, payload, pushOptions);
                 successCount++;
                 activeSubs.push(sub);
-            } catch (err) {
+            } catch (err: any) {
                 console.error(`[PUSH] Error al enviar a ${sub.name || sub.role}:`, err.message);
                 if (err.statusCode !== 410 && err.statusCode !== 404) {
                     activeSubs.push(sub);
