@@ -93,16 +93,8 @@ ssh $SSH_OPTS $SERVER_USER@$SERVER_IP << EOF
     mkdir -p \$PARENT_DIR/public_html/tmp
     touch \$PARENT_DIR/public_html/tmp/restart.txt
     
-    # DISPARAR NOTIFICACIONES PUSH AUTOMÁTICAS EN SERVIDOR DE PRODUCCIÓN
-    /opt/alt/alt-nodejs20/root/usr/bin/node -e "
-        const { sendPushNotification } = require('\$PARENT_DIR/nodejs/scripts/send_push_notification.cjs');
-        sendPushNotification({
-            group: 'admin',
-            title: '📊 Reportes Administrativos Actualizados',
-            body: 'Se ha procesado exitosamente la nueva información y cortes al día de hoy.',
-            url: '/resumen-promotoria'
-        }).then(res => console.log('📡 Push enviado en producción:', res)).catch(e => console.error(e));
-    " 2>/dev/null || true
+    # DISPARAR NOTIFICACIÓN PUSH AUTOMÁTICA EN PRODUCCIÓN VÍA EXPRESS API
+    curl -s -X POST "https://panel.ambrizydavalos.com/api/push/send-custom" -H "Content-Type: application/json" -d '{"group":"admin","title":"📊 Reportes Administrativos Actualizados","body":"Se han procesado los nuevos cortes de información al día de hoy.","url":"/resumen-promotoria"}' >/dev/null 2>&1 &
     
     echo "✅ SISTEMA BLINDADO DISTRIBUIDO DESPLEGADO EXITOSAMENTE."
 EOF
