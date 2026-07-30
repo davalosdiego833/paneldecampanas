@@ -2479,7 +2479,19 @@ app.post('/api/push/subscribe', (req, res) => {
             subscribedAt: new Date().toISOString()
         });
 
-        fs.writeFileSync(subsPath, JSON.stringify(subs, null, 2));
+        const targetPaths = [
+            subsPath,
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/push_subscriptions.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/push_subscriptions.json'
+        ];
+        for (const tp of targetPaths) {
+            try {
+                const dir = path.dirname(tp);
+                if (fs.existsSync(dir)) {
+                    fs.writeFileSync(tp, JSON.stringify(subs, null, 2));
+                }
+            } catch (e) {}
+        }
         res.json({ success: true });
     } catch (e) { res.status(500).json({ error: 'Error saving subscription' }); }
 });

@@ -3,11 +3,35 @@ const fs = require('fs');
 const path = require('path');
 
 const BASE_PATH = path.join(__dirname, '..');
-const vapidKeysPath = path.join(BASE_PATH, 'db', 'vapid_keys.json');
-const subscriptionsPath = path.join(BASE_PATH, 'db', 'push_subscriptions.json');
+
+const getDbPath = () => {
+    const candidateDbFolders = [
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db',
+        path.join(BASE_PATH, 'db'),
+        path.join(process.cwd(), 'db')
+    ];
+    return candidateDbFolders.find(p => fs.existsSync(p)) || path.join(BASE_PATH, 'db');
+};
+
+const getSubscriptionsPath = () => {
+    const candidateFiles = [
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/push_subscriptions.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/push_subscriptions.json',
+        path.join(BASE_PATH, 'db', 'push_subscriptions.json'),
+        path.join(process.cwd(), 'db', 'push_subscriptions.json')
+    ];
+    return candidateFiles.find(p => fs.existsSync(p) && fs.readFileSync(p, 'utf-8').trim() !== '[]') 
+        || candidateFiles.find(p => fs.existsSync(p)) 
+        || path.join(BASE_PATH, 'db', 'push_subscriptions.json');
+};
 
 const sendPushNotification = async ({ group = 'all', title, body, url = '/', icon = '/assets/logos/empresa/ambriz_logo.png' }) => {
-    if (!fs.existsSync(vapidKeysPath) || !fs.existsSync(subscriptionsPath)) {
+    const dbDir = getDbPath();
+    const vapidKeysPath = path.join(dbDir, 'vapid_keys.json');
+    const subsPath = getSubscriptionsPath();
+
+    if (!fs.existsSync(vapidKeysPath) || !fs.existsSync(subsPath)) {
         console.log('[PUSH] No se encontraron llaves VAPID o base de datos de suscripciones.');
         return { success: false, sent: 0 };
     }
@@ -21,7 +45,7 @@ const sendPushNotification = async ({ group = 'all', title, body, url = '/', ico
 
     let subscriptions = [];
     try {
-        subscriptions = JSON.parse(fs.readFileSync(subscriptionsPath, 'utf-8'));
+        subscriptions = JSON.parse(fs.readFileSync(subsPath, 'utf-8'));
     } catch (e) {
         subscriptions = [];
     }
@@ -56,11 +80,21 @@ const sendPushNotification = async ({ group = 'all', title, body, url = '/', ico
         }
     }
 
-    try {
-        fs.writeFileSync(subscriptionsPath, JSON.stringify(activeSubs, null, 2));
-    } catch (e) {
-        console.error('[PUSH] Error guardando suscripciones:', e.message);
+    // Dual-write to sync both directories
+    const writeTargets = [
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/push_subscriptions.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/push_subscriptions.json',
+        path.join(BASE_PATH, 'db', 'push_subscriptions.json')
+    ];
+    for (const target of writeTargets) {
+        try {
+            const dir = path.dirname(target);
+            if (fs.existsSync(dir)) {
+                fs.writeFileSync(target, JSON.stringify(activeSubs, null, 2));
+            }
+        } catch (e) {}
     }
+
     console.log(`[PUSH] Envío completado. Exitosos: ${successCount} de ${subscriptions.length} dispositivo(s).`);
     return { success: true, sent: successCount };
 };
