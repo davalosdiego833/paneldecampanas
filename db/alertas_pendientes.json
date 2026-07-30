@@ -1,26 +1,5 @@
 {
-  "generatedAt": "29/7/2026, 3:27:36 p.m.",
-  "totalNew": 2,
-  "alerts": [
-    {
-      "id": "e760bb41-3972-4339-9fe5-b97d99268cb7",
-      "asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
-      "firstName": "Liliana",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "¡Nueva póliza pagada!",
-      "message": "Hola Liliana, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "bbf28efb-0e0e-40da-9910-1a1fefc60928",
-      "asesor": "VELIA PATRICIA BERNAL RAMOS",
-      "firstName": "Velia",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "¡Nueva póliza pagada!",
-      "message": "Hola Velia, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    }
-  ]
+  "generatedAt": "30/7/2026, 1:30:28 p.m.",
+  "totalNew": 0,
+  "alerts": []
 }

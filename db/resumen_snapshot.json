@@ -1,5 +1,5 @@
 {
-  "updatedAt": "29/7/2026, 3:27:29 p.m.",
+  "updatedAt": "30/7/2026, 1:30:20 p.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -100,6 +100,18 @@
           "Total _Prima_Pendiente": 17699.94
         },
         {
+          "Nombre Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 21194.34,
+          "Total _Prima_Pagada": 21194.34,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 81312.5,
+          "Total _Prima_Pendiente": 81312.5
+        },
+        {
           "Nombre Asesor": "JULIANA RIASCOS VALENCIA",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -160,28 +172,16 @@
           "Total _Prima_Pendiente": 116655.84
         },
         {
-          "Nombre Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 16663.14,
-          "Total _Prima_Pagada": 16663.14,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 85843.7,
-          "Total _Prima_Pendiente": 85843.7
-        },
-        {
           "Nombre Asesor": "SOFIA CAMPILLO VASCONCELOS",
           "Sucursal": "2856",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
           "Recibo_Ordinario_Pagado": 15061.43,
           "Total _Prima_Pagada": 15061.43,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 2535.92,
+          "Pólizas_Pendinetes": 2,
+          "Recibo_Inicial_Pendiente": 9712.39,
           "Recibo_Ordinario_Pendiente": 123642.69,
-          "Total _Prima_Pendiente": 126178.61
+          "Total _Prima_Pendiente": 133355.08
         },
         {
           "Nombre Asesor": "MARICELA ARREOLA LOPEZ",
@@ -238,10 +238,10 @@
           "Recibo_Inicial_Pagado": 0,
           "Recibo_Ordinario_Pagado": 10152.32,
           "Total _Prima_Pagada": 10152.32,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 57661.97,
-          "Recibo_Ordinario_Pendiente": 52737.61,
-          "Total _Prima_Pendiente": 110399.58
+          "Pólizas_Pendinetes": 2,
+          "Recibo_Inicial_Pendiente": 76168.04,
+          "Recibo_Ordinario_Pendiente": 71243.68,
+          "Total _Prima_Pendiente": 147411.72
         },
         {
           "Nombre Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
@@ -400,6 +400,18 @@
           "Total _Prima_Pendiente": 12612.21
         },
         {
+          "Nombre Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 3523.31,
+          "Total _Prima_Pagada": 3523.31,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 21672.01,
+          "Total _Prima_Pendiente": 21672.01
+        },
+        {
           "Nombre Asesor": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -412,28 +424,16 @@
           "Total _Prima_Pendiente": 0
         },
         {
-          "Nombre Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 2482.01,
-          "Total _Prima_Pagada": 2482.01,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 22713.31,
-          "Total _Prima_Pendiente": 22713.31
-        },
-        {
           "Nombre Asesor": "PAULINA RODRIGUEZ DE LA MORA",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 1748.24,
-          "Total _Prima_Pagada": 1748.24,
+          "Recibo_Ordinario_Pagado": 2789.54,
+          "Total _Prima_Pagada": 2789.54,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 9075.54,
-          "Total _Prima_Pendiente": 9075.54
+          "Recibo_Ordinario_Pendiente": 8034.24,
+          "Total _Prima_Pendiente": 8034.24
         },
         {
           "Nombre Asesor": "GERARDO DANIEL BARAJAS TORRES",
@@ -2155,7 +2155,7 @@
       }
     },
     "fechas_corte": {
-      "pagado_pendiente": "28 de julio de 2026",
+      "pagado_pendiente": "29 de julio de 2026",
       "pagado_pendiente_reclutas": "24 de julio de 2026",
       "asesores_sin_emision": "15 de jul de 2026",
       "proactivos": "17 de julio de 2026",
