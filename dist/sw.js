@@ -19,7 +19,6 @@ self.addEventListener('push', function(event) {
     const options = {
         body: payload.body,
         icon: payload.icon || '/assets/logos/empresa/ambriz_logo.png',
-        badge: payload.badge || '/assets/logos/empresa/ambriz_logo.png',
         data: {
             url: payload.url || '/'
         },
