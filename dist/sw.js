@@ -1,4 +1,13 @@
-// Ambriz Asesores — Service Worker para Notificaciones Push (iOS & Android Compatible)
+// Ambriz Asesores — Service Worker para Notificaciones Push (iOS & Android 100% Compatible)
+
+self.addEventListener('install', function(event) {
+    self.skipWaiting();
+});
+
+self.addEventListener('activate', function(event) {
+    event.waitUntil(self.clients.claim());
+});
+
 self.addEventListener('push', function(event) {
     if (!event.data) return;
 
@@ -15,15 +24,19 @@ self.addEventListener('push', function(event) {
         payload.body = event.data.text();
     }
 
-    // Opciones estándar compatibles 100% con iOS Apple APNs y Android Chrome
+    const origin = self.location.origin || 'https://panel.ambrizydavalos.com';
+    let iconUrl = payload.icon || '/assets/logos/empresa/ambriz_logo.png';
+    if (iconUrl.startsWith('/')) {
+        iconUrl = origin + iconUrl;
+    }
+
+    // Opciones nativas 100% estables para iOS APNs y Android Chrome
     const options = {
         body: payload.body,
-        icon: payload.icon || '/assets/logos/empresa/ambriz_logo.png',
+        icon: iconUrl,
         data: {
             url: payload.url || '/'
-        },
-        tag: 'ambriz-push-' + Date.now(),
-        renotify: true
+        }
     };
 
     event.waitUntil(
