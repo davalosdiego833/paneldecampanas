@@ -2459,7 +2459,7 @@ app.get('/api/push/vapid-public-key', (req, res) => {
 
 app.post('/api/push/subscribe', (req, res) => {
     try {
-        const { subscription, role, clave, name } = req.body;
+        const { subscription, role, clave, name, deviceInfo } = req.body;
         if (!subscription || !subscription.endpoint) {
             return res.status(400).json({ error: 'Subscription object missing' });
         }
@@ -2478,6 +2478,7 @@ app.post('/api/push/subscribe', (req, res) => {
             role: finalRole,
             clave: clave && clave !== 'UNKNOWN' && clave !== 'USUARIO' ? clave : (existing?.clave || 'ADMIN'),
             name: name && name !== 'Usuario' ? name : (existing?.name || 'Administrador'),
+            deviceInfo: deviceInfo || existing?.deviceInfo || 'Dispositivo Web',
             subscribedAt: new Date().toISOString()
         });
 

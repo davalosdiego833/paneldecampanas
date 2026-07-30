@@ -22,6 +22,17 @@ const hasNotificationSupport = () => {
     return typeof window !== 'undefined' && 'Notification' in window && typeof window.Notification !== 'undefined';
 };
 
+const getDeviceInfo = () => {
+    if (typeof navigator === 'undefined') return 'Dispositivo Desconocido';
+    const ua = navigator.userAgent || '';
+    if (/iPhone/i.test(ua)) return 'iPhone (iOS PWA)';
+    if (/iPad/i.test(ua)) return 'iPad (iOS PWA)';
+    if (/Android/i.test(ua)) return 'Android Celular';
+    if (/Macintosh|Mac OS X/i.test(ua)) return 'Mac (macOS Desktop)';
+    if (/Windows/i.test(ua)) return 'PC (Windows Desktop)';
+    return 'Navegador Web';
+};
+
 export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave, name }) => {
     const [showPrompt, setShowPrompt] = useState(false);
     const [isSubscribed, setIsSubscribed] = useState(false);
@@ -59,7 +70,7 @@ export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave,
                 if (sub) {
                     setIsSubscribed(true);
                     localStorage.setItem('push_notifications_enabled', 'true');
-                    // Auto-sincronización silenciosa e invisible para mantener actualizado el token en el servidor
+                    // Auto-sincronización silenciosa con identificación precisa de dispositivo y usuario
                     fetch('/api/push/subscribe', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -67,7 +78,8 @@ export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave,
                             subscription: sub,
                             role: role || 'asesor',
                             clave: clave || 'USUARIO',
-                            name: name || 'Usuario'
+                            name: name || 'Usuario',
+                            deviceInfo: getDeviceInfo()
                         })
                     }).catch(() => {});
                 } else {
