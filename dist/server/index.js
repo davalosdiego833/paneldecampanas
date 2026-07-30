@@ -2623,14 +2623,14 @@ app.post('/api/push/send-custom', async (req, res) => {
             return res.status(400).json({ error: 'Título y mensaje son requeridos' });
         }
         const candidateScriptPaths = [
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/scripts/send_push_notification.cjs',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/scripts/send_push_notification.cjs',
             path.join(BASE_PATH, 'scripts', 'send_push_notification.cjs'),
             path.join(BASE_PATH, 'public_html', 'scripts', 'send_push_notification.cjs'),
             path.join(BASE_PATH, 'nodejs', 'scripts', 'send_push_notification.cjs'),
             path.join(safeDirname, 'scripts', 'send_push_notification.cjs'),
-            path.join(BASE_PATH, 'scripts', 'send_push_notification.js'),
-            path.join(BASE_PATH, 'public_html', 'scripts', 'send_push_notification.js'),
-            path.join(BASE_PATH, 'nodejs', 'scripts', 'send_push_notification.js'),
-            path.join(safeDirname, 'scripts', 'send_push_notification.js'),
+            path.join(process.cwd(), 'scripts', 'send_push_notification.cjs'),
+            path.join(BASE_PATH, 'scripts', 'send_push_notification.js')
         ];
         const scriptPath = candidateScriptPaths.find(p => fs.existsSync(p));
         if (!scriptPath) {
