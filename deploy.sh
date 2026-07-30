@@ -93,6 +93,17 @@ ssh $SSH_OPTS $SERVER_USER@$SERVER_IP << EOF
     mkdir -p \$PARENT_DIR/public_html/tmp
     touch \$PARENT_DIR/public_html/tmp/restart.txt
     
+    # DISPARAR NOTIFICACIONES PUSH AUTOMÁTICAS EN SERVIDOR DE PRODUCCIÓN
+    /opt/alt/alt-nodejs20/root/usr/bin/node -e "
+        const { sendPushNotification } = require('\$PARENT_DIR/nodejs/scripts/send_push_notification.cjs');
+        sendPushNotification({
+            group: 'admin',
+            title: '📊 Reportes Administrativos Actualizados',
+            body: 'Se ha procesado exitosamente la nueva información y cortes al día de hoy.',
+            url: '/resumen-promotoria'
+        }).then(res => console.log('📡 Push enviado en producción:', res)).catch(e => console.error(e));
+    " 2>/dev/null || true
+    
     echo "✅ SISTEMA BLINDADO DISTRIBUIDO DESPLEGADO EXITOSAMENTE."
 EOF
 
