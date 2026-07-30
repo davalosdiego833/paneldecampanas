@@ -813,6 +813,14 @@ const run = async () => {
                     url: '/resumen-promotoria'
                 });
             }
+            
+            // Fallback para ejecuciones locales en Mac: Invocar la API remota de Hostinger donde residen los celulares
+            const isLocal = !process.cwd().includes('domains/panel.ambrizydavalos.com');
+            if (isLocal) {
+                try {
+                    execSync('curl -s -X POST "https://panel.ambrizydavalos.com/api/push/send-custom" -H "Content-Type: application/json" -d \'{"group":"admin","title":"📊 Reportes Administrativos Actualizados","body":"Se han procesado los nuevos cortes al día de hoy.","url":"/resumen-promotoria"}\'');
+                } catch (eLocal) {}
+            }
         } catch (e) {
             console.warn('⚠️ No se pudieron enviar notificaciones push:', e.message);
         }
