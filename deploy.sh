@@ -59,7 +59,8 @@ rsync -avz -e "ssh $SSH_OPTS" graduacion/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/no
 rsync -avz -e "ssh $SSH_OPTS" legion_centurion/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/legion_centurion/
 rsync -avz -e "ssh $SSH_OPTS" mdrt/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/mdrt/
 rsync -avz -e "ssh $SSH_OPTS" proactivatech/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/proactivatech/
-rsync -avz -e "ssh $SSH_OPTS" reto_por_ciento/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/reto_por_ciento/
+rsync -avz -e "ssh $SSH_OPTS" bases_campanas/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/bases_campanas/
+rsync -avz -e "ssh $SSH_OPTS" bases_campanas/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/bases_campanas/ 2>/dev/null || true
 rsync -avz -e "ssh $SSH_OPTS" "estatus polizas/" $SERVER_USER@$SERVER_IP:"'$PARENT_DIR/nodejs/estatus polizas/'"
 
 # 4. Subir scripts de generación al servidor
