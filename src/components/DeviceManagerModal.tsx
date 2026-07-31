@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Smartphone, ShieldCheck, X, RefreshCw, Trash2, CheckCircle2, AlertTriangle, Monitor, Laptop, UserCheck } from 'lucide-react';
+import { Smartphone, X, RefreshCw, Trash2, CheckCircle2, AlertTriangle, Monitor, Laptop } from 'lucide-react';
 
 export interface DeviceSubscriptionItem {
     endpoint: string;
@@ -76,68 +76,162 @@ export const DeviceManagerModal: React.FC<DeviceManagerModalProps> = ({ isOpen, 
     if (!isOpen) return null;
 
     const getDeviceIcon = (deviceInfo?: string) => {
-        if (!deviceInfo) return <Smartphone className="w-4 h-4 text-amber-400" />;
-        if (deviceInfo.includes('iPhone') || deviceInfo.includes('iOS')) return <Smartphone className="w-4 h-4 text-emerald-400" />;
-        if (deviceInfo.includes('Android')) return <Smartphone className="w-4 h-4 text-cyan-400" />;
-        if (deviceInfo.includes('Mac')) return <Laptop className="w-4 h-4 text-indigo-400" />;
-        return <Monitor className="w-4 h-4 text-slate-400" />;
+        if (!deviceInfo) return <Smartphone size={18} color="#F59E0B" />;
+        if (deviceInfo.includes('iPhone') || deviceInfo.includes('iOS')) return <Smartphone size={18} color="#10B981" />;
+        if (deviceInfo.includes('Android')) return <Smartphone size={18} color="#06B6D4" />;
+        if (deviceInfo.includes('Mac')) return <Laptop size={18} color="#818CF8" />;
+        return <Monitor size={18} color="#94A3B8" />;
     };
 
     return (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fadeIn">
-            <div className="bg-slate-900 border border-slate-700/60 rounded-3xl shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col max-h-[85vh] text-slate-100">
+        <div style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 99999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '16px',
+            backgroundColor: 'rgba(15, 23, 42, 0.75)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+        }}>
+            <div style={{
+                backgroundColor: '#0F172A',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                borderRadius: '24px',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.7)',
+                width: '100%',
+                maxWidth: '680px',
+                display: 'flex',
+                flexDirection: 'column',
+                maxHeight: '85vh',
+                overflow: 'hidden',
+                color: '#F8FAFC',
+                fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+            }}>
                 {/* Header */}
-                <div className="px-6 py-5 bg-slate-800/80 border-b border-slate-700/60 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-500 flex items-center justify-center shadow-lg shadow-cyan-500/20 text-slate-950">
-                            <Smartphone className="w-5 h-5" />
+                <div style={{
+                    padding: '20px 24px',
+                    backgroundColor: 'rgba(30, 41, 59, 0.8)',
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <div style={{
+                            width: '40px',
+                            height: '40px',
+                            borderRadius: '12px',
+                            background: 'linear-gradient(135deg, #06B6D4 0%, #3B82F6 100%)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: '#0F172A',
+                            boxShadow: '0 4px 12px rgba(6, 182, 212, 0.3)'
+                        }}>
+                            <Smartphone size={20} />
                         </div>
                         <div>
-                            <h3 className="text-lg font-bold text-white tracking-tight">Directorio de Dispositivos Conectados</h3>
-                            <p className="text-xs text-slate-400">Celulares y Laptops registrados en la Red Ambriz & Dávalos</p>
+                            <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF' }}>
+                                Dispositivos Conectados
+                            </h3>
+                            <p style={{ margin: '2px 0 0 0', fontSize: '0.8rem', color: '#94A3B8' }}>
+                                Celulares y Laptops con Notificaciones Activas
+                            </p>
                         </div>
                     </div>
                     <button
                         onClick={onClose}
-                        className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-700/50 transition-colors"
+                        style={{
+                            width: '36px',
+                            height: '36px',
+                            borderRadius: '10px',
+                            border: '1px solid rgba(255, 255, 255, 0.1)',
+                            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                            color: '#94A3B8',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            cursor: 'pointer',
+                        }}
                     >
-                        <X className="w-5 h-5" />
+                        <X size={18} />
                     </button>
                 </div>
 
-                {/* Status & Refresh Bar */}
-                <div className="px-6 py-3 bg-slate-800/30 border-b border-slate-700/40 flex items-center justify-between">
-                    <span className="text-xs font-semibold text-slate-300">
-                        Dispositivos Activos: <span className="text-cyan-400">{devices.length}</span>
+                {/* Subheader */}
+                <div style={{
+                    padding: '12px 24px',
+                    backgroundColor: 'rgba(30, 41, 59, 0.4)',
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                }}>
+                    <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#CBD5E1' }}>
+                        Dispositivos Activos: <span style={{ color: '#38BDF8', fontWeight: 800 }}>{devices.length}</span>
                     </span>
                     <button
                         onClick={fetchDevices}
                         disabled={loading}
-                        className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300 flex items-center gap-1.5 transition-colors disabled:opacity-50"
+                        style={{
+                            padding: '6px 12px',
+                            borderRadius: '10px',
+                            border: '1px solid rgba(255, 255, 255, 0.1)',
+                            backgroundColor: '#1E293B',
+                            color: '#CBD5E1',
+                            fontSize: '0.75rem',
+                            fontWeight: 600,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '6px',
+                            cursor: 'pointer',
+                        }}
                     >
-                        <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
-                        Actualizar Lista
+                        <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
+                        <span>Actualizar Lista</span>
                     </button>
                 </div>
 
                 {statusMsg && (
-                    <div className="mx-6 mt-4 p-3 rounded-xl bg-cyan-950/40 border border-cyan-800/50 text-cyan-300 text-xs flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                        {statusMsg}
+                    <div style={{
+                        margin: '12px 24px 0 24px',
+                        padding: '10px 14px',
+                        borderRadius: '12px',
+                        backgroundColor: 'rgba(6, 182, 212, 0.15)',
+                        border: '1px solid rgba(6, 182, 212, 0.3)',
+                        color: '#67E8F9',
+                        fontSize: '0.8rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px'
+                    }}>
+                        <CheckCircle2 size={16} />
+                        <span>{statusMsg}</span>
                     </div>
                 )}
 
-                {/* Device List */}
-                <div className="p-6 overflow-y-auto space-y-3 flex-1 custom-scrollbar">
+                {/* List */}
+                <div style={{
+                    padding: '20px 24px',
+                    overflowY: 'auto',
+                    flex: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '10px',
+                }}>
                     {loading && devices.length === 0 ? (
-                        <div className="py-12 text-center text-slate-400 text-sm">
-                            <div className="w-8 h-8 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-                            Consultando directorio de dispositivos...
+                        <div style={{ textAlign: 'center', padding: '40px 0', color: '#94A3B8', fontSize: '0.9rem' }}>
+                            Cargando dispositivos...
                         </div>
                     ) : devices.length === 0 ? (
-                        <div className="py-12 text-center text-slate-400">
-                            <AlertTriangle className="w-10 h-10 mx-auto mb-2 text-slate-600" />
-                            <p className="text-sm font-medium text-slate-300">No hay dispositivos registrados en este momento.</p>
+                        <div style={{ textAlign: 'center', padding: '40px 0', color: '#94A3B8' }}>
+                            <AlertTriangle size={36} style={{ margin: '0 auto 8px auto', opacity: 0.4 }} />
+                            <p style={{ margin: 0, fontSize: '0.95rem', fontWeight: 600, color: '#CBD5E1' }}>
+                                No hay dispositivos registrados.
+                            </p>
                         </div>
                     ) : (
                         devices.map((item, index) => {
@@ -153,43 +247,73 @@ export const DeviceManagerModal: React.FC<DeviceManagerModalProps> = ({ isOpen, 
                             return (
                                 <div
                                     key={index}
-                                    className="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/60 hover:border-slate-600 transition-all flex flex-wrap items-center justify-between gap-4"
+                                    style={{
+                                        padding: '14px 18px',
+                                        borderRadius: '16px',
+                                        backgroundColor: 'rgba(30, 41, 59, 0.7)',
+                                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'space-between',
+                                        gap: '12px',
+                                    }}
                                 >
-                                    <div className="flex items-center gap-3.5">
-                                        <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center shrink-0">
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                        <div style={{
+                                            width: '38px',
+                                            height: '38px',
+                                            borderRadius: '10px',
+                                            backgroundColor: '#1E293B',
+                                            border: '1px solid rgba(255, 255, 255, 0.1)',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                        }}>
                                             {getDeviceIcon(item.deviceInfo)}
                                         </div>
                                         <div>
-                                            <div className="flex items-center gap-2">
-                                                <h4 className="text-sm font-bold text-white">
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                <h4 style={{ margin: 0, fontSize: '0.9rem', fontWeight: 700, color: '#FFFFFF' }}>
                                                     {item.name || 'Usuario Promotoría'}
                                                 </h4>
-                                                <span
-                                                    className={`px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider ${
-                                                        item.role === 'admin'
-                                                            ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
-                                                            : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
-                                                    }`}
-                                                >
-                                                    {item.role === 'admin' ? 'Administrador' : 'Asesor'}
+                                                <span style={{
+                                                    fontSize: '0.65rem',
+                                                    fontWeight: 800,
+                                                    padding: '2px 6px',
+                                                    borderRadius: '6px',
+                                                    backgroundColor: item.role === 'admin' ? 'rgba(245, 158, 11, 0.2)' : 'rgba(16, 185, 129, 0.2)',
+                                                    color: item.role === 'admin' ? '#FBBF24' : '#34D399',
+                                                    border: `1px solid ${item.role === 'admin' ? 'rgba(245, 158, 11, 0.3)' : 'rgba(16, 185, 129, 0.3)'}`,
+                                                    textTransform: 'uppercase'
+                                                }}>
+                                                    {item.role === 'admin' ? 'Admin' : 'Asesor'}
                                                 </span>
                                             </div>
-                                            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400 mt-0.5">
-                                                <span className="text-slate-300 font-medium">
-                                                    {item.deviceInfo || 'Dispositivo Web'}
-                                                </span>
-                                                {item.clave && <span>Clave: {item.clave}</span>}
-                                                <span className="text-slate-500">Conectado: {formattedDate}</span>
+                                            <div style={{ display: 'flex', gap: '12px', fontSize: '0.75rem', color: '#94A3B8', marginTop: '2px' }}>
+                                                <span>{item.deviceInfo || 'Dispositivo Web'}</span>
+                                                <span>Conectado: {formattedDate}</span>
                                             </div>
                                         </div>
                                     </div>
 
                                     <button
                                         onClick={() => handleRevoke(item.endpoint)}
-                                        className="px-3 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500 hover:text-white text-rose-400 text-xs font-semibold flex items-center gap-1.5 transition-all border border-rose-500/20"
+                                        style={{
+                                            padding: '6px 12px',
+                                            borderRadius: '10px',
+                                            backgroundColor: 'rgba(239, 68, 68, 0.15)',
+                                            border: '1px solid rgba(239, 68, 68, 0.3)',
+                                            color: '#FCA5A5',
+                                            fontSize: '0.75rem',
+                                            fontWeight: 700,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '4px',
+                                            cursor: 'pointer',
+                                        }}
                                     >
-                                        <Trash2 className="w-3.5 h-3.5" />
-                                        Desvincular
+                                        <Trash2 size={13} />
+                                        <span>Desvincular</span>
                                     </button>
                                 </div>
                             );
@@ -198,14 +322,26 @@ export const DeviceManagerModal: React.FC<DeviceManagerModalProps> = ({ isOpen, 
                 </div>
 
                 {/* Footer */}
-                <div className="px-6 py-4 bg-slate-800/60 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-400">
-                    <div className="flex items-center gap-1.5 text-slate-400">
-                        <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                        Control de Accesos SSL & APNs
-                    </div>
+                <div style={{
+                    padding: '16px 24px',
+                    backgroundColor: 'rgba(30, 41, 59, 0.6)',
+                    borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'flex-end',
+                }}>
                     <button
                         onClick={onClose}
-                        className="px-4 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-medium transition-colors"
+                        style={{
+                            padding: '8px 20px',
+                            borderRadius: '12px',
+                            border: '1px solid rgba(255, 255, 255, 0.2)',
+                            backgroundColor: '#334155',
+                            color: '#FFFFFF',
+                            fontSize: '0.85rem',
+                            fontWeight: 600,
+                            cursor: 'pointer',
+                        }}
                     >
                         Cerrar
                     </button>

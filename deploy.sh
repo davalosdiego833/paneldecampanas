@@ -93,10 +93,6 @@ ssh $SSH_OPTS $SERVER_USER@$SERVER_IP << EOF
     mkdir -p \$PARENT_DIR/public_html/tmp
     touch \$PARENT_DIR/public_html/tmp/restart.txt
     
-    # DISPARAR NOTIFICACIÓN PUSH AUTOMÁTICA EN PRODUCCIÓN VÍA EXPRESS API
-    curl -s -X POST "https://panel.ambrizydavalos.com/api/push/send-custom" -H "Content-Type: application/json" -d '{"group":"all","title":"🚀 Ambriz Asesores — Campañas Actualizadas","body":"Se han actualizado las cifras y posiciones en las campañas al corte de hoy.","url":"/campanas"}' >/dev/null 2>&1 &
-    curl -s -X POST "https://panel.ambrizydavalos.com/api/push/send-custom" -H "Content-Type: application/json" -d '{"group":"admin","title":"📊 Reportes Administrativos Actualizados","body":"Se han procesado los nuevos cortes de información al día de hoy.","url":"/resumen-promotoria"}' >/dev/null 2>&1 &
-    
     echo "✅ SISTEMA BLINDADO DISTRIBUIDO DESPLEGADO EXITOSAMENTE."
 EOF
 
