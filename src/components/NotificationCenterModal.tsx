@@ -166,9 +166,6 @@ export const NotificationCenterModal: React.FC<NotificationCenterModalProps> = (
                                     </span>
                                 )}
                             </div>
-                            <p style={{ margin: '2px 0 0 0', fontSize: '0.8rem', color: '#94A3B8' }}>
-                                Promotoría Ambriz & Dávalos S.C.
-                            </p>
                         </div>
                     </div>
                     <button
@@ -229,6 +226,14 @@ export const NotificationCenterModal: React.FC<NotificationCenterModalProps> = (
                                 minute: '2-digit'
                             });
 
+                            const cleanText = (text?: string) => {
+                                if (!text) return '';
+                                return text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}]/gu, '').trim();
+                            };
+
+                            const cleanTitle = cleanText(item.title);
+                            const cleanBody = cleanText(item.body);
+
                             return (
                                 <div
                                     key={item.id}
@@ -251,7 +256,7 @@ export const NotificationCenterModal: React.FC<NotificationCenterModalProps> = (
                                                 <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#F59E0B' }} />
                                             )}
                                             <h4 style={{ margin: 0, fontSize: '0.95rem', fontWeight: 700, color: isRead ? '#E2E8F0' : '#FDE68A' }}>
-                                                {item.title}
+                                                {cleanTitle}
                                             </h4>
                                         </div>
                                         <span style={{ fontSize: '0.75rem', color: '#94A3B8', display: 'flex', alignItems: 'center', gap: '4px' }}>
@@ -261,7 +266,7 @@ export const NotificationCenterModal: React.FC<NotificationCenterModalProps> = (
                                     </div>
 
                                     <p style={{ margin: 0, fontSize: '0.85rem', color: '#CBD5E1', lineHeight: '1.5' }}>
-                                        {item.body}
+                                        {cleanBody}
                                     </p>
 
                                     {item.url && (

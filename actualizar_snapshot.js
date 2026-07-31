@@ -818,7 +818,7 @@ const run = async () => {
             const isLocal = !process.cwd().includes('domains/panel.ambrizydavalos.com');
             if (isLocal) {
                 try {
-                    execSync('curl -s -X POST "https://panel.ambrizydavalos.com/api/push/send-custom" -H "Content-Type: application/json" -d \'{"group":"admin","title":"📊 Reportes Administrativos Actualizados","body":"Se han procesado los nuevos cortes al día de hoy.","url":"/resumen-promotoria"}\'');
+                    execSync('curl -s -X POST "https://panel.ambrizydavalos.com/api/push/send-custom" -H "Content-Type: application/json" -d \'{"group":"admin","title":"Reportes Administrativos Actualizados","body":"Se han procesado los nuevos cortes al día de hoy.","url":"/resumen-promotoria"}\'');
                 } catch (eLocal) {}
             }
         } catch (e) {
