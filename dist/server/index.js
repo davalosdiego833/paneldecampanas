@@ -2704,6 +2704,53 @@ app.post('/api/push/send-custom', async (req, res) => {
         res.status(500).json({ error: e.message || 'Error al enviar comunicado' });
     }
 });
+app.get('/api/onesignal/config', (req, res) => {
+    try {
+        const candidateConfigPaths = [
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/onesignal_config.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/onesignal_config.json',
+            path.join(DB_PATH_DYNAMIC, 'onesignal_config.json')
+        ];
+        const found = candidateConfigPaths.find(p => fs.existsSync(p));
+        if (found) {
+            const data = JSON.parse(fs.readFileSync(found, 'utf-8'));
+            return res.json(data);
+        }
+        res.json({ appId: '', apiKey: '', enabled: false });
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Error leyendo configuración OneSignal' });
+    }
+});
+app.post('/api/onesignal/config', (req, res) => {
+    try {
+        const { appId, apiKey, enabled = true } = req.body;
+        const config = {
+            appId: (appId || '').trim(),
+            apiKey: (apiKey || '').trim(),
+            enabled: !!enabled,
+            updatedAt: new Date().toISOString()
+        };
+        const targetPaths = [
+            path.join(DB_PATH_DYNAMIC, 'onesignal_config.json'),
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/onesignal_config.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/onesignal_config.json'
+        ];
+        for (const tp of targetPaths) {
+            try {
+                const dir = path.dirname(tp);
+                if (fs.existsSync(dir)) {
+                    fs.writeFileSync(tp, JSON.stringify(config, null, 2));
+                }
+            }
+            catch (e) { }
+        }
+        res.json({ success: true, config });
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Error guardando configuración OneSignal' });
+    }
+});
 app.get('/api/push/history', (req, res) => {
     try {
         const candidateHistory = [

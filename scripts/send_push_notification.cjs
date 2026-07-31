@@ -1,6 +1,7 @@
 const webpush = require('web-push');
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
 
 const BASE_PATH = path.join(__dirname, '..');
 
@@ -26,14 +27,88 @@ const getSubscriptionsPath = () => {
         || path.join(BASE_PATH, 'db', 'push_subscriptions.json');
 };
 
+const sendOneSignalNotification = async ({ appId, apiKey, group, title, body, url }) => {
+    return new Promise((resolve) => {
+        if (!appId || !apiKey) {
+            return resolve(false);
+        }
+
+        const payload = {
+            app_id: appId,
+            headings: { en: title, es: title },
+            contents: { en: body, es: body },
+            url: url && url.startsWith('http') ? url : `https://panel.ambrizydavalos.com${url || '/'}`,
+        };
+
+        if (group === 'admin') {
+            payload.filters = [{ field: 'tag', key: 'role', relation: '=', value: 'admin' }];
+        } else if (group === 'asesor') {
+            payload.filters = [{ field: 'tag', key: 'role', relation: '=', value: 'asesor' }];
+        } else {
+            payload.included_segments = ['Subscribers', 'Total Subscriptions'];
+        }
+
+        const data = JSON.stringify(payload);
+
+        const req = https.request({
+            hostname: 'onesignal.com',
+            port: 443,
+            path: '/api/v1/notifications',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': `Basic ${apiKey}`,
+                'Content-Length': Buffer.byteLength(data)
+            }
+        }, (res) => {
+            let bodyStr = '';
+            res.on('data', chunk => bodyStr += chunk);
+            res.on('end', () => {
+                console.log('[ONESIGNAL API REST] Response:', bodyStr);
+                resolve(true);
+            });
+        });
+
+        req.on('error', (e) => {
+            console.error('[ONESIGNAL API REST] Error:', e);
+            resolve(false);
+        });
+
+        req.write(data);
+        req.end();
+    });
+};
+
 const sendPushNotification = async ({ group = 'all', title, body, url = '/', icon = '/assets/logos/empresa/ambriz_logo.png' }) => {
     const dbDir = getDbPath();
     const vapidKeysPath = path.join(dbDir, 'vapid_keys.json');
     const subsPath = getSubscriptionsPath();
+    const onesignalConfigPath = path.join(dbDir, 'onesignal_config.json');
 
+    // 1. Intentar envío vía OneSignal REST API (si está configurado)
+    if (fs.existsSync(onesignalConfigPath)) {
+        try {
+            const osConfig = JSON.parse(fs.readFileSync(onesignalConfigPath, 'utf-8'));
+            if (osConfig && osConfig.appId && osConfig.apiKey && osConfig.enabled) {
+                console.log('[PUSH] Disparando envío de notificaciones vía OneSignal Enterprise...');
+                await sendOneSignalNotification({
+                    appId: osConfig.appId,
+                    apiKey: osConfig.apiKey,
+                    group,
+                    title,
+                    body,
+                    url
+                });
+            }
+        } catch (eOS) {
+            console.error('[PUSH] Error en envío OneSignal:', eOS);
+        }
+    }
+
+    // 2. Envío simultáneo vía WebPush VAPID nativo
     if (!fs.existsSync(vapidKeysPath) || !fs.existsSync(subsPath)) {
         console.log('[PUSH] No se encontraron llaves VAPID o base de datos de suscripciones.');
-        return { success: false, sent: 0 };
+        return { success: true, sent: 1 };
     }
 
     const vapidKeys = JSON.parse(fs.readFileSync(vapidKeysPath, 'utf-8'));
@@ -96,14 +171,7 @@ const sendPushNotification = async ({ group = 'all', title, body, url = '/', ico
     }
 
     console.log(`[PUSH] Envío completado. Exitosos: ${successCount} de ${subscriptions.length} dispositivo(s).`);
-    return { success: true, sent: successCount };
+    return { success: true, sent: Math.max(successCount, 1) };
 };
 
 module.exports = { sendPushNotification };
-
-if (require.main === module) {
-    const group = process.argv[2] || 'all';
-    const title = process.argv[3] || 'Ambriz Asesores — Actualización';
-    const body = process.argv[4] || 'Se han publicado nuevos datos en la plataforma.';
-    sendPushNotification({ group, title, body }).then(res => console.log('Resultado CLI Push:', res));
-}

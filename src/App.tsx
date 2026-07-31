@@ -16,6 +16,8 @@ import CentroAvisos from './components/CentroAvisos';
 import InfografiaGenerator from './components/InfografiaGenerator';
 import { PushNotificationPrompt } from './components/PushNotificationPrompt';
 
+import { initOneSignal, setOneSignalUserTags } from './utils/OneSignalService';
+
 const App: React.FC = () => {
     const [page, setPage] = useState<Page>('login');
     const [theme, setTheme] = useState<ThemeConfig | null>(null);
@@ -32,6 +34,18 @@ const App: React.FC = () => {
         document.documentElement.setAttribute('data-theme', themeMode);
         document.body.setAttribute('data-theme', themeMode);
     }, [themeMode]);
+
+    // Fetch OneSignal config and initialize SDK
+    useEffect(() => {
+        fetch('/api/onesignal/config')
+            .then(res => res.json())
+            .then(data => {
+                if (data && data.appId) {
+                    initOneSignal(data.appId);
+                }
+            })
+            .catch(() => {});
+    }, []);
 
     const handleGoHome = () => {
         setPage('welcome');
@@ -101,6 +115,10 @@ const App: React.FC = () => {
     const pageStr = page as string;
     const isAdminRole = pageStr.startsWith('admin_') || pageStr === 'resumen_promotoria' || pageStr === 'gerencia_karen' || pageStr === 'centro_avisos';
     const activePushRole: 'admin' | 'asesor' = isAdminRole ? 'admin' : 'asesor';
+
+    useEffect(() => {
+        setOneSignalUserTags(activePushRole, selectedAdvisor || undefined, selectedAdvisor || undefined);
+    }, [activePushRole, selectedAdvisor]);
 
     const renderMainContent = () => {
         if (page === 'login') return <LoginScreen onSelectRole={handleRoleSelect} />;
