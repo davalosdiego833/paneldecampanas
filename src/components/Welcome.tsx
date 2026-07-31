@@ -270,6 +270,11 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                     </motion.button>
                 )}
             </div>
+
+            {/* Explorador y Descarga Oficial de Bases de Campañas en PDF */}
+            <div style={{ marginTop: '10px' }}>
+                <BasesCampanasExplorer themeColor={theme?.colores?.acentos || '#007AFF'} />
+            </div>
         </motion.div>
     );
 };
