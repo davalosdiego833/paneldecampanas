@@ -2530,7 +2530,7 @@ app.post('/api/push/subscribe', (req, res) => {
         if (!Array.isArray(subs))
             subs = [];
         const existing = subs.find(s => s.subscription?.endpoint === subscription.endpoint);
-        const finalRole = (role === 'admin' || existing?.role === 'admin') ? 'admin' : 'asesor';
+        const finalRole = (role === 'admin' || existing?.role === 'admin' || String(clave).toUpperCase() === 'ADMIN') ? 'admin' : 'asesor';
         subs = subs.filter(s => s.subscription?.endpoint !== subscription.endpoint);
         subs.push({
             subscription,
