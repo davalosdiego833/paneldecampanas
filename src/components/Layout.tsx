@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Home, FolderOpen, Settings, LogOut, Sun, Moon, ChevronLeft, ChevronRight, Bell } from 'lucide-react';
 import { ThemeConfig, Page } from '../types';
 import SeasonalEffects from './SeasonalEffects';
+import { NotificationCenterModal } from './NotificationCenterModal';
 
 interface Props {
     children: React.ReactNode;
@@ -20,6 +21,8 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
     const [isAdmin, setIsAdmin] = useState(false);
     const [password, setPassword] = useState('');
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+    const [isNotifCenterOpen, setIsNotifCenterOpen] = useState(false);
+    const [unreadCount, setUnreadCount] = useState(0);
 
     const handleAdminLogin = () => {
         if (password === 'Diego080303') {
@@ -121,6 +124,22 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
                         </button>
                     )}
 
+                    <button
+                        onClick={() => setIsNotifCenterOpen(true)}
+                        className="nav-item"
+                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}
+                    >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                            <Bell className="nav-icon" size={20} style={{ color: '#F59E0B' }} />
+                            <span>Buzón de Avisos</span>
+                        </div>
+                        {unreadCount > 0 && (
+                            <span style={{ background: '#F59E0B', color: '#0F172A', fontSize: '0.7rem', fontWeight: 800, borderRadius: '10px', padding: '2px 8px', marginLeft: 'auto' }}>
+                                {unreadCount}
+                            </span>
+                        )}
+                    </button>
+
                     {page === 'dashboard' && (
                         <button
                             onClick={() => setPage('campaign_selector')}
@@ -216,6 +235,14 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
             >
                 {children}
             </main>
+
+            {/* In-App Notification Center Modal */}
+            <NotificationCenterModal
+                isOpen={isNotifCenterOpen}
+                onClose={() => setIsNotifCenterOpen(false)}
+                role={isAdmin ? 'admin' : 'asesor'}
+                onUnreadCountChange={(count) => setUnreadCount(count)}
+            />
         </div>
     );
 };

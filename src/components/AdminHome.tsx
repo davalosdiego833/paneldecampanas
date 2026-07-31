@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { NotificationBroadcastModal } from './NotificationBroadcastModal';
-import { SlidersHorizontal, Bell, Send, Users, Activity, Info, ChevronDown } from 'lucide-react';
+import { NotificationCenterModal } from './NotificationCenterModal';
+import { DeviceManagerModal } from './DeviceManagerModal';
+import { SlidersHorizontal, Bell, Send, Users, Activity, Info, ChevronDown, Smartphone } from 'lucide-react';
 
 interface Props {
     onSelectOption: (option: 'asesores' | 'promotoria' | 'karen' | 'actividad' | 'meta24m' | 'staff' | 'centro_avisos' | 'infografias') => void;
@@ -10,6 +12,9 @@ interface Props {
 
 const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
     const [isBroadcastOpen, setIsBroadcastOpen] = useState(false);
+    const [isNotifCenterOpen, setIsNotifCenterOpen] = useState(false);
+    const [isDeviceManagerOpen, setIsDeviceManagerOpen] = useState(false);
+    const [unreadCount, setUnreadCount] = useState(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
 
@@ -334,8 +339,48 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                 position: 'absolute',
                 top: '24px',
                 right: '24px',
-                zIndex: 50
+                zIndex: 50,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px'
             }}>
+                {/* Notification Center Bell Button */}
+                <button
+                    onClick={() => setIsNotifCenterOpen(true)}
+                    style={{
+                        padding: '10px 14px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '6px',
+                        background: 'rgba(15, 23, 42, 0.85)',
+                        backdropFilter: 'blur(12px)',
+                        border: '1px solid rgba(255, 255, 255, 0.15)',
+                        borderRadius: '24px',
+                        color: '#FFFFFF',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        boxShadow: '0 4px 16px rgba(0, 0, 0, 0.4)',
+                        position: 'relative'
+                    }}
+                    title="Centro de Avisos & Comunicados"
+                >
+                    <Bell size={15} color="#F59E0B" />
+                    {unreadCount > 0 && (
+                        <span style={{
+                            background: '#F59E0B',
+                            color: '#0F172A',
+                            fontSize: '0.7rem',
+                            fontWeight: 800,
+                            borderRadius: '10px',
+                            padding: '1px 6px',
+                            lineHeight: 1
+                        }}>
+                            {unreadCount}
+                        </span>
+                    )}
+                </button>
+
                 {/* Single Executive Dropdown Button */}
                 <button
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -407,7 +452,34 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                             onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(0, 122, 255, 0.15)'}
                             onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                         >
-                            <Bell size={16} color="#60A5FA" /> Notificaciones en Dispositivo
+                            <Bell size={16} color="#60A5FA" /> Activar Notificaciones
+                        </button>
+
+                        <button
+                            onClick={() => {
+                                setIsMenuOpen(false);
+                                setIsDeviceManagerOpen(true);
+                            }}
+                            style={{
+                                width: '100%',
+                                padding: '10px 14px',
+                                borderRadius: '10px',
+                                border: 'none',
+                                background: 'transparent',
+                                color: '#FFFFFF',
+                                fontSize: '0.83rem',
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                textAlign: 'left',
+                                transition: 'background 0.2s'
+                            }}
+                            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(52, 211, 153, 0.15)'}
+                            onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                        >
+                            <Smartphone size={16} color="#34D399" /> Dispositivos Conectados
                         </button>
 
                         <button
@@ -545,6 +617,20 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
             <NotificationBroadcastModal
                 isOpen={isBroadcastOpen}
                 onClose={() => setIsBroadcastOpen(false)}
+            />
+
+            {/* Notification Center In-App History Modal */}
+            <NotificationCenterModal
+                isOpen={isNotifCenterOpen}
+                onClose={() => setIsNotifCenterOpen(false)}
+                role="admin"
+                onUnreadCountChange={(count) => setUnreadCount(count)}
+            />
+
+            {/* Device Manager Modal */}
+            <DeviceManagerModal
+                isOpen={isDeviceManagerOpen}
+                onClose={() => setIsDeviceManagerOpen(false)}
             />
         </div>
     );

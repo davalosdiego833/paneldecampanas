@@ -2677,7 +2677,20 @@ app.post('/api/push/send-custom', async (req, res) => {
         });
         if (history.length > 50)
             history = history.slice(0, 50);
-        fs.writeFileSync(historyPath, JSON.stringify(history, null, 2));
+        const targetHistoryPaths = [
+            historyPath,
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/comunicados_history.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/comunicados_history.json'
+        ];
+        for (const thp of targetHistoryPaths) {
+            try {
+                const dir = path.dirname(thp);
+                if (fs.existsSync(dir)) {
+                    fs.writeFileSync(thp, JSON.stringify(history, null, 2));
+                }
+            }
+            catch (e) { }
+        }
         res.json({ success: true, result });
     }
     catch (e) {
@@ -2687,15 +2700,86 @@ app.post('/api/push/send-custom', async (req, res) => {
 });
 app.get('/api/push/history', (req, res) => {
     try {
-        const historyPath = path.join(DB_PATH_DYNAMIC, 'comunicados_history.json');
-        if (fs.existsSync(historyPath)) {
-            const history = JSON.parse(fs.readFileSync(historyPath, 'utf-8'));
+        const candidateHistory = [
+            path.join(DB_PATH_DYNAMIC, 'comunicados_history.json'),
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/comunicados_history.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/comunicados_history.json'
+        ];
+        const found = candidateHistory.find(p => fs.existsSync(p));
+        if (found) {
+            const history = JSON.parse(fs.readFileSync(found, 'utf-8'));
             return res.json(history);
         }
         res.json([]);
     }
     catch (e) {
         res.json([]);
+    }
+});
+app.get('/api/comunicados/history', (req, res) => {
+    try {
+        const candidateHistory = [
+            path.join(DB_PATH_DYNAMIC, 'comunicados_history.json'),
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/comunicados_history.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/comunicados_history.json'
+        ];
+        const found = candidateHistory.find(p => fs.existsSync(p));
+        if (found) {
+            const history = JSON.parse(fs.readFileSync(found, 'utf-8'));
+            return res.json(history);
+        }
+        res.json([]);
+    }
+    catch (e) {
+        res.json([]);
+    }
+});
+app.get('/api/push/devices', (req, res) => {
+    try {
+        const candidateFiles = [
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/push_subscriptions.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/push_subscriptions.json',
+            path.join(DB_PATH_DYNAMIC, 'push_subscriptions.json')
+        ];
+        const found = candidateFiles.find(p => fs.existsSync(p));
+        if (found) {
+            const subs = JSON.parse(fs.readFileSync(found, 'utf-8'));
+            if (Array.isArray(subs)) {
+                return res.json(subs);
+            }
+        }
+        res.json([]);
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Error leyendo lista de dispositivos' });
+    }
+});
+app.post('/api/push/revoke', (req, res) => {
+    try {
+        const { endpoint } = req.body;
+        if (!endpoint)
+            return res.status(400).json({ error: 'Endpoint requerido' });
+        const targetPaths = [
+            path.join(DB_PATH_DYNAMIC, 'push_subscriptions.json'),
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/push_subscriptions.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/push_subscriptions.json'
+        ];
+        for (const tp of targetPaths) {
+            try {
+                if (fs.existsSync(tp)) {
+                    let subs = JSON.parse(fs.readFileSync(tp, 'utf-8'));
+                    if (Array.isArray(subs)) {
+                        subs = subs.filter((s) => s.subscription?.endpoint !== endpoint && s.endpoint !== endpoint);
+                        fs.writeFileSync(tp, JSON.stringify(subs, null, 2));
+                    }
+                }
+            }
+            catch (e) { }
+        }
+        res.json({ success: true });
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Error al revocar dispositivo' });
     }
 });
 app.use((req, res) => {
