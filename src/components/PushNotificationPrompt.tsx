@@ -66,7 +66,24 @@ export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave,
         try {
             if (window.Notification.permission === 'granted') {
                 const reg = await navigator.serviceWorker.ready;
-                const sub = await reg.pushManager.getSubscription();
+                let sub = await reg.pushManager.getSubscription();
+
+                // Si la suscripción de Apple/Google se reseteó, la regeneramos de inmediato en segundo plano
+                if (!sub) {
+                    try {
+                        const resKey = await fetch('/api/push/vapid-public-key');
+                        if (resKey.ok) {
+                            const { publicKey } = await resKey.json();
+                            sub = await reg.pushManager.subscribe({
+                                userVisibleOnly: true,
+                                applicationServerKey: urlBase64ToUint8Array(publicKey)
+                            });
+                        }
+                    } catch (eRenew) {
+                        console.warn('[PUSH AUTO-RENEW] Fallback renew failed:', eRenew);
+                    }
+                }
+
                 if (sub) {
                     setIsSubscribed(true);
                     localStorage.setItem('push_notifications_enabled', 'true');
