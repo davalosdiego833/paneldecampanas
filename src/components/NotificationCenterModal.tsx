@@ -142,30 +142,30 @@ export const NotificationCenterModal: React.FC<NotificationCenterModalProps> = (
                     <div className="flex items-center gap-1.5 overflow-x-auto py-1">
                         <button
                             onClick={() => setFilter('all')}
-                            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                                 filter === 'all'
-                                    ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
-                                    : 'bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700'
+                                    ? 'bg-amber-400 text-slate-950 shadow-md shadow-amber-500/20'
+                                    : 'bg-slate-800 text-slate-200 hover:text-white hover:bg-slate-700 border border-slate-700/60'
                             }`}
                         >
                             Todos ({comunicados.length})
                         </button>
                         <button
                             onClick={() => setFilter('campanas')}
-                            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                                 filter === 'campanas'
-                                    ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
-                                    : 'bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700'
+                                    ? 'bg-amber-400 text-slate-950 shadow-md shadow-amber-500/20'
+                                    : 'bg-slate-800 text-slate-200 hover:text-white hover:bg-slate-700 border border-slate-700/60'
                             }`}
                         >
                             🚀 Campañas
                         </button>
                         <button
                             onClick={() => setFilter('reportes')}
-                            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                                 filter === 'reportes'
-                                    ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
-                                    : 'bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700'
+                                    ? 'bg-amber-400 text-slate-950 shadow-md shadow-amber-500/20'
+                                    : 'bg-slate-800 text-slate-200 hover:text-white hover:bg-slate-700 border border-slate-700/60'
                             }`}
                         >
                             📊 Reportes

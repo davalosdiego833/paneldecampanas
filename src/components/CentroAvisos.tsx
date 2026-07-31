@@ -203,15 +203,17 @@ const CentroAvisos: React.FC<Props> = ({ onBack, themeMode }) => {
                         value={filterCampaign}
                         onChange={e => setFilterCampaign(e.target.value)}
                         style={{
-                            background: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)',
-                            border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
+                            background: '#1E293B',
+                            color: '#F8FAFC',
+                            border: `1px solid ${isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'}`,
                             borderRadius: '8px', padding: '8px 12px',
-                            color: 'inherit', fontSize: '0.8rem', fontFamily: 'inherit',
+                            fontSize: '0.8rem', fontFamily: 'inherit',
+                            cursor: 'pointer'
                         }}
                     >
-                        <option value="all">Todas las campañas</option>
+                        <option value="all" style={{ background: '#1E293B', color: '#F8FAFC' }}>Todas las campañas</option>
                         {campaigns.map(c => (
-                            <option key={c} value={c}>
+                            <option key={c} value={c} style={{ background: '#1E293B', color: '#F8FAFC' }}>
                                 {(campaignLabels[c]?.icon || '📋') + ' ' + (campaignLabels[c]?.label || c)}
                             </option>
                         ))}
@@ -220,15 +222,17 @@ const CentroAvisos: React.FC<Props> = ({ onBack, themeMode }) => {
                         value={filterSent}
                         onChange={e => setFilterSent(e.target.value as any)}
                         style={{
-                            background: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)',
-                            border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
+                            background: '#1E293B',
+                            color: '#F8FAFC',
+                            border: `1px solid ${isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'}`,
                             borderRadius: '8px', padding: '8px 12px',
-                            color: 'inherit', fontSize: '0.8rem', fontFamily: 'inherit',
+                            fontSize: '0.8rem', fontFamily: 'inherit',
+                            cursor: 'pointer'
                         }}
                     >
-                        <option value="pending">⏳ Pendientes</option>
-                        <option value="sent">✅ Enviados</option>
-                        <option value="all">📋 Todos</option>
+                        <option value="pending" style={{ background: '#1E293B', color: '#F8FAFC' }}>⏳ Pendientes</option>
+                        <option value="sent" style={{ background: '#1E293B', color: '#F8FAFC' }}>✅ Enviados</option>
+                        <option value="all" style={{ background: '#1E293B', color: '#F8FAFC' }}>📋 Todos</option>
                     </select>
                     <span style={{ fontSize: '0.75rem', opacity: 0.5, marginLeft: '8px' }}>
                         {filtered.length} aviso(s)
