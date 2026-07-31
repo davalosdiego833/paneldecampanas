@@ -478,10 +478,16 @@ const getCaminoDate = (worksheet) => {
 };
 // --- Endpoints ---
 app.get('/api/bases_campanas', (req, res) => {
-    const publicPath = path.join(BASE_PATH, 'public', 'bases_campanas');
-    const distPath = path.join(BASE_PATH, 'dist', 'bases_campanas');
-    const prodPath = path.join(BASE_PATH, 'bases_campanas');
-    let targetPath = fs.existsSync(prodPath) ? prodPath : fs.existsSync(publicPath) ? publicPath : fs.existsSync(distPath) ? distPath : null;
+    const candidatePaths = [
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/bases_campanas',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/bases_campanas',
+        path.join(BASE_PATH, 'bases_campanas'),
+        path.join(BASE_PATH, 'public', 'bases_campanas'),
+        path.join(BASE_PATH, 'dist', 'bases_campanas'),
+        path.join(safeDirname, '..', 'bases_campanas'),
+        path.join(process.cwd(), 'bases_campanas')
+    ];
+    let targetPath = candidatePaths.find(p => fs.existsSync(p));
     if (!targetPath) {
         return res.json([]);
     }
@@ -493,14 +499,14 @@ app.get('/api/bases_campanas', (req, res) => {
                 if (dirent.name.startsWith('.'))
                     continue; // ignore hidden
                 const fullPath = path.join(dir, dirent.name);
-                const fileRoute = `${route}/${dirent.name}`;
+                const fileRoute = `${route}/${encodeURIComponent(dirent.name)}`;
                 if (dirent.isDirectory()) {
-                    const children = scanDirectory(fullPath, fileRoute);
+                    const children = scanDirectory(fullPath, `${route}/${dirent.name}`);
                     if (children.length > 0) {
                         items.push({
                             type: 'directory',
                             name: dirent.name,
-                            path: fileRoute,
+                            path: `${route}/${dirent.name}`,
                             children: children
                         });
                     }
