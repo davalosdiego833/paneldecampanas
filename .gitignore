@@ -9,3 +9,4 @@ node_modules
 
 # Database files (runtime data — persisted in ~/.panel_campanas_data/)
 db/resumen_snapshot.json
+db/onesignal_config.json
