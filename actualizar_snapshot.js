@@ -585,11 +585,12 @@ const run = async () => {
             rg.asesores_sin_emision = { summaryBySucursal: [], individuals: [] };
             
             if (wsP) {
-                const dat = XLSX.utils.sheet_to_json(wsP, { header: 1, range: 3 });
+                const dat = XLSX.utils.sheet_to_json(wsP, { header: 1, range: 4 });
                 rg.asesores_sin_emision.summaryBySucursal = dat
                     .filter(r => {
-                        const sucId = String(r[1] || r[4] || '').trim();
-                        return SUCURSALES_ADMIN.includes(sucId);
+                        const matId = String(r[3] || '').trim();
+                        const sucId = String(r[4] || '').trim();
+                        return SUCURSALES_ADMIN.includes(matId) || SUCURSALES_ADMIN.includes(sucId);
                     })
                     .map(r => ({
                         Sucursal: r[5] || r[2],
@@ -613,8 +614,9 @@ const run = async () => {
                 rg.asesores_sin_emision.individuals = dat
                     .filter(r => {
                         const claveStr = String(r[6] || '').trim();
-                        const sucId = String(r[3] || r[4] || '').trim();
-                        return SUCURSALES_ADMIN.includes(sucId) || !!directory[claveStr];
+                        const matId = String(r[3] || '').trim();
+                        const sucId = String(r[4] || '').trim();
+                        return SUCURSALES_ADMIN.includes(matId) || SUCURSALES_ADMIN.includes(sucId) || !!directory[claveStr];
                     })
                     .map(r => ({
                         Asesor: resolveName(r[6], r[7], directory),

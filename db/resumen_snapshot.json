@@ -1,5 +1,5 @@
 {
-  "updatedAt": "3/8/2026, 11:13:49 a.m.",
+  "updatedAt": "3/8/2026, 11:37:08 a.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -547,7 +547,53 @@
         }
       ],
       "asesores_sin_emision": {
-        "summaryBySucursal": [],
+        "summaryBySucursal": [
+          {
+            "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+            "Suc": 2043,
+            "Agentes": 23,
+            "Asesores_con_Emisión_Vida": 7,
+            "%_Asesores_con_Emisión_Vida": 0.3043,
+            "Asesores_con_Emisión_GMM": 3,
+            "%_Asesores_con_Emisión_GMM": 0.1304,
+            "Asesores_con_pol_Pagada_Vida": 6,
+            "%_Asesores_con_pol_Pagada_Vida": 0.2609,
+            "Asesores_con_pol_Pagada_GMM": 5,
+            "%_Asesores_con_pol_Pagada_GMM": 0.2174,
+            "Prima_Pagada_Vida": 575240.14,
+            "Prima_Pagada_GMM": 163833
+          },
+          {
+            "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+            "Suc": 2511,
+            "Agentes": 3,
+            "Asesores_con_Emisión_Vida": 0,
+            "%_Asesores_con_Emisión_Vida": 0,
+            "Asesores_con_Emisión_GMM": 0,
+            "%_Asesores_con_Emisión_GMM": 0,
+            "Asesores_con_pol_Pagada_Vida": 0,
+            "%_Asesores_con_pol_Pagada_Vida": 0,
+            "Asesores_con_pol_Pagada_GMM": 0,
+            "%_Asesores_con_pol_Pagada_GMM": 0,
+            "Prima_Pagada_Vida": 0,
+            "Prima_Pagada_GMM": 0
+          },
+          {
+            "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+            "Suc": 2856,
+            "Agentes": 5,
+            "Asesores_con_Emisión_Vida": 3,
+            "%_Asesores_con_Emisión_Vida": 0.6,
+            "Asesores_con_Emisión_GMM": 2,
+            "%_Asesores_con_Emisión_GMM": 0.4,
+            "Asesores_con_pol_Pagada_Vida": 2,
+            "%_Asesores_con_pol_Pagada_Vida": 0.4,
+            "Asesores_con_pol_Pagada_GMM": 2,
+            "%_Asesores_con_pol_Pagada_GMM": 0.4,
+            "Prima_Pagada_Vida": 117491.25,
+            "Prima_Pagada_GMM": 34277
+          }
+        ],
         "individuals": [
           {
             "Asesor": "JULIANA RIASCOS VALENCIA",
