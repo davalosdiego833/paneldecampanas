@@ -23,12 +23,7 @@ fi
 echo "📦 Subiendo cambios a GitHub (rama data-backup)..."
 git add .
 git commit -m "data: Actualización automática de reportes ($(date +'%Y-%m-%d %H:%M'))" || true
-git push origin HEAD:data-backup -f
-
-if [ $? -ne 0 ]; then
-    echo "❌ Error al subir a GitHub. Abortando."
-    exit 1
-fi
+git push origin HEAD:data-backup -f || true
 
 PARENT_DIR="/home/u211138134/domains/panel.ambrizydavalos.com"
 
