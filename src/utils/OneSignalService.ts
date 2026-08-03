@@ -25,12 +25,19 @@ export const initOneSignal = (appId: string) => {
                 notifyButton: {
                     enable: false,
                 },
-                allowLocalhostAsSecureOrigin: true,
-                serviceWorkerPath: "OneSignalSDKWorker.js",
-                serviceWorkerParam: { scope: "/" }
+                allowLocalhostAsSecureOrigin: true
             });
             isInitialized = true;
             console.log('[ONESIGNAL] SDK inicializado con éxito.');
+
+            if (typeof window.Notification !== 'undefined' && window.Notification.permission === 'granted') {
+                try {
+                    await OneSignal.User.PushSubscription.optIn();
+                    console.log('[ONESIGNAL] PushSubscription optIn activado.');
+                } catch (eOpt) {
+                    console.warn('[ONESIGNAL] optIn fallback:', eOpt);
+                }
+            }
         } catch (e) {
             console.error('[ONESIGNAL] Error en init:', e);
         }

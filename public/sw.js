@@ -1,4 +1,5 @@
-// Ambriz Asesores — Service Worker para Notificaciones Push (iOS & Android 100% Compatible)
+// Ambriz Asesores — Service Worker para Notificaciones Push (iOS & Android 100% Compatible + OneSignal)
+importScripts('https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js');
 
 self.addEventListener('install', function(event) {
     self.skipWaiting();
