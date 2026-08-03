@@ -1,5 +1,5 @@
 {
-  "updatedAt": "31/7/2026, 11:29:28 a.m.",
+  "updatedAt": "3/8/2026, 9:37:45 a.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -3390,150 +3390,160 @@
           "Clave": "110453",
           "Polizas": 4,
           "Comisiones": 507338.17,
-          "Ranking": 110
+          "Ranking": 141
+        },
+        {
+          "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+          "Clave": "108404",
+          "Polizas": 3,
+          "Comisiones": 13173.33,
+          "Ranking": 361
         },
         {
           "Asesor": "MARIO IVAN ROMERO GONZALEZ",
           "Clave": "118069",
           "Polizas": 2.5,
           "Comisiones": 31522.76,
-          "Ranking": 350
+          "Ranking": 432
         },
         {
           "Asesor": "MONSERRAT VELASCO SANTOS",
           "Clave": "117440",
           "Polizas": 2,
           "Comisiones": 17901.71,
-          "Ranking": 491
+          "Ranking": 582
         },
         {
           "Asesor": "ROGELIO TORRES ORTIZ",
           "Clave": "104718",
           "Polizas": 2,
           "Comisiones": 17635.3,
-          "Ranking": 494
-        },
-        {
-          "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
-          "Clave": "108404",
-          "Polizas": 2,
-          "Comisiones": 4229.91,
-          "Ranking": 644
+          "Ranking": 586
         },
         {
           "Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
           "Clave": "107488",
           "Polizas": 2,
           "Comisiones": 1369.96,
-          "Ranking": 698
+          "Ranking": 793
         },
         {
           "Asesor": "SOFIA CAMPILLO VASCONCELOS",
           "Clave": "116883",
           "Polizas": 2,
-          "Comisiones": 908.47,
-          "Ranking": 707
+          "Comisiones": 1280.14,
+          "Ranking": 794
         },
         {
           "Asesor": "JULIANA RIASCOS VALENCIA",
           "Clave": "100677",
           "Polizas": 1.5,
           "Comisiones": 10182.13,
-          "Ranking": 765
+          "Ranking": 866
         },
         {
           "Asesor": "JOSE RENE DE ALBA MORALES",
           "Clave": "110575",
           "Polizas": 1,
           "Comisiones": 67554.97,
-          "Ranking": 862
+          "Ranking": 973
         },
         {
           "Asesor": "JORGE ANTONIO LUNA LARA",
           "Clave": "111056",
           "Polizas": 1,
           "Comisiones": 39391.21,
-          "Ranking": 867
+          "Ranking": 978
         },
         {
           "Asesor": "GABRIELA CASTAÑEDA SALAZAR",
           "Clave": "105696",
           "Polizas": 1,
           "Comisiones": 2208.6,
-          "Ranking": 1293
+          "Ranking": 1412
         },
         {
           "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
           "Clave": "113450",
           "Polizas": 1,
           "Comisiones": 1316.21,
-          "Ranking": 1375
-        },
-        {
-          "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
-          "Clave": "104343",
-          "Polizas": 1,
-          "Comisiones": 1138.66,
-          "Ranking": 1395
+          "Ranking": 1500
         },
         {
           "Asesor": "MIREYA LIZETTE TORRES GARCIA",
           "Clave": "106018",
           "Polizas": 1,
           "Comisiones": 609.35,
-          "Ranking": 1501
+          "Ranking": 1624
+        },
+        {
+          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
+          "Clave": "115047",
+          "Polizas": 1,
+          "Comisiones": 554.55,
+          "Ranking": 1639
+        },
+        {
+          "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
+          "Clave": "104343",
+          "Polizas": 0.5,
+          "Comisiones": 696.24,
+          "Ranking": 1909
         },
         {
           "Asesor": "MARIA FERNANDA RIOS BERNAL",
           "Clave": "103982",
           "Polizas": 0,
           "Comisiones": 0,
-          "Ranking": 3768
+          "Ranking": 4730
         },
         {
           "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
           "Clave": "104750",
           "Polizas": 0,
           "Comisiones": 0,
-          "Ranking": 3134
-        },
-        {
-          "Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
-          "Clave": "114157",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 3333
+          "Ranking": 2371
         },
         {
           "Asesor": "PAULA ANGELICA LOMELI CAZARES",
           "Clave": "116876",
           "Polizas": 0,
           "Comisiones": 0,
-          "Ranking": 2796
+          "Ranking": 2424
         },
         {
-          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
-          "Clave": "115047",
+          "Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
+          "Clave": "114157",
           "Polizas": 0,
           "Comisiones": 0,
-          "Ranking": 4694
+          "Ranking": 2495
         },
         {
           "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
           "Clave": "115404",
           "Polizas": 0,
           "Comisiones": 0,
-          "Ranking": 4851
+          "Ranking": 5198
         }
       ],
       "reto_por_ciento": [
         {
-          "Asesor": "MARICELA ARREOLA LOPEZ",
-          "Clave": "80925",
-          "Conexion": "5 de Diciembre de 2018",
-          "Conteo": 0,
+          "Asesor": "DARINKA UREÑA CASILLAS",
+          "Clave": "90355",
+          "Conexion": "28 de Abril de 2020",
+          "Conteo": 0.5,
           "Cumplimiento": false,
-          "Suma_Comision": 0,
+          "Suma_Comision": 4241.82,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "DESIREE DE LA PEÑA OROZCO",
+          "Clave": "80122",
+          "Conexion": "28 de Septiembre de 2018",
+          "Conteo": 0.5,
+          "Cumplimiento": false,
+          "Suma_Comision": 3105.09,
           "Porcentaje": 0,
           "Extracomision": 0
         },
@@ -3541,6 +3551,26 @@
           "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
           "Clave": "87538",
           "Conexion": "23 de Septiembre de 2019",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+          "Clave": "47116",
+          "Conexion": "24 de Febrero de 2022",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
+          "Clave": "98797",
+          "Conexion": "26 de Mayo de 2021",
           "Conteo": 0,
           "Cumplimiento": false,
           "Suma_Comision": 0,
@@ -3578,9 +3608,9 @@
           "Extracomision": 0
         },
         {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "Conexion": "24 de Febrero de 2022",
+          "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
+          "Clave": "59120",
+          "Conexion": "27 de Mayo de 2022",
           "Conteo": 0,
           "Cumplimiento": false,
           "Suma_Comision": 0,
@@ -3598,39 +3628,9 @@
           "Extracomision": 0
         },
         {
-          "Asesor": "DESIREE DE LA PEÑA OROZCO",
-          "Clave": "80122",
-          "Conexion": "28 de Septiembre de 2018",
-          "Conteo": 0,
-          "Cumplimiento": false,
-          "Suma_Comision": 0,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
-          "Clave": "59120",
-          "Conexion": "27 de Mayo de 2022",
-          "Conteo": 0,
-          "Cumplimiento": false,
-          "Suma_Comision": 0,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "DARINKA UREÑA CASILLAS",
-          "Clave": "90355",
-          "Conexion": "28 de Abril de 2020",
-          "Conteo": 0,
-          "Cumplimiento": false,
-          "Suma_Comision": 0,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
-          "Clave": "98797",
-          "Conexion": "26 de Mayo de 2021",
+          "Asesor": "MARICELA ARREOLA LOPEZ",
+          "Clave": "80925",
+          "Conexion": "5 de Diciembre de 2018",
           "Conteo": 0,
           "Cumplimiento": false,
           "Suma_Comision": 0,
@@ -3645,8 +3645,8 @@
       "legion_centurion": "10 de Julio de 2026",
       "camino_cumbre": "24 de julio de 2026",
       "graduacion": "24 de julio de 2026",
-      "proactiva_tech": "24 de julio 2026",
-      "reto_por_ciento": "15 de julio 2026"
+      "proactiva_tech": "29 de julio 2026",
+      "reto_por_ciento": "29 de julio 2026"
     }
   }
 }

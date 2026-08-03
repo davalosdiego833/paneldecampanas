@@ -380,7 +380,7 @@ const run = async () => {
                             }
                             if (cutoffStr) break;
                         }
-                        campaignDates.proactiva_tech = cutoffStr || '30 de junio de 2026';
+                        campaignDates.proactiva_tech = cutoffStr || '29 de julio de 2026';
                         wb = null; ws = null; data = null;
                     }
                 } catch(e) { console.warn('⚠️ Proactiva Tech skip:', e.message); }
@@ -418,7 +418,7 @@ const run = async () => {
                                 Extracomision: Number(r[extraKey] || 0)
                             };
                         });
-                        campaignDates.reto_por_ciento = extractCutoffDate(wb) || '15 de julio de 2026';
+                        campaignDates.reto_por_ciento = extractCutoffDate(wb) || '29 de julio de 2026';
                         wb = null; ws = null; raw = null;
                     }
                 } catch(e) { console.warn('⚠️ Reto Por Ciento skip:', e.message); }
