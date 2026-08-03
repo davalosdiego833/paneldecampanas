@@ -789,26 +789,14 @@ const run = async () => {
             console.warn('⚠️ No se pudieron generar alertas (generar_alertas.js):', e.message);
         }
 
-        // DISPARAR 1 ÚNICA NOTIFICACIÓN INTELIGENTE AL FINALIZAR
+        // DISPARAR 1 ÚNICA NOTIFICACIÓN PUSH EN EL SERVIDOR DE PRODUCCIÓN HOSTINGER
         try {
-            const isLocal = !process.cwd().includes('domains/panel.ambrizydavalos.com');
+            const isServerEnv = process.cwd().includes('domains/panel.ambrizydavalos.com') || fs.existsSync('/home/u211138134/domains/panel.ambrizydavalos.com');
             const cutoffCv = snapshot.data.fechas_corte?.comparativo_vida || '29 de julio de 2026';
             const notifTitle = 'Reporte Comparativo de Vida Actualizado';
             const notifBody = `Se ha publicado el nuevo corte del Comparativo de Vida al ${cutoffCv}.`;
 
-            if (isLocal) {
-                // Ejecución local en Mac: Invocar la API remota de Hostinger 1 SOLA VEZ
-                try {
-                    const payload = JSON.stringify({
-                        group: 'all',
-                        title: notifTitle,
-                        body: notifBody,
-                        url: '/'
-                    });
-                    execSync(`curl -s -X POST "https://panel.ambrizydavalos.com/api/push/send-custom" -H "Content-Type: application/json" -d '${payload}'`);
-                } catch (eLocal) {}
-            } else {
-                // Ejecución directa en Servidor Hostinger (1 SOLA VEZ)
+            if (isServerEnv) {
                 let sendFn;
                 try {
                     const mod = await import('./scripts/send_push_notification.cjs');

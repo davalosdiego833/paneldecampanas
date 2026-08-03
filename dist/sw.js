@@ -12,37 +12,35 @@ self.addEventListener('activate', function(event) {
 self.addEventListener('push', function(event) {
     if (!event.data) return;
 
-    let payload = {
-        title: 'Ambriz Asesores',
-        body: 'Notificación de actualización de campañas',
-        icon: '/assets/logos/empresa/ambriz_logo.png',
-        url: '/'
-    };
-
+    let payload = null;
     try {
-        payload = Object.assign(payload, event.data.json());
-    } catch (e) {
-        payload.body = event.data.text();
+        payload = event.data.json();
+    } catch (e) {}
+
+    // Si la notificación proviene de OneSignal, OneSignalSDK.sw.js la muestra automáticamente.
+    // Evitamos mostrar una segunda notificación duplicada.
+    if (payload && (payload.custom || payload.onesignalData || payload.notificationId || payload.app_id)) {
+        return;
     }
 
-    const origin = self.location.origin || 'https://panel.ambrizydavalos.com';
-    let iconUrl = payload.icon || '/assets/logos/empresa/ambriz_logo.png';
-    if (iconUrl.startsWith('/')) {
-        iconUrl = origin + iconUrl;
-    }
-
-    // Opciones nativas 100% estables para iOS APNs y Android Chrome
-    const options = {
-        body: payload.body,
-        icon: iconUrl,
-        data: {
-            url: payload.url || '/'
+    if (payload && payload.title && payload.body) {
+        const origin = self.location.origin || 'https://panel.ambrizydavalos.com';
+        let iconUrl = payload.icon || '/assets/logos/empresa/ambriz_logo.png';
+        if (iconUrl.startsWith('/')) {
+            iconUrl = origin + iconUrl;
         }
-    };
 
-    event.waitUntil(
-        self.registration.showNotification(payload.title, options)
-    );
+        const options = {
+            body: payload.body,
+            icon: iconUrl,
+            data: { url: payload.url || '/' }
+        };
+
+        event.waitUntil(
+            self.registration.showNotification(payload.title, options)
+        );
+    }
+});
 });
 
 self.addEventListener('notificationclick', function(event) {
