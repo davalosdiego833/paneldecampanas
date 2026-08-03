@@ -38,14 +38,13 @@ const sendOneSignalNotification = async ({ appId, apiKey, group, title, body, ur
             headings: { en: title, es: title },
             contents: { en: body, es: body },
             url: url && url.startsWith('http') ? url : `https://panel.ambrizydavalos.com${url || '/'}`,
+            included_segments: ['Subscribers', 'Total Subscriptions', 'All']
         };
 
         if (group === 'admin') {
             payload.filters = [{ field: 'tag', key: 'role', relation: '=', value: 'admin' }];
         } else if (group === 'asesor') {
             payload.filters = [{ field: 'tag', key: 'role', relation: '=', value: 'asesor' }];
-        } else {
-            payload.included_segments = ['Subscribers', 'Total Subscriptions'];
         }
 
         const data = JSON.stringify(payload);
@@ -132,7 +131,7 @@ const sendPushNotification = async ({ group = 'all', title, body, url = '/', ico
     const activeSubs = [];
 
     for (const sub of subscriptions) {
-        const isTarget = group === 'all' || (group === 'admin' && sub.role === 'admin') || (group === 'asesor' && sub.role === 'asesor');
+        const isTarget = group === 'all' || group === 'admin' || (group === 'asesor' && (sub.role === 'asesor' || !sub.role));
         if (isTarget && sub.subscription && sub.subscription.endpoint) {
             try {
                 const pushOptions = {
