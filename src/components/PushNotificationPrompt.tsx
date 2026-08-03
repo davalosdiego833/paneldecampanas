@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Bell, CheckCircle2, X, Send, Power, ShieldCheck, Smartphone, RefreshCw, Share } from 'lucide-react';
+import { requestOneSignalOptIn } from '../utils/OneSignalService';
 
 interface PushPromptProps {
     role: 'admin' | 'asesor';
@@ -53,11 +54,6 @@ export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave,
     }, [role, clave]);
 
     const checkSubscriptionStatus = async () => {
-        if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
-            setStatus('unsupported');
-            return;
-        }
-
         if (!hasNotificationSupport()) {
             setStatus('unsupported');
             return;
@@ -65,42 +61,42 @@ export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave,
 
         try {
             if (window.Notification.permission === 'granted') {
-                const reg = await navigator.serviceWorker.ready;
-                let sub = await reg.pushManager.getSubscription();
+                setIsSubscribed(true);
+                localStorage.setItem('push_notifications_enabled', 'true');
+                requestOneSignalOptIn().catch(() => {});
 
-                // Si la suscripción de Apple/Google se reseteó, la regeneramos de inmediato en segundo plano
-                if (!sub) {
+                if ('serviceWorker' in navigator && 'PushManager' in window) {
                     try {
-                        const resKey = await fetch('/api/push/vapid-public-key');
-                        if (resKey.ok) {
-                            const { publicKey } = await resKey.json();
-                            sub = await reg.pushManager.subscribe({
-                                userVisibleOnly: true,
-                                applicationServerKey: urlBase64ToUint8Array(publicKey)
-                            });
-                        }
-                    } catch (eRenew) {
-                        console.warn('[PUSH AUTO-RENEW] Fallback renew failed:', eRenew);
-                    }
-                }
+                        const reg = await navigator.serviceWorker.ready;
+                        let sub = await reg.pushManager.getSubscription();
 
-                if (sub) {
-                    setIsSubscribed(true);
-                    localStorage.setItem('push_notifications_enabled', 'true');
-                    // Auto-sincronización silenciosa con identificación precisa de dispositivo y usuario
-                    fetch('/api/push/subscribe', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            subscription: sub,
-                            role: role || 'asesor',
-                            clave: clave || 'USUARIO',
-                            name: name || 'Usuario',
-                            deviceInfo: getDeviceInfo()
-                        })
-                    }).catch(() => {});
-                } else {
-                    setIsSubscribed(false);
+                        if (!sub) {
+                            try {
+                                const resKey = await fetch('/api/push/vapid-public-key');
+                                if (resKey.ok) {
+                                    const { publicKey } = await resKey.json();
+                                    sub = await reg.pushManager.subscribe({
+                                        userVisibleOnly: true,
+                                        applicationServerKey: urlBase64ToUint8Array(publicKey)
+                                    });
+                                }
+                            } catch (eRenew) {}
+                        }
+
+                        if (sub) {
+                            fetch('/api/push/subscribe', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    subscription: sub,
+                                    role: role || 'asesor',
+                                    clave: clave || 'USUARIO',
+                                    name: name || 'Usuario',
+                                    deviceInfo: getDeviceInfo()
+                                })
+                            }).catch(() => {});
+                        }
+                    } catch (eSub) {}
                 }
             } else if (window.Notification.permission === 'default') {
                 setIsSubscribed(false);
@@ -183,13 +179,28 @@ export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave,
         try {
             const permission = await requestPermissionSafely();
             if (permission === 'granted') {
-                await registerSubscription();
+                setIsSubscribed(true);
+                localStorage.setItem('push_notifications_enabled', 'true');
+                requestOneSignalOptIn().catch(() => {});
+
+                try {
+                    await registerSubscription();
+                } catch (eReg) {
+                    console.warn('[PUSH PROMPT] VAPID registration fallback:', eReg);
+                }
+
+                setStatus('success');
+                setStatusMsg('Notificaciones activadas exitosamente.');
+                setTimeout(() => {
+                    setStatus('idle');
+                    setShowPrompt(false);
+                }, 2000);
             } else if (permission === 'denied') {
                 setStatus('denied');
-                setStatusMsg('Las notificaciones están bloqueadas en tu celular. Habilítalas en Ajustes > Safari / Chrome.');
+                setStatusMsg('Las notificaciones están bloqueadas en tu dispositivo. Habilítalas en Ajustes > Safari / Chrome.');
             } else if (permission === 'unsupported') {
                 setStatus('unsupported');
-                setStatusMsg('Para recibir notificaciones en iPhone: toca el botón Compartir 📤 en Safari y selecciona "Agregar a Inicio".');
+                setStatusMsg('Para recibir notificaciones en iPad/iPhone: toca el botón Compartir 📤 en Safari y selecciona "Agregar a Inicio".');
             } else {
                 setStatus('idle');
                 setStatusMsg('');
