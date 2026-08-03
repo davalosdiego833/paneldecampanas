@@ -26,8 +26,9 @@ const hasNotificationSupport = () => {
 const getDeviceInfo = () => {
     if (typeof navigator === 'undefined') return 'Dispositivo Desconocido';
     const ua = navigator.userAgent || '';
+    const isIPad = /iPad/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (isIPad) return 'iPad (iOS PWA)';
     if (/iPhone/i.test(ua)) return 'iPhone (iOS PWA)';
-    if (/iPad/i.test(ua)) return 'iPad (iOS PWA)';
     if (/Android/i.test(ua)) return 'Android Celular';
     if (/Macintosh|Mac OS X/i.test(ua)) return 'Mac (macOS Desktop)';
     if (/Windows/i.test(ua)) return 'PC (Windows Desktop)';
@@ -135,7 +136,8 @@ export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave,
                     subscription: sub,
                     role,
                     clave: clave || 'UNKNOWN',
-                    name: name || (role === 'admin' ? 'Administrador' : 'Asesor')
+                    name: name || (role === 'admin' ? 'Administrador' : 'Asesor'),
+                    deviceInfo: getDeviceInfo()
                 })
             });
 

@@ -21,7 +21,6 @@ export const initOneSignal = (appId: string) => {
         try {
             await OneSignal.init({
                 appId: appId,
-                safari_web_id: "web.onesignal.auto",
                 notifyButton: {
                     enable: false,
                 },
