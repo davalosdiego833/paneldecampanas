@@ -68,34 +68,46 @@ export const PushNotificationPrompt: React.FC<PushPromptProps> = ({ role, clave,
 
                 if ('serviceWorker' in navigator && 'PushManager' in window) {
                     try {
-                        const reg = await navigator.serviceWorker.ready;
-                        let sub = await reg.pushManager.getSubscription();
-
-                        if (!sub) {
+                        const getReg = async () => {
                             try {
-                                const resKey = await fetch('/api/push/vapid-public-key');
-                                if (resKey.ok) {
-                                    const { publicKey } = await resKey.json();
-                                    sub = await reg.pushManager.subscribe({
-                                        userVisibleOnly: true,
-                                        applicationServerKey: urlBase64ToUint8Array(publicKey)
-                                    });
-                                }
-                            } catch (eRenew) {}
-                        }
+                                return await Promise.race([
+                                    navigator.serviceWorker.ready,
+                                    new Promise<any>((_, reject) => setTimeout(() => reject(new Error('SW Timeout')), 2500))
+                                ]);
+                            } catch {
+                                return await navigator.serviceWorker.register('/sw.js');
+                            }
+                        };
+                        const reg = await getReg();
+                        if (reg && reg.pushManager) {
+                            let sub = await reg.pushManager.getSubscription();
 
-                        if (sub) {
-                            fetch('/api/push/subscribe', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({
-                                    subscription: sub,
-                                    role: role || 'asesor',
-                                    clave: clave || 'USUARIO',
-                                    name: name || 'Usuario',
-                                    deviceInfo: getDeviceInfo()
-                                })
-                            }).catch(() => {});
+                            if (!sub) {
+                                try {
+                                    const resKey = await fetch('/api/push/vapid-public-key');
+                                    if (resKey.ok) {
+                                        const { publicKey } = await resKey.json();
+                                        sub = await reg.pushManager.subscribe({
+                                            userVisibleOnly: true,
+                                            applicationServerKey: urlBase64ToUint8Array(publicKey)
+                                        });
+                                    }
+                                } catch (eRenew) {}
+                            }
+
+                            if (sub) {
+                                fetch('/api/push/subscribe', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({
+                                        subscription: sub,
+                                        role: role || 'asesor',
+                                        clave: clave || 'USUARIO',
+                                        name: name || 'Usuario',
+                                        deviceInfo: getDeviceInfo()
+                                    })
+                                }).catch(() => {});
+                            }
                         }
                     } catch (eSub) {}
                 }
