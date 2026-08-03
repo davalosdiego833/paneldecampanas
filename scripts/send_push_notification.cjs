@@ -41,12 +41,6 @@ const sendOneSignalNotification = async ({ appId, apiKey, group, title, body, ur
             included_segments: ['Subscribers', 'Total Subscriptions', 'All']
         };
 
-        if (group === 'admin') {
-            payload.filters = [{ field: 'tag', key: 'role', relation: '=', value: 'admin' }];
-        } else if (group === 'asesor') {
-            payload.filters = [{ field: 'tag', key: 'role', relation: '=', value: 'asesor' }];
-        }
-
         const data = JSON.stringify(payload);
 
         const req = https.request({
