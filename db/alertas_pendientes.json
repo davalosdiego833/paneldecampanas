@@ -1,36 +1,5 @@
 {
-  "generatedAt": "31/7/2026, 11:29:35 a.m.",
-  "totalNew": 3,
-  "alerts": [
-    {
-      "id": "9f1ff827-7ddf-4eda-9b8e-082be41b319a",
-      "asesor": "MARIA TERESA ASENCIO LOZANO",
-      "firstName": "Maria",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "¡Nueva póliza pagada!",
-      "message": "Hola Maria, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *2 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "fdc495c0-4468-428c-84fd-db9250d40d1d",
-      "asesor": "MONSERRAT VELASCO SANTOS",
-      "firstName": "Monserrat",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "¡Nueva póliza pagada!",
-      "message": "Hola Monserrat, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *2 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "5d7d515c-d8bc-4c4b-93e1-8ed12a9631e2",
-      "asesor": "DARINKA UREÑA CASILLAS",
-      "firstName": "Darinka",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "¡Nueva póliza pagada!",
-      "message": "Hola Darinka, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    }
-  ]
+  "generatedAt": "3/8/2026, 9:37:53 a.m.",
+  "totalNew": 0,
+  "alerts": []
 }

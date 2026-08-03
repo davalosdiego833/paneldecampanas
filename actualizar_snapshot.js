@@ -818,7 +818,7 @@ const run = async () => {
             const isLocal = !process.cwd().includes('domains/panel.ambrizydavalos.com');
             if (isLocal) {
                 try {
-                    execSync('curl -s -X POST "https://panel.ambrizydavalos.com/api/push/send-custom" -H "Content-Type: application/json" -d \'{"group":"admin","title":"Reportes Administrativos Actualizados","body":"Se han procesado los nuevos cortes al día de hoy.","url":"/resumen-promotoria"}\'');
+                    execSync('curl -s -X POST "https://panel.ambrizydavalos.com/api/push/send-custom" -H "Content-Type: application/json" -d \'{"group":"all","title":"Ambriz Asesores — Campañas Actualizadas","body":"Se han procesado y publicado los nuevos cortes de campañas al día de hoy.","url":"/"}\'');
                 } catch (eLocal) {}
             }
         } catch (e) {
