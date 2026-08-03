@@ -53,26 +53,26 @@ const formatExcelDate = (val) => {
 };
 
 const extractCutoffDate = (wb) => {
-    // Buscamos en las primeras 3 hojas, primeras 30 filas
-    for (let i = 0; i < Math.min(wb.SheetNames.length, 3); i++) {
+    // Buscamos en las primeras 5 hojas, primeras 35 filas
+    for (let i = 0; i < Math.min(wb.SheetNames.length, 5); i++) {
         const ws = wb.Sheets[wb.SheetNames[i]];
         const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 0 });
-        for (let r = 0; r < 30; r++) {
+        for (let r = 0; r < 35; r++) {
             const row = data[r];
             if (!row) continue;
             for (const val of row) {
                 if (!val) continue;
                 
-                // Opción 1: Es una fecha de Excel (Número entre 45000 y 47000 aprox para 2023-2028)
-                if (typeof val === 'number' && val > 45000 && val < 47000) {
+                // Opción 1: Es una fecha de Excel (Número entre 44000 y 50000)
+                if (typeof val === 'number' && val > 44000 && val < 50000) {
                     return formatExcelDate(val);
                 }
 
-                // Opción 2: Es un string que parece fecha (ej. "Avance al 27 de mayo de 2026")
+                // Opción 2: Es un string que contiene fecha (ej. "Información al 29 de julio de 2026.")
                 const str = String(val);
-                const match = str.match(/\d{1,2}\s+(?:de\s+)?[a-záéíóúñ]{3,}\s+(?:de\s+)?\d{4}/i);
+                const match = str.match(/(\d{1,2}\s+(?:de\s+)?[a-záéíóúñA-ZÁÉÍÓÚÑ]{3,}\s+(?:de\s+)?\d{2,4})/i) || str.match(/(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/);
                 if (match) {
-                    return match[0].toLowerCase();
+                    return match[1].trim();
                 }
             }
         }
@@ -792,8 +792,9 @@ const run = async () => {
         // DISPARAR 1 ÚNICA NOTIFICACIÓN INTELIGENTE AL FINALIZAR
         try {
             const isLocal = !process.cwd().includes('domains/panel.ambrizydavalos.com');
-            const notifTitle = 'Ambriz Asesores — Reportes Actualizados';
-            const notifBody = 'Se han publicado los nuevos números y posiciones al día de hoy.';
+            const cutoffCv = snapshot.data.fechas_corte?.comparativo_vida || '29 de julio de 2026';
+            const notifTitle = 'Reporte Comparativo de Vida Actualizado';
+            const notifBody = `Se ha publicado el nuevo corte del Comparativo de Vida al ${cutoffCv}.`;
 
             if (isLocal) {
                 // Ejecución local en Mac: Invocar la API remota de Hostinger 1 SOLA VEZ

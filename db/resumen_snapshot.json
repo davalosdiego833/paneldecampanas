@@ -1,5 +1,5 @@
 {
-  "updatedAt": "3/8/2026, 1:12:15 p.m.",
+  "updatedAt": "3/8/2026, 1:34:44 p.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -1422,27 +1422,27 @@
       ],
       "comparativo_vida": {
         "generalSummary": {
-          "Polizas_Pagadas_Año_Anterior": 228,
-          "Polizas_Pagadas_Año_Actual": 173,
-          "Crec_Polizas_Pagadas": -55,
-          "%_Crec_Polizas_Pagadas": -0.2412280701754386,
-          "Prima_Pagada_Año_Anterior": 10644.860000000002,
-          "Prima_Pagada_Añoa_Actual": 8945.45,
-          "Crec_Prima_Pagada": -1699.4100000000017,
-          "%_Crec_Prima_Pagada": -0.1596460639219305
+          "Polizas_Pagadas_Año_Anterior": 267,
+          "Polizas_Pagadas_Año_Actual": 182,
+          "Crec_Polizas_Pagadas": -85,
+          "%_Crec_Polizas_Pagadas": -0.31835205992509363,
+          "Prima_Pagada_Año_Anterior": 12640.760000000002,
+          "Prima_Pagada_Añoa_Actual": 9593.980000000001,
+          "Crec_Prima_Pagada": -3046.7800000000007,
+          "%_Crec_Prima_Pagada": -0.241028229315326
         },
         "individuals": [
           {
             "Nombre del Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 14.5,
+            "Polizas_Pagadas_Año_Anterior": 15.5,
             "Polizas_Pagadas_Año_Actual": 13,
-            "Crec_Polizas_Pagadas": -1.5,
-            "%_Crec_Polizas_Pagadas": -0.1034,
-            "Prima_Pagada_Año_Anterior": 503.47,
-            "Prima_Pagada_Año_Actual": 626.76,
-            "Crec_Prima_Pagada": 123.29,
-            "%_Crec_Prima_Pagada": 0.2449
+            "Crec_Polizas_Pagadas": -2.5,
+            "%_Crec_Polizas_Pagadas": -0.1613,
+            "Prima_Pagada_Año_Anterior": 550.02,
+            "Prima_Pagada_Año_Actual": 651.53,
+            "Crec_Prima_Pagada": 101.51,
+            "%_Crec_Prima_Pagada": 0.1846
           },
           {
             "Nombre del Asesor": "VALERIA AIDE IBAÑEZ MURGUIA",
@@ -1459,14 +1459,14 @@
           {
             "Nombre del Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
             "Sucursal": "2511",
-            "Polizas_Pagadas_Año_Anterior": 1,
+            "Polizas_Pagadas_Año_Anterior": 2,
             "Polizas_Pagadas_Año_Actual": 0,
-            "Crec_Polizas_Pagadas": -1,
+            "Crec_Polizas_Pagadas": -2,
             "%_Crec_Polizas_Pagadas": -1,
-            "Prima_Pagada_Año_Anterior": 49.45,
+            "Prima_Pagada_Año_Anterior": 107.7,
             "Prima_Pagada_Año_Actual": 14.57,
-            "Crec_Prima_Pagada": -34.88,
-            "%_Crec_Prima_Pagada": -0.7054
+            "Crec_Prima_Pagada": -93.13,
+            "%_Crec_Prima_Pagada": -0.8647
           },
           {
             "Nombre del Asesor": "PAULINA RODRIGUEZ DE LA MORA",
@@ -1476,9 +1476,9 @@
             "Crec_Polizas_Pagadas": 0,
             "%_Crec_Polizas_Pagadas": 0,
             "Prima_Pagada_Año_Anterior": 31.17,
-            "Prima_Pagada_Año_Actual": 40.33,
-            "Crec_Prima_Pagada": 9.16,
-            "%_Crec_Prima_Pagada": 0.2939
+            "Prima_Pagada_Año_Actual": 43.12,
+            "Crec_Prima_Pagada": 11.95,
+            "%_Crec_Prima_Pagada": 0.3834
           },
           {
             "Nombre del Asesor": "MARIO ALFONSO SARMIENTO OROZCO",
@@ -1495,26 +1495,26 @@
           {
             "Nombre del Asesor": "DESIREE DE LA PEÑA OROZCO",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 16,
+            "Polizas_Pagadas_Año_Anterior": 19,
             "Polizas_Pagadas_Año_Actual": 15,
-            "Crec_Polizas_Pagadas": -1,
-            "%_Crec_Polizas_Pagadas": -0.0625,
-            "Prima_Pagada_Año_Anterior": 1105.07,
-            "Prima_Pagada_Año_Actual": 770.02,
-            "Crec_Prima_Pagada": -335.05,
-            "%_Crec_Prima_Pagada": -0.3032
+            "Crec_Polizas_Pagadas": -4,
+            "%_Crec_Polizas_Pagadas": -0.2105,
+            "Prima_Pagada_Año_Anterior": 1232.14,
+            "Prima_Pagada_Año_Actual": 778.41,
+            "Crec_Prima_Pagada": -453.73,
+            "%_Crec_Prima_Pagada": -0.3682
           },
           {
             "Nombre del Asesor": "MARICELA ARREOLA LOPEZ",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 5,
+            "Polizas_Pagadas_Año_Anterior": 6,
             "Polizas_Pagadas_Año_Actual": 5,
-            "Crec_Polizas_Pagadas": 0,
-            "%_Crec_Polizas_Pagadas": 0,
-            "Prima_Pagada_Año_Anterior": 175.49,
-            "Prima_Pagada_Año_Actual": 119.65,
-            "Crec_Prima_Pagada": -55.84,
-            "%_Crec_Prima_Pagada": -0.3182
+            "Crec_Polizas_Pagadas": -1,
+            "%_Crec_Polizas_Pagadas": -0.1667,
+            "Prima_Pagada_Año_Anterior": 182.95,
+            "Prima_Pagada_Año_Actual": 134.4,
+            "Crec_Prima_Pagada": -48.55,
+            "%_Crec_Prima_Pagada": -0.2654
           },
           {
             "Nombre del Asesor": "KAREN MUÑOZ GARCIA",
@@ -1555,14 +1555,14 @@
           {
             "Nombre del Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 15,
+            "Polizas_Pagadas_Año_Anterior": 16,
             "Polizas_Pagadas_Año_Actual": 15,
-            "Crec_Polizas_Pagadas": 0,
-            "%_Crec_Polizas_Pagadas": 0,
-            "Prima_Pagada_Año_Anterior": 1151.07,
-            "Prima_Pagada_Año_Actual": 1171.88,
-            "Crec_Prima_Pagada": 20.81,
-            "%_Crec_Prima_Pagada": 0.0181
+            "Crec_Polizas_Pagadas": -1,
+            "%_Crec_Polizas_Pagadas": -0.0625,
+            "Prima_Pagada_Año_Anterior": 1652.22,
+            "Prima_Pagada_Año_Actual": 1223.23,
+            "Crec_Prima_Pagada": -428.99,
+            "%_Crec_Prima_Pagada": -0.2596
           },
           {
             "Nombre del Asesor": "ANDREA CELESTE IBAÑEZ RINCON",
@@ -1571,10 +1571,10 @@
             "Polizas_Pagadas_Año_Actual": 2,
             "Crec_Polizas_Pagadas": 0,
             "%_Crec_Polizas_Pagadas": 0,
-            "Prima_Pagada_Año_Anterior": 38.32,
-            "Prima_Pagada_Año_Actual": 36.63,
-            "Crec_Prima_Pagada": -1.69,
-            "%_Crec_Prima_Pagada": -0.0441
+            "Prima_Pagada_Año_Anterior": 43.98,
+            "Prima_Pagada_Año_Actual": 45.12,
+            "Crec_Prima_Pagada": 1.14,
+            "%_Crec_Prima_Pagada": 0.0259
           },
           {
             "Nombre del Asesor": "JOCELYN URIBE VARGAS",
@@ -1583,34 +1583,34 @@
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -1,
             "%_Crec_Polizas_Pagadas": -1,
-            "Prima_Pagada_Año_Anterior": 16.57,
+            "Prima_Pagada_Año_Anterior": 21.61,
             "Prima_Pagada_Año_Actual": 20.73,
-            "Crec_Prima_Pagada": 4.16,
-            "%_Crec_Prima_Pagada": 0.2511
+            "Crec_Prima_Pagada": -0.88,
+            "%_Crec_Prima_Pagada": -0.0407
           },
           {
             "Nombre del Asesor": "DARINKA UREÑA CASILLAS",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 14,
+            "Polizas_Pagadas_Año_Anterior": 16,
             "Polizas_Pagadas_Año_Actual": 14,
-            "Crec_Polizas_Pagadas": 0,
-            "%_Crec_Polizas_Pagadas": 0,
-            "Prima_Pagada_Año_Anterior": 653.42,
-            "Prima_Pagada_Año_Actual": 717.7,
-            "Crec_Prima_Pagada": 64.28,
-            "%_Crec_Prima_Pagada": 0.0984
+            "Crec_Polizas_Pagadas": -2,
+            "%_Crec_Polizas_Pagadas": -0.125,
+            "Prima_Pagada_Año_Anterior": 799.83,
+            "Prima_Pagada_Año_Actual": 727.85,
+            "Crec_Prima_Pagada": -71.98,
+            "%_Crec_Prima_Pagada": -0.09
           },
           {
             "Nombre del Asesor": "MARIA TERESA ASENCIO LOZANO",
             "Sucursal": "2043",
             "Polizas_Pagadas_Año_Anterior": 1,
-            "Polizas_Pagadas_Año_Actual": 3,
-            "Crec_Polizas_Pagadas": 2,
-            "%_Crec_Polizas_Pagadas": 2,
-            "Prima_Pagada_Año_Anterior": 29.15,
-            "Prima_Pagada_Año_Actual": 83.06,
-            "Crec_Prima_Pagada": 53.91,
-            "%_Crec_Prima_Pagada": 1.8494
+            "Polizas_Pagadas_Año_Actual": 4,
+            "Crec_Polizas_Pagadas": 3,
+            "%_Crec_Polizas_Pagadas": 3,
+            "Prima_Pagada_Año_Anterior": 36.03,
+            "Prima_Pagada_Año_Actual": 169.19,
+            "Crec_Prima_Pagada": 133.16,
+            "%_Crec_Prima_Pagada": 3.6958
           },
           {
             "Nombre del Asesor": "JOSE ALBERTO CORONADO ROSAS",
@@ -1631,10 +1631,10 @@
             "Polizas_Pagadas_Año_Actual": 4,
             "Crec_Polizas_Pagadas": 0,
             "%_Crec_Polizas_Pagadas": 0,
-            "Prima_Pagada_Año_Anterior": 1514.01,
-            "Prima_Pagada_Año_Actual": 37.82,
-            "Crec_Prima_Pagada": -1476.19,
-            "%_Crec_Prima_Pagada": -0.975
+            "Prima_Pagada_Año_Anterior": 1520.17,
+            "Prima_Pagada_Año_Actual": 47.59,
+            "Crec_Prima_Pagada": -1472.58,
+            "%_Crec_Prima_Pagada": -0.9687
           },
           {
             "Nombre del Asesor": "FERNANDO JAVIER DAVALOS FLORES",
@@ -1643,9 +1643,9 @@
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -1,
             "%_Crec_Polizas_Pagadas": -1,
-            "Prima_Pagada_Año_Anterior": 114.68,
+            "Prima_Pagada_Año_Anterior": 118.18,
             "Prima_Pagada_Año_Actual": 0,
-            "Crec_Prima_Pagada": -114.68,
+            "Crec_Prima_Pagada": -118.18,
             "%_Crec_Prima_Pagada": -1
           },
           {
@@ -1663,26 +1663,26 @@
           {
             "Nombre del Asesor": "JULIANA RIASCOS VALENCIA",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 5,
+            "Polizas_Pagadas_Año_Anterior": 6,
             "Polizas_Pagadas_Año_Actual": 2,
-            "Crec_Polizas_Pagadas": -3,
-            "%_Crec_Polizas_Pagadas": -0.6,
-            "Prima_Pagada_Año_Anterior": 118.27,
-            "Prima_Pagada_Año_Actual": 133.56,
-            "Crec_Prima_Pagada": 15.29,
-            "%_Crec_Prima_Pagada": 0.1293
+            "Crec_Polizas_Pagadas": -4,
+            "%_Crec_Polizas_Pagadas": -0.6667,
+            "Prima_Pagada_Año_Anterior": 143.51,
+            "Prima_Pagada_Año_Actual": 154.74,
+            "Crec_Prima_Pagada": 11.23,
+            "%_Crec_Prima_Pagada": 0.0783
           },
           {
             "Nombre del Asesor": "SAMUEL NUÑO RIVERA",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 2,
+            "Polizas_Pagadas_Año_Anterior": 3,
             "Polizas_Pagadas_Año_Actual": 0,
-            "Crec_Polizas_Pagadas": -2,
+            "Crec_Polizas_Pagadas": -3,
             "%_Crec_Polizas_Pagadas": -1,
-            "Prima_Pagada_Año_Anterior": 166.99,
-            "Prima_Pagada_Año_Actual": 50.39,
-            "Crec_Prima_Pagada": -116.6,
-            "%_Crec_Prima_Pagada": -0.6982
+            "Prima_Pagada_Año_Anterior": 174.17,
+            "Prima_Pagada_Año_Actual": 54.45,
+            "Crec_Prima_Pagada": -119.72,
+            "%_Crec_Prima_Pagada": -0.6874
           },
           {
             "Nombre del Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
@@ -1692,9 +1692,9 @@
             "Crec_Polizas_Pagadas": 2,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 3.09,
-            "Prima_Pagada_Año_Actual": 50.88,
-            "Crec_Prima_Pagada": 47.79,
-            "%_Crec_Prima_Pagada": 15.466
+            "Prima_Pagada_Año_Actual": 55.16,
+            "Crec_Prima_Pagada": 52.07,
+            "%_Crec_Prima_Pagada": 16.8511
           },
           {
             "Nombre del Asesor": "MARIA FERNANDA RIOS BERNAL",
@@ -1704,33 +1704,33 @@
             "Crec_Polizas_Pagadas": 3,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 48.7,
-            "Crec_Prima_Pagada": 48.7,
+            "Prima_Pagada_Año_Actual": 54.76,
+            "Crec_Prima_Pagada": 54.76,
             "%_Crec_Prima_Pagada": 1
           },
           {
             "Nombre del Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 5,
+            "Polizas_Pagadas_Año_Anterior": 6,
             "Polizas_Pagadas_Año_Actual": 2,
-            "Crec_Polizas_Pagadas": -3,
-            "%_Crec_Polizas_Pagadas": -0.6,
-            "Prima_Pagada_Año_Anterior": 333.19,
-            "Prima_Pagada_Año_Actual": 73.37,
-            "Crec_Prima_Pagada": -259.82,
-            "%_Crec_Prima_Pagada": -0.7798
+            "Crec_Polizas_Pagadas": -4,
+            "%_Crec_Polizas_Pagadas": -0.6667,
+            "Prima_Pagada_Año_Anterior": 354.8,
+            "Prima_Pagada_Año_Actual": 76.89,
+            "Crec_Prima_Pagada": -277.91,
+            "%_Crec_Prima_Pagada": -0.7833
           },
           {
             "Nombre del Asesor": "ROGELIO TORRES ORTIZ",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 11,
-            "Polizas_Pagadas_Año_Actual": 5,
-            "Crec_Polizas_Pagadas": -6,
-            "%_Crec_Polizas_Pagadas": -0.5455,
-            "Prima_Pagada_Año_Anterior": 407.38,
-            "Prima_Pagada_Año_Actual": 172.74,
-            "Crec_Prima_Pagada": -234.64,
-            "%_Crec_Prima_Pagada": -0.576
+            "Polizas_Pagadas_Año_Anterior": 14,
+            "Polizas_Pagadas_Año_Actual": 6,
+            "Crec_Polizas_Pagadas": -8,
+            "%_Crec_Polizas_Pagadas": -0.5714,
+            "Prima_Pagada_Año_Anterior": 535.62,
+            "Prima_Pagada_Año_Actual": 230.55,
+            "Crec_Prima_Pagada": -305.07,
+            "%_Crec_Prima_Pagada": -0.5696
           },
           {
             "Nombre del Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
@@ -1739,34 +1739,34 @@
             "Polizas_Pagadas_Año_Actual": 8,
             "Crec_Polizas_Pagadas": -2,
             "%_Crec_Polizas_Pagadas": -0.2,
-            "Prima_Pagada_Año_Anterior": 302.77,
-            "Prima_Pagada_Año_Actual": 189.49,
-            "Crec_Prima_Pagada": -113.28,
-            "%_Crec_Prima_Pagada": -0.3741
+            "Prima_Pagada_Año_Anterior": 323.3,
+            "Prima_Pagada_Año_Actual": 193.96,
+            "Crec_Prima_Pagada": -129.34,
+            "%_Crec_Prima_Pagada": -0.4001
           },
           {
             "Nombre del Asesor": "GABRIELA CASTAÑEDA SALAZAR",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 5,
+            "Polizas_Pagadas_Año_Anterior": 7,
             "Polizas_Pagadas_Año_Actual": 9,
-            "Crec_Polizas_Pagadas": 4,
-            "%_Crec_Polizas_Pagadas": 0.8,
-            "Prima_Pagada_Año_Anterior": 113.52,
-            "Prima_Pagada_Año_Actual": 194.6,
-            "Crec_Prima_Pagada": 81.08,
-            "%_Crec_Prima_Pagada": 0.7142
+            "Crec_Polizas_Pagadas": 2,
+            "%_Crec_Polizas_Pagadas": 0.2857,
+            "Prima_Pagada_Año_Anterior": 142.6,
+            "Prima_Pagada_Año_Actual": 218.53,
+            "Crec_Prima_Pagada": 75.93,
+            "%_Crec_Prima_Pagada": 0.5325
           },
           {
             "Nombre del Asesor": "MIREYA LIZETTE TORRES GARCIA",
             "Sucursal": "2043",
             "Polizas_Pagadas_Año_Anterior": 2,
-            "Polizas_Pagadas_Año_Actual": 1,
-            "Crec_Polizas_Pagadas": -1,
-            "%_Crec_Polizas_Pagadas": -0.5,
+            "Polizas_Pagadas_Año_Actual": 2,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
             "Prima_Pagada_Año_Anterior": 73,
-            "Prima_Pagada_Año_Actual": 62.54,
-            "Crec_Prima_Pagada": -10.46,
-            "%_Crec_Prima_Pagada": -0.1433
+            "Prima_Pagada_Año_Actual": 81.92,
+            "Crec_Prima_Pagada": 8.92,
+            "%_Crec_Prima_Pagada": 0.1222
           },
           {
             "Nombre del Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
@@ -1775,10 +1775,10 @@
             "Polizas_Pagadas_Año_Actual": 2,
             "Crec_Polizas_Pagadas": -16,
             "%_Crec_Polizas_Pagadas": -0.8889,
-            "Prima_Pagada_Año_Anterior": 505.89,
-            "Prima_Pagada_Año_Actual": 237.72,
-            "Crec_Prima_Pagada": -268.17,
-            "%_Crec_Prima_Pagada": -0.5301
+            "Prima_Pagada_Año_Anterior": 575.28,
+            "Prima_Pagada_Año_Actual": 258.92,
+            "Crec_Prima_Pagada": -316.36,
+            "%_Crec_Prima_Pagada": -0.5499
           },
           {
             "Nombre del Asesor": "ARMANDO JONATHAN DE LA CRUZ DIAZ",
@@ -1796,25 +1796,25 @@
             "Nombre del Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
             "Sucursal": "2043",
             "Polizas_Pagadas_Año_Anterior": 11,
-            "Polizas_Pagadas_Año_Actual": 3,
-            "Crec_Polizas_Pagadas": -8,
-            "%_Crec_Polizas_Pagadas": -0.7273,
-            "Prima_Pagada_Año_Anterior": 503.85,
-            "Prima_Pagada_Año_Actual": 96.65,
-            "Crec_Prima_Pagada": -407.2,
-            "%_Crec_Prima_Pagada": -0.8082
+            "Polizas_Pagadas_Año_Actual": 4,
+            "Crec_Polizas_Pagadas": -7,
+            "%_Crec_Polizas_Pagadas": -0.6364,
+            "Prima_Pagada_Año_Anterior": 530.31,
+            "Prima_Pagada_Año_Actual": 133.89,
+            "Crec_Prima_Pagada": -396.42,
+            "%_Crec_Prima_Pagada": -0.7475
           },
           {
             "Nombre del Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 9,
+            "Polizas_Pagadas_Año_Anterior": 10,
             "Polizas_Pagadas_Año_Actual": 1,
-            "Crec_Polizas_Pagadas": -8,
-            "%_Crec_Polizas_Pagadas": -0.8889,
-            "Prima_Pagada_Año_Anterior": 207.35,
+            "Crec_Polizas_Pagadas": -9,
+            "%_Crec_Polizas_Pagadas": -0.9,
+            "Prima_Pagada_Año_Anterior": 277.88,
             "Prima_Pagada_Año_Actual": 164.24,
-            "Crec_Prima_Pagada": -43.11,
-            "%_Crec_Prima_Pagada": -0.2079
+            "Crec_Prima_Pagada": -113.64,
+            "%_Crec_Prima_Pagada": -0.409
           },
           {
             "Nombre del Asesor": "ROCIO IVON RUIZ GARCIA",
@@ -1823,10 +1823,10 @@
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -6,
             "%_Crec_Polizas_Pagadas": -1,
-            "Prima_Pagada_Año_Anterior": 198.38,
+            "Prima_Pagada_Año_Anterior": 204.45,
             "Prima_Pagada_Año_Actual": 10.45,
-            "Crec_Prima_Pagada": -187.93,
-            "%_Crec_Prima_Pagada": -0.9473
+            "Crec_Prima_Pagada": -194,
+            "%_Crec_Prima_Pagada": -0.9489
           },
           {
             "Nombre del Asesor": "ANGELICA YADIRA ROMERO JAUREGUI",
@@ -1835,9 +1835,9 @@
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -3,
             "%_Crec_Polizas_Pagadas": -1,
-            "Prima_Pagada_Año_Anterior": 62.65,
+            "Prima_Pagada_Año_Anterior": 68.73,
             "Prima_Pagada_Año_Actual": 0,
-            "Crec_Prima_Pagada": -62.65,
+            "Crec_Prima_Pagada": -68.73,
             "%_Crec_Prima_Pagada": -1
           },
           {
@@ -1847,10 +1847,10 @@
             "Polizas_Pagadas_Año_Actual": 1,
             "Crec_Polizas_Pagadas": -1,
             "%_Crec_Polizas_Pagadas": -0.5,
-            "Prima_Pagada_Año_Anterior": 60.95,
+            "Prima_Pagada_Año_Anterior": 67.08,
             "Prima_Pagada_Año_Actual": 40.5,
-            "Crec_Prima_Pagada": -20.45,
-            "%_Crec_Prima_Pagada": -0.3355
+            "Crec_Prima_Pagada": -26.58,
+            "%_Crec_Prima_Pagada": -0.3962
           },
           {
             "Nombre del Asesor": "RODRIGO RAMON ALVAREZ JIMENEZ",
@@ -1871,58 +1871,58 @@
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -3,
             "%_Crec_Polizas_Pagadas": -1,
-            "Prima_Pagada_Año_Anterior": 202.72,
+            "Prima_Pagada_Año_Anterior": 213.35,
             "Prima_Pagada_Año_Actual": 0,
-            "Crec_Prima_Pagada": -202.72,
+            "Crec_Prima_Pagada": -213.35,
             "%_Crec_Prima_Pagada": -1
           },
           {
             "Nombre del Asesor": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 5,
+            "Polizas_Pagadas_Año_Anterior": 6,
             "Polizas_Pagadas_Año_Actual": 0,
-            "Crec_Polizas_Pagadas": -5,
+            "Crec_Polizas_Pagadas": -6,
             "%_Crec_Polizas_Pagadas": -1,
-            "Prima_Pagada_Año_Anterior": 202.76,
-            "Prima_Pagada_Año_Actual": 20.35,
-            "Crec_Prima_Pagada": -182.41,
-            "%_Crec_Prima_Pagada": -0.8996
+            "Prima_Pagada_Año_Anterior": 301.63,
+            "Prima_Pagada_Año_Actual": 23.31,
+            "Crec_Prima_Pagada": -278.32,
+            "%_Crec_Prima_Pagada": -0.9227
           },
           {
             "Nombre del Asesor": "ROCIO YANETH OCHOA IBARRA",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 3,
+            "Polizas_Pagadas_Año_Anterior": 5,
             "Polizas_Pagadas_Año_Actual": 0,
-            "Crec_Polizas_Pagadas": -3,
+            "Crec_Polizas_Pagadas": -5,
             "%_Crec_Polizas_Pagadas": -1,
-            "Prima_Pagada_Año_Anterior": 63.16,
-            "Prima_Pagada_Año_Actual": 50.47,
-            "Crec_Prima_Pagada": -12.69,
-            "%_Crec_Prima_Pagada": -0.2009
+            "Prima_Pagada_Año_Anterior": 99.24,
+            "Prima_Pagada_Año_Actual": 55.72,
+            "Crec_Prima_Pagada": -43.52,
+            "%_Crec_Prima_Pagada": -0.4385
           },
           {
             "Nombre del Asesor": "ANAIS LUA MORENO",
             "Sucursal": "2856",
-            "Polizas_Pagadas_Año_Anterior": 19.5,
+            "Polizas_Pagadas_Año_Anterior": 21.5,
             "Polizas_Pagadas_Año_Actual": 14,
-            "Crec_Polizas_Pagadas": -5.5,
-            "%_Crec_Polizas_Pagadas": -0.2821,
-            "Prima_Pagada_Año_Anterior": 418.9,
-            "Prima_Pagada_Año_Actual": 1746.82,
-            "Crec_Prima_Pagada": 1327.92,
-            "%_Crec_Prima_Pagada": 3.17
+            "Crec_Polizas_Pagadas": -7.5,
+            "%_Crec_Polizas_Pagadas": -0.3488,
+            "Prima_Pagada_Año_Anterior": 507.97,
+            "Prima_Pagada_Año_Actual": 1764.39,
+            "Crec_Prima_Pagada": 1256.42,
+            "%_Crec_Prima_Pagada": 2.4734
           },
           {
             "Nombre del Asesor": "JOSE RENE DE ALBA MORALES",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 2,
+            "Polizas_Pagadas_Año_Anterior": 3,
             "Polizas_Pagadas_Año_Actual": 1,
-            "Crec_Polizas_Pagadas": -1,
-            "%_Crec_Polizas_Pagadas": -0.5,
-            "Prima_Pagada_Año_Anterior": 422.1,
-            "Prima_Pagada_Año_Actual": 292.05,
-            "Crec_Prima_Pagada": -130.05,
-            "%_Crec_Prima_Pagada": -0.3081
+            "Crec_Polizas_Pagadas": -2,
+            "%_Crec_Polizas_Pagadas": -0.6667,
+            "Prima_Pagada_Año_Anterior": 657.52,
+            "Prima_Pagada_Año_Actual": 306.48,
+            "Crec_Prima_Pagada": -351.04,
+            "%_Crec_Prima_Pagada": -0.5339
           },
           {
             "Nombre del Asesor": "LUIS FERNANDO HERNANDEZ AYALA",
@@ -1931,58 +1931,58 @@
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": 0,
             "%_Crec_Polizas_Pagadas": 0,
-            "Prima_Pagada_Año_Anterior": 28.86,
+            "Prima_Pagada_Año_Anterior": 32.02,
             "Prima_Pagada_Año_Actual": 0,
-            "Crec_Prima_Pagada": -28.86,
+            "Crec_Prima_Pagada": -32.02,
             "%_Crec_Prima_Pagada": -1
           },
           {
             "Nombre del Asesor": "JORGE ANTONIO LUNA LARA",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 3,
+            "Polizas_Pagadas_Año_Anterior": 5,
             "Polizas_Pagadas_Año_Actual": 2,
-            "Crec_Polizas_Pagadas": -1,
-            "%_Crec_Polizas_Pagadas": -0.3333,
-            "Prima_Pagada_Año_Anterior": 116.84,
+            "Crec_Polizas_Pagadas": -3,
+            "%_Crec_Polizas_Pagadas": -0.6,
+            "Prima_Pagada_Año_Anterior": 131.54,
             "Prima_Pagada_Año_Actual": 257.96,
-            "Crec_Prima_Pagada": 141.12,
-            "%_Crec_Prima_Pagada": 1.2078
+            "Crec_Prima_Pagada": 126.42,
+            "%_Crec_Prima_Pagada": 0.9611
           },
           {
             "Nombre del Asesor": "CLAUDIA VALERIA HERNANDEZ MACIAS",
             "Sucursal": "2856",
-            "Polizas_Pagadas_Año_Anterior": 8,
+            "Polizas_Pagadas_Año_Anterior": 9,
             "Polizas_Pagadas_Año_Actual": 0,
-            "Crec_Polizas_Pagadas": -8,
+            "Crec_Polizas_Pagadas": -9,
             "%_Crec_Polizas_Pagadas": -1,
-            "Prima_Pagada_Año_Anterior": 248,
+            "Prima_Pagada_Año_Anterior": 263.03,
             "Prima_Pagada_Año_Actual": 13.5,
-            "Crec_Prima_Pagada": -234.5,
-            "%_Crec_Prima_Pagada": -0.9456
+            "Crec_Prima_Pagada": -249.53,
+            "%_Crec_Prima_Pagada": -0.9487
           },
           {
             "Nombre del Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 5,
+            "Polizas_Pagadas_Año_Anterior": 6,
             "Polizas_Pagadas_Año_Actual": 1,
-            "Crec_Polizas_Pagadas": -4,
-            "%_Crec_Polizas_Pagadas": -0.8,
-            "Prima_Pagada_Año_Anterior": 153.3,
-            "Prima_Pagada_Año_Actual": 5.41,
-            "Crec_Prima_Pagada": -147.89,
-            "%_Crec_Prima_Pagada": -0.9647
+            "Crec_Polizas_Pagadas": -5,
+            "%_Crec_Polizas_Pagadas": -0.8333,
+            "Prima_Pagada_Año_Anterior": 183.09,
+            "Prima_Pagada_Año_Actual": 9.02,
+            "Crec_Prima_Pagada": -174.07,
+            "%_Crec_Prima_Pagada": -0.9507
           },
           {
             "Nombre del Asesor": "LAURA DOLORES MONTAÑO MONTAÑO",
             "Sucursal": "2856",
-            "Polizas_Pagadas_Año_Anterior": 5,
+            "Polizas_Pagadas_Año_Anterior": 6,
             "Polizas_Pagadas_Año_Actual": 0,
-            "Crec_Polizas_Pagadas": -5,
+            "Crec_Polizas_Pagadas": -6,
             "%_Crec_Polizas_Pagadas": -1,
-            "Prima_Pagada_Año_Anterior": 67.62,
+            "Prima_Pagada_Año_Anterior": 78.93,
             "Prima_Pagada_Año_Actual": 18.58,
-            "Crec_Prima_Pagada": -49.04,
-            "%_Crec_Prima_Pagada": -0.7252
+            "Crec_Prima_Pagada": -60.35,
+            "%_Crec_Prima_Pagada": -0.7646
           },
           {
             "Nombre del Asesor": "BRUNO BRAULIO MACIAS ALVAREZ",
@@ -1991,10 +1991,10 @@
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -5,
             "%_Crec_Polizas_Pagadas": -1,
-            "Prima_Pagada_Año_Anterior": 110.98,
+            "Prima_Pagada_Año_Anterior": 116.55,
             "Prima_Pagada_Año_Actual": 35.85,
-            "Crec_Prima_Pagada": -75.13,
-            "%_Crec_Prima_Pagada": -0.677
+            "Crec_Prima_Pagada": -80.7,
+            "%_Crec_Prima_Pagada": -0.6924
           },
           {
             "Nombre del Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
@@ -2011,73 +2011,73 @@
           {
             "Nombre del Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 2,
+            "Polizas_Pagadas_Año_Anterior": 5,
             "Polizas_Pagadas_Año_Actual": 3,
-            "Crec_Polizas_Pagadas": 1,
-            "%_Crec_Polizas_Pagadas": 0.5,
-            "Prima_Pagada_Año_Anterior": 17.07,
-            "Prima_Pagada_Año_Actual": 183.39,
-            "Crec_Prima_Pagada": 166.32,
-            "%_Crec_Prima_Pagada": 9.7434
+            "Crec_Polizas_Pagadas": -2,
+            "%_Crec_Polizas_Pagadas": -0.4,
+            "Prima_Pagada_Año_Anterior": 92.95,
+            "Prima_Pagada_Año_Actual": 189.04,
+            "Crec_Prima_Pagada": 96.09,
+            "%_Crec_Prima_Pagada": 1.0338
           },
           {
             "Nombre del Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
             "Sucursal": "2856",
-            "Polizas_Pagadas_Año_Anterior": 2,
+            "Polizas_Pagadas_Año_Anterior": 5,
             "Polizas_Pagadas_Año_Actual": 1,
-            "Crec_Polizas_Pagadas": -1,
-            "%_Crec_Polizas_Pagadas": -0.5,
-            "Prima_Pagada_Año_Anterior": 22.02,
-            "Prima_Pagada_Año_Actual": 118.29,
-            "Crec_Prima_Pagada": 96.27,
-            "%_Crec_Prima_Pagada": 4.3719
+            "Crec_Polizas_Pagadas": -4,
+            "%_Crec_Polizas_Pagadas": -0.8,
+            "Prima_Pagada_Año_Anterior": 42,
+            "Prima_Pagada_Año_Actual": 137.09,
+            "Crec_Prima_Pagada": 95.09,
+            "%_Crec_Prima_Pagada": 2.264
           },
           {
             "Nombre del Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 1,
+            "Polizas_Pagadas_Año_Anterior": 2,
             "Polizas_Pagadas_Año_Actual": 1,
-            "Crec_Polizas_Pagadas": 0,
-            "%_Crec_Polizas_Pagadas": 0,
-            "Prima_Pagada_Año_Anterior": 1.58,
-            "Prima_Pagada_Año_Actual": 66.91,
-            "Crec_Prima_Pagada": 65.33,
-            "%_Crec_Prima_Pagada": 41.3481
+            "Crec_Polizas_Pagadas": -1,
+            "%_Crec_Polizas_Pagadas": -0.5,
+            "Prima_Pagada_Año_Anterior": 5.61,
+            "Prima_Pagada_Año_Actual": 71.02,
+            "Crec_Prima_Pagada": 65.41,
+            "%_Crec_Prima_Pagada": 11.6595
           },
           {
             "Nombre del Asesor": "MARIA JOSE GUZMAN ZAMORA",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Anterior": 2,
             "Polizas_Pagadas_Año_Actual": 0,
-            "Crec_Polizas_Pagadas": 0,
-            "%_Crec_Polizas_Pagadas": 0,
-            "Prima_Pagada_Año_Anterior": 0,
+            "Crec_Polizas_Pagadas": -2,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 7.9,
             "Prima_Pagada_Año_Actual": 30.95,
-            "Crec_Prima_Pagada": 30.95,
-            "%_Crec_Prima_Pagada": 1
+            "Crec_Prima_Pagada": 23.05,
+            "%_Crec_Prima_Pagada": 2.9177
           },
           {
             "Nombre del Asesor": "LINDA TANIA MIROSLAVA ENRIQUEZ PRECIADO",
             "Sucursal": "2043",
-            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Anterior": 1,
             "Polizas_Pagadas_Año_Actual": 0,
-            "Crec_Polizas_Pagadas": 0,
-            "%_Crec_Polizas_Pagadas": 0,
-            "Prima_Pagada_Año_Anterior": 0,
+            "Crec_Polizas_Pagadas": -1,
+            "%_Crec_Polizas_Pagadas": -1,
+            "Prima_Pagada_Año_Anterior": 7.81,
             "Prima_Pagada_Año_Actual": 0,
-            "Crec_Prima_Pagada": 0,
-            "%_Crec_Prima_Pagada": 0
+            "Crec_Prima_Pagada": -7.81,
+            "%_Crec_Prima_Pagada": -1
           },
           {
             "Nombre del Asesor": "VELIA PATRICIA BERNAL RAMOS",
             "Sucursal": "2856",
             "Polizas_Pagadas_Año_Anterior": 0,
-            "Polizas_Pagadas_Año_Actual": 3,
-            "Crec_Polizas_Pagadas": 3,
+            "Polizas_Pagadas_Año_Actual": 4,
+            "Crec_Polizas_Pagadas": 4,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 210.08,
-            "Crec_Prima_Pagada": 210.08,
+            "Prima_Pagada_Año_Actual": 221.36,
+            "Crec_Prima_Pagada": 221.36,
             "%_Crec_Prima_Pagada": 1
           },
           {
@@ -2088,8 +2088,8 @@
             "Crec_Polizas_Pagadas": 1,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 58.68,
-            "Crec_Prima_Pagada": 58.68,
+            "Prima_Pagada_Año_Actual": 72.53,
+            "Crec_Prima_Pagada": 72.53,
             "%_Crec_Prima_Pagada": 1
           },
           {
@@ -2100,8 +2100,8 @@
             "Crec_Polizas_Pagadas": 2,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 103.16,
-            "Crec_Prima_Pagada": 103.16,
+            "Prima_Pagada_Año_Actual": 126.74,
+            "Crec_Prima_Pagada": 126.74,
             "%_Crec_Prima_Pagada": 1
           },
           {
@@ -2112,8 +2112,8 @@
             "Crec_Polizas_Pagadas": 0,
             "%_Crec_Polizas_Pagadas": 0,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 9.57,
-            "Crec_Prima_Pagada": 9.57,
+            "Prima_Pagada_Año_Actual": 11.16,
+            "Crec_Prima_Pagada": 11.16,
             "%_Crec_Prima_Pagada": 1
           },
           {
@@ -2124,8 +2124,8 @@
             "Crec_Polizas_Pagadas": 6,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 99.06,
-            "Crec_Prima_Pagada": 99.06,
+            "Prima_Pagada_Año_Actual": 103.15,
+            "Crec_Prima_Pagada": 103.15,
             "%_Crec_Prima_Pagada": 1
           },
           {
@@ -2136,8 +2136,8 @@
             "Crec_Polizas_Pagadas": 11,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 119.66,
-            "Crec_Prima_Pagada": 119.66,
+            "Prima_Pagada_Año_Actual": 134.72,
+            "Crec_Prima_Pagada": 134.72,
             "%_Crec_Prima_Pagada": 1
           },
           {
@@ -2148,32 +2148,32 @@
             "Crec_Polizas_Pagadas": 8,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 159.39,
-            "Crec_Prima_Pagada": 159.39,
+            "Prima_Pagada_Año_Actual": 177.84,
+            "Crec_Prima_Pagada": 177.84,
             "%_Crec_Prima_Pagada": 1
           },
           {
             "Nombre del Asesor": "MARIO IVAN ROMERO GONZALEZ",
             "Sucursal": "2856",
             "Polizas_Pagadas_Año_Anterior": 0,
-            "Polizas_Pagadas_Año_Actual": 5,
-            "Crec_Polizas_Pagadas": 5,
+            "Polizas_Pagadas_Año_Actual": 6,
+            "Crec_Polizas_Pagadas": 6,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 74.62,
-            "Crec_Prima_Pagada": 74.62,
+            "Prima_Pagada_Año_Actual": 136.13,
+            "Crec_Prima_Pagada": 136.13,
             "%_Crec_Prima_Pagada": 1
           },
           {
             "Nombre del Asesor": "JOSE ANTEMIO OLIVA SANTOS",
             "Sucursal": "2043",
             "Polizas_Pagadas_Año_Anterior": 0,
-            "Polizas_Pagadas_Año_Actual": 1,
-            "Crec_Polizas_Pagadas": 1,
+            "Polizas_Pagadas_Año_Actual": 4,
+            "Crec_Polizas_Pagadas": 4,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 19.03,
-            "Crec_Prima_Pagada": 19.03,
+            "Prima_Pagada_Año_Actual": 26.05,
+            "Crec_Prima_Pagada": 26.05,
             "%_Crec_Prima_Pagada": 1
           },
           {
@@ -2194,9 +2194,9 @@
     "fechas_corte": {
       "pagado_pendiente": "30 de julio de 2026",
       "pagado_pendiente_reclutas": "29 de julio de 2026",
-      "asesores_sin_emision": "30 de jul de 2026",
+      "asesores_sin_emision": "30 de JUL de 2026",
       "proactivos": "28 de julio de 2026",
-      "comparativo_vida": "30 de junio de 2026"
+      "comparativo_vida": "29 de julio de 2026"
     },
     "campaigns": {
       "mdrt": [
@@ -3678,12 +3678,12 @@
     },
     "campaignDates": {
       "mdrt": "24 de julio de 2026",
-      "convenciones": "30 de junio de 2026",
+      "convenciones": "30 de Junio de 2026",
       "legion_centurion": "10 de Julio de 2026",
       "camino_cumbre": "24 de julio de 2026",
       "graduacion": "24 de julio de 2026",
       "proactiva_tech": "29 de julio 2026",
-      "reto_por_ciento": "29 de julio 2026"
+      "reto_por_ciento": "29 DE JULIO 2026"
     }
   }
 }
