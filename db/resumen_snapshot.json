@@ -1,5 +1,5 @@
 {
-  "updatedAt": "3/8/2026, 11:37:08 a.m.",
+  "updatedAt": "3/8/2026, 1:12:15 p.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -1195,25 +1195,13 @@
           "ASESOR": "LILIANA IVETTE CASTILLO SANCHEZ",
           "SUC": 2043,
           "Polizas_Acumuladas_Mes_Ant.": 3.5,
-          "Polizas_Del_mes": 0,
-          "Polizas_Acumuladas_Total": 3.5,
+          "Polizas_Del_mes": 1,
+          "Polizas_Acumuladas_Total": 4.5,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 3.5,
+          "Pólizas_Faltantes": 2.5,
           "Proactivo_a_Dic": "NO",
-          "Pólizas_Faltantes_Para_Dic": 8.5,
+          "Pólizas_Faltantes_Para_Dic": 7.5,
           "Fecha_Conexion": "2024-06-23"
-        },
-        {
-          "ASESOR": "VELIA PATRICIA BERNAL RAMOS",
-          "SUC": 2856,
-          "Polizas_Acumuladas_Mes_Ant.": 4,
-          "Polizas_Del_mes": 0,
-          "Polizas_Acumuladas_Total": 4,
-          "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 3,
-          "Proactivo_a_Dic": "NO",
-          "Pólizas_Faltantes_Para_Dic": 8,
-          "Fecha_Conexion": "2025-10-13"
         },
         {
           "ASESOR": "MARIA FERNANDA RIOS BERNAL",
@@ -1262,6 +1250,18 @@
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 6.5,
           "Fecha_Conexion": "2018-12-04"
+        },
+        {
+          "ASESOR": "VELIA PATRICIA BERNAL RAMOS",
+          "SUC": 2856,
+          "Polizas_Acumuladas_Mes_Ant.": 4,
+          "Polizas_Del_mes": 1.5,
+          "Polizas_Acumuladas_Total": 5.5,
+          "Proactivo_al_mes": "NO",
+          "Pólizas_Faltantes": 1.5,
+          "Proactivo_a_Dic": "NO",
+          "Pólizas_Faltantes_Para_Dic": 6.5,
+          "Fecha_Conexion": "2025-10-13"
         },
         {
           "ASESOR": "ROGELIO TORRES ORTIZ",
@@ -1327,8 +1327,8 @@
           "ASESOR": "DARINKA UREÑA CASILLAS",
           "SUC": 2043,
           "Polizas_Acumuladas_Mes_Ant.": 15,
-          "Polizas_Del_mes": 0,
-          "Polizas_Acumuladas_Total": 15,
+          "Polizas_Del_mes": 1,
+          "Polizas_Acumuladas_Total": 16,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "SÍ",
@@ -1375,8 +1375,8 @@
           "ASESOR": "MARIO IVAN ROMERO GONZALEZ",
           "SUC": 2856,
           "Polizas_Acumuladas_Mes_Ant.": 6,
-          "Polizas_Del_mes": 1,
-          "Polizas_Acumuladas_Total": 7,
+          "Polizas_Del_mes": 1.5,
+          "Polizas_Acumuladas_Total": 7.5,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "SÍ",
@@ -2195,7 +2195,7 @@
       "pagado_pendiente": "30 de julio de 2026",
       "pagado_pendiente_reclutas": "29 de julio de 2026",
       "asesores_sin_emision": "30 de jul de 2026",
-      "proactivos": "17 de julio de 2026",
+      "proactivos": "28 de julio de 2026",
       "comparativo_vida": "30 de junio de 2026"
     },
     "campaigns": {
