@@ -154,19 +154,21 @@ const sendPushNotification = async ({ group = 'all', title, body, url = '/', ico
         }
     }
 
-    // Dual-write to sync both directories
-    const writeTargets = [
-        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/push_subscriptions.json',
-        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/push_subscriptions.json',
-        path.join(BASE_PATH, 'db', 'push_subscriptions.json')
-    ];
-    for (const target of writeTargets) {
-        try {
-            const dir = path.dirname(target);
-            if (fs.existsSync(dir)) {
-                fs.writeFileSync(target, JSON.stringify(activeSubs, null, 2));
-            }
-        } catch (e) {}
+    // Dual-write to sync server directories (ONLY when executing on production server)
+    const isServerEnv = process.cwd().includes('domains/panel.ambrizydavalos.com') || fs.existsSync('/home/u211138134/domains/panel.ambrizydavalos.com');
+    if (isServerEnv) {
+        const writeTargets = [
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/push_subscriptions.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/push_subscriptions.json'
+        ];
+        for (const target of writeTargets) {
+            try {
+                const dir = path.dirname(target);
+                if (fs.existsSync(dir)) {
+                    fs.writeFileSync(target, JSON.stringify(activeSubs, null, 2));
+                }
+            } catch (e) {}
+        }
     }
 
     console.log(`[PUSH] Envío completado. Exitosos: ${successCount} de ${subscriptions.length} dispositivo(s).`);
