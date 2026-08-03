@@ -789,39 +789,41 @@ const run = async () => {
             console.warn('⚠️ No se pudieron generar alertas (generar_alertas.js):', e.message);
         }
 
-        // DISPARAR NOTIFICACIONES PUSH AUTOMÁTICAS AL CELULAR
+        // DISPARAR 1 ÚNICA NOTIFICACIÓN INTELIGENTE AL FINALIZAR
         try {
-            let sendFn;
-            try {
-                const mod = await import('./scripts/send_push_notification.cjs');
-                sendFn = mod.sendPushNotification || mod.default;
-            } catch {
-                const mod = await import('./scripts/send_push_notification.js');
-                sendFn = mod.sendPushNotification || mod.default;
-            }
-            if (typeof sendFn === 'function') {
-                // 1. Avisar a TODOS los dispositivos (Administradores y Asesores) sobre actualización de campañas
-                await sendFn({
-                    group: 'all',
-                    title: 'Ambriz Asesores — Campañas Actualizadas',
-                    body: 'Se han publicado los nuevos números y posiciones en las campañas al corte de hoy.',
-                    url: '/campanas'
-                });
-                // 2. Avisar EXCLUSIVAMENTE a Administradores sobre reportes de administración
-                await sendFn({
-                    group: 'admin',
-                    title: 'Reportes Administrativos Actualizados',
-                    body: 'Se han actualizado los reportes de Pagado/Pendiente, Proactivos y Sin Emisión.',
-                    url: '/resumen-promotoria'
-                });
-            }
-            
-            // Fallback para ejecuciones locales en Mac: Invocar la API remota de Hostinger donde residen los celulares
             const isLocal = !process.cwd().includes('domains/panel.ambrizydavalos.com');
+            const notifTitle = 'Ambriz Asesores — Reportes Actualizados';
+            const notifBody = 'Se han publicado los nuevos números y posiciones al día de hoy.';
+
             if (isLocal) {
+                // Ejecución local en Mac: Invocar la API remota de Hostinger 1 SOLA VEZ
                 try {
-                    execSync('curl -s -X POST "https://panel.ambrizydavalos.com/api/push/send-custom" -H "Content-Type: application/json" -d \'{"group":"all","title":"Ambriz Asesores — Campañas Actualizadas","body":"Se han procesado y publicado los nuevos cortes de campañas al día de hoy.","url":"/"}\'');
+                    const payload = JSON.stringify({
+                        group: 'all',
+                        title: notifTitle,
+                        body: notifBody,
+                        url: '/'
+                    });
+                    execSync(`curl -s -X POST "https://panel.ambrizydavalos.com/api/push/send-custom" -H "Content-Type: application/json" -d '${payload}'`);
                 } catch (eLocal) {}
+            } else {
+                // Ejecución directa en Servidor Hostinger (1 SOLA VEZ)
+                let sendFn;
+                try {
+                    const mod = await import('./scripts/send_push_notification.cjs');
+                    sendFn = mod.sendPushNotification || mod.default;
+                } catch {
+                    const mod = await import('./scripts/send_push_notification.js');
+                    sendFn = mod.sendPushNotification || mod.default;
+                }
+                if (typeof sendFn === 'function') {
+                    await sendFn({
+                        group: 'all',
+                        title: notifTitle,
+                        body: notifBody,
+                        url: '/'
+                    });
+                }
             }
         } catch (e) {
             console.warn('⚠️ No se pudieron enviar notificaciones push:', e.message);
