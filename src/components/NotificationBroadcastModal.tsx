@@ -20,6 +20,7 @@ const PRESET_DESTINATIONS = [
     { label: '🏆 Sección de Campañas', value: '/campanas' },
     { label: '📊 Resumen de Asesores', value: '/resumen-asesores' },
     { label: '🎯 Meta Anual 2026', value: '/meta-anual' },
+    { label: '📄 PDF Tabla Requisitos Médicos', value: '/bases_campanas/CAMBIO%20TABLA%20REQUISITOS%20MEDICOS/Bases%20Tabla%20de%20requisitos%20me%CC%81dicos_VF.pdf' },
     { label: '📄 PDF Campañas Vigentes Agosto 2026', value: '/bases_campanas/Camapan%CC%83as%20Agosto/Campa%C3%B1as%20vigentes%20Agosto%202026.pdf' },
     { label: '📄 PDF Convenciones Asesores 2027', value: '/bases_campanas/Convenciones/Convenciones%20Asesores%20LP%202027.pdf' },
     { label: '📄 PDF Bono 15 MDRT', value: '/bases_campanas/BONO%2015%20MDRT/Bases%20Campa%C3%B1a%20Bono%2015%20MDRT.pdf' },
