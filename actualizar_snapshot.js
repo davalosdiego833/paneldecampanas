@@ -789,14 +789,26 @@ const run = async () => {
             console.warn('⚠️ No se pudieron generar alertas (generar_alertas.js):', e.message);
         }
 
-        // DISPARAR 1 ÚNICA NOTIFICACIÓN PUSH EN EL SERVIDOR DE PRODUCCIÓN HOSTINGER
+        // DISPARAR 1 ÚNICA NOTIFICACIÓN PUSH EN TIEMPO REAL VÍA ONESIGNAL
         try {
-            const isServerEnv = process.cwd().includes('domains/panel.ambrizydavalos.com') || fs.existsSync('/home/u211138134/domains/panel.ambrizydavalos.com');
-            const cutoffMdrt = snapshot.data.campaignDates?.mdrt || '29 de julio de 2026';
-            const notifTitle = 'Campaña MDRT 2026 — Números Actualizados';
-            const notifBody = `Se han publicado los nuevos números y posiciones de MDRT al ${cutoffMdrt}.`;
+            const isLocal = !process.cwd().includes('domains/panel.ambrizydavalos.com');
+            const cutoffDate = snapshot.data.campaignDates?.mdrt || snapshot.data.fechas_corte?.comparativo_vida || 'al corte de hoy';
+            const notifTitle = 'Ambriz Asesores — Reportes Actualizados';
+            const notifBody = `Se han publicado los nuevos números y cortes al ${cutoffDate}.`;
 
-            if (isServerEnv) {
+            if (isLocal) {
+                // Ejecución desde Mac: Disparar la API remota de Hostinger 1 SOLA VEZ
+                try {
+                    const payload = JSON.stringify({
+                        group: 'all',
+                        title: notifTitle,
+                        body: notifBody,
+                        url: '/'
+                    });
+                    execSync(`curl -s -X POST "https://panel.ambrizydavalos.com/api/push/send-custom" -H "Content-Type: application/json" -d '${payload}'`);
+                } catch (eLocal) {}
+            } else {
+                // Ejecución directa en Servidor Hostinger (1 SOLA VEZ)
                 let sendFn;
                 try {
                     const mod = await import('./scripts/send_push_notification.cjs');
