@@ -585,11 +585,45 @@ const findSnapshotPath = () => {
         path.join(BASE_PATH, 'db', 'resumen_snapshot.json'),
         path.join(cwd, 'db', 'resumen_snapshot.json'),
         path.join(safeDirname, 'db', 'resumen_snapshot.json'),
+        path.join(safeDirname, '..', 'db', 'resumen_snapshot.json'),
+        path.join(safeDirname, '../..', 'db', 'resumen_snapshot.json'),
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/resumen_snapshot.json',
-        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json'
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json',
+        '/home/u211138134/public_html/db/resumen_snapshot.json'
     ];
     return candidates.find(p => safeExists(p)) || SNAPSHOT_PATH;
 };
+
+app.get('/api/admin/snapshot-status', (req, res) => {
+    const cwd = process.cwd();
+    const candidates = [
+        SNAPSHOT_PATH,
+        path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json'),
+        path.join(BASE_PATH, 'db', 'resumen_snapshot.json'),
+        path.join(cwd, 'db', 'resumen_snapshot.json'),
+        path.join(safeDirname, 'db', 'resumen_snapshot.json'),
+        path.join(safeDirname, '..', 'db', 'resumen_snapshot.json'),
+        path.join(safeDirname, '../..', 'db', 'resumen_snapshot.json'),
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/resumen_snapshot.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json',
+        '/home/u211138134/public_html/db/resumen_snapshot.json'
+    ];
+    const details = candidates.map(p => ({ path: p, exists: safeExists(p) }));
+    const found = candidates.find(p => safeExists(p));
+
+    if (found) {
+        const stats = fs.statSync(found);
+        const data = JSON.parse(fs.readFileSync(found, 'utf-8'));
+        return res.json({
+            exists: true,
+            foundPath: found,
+            updatedAt: data.updatedAt,
+            mtime: stats.mtime,
+            details
+        });
+    }
+    res.json({ exists: false, cwd, safeDirname, BASE_PATH, DB_PATH_DYNAMIC, details });
+});
 
 app.get('/api/campaign/:name/data/:advisor', (req, res) => {
     const { name, advisor } = req.params;
