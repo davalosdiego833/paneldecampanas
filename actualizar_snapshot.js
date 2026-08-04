@@ -792,9 +792,9 @@ const run = async () => {
         // DISPARAR 1 ÚNICA NOTIFICACIÓN PUSH EN EL SERVIDOR DE PRODUCCIÓN HOSTINGER
         try {
             const isServerEnv = process.cwd().includes('domains/panel.ambrizydavalos.com') || fs.existsSync('/home/u211138134/domains/panel.ambrizydavalos.com');
-            const cutoffCv = snapshot.data.fechas_corte?.comparativo_vida || '29 de julio de 2026';
-            const notifTitle = 'Reporte Comparativo de Vida Actualizado';
-            const notifBody = `Se ha publicado el nuevo corte del Comparativo de Vida al ${cutoffCv}.`;
+            const cutoffMdrt = snapshot.data.campaignDates?.mdrt || '29 de julio de 2026';
+            const notifTitle = 'Campaña MDRT 2026 — Números Actualizados';
+            const notifBody = `Se han publicado los nuevos números y posiciones de MDRT al ${cutoffMdrt}.`;
 
             if (isServerEnv) {
                 let sendFn;
