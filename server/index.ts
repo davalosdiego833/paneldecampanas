@@ -604,14 +604,24 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
             const campaigns = snapshotData.campaigns || snapshotData.data?.campaigns;
             const campaignDates = snapshotData.campaignDates || snapshotData.data?.campaignDates || {};
 
-            if (campaigns && campaigns[name] && campaigns[name].length > 0) {
+            if (campaigns && campaigns[name]) {
                 const campData: any[] = campaigns[name];
                 const dir = getAdvisorDirectory();
                 const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
 
-                // Find the advisor's row in the snapshot data
+                const normalizeStr = (str: string) =>
+                    String(str || '')
+                        .normalize('NFD')
+                        .replace(/[\u0300-\u036f]/g, '')
+                        .toUpperCase()
+                        .replace(/[^A-Z0-9]/g, '')
+                        .trim();
+
+                const normAdvisor = normalizeStr(advisor);
+
+                // Find the advisor's row in the snapshot data with normalized accent matching
                 const row = campData.find((r: any) =>
-                    String(r.Asesor || '') === advisor ||
+                    normalizeStr(r.Asesor) === normAdvisor ||
                     advisorKeys.includes(String(r.Clave || '')) ||
                     String(r.Clave || '') === advisor
                 );
@@ -695,11 +705,12 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
                     // Generic: return raw snapshot row + date
                     return res.json({ ...row, Fecha_Corte: fechaCorte });
                 }
-                // Advisor not found in snapshot data
-                return res.status(404).json({ error: 'Advisor not found' });
+
+                // Advisor does not participate in this specific campaign
+                return res.status(200).json(null);
             }
         } catch (e) {
-            console.warn('[SNAPSHOT] Error reading snapshot, falling back to Excel:', (e as Error).message);
+            console.warn('[SNAPSHOT] Error reading snapshot:', (e as Error).message);
         }
     }
 

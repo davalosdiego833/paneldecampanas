@@ -568,14 +568,27 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
             const snapshotData = JSON.parse(fs.readFileSync(snapPath, 'utf-8'));
             const campaigns = snapshotData.campaigns || snapshotData.data?.campaigns;
             const campaignDates = snapshotData.campaignDates || snapshotData.data?.campaignDates || {};
-            if (campaigns && campaigns[name] && campaigns[name].length > 0) {
+            if (campaigns && campaigns[name]) {
                 const campData = campaigns[name];
                 const dir = getAdvisorDirectory();
                 const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
-                // Find the advisor's row in the snapshot data
-                const row = campData.find((r) => String(r.Asesor || '') === advisor ||
+
+                const normalizeStr = (str) =>
+                    String(str || '')
+                        .normalize('NFD')
+                        .replace(/[\u0300-\u036f]/g, '')
+                        .toUpperCase()
+                        .replace(/[^A-Z0-9]/g, '')
+                        .trim();
+
+                const normAdvisor = normalizeStr(advisor);
+
+                // Find the advisor's row in the snapshot data with normalized accent matching
+                const row = campData.find((r) =>
+                    normalizeStr(r.Asesor) === normAdvisor ||
                     advisorKeys.includes(String(r.Clave || '')) ||
-                    String(r.Clave || '') === advisor);
+                    String(r.Clave || '') === advisor
+                );
                 if (row) {
                     const fechaCorte = campaignDates[name] || '';
                     if (name === 'legion_centurion') {
@@ -649,12 +662,12 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
                     // Generic: return raw snapshot row + date
                     return res.json({ ...row, Fecha_Corte: fechaCorte });
                 }
-                // Advisor not found in snapshot data
-                return res.status(404).json({ error: 'Advisor not found' });
+                // Advisor does not participate in this specific campaign
+                return res.status(200).json(null);
             }
         }
         catch (e) {
-            console.warn('[SNAPSHOT] Error reading snapshot, falling back to Excel:', e.message);
+            console.warn('[SNAPSHOT] Error reading snapshot:', e.message);
         }
     }
     // ========== EXCEL FALLBACK (historical dates or no snapshot) ==========
