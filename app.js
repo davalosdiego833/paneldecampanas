@@ -6,6 +6,7 @@ import fs from 'fs';
 import os from 'os';
 import XLSX from 'xlsx';
 import dotenv from 'dotenv';
+import { pathToFileURL } from 'url';
 import { execSync } from 'child_process';
 const safeFilename = typeof __filename !== 'undefined' ? __filename : '';
 const safeDirname = typeof __dirname !== 'undefined' ? __dirname : process.cwd();
@@ -61,7 +62,6 @@ const SNAPSHOT_PATH = path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json');
 const ASSETS_PATH = path.join(BASE_PATH, 'assets');
 const THEMES_PATH = path.join(BASE_PATH, 'themes');
 const ADMIN_PATH = getProtectedPath('administrador');
-
 function findSnapshotPath() {
     const cwd = process.cwd();
     const candidates = [
@@ -212,12 +212,16 @@ const possibleDistPaths = [
     path.join(safeDirname, '../dist'),
     path.join(safeDirname, 'public_html', 'dist'),
     path.join(BASE_PATH, 'dist'),
-    path.join(BASE_PATH, 'public_html', 'dist')
+    path.join(BASE_PATH, 'public_html', 'dist'),
+    '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/dist',
+    '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist'
 ];
 const DIST_PATH = possibleDistPaths.find(p => safeExists(path.join(p, 'index.html'))) || path.join(BASE_PATH, 'dist');
 app.use(express.static(DIST_PATH, { setHeaders: setMimeHeaders }));
 app.use('/assets', express.static(ASSETS_PATH, { setHeaders: setMimeHeaders }));
 app.use('/assets', express.static(path.join(DIST_PATH, 'assets'), { setHeaders: setMimeHeaders }));
+app.use('/assets', express.static('/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/dist/assets', { setHeaders: setMimeHeaders }));
+app.use('/assets', express.static('/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist/assets', { setHeaders: setMimeHeaders }));
 // Special route for assets files if lost
 app.get('/assets/:filename', (req, res, next) => {
     const { filename } = req.params;
@@ -229,7 +233,11 @@ app.get('/assets/:filename', (req, res, next) => {
         path.join(BASE_PATH, 'dist', 'assets', filename),
         path.join(BASE_PATH, 'assets', filename),
         path.join(cwd, 'dist', 'assets', filename),
-        path.join(cwd, 'assets', filename)
+        path.join(cwd, 'assets', filename),
+        `/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/dist/assets/${filename}`,
+        `/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/assets/${filename}`,
+        `/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist/assets/${filename}`,
+        `/home/u211138134/domains/panel.ambrizydavalos.com/public_html/assets/${filename}`
     ];
     const found = candidates.find(p => safeExists(p));
     if (found) {
@@ -487,10 +495,16 @@ const getCaminoDate = (worksheet) => {
 };
 // --- Endpoints ---
 app.get('/api/bases_campanas', (req, res) => {
-    const publicPath = path.join(BASE_PATH, 'public', 'bases_campanas');
-    const distPath = path.join(BASE_PATH, 'dist', 'bases_campanas');
-    const prodPath = path.join(BASE_PATH, 'bases_campanas');
-    let targetPath = fs.existsSync(prodPath) ? prodPath : fs.existsSync(publicPath) ? publicPath : fs.existsSync(distPath) ? distPath : null;
+    const candidatePaths = [
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/bases_campanas',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/bases_campanas',
+        path.join(BASE_PATH, 'bases_campanas'),
+        path.join(BASE_PATH, 'public', 'bases_campanas'),
+        path.join(BASE_PATH, 'dist', 'bases_campanas'),
+        path.join(safeDirname, '..', 'bases_campanas'),
+        path.join(process.cwd(), 'bases_campanas')
+    ];
+    let targetPath = candidatePaths.find(p => fs.existsSync(p));
     if (!targetPath) {
         return res.json([]);
     }
@@ -502,14 +516,14 @@ app.get('/api/bases_campanas', (req, res) => {
                 if (dirent.name.startsWith('.'))
                     continue; // ignore hidden
                 const fullPath = path.join(dir, dirent.name);
-                const fileRoute = `${route}/${dirent.name}`;
+                const fileRoute = `${route}/${encodeURIComponent(dirent.name)}`;
                 if (dirent.isDirectory()) {
-                    const children = scanDirectory(fullPath, fileRoute);
+                    const children = scanDirectory(fullPath, `${route}/${dirent.name}`);
                     if (children.length > 0) {
                         items.push({
                             type: 'directory',
                             name: dirent.name,
-                            path: fileRoute,
+                            path: `${route}/${dirent.name}`,
                             children: children
                         });
                     }
@@ -562,7 +576,7 @@ app.get('/api/advisors', (req, res) => {
         res.status(500).json({ error: 'Could not list advisors' });
     }
 });
-const findSnapshotPath = () => {
+app.get('/api/admin/snapshot-status', (req, res) => {
     const cwd = process.cwd();
     const candidates = [
         SNAPSHOT_PATH,
@@ -570,11 +584,27 @@ const findSnapshotPath = () => {
         path.join(BASE_PATH, 'db', 'resumen_snapshot.json'),
         path.join(cwd, 'db', 'resumen_snapshot.json'),
         path.join(safeDirname, 'db', 'resumen_snapshot.json'),
+        path.join(safeDirname, '..', 'db', 'resumen_snapshot.json'),
+        path.join(safeDirname, '../..', 'db', 'resumen_snapshot.json'),
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/resumen_snapshot.json',
-        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json'
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json',
+        '/home/u211138134/public_html/db/resumen_snapshot.json'
     ];
-    return candidates.find(p => safeExists(p)) || SNAPSHOT_PATH;
-};
+    const details = candidates.map(p => ({ path: p, exists: safeExists(p) }));
+    const found = candidates.find(p => safeExists(p));
+    if (found) {
+        const stats = fs.statSync(found);
+        const data = JSON.parse(fs.readFileSync(found, 'utf-8'));
+        return res.json({
+            exists: true,
+            foundPath: found,
+            updatedAt: data.updatedAt,
+            mtime: stats.mtime,
+            details
+        });
+    }
+    res.json({ exists: false, cwd, safeDirname, BASE_PATH, DB_PATH_DYNAMIC, details });
+});
 app.get('/api/campaign/:name/data/:advisor', (req, res) => {
     const { name, advisor } = req.params;
     const { date } = req.query;
@@ -592,23 +622,17 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
                 const campData = campaigns[name];
                 const dir = getAdvisorDirectory();
                 const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
-
-                const normalizeStr = (str) =>
-                    String(str || '')
-                        .normalize('NFD')
-                        .replace(/[\u0300-\u036f]/g, '')
-                        .toUpperCase()
-                        .replace(/[^A-Z0-9]/g, '')
-                        .trim();
-
+                const normalizeStr = (str) => String(str || '')
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .toUpperCase()
+                    .replace(/[^A-Z0-9]/g, '')
+                    .trim();
                 const normAdvisor = normalizeStr(advisor);
-
                 // Find the advisor's row in the snapshot data with normalized accent matching
-                const row = campData.find((r) =>
-                    normalizeStr(r.Asesor) === normAdvisor ||
+                const row = campData.find((r) => normalizeStr(r.Asesor) === normAdvisor ||
                     advisorKeys.includes(String(r.Clave || '')) ||
-                    String(r.Clave || '') === advisor
-                );
+                    String(r.Clave || '') === advisor);
                 if (row) {
                     const fechaCorte = campaignDates[name] || '';
                     if (name === 'legion_centurion') {
@@ -1161,19 +1185,6 @@ app.get('/api/admin/summary', (req, res) => {
         res.status(500).json({ error: 'Could not build admin summary' });
     }
 });
-app.get('/api/admin/snapshot-status', (req, res) => {
-    const snapPath = findSnapshotPath();
-    if (safeExists(snapPath)) {
-        const stats = fs.statSync(snapPath);
-        const data = JSON.parse(fs.readFileSync(snapPath, 'utf-8'));
-        return res.json({
-            exists: true,
-            updatedAt: data.updatedAt,
-            mtime: stats.mtime
-        });
-    }
-    res.json({ exists: false });
-});
 app.post('/api/admin/snapshot', async (req, res) => {
     try {
         // PERFORMANCE FIX: Clear Excel cache to force reading new files
@@ -1545,7 +1556,6 @@ app.post('/api/admin/snapshot', async (req, res) => {
         res.status(500).json({ error: 'Failed to create snapshot' });
     }
 });
-
 app.post('/api/admin/upload-snapshot', express.json({ limit: '50mb' }), (req, res) => {
     try {
         const payload = req.body;
@@ -1555,7 +1565,8 @@ app.post('/api/admin/upload-snapshot', express.json({ limit: '50mb' }), (req, re
         const snapPath = findSnapshotPath();
         fs.writeFileSync(snapPath, JSON.stringify(payload, null, 2));
         return res.json({ success: true, path: snapPath, updatedAt: payload.updatedAt || payload.timestamp });
-    } catch (e) {
+    }
+    catch (e) {
         return res.status(500).json({ error: e.message });
     }
 });
@@ -2530,6 +2541,343 @@ app.post('/api/admin/staff-activity', (req, res) => {
         res.status(500).json({ error: 'Write error' });
     }
 });
+// ===================== NOTIFICACIONES PUSH =====================
+app.get('/api/push/vapid-public-key', (req, res) => {
+    try {
+        const vapidPath = path.join(DB_PATH_DYNAMIC, 'vapid_keys.json');
+        if (!fs.existsSync(vapidPath))
+            return res.status(404).json({ error: 'VAPID keys not generated' });
+        const keys = JSON.parse(fs.readFileSync(vapidPath, 'utf-8'));
+        res.json({ publicKey: keys.publicKey });
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Error reading VAPID key' });
+    }
+});
+app.post('/api/push/subscribe', (req, res) => {
+    try {
+        const { subscription, role, clave, name, deviceInfo } = req.body;
+        if (!subscription || !subscription.endpoint) {
+            return res.status(400).json({ error: 'Subscription object missing' });
+        }
+        const subsPath = path.join(DB_PATH_DYNAMIC, 'push_subscriptions.json');
+        let subs = [];
+        if (fs.existsSync(subsPath)) {
+            try {
+                subs = JSON.parse(fs.readFileSync(subsPath, 'utf-8'));
+            }
+            catch {
+                subs = [];
+            }
+        }
+        if (!Array.isArray(subs))
+            subs = [];
+        const existing = subs.find(s => s.subscription?.endpoint === subscription.endpoint);
+        const finalRole = (role === 'admin' || (clave && String(clave).toUpperCase() === 'ADMIN')) ? 'admin' : 'asesor';
+        subs = subs.filter(s => s.subscription?.endpoint !== subscription.endpoint);
+        subs.push({
+            subscription,
+            role: finalRole,
+            clave: clave && clave !== 'UNKNOWN' && clave !== 'USUARIO' ? clave : (existing?.clave || 'ADMIN'),
+            name: name && name !== 'Usuario' ? name : (existing?.name || 'Administrador'),
+            deviceInfo: deviceInfo || existing?.deviceInfo || 'Dispositivo Web',
+            subscribedAt: new Date().toISOString()
+        });
+        const targetPaths = [
+            subsPath,
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/push_subscriptions.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/push_subscriptions.json'
+        ];
+        for (const tp of targetPaths) {
+            try {
+                const dir = path.dirname(tp);
+                if (fs.existsSync(dir)) {
+                    fs.writeFileSync(tp, JSON.stringify(subs, null, 2));
+                }
+            }
+            catch (e) { }
+        }
+        res.json({ success: true });
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Error saving subscription' });
+    }
+});
+app.post('/api/push/send', async (req, res) => {
+    try {
+        const { group = 'all', title, body, url } = req.body;
+        const scriptPath = path.join(BASE_PATH, 'scripts', 'send_push_notification.js');
+        const { sendPushNotification } = await import(`file://${scriptPath}`);
+        const result = await sendPushNotification({ group, title, body, url });
+        res.json(result);
+    }
+    catch (e) {
+        res.status(500).json({ error: e.message || 'Error sending push' });
+    }
+});
+app.post('/api/push/test-device', async (req, res) => {
+    try {
+        const { subscription, role } = req.body;
+        if (!subscription || !subscription.endpoint) {
+            return res.status(400).json({ error: 'Subscription missing' });
+        }
+        const vapidPath = path.join(DB_PATH_DYNAMIC, 'vapid_keys.json');
+        if (!fs.existsSync(vapidPath))
+            return res.status(404).json({ error: 'VAPID keys not generated' });
+        const vapidKeys = JSON.parse(fs.readFileSync(vapidPath, 'utf-8'));
+        const webpush = (await import('web-push')).default;
+        webpush.setVapidDetails('mailto:soporte@ambrizydavalos.com', vapidKeys.publicKey, vapidKeys.privateKey);
+        const groupLabel = role === 'admin' ? 'Administrador' : 'Asesor';
+        const payload = JSON.stringify({
+            title: 'Ambriz Asesores — Notificaciones Activas',
+            body: `Prueba de conectividad exitosa. Tu dispositivo (Grupo: ${groupLabel}) está listo para recibir notificaciones.`,
+            icon: '/assets/logos/empresa/ambriz_logo.png',
+            url: '/'
+        });
+        const pushOptions = {
+            TTL: 86400,
+            headers: {
+                'Urgency': 'high'
+            }
+        };
+        await webpush.sendNotification(subscription, payload, pushOptions);
+        res.json({ success: true });
+    }
+    catch (e) {
+        console.error('[PUSH TEST] Error sending test notification:', e.message);
+        res.status(500).json({ error: e.message || 'Error sending test push' });
+    }
+});
+app.post('/api/push/unsubscribe', (req, res) => {
+    try {
+        const { subscription } = req.body;
+        if (!subscription || !subscription.endpoint) {
+            return res.status(400).json({ error: 'Subscription missing' });
+        }
+        const subsPath = path.join(DB_PATH_DYNAMIC, 'push_subscriptions.json');
+        if (fs.existsSync(subsPath)) {
+            let subs = JSON.parse(fs.readFileSync(subsPath, 'utf-8'));
+            if (Array.isArray(subs)) {
+                subs = subs.filter((s) => s.subscription?.endpoint !== subscription.endpoint);
+                fs.writeFileSync(subsPath, JSON.stringify(subs, null, 2));
+            }
+        }
+        res.json({ success: true });
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Unsubscribe error' });
+    }
+});
+app.post('/api/push/send-custom', async (req, res) => {
+    try {
+        const { group = 'all', title, body, url } = req.body;
+        if (!title || !body) {
+            return res.status(400).json({ error: 'Título y mensaje son requeridos' });
+        }
+        const candidateScriptPaths = [
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/scripts/send_push_notification.cjs',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/scripts/send_push_notification.cjs',
+            path.join(BASE_PATH, 'scripts', 'send_push_notification.cjs'),
+            path.join(BASE_PATH, 'public_html', 'scripts', 'send_push_notification.cjs'),
+            path.join(BASE_PATH, 'nodejs', 'scripts', 'send_push_notification.cjs'),
+            path.join(safeDirname, 'scripts', 'send_push_notification.cjs'),
+            path.join(process.cwd(), 'scripts', 'send_push_notification.cjs'),
+            path.join(BASE_PATH, 'scripts', 'send_push_notification.js')
+        ];
+        const scriptPath = candidateScriptPaths.find(p => fs.existsSync(p));
+        if (!scriptPath) {
+            return res.status(500).json({ error: 'Script de notificaciones no encontrado' });
+        }
+        let sendPushNotificationFn;
+        try {
+            const mod = require(scriptPath);
+            sendPushNotificationFn = mod.sendPushNotification || mod.default;
+        }
+        catch (e1) {
+            const fileUrl = pathToFileURL(scriptPath).href;
+            const mod = await import(fileUrl);
+            sendPushNotificationFn = mod.sendPushNotification || mod.default;
+        }
+        if (typeof sendPushNotificationFn !== 'function') {
+            return res.status(500).json({ error: 'No se pudo cargar la función de envío de notificaciones' });
+        }
+        const result = await sendPushNotificationFn({ group, title, body, url: url || '/' });
+        // Guardar en historial
+        const historyPath = path.join(DB_PATH_DYNAMIC, 'comunicados_history.json');
+        let history = [];
+        if (fs.existsSync(historyPath)) {
+            try {
+                history = JSON.parse(fs.readFileSync(historyPath, 'utf-8'));
+            }
+            catch {
+                history = [];
+            }
+        }
+        if (!Array.isArray(history))
+            history = [];
+        history.unshift({
+            id: Date.now().toString(),
+            title,
+            body,
+            url: url || '/',
+            group,
+            timestamp: new Date().toISOString(),
+            successCount: result.successCount || 0
+        });
+        if (history.length > 50)
+            history = history.slice(0, 50);
+        const targetHistoryPaths = [
+            historyPath,
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/comunicados_history.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/comunicados_history.json'
+        ];
+        for (const thp of targetHistoryPaths) {
+            try {
+                const dir = path.dirname(thp);
+                if (fs.existsSync(dir)) {
+                    fs.writeFileSync(thp, JSON.stringify(history, null, 2));
+                }
+            }
+            catch (e) { }
+        }
+        res.json({ success: true, result });
+    }
+    catch (e) {
+        console.error('[PUSH CUSTOM] Error:', e.message);
+        res.status(500).json({ error: e.message || 'Error al enviar comunicado' });
+    }
+});
+app.get('/api/onesignal/config', (req, res) => {
+    try {
+        const candidateConfigPaths = [
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/onesignal_config.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/onesignal_config.json',
+            path.join(DB_PATH_DYNAMIC, 'onesignal_config.json')
+        ];
+        const found = candidateConfigPaths.find(p => fs.existsSync(p));
+        if (found) {
+            const data = JSON.parse(fs.readFileSync(found, 'utf-8'));
+            return res.json(data);
+        }
+        res.json({ appId: '', apiKey: '', enabled: false });
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Error leyendo configuración OneSignal' });
+    }
+});
+app.post('/api/onesignal/config', (req, res) => {
+    try {
+        const { appId, apiKey, enabled = true } = req.body;
+        const config = {
+            appId: (appId || '').trim(),
+            apiKey: (apiKey || '').trim(),
+            enabled: !!enabled,
+            updatedAt: new Date().toISOString()
+        };
+        const targetPaths = [
+            path.join(DB_PATH_DYNAMIC, 'onesignal_config.json'),
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/onesignal_config.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/onesignal_config.json'
+        ];
+        for (const tp of targetPaths) {
+            try {
+                const dir = path.dirname(tp);
+                if (fs.existsSync(dir)) {
+                    fs.writeFileSync(tp, JSON.stringify(config, null, 2));
+                }
+            }
+            catch (e) { }
+        }
+        res.json({ success: true, config });
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Error guardando configuración OneSignal' });
+    }
+});
+app.get('/api/push/history', (req, res) => {
+    try {
+        const candidateHistory = [
+            path.join(DB_PATH_DYNAMIC, 'comunicados_history.json'),
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/comunicados_history.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/comunicados_history.json'
+        ];
+        const found = candidateHistory.find(p => fs.existsSync(p));
+        if (found) {
+            const history = JSON.parse(fs.readFileSync(found, 'utf-8'));
+            return res.json(history);
+        }
+        res.json([]);
+    }
+    catch (e) {
+        res.json([]);
+    }
+});
+app.get('/api/comunicados/history', (req, res) => {
+    try {
+        const candidateHistory = [
+            path.join(DB_PATH_DYNAMIC, 'comunicados_history.json'),
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/comunicados_history.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/comunicados_history.json'
+        ];
+        const found = candidateHistory.find(p => fs.existsSync(p));
+        if (found) {
+            const history = JSON.parse(fs.readFileSync(found, 'utf-8'));
+            return res.json(history);
+        }
+        res.json([]);
+    }
+    catch (e) {
+        res.json([]);
+    }
+});
+app.get('/api/push/devices', (req, res) => {
+    try {
+        const candidateFiles = [
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/push_subscriptions.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/push_subscriptions.json',
+            path.join(DB_PATH_DYNAMIC, 'push_subscriptions.json')
+        ];
+        const found = candidateFiles.find(p => fs.existsSync(p));
+        if (found) {
+            const subs = JSON.parse(fs.readFileSync(found, 'utf-8'));
+            if (Array.isArray(subs)) {
+                return res.json(subs);
+            }
+        }
+        res.json([]);
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Error leyendo lista de dispositivos' });
+    }
+});
+app.post('/api/push/revoke', (req, res) => {
+    try {
+        const { endpoint } = req.body;
+        if (!endpoint)
+            return res.status(400).json({ error: 'Endpoint requerido' });
+        const targetPaths = [
+            path.join(DB_PATH_DYNAMIC, 'push_subscriptions.json'),
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/push_subscriptions.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/push_subscriptions.json'
+        ];
+        for (const tp of targetPaths) {
+            try {
+                if (fs.existsSync(tp)) {
+                    let subs = JSON.parse(fs.readFileSync(tp, 'utf-8'));
+                    if (Array.isArray(subs)) {
+                        subs = subs.filter((s) => s.subscription?.endpoint !== endpoint && s.endpoint !== endpoint);
+                        fs.writeFileSync(tp, JSON.stringify(subs, null, 2));
+                    }
+                }
+            }
+            catch (e) { }
+        }
+        res.json({ success: true });
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Error al revocar dispositivo' });
+    }
+});
 app.use((req, res) => {
     if (req.path.startsWith('/api'))
         return res.status(404).json({ error: 'API not found' });
@@ -2544,6 +2892,8 @@ app.use((req, res) => {
         path.join(safeDirname, 'dist', 'index.html'),
         path.join(BASE_PATH, 'index.html'),
         path.join(BASE_PATH, 'dist', 'index.html'),
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/index.html',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/dist/index.html',
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/index.html',
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist/index.html'
     ];
