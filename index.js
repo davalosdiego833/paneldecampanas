@@ -61,6 +61,23 @@ const SNAPSHOT_PATH = path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json');
 const ASSETS_PATH = path.join(BASE_PATH, 'assets');
 const THEMES_PATH = path.join(BASE_PATH, 'themes');
 const ADMIN_PATH = getProtectedPath('administrador');
+
+function findSnapshotPath() {
+    const cwd = process.cwd();
+    const candidates = [
+        SNAPSHOT_PATH,
+        path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json'),
+        path.join(BASE_PATH, 'db', 'resumen_snapshot.json'),
+        path.join(cwd, 'db', 'resumen_snapshot.json'),
+        path.join(safeDirname, 'db', 'resumen_snapshot.json'),
+        path.join(safeDirname, '..', 'db', 'resumen_snapshot.json'),
+        path.join(safeDirname, '../..', 'db', 'resumen_snapshot.json'),
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/resumen_snapshot.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json',
+        '/home/u211138134/public_html/db/resumen_snapshot.json'
+    ];
+    return candidates.find(p => safeExists(p)) || SNAPSHOT_PATH;
+}
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
