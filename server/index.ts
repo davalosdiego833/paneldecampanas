@@ -68,6 +68,23 @@ const ASSETS_PATH = path.join(BASE_PATH, 'assets');
 const THEMES_PATH = path.join(BASE_PATH, 'themes');
 const ADMIN_PATH = getProtectedPath('administrador');
 
+function findSnapshotPath(): string {
+    const cwd = process.cwd();
+    const candidates = [
+        SNAPSHOT_PATH,
+        path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json'),
+        path.join(BASE_PATH, 'db', 'resumen_snapshot.json'),
+        path.join(cwd, 'db', 'resumen_snapshot.json'),
+        path.join(safeDirname, 'db', 'resumen_snapshot.json'),
+        path.join(safeDirname, '..', 'db', 'resumen_snapshot.json'),
+        path.join(safeDirname, '../..', 'db', 'resumen_snapshot.json'),
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/resumen_snapshot.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json',
+        '/home/u211138134/public_html/db/resumen_snapshot.json'
+    ];
+    return candidates.find(p => safeExists(p)) || SNAPSHOT_PATH;
+}
+
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
@@ -577,23 +594,6 @@ app.get('/api/advisors', (req, res) => {
         res.status(500).json({ error: 'Could not list advisors' });
     }
 });
-
-const findSnapshotPath = () => {
-    const cwd = process.cwd();
-    const candidates = [
-        SNAPSHOT_PATH,
-        path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json'),
-        path.join(BASE_PATH, 'db', 'resumen_snapshot.json'),
-        path.join(cwd, 'db', 'resumen_snapshot.json'),
-        path.join(safeDirname, 'db', 'resumen_snapshot.json'),
-        path.join(safeDirname, '..', 'db', 'resumen_snapshot.json'),
-        path.join(safeDirname, '../..', 'db', 'resumen_snapshot.json'),
-        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/resumen_snapshot.json',
-        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json',
-        '/home/u211138134/public_html/db/resumen_snapshot.json'
-    ];
-    return candidates.find(p => safeExists(p)) || SNAPSHOT_PATH;
-};
 
 app.get('/api/admin/snapshot-status', (req, res) => {
     const cwd = process.cwd();
@@ -1172,20 +1172,6 @@ app.get('/api/admin/summary', (req, res) => {
         });
         res.json(result);
     } catch (e) { res.status(500).json({ error: 'Could not build admin summary' }); }
-});
-
-app.get('/api/admin/snapshot-status', (req, res) => {
-    const snapPath = findSnapshotPath();
-    if (safeExists(snapPath)) {
-        const stats = fs.statSync(snapPath);
-        const data = JSON.parse(fs.readFileSync(snapPath, 'utf-8'));
-        return res.json({
-            exists: true,
-            updatedAt: data.updatedAt,
-            mtime: stats.mtime
-        });
-    }
-    res.json({ exists: false });
 });
 
 app.post('/api/admin/snapshot', async (req, res) => {
