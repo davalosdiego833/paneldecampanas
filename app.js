@@ -1527,6 +1527,20 @@ app.post('/api/admin/snapshot', async (req, res) => {
         res.status(500).json({ error: 'Failed to create snapshot' });
     }
 });
+
+app.post('/api/admin/upload-snapshot', express.json({ limit: '50mb' }), (req, res) => {
+    try {
+        const payload = req.body;
+        if (!payload || (!payload.data && !payload.campaigns)) {
+            return res.status(400).json({ error: 'Invalid snapshot payload' });
+        }
+        const snapPath = findSnapshotPath();
+        fs.writeFileSync(snapPath, JSON.stringify(payload, null, 2));
+        return res.json({ success: true, path: snapPath, updatedAt: payload.updatedAt || payload.timestamp });
+    } catch (e) {
+        return res.status(500).json({ error: e.message });
+    }
+});
 app.get('/api/campaigns/dates', (req, res) => {
     try {
         const snapPath = findSnapshotPath();
