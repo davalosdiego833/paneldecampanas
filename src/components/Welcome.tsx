@@ -89,17 +89,46 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                 </h4>
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: '20px', fontSize: '1rem', color: 'var(--text-secondary)', padding: '0 8px' }}>
                     <li>
-                        <span style={{ marginRight: '10px' }}>📱</span>
-                        <strong style={{ color: 'var(--text-primary)' }}>Campaña ProactivaTech 2.0 (Junio – Agosto 2026)</strong>
+                        <span style={{ marginRight: '10px' }}>🛡️</span>
+                        <strong style={{ color: 'var(--text-primary)' }}>Legión Centurión — ¡Objetivo Agosto!</strong>
                         <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
-                            ¡Tus logros te pueden llevar a estrenar el nuevo iPhone! Cumple con tus metas de pólizas y comisiones para ganar desde unos <span style={{ fontWeight: 700 }}>AirPods Pro 3</span> hasta el <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>iPhone 17 Pro Max</span>.
+                            La meta acumulada para este mes de Agosto es de <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>32 pólizas acumuladas</span> como mínimo. Mantén el ritmo y asegura tu lugar en la élite de la promotoría.
                         </div>
                     </li>
                     <li>
-                        <span style={{ marginRight: '10px' }}>📈</span>
-                        <strong style={{ color: 'var(--text-primary)' }}>Campaña Reto Por Ciento</strong>
+                        <span style={{ marginRight: '10px' }}>🎓</span>
+                        <strong style={{ color: 'var(--text-primary)' }}>Campaña Educar Es Creer — Segubeca (1 Ago – 30 Sep 2026)</strong>
                         <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
-                            <span style={{ color: '#FF6B6B', fontWeight: 700 }}>"GANA EXTRA COMISIÓN"</span> SOLO ASESORES CONSOLIDADOS.
+                            ¡En este regreso a clases Segubeca vale más!
+                            <br />
+                            • <strong style={{ color: 'var(--text-primary)' }}>Para Asesores:</strong> Ponderación en Cuaderno de Concursos para plazos ≥ 9 años sube al <span style={{ color: '#FF6B6B', fontWeight: 700 }}>120% en UDIS</span> y <span style={{ color: '#FF6B6B', fontWeight: 700 }}>75% en DLLS</span>. En Convenciones pondera al <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>DOBLE</span>.
+                            <br />
+                            • <strong style={{ color: 'var(--text-primary)' }}>Para Clientes:</strong> Regalo de Kit de Regreso a Clases (lonchera, libreta y colores) para las primeras <span style={{ fontWeight: 700 }}>1,000 pólizas</span> emitidas y pagadas con prima anualizada ≥ $30,000.
+                        </div>
+                    </li>
+                    <li>
+                        <span style={{ marginRight: '10px' }}>✈️</span>
+                        <strong style={{ color: 'var(--text-primary)' }}>Bono 15 MDRT (1 Jul – 31 Dic 2026)</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
+                            Para Asesores con fecha de conexión 2022 a 2026: Alcanza la meta de Miembro MDRT 2027 al 100% de producción SMNYL y asiste a la Reunión Anual en Orlando, Florida para ganar un <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>Bono Especial de $15,000 MXN</span>.
+                        </div>
+                    </li>
+                    <li>
+                        <span style={{ marginRight: '10px' }}>🤝</span>
+                        <strong style={{ color: 'var(--text-primary)' }}>Campaña Mentores MDRT 2026 (Registro Límite: 31 de Agosto)</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
+                            ¡Impulsa la próxima generación MDRT!
+                            <br />
+                            • <strong style={{ color: 'var(--text-primary)' }}>Mentores (MDRT 2026):</strong> Reciben <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>$15,000 MXN</span> por cada mentee que califique a MDRT 2027 (hasta 3 mentees = $45,000 MXN).
+                            <br />
+                            • <strong style={{ color: 'var(--text-primary)' }}>Mentees:</strong> Asesores que nunca hayan sido MDRT reciben <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>$15,000 MXN</span> al lograr su membresía y asistir a Orlando. (Registro de parejas hasta el 31 de Agosto).
+                        </div>
+                    </li>
+                    <li>
+                        <span style={{ marginRight: '10px' }}>📱</span>
+                        <strong style={{ color: 'var(--text-primary)' }}>Campaña ProactivaTech 2.0 (Junio – Agosto 2026)</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
+                            ¡Último mes! Cumple con tus metas de pólizas y comisiones para ganar desde unos <span style={{ fontWeight: 700 }}>AirPods Pro 3</span> hasta el <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>iPhone 17 Pro Max</span>.
                         </div>
                     </li>
                     <li>
@@ -110,9 +139,18 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                         </div>
                     </li>
                     <li>
-                        <span style={{ marginRight: '10px' }}>🛡️</span>
-                        <strong style={{ color: 'var(--text-primary)' }}>Legión Centurión — ¡Objetivo Julio!</strong>
-                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>La meta para este mes es de <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>28 pólizas acumuladas</span> como mínimo. Mantén el ritmo y asegura tu lugar en la élite de la promotoría.</div>
+                        <span style={{ marginRight: '10px' }}>📈</span>
+                        <strong style={{ color: 'var(--text-primary)' }}>Campaña Reto Por Ciento</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
+                            <span style={{ color: '#FF6B6B', fontWeight: 700 }}>"GANA EXTRA COMISIÓN"</span> SOLO ASESORES CONSOLIDADOS.
+                        </div>
+                    </li>
+                    <li>
+                        <span style={{ marginRight: '10px' }}>🩺</span>
+                        <strong style={{ color: 'var(--text-primary)' }}>Cambio Tabla Requisitos Médicos (Vigente 2026)</strong>
+                        <div style={{ marginLeft: '28px', marginTop: '4px', fontSize: '0.9rem' }}>
+                            Consulta el nuevo tabulador con la actualización de exámenes y requisitos médicos requeridos según la suma asegurada en la sección de Bases PDF.
+                        </div>
                     </li>
                 </ul>
             </div>
