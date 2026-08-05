@@ -543,6 +543,12 @@ app.get('/api/bases_campanas', (req, res) => {
                 if (dirent.name.startsWith('.')) continue; // ignore hidden
                 
                 const fullPath = path.join(dir, dirent.name);
+                if (dirent.name.toLowerCase().includes('julio')) {
+                    try {
+                        fs.rmSync(fullPath, { recursive: true, force: true });
+                    } catch {}
+                    continue;
+                }
                 const currentRel = relPath ? `${relPath}/${dirent.name}` : dirent.name;
                 const displayName = cleanName(dirent.name);
                 
