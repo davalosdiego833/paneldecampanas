@@ -605,6 +605,12 @@ app.get('/api/admin/snapshot-status', (req, res) => {
     }
     res.json({ exists: false, cwd, safeDirname, BASE_PATH, DB_PATH_DYNAMIC, details });
 });
+app.get('/api/admin/reload-server', (req, res) => {
+    res.json({ message: 'Restarting Node.js process to load latest code from disk...' });
+    setTimeout(() => {
+        process.exit(0);
+    }, 500);
+});
 app.get('/api/campaign/:name/data/:advisor', (req, res) => {
     const { name, advisor } = req.params;
     const { date } = req.query;
