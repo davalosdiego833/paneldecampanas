@@ -2921,13 +2921,24 @@ app.get('*', (req, res) => {
     res.status(404).send(`Frontend not built. CWD: ${cwd}, safeDirname: ${safeDirname}, BASE_PATH: ${BASE_PATH}`);
 });
 
+// Diagnostic: log what Hostinger gives us
+console.log('[BOOT] process.env.PORT =', process.env.PORT);
+console.log('[BOOT] process.env.NODE_ENV =', process.env.NODE_ENV);
+console.log('[BOOT] process.env.HOST =', process.env.HOST);
+console.log('[BOOT] CWD =', process.cwd());
+console.log('[BOOT] safeDirname =', safeDirname);
+
 declare var PhusionPassenger: any;
 
 if (typeof (PhusionPassenger) !== 'undefined') {
     PhusionPassenger.configure({ autoInstall: false });
-    app.listen('passenger');
+    app.listen('passenger', () => {
+        console.log('🚀 Fortress Server running on Passenger socket');
+    });
 } else {
-    app.listen(PORT, () => {
-        console.log(`🚀 Fortress Server running on port ${PORT}`);
+    const listenPort = process.env.PORT || 3000;
+    app.listen(listenPort, () => {
+        console.log(`🚀 Fortress Server running on port ${listenPort}`);
     });
 }
+
