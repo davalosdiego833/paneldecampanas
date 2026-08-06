@@ -237,6 +237,31 @@ app.use('/assets', express.static(path.join(DIST_PATH, 'assets'), { setHeaders: 
 app.use('/assets', express.static('/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/dist/assets', { setHeaders: setMimeHeaders }));
 app.use('/assets', express.static('/home/u211138134/domains/panel.ambrizydavalos.com/public_html/dist/assets', { setHeaders: setMimeHeaders }));
 
+app.use('/bases_campanas', express.static(path.join(BASE_PATH, 'public', 'bases_campanas')));
+app.use('/bases_campanas', express.static(path.join(BASE_PATH, 'bases_campanas')));
+app.use('/bases_campanas', express.static('/home/u211138134/domains/panel.ambrizydavalos.com/public_html/bases_campanas'));
+app.use('/bases_campanas', express.static('/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/bases_campanas'));
+
+app.get('/bases_campanas/*', (req, res) => {
+    const rawPath = (req.params as any)[0] || (req.params as any)['0'] || '';
+    const decodedPath = decodeURIComponent(rawPath);
+    const candidates = [
+        path.join(BASE_PATH, 'public', 'bases_campanas', decodedPath),
+        path.join(BASE_PATH, 'bases_campanas', decodedPath),
+        `/home/u211138134/domains/panel.ambrizydavalos.com/public_html/bases_campanas/${decodedPath}`,
+        `/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/bases_campanas/${decodedPath}`
+    ];
+    const found = candidates.find(p => safeExists(p));
+    if (found) {
+        const ext = path.extname(found).toLowerCase();
+        const contentType = ext === '.pdf' ? 'application/pdf' : ext === '.png' ? 'image/png' : 'image/jpeg';
+        res.setHeader('Content-Type', contentType);
+        res.setHeader('Content-Disposition', `inline; filename="${encodeURIComponent(path.basename(found))}"`);
+        return res.sendFile(found);
+    }
+    res.status(404).send('File not found');
+});
+
 // Special route for assets files if lost
 app.get('/assets/:filename', (req, res, next) => {
     const { filename } = req.params;
