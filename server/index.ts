@@ -512,11 +512,12 @@ app.get('/api/bases_campanas', (req, res) => {
     const candidatePaths = [
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/bases_campanas',
         '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/bases_campanas',
-        path.join(BASE_PATH, 'bases_campanas'),
         path.join(BASE_PATH, 'public', 'bases_campanas'),
+        path.join(BASE_PATH, 'bases_campanas'),
         path.join(BASE_PATH, 'dist', 'bases_campanas'),
         path.join(safeDirname, '..', 'bases_campanas'),
-        path.join(process.cwd(), 'bases_campanas')
+        path.join(process.cwd(), 'bases_campanas'),
+        path.join(process.cwd(), 'public', 'bases_campanas')
     ];
     
     let targetPath = candidatePaths.find(p => fs.existsSync(p));
@@ -525,31 +526,42 @@ app.get('/api/bases_campanas', (req, res) => {
         return res.json([]);
     }
 
-    const scanDirectory = (dir: string, route: string) => {
+    const cleanName = (str: string) => {
+        try {
+            if (str.includes('Ã')) {
+                return Buffer.from(str, 'latin1').toString('utf-8');
+            }
+        } catch {}
+        return str;
+    };
+
+    const scanDirectory = (dir: string, relPath: string) => {
         const items: any[] = [];
         try {
             const dirents = fs.readdirSync(dir, { withFileTypes: true });
             for (const dirent of dirents) {
                 if (dirent.name.startsWith('.')) continue; // ignore hidden
+                if (dirent.name.toLowerCase().includes('julio')) continue; // filter out old July bases
                 
                 const fullPath = path.join(dir, dirent.name);
-                const fileRoute = `${route}/${encodeURIComponent(dirent.name)}`;
+                const currentRel = relPath ? `${relPath}/${dirent.name}` : dirent.name;
+                const displayName = cleanName(dirent.name);
                 
                 if (dirent.isDirectory()) {
-                    const children = scanDirectory(fullPath, `${route}/${dirent.name}`);
+                    const children = scanDirectory(fullPath, currentRel);
                     if (children.length > 0) {
                         items.push({
                             type: 'directory',
-                            name: dirent.name,
-                            path: `${route}/${dirent.name}`,
+                            name: displayName,
+                            path: currentRel,
                             children: children
                         });
                     }
                 } else if (dirent.name.toLowerCase().endsWith('.pdf') || dirent.name.toLowerCase().endsWith('.png') || dirent.name.toLowerCase().endsWith('.jpg') || dirent.name.toLowerCase().endsWith('.jpeg')) {
                     items.push({
                         type: 'file',
-                        name: dirent.name,
-                        path: fileRoute
+                        name: displayName,
+                        path: `/api/bases_campanas/download?file=${encodeURIComponent(currentRel)}`
                     });
                 }
             }
@@ -559,8 +571,37 @@ app.get('/api/bases_campanas', (req, res) => {
         return items;
     };
 
-    const tree = scanDirectory(targetPath, '/bases_campanas');
+    const tree = scanDirectory(targetPath, '');
     res.json(tree);
+});
+
+app.get('/api/bases_campanas/download', (req, res) => {
+    const relativePath = String(req.query.file || '');
+    if (!relativePath) return res.status(400).send('Missing file parameter');
+
+    const decodedPath = decodeURIComponent(relativePath).replace(/^(\.\.[\/\\])+/, '');
+
+    const candidateDirs = [
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/bases_campanas',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/bases_campanas',
+        path.join(BASE_PATH, 'public', 'bases_campanas'),
+        path.join(BASE_PATH, 'bases_campanas'),
+        path.join(process.cwd(), 'bases_campanas'),
+        path.join(process.cwd(), 'public', 'bases_campanas')
+    ];
+
+    for (const dir of candidateDirs) {
+        const fullFilePath = path.join(dir, decodedPath);
+        if (fs.existsSync(fullFilePath) && fs.statSync(fullFilePath).isFile()) {
+            const ext = path.extname(fullFilePath).toLowerCase();
+            const contentType = ext === '.pdf' ? 'application/pdf' : ext === '.png' ? 'image/png' : 'image/jpeg';
+            res.setHeader('Content-Type', contentType);
+            res.setHeader('Content-Disposition', `inline; filename="${encodeURIComponent(path.basename(decodedPath))}"`);
+            return res.sendFile(fullFilePath);
+        }
+    }
+
+    res.status(404).send('Not found');
 });
 
 app.get('/api/campaigns', (req, res) => {
