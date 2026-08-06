@@ -74,17 +74,20 @@ const ADMIN_PATH = getProtectedPath('administrador');
 function findSnapshotPath(): string {
     const cwd = process.cwd();
     const candidates = [
+        '/home/u211138134/domains/panel.ambrizydavalos.com/db/resumen_snapshot.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/resumen_snapshot.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json',
+        '/home/u211138134/public_html/db/resumen_snapshot.json',
         path.join(cwd, 'db', 'resumen_snapshot.json'),
         path.join(cwd, '..', 'db', 'resumen_snapshot.json'),
+        path.join(cwd, '../..', 'db', 'resumen_snapshot.json'),
         path.join(safeDirname, 'db', 'resumen_snapshot.json'),
         path.join(safeDirname, '..', 'db', 'resumen_snapshot.json'),
         path.join(safeDirname, '../..', 'db', 'resumen_snapshot.json'),
+        path.join(safeDirname, '../../..', 'db', 'resumen_snapshot.json'),
         path.join(BASE_PATH, 'db', 'resumen_snapshot.json'),
         path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json'),
-        SNAPSHOT_PATH,
-        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/resumen_snapshot.json',
-        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json',
-        '/home/u211138134/public_html/db/resumen_snapshot.json'
+        SNAPSHOT_PATH
     ];
     const found = candidates.find(p => safeExists(p));
     if (found) return found;
@@ -464,6 +467,9 @@ const extractCutoffDate = (wb: any, type: string): string => {
 const readExcelData = (folderName: string, options: { skipJson?: boolean, date?: string } = {}) => {
     const cwd = process.cwd();
     const candidateFolders = [
+        `/home/u211138134/domains/panel.ambrizydavalos.com/${folderName}`,
+        `/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/${folderName}`,
+        `/home/u211138134/domains/panel.ambrizydavalos.com/public_html/${folderName}`,
         getProtectedPath(folderName),
         path.join(BASE_PATH, folderName),
         path.join(cwd, folderName),
