@@ -487,27 +487,47 @@ const CambiosView: React.FC<{ cambios: CambiosData }> = ({ cambios }) => {
         const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
         const totalAnuladas = asesoresCancelaciones.reduce((sum, g) => sum + g.polizas.length, 0);
 
+        let totalVida = 0;
+        let totalGMM = 0;
+        let totalDesaparecidas = 0;
+
+        asesoresCancelaciones.forEach(g => {
+            g.polizas.forEach(p => {
+                const polNum = String(p.poliza || '').trim().toUpperCase();
+                if (polNum.startsWith('VI')) {
+                    totalVida++;
+                } else if (polNum.startsWith('GM')) {
+                    totalGMM++;
+                }
+                const st = String(p.estatus_nuevo || '').toUpperCase();
+                if (st.includes('DESAPARECIDA')) {
+                    totalDesaparecidas++;
+                }
+            });
+        });
+
         // Header Background Banner
         doc.setFillColor(15, 23, 42);
-        doc.rect(0, 0, 210, 38, 'F');
+        doc.rect(0, 0, 210, 42, 'F');
 
         // Gold Title
         doc.setTextColor(255, 215, 0);
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(16);
-        doc.text('AMBRIZ ASESORES - PROMOTORÍA 2043', 14, 15);
+        doc.setFontSize(15);
+        doc.text('AMBRIZ ASESORES - PROMOTORÍA 2043', 14, 14);
 
         doc.setTextColor(255, 255, 255);
-        doc.setFontSize(12);
+        doc.setFontSize(11);
         doc.setFont('helvetica', 'bold');
-        doc.text('REPORTE DE CANCELACIONES Y ANULADAS (GPS)', 14, 23);
+        doc.text('REPORTE DE CANCELACIONES Y ANULADAS (GPS)', 14, 22);
 
-        doc.setFontSize(9);
+        doc.setFontSize(8.5);
         doc.setFont('helvetica', 'normal');
         doc.setTextColor(203, 213, 225);
-        doc.text(`Total Asesores: ${asesoresCancelaciones.length}   |   Total Pólizas: ${totalAnuladas}`, 14, 30);
+        doc.text(`Total Pólizas: ${totalAnuladas}   |   Vida (VI): ${totalVida}   |   GMM (GM): ${totalGMM}   |   Desaparecidas: ${totalDesaparecidas}`, 14, 32);
+        doc.text(`Total Asesores: ${asesoresCancelaciones.length}`, 165, 32);
 
-        let startY = 46;
+        let startY = 50;
 
         if (asesoresCancelaciones.length === 0) {
             doc.setTextColor(100, 116, 139);
