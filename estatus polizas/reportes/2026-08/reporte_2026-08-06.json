@@ -20751,15 +20751,15 @@
           "estatus": "En Vigor"
         },
         {
-          "poliza": "GM0000513462",
-          "contratante": "JOSE DE JESUS HERNANDEZ GONZALEZ",
-          "producto": "PRACTICO",
-          "estatus": "En Vigor"
-        },
-        {
           "poliza": "GM0000540037",
           "contratante": "JOSE DE JESUS HERNANDEZ GONZALEZ",
           "producto": "INTEGRO",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000513462",
+          "contratante": "JOSE DE JESUS HERNANDEZ GONZALEZ",
+          "producto": "PRACTICO",
           "estatus": "En Vigor"
         },
         {
@@ -21091,27 +21091,27 @@
           "estatus": "En Vigor"
         },
         {
-          "poliza": "VI0002994683",
-          "contratante": "JORGE MIGUEL DAUCHY CASTILLO",
-          "producto": "TEMPORAL 5 RENOVABLE STAR NUEVO",
-          "estatus": "En Vigor"
-        },
-        {
           "poliza": "VI0002994703",
           "contratante": "JORGE MIGUEL DAUCHY CASTILLO",
           "producto": "TEMPORAL 10 UDIS",
           "estatus": "En Vigor"
         },
         {
-          "poliza": "VI0003004107",
-          "contratante": "PEDRO ROMO GARCIA",
-          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "poliza": "VI0002994683",
+          "contratante": "JORGE MIGUEL DAUCHY CASTILLO",
+          "producto": "TEMPORAL 5 RENOVABLE STAR NUEVO",
           "estatus": "En Vigor"
         },
         {
           "poliza": "VI0002997032",
           "contratante": "PEDRO ROMO GARCIA",
           "producto": "ORVI 99 10 UDIS",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0003004107",
+          "contratante": "PEDRO ROMO GARCIA",
+          "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
           "estatus": "En Vigor"
         }
       ],

@@ -495,7 +495,7 @@ const CambiosView: React.FC<{ cambios: CambiosData }> = ({ cambios }) => {
         doc.setTextColor(255, 215, 0);
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(16);
-        doc.text('AMBRIZ & DÁVALOS - PROMOTORÍA 2043', 14, 15);
+        doc.text('AMBRIZ ASESORES - PROMOTORÍA 2043', 14, 15);
 
         doc.setTextColor(255, 255, 255);
         doc.setFontSize(12);
@@ -505,8 +505,7 @@ const CambiosView: React.FC<{ cambios: CambiosData }> = ({ cambios }) => {
         doc.setFontSize(9);
         doc.setFont('helvetica', 'normal');
         doc.setTextColor(203, 213, 225);
-        doc.text(`Periodo Comparativo: ${cambios.resumen.fecha_anterior}  ->  ${cambios.resumen.fecha_nuevo}`, 14, 30);
-        doc.text(`Total Asesores: ${asesoresCancelaciones.length}   |   Total Pólizas: ${totalAnuladas}`, 130, 30);
+        doc.text(`Total Asesores: ${asesoresCancelaciones.length}   |   Total Pólizas: ${totalAnuladas}`, 14, 30);
 
         let startY = 46;
 
@@ -578,7 +577,7 @@ const CambiosView: React.FC<{ cambios: CambiosData }> = ({ cambios }) => {
             doc.setFontSize(8);
             doc.setTextColor(148, 163, 184);
             doc.text(
-                `Ambriz & Dávalos SC - Sistema Fortresse  |  Página ${i} de ${pageCount}`,
+                `Ambriz Asesores - Sistema Fortresse  |  Página ${i} de ${pageCount}`,
                 105,
                 287,
                 { align: 'center' }
