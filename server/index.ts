@@ -55,6 +55,9 @@ const getProtectedPath = (folder: string) => {
     const f = folder === 'proactiva_tech' ? 'proactivatech' : folder;
     const cwd = process.cwd();
     const candidates = [
+        `/home/u211138134/domains/panel.ambrizydavalos.com/${f}`,
+        `/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/${f}`,
+        `/home/u211138134/domains/panel.ambrizydavalos.com/public_html/${f}`,
         path.join(BASE_PATH, f),
         path.join(cwd, f),
         path.join(safeDirname, f),

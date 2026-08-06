@@ -57,6 +57,7 @@ rsync -avz -e "ssh $SSH_OPTS" proactivatech/ $SERVER_USER@$SERVER_IP:$PARENT_DIR
 rsync -avz -e "ssh $SSH_OPTS" public/bases_campanas/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/bases_campanas/
 rsync -avz -e "ssh $SSH_OPTS" public/bases_campanas/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/bases_campanas/ 2>/dev/null || true
 rsync -avz -e "ssh $SSH_OPTS" "estatus polizas/" $SERVER_USER@$SERVER_IP:"'$PARENT_DIR/nodejs/estatus polizas/'"
+rsync -avz -e "ssh $SSH_OPTS" "estatus polizas/" $SERVER_USER@$SERVER_IP:"'$PARENT_DIR/public_html/estatus polizas/'" 2>/dev/null || true
 
 # 4. Subir scripts de generación al servidor
 echo "📤 Subiendo scripts de procesamiento..."
