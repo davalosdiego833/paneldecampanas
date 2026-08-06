@@ -3,13 +3,13 @@
     "fecha_anterior": "2026-05-20",
     "fecha_nuevo": "2026-08-06",
     "total_anterior": 3394,
-    "total_nuevo": 3511,
-    "diferencia_total": 117,
+    "total_nuevo": 3512,
+    "diferencia_total": 118,
     "cambios_estatus_general": {
       "En Vigor": {
         "anterior": 2195,
-        "nuevo": 2244,
-        "diferencia": 49,
+        "nuevo": 2253,
+        "diferencia": 58,
         "emoji": "🟢"
       },
       "Vigor Prorrogado": {
@@ -26,8 +26,8 @@
       },
       "DESAPARECIDA": {
         "anterior": 9,
-        "nuevo": 23,
-        "diferencia": 14,
+        "nuevo": 15,
+        "diferencia": 6,
         "emoji": "🟢"
       },
       "En Vigor sin Pago de Primas": {
@@ -465,6 +465,50 @@
       "producto": "ORVI 99 10 UDIS",
       "estatus_anterior": "En Vigor",
       "estatus_nuevo": "Anulada",
+      "fecha": "2026-08-06",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "GM0000755135",
+      "contratante": "VALERIA GALINDO GARCIA",
+      "producto": "ALFA MEDICAL FLEX B",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-08-06",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002787923",
+      "contratante": "VICTOR MANUEL GONZALEZ ECHEVERRIA",
+      "producto": "NUEVO PLENITUD 60 15",
+      "estatus_anterior": "DESAPARECIDA",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-08-06",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002405129",
+      "contratante": "XIMENA GARCIA SALUM",
+      "producto": "VIDA MUJER",
+      "estatus_anterior": "DESAPARECIDA",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-08-06",
+      "tipo": "CAMBIO"
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "poliza": "VI0002490181",
+      "contratante": "YULIA RODRIGUEZ VILLASEÑOR",
+      "producto": "ORVI 99 10 UDIS",
+      "estatus_anterior": "DESAPARECIDA",
+      "estatus_nuevo": "En Vigor",
       "fecha": "2026-08-06",
       "tipo": "CAMBIO"
     },
@@ -1604,9 +1648,9 @@
     {
       "asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
       "clave": "108404",
-      "poliza": "GM0000540037",
+      "poliza": "GM0000513462",
       "contratante": "JOSE DE JESUS HERNANDEZ GONZALEZ",
-      "producto": "INTEGRO",
+      "producto": "PRACTICO",
       "estatus_anterior": "NUEVA (No en historial)",
       "estatus_nuevo": "En Vigor",
       "fecha": "2026-08-06",
@@ -1615,9 +1659,9 @@
     {
       "asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
       "clave": "108404",
-      "poliza": "GM0000513462",
+      "poliza": "GM0000540037",
       "contratante": "JOSE DE JESUS HERNANDEZ GONZALEZ",
-      "producto": "PRACTICO",
+      "producto": "INTEGRO",
       "estatus_anterior": "NUEVA (No en historial)",
       "estatus_nuevo": "En Vigor",
       "fecha": "2026-08-06",
@@ -1681,17 +1725,6 @@
     {
       "asesor": "JOSE RENE DE ALBA MORALES",
       "clave": "110575",
-      "poliza": "VI0002994703",
-      "contratante": "JORGE MIGUEL DAUCHY CASTILLO",
-      "producto": "TEMPORAL 10 UDIS",
-      "estatus_anterior": "NUEVA (No en historial)",
-      "estatus_nuevo": "En Vigor",
-      "fecha": "2026-08-06",
-      "tipo": "ALTA"
-    },
-    {
-      "asesor": "JOSE RENE DE ALBA MORALES",
-      "clave": "110575",
       "poliza": "VI0002994683",
       "contratante": "JORGE MIGUEL DAUCHY CASTILLO",
       "producto": "TEMPORAL 5 RENOVABLE STAR NUEVO",
@@ -1703,9 +1736,9 @@
     {
       "asesor": "JOSE RENE DE ALBA MORALES",
       "clave": "110575",
-      "poliza": "VI0002997032",
-      "contratante": "PEDRO ROMO GARCIA",
-      "producto": "ORVI 99 10 UDIS",
+      "poliza": "VI0002994703",
+      "contratante": "JORGE MIGUEL DAUCHY CASTILLO",
+      "producto": "TEMPORAL 10 UDIS",
       "estatus_anterior": "NUEVA (No en historial)",
       "estatus_nuevo": "En Vigor",
       "fecha": "2026-08-06",
@@ -1717,6 +1750,17 @@
       "poliza": "VI0003004107",
       "contratante": "PEDRO ROMO GARCIA",
       "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+      "estatus_anterior": "NUEVA (No en historial)",
+      "estatus_nuevo": "En Vigor",
+      "fecha": "2026-08-06",
+      "tipo": "ALTA"
+    },
+    {
+      "asesor": "JOSE RENE DE ALBA MORALES",
+      "clave": "110575",
+      "poliza": "VI0002997032",
+      "contratante": "PEDRO ROMO GARCIA",
+      "producto": "ORVI 99 10 UDIS",
       "estatus_anterior": "NUEVA (No en historial)",
       "estatus_nuevo": "En Vigor",
       "fecha": "2026-08-06",
@@ -2036,61 +2080,6 @@
       "poliza": "VI0002239908",
       "contratante": "ALMA YADIRA SANCHEZ CARRILLO",
       "producto": "ORVI 99 10 UDIS",
-      "estatus_anterior": "En Vigor",
-      "estatus_nuevo": "DESAPARECIDA (No en portal)",
-      "fecha": "2026-08-06",
-      "tipo": "BAJA"
-    },
-    {
-      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-      "clave": "87538",
-      "poliza": "VI0002638404",
-      "contratante": "TOMAS FEDERICO ARIAS JIMENEZ",
-      "producto": "IMAGINA SER 65",
-      "estatus_anterior": "En Vigor",
-      "estatus_nuevo": "DESAPARECIDA (No en portal)",
-      "fecha": "2026-08-06",
-      "tipo": "BAJA"
-    },
-    {
-      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-      "clave": "87538",
-      "poliza": "VI0002434855",
-      "contratante": "VANESSA MARTINEZ RUIZ",
-      "producto": "VIDA MUJER",
-      "estatus_anterior": "En Vigor",
-      "estatus_nuevo": "DESAPARECIDA (No en portal)",
-      "fecha": "2026-08-06",
-      "tipo": "BAJA"
-    },
-    {
-      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-      "clave": "87538",
-      "poliza": "GM0000523833",
-      "contratante": "VANESSA VAZQUEZ SOLORIO",
-      "producto": "INTEGRO",
-      "estatus_anterior": "En Vigor",
-      "estatus_nuevo": "DESAPARECIDA (No en portal)",
-      "fecha": "2026-08-06",
-      "tipo": "BAJA"
-    },
-    {
-      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-      "clave": "87538",
-      "poliza": "GM0000692254",
-      "contratante": "VERONICA MALVINA PEREZ GUZMAN",
-      "producto": "PRACTICO",
-      "estatus_anterior": "En Vigor",
-      "estatus_nuevo": "DESAPARECIDA (No en portal)",
-      "fecha": "2026-08-06",
-      "tipo": "BAJA"
-    },
-    {
-      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-      "clave": "87538",
-      "poliza": "GM0000455907",
-      "contratante": "VERONICA MALVINA PEREZ GUZMAN",
-      "producto": "PRACTICO",
       "estatus_anterior": "En Vigor",
       "estatus_nuevo": "DESAPARECIDA (No en portal)",
       "fecha": "2026-08-06",

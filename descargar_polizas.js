@@ -216,38 +216,79 @@ async function main() {
             }
 
 
-            const pageNumbers = await getAvailablePages(page);
-            if (pageNumbers.length === 0) {
-                await downloadCurrentPage(page, adv.clave, adv.nombre, 1, botTempDir);
-            } else {
-                console.log(`  📄 Detectadas ${pageNumbers.length} páginas.`);
+            // --- PAGINACIÓN COMPLETA (Soporta 50+ páginas con el "..." de ASP.NET) ---
+            let currentPageNum = 1;
 
-                for (let pIdx = 0; pIdx < pageNumbers.length; pIdx++) {
-                    const pNum = pageNumbers[pIdx];
+            while (true) {
+                await downloadCurrentPage(page, adv.clave, adv.nombre, currentPageNum, botTempDir);
 
-                    if (pNum > 1) {
-                        console.log(`  🖱️ Cambiando a Página ${pNum}...`);
-                        await page.evaluate((targetNum) => {
-                            const pagerRow = document.querySelector('#ctl00_ContentPlaceHolder1_GVPolList tr:last-child');
-                            const links = Array.from(pagerRow.querySelectorAll('a'));
-                            const link = links.find(a => a.innerText == targetNum);
-                            if (link) link.click();
-                        }, pNum);
+                const nextPageObj = await page.evaluate((currentNum) => {
+                    const pagerRow = document.querySelector('#ctl00_ContentPlaceHolder1_GVPolList tr:last-child');
+                    if (!pagerRow) return null;
+                    const links = Array.from(pagerRow.querySelectorAll('a'));
+                    if (links.length === 0) return null;
 
-                        // Wait for update (Grid content should change)
-                        await delay(5000);
-                        try {
-                            await page.waitForSelector('#ctl00_ContentPlaceHolder1_GVPolList', { timeout: 10000 });
-                        } catch (e) { }
+                    // 1. Buscar enlace directo para la siguiente página numérica
+                    const nextDirect = links.find(a => parseInt(a.innerText.trim()) === currentNum + 1);
+                    if (nextDirect) {
+                        return { num: currentNum + 1, isEllipsis: false };
                     }
 
-                    const success = await downloadCurrentPage(page, adv.clave, adv.nombre, pNum, botTempDir);
-                    if (!success) {
-                        console.log(`    ⚠️ Reintentando descarga de Página ${pNum}...`);
-                        await delay(3000);
-                        await downloadCurrentPage(page, adv.clave, adv.nombre, pNum, botTempDir);
+                    // 2. Si no hay directo pero hay un "..." o ">" al final, hacer clic para cargar el siguiente bloque de páginas
+                    const ellipsisLinks = links.filter(a => a.innerText.trim() === '...' || a.innerText.trim() === '>');
+                    if (ellipsisLinks.length > 0) {
+                        return { num: currentNum + 1, isEllipsis: true };
                     }
+
+                    return null;
+                }, currentPageNum);
+
+                if (!nextPageObj) {
+                    console.log(`    ✅ Paginación completada para ${adv.nombre}. Total páginas descargadas: ${currentPageNum}`);
+                    break;
                 }
+
+                console.log(`  🖱️ Cambiando a Página ${nextPageObj.num}...`);
+
+                const textBefore = await page.evaluate(() => {
+                    const r = document.querySelector('#ctl00_ContentPlaceHolder1_GVPolList tr.GridRow, #ctl00_ContentPlaceHolder1_GVPolList tr.GridAlternatingRow');
+                    return r ? r.innerText : '';
+                });
+
+                const clicked = await page.evaluate((target) => {
+                    const pagerRow = document.querySelector('#ctl00_ContentPlaceHolder1_GVPolList tr:last-child');
+                    if (!pagerRow) return false;
+                    const links = Array.from(pagerRow.querySelectorAll('a'));
+                    if (target.isEllipsis) {
+                        const ellipsis = links.filter(a => a.innerText.trim() === '...' || a.innerText.trim() === '>');
+                        const lastEl = ellipsis[ellipsis.length - 1];
+                        if (lastEl) { lastEl.click(); return true; }
+                    } else {
+                        const link = links.find(a => parseInt(a.innerText.trim()) === target.num);
+                        if (link) { link.click(); return true; }
+                    }
+                    return false;
+                }, nextPageObj);
+
+                if (!clicked) {
+                    console.log(`    ⚠️ No se pudo cambiar a la página ${nextPageObj.num}. Finalizando paginación.`);
+                    break;
+                }
+
+                // Esperar a que la tabla cambie de contenido en AJAX
+                await delay(2500);
+                let waitRetries = 0;
+                while (waitRetries < 10) {
+                    const textAfter = await page.evaluate(() => {
+                        const r = document.querySelector('#ctl00_ContentPlaceHolder1_GVPolList tr.GridRow, #ctl00_ContentPlaceHolder1_GVPolList tr.GridAlternatingRow');
+                        return r ? r.innerText : '';
+                    });
+                    if (textAfter !== textBefore) break;
+                    await delay(1000);
+                    waitRetries++;
+                }
+
+                currentPageNum++;
             }
 
         } catch (err) {

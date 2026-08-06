@@ -4,12 +4,12 @@
   "descripcion": "Reporte inicial de conteo de pólizas por estatus para cada asesor",
   "resumen_general": {
     "total_asesores": 52,
-    "total_polizas": 3511,
+    "total_polizas": 3512,
     "por_estatus": {
-      "En Vigor": 2244,
+      "En Vigor": 2253,
       "Vigor Prorrogado": 89,
       "Anulada": 1120,
-      "DESAPARECIDA": 23,
+      "DESAPARECIDA": 15,
       "En Vigor sin Pago de Primas": 35
     }
   },
@@ -111,12 +111,12 @@
     {
       "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
       "clave": "87538",
-      "total_polizas": 513,
+      "total_polizas": 514,
       "estatus": {
-        "En Vigor": 295,
+        "En Vigor": 304,
         "Vigor Prorrogado": 14,
         "Anulada": 192,
-        "DESAPARECIDA": 9,
+        "DESAPARECIDA": 1,
         "En Vigor sin Pago de Primas": 3
       }
     },

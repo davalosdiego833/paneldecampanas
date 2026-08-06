@@ -4,12 +4,12 @@
   "descripcion": "Reporte inicial de conteo de pólizas por estatus para cada asesor",
   "resumen_general": {
     "total_asesores": 52,
-    "total_polizas": 3511,
+    "total_polizas": 3512,
     "por_estatus": {
-      "En Vigor": 2244,
+      "En Vigor": 2253,
       "Vigor Prorrogado": 89,
       "Anulada": 1120,
-      "DESAPARECIDA": 23,
+      "DESAPARECIDA": 15,
       "En Vigor sin Pago de Primas": 35
     }
   },
@@ -6513,12 +6513,12 @@
     {
       "clave": "87538",
       "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
-      "total_polizas": 513,
+      "total_polizas": 514,
       "estatus": {
-        "En Vigor": 295,
+        "En Vigor": 304,
         "Vigor Prorrogado": 14,
         "Anulada": 192,
-        "DESAPARECIDA": 9,
+        "DESAPARECIDA": 1,
         "En Vigor sin Pago de Primas": 3
       },
       "polizas": [
@@ -9394,7 +9394,7 @@
           "poliza": "VI0002638404",
           "contratante": "TOMAS FEDERICO ARIAS JIMENEZ",
           "producto": "IMAGINA SER 65",
-          "estatus": "DESAPARECIDA"
+          "estatus": "En Vigor"
         },
         {
           "poliza": "GM0000591029",
@@ -9406,37 +9406,37 @@
           "poliza": "VI0002434855",
           "contratante": "VANESSA MARTINEZ RUIZ",
           "producto": "VIDA MUJER",
-          "estatus": "DESAPARECIDA"
+          "estatus": "En Vigor"
         },
         {
           "poliza": "GM0000523833",
           "contratante": "VANESSA VAZQUEZ SOLORIO",
           "producto": "INTEGRO",
-          "estatus": "DESAPARECIDA"
+          "estatus": "En Vigor"
         },
         {
           "poliza": "GM0000692254",
           "contratante": "VERONICA MALVINA PEREZ GUZMAN",
           "producto": "PRACTICO",
-          "estatus": "DESAPARECIDA"
+          "estatus": "En Vigor"
         },
         {
           "poliza": "GM0000455907",
           "contratante": "VERONICA MALVINA PEREZ GUZMAN",
           "producto": "PRACTICO",
-          "estatus": "DESAPARECIDA"
+          "estatus": "En Vigor"
         },
         {
           "poliza": "VI0002787923",
           "contratante": "VICTOR MANUEL GONZALEZ ECHEVERRIA",
           "producto": "NUEVO PLENITUD 60 15",
-          "estatus": "DESAPARECIDA"
+          "estatus": "En Vigor"
         },
         {
           "poliza": "VI0002405129",
           "contratante": "XIMENA GARCIA SALUM",
           "producto": "VIDA MUJER",
-          "estatus": "DESAPARECIDA"
+          "estatus": "En Vigor"
         },
         {
           "poliza": "GM0000594496",
@@ -9448,7 +9448,7 @@
           "poliza": "VI0002490181",
           "contratante": "YULIA RODRIGUEZ VILLASE�OR",
           "producto": "ORVI 99 10 UDIS",
-          "estatus": "DESAPARECIDA"
+          "estatus": "En Vigor"
         },
         {
           "poliza": "VI0002976525",
@@ -9562,6 +9562,12 @@
           "poliza": "GM0000565598",
           "contratante": "ANTONIA ELIZABETH VERDEJO CUEVAS",
           "producto": "INTEGRO",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000755135",
+          "contratante": "VALERIA GALINDO GARCIA",
+          "producto": "ALFA MEDICAL FLEX B",
           "estatus": "En Vigor"
         },
         {
@@ -20745,15 +20751,15 @@
           "estatus": "En Vigor"
         },
         {
-          "poliza": "GM0000540037",
-          "contratante": "JOSE DE JESUS HERNANDEZ GONZALEZ",
-          "producto": "INTEGRO",
-          "estatus": "En Vigor"
-        },
-        {
           "poliza": "GM0000513462",
           "contratante": "JOSE DE JESUS HERNANDEZ GONZALEZ",
           "producto": "PRACTICO",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "GM0000540037",
+          "contratante": "JOSE DE JESUS HERNANDEZ GONZALEZ",
+          "producto": "INTEGRO",
           "estatus": "En Vigor"
         },
         {
@@ -21085,27 +21091,27 @@
           "estatus": "En Vigor"
         },
         {
-          "poliza": "VI0002994703",
-          "contratante": "JORGE MIGUEL DAUCHY CASTILLO",
-          "producto": "TEMPORAL 10 UDIS",
-          "estatus": "En Vigor"
-        },
-        {
           "poliza": "VI0002994683",
           "contratante": "JORGE MIGUEL DAUCHY CASTILLO",
           "producto": "TEMPORAL 5 RENOVABLE STAR NUEVO",
           "estatus": "En Vigor"
         },
         {
-          "poliza": "VI0002997032",
-          "contratante": "PEDRO ROMO GARCIA",
-          "producto": "ORVI 99 10 UDIS",
+          "poliza": "VI0002994703",
+          "contratante": "JORGE MIGUEL DAUCHY CASTILLO",
+          "producto": "TEMPORAL 10 UDIS",
           "estatus": "En Vigor"
         },
         {
           "poliza": "VI0003004107",
           "contratante": "PEDRO ROMO GARCIA",
           "producto": "SEGUBECA 18 UDI PRIMA CONSTANTE",
+          "estatus": "En Vigor"
+        },
+        {
+          "poliza": "VI0002997032",
+          "contratante": "PEDRO ROMO GARCIA",
+          "producto": "ORVI 99 10 UDIS",
           "estatus": "En Vigor"
         }
       ],
