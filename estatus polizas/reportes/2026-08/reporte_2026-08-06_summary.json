@@ -1,0 +1,495 @@
+{
+  "fecha_reporte": "2026-08-06",
+  "tipo_reporte": "conteo_inicial",
+  "descripcion": "Reporte inicial de conteo de pólizas por estatus para cada asesor",
+  "resumen_general": {
+    "total_asesores": 52,
+    "total_polizas": 3511,
+    "por_estatus": {
+      "En Vigor": 2244,
+      "Vigor Prorrogado": 89,
+      "Anulada": 1120,
+      "DESAPARECIDA": 23,
+      "En Vigor sin Pago de Primas": 35
+    }
+  },
+  "asesores": [
+    {
+      "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "38051",
+      "total_polizas": 26,
+      "estatus": {
+        "En Vigor": 9,
+        "Vigor Prorrogado": 3,
+        "Anulada": 14
+      }
+    },
+    {
+      "nombre": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+      "clave": "47116",
+      "total_polizas": 249,
+      "estatus": {
+        "Anulada": 63,
+        "En Vigor": 182,
+        "DESAPARECIDA": 2,
+        "Vigor Prorrogado": 2
+      }
+    },
+    {
+      "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "64502",
+      "total_polizas": 137,
+      "estatus": {
+        "Anulada": 95,
+        "En Vigor": 16,
+        "Vigor Prorrogado": 14,
+        "DESAPARECIDA": 3,
+        "En Vigor sin Pago de Primas": 9
+      }
+    },
+    {
+      "nombre": "PAULINA RODRIGUEZ DE LA MORA",
+      "clave": "65046",
+      "total_polizas": 53,
+      "estatus": {
+        "En Vigor": 24,
+        "Anulada": 27,
+        "Vigor Prorrogado": 1,
+        "DESAPARECIDA": 1
+      }
+    },
+    {
+      "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "75456",
+      "total_polizas": 7,
+      "estatus": {
+        "Anulada": 7
+      }
+    },
+    {
+      "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "78408",
+      "total_polizas": 6,
+      "estatus": {
+        "Anulada": 3,
+        "En Vigor": 3
+      }
+    },
+    {
+      "nombre": "DESIREE DE LA PEÑA OROZCO",
+      "clave": "80122",
+      "total_polizas": 392,
+      "estatus": {
+        "En Vigor": 283,
+        "Anulada": 103,
+        "Vigor Prorrogado": 5,
+        "DESAPARECIDA": 1
+      }
+    },
+    {
+      "nombre": "MARICELA ARREOLA LOPEZ",
+      "clave": "80925",
+      "total_polizas": 161,
+      "estatus": {
+        "En Vigor": 102,
+        "Anulada": 51,
+        "Vigor Prorrogado": 7,
+        "En Vigor sin Pago de Primas": 1
+      }
+    },
+    {
+      "nombre": "ALEJANDRA IVETTE PEDROZA MACIAS",
+      "clave": "81618",
+      "total_polizas": 33,
+      "estatus": {
+        "En Vigor": 11,
+        "Anulada": 20,
+        "En Vigor sin Pago de Primas": 1,
+        "Vigor Prorrogado": 1
+      }
+    },
+    {
+      "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "87538",
+      "total_polizas": 513,
+      "estatus": {
+        "En Vigor": 295,
+        "Vigor Prorrogado": 14,
+        "Anulada": 192,
+        "DESAPARECIDA": 9,
+        "En Vigor sin Pago de Primas": 3
+      }
+    },
+    {
+      "nombre": "ANDREA CELESTE IBAÑEZ RINCON",
+      "clave": "88234",
+      "total_polizas": 96,
+      "estatus": {
+        "En Vigor": 64,
+        "Anulada": 23,
+        "Vigor Prorrogado": 9
+      }
+    },
+    {
+      "nombre": "JOCELYN URIBE VARGAS",
+      "clave": "90177",
+      "total_polizas": 87,
+      "estatus": {
+        "Anulada": 51,
+        "Vigor Prorrogado": 4,
+        "En Vigor": 32
+      }
+    },
+    {
+      "nombre": "DARINKA UREÑA CASILLAS",
+      "clave": "90355",
+      "total_polizas": 292,
+      "estatus": {
+        "En Vigor": 216,
+        "Anulada": 70,
+        "Vigor Prorrogado": 6
+      }
+    },
+    {
+      "nombre": "MARIA TERESA ASENCIO LOZANO",
+      "clave": "94156",
+      "total_polizas": 84,
+      "estatus": {
+        "En Vigor": 63,
+        "Vigor Prorrogado": 3,
+        "Anulada": 18
+      }
+    },
+    {
+      "nombre": "JOSE ALBERTO CORONADO ROSAS",
+      "clave": "94205",
+      "total_polizas": 98,
+      "estatus": {
+        "Anulada": 53,
+        "Vigor Prorrogado": 9,
+        "En Vigor": 35,
+        "En Vigor sin Pago de Primas": 1
+      }
+    },
+    {
+      "nombre": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
+      "clave": "95148",
+      "total_polizas": 54,
+      "estatus": {
+        "En Vigor": 28,
+        "Anulada": 26
+      }
+    },
+    {
+      "nombre": "FERNANDO JAVIER DAVALOS FLORES",
+      "clave": "98797",
+      "total_polizas": 75,
+      "estatus": {
+        "Vigor Prorrogado": 4,
+        "Anulada": 27,
+        "En Vigor": 41,
+        "DESAPARECIDA": 3
+      }
+    },
+    {
+      "nombre": "JULIANA RIASCOS VALENCIA",
+      "clave": "100677",
+      "total_polizas": 74,
+      "estatus": {
+        "Anulada": 16,
+        "En Vigor": 58
+      }
+    },
+    {
+      "nombre": "SAMUEL NUÑO RIVERA",
+      "clave": "101640",
+      "total_polizas": 54,
+      "estatus": {
+        "En Vigor": 29,
+        "Anulada": 25
+      }
+    },
+    {
+      "nombre": "JOSE EDUARDO EZQUERRO BARQUERA",
+      "clave": "102825",
+      "total_polizas": 27,
+      "estatus": {
+        "En Vigor": 27
+      }
+    },
+    {
+      "nombre": "JORGE ALBERTO PRECIADO GONZALEZ",
+      "clave": "104343",
+      "total_polizas": 87,
+      "estatus": {
+        "En Vigor": 59,
+        "Anulada": 28
+      }
+    },
+    {
+      "nombre": "GABRIELA CASTAÑEDA SALAZAR",
+      "clave": "105696",
+      "total_polizas": 60,
+      "estatus": {
+        "En Vigor": 57,
+        "Anulada": 3
+      }
+    },
+    {
+      "nombre": "MIREYA LIZETTE TORRES GARCIA",
+      "clave": "106018",
+      "total_polizas": 37,
+      "estatus": {
+        "Anulada": 17,
+        "En Vigor": 19,
+        "Vigor Prorrogado": 1
+      }
+    },
+    {
+      "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
+      "clave": "106893",
+      "total_polizas": 166,
+      "estatus": {
+        "En Vigor": 111,
+        "En Vigor sin Pago de Primas": 20,
+        "Anulada": 31,
+        "Vigor Prorrogado": 4
+      }
+    },
+    {
+      "nombre": "ORLANDA JIMENA CERVANTES NUÑEZ",
+      "clave": "107488",
+      "total_polizas": 69,
+      "estatus": {
+        "En Vigor": 49,
+        "Anulada": 20
+      }
+    },
+    {
+      "nombre": "ROCIO IVON RUIZ GARCIA",
+      "clave": "108658",
+      "total_polizas": 32,
+      "estatus": {
+        "Anulada": 15,
+        "En Vigor": 16,
+        "DESAPARECIDA": 1
+      }
+    },
+    {
+      "nombre": "ISAI ANTONIO ROJAS MARTINEZ",
+      "clave": "109007",
+      "total_polizas": 15,
+      "estatus": {
+        "Anulada": 8,
+        "En Vigor": 7
+      }
+    },
+    {
+      "nombre": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
+      "clave": "109998",
+      "total_polizas": 22,
+      "estatus": {
+        "En Vigor": 17,
+        "Anulada": 5
+      }
+    },
+    {
+      "nombre": "ROCIO YANETH OCHOA IBARRA",
+      "clave": "110105",
+      "total_polizas": 25,
+      "estatus": {
+        "Anulada": 8,
+        "En Vigor": 17
+      }
+    },
+    {
+      "nombre": "LUIS GUILLERMO OLGUIN FERNANDEZ",
+      "clave": "112083",
+      "total_polizas": 15,
+      "estatus": {
+        "En Vigor": 15
+      }
+    },
+    {
+      "nombre": "BRUNO BRAULIO MACIAS ALVAREZ",
+      "clave": "113076",
+      "total_polizas": 12,
+      "estatus": {
+        "En Vigor": 12
+      }
+    },
+    {
+      "nombre": "ORLANDA JIMENA CERVANTES NUÑEZ",
+      "clave": "113312",
+      "total_polizas": 19,
+      "estatus": {
+        "DESAPARECIDA": 3,
+        "Anulada": 4,
+        "En Vigor": 12
+      }
+    },
+    {
+      "nombre": "ANA VERONICA GONZALEZ GAYTAN",
+      "clave": "115404",
+      "total_polizas": 15,
+      "estatus": {
+        "En Vigor": 15
+      }
+    },
+    {
+      "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "116795",
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "117352",
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "117440",
+      "total_polizas": 13,
+      "estatus": {
+        "En Vigor": 13
+      }
+    },
+    {
+      "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "117678",
+      "total_polizas": 2,
+      "estatus": {
+        "En Vigor": 2
+      }
+    },
+    {
+      "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "117710",
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "MARIA FERNANDA RIOS BERNAL",
+      "clave": "103982",
+      "total_polizas": 21,
+      "estatus": {
+        "En Vigor": 11,
+        "Anulada": 10
+      }
+    },
+    {
+      "nombre": "AMBRIZ Y DAVALOS SC",
+      "clave": "2043",
+      "total_polizas": 0,
+      "estatus": {}
+    },
+    {
+      "nombre": "ROGELIO TORRES ORTIZ",
+      "clave": "104718",
+      "total_polizas": 93,
+      "estatus": {
+        "Anulada": 34,
+        "En Vigor": 57,
+        "Vigor Prorrogado": 2
+      }
+    },
+    {
+      "nombre": "PAULINA LIZBETH SOTO MUÑIZ",
+      "clave": "104750",
+      "total_polizas": 97,
+      "estatus": {
+        "En Vigor": 86,
+        "Anulada": 11
+      }
+    },
+    {
+      "nombre": "LILIANA IVETTE CASTILLO SANCHEZ",
+      "clave": "108404",
+      "total_polizas": 64,
+      "estatus": {
+        "En Vigor": 48,
+        "Anulada": 16
+      }
+    },
+    {
+      "nombre": "MARIA ELIZABETH LLAMAS LOPEZ",
+      "clave": "108405",
+      "total_polizas": 33,
+      "estatus": {
+        "En Vigor": 23,
+        "Anulada": 10
+      }
+    },
+    {
+      "nombre": "JOSE RENE DE ALBA MORALES",
+      "clave": "110575",
+      "total_polizas": 18,
+      "estatus": {
+        "En Vigor": 14,
+        "Anulada": 4
+      }
+    },
+    {
+      "nombre": "JORGE ANTONIO LUNA LARA",
+      "clave": "111056",
+      "total_polizas": 30,
+      "estatus": {
+        "En Vigor": 26,
+        "Anulada": 4
+      }
+    },
+    {
+      "nombre": "ANA LAURA CONTRERAS IÑIGUEZ",
+      "clave": "113450",
+      "total_polizas": 21,
+      "estatus": {
+        "En Vigor": 18,
+        "Anulada": 3
+      }
+    },
+    {
+      "nombre": "HANA SOFIA LOPEZ QUIÑONEZ",
+      "clave": "114157",
+      "total_polizas": 12,
+      "estatus": {
+        "En Vigor": 10,
+        "Anulada": 2
+      }
+    },
+    {
+      "nombre": "MARIA JOSE GUZMAN ZAMORA",
+      "clave": "114431",
+      "total_polizas": 7,
+      "estatus": {
+        "Anulada": 3,
+        "En Vigor": 4
+      }
+    },
+    {
+      "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "118246",
+      "total_polizas": 5,
+      "estatus": {
+        "En Vigor": 5
+      }
+    },
+    {
+      "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "118915",
+      "total_polizas": 2,
+      "estatus": {
+        "En Vigor": 2
+      }
+    },
+    {
+      "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+      "clave": "119223",
+      "total_polizas": 1,
+      "estatus": {
+        "En Vigor": 1
+      }
+    }
+  ]
+}
