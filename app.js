@@ -6,21 +6,25 @@ import fs from 'fs';
 import os from 'os';
 import XLSX from 'xlsx';
 import dotenv from 'dotenv';
-import { pathToFileURL } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 import { execSync } from 'child_process';
-const safeFilename = typeof __filename !== 'undefined' ? __filename : '';
-const safeDirname = typeof __dirname !== 'undefined' ? __dirname : process.cwd();
-// Detect if we are running in the Hostinger remote environment
-const isHostinger = safeDirname.includes('domains/panel.ambrizydavalos.com');
-const isProd = safeDirname.includes('/dist/server');
+const getModuleDirname = () => {
+    try {
+        if (typeof __dirname !== 'undefined' && __dirname)
+            return __dirname;
+        return path.dirname(fileURLToPath(import.meta.url));
+    }
+    catch {
+        return process.cwd();
+    }
+};
+const safeDirname = getModuleDirname();
+const isProd = safeDirname.includes('/dist/server') || safeDirname.includes('dist/server');
+const isHostinger = safeDirname.includes('domains/panel.ambrizydavalos.com') || process.cwd().includes('hbuilds');
 // Reliable BASE_PATH detection
-let BASE_PATH = safeDirname;
-if (isProd) {
-    BASE_PATH = path.join(safeDirname, '../../..');
-}
-else if (!isHostinger) {
-    // Dev mode: server/ → project root
-    BASE_PATH = path.join(safeDirname, '..');
+let BASE_PATH = isProd ? path.resolve(safeDirname, '../..') : safeDirname;
+if (!isProd && !isHostinger && fs.existsSync(path.join(safeDirname, '..', 'package.json'))) {
+    BASE_PATH = path.resolve(safeDirname, '..');
 }
 const app = express();
 const PORT = process.env.PORT || 5005;
