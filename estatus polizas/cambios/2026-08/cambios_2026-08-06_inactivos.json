@@ -8,14 +8,14 @@
     "cambios_estatus_general": {
       "Anulada": {
         "anterior": 380,
-        "nuevo": 553,
-        "diferencia": 173,
+        "nuevo": 552,
+        "diferencia": 172,
         "emoji": "🟢"
       },
       "En Vigor": {
         "anterior": 130,
-        "nuevo": 359,
-        "diferencia": 229,
+        "nuevo": 360,
+        "diferencia": 230,
         "emoji": "🟢"
       },
       "Vigor Prorrogado": {
@@ -4391,7 +4391,7 @@
       "contratante": "JOSE DE JESUS JOB MENDEZ GARCIA",
       "producto": "PRACTICO",
       "estatus_anterior": "NUEVA (No en historial)",
-      "estatus_nuevo": "Anulada",
+      "estatus_nuevo": "En Vigor",
       "fecha": "2026-08-06",
       "tipo": "ALTA"
     },

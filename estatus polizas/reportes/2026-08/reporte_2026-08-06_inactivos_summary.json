@@ -376,8 +376,8 @@
       "clave": "110105",
       "total_polizas": 25,
       "estatus": {
-        "Anulada": 9,
-        "En Vigor": 16
+        "Anulada": 8,
+        "En Vigor": 17
       }
     },
     {
@@ -402,8 +402,8 @@
     "total_asesores": 47,
     "total_polizas": 957,
     "por_estatus": {
-      "Anulada": 553,
-      "En Vigor": 359,
+      "Anulada": 552,
+      "En Vigor": 360,
       "Vigor Prorrogado": 35,
       "En Vigor sin Pago de Primas": 4,
       "DESAPARECIDA": 6
