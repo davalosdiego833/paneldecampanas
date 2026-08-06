@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, FileText, Clock, Search, Calendar, AlertTriangle, CheckCircle, XCircle, ChevronDown, TrendingUp, Users, Info, Activity, MessageSquare, Save, Copy } from 'lucide-react';
+import { Shield, FileText, Clock, Search, Calendar, AlertTriangle, CheckCircle, XCircle, ChevronDown, TrendingUp, Users, Info, Activity, MessageSquare, Save, Copy, Download } from 'lucide-react';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 type SubTab = 'resumen' | 'historial';
 
@@ -481,12 +483,141 @@ const CambiosView: React.FC<{ cambios: CambiosData }> = ({ cambios }) => {
 
     const generalStats = cambios.resumen.cambios_estatus_general;
 
+    const generateAnuladasPDF = () => {
+        const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+        const totalAnuladas = asesoresCancelaciones.reduce((sum, g) => sum + g.polizas.length, 0);
+
+        // Header Background Banner
+        doc.setFillColor(15, 23, 42);
+        doc.rect(0, 0, 210, 38, 'F');
+
+        // Gold Title
+        doc.setTextColor(255, 215, 0);
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(16);
+        doc.text('AMBRIZ & DÁVALOS - PROMOTORÍA 2043', 14, 15);
+
+        doc.setTextColor(255, 255, 255);
+        doc.setFontSize(12);
+        doc.setFont('helvetica', 'bold');
+        doc.text('REPORTE DE CANCELACIONES Y ANULADAS (GPS)', 14, 23);
+
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(203, 213, 225);
+        doc.text(`Periodo Comparativo: ${cambios.resumen.fecha_anterior}  ->  ${cambios.resumen.fecha_nuevo}`, 14, 30);
+        doc.text(`Total Asesores: ${asesoresCancelaciones.length}   |   Total Pólizas: ${totalAnuladas}`, 130, 30);
+
+        let startY = 46;
+
+        if (asesoresCancelaciones.length === 0) {
+            doc.setTextColor(100, 116, 139);
+            doc.setFontSize(11);
+            doc.text('No se detectaron pólizas canceladas o anuladas en este periodo.', 14, startY);
+        } else {
+            asesoresCancelaciones.forEach((grupo) => {
+                if (startY > 245) {
+                    doc.addPage();
+                    startY = 20;
+                }
+
+                // Advisor Section Header Badge
+                doc.setFillColor(239, 68, 68);
+                doc.roundedRect(14, startY, 182, 9, 2, 2, 'F');
+
+                doc.setTextColor(255, 255, 255);
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(10);
+                doc.text(`ASESOR: ${grupo.asesor.toUpperCase()} (CLAVE: ${grupo.clave})`, 18, startY + 6);
+                doc.text(`${grupo.polizas.length} Póliza(s)`, 175, startY + 6);
+
+                startY += 12;
+
+                const tableRows = grupo.polizas.map(p => [
+                    p.poliza && !p.poliza.startsWith('PENDIENTE') ? p.poliza : 'POR IDENTIFICAR',
+                    p.contratante || 'CLIENTE NO ESPECIFICADO',
+                    p.producto || 'Póliza de Vida',
+                    p.estatus_anterior || 'En Vigor',
+                    p.estatus_nuevo || 'Anulada'
+                ]);
+
+                autoTable(doc, {
+                    startY: startY,
+                    head: [['Póliza', 'Contratante / Cliente', 'Producto', 'Estatus Anterior', 'Estatus Nuevo']],
+                    body: tableRows,
+                    theme: 'grid',
+                    headStyles: {
+                        fillColor: [30, 41, 59],
+                        textColor: [255, 255, 255],
+                        fontSize: 8,
+                        fontStyle: 'bold',
+                        halign: 'left'
+                    },
+                    bodyStyles: {
+                        fontSize: 8,
+                        textColor: [15, 23, 42],
+                        cellPadding: 3
+                    },
+                    columnStyles: {
+                        0: { cellWidth: 28, fontStyle: 'bold' },
+                        1: { cellWidth: 65, fontStyle: 'bold' },
+                        2: { cellWidth: 45 },
+                        3: { cellWidth: 24, textColor: [100, 116, 139] },
+                        4: { cellWidth: 20, textColor: [220, 38, 38], fontStyle: 'bold' }
+                    },
+                    margin: { left: 14, right: 14 }
+                });
+
+                startY = (doc as any).lastAutoTable.finalY + 10;
+            });
+        }
+
+        const pageCount = doc.getNumberOfPages();
+        for (let i = 1; i <= pageCount; i++) {
+            doc.setPage(i);
+            doc.setFontSize(8);
+            doc.setTextColor(148, 163, 184);
+            doc.text(
+                `Ambriz & Dávalos SC - Sistema Fortresse  |  Página ${i} de ${pageCount}`,
+                105,
+                287,
+                { align: 'center' }
+            );
+        }
+
+        doc.save(`Reporte_Cancelaciones_${cambios.resumen.fecha_nuevo}.pdf`);
+    };
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
-            {/* Encabezado GPS */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#007AFF', fontWeight: 700 }}>
-                <Clock size={20} />
-                <span>GPS de Cartera: Movimientos desde {cambios.resumen.fecha_anterior}</span>
+            {/* Encabezado GPS con Botón PDF */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', color: '#007AFF', fontWeight: 700, flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <Clock size={20} />
+                    <span>GPS de Cartera: Movimientos desde {cambios.resumen.fecha_anterior}</span>
+                </div>
+
+                <button
+                    onClick={generateAnuladasPDF}
+                    style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        padding: '10px 18px',
+                        borderRadius: '12px',
+                        background: 'linear-gradient(135deg, #FF6B6B 0%, #D32F2F 100%)',
+                        color: '#FFF',
+                        fontWeight: 800,
+                        fontSize: '0.85rem',
+                        border: 'none',
+                        cursor: 'pointer',
+                        boxShadow: '0 4px 15px rgba(255, 107, 107, 0.3)',
+                        transition: 'all 0.2s ease'
+                    }}
+                >
+                    <Download size={16} />
+                    Descargar Reporte PDF de Cancelaciones
+                </button>
             </div>
 
             {/* Layout de 3 Columnas: Resumen + Detalle */}
