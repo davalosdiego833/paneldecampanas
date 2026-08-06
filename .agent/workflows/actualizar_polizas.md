@@ -1,53 +1,71 @@
 ---
-description: Proceso de Actualización de Estatus de Pólizas (Manual de Operación)
+description: Proceso Diario de Actualización de Estatus de Pólizas (Manual de Operación)
 ---
 
-# 🛡️ Workflow: Actualización de Estatus de Pólizas
+# 🛡️ Manual de Operación: Actualización Diaria de Estatus de Pólizas
 
-Este manual define el proceso exacto que yo, como tu AI Partner, seguiré cada vez que solicites una actualización de los estatus de pólizas.
+Este manual define el procedimiento estándar para actualizar diariamente el estatus de las pólizas en el **Panel Ambriz Asesores**, con la nueva tecnología de **paginación ilimitada multi-página** y **reportes ejecutivos PDF**.
+
+---
 
 ## 📋 Requisitos Previos
-1. El usuario debe abrir el portal de **Línea Monterrey** en una pestaña del navegador con el puerto 9222 activo (o correr `node lanzar_navegador.js`).
-2. Iniciar sesión y navegar a cualquier página del portal.
-3. Confirmar a la IA: "Ya está logueado".
 
-## 🚀 Pasos de Ejecución
+1. Tener el navegador Chrome en el puerto 9222 abierto en la sesión de **Línea Monterrey** (sección **Consulta de pólizas**).
+2. Confirmar a la IA: *"Listo, ya está logueado en la sección de consulta de pólizas"*.
 
-### 1. Actualización de Asesores ACTIVOS
-- **Extracción**: `node descargar_polizas.js`
+---
+
+## 🚀 Pasos de Ejecución Operativa
+
+### 1. Barrido de Asesores ACTIVOS (Paginación Ilimitada)
+- **Descarga Inteligente**: `node descargar_polizas.js`
+  - *Función*: Recorre automáticamente todas las páginas (1 a 100+) detectando los botones `...` y `>` de ASP.NET GridView.
+  - *Garantía*: Elimina falsas cancelaciones o deserciones por corte de página.
 - **Consolidación y Comparativo**: `node consolidar_polizas.js`
-    - Esto genera el reporte del día y detecta cambios (Nuevas, Anuladas, Cambios de Ramo) contra el día anterior.
+  - Compara la foto completa de hoy contra el historial para detectar:
+    - 🟢 **Pólizas Nuevas (Emisiones)**.
+    - 🔴 **Cancelaciones Reales** (`En Vigor` ➔ `Anulada` / `Cancelada`).
+    - 🟢 **Recuperaciones** (`Anulada` ➔ `En Vigor`).
+    - ⚠️ **Desaparecidas Reales** (Pólizas que Seguros Monterrey borró del portal).
 
-### 2. Actualización de Asesores INACTIVOS
-- **Extracción**: `node descargar_polizas.js --inactivos`
-    - **Nota**: El script ahora re-selecciona "Inactivos" para cada asesor para evitar reseteos de sesión.
-- **Consolidación y Comparativo**: `node consolidar_polizas.js --inactivos`
-    - Genera `reporte_YYYY-MM-DD_inactivos.json` y su versión `_summary.json`.
+### 2. Barrido de Asesores INACTIVOS
+- **Descarga**: `node descargar_polizas.js --inactivos`
+- **Consolidación**: `node consolidar_polizas.js --inactivos`
 
-### 3. Validación en Dashboard Local
-- Entrar a **Estatus de Pólizas** en localhost:3000.
-- Alternar entre las pestañas **Activos** y **Inactivos**.
-- Verificar que las fechas mostradas sean las de hoy y que los totales coincidan con los logs de los scripts.
+### 3. Sincronización y Despliegue a Producción
+- **Ejecutar Despliegue**: `./deploy.sh`
+  - Compila la aplicación web, respalda los datos del usuario (`comentarios_polizas.json`, `push_subscriptions.json`, etc.) y reinicia el servidor remoto en **panel.ambrizydavalos.com**.
 
-### 4. Despliegue Seguro a Producción (Hostinger)
-- Ejecutar el script local `./deploy.sh`.
-    - **Nota de Seguridad**: El script está configurado con `--exclude` para nunca sobreescribir `comentarios_polizas.json`, `actividad.json` ni `staff_activity.json` del servidor, protegiendo así el trabajo en vivo.
-- **Borrar Caché del Servidor**: Ejecutar vía SSH para que el dashboard remoto procese los nuevos reportes:
-  `ssh -o BatchMode=yes -i ~/.ssh/id_rsa_panel -p 65002 u211138134@195.35.10.40 "rm -f /home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json && touch /home/u211138134/domains/panel.ambrizydavalos.com/public_html/tmp/restart.txt"`
+---
 
-### 5. Notificación por WhatsApp
-- Ingresar al portal en producción (ya actualizado).
-- Ir a **Estatus de Pólizas** > **Comparativo**.
-- En la columna de **GPS Cancelaciones (Anuladas)**, usar el botón **"Copiar Mensaje WhatsApp"** de cada asesor.
-- Este botón copiará un texto formateado agrupando todas las pólizas anuladas del asesor en cuestión, listo para pegar y enviar por WhatsApp.
+## 📄 Características del Reporte PDF Ejecutivo
 
-## 🛑 Reglas de Oro
-- **No retroceder totales**: El historial es acumulativo.
-- **Blindaje de Comentarios**: NUNCA correr comandos rsync manuales de la carpeta `db` hacia producción sin excluir los archivos `.json` que guardan interacciones de usuario.
-- **Limpieza**: Los archivos XLS temporales se mueven a `respaldo_previo` automáticamente para asegurar una descarga limpia cada día.
-- **Multi-Ramo**: Los scripts capturan Vida, GMM, AP, etc., sin necesidad de filtros manuales.
+En el panel (**Estatus de Pólizas ➔ Comparativo**), el botón **`[ 📄 Descargar Reporte PDF de Cancelaciones ]`** genera al instante un documento con las siguientes especificaciones:
+
+1. **Encabezado Institucional**:
+   - Membrete: `AMBRIZ ASESORES - PROMOTORÍA 2043`.
+   - Subtítulo: `REPORTE DE CANCELACIONES Y ANULADAS (GPS)`.
+   - **Barra de Indicadores Desglosados**:
+     - `Total Pólizas`: Conteo total de pólizas en el reporte.
+     - `Vida (VI)`: Pólizas de Vida (que inician con `VI`).
+     - `GMM (GM)`: Pólizas de Gastos Médicos (que inician con `GM`).
+     - `Desaparecidas`: Pólizas borradas por la aseguradora del portal.
+     - `Total Asesores`: Cantidad de asesores con cancelaciones.
+
+2. **Tablas Agrupadas por Asesor**:
+   - Bloque rojo con Nombre Completo y Clave del Asesor.
+   - Tabla con columnas: `Póliza`, `Contratante / Cliente`, `Producto`, `Estatus Anterior`, `Estatus Nuevo`.
+
+3. **Pie de Página Oficial**:
+   - `Ambriz Asesores - Sistema Fortresse  |  Página X de Y`.
+
+---
+
+## 🛑 Reglas de Oro Operativas
+
+1. **Estatus Real Preservado**: NUNCA se fuerza el estatus de una póliza a `En Vigor`. Cada póliza conserva exactamente la palabra con la que aparece en Línea Monterrey (`En Vigor`, `Anulada`, `Cancelada`, `Vigor Prorrogado`, `Siniestro`, `DESAPARECIDA`).
+2. **Histórico Protegido**: Las interacciones y notas de seguimiento escritas en el panel por el equipo no se sobreescriben al desplegar.
+3. **Comandos rápidos en chat**: Basta con decir *"Actualizar pólizas"* o utilizar `/actualizar_polizas` para iniciar el flujo completo.
 
 ---
 // turbo-all
-
-
