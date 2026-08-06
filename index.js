@@ -677,106 +677,107 @@ app.get('/api/admin/snapshot-status', (req, res) => {
 app.get('/api/campaign/:name/data/:advisor', (req, res) => {
     const { name, advisor } = req.params;
     const { date } = req.query;
+    const normName = String(name || '').toLowerCase();
     // ========== SNAPSHOT-FIRST STRATEGY ==========
-    // If no historical date was requested, try to serve from the pre-computed snapshot.
-    // The snapshot is a tiny JSON file (~100KB) that already has all campaign data
-    // filtered for our promotoria. This avoids opening massive Excel files (10-30MB each).
     const snapPath = findSnapshotPath();
     if (!date && safeExists(snapPath)) {
         try {
             const snapshotData = JSON.parse(fs.readFileSync(snapPath, 'utf-8'));
             const campaigns = snapshotData.campaigns || snapshotData.data?.campaigns;
             const campaignDates = snapshotData.campaignDates || snapshotData.data?.campaignDates || {};
-            if (campaigns && campaigns[name]) {
-                const campData = campaigns[name];
-                const dir = getAdvisorDirectory();
-                const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
-                const normalizeStr = (str) => String(str || '')
-                    .normalize('NFD')
-                    .replace(/[\u0300-\u036f]/g, '')
-                    .toUpperCase()
-                    .replace(/[^A-Z0-9]/g, '')
-                    .trim();
-                const normAdvisor = normalizeStr(advisor);
-                // Find the advisor's row in the snapshot data with normalized accent matching
-                const row = campData.find((r) => normalizeStr(r.Asesor) === normAdvisor ||
-                    advisorKeys.includes(String(r.Clave || '')) ||
-                    String(r.Clave || '') === advisor);
-                if (row) {
-                    const fechaCorte = campaignDates[name] || '';
-                    if (name === 'legion_centurion') {
-                        const mIndex = Number(row.Mes_Actual || 1);
-                        const totalPol = Number(row.Total_Polizas || 0);
-                        return res.json({
-                            Asesor: row.Asesor, Clave: row.Clave, Fecha_Corte: fechaCorte,
-                            Mes_Actual: mIndex, Total_Polizas: totalPol,
-                            Bronce: Math.max(0, (4 * mIndex) - totalPol),
-                            Plata: Math.max(0, (6 * mIndex) - totalPol),
-                            Oro: Math.max(0, (7.5 * mIndex) - totalPol),
-                            Platino: Math.max(0, (10 * mIndex) - totalPol),
-                            Promedio_Mensual: totalPol / mIndex,
-                            Va_En_Meta: row.EnMeta ? "✅ EN META" : "❌ POR DEBAJO"
-                        });
-                    }
-                    if (name === 'convenciones') {
-                        const credits = Number(row.PA_Total || 0);
-                        const pols = Number(row.Polizas || 0);
-                        return res.json({
-                            Asesor: row.Asesor, Clave: row.Clave, Fecha_Corte: fechaCorte,
-                            Comision_Vida: Number(row.Comision_Vida || 0), RDA: Number(row.RDA || 0),
-                            PA_Total: credits, Polizas: pols, Lugar: Number(row.Lugar || 9999),
-                            Lugar_480: Number(row.Lugar_480 || 0), Lugar_228: Number(row.Lugar_228 || 0),
-                            Lugar_108: Number(row.Lugar_108 || 0), Lugar_28: Number(row.Lugar_28 || 0),
-                            Califica: pols >= 30 && credits >= 588500,
-                            Cumple_Polizas: pols >= 30, Cumple_Creditos: credits >= 588500
-                        });
-                    }
-                    if (name === 'camino_cumbre') {
-                        return res.json({
-                            Asesor: row.Asesor, Clave: row.Clave, Fecha_Corte: fechaCorte,
-                            Mes_Asesor: Number(row.Mes_Asesor || 1),
-                            Trimestre: Math.ceil(Number(row.Mes_Asesor || 1) / 3),
-                            Polizas_Totales: Number(row.Polizas_Totales || 0),
-                            Mes_1_Prod: Number(row.Mes_1_Prod || 0),
-                            Mes_2_Prod: Number(row.Mes_2_Prod || 0),
-                            Mes_3_Prod: Number(row.Mes_3_Prod || 0)
-                        });
-                    }
-                    if (name === 'graduacion') {
-                        return res.json({
-                            Asesor: row.Asesor, Clave: row.Clave, Fecha_Corte: fechaCorte,
-                            Mes_Asesor: Number(row.Mes_Asesor || 0),
-                            Polizas_Totales: Number(row.Polizas_Totales || 0),
-                            Comisones: Number(row.Comisones || 0),
-                            Fecha_Limite_Meta: row.Fecha_Limite_Meta || "No disponible"
-                        });
-                    }
-                    if (name === 'proactiva_tech') {
-                        return res.json({
-                            Asesor: row.Asesor, Clave: row.Clave, Fecha_Corte: fechaCorte,
-                            Polizas: Number(row.Polizas || 0),
-                            Comisiones: Number(row.Comisiones || 0),
-                            Ranking: Number(row.Ranking || 99999)
-                        });
-                    }
-                    if (name === 'mdrt') {
-                        const pa = Number(row.PA_Acumulada || 0);
-                        let currentMonthNum = 1;
-                        if (fechaCorte) {
-                            const mMatch = String(fechaCorte).toLowerCase().match(/(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/);
-                            if (mMatch)
-                                currentMonthNum = MONTHS_ES.indexOf(mMatch[1]) + 1;
+            if (campaigns) {
+                const campaignKey = Object.keys(campaigns).find(k => k.toLowerCase() === normName) || normName;
+                if (campaigns[campaignKey]) {
+                    const campData = campaigns[campaignKey];
+                    const dir = getAdvisorDirectory();
+                    const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
+                    const normalizeStr = (str) => String(str || '')
+                        .normalize('NFD')
+                        .replace(/[\u0300-\u036f]/g, '')
+                        .toUpperCase()
+                        .replace(/[^A-Z0-9]/g, '')
+                        .trim();
+                    const normAdvisor = normalizeStr(advisor);
+                    // Find the advisor's row in the snapshot data with normalized accent matching
+                    const row = campData.find((r) => normalizeStr(r.Asesor) === normAdvisor ||
+                        advisorKeys.includes(String(r.Clave || '')) ||
+                        String(r.Clave || '') === advisor);
+                    if (row) {
+                        const fechaCorte = campaignDates[campaignKey] || campaignDates[normName] || '';
+                        if (normName === 'legion_centurion') {
+                            const mIndex = Number(row.Mes_Actual || 1);
+                            const totalPol = Number(row.Total_Polizas || 0);
+                            return res.json({
+                                Asesor: row.Asesor, Clave: row.Clave, Fecha_Corte: fechaCorte,
+                                Mes_Actual: mIndex, Total_Polizas: totalPol,
+                                Bronce: Math.max(0, (4 * mIndex) - totalPol),
+                                Plata: Math.max(0, (6 * mIndex) - totalPol),
+                                Oro: Math.max(0, (7.5 * mIndex) - totalPol),
+                                Platino: Math.max(0, (10 * mIndex) - totalPol),
+                                Promedio_Mensual: totalPol / mIndex,
+                                Va_En_Meta: row.EnMeta ? "✅ EN META" : "❌ POR DEBAJO"
+                            });
                         }
-                        return res.json({
-                            Asesor: row.Asesor, Clave: row.Clave, Fecha_Corte: fechaCorte,
-                            Mes_Actual: currentMonthNum, PA_Acumulada: pa
-                        });
+                        if (normName === 'convenciones') {
+                            const credits = Number(row.PA_Total || 0);
+                            const pols = Number(row.Polizas || 0);
+                            return res.json({
+                                Asesor: row.Asesor, Clave: row.Clave, Fecha_Corte: fechaCorte,
+                                Comision_Vida: Number(row.Comision_Vida || 0), RDA: Number(row.RDA || 0),
+                                PA_Total: credits, Polizas: pols, Lugar: Number(row.Lugar || 9999),
+                                Lugar_480: Number(row.Lugar_480 || 0), Lugar_228: Number(row.Lugar_228 || 0),
+                                Lugar_108: Number(row.Lugar_108 || 0), Lugar_28: Number(row.Lugar_28 || 0),
+                                Califica: pols >= 30 && credits >= 588500,
+                                Cumple_Polizas: pols >= 30, Cumple_Creditos: credits >= 588500
+                            });
+                        }
+                        if (normName === 'camino_cumbre') {
+                            return res.json({
+                                Asesor: row.Asesor, Clave: row.Clave, Fecha_Corte: fechaCorte,
+                                Mes_Asesor: Number(row.Mes_Asesor || 1),
+                                Trimestre: Math.ceil(Number(row.Mes_Asesor || 1) / 3),
+                                Polizas_Totales: Number(row.Polizas_Totales || 0),
+                                Mes_1_Prod: Number(row.Mes_1_Prod || 0),
+                                Mes_2_Prod: Number(row.Mes_2_Prod || 0),
+                                Mes_3_Prod: Number(row.Mes_3_Prod || 0)
+                            });
+                        }
+                        if (normName === 'graduacion') {
+                            return res.json({
+                                Asesor: row.Asesor, Clave: row.Clave, Fecha_Corte: fechaCorte,
+                                Mes_Asesor: Number(row.Mes_Asesor || 0),
+                                Polizas_Totales: Number(row.Polizas_Totales || 0),
+                                Comisones: Number(row.Comisones || 0),
+                                Fecha_Limite_Meta: row.Fecha_Limite_Meta || "No disponible"
+                            });
+                        }
+                        if (normName === 'proactiva_tech') {
+                            return res.json({
+                                Asesor: row.Asesor, Clave: row.Clave, Fecha_Corte: fechaCorte,
+                                Polizas: Number(row.Polizas || 0),
+                                Comisiones: Number(row.Comisiones || 0),
+                                Ranking: Number(row.Ranking || 99999)
+                            });
+                        }
+                        if (normName === 'mdrt') {
+                            const pa = Number(row.PA_Acumulada || 0);
+                            let currentMonthNum = 1;
+                            if (fechaCorte) {
+                                const mMatch = String(fechaCorte).toLowerCase().match(/(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/);
+                                if (mMatch)
+                                    currentMonthNum = MONTHS_ES.indexOf(mMatch[1]) + 1;
+                            }
+                            return res.json({
+                                Asesor: row.Asesor, Clave: row.Clave, Fecha_Corte: fechaCorte,
+                                Mes_Actual: currentMonthNum, PA_Acumulada: pa
+                            });
+                        }
+                        // Generic: return raw snapshot row + date
+                        return res.json({ ...row, Fecha_Corte: fechaCorte });
                     }
-                    // Generic: return raw snapshot row + date
-                    return res.json({ ...row, Fecha_Corte: fechaCorte });
+                    // Advisor does not participate in this specific campaign
+                    return res.status(200).json(null);
                 }
-                // Advisor does not participate in this specific campaign
-                return res.status(200).json(null);
             }
         }
         catch (e) {
@@ -784,10 +785,10 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         }
     }
     // ========== EXCEL FALLBACK (historical dates or no snapshot) ==========
-    if (name === 'legion_centurion') {
+    if (normName === 'legion_centurion') {
         const wb = readExcelData(name, { skipJson: true, date: date });
         if (!wb)
-            return res.status(404).json({ error: 'Raw file not found' });
+            return res.status(200).json(null);
         const sheetName = wb.SheetNames.find((n) => n.toUpperCase() === 'ASESORES') || wb.SheetNames[0];
         const ws = wb.Sheets[sheetName];
         if (!ws._cachedJson)
@@ -805,7 +806,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
                 (String(advisorVal) === advisor || advisorKeys.includes(String(advisorVal)));
         });
         if (!row)
-            return res.status(404).json({ error: 'Advisor not found' });
+            return res.status(200).json(null);
         const totalPol = Number(row['TOTAL_POLIZAS'] || row['Total Pólizas'] || row['Total_Polizas'] || 0);
         const clave = String(row['ASESOR'] || row['Asesor'] || row['asesor'] || '');
         const cumpleVal = row['CUMPLE'] || row['Cumple Meta Proporc.'] || row['Cumple'] || '';
@@ -817,10 +818,10 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
             'Va_En_Meta': String(cumpleVal).toLowerCase() === 'p' ? "✅ EN META" : "❌ POR DEBAJO"
         });
     }
-    if (name === 'convenciones') {
+    if (normName === 'convenciones') {
         const wb = readExcelData(name, { skipJson: true, date: date });
         if (!wb)
-            return res.status(404).json({ error: 'Raw file not found' });
+            return res.status(200).json(null);
         const sheetName = wb.SheetNames.find((n) => n.toUpperCase() === 'TODOS LOS RAMOS') || wb.SheetNames[0];
         const ws = wb.Sheets[sheetName];
         if (!ws._cachedData)
@@ -830,7 +831,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
         const row = data.find(r => SUCURSALES_PROMO.includes(String(r[4] || '')) && (String(r[7] || '') === advisor || advisorIds.includes(String(r[7] || ''))));
         if (!row)
-            return res.status(404).json({ error: 'Advisor not found' });
+            return res.status(200).json(null);
         const allCredits = data.slice(1).filter(r => r[32] != null && r[32] !== '' && r[24] != null);
         let c480 = 0, c228 = 0, c108 = 0, c28 = 0;
         allCredits.forEach(r => {
@@ -857,10 +858,10 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
             'Califica': califica, 'Cumple_Polizas': cumplePolizas, 'Cumple_Creditos': cumpleCreditos
         });
     }
-    if (name === 'camino_cumbre') {
+    if (normName === 'camino_cumbre') {
         const wb = readExcelData(name, { skipJson: true, date: date });
         if (!wb)
-            return res.status(404).json({ error: 'Raw file not found' });
+            return res.status(200).json(null);
         const ws = wb.Sheets[wb.SheetNames[0]];
         if (!ws._cachedData) {
             const rawData = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
@@ -880,17 +881,17 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
         const row = data.find((r) => SUCURSALES_PROMO.includes(String(r['Mat'] || r['Matriz'] || '')) && (String(r['Asesor'] || '') === advisor || advisorIds.includes(String(r['Asesor'] || ''))));
         if (!row)
-            return res.status(404).json({ error: 'Advisor not found' });
+            return res.status(200).json(null);
         return res.json({
             'Asesor': advisor, 'Clave': row['Asesor'] || '', 'Fecha_Corte': extractCutoffDate(wb, 'camino_cumbre') || "",
             'Mes_Asesor': Number(row['Mes'] || 1), 'Trimestre': Math.ceil(Number(row['Mes'] || 1) / 3), 'Polizas_Totales': Number(row['Total'] || row['Polizas_Totales'] || 0),
             'Mes_1_Prod': Number(row['Mes 1'] || 0), 'Mes_2_Prod': Number(row['Mes 2'] || 0), 'Mes_3_Prod': Number(row['Mes 3'] || 0)
         });
     }
-    if (name === 'graduacion') {
+    if (normName === 'graduacion') {
         const wb = readExcelData(name, { skipJson: true, date: date });
         if (!wb)
-            return res.status(404).json({ error: 'Raw file not found' });
+            return res.status(200).json(null);
         let wsName = wb.SheetNames.find((n) => n.toLowerCase().includes('desarrollo (2)') || n.toLowerCase().includes('detalle') || n.toLowerCase().includes('asesores'));
         if (!wsName)
             wsName = wb.SheetNames[0];
@@ -913,7 +914,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
         const row = data.find((r) => SUCURSALES_PROMO.includes(String(r['Matriz'] || r['Mat'] || r['Sucursal'] || r['Suc'] || '')) && (String(r['Asesor'] || r['NOMBRE'] || '') === advisor || advisorKeys.includes(String(r['Asesor'] || r['NOMBRE'] || '')) || String(r['Clave'] || r['ASESOR'] || '') === advisor || advisorKeys.includes(String(r['Clave'] || r['ASESOR'] || ''))));
         if (!row)
-            return res.status(404).json({ error: 'Advisor not found' });
+            return res.status(200).json(null);
         const limitKey = Object.keys(row).find(k => k.includes('MITE P/') || k.toLowerCase().includes('limite'));
         const fechaLimite = limitKey ? row[limitKey] : "";
         const paKey = Object.keys(row).find(k => k.toLowerCase().includes('total') || k.toLowerCase().includes('vigor'));
@@ -923,10 +924,10 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
             'Fecha_Limite_Meta': formatExcelDate(fechaLimite) || "No disponible"
         });
     }
-    if (name === 'fanfest') {
+    if (normName === 'fanfest') {
         const wb = readExcelData(name, { skipJson: true, date: date });
         if (!wb)
-            return res.status(404).json({ error: 'Raw file not found' });
+            return res.status(200).json(null);
         const sheetName = wb.SheetNames.find((n) => n.toUpperCase() === 'ASESORES') || wb.SheetNames[0];
         const ws = wb.Sheets[sheetName];
         const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
@@ -934,7 +935,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
         const row = data.find(r => SUCURSALES_PROMO.includes(String(r[4] || '')) && (String(r[6] || '') === advisor || advisorIds.includes(String(r[6] || ''))));
         if (!row)
-            return res.status(404).json({ error: 'Advisor not found' });
+            return res.status(200).json(null);
         return res.json({
             'Asesor': advisor, 'Clave': row[6] || '', 'Fecha_Corte': extractCutoffDate(wb, 'fanfest'),
             'Enero': Number(row[8] || 0), 'Febrero': Number(row[9] || 0),
@@ -944,10 +945,10 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
             'Premio': String(row[14] || '').toLowerCase() === 'p' ? "GANADO 🏆" : "PENDIENTE ⏳"
         });
     }
-    if (name === 'vive_tu_pasion') {
+    if (normName === 'vive_tu_pasion') {
         const wb = readExcelData(name, { skipJson: true, date: date });
         if (!wb)
-            return res.status(404).json({ error: 'Raw file not found' });
+            return res.status(200).json(null);
         const sheetName = wb.SheetNames.find((n) => n.toUpperCase() === 'ASESORES') || wb.SheetNames[0];
         const ws = wb.Sheets[sheetName];
         const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 7 });
@@ -955,17 +956,17 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const advisorIds = Object.keys(dir).filter(id => dir[id] === advisor);
         const row = data.find(r => SUCURSALES_PROMO.includes(String(r[4] || '')) && (String(r[6] || '') === advisor || advisorIds.includes(String(r[6] || ''))));
         if (!row)
-            return res.status(404).json({ error: 'Advisor not found' });
+            return res.status(200).json(null);
         return res.json({
             'Asesor': advisor, 'Clave': row[6] || '', 'Fecha_Corte': extractCutoffDate(wb, 'vive_tu_pasion'),
             'Polizas': Number(row[8] || 0), 'Comisiones': Number(row[9] || 0),
             'Premio_Actual': row[10] || "Ninguno aún"
         });
     }
-    if (name === 'mdrt') {
+    if (normName === 'mdrt') {
         const wb = readExcelData(name, { skipJson: true, date: date });
         if (!wb)
-            return res.status(404).json({ error: 'Raw file not found' });
+            return res.status(200).json(null);
         const ws = wb.Sheets[wb.SheetNames.find((n) => n.toUpperCase() === 'MDRT') || wb.SheetNames[0]];
         if (!ws._cachedJson)
             ws._cachedJson = extractData(ws);
@@ -974,7 +975,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
         const row = json.find(r => SUCURSALES_PROMO.includes(String(r['Mat'] || r['Matriz'] || '')) && (String(r['Nombre del Asesor'] || '') === advisor || advisorKeys.includes(String(r['Nombre del Asesor'] || '')) || String(r['Asesor'] || '') === advisor || advisorKeys.includes(String(r['Asesor'] || ''))));
         if (!row)
-            return res.status(404).json({ error: 'Advisor not found' });
+            return res.status(200).json(null);
         const paKey = Object.keys(row).find(k => (k || '').trim().toLowerCase() === 'total prima');
         const pa = paKey ? Number(row[paKey] || 0) : 0;
         const cutoffDate = extractCutoffDate(wb, 'mdrt');
@@ -989,10 +990,10 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
             'Mes_Actual': currentMonthNum, 'PA_Acumulada': pa
         });
     }
-    if (name === 'reto_por_ciento') {
+    if (normName === 'reto_por_ciento') {
         const wb = readExcelData(name, { skipJson: true, date: date });
         if (!wb)
-            return res.status(404).json({ error: 'Raw file not found' });
+            return res.status(200).json(null);
         const sheetName = wb.SheetNames.find((n) => n.toUpperCase() === 'ASESORES') || wb.SheetNames[0];
         const ws = wb.Sheets[sheetName];
         const raw = XLSX.utils.sheet_to_json(ws, { range: 7 });
@@ -1007,7 +1008,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
             return matchesPromo && (clave === advisor || advisorKeys.includes(clave));
         });
         if (!row)
-            return res.status(404).json({ error: 'Advisor not found' });
+            return res.status(200).json(null);
         const claveKey = Object.keys(row).find(k => k && (k.trim().toUpperCase() === 'ASESOR' || k.trim().toUpperCase() === 'NUM_AGENTE'));
         const conexionKey = Object.keys(row).find(k => k && (k.trim().toUpperCase() === 'CONEXIÓN' || k.trim().toUpperCase() === 'CONEXION'));
         const conteoKey = Object.keys(row).find(k => k && k.trim().toUpperCase() === 'CONTEO');
@@ -1029,12 +1030,12 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
     }
     const json = readExcelData(name, { date: date });
     if (!json)
-        return res.status(404).json({ error: 'Campaign not found' });
+        return res.status(200).json(null);
     const dir = getAdvisorDirectory();
     const advisorKeys = Object.keys(dir).filter(key => dir[key] === advisor);
     const advisorData = json.find((row) => String(row.Asesor || '') === advisor || advisorKeys.includes(String(row.Asesor || '')) || String(row.Clave || '') === advisor || advisorKeys.includes(String(row.Clave || '')));
     if (!advisorData)
-        return res.status(404).json({ error: 'Advisor not found' });
+        return res.status(200).json(null);
     res.json(advisorData);
 });
 app.get('/api/themes', (req, res) => {
