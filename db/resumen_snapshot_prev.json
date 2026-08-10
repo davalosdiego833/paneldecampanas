@@ -1,5 +1,5 @@
 {
-  "updatedAt": "3/8/2026, 1:34:44 p.m.",
+  "updatedAt": "4/8/2026, 11:42:16 a.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -2203,7 +2203,7 @@
         {
           "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
           "Clave": "87538",
-          "PA_Acumulada": 2092366.05
+          "PA_Acumulada": 2092546.05
         },
         {
           "Asesor": "ANAIS LUA MORENO",
@@ -2213,17 +2213,17 @@
         {
           "Asesor": "DESIREE DE LA PEÑA OROZCO",
           "Clave": "80122",
-          "PA_Acumulada": 857009.34
+          "PA_Acumulada": 876874.55
         },
         {
           "Asesor": "DARINKA UREÑA CASILLAS",
           "Clave": "90355",
-          "PA_Acumulada": 805440.46
+          "PA_Acumulada": 832694.13
         },
         {
           "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
           "Clave": "47116",
-          "PA_Acumulada": 662016.15
+          "PA_Acumulada": 662203.45
         },
         {
           "Asesor": "JORGE ANTONIO LUNA LARA",
@@ -2238,7 +2238,7 @@
         {
           "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
           "Clave": "104750",
-          "PA_Acumulada": 398749.41
+          "PA_Acumulada": 398802.16
         },
         {
           "Asesor": "SOFIA CAMPILLO VASCONCELOS",
@@ -2258,7 +2258,7 @@
         {
           "Asesor": "MARICELA ARREOLA LOPEZ",
           "Clave": "80925",
-          "PA_Acumulada": 291535.01
+          "PA_Acumulada": 292908.11
         },
         {
           "Asesor": "GABRIELA CASTAÑEDA SALAZAR",
@@ -2291,6 +2291,16 @@
           "PA_Acumulada": 186487.08
         },
         {
+          "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+          "Clave": "108404",
+          "PA_Acumulada": 184332.01
+        },
+        {
+          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
+          "Clave": "115047",
+          "PA_Acumulada": 174311.83
+        },
+        {
           "Asesor": "JULIANA RIASCOS VALENCIA",
           "Clave": "100677",
           "PA_Acumulada": 155988.61
@@ -2301,19 +2311,9 @@
           "PA_Acumulada": 145772.58
         },
         {
-          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
-          "Clave": "115047",
-          "PA_Acumulada": 145057.22
-        },
-        {
           "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
           "Clave": "104343",
-          "PA_Acumulada": 136043.4
-        },
-        {
-          "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
-          "Clave": "108404",
-          "PA_Acumulada": 118083.87
+          "PA_Acumulada": 136221.8
         },
         {
           "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
@@ -3677,7 +3677,7 @@
       ]
     },
     "campaignDates": {
-      "mdrt": "24 de julio de 2026",
+      "mdrt": "29 de julio de 2026",
       "convenciones": "30 de Junio de 2026",
       "legion_centurion": "10 de Julio de 2026",
       "camino_cumbre": "24 de julio de 2026",

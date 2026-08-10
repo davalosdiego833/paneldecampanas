@@ -42,6 +42,7 @@ rsync -avz -e "ssh $SSH_OPTS" package.json $SERVER_USER@$SERVER_IP:$PARENT_DIR/n
 rsync -avz -e "ssh $SSH_OPTS" package.json $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/backup_package.json
 rsync -avz -e "ssh $SSH_OPTS" .htaccess $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/
 rsync -avz -e "ssh $SSH_OPTS" .htaccess $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/backup_htaccess
+rsync -avz -e "ssh $SSH_OPTS" public/infografia_paginas_asesores.html $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/
 
 # 3.1 Blindaje de Datos (Zona Inmune en folder nodejs)
 echo "🛡️ Protegiendo archivos de datos y campañas..."
