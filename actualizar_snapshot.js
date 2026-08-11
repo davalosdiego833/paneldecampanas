@@ -791,7 +791,7 @@ const run = async () => {
         fs.writeFileSync(SNAPSHOT_FILE, JSON.stringify(snapshot, null, 2));
         console.log('✅ Snapshot restaurado (FILTRO 2043) exitosamente!');
 
-        // AUTO-GENERAR ALERTAS comparando snapshot anterior vs nuevo
+        // AUTO-GENERAR ALERTAS Y NOTIFICACIONES PUSH PERSONALIZADAS
         try {
             const { generateAlerts } = await import('./generar_alertas.js');
             generateAlerts();
@@ -799,43 +799,103 @@ const run = async () => {
             console.warn('⚠️ No se pudieron generar alertas (generar_alertas.js):', e.message);
         }
 
-        // DISPARAR 1 ÚNICA NOTIFICACIÓN PUSH EN TIEMPO REAL VÍA ONESIGNAL
+        // DISPARAR NOTIFICACIONES PUSH PERSONALIZADAS SEGÚN LO ACTUALIZADO
         try {
             const isLocal = !process.cwd().includes('domains/panel.ambrizydavalos.com');
-            const cutoffDate = snapshot.data.campaignDates?.mdrt || snapshot.data.fechas_corte?.comparativo_vida || 'al corte de hoy';
-            const notifTitle = 'Ambriz Asesores — Reportes Actualizados';
-            const notifBody = `Se han publicado los nuevos números y cortes al ${cutoffDate}.`;
 
-            if (isLocal) {
-                // Ejecución desde Mac: Disparar la API remota de Hostinger 1 SOLA VEZ
-                try {
-                    const payload = JSON.stringify({
-                        group: 'all',
-                        title: notifTitle,
-                        body: notifBody,
-                        url: '/'
-                    });
-                    execSync(`curl --max-time 3 -s -X POST "https://panel.ambrizydavalos.com/api/push/send-custom" -H "Content-Type: application/json" -d '${payload}'`);
-                } catch (eLocal) {}
-            } else {
-                // Ejecución directa en Servidor Hostinger (1 SOLA VEZ)
-                let sendFn;
-                try {
-                    const mod = await import('./scripts/send_push_notification.cjs');
-                    sendFn = mod.sendPushNotification || mod.default;
-                } catch {
-                    const mod = await import('./scripts/send_push_notification.js');
-                    sendFn = mod.sendPushNotification || mod.default;
+            const prevDates = prevSnapshot?.data?.campaignDates || {};
+            const newDates = snapshot?.data?.campaignDates || {};
+
+            const prevAdminDates = prevSnapshot?.data?.fechas_corte || {};
+            const newAdminDates = snapshot?.data?.fechas_corte || {};
+
+            const CAMPAIGN_NAMES = {
+                mdrt: 'MDRT',
+                convenciones: 'Convenciones',
+                legion_centurion: 'Legión Centurión',
+                camino_cumbre: 'Camino a la Cumbre',
+                graduacion: 'Graduación',
+                proactiva_tech: 'ProactivaTech 2.0',
+                reto_por_ciento: 'Reto Por Ciento'
+            };
+
+            const ADMIN_REPORT_NAMES = {
+                pagado_pendiente: 'Pagado / Pendiente',
+                pagado_pendiente_reclutas: 'Pagado / Pendiente (Reclutas)',
+                asesores_sin_emision: 'Asesores sin Emisión',
+                proactivos: 'Proactivos',
+                comparativo_vida: 'Comparativo de Vida'
+            };
+
+            const formatList = (arr) => {
+                if (!arr || arr.length === 0) return '';
+                if (arr.length === 1) return arr[0];
+                if (arr.length === 2) return `${arr[0]} y ${arr[1]}`;
+                return `${arr.slice(0, -1).join(', ')} y ${arr[arr.length - 1]}`;
+            };
+
+            const sendPush = async (group, title, body) => {
+                console.log(`🔔 [PUSH] Target: ${group} | Title: "${title}" | Body: "${body}"`);
+                if (isLocal) {
+                    try {
+                        const payload = JSON.stringify({ group, title, body, url: '/' });
+                        execSync(`curl --max-time 3 -s -X POST "https://panel.ambrizydavalos.com/api/push/send-custom" -H "Content-Type: application/json" -d '${payload}'`);
+                    } catch (eLocal) {}
+                } else {
+                    let sendFn;
+                    try {
+                        const mod = await import('./scripts/send_push_notification.cjs');
+                        sendFn = mod.sendPushNotification || mod.default;
+                    } catch {
+                        try {
+                            const mod = await import('./scripts/send_push_notification.js');
+                            sendFn = mod.sendPushNotification || mod.default;
+                        } catch (e) {}
+                    }
+                    if (typeof sendFn === 'function') {
+                        await sendFn({ group, title, body, url: '/' });
+                    }
                 }
-                if (typeof sendFn === 'function') {
-                    await sendFn({
-                        group: 'all',
-                        title: notifTitle,
-                        body: notifBody,
-                        url: '/'
-                    });
+            };
+
+            // 1. Detectar Cambios en Campañas (para Asesores / Promotoría -> group: 'all')
+            const updatedCampaignsByDate = {};
+            for (const [key, name] of Object.entries(CAMPAIGN_NAMES)) {
+                const oldDate = prevDates[key];
+                const newDate = newDates[key];
+                if (newDate && newDate !== oldDate) {
+                    if (!updatedCampaignsByDate[newDate]) updatedCampaignsByDate[newDate] = [];
+                    updatedCampaignsByDate[newDate].push(name);
                 }
             }
+
+            for (const [date, names] of Object.entries(updatedCampaignsByDate)) {
+                const title = names.length > 1 ? 'Ambriz Asesores — Campañas Actualizadas' : 'Ambriz Asesores — Campaña Actualizada';
+                const subject = names.length > 1 ? 'Las campañas' : 'La campaña';
+                const verb = names.length > 1 ? 'han sido actualizadas' : 'ha sido actualizada';
+                const body = `${subject} ${names.length === 2 ? names.join(' y ') : formatList(names)} ${verb} al ${date}.`;
+                await sendPush('all', title, body);
+            }
+
+            // 2. Detectar Cambios en Reportes Administrativos (para Administradores -> group: 'admin')
+            const updatedAdminByDate = {};
+            for (const [key, name] of Object.entries(ADMIN_REPORT_NAMES)) {
+                const oldDate = prevAdminDates[key];
+                const newDate = newAdminDates[key];
+                if (newDate && newDate !== oldDate) {
+                    if (!updatedAdminByDate[newDate]) updatedAdminByDate[newDate] = [];
+                    updatedAdminByDate[newDate].push(name);
+                }
+            }
+
+            for (const [date, names] of Object.entries(updatedAdminByDate)) {
+                const title = names.length > 1 ? 'Ambriz Asesores — Reportes Administrativos' : 'Ambriz Asesores — Reporte Administrativo';
+                const subject = names.length > 1 ? 'Los reportes de' : 'El reporte de';
+                const verb = names.length > 1 ? 'han sido actualizados' : 'ha sido actualizado';
+                const body = `${subject} ${names.length === 2 ? names.join(' y ') : formatList(names)} ${verb} al ${date}.`;
+                await sendPush('admin', title, body);
+            }
+
         } catch (e) {
             console.warn('⚠️ No se pudieron enviar notificaciones push:', e.message);
         }
