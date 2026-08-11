@@ -250,6 +250,18 @@
           "tareas_actividades": 19,
           "observaciones": "Miroslava muestra un fuerte enfoque en el desarrollo y acompañamiento de su equipo en este corte, registrando **3 Sesiones 1:1**, **2 Sesiones de Negocios** y **2 Arranques Rápidos**, junto con una alta disciplina de gestión completando **19 Tareas / Actividades** en su bitácora.\n\nÁrea de mejora: Las Citas Iniciales y Citas de Cierre se mantuvieron en 0. El reto prioritario para los próximos días es balancear las sesiones de capacitación con actividades de prospección en frío y seguimiento a cierres para nutrir la parte alta del embudo."
         }
+      },
+      {
+        "date": "2026-08-11",
+        "data": {
+          "citas_iniciales": 0,
+          "citas_cierre": 0,
+          "sesiones_11": 3,
+          "sesiones_negocios": 4,
+          "arranque_rapido": 2,
+          "tareas_actividades": 19,
+          "observaciones": "Miroslava mantiene un sólido acompañamiento con su equipo en este nuevo corte, destacando con **4 Sesiones de Negocios** (+2 respecto al corte previo), **3 Sesiones 1:1** y **2 Arranques Rápidos**, acumulando un total de **19 Tareas / Actividades** completadas con disciplina.\n\nÁrea de mejora: Las Citas Iniciales y Citas de Cierre se encuentran en 0. La oportunidad clave para los siguientes días es impulsar activamente la prospección inicial y empujar las citas de cierre para reactivar el flujo del embudo."
+        }
       }
     ],
     "goals": {
@@ -508,6 +520,18 @@
           "arranque_rapido": 0,
           "tareas_actividades": 20,
           "observaciones": "Fer Carlos registra una sólida actividad comercial con **5 Citas Iniciales** y **2 Citas de Cierre**. En el desarrollo y acompañamiento de asesores, acumula **4 Sesiones 1:1**, **1 Sesión de Negocios** y un avance constante en agenda de **20 Tareas / Actividades** completadas.\n\nÁrea de mejora: Excelente balance en la atención de agenda y sesiones individuales. La prioridad en este periodo es reactivar los Arranques Rápidos (actualmente en 0) y dar un seguimiento cercano a las 2 Citas de Cierre para acelerar la conversión a firmas y pólizas cobradas."
+        }
+      },
+      {
+        "date": "2026-08-11",
+        "data": {
+          "citas_iniciales": 5,
+          "citas_cierre": 2,
+          "sesiones_11": 4,
+          "sesiones_negocios": 1,
+          "arranque_rapido": 0,
+          "tareas_actividades": 20,
+          "observaciones": "Fer Carlos mantiene un desempeño constante en su agenda en este nuevo corte, con **5 Citas Iniciales** y **2 Citas de Cierre** registradas, acompañando el desarrollo de su equipo con **4 Sesiones 1:1**, **1 Sesión de Negocios** y **20 Tareas / Actividades** completadas.\n\nÁrea de mejora: Se mantiene constante respecto al inicio del mes. La prioridad en este periodo es empujar el cierre de las 2 citas agendadas para convertirlas en emisiones e impulsar la generación de nuevos Arranques Rápidos."
         }
       }
     ],
@@ -779,6 +803,23 @@
           "recluta_citas": 0,
           "recluta_entrevistas": 4,
           "observaciones": "Shelsea registra **112 nuevos contactos** y **4 entrevistas de reclutamiento** completadas en este inicio de agosto. En la estructura del embudo de desarrollo, mantiene **4 asesores activos** (equipo directo), **5 candidatos en fase de Enamoramiento** y **1 candidato en Reserva Activa**.\n\nÁrea de mejora: Excelente generación de contactos iniciales y entrevistas (+4). La prioridad principal para la siguiente etapa es reactivar las llamadas de seguimiento para convertir este volumen de contactos (+112) y canalizar a los 5 candidatos en Enamoramiento hacia las etapas de Compensación y Administrativa."
+        }
+      },
+      {
+        "date": "2026-08-11",
+        "data": {
+          "activos_mes": 6,
+          "activos_totales": 9,
+          "activos_karen": 3,
+          "ent_enamoramiento": 6,
+          "enamoramientos_karen": 3,
+          "reserva_activa": 0,
+          "ent_compensacion": 0,
+          "ent_administrativa": 0,
+          "recluta_contactos": 143,
+          "recluta_citas": 0,
+          "recluta_entrevistas": 6,
+          "observaciones": "Shelsea muestra un excelente avance en este corte con **143 contactos en el mes** (+31 respecto al corte del 7 de agosto) y **6 entrevistas de reclutamiento** (+2). En el desarrollo de equipo directo (Nosotros), suma **6 asesores activos** (+2) y eleva a **6 candidatos en Enamoramiento** (+1).\n\nÁrea de mejora: Con un gran volumen de contactos (+143) y 6 candidatos enamorados, la prioridad principal es reactivar las llamadas para agendar citas de seguimiento y avanzar candidatos hacia las etapas de Compensación y Administrativa."
         }
       }
     ]

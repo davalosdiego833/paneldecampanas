@@ -92,8 +92,23 @@ function findSnapshotPath(): string {
         path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json'),
         SNAPSHOT_PATH
     ];
-    const found = candidates.find(p => safeExists(p));
-    if (found) return found;
+    
+    let newestPath = '';
+    let newestMtime = -1;
+
+    for (const p of candidates) {
+        if (safeExists(p)) {
+            try {
+                const stat = fs.statSync(p);
+                if (stat.mtimeMs > newestMtime) {
+                    newestMtime = stat.mtimeMs;
+                    newestPath = p;
+                }
+            } catch (e) {}
+        }
+    }
+
+    if (newestPath) return newestPath;
     return path.join(cwd, 'db', 'resumen_snapshot.json');
 }
 

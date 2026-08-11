@@ -815,7 +815,7 @@ const run = async () => {
                         body: notifBody,
                         url: '/'
                     });
-                    execSync(`curl -s -X POST "https://panel.ambrizydavalos.com/api/push/send-custom" -H "Content-Type: application/json" -d '${payload}'`);
+                    execSync(`curl --max-time 3 -s -X POST "https://panel.ambrizydavalos.com/api/push/send-custom" -H "Content-Type: application/json" -d '${payload}'`);
                 } catch (eLocal) {}
             } else {
                 // Ejecución directa en Servidor Hostinger (1 SOLA VEZ)
