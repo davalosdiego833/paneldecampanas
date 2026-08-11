@@ -203,18 +203,20 @@ const run = async () => {
                         let ws = wb.Sheets[wb.SheetNames[0]];
                         let data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
                         const allRows = data.slice(1);
-                        let c480 = 0, c228 = 0, c108 = 0, c28 = 0;
+                        let c495 = 0, c480 = 0, c228 = 0, c108 = 0, c28 = 0;
                         allRows.forEach(r => {
                             const l = Number(r[32]);
+                            if (l === 495) c495 = Number(r[24] || 0);
                             if (l === 480) c480 = Number(r[24] || 0);
                             if (l === 228) c228 = Number(r[24] || 0);
                             if (l === 108) c108 = Number(r[24] || 0);
                             if (l === 28) c28 = Number(r[24] || 0);
                         });
+                        const limit495 = c495 || c480;
                         campaigns.convenciones = allRows.filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
                             Asesor: resolveName(r[7], null, directory), Clave: String(r[7] || ''),
                             PA_Total: Number(r[24] || 0), Polizas: Number(r[28] || 0),
-                            Lugar: Number(r[32] || 9999), Lugar_480: c480, Lugar_228: c228, Lugar_108: c108, Lugar_28: c28,
+                            Lugar: Number(r[32] || 9999), Lugar_495: limit495, Lugar_480: limit495, Lugar_228: c228, Lugar_108: c108, Lugar_28: c28,
                             Comision_Vida: Number(r[11] || 0), RDA: Number(r[18] || 0)
                         }));
                         campaignDates.convenciones = extractCutoffDate(wb);

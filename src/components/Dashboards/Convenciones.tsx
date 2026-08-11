@@ -29,14 +29,14 @@ const Convenciones: React.FC<Props> = ({ data }) => {
         if (lugar <= 28) destino_alcanzado = "A AMALFI";
         else if (lugar <= 108) destino_alcanzado = "A PARÍS";
         else if (lugar <= 228) destino_alcanzado = "A COSTA RICA";
-        else if (lugar <= 480) destino_alcanzado = "A CANCÚN";
+        else if (lugar <= 495) destino_alcanzado = "A CANCÚN";
     }
 
     const status_txt = califica ? `✅ CALIFICA ${destino_alcanzado}` : "❌ NO CALIFICA";
     const status_color = califica ? 'var(--success-green)' : 'var(--danger-red)';
 
     const targets = [
-        { label: "1 Diamante (Cancún)", val: Number(data.Lugar_480 || 0), color: '#60A5FA' },
+        { label: "1 Diamante (Cancún)", val: Number(data.Lugar_495 || data.Lugar_480 || 0), color: '#60A5FA' },
         { label: "2 Diamantes (Costa Rica)", val: Number(data.Lugar_228 || 0), color: '#34D399' },
         { label: "3 Diamantes (París)", val: Number(data.Lugar_108 || 0), color: '#FBBF24' },
         { label: "Gran Diamante (Amalfi)", val: Number(data.Lugar_28 || 0), color: '#F472B6' }
@@ -109,7 +109,7 @@ const Convenciones: React.FC<Props> = ({ data }) => {
                     </div>
                     <div className="glass-card" style={{ textAlign: 'center' }}>
                         <p style={{ fontSize: '0.8rem', opacity: 0.6, marginBottom: '4px', textTransform: 'uppercase' }}>Lugar Nacional</p>
-                        <p style={{ fontSize: '1.5rem', fontWeight: 700, color: lugar <= 480 ? 'var(--accent-gold)' : 'var(--text-primary)' }}>#{lugar}</p>
+                        <p style={{ fontSize: '1.5rem', fontWeight: 700, color: lugar <= 495 ? 'var(--accent-gold)' : 'var(--text-primary)' }}>#{lugar}</p>
                     </div>
                     <div className="glass-card" style={{ textAlign: 'center', borderBottom: `4px solid ${status_color}` }}>
                         <p style={{ fontSize: '0.8rem', opacity: 0.6, marginBottom: '4px', textTransform: 'uppercase' }}>Estatus</p>

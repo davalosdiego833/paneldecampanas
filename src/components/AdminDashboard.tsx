@@ -74,12 +74,12 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
         const f28 = Math.max(0, Number(row.Lugar_28 || 0) - creditosAsesor);
         const f108 = Math.max(0, Number(row.Lugar_108 || 0) - creditosAsesor);
         const f228 = Math.max(0, Number(row.Lugar_228 || 0) - creditosAsesor);
-        const f480 = Math.max(0, Number(row.Lugar_480 || 0) - creditosAsesor);
-        if (lugar <= 28) return { diamante: '4 Diamantes', next: null, faltanteNext: 0 };
-        if (lugar <= 108) return { diamante: '3 Diamantes', next: '4 Diamantes', faltanteNext: f28 };
+        const f495 = Math.max(0, Number(row.Lugar_495 || row.Lugar_480 || 0) - creditosAsesor);
+        if (lugar <= 28) return { diamante: 'Gran Diamante', next: null, faltanteNext: 0 };
+        if (lugar <= 108) return { diamante: '3 Diamantes', next: 'Gran Diamante', faltanteNext: f28 };
         if (lugar <= 228) return { diamante: '2 Diamantes', next: '3 Diamantes', faltanteNext: f108 };
-        if (lugar <= 480) return { diamante: '1 Diamante', next: '2 Diamantes', faltanteNext: f228 };
-        return { diamante: null, next: '1 Diamante', faltanteNext: f480 };
+        if (lugar <= 495) return { diamante: '1 Diamante', next: '2 Diamantes', faltanteNext: f228 };
+        return { diamante: null, next: '1 Diamante', faltanteNext: f495 };
     };
 
     // Helper: get Legión Centurión level (metas fijas)
@@ -172,7 +172,7 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
             const missingPol = Math.max(0, 30 - polizas);
             const missingCred = Math.max(0, 620000 - total);
             const hasCandados = missingPol <= 0 && missingCred <= 0;
-            const isQualified = lugar <= 480 && hasCandados;
+            const isQualified = lugar <= 495 && hasCandados;
 
             if (isQualified) {
                 // Califica
@@ -1056,14 +1056,14 @@ const CampaignCopyButton: React.FC<{
             const missingPol = Math.max(0, 30 - polizas);
             const missingCred = Math.max(0, 620000 - total);
             const hasCandados = missingPol <= 0 && missingCred <= 0;
-            const isQualified = lugar <= 480 && hasCandados;
+            const isQualified = lugar <= 495 && hasCandados;
 
             msg += `el ranking de *Convenciones*: 🏛️\n\n`;
             if (isQualified) {
                 msg += `🎉 ¡Felicidades! Ya estás calificado para la Convención. Estás en el lugar #${lugar} con ${polizas} pólizas y ${formatCurrency(total)} créditos. ¡Sigue así para subir al siguiente nivel de diamantes! 💎`;
             } else if (hasCandados) {
-                const faltanteCred = Math.max(0, Number(row.Lugar_480 || 0) - total);
-                msg += `Vas muy bien: ya cumples con los candados de pólizas y créditos mínimos. Sin embargo, estás en el lugar #${lugar}. Para entrar a la zona de calificación (lugar 480) te faltan *${formatCurrency(faltanteCred)}* créditos. ¡Estás muy cerca! ⚡`;
+                const faltanteCred = Math.max(0, Number(row.Lugar_495 || row.Lugar_480 || 0) - total);
+                msg += `Vas muy bien: ya cumples con los candados de pólizas y créditos mínimos. Sin embargo, estás en el lugar #${lugar}. Para entrar a la zona de calificación (lugar 495) te faltan *${formatCurrency(faltanteCred)}* créditos. ¡Estás muy cerca! ⚡`;
             } else {
                 msg += `Estás en el lugar #${lugar}, pero para poder validar ese lugar necesitamos liberar los candados mínimos. Te faltan *${missingPol}* pólizas y *${formatCurrency(missingCred)}* créditos. ¡Enfoquémonos en esos mínimos para asegurar tu lugar! 🎯`;
             }
