@@ -855,9 +855,11 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         if (!row)
             return res.status(200).json(null);
         const allCredits = data.slice(1).filter(r => r[32] != null && r[32] !== '' && r[24] != null);
-        let c480 = 0, c228 = 0, c108 = 0, c28 = 0;
+        let c495 = 0, c480 = 0, c228 = 0, c108 = 0, c28 = 0;
         allCredits.forEach(r => {
             const l = Number(r[32]);
+            if (l === 495)
+                c495 = Number(r[24] || 0);
             if (l === 480)
                 c480 = Number(r[24] || 0);
             if (l === 228)
@@ -867,6 +869,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
             if (l === 28)
                 c28 = Number(r[24] || 0);
         });
+        const limit495 = c495 || c480;
         const credits = Number(row[24] || 0);
         const pols = Number(row[28] || 0);
         const lugar = Number(row[32] || 0);
@@ -876,7 +879,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         return res.json({
             'Asesor': advisor, 'Clave': row[7] || '', 'Fecha_Corte': String(ws['B17']?.v || ""),
             'Comision_Vida': Number(row[11] || 0), 'RDA': Number(row[18] || 0), 'PA_Total': credits, 'Polizas': pols,
-            'Lugar': lugar, 'Lugar_480': c480, 'Lugar_228': c228, 'Lugar_108': c108, 'Lugar_28': c28,
+            'Lugar': lugar, 'Lugar_495': limit495, 'Lugar_480': limit495, 'Lugar_228': c228, 'Lugar_108': c108, 'Lugar_28': c28,
             'Califica': califica, 'Cumple_Polizas': cumplePolizas, 'Cumple_Creditos': cumpleCreditos
         });
     }
@@ -1139,18 +1142,11 @@ app.get('/api/admin/summary', (req, res) => {
                         const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
                         // Global thresholds
                         const allRows = data.slice(1);
-                        let c480 = 0, c228 = 0, c108 = 0, c28 = 0;
+                        let c495 = 0, c480 = 0, c228 = 0, c108 = 0, c28 = 0;
                         allRows.forEach(r => {
                             const l = Number(r[32]);
-                            if (l === 480)
-                                c480 = Number(r[24] || 0);
-                            if (l === 228)
-                                c228 = Number(r[24] || 0);
-                            if (l === 108)
-                                c108 = Number(r[108] || r[24] || 0); // fallback or specific col if needed
-                            if (l === 228)
-                                c228 = Number(r[228] || r[24] || 0);
-                            // Re-calculate exactly like the advisor dashboard
+                            if (l === 495)
+                                c495 = Number(r[24] || 0);
                             if (l === 480)
                                 c480 = Number(r[24] || 0);
                             if (l === 228)
@@ -1160,6 +1156,7 @@ app.get('/api/admin/summary', (req, res) => {
                             if (l === 28)
                                 c28 = Number(r[24] || 0);
                         });
+                        const limit495 = c495 || c480;
                         result.convenciones = allRows.filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
                             Asesor: resolveName(r[7]),
                             Clave: r[7] || '',
@@ -1168,7 +1165,7 @@ app.get('/api/admin/summary', (req, res) => {
                             PA_Total: Number(r[24] || 0),
                             Polizas: Number(r[28] || 0),
                             Lugar: Number(r[32] || 9999),
-                            Lugar_480: c480, Lugar_228: c228, Lugar_108: c108, Lugar_28: c28
+                            Lugar_495: limit495, Lugar_480: limit495, Lugar_228: c228, Lugar_108: c108, Lugar_28: c28
                         }));
                     }
                     else if (c === 'graduacion') {
@@ -1313,9 +1310,11 @@ app.post('/api/admin/snapshot', async (req, res) => {
                     const ws = wb.Sheets[sheetName];
                     const data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AL15000' });
                     const allRows = data.slice(1);
-                    let c480 = 0, c228 = 0, c108 = 0, c28 = 0;
+                    let c495 = 0, c480 = 0, c228 = 0, c108 = 0, c28 = 0;
                     allRows.forEach(r => {
                         const l = Number(r[32]);
+                        if (l === 495)
+                            c495 = Number(r[24] || 0);
                         if (l === 480)
                             c480 = Number(r[24] || 0);
                         if (l === 228)
@@ -1325,9 +1324,10 @@ app.post('/api/admin/snapshot', async (req, res) => {
                         if (l === 28)
                             c28 = Number(r[24] || 0);
                     });
+                    const limit495 = c495 || c480;
                     result.convenciones = allRows.filter(r => String(r[4] || '') === '2043').map(r => ({
                         Asesor: resolveName(r[7]), Clave: r[7] || '', Comision_Vida: Number(r[11] || 0), RDA: Number(r[18] || 0), PA_Total: Number(r[24] || 0), Polizas: Number(r[28] || 0),
-                        Lugar: Number(r[32] || 9999), Lugar_480: c480, Lugar_228: c228, Lugar_108: c108, Lugar_28: c28
+                        Lugar: Number(r[32] || 9999), Lugar_495: limit495, Lugar_480: limit495, Lugar_228: c228, Lugar_108: c108, Lugar_28: c28
                     }));
                 }
                 else if (c === 'graduacion') {
@@ -2011,7 +2011,8 @@ app.get('/api/daniela/datos', (req, res) => {
                 creditos: Number(c.PA_Total || 0),
                 polizas: Number(c.Polizas || 0),
                 lugar_ranking: Number(c.Lugar || 9999),
-                meta_creditos_lugar_480: Number(c.Lugar_480 || 0),
+                meta_creditos_lugar_495: Number(c.Lugar_495 || c.Lugar_480 || 0),
+                meta_creditos_lugar_480: Number(c.Lugar_495 || c.Lugar_480 || 0),
                 meta_creditos_lugar_228: Number(c.Lugar_228 || 0),
                 meta_creditos_lugar_108: Number(c.Lugar_108 || 0),
                 meta_creditos_lugar_28: Number(c.Lugar_28 || 0)

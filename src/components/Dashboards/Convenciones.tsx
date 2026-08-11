@@ -26,27 +26,27 @@ const Convenciones: React.FC<Props> = ({ data }) => {
 
     let destino_alcanzado = "";
     if (califica) {
-        if (lugar <= 28) destino_alcanzado = "A AMALFI";
-        else if (lugar <= 108) destino_alcanzado = "A PARÍS";
-        else if (lugar <= 228) destino_alcanzado = "A COSTA RICA";
-        else if (lugar <= 495) destino_alcanzado = "A CANCÚN";
+        if (lugar <= 28) destino_alcanzado = "A JAPÓN";
+        else if (lugar <= 108) destino_alcanzado = "A ESTAMBUL";
+        else if (lugar <= 228) destino_alcanzado = "A VANCOUVER";
+        else if (lugar <= 495) destino_alcanzado = "A LOS CABOS";
     }
 
     const status_txt = califica ? `✅ CALIFICA ${destino_alcanzado}` : "❌ NO CALIFICA";
     const status_color = califica ? 'var(--success-green)' : 'var(--danger-red)';
 
     const targets = [
-        { label: "1 Diamante (Cancún)", val: Number(data.Lugar_495 || data.Lugar_480 || 0), color: '#60A5FA' },
-        { label: "2 Diamantes (Costa Rica)", val: Number(data.Lugar_228 || 0), color: '#34D399' },
-        { label: "3 Diamantes (París)", val: Number(data.Lugar_108 || 0), color: '#FBBF24' },
-        { label: "Gran Diamante (Amalfi)", val: Number(data.Lugar_28 || 0), color: '#F472B6' }
+        { label: "1 Diamante (Los Cabos)", val: Number(data.Lugar_495 || data.Lugar_480 || 0), color: '#60A5FA' },
+        { label: "2 Diamantes (Vancouver)", val: Number(data.Lugar_228 || 0), color: '#34D399' },
+        { label: "3 Diamantes (Estambul)", val: Number(data.Lugar_108 || 0), color: '#FBBF24' },
+        { label: "Gran Diamante (Japón)", val: Number(data.Lugar_28 || 0), color: '#F472B6' }
     ];
 
     const destinos = [
-        { label: "Cancún (1 Diamante)", img: "cancun.jpeg" },
-        { label: "Costa Rica (2 Diamantes)", img: "costa_rica.jpeg" },
-        { label: "París (3 Diamantes)", img: "paris.jpeg" },
-        { label: "Amalfitana (Gran Diamante)", img: "amalfi.jpeg" }
+        { label: "Los Cabos (1 Diamante)", img: "loscabos.jpg" },
+        { label: "Vancouver (2 Diamantes)", img: "vancouver.jpg" },
+        { label: "Estambul (3 Diamantes)", img: "estambul.jpg" },
+        { label: "Japón (Gran Diamante)", img: "japon.jpeg" }
     ];
 
     return (
