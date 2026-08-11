@@ -123,9 +123,16 @@ const run = async () => {
     try {
         console.log('🚀 Iniciando restauración de Snapshot (Solo Matriz 2043)...');
 
-        // HISTORIAL: Guardar snapshot anterior para comparación de alertas
+        // HISTORIAL: Cargar y guardar snapshot anterior para comparación de alertas y notificaciones
+        const PREV_FILE = path.join(DB_PATH, 'resumen_snapshot_prev.json');
+        let prevSnapshot = null;
+        if (fs.existsSync(PREV_FILE)) {
+            try { prevSnapshot = JSON.parse(fs.readFileSync(PREV_FILE, 'utf8')); } catch (e) {}
+        }
         if (fs.existsSync(SNAPSHOT_FILE)) {
-            const PREV_FILE = path.join(DB_PATH, 'resumen_snapshot_prev.json');
+            if (!prevSnapshot) {
+                try { prevSnapshot = JSON.parse(fs.readFileSync(SNAPSHOT_FILE, 'utf8')); } catch (e) {}
+            }
             fs.copyFileSync(SNAPSHOT_FILE, PREV_FILE);
             console.log('📸 Snapshot anterior guardado para comparación.');
         }
