@@ -1,0 +1,114 @@
+{
+  "campaigns": {
+    "fecha_corte": "31 de julio 2026",
+    "promotoria": {
+      "lugar_general": 69,
+      "mat": "2043",
+      "oficina": "GUADALAJARA (A. RODRIGUEZ",
+      "c1_vida": 270632.88,
+      "c1_dxn": 0,
+      "c1_gmm_ind": 34544.34,
+      "c1_vida_gyc": 0,
+      "c1_gmm_gyc": 0,
+      "c1_conv_doble": 0,
+      "c1_comisiones_totales": 305177.22,
+      "c1_ranking": 69,
+      "c2_vida_12m": 78343.38,
+      "c2_conv_doble": 0,
+      "c2_total": 78343.38,
+      "c2_ranking": 50,
+      "c3_nueva_org": 93104,
+      "c3_conv_doble": 0,
+      "c3_total": 93104,
+      "c3_ranking": 36,
+      "asesores_ta": 1,
+      "limra": 0.9344,
+      "igc": 0.9247,
+      "comisiones_reclutas": 0,
+      "adjunto_ga": "SI"
+    },
+    "umbrales": {
+      "camino1": {
+        "3d": 3089945.06,
+        "2d": 1992761.67,
+        "1d": 1523352.24
+      },
+      "camino2": {
+        "3d": 381872.47,
+        "2d": 260973.02,
+        "1d": 182831.62
+      },
+      "camino3": {
+        "3d": 386882,
+        "2d": 223304,
+        "1d": 149803
+      }
+    },
+    "minimos": {
+      "camino1": {
+        "3d": 23100000,
+        "2d": 17955000,
+        "1d": 14700000
+      },
+      "camino2": {
+        "3d": 4400000,
+        "2d": 3860000,
+        "1d": 3310000
+      },
+      "camino3": {
+        "3d": 5605000,
+        "2d": 3475500,
+        "1d": 2895000
+      },
+      "asesores_ta": 4,
+      "comisiones_reclutas": 367500,
+      "limra": 0.86,
+      "igc": 0.9025
+    },
+    "rangos": {
+      "camino1": {
+        "3d": [
+          1,
+          3
+        ],
+        "2d": [
+          4,
+          6
+        ],
+        "1d": [
+          7,
+          9
+        ]
+      },
+      "camino2": {
+        "3d": [
+          1,
+          5
+        ],
+        "2d": [
+          6,
+          10
+        ],
+        "1d": [
+          11,
+          15
+        ]
+      },
+      "camino3": {
+        "3d": [
+          1,
+          7
+        ],
+        "2d": [
+          8,
+          14
+        ],
+        "1d": [
+          15,
+          21
+        ]
+      }
+    }
+  },
+  "date": "31 de julio 2026"
+}

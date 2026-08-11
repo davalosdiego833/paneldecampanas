@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Sun, Moon, LogOut, ArrowLeft, DollarSign, Users, TrendingUp, Activity, AlertTriangle, CheckCircle, XCircle, Search, Calendar, Shield, MessageSquare, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Sun, Moon, LogOut, ArrowLeft, DollarSign, Users, TrendingUp, Activity, AlertTriangle, CheckCircle, XCircle, Search, Calendar, Shield, MessageSquare, ChevronLeft, ChevronRight, Award } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 import EstatusPolizasContent from './EstatusPolizas';
+import ConvencionesPromotores from './Dashboards/ConvencionesPromotores';
 
 interface Props {
     onBack: () => void;
@@ -13,7 +14,7 @@ interface Props {
     gerenciaName?: string;
 }
 
-type Section = 'pagado_pendiente' | 'asesores_sin_emision' | 'proactivos' | 'comparativo_vida' | 'estatus_polizas';
+type Section = 'pagado_pendiente' | 'asesores_sin_emision' | 'proactivos' | 'comparativo_vida' | 'estatus_polizas' | 'convenciones';
 
 const fmt = (n: number | null | undefined) => {
     if (n == null || isNaN(Number(n))) return '$0';
@@ -182,6 +183,7 @@ const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggl
         { key: 'asesores_sin_emision', label: 'Asesores sin Emisión', icon: <AlertTriangle size={18} /> },
         { key: 'proactivos', label: 'Proactivos', icon: <Activity size={18} /> },
         { key: 'comparativo_vida', label: 'Comparativo de Vida', icon: <TrendingUp size={18} /> },
+        { key: 'convenciones', label: 'Convenciones', icon: <Award size={18} /> },
         { key: 'estatus_polizas', label: 'Estatus Pólizas', icon: <Shield size={18} /> },
     ];
 
@@ -239,6 +241,8 @@ const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggl
                     onDateSelect={(d: string | null) => handleDateSelect('comparativo_vida', d)}
                     themeMode={themeMode}
                 />;
+            case 'convenciones':
+                return <ConvencionesPromotores data={data} themeMode={themeMode} />;
         }
     };
 

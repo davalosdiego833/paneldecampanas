@@ -431,6 +431,104 @@ const run = async () => {
                         wb = null; ws = null; raw = null;
                     }
                 } catch(e) { console.warn('⚠️ Reto Por Ciento skip:', e.message); }
+            } else if (step === 'convenciones_promotores') {
+                try {
+                    console.log('Processing convenciones_promotores');
+                    const cpPath = path.join(BASE_PATH, 'convenciones', 'convenciones_promotores.xlsx');
+                    if (fs.existsSync(cpPath)) {
+                        let wb = XLSX.readFile(cpPath, { sheets: ['Lineas Personales'] });
+                        let ws = wb.Sheets['Lineas Personales'];
+                        let data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 'A20:AP300' });
+                        const allRows = data.slice(2).filter(r => r[1] != null && r[1] !== '');
+
+                        // Find promotoria Mat 2043
+                        const promo = allRows.find(r => String(r[4]) === '2043');
+
+                        // Extract thresholds (last place of each diamond per camino)
+                        const findRankVal = (rankCol, comCol, rankNum) => {
+                            const found = allRows.find(r => Number(r[rankCol]) === rankNum);
+                            return found ? Number(found[comCol] || 0) : 0;
+                        };
+
+                        // Camino 1 thresholds (ranking col 30, comisiones col 13)
+                        const c1_3d = findRankVal(30, 13, 3);   // 3 Diamantes: lugar 3
+                        const c1_2d = findRankVal(30, 13, 6);   // 2 Diamantes: lugar 6
+                        const c1_1d = findRankVal(30, 13, 9);   // 1 Diamante: lugar 9
+
+                        // Camino 2 thresholds (ranking col 31, comisiones col 17)
+                        const c2_3d = findRankVal(31, 17, 5);   // 3 Diamantes: lugar 5
+                        const c2_2d = findRankVal(31, 17, 10);  // 2 Diamantes: lugar 10
+                        const c2_1d = findRankVal(31, 17, 15);  // 1 Diamante: lugar 15
+
+                        // Camino 3 thresholds (ranking col 32, comisiones col 21)
+                        const c3_3d = findRankVal(32, 21, 7);   // 3 Diamantes: lugar 7
+                        const c3_2d = findRankVal(32, 21, 14);  // 2 Diamantes: lugar 14
+                        const c3_1d = findRankVal(32, 21, 21);  // 1 Diamante: lugar 21
+
+                        // Extract cutoff date from B17 (strip "IGC Y LIMRA" prefix)
+                        let fechaCorte = '';
+                        const b17 = ws['B17'];
+                        if (b17 && b17.v) {
+                            const dateMatch = String(b17.v).match(/al\s+(.+)/i);
+                            fechaCorte = dateMatch ? dateMatch[1].replace(/\.\s*$/, '').trim() : String(b17.v).trim();
+                        }
+
+                        campaigns.convenciones_promotores = {
+                            fecha_corte: fechaCorte,
+                            promotoria: promo ? {
+                                lugar_general: Number(promo[1] || 0),
+                                mat: String(promo[4] || ''),
+                                oficina: String(promo[3] || ''),
+                                // Camino 1
+                                c1_vida: Number(promo[6] || 0),
+                                c1_dxn: Number(promo[7] || 0),
+                                c1_gmm_ind: Number(promo[8] || 0),
+                                c1_vida_gyc: Number(promo[9] || 0),
+                                c1_gmm_gyc: Number(promo[10] || 0),
+                                c1_conv_doble: Number(promo[11] || 0),
+                                c1_comisiones_totales: Number(promo[13] || 0),
+                                c1_ranking: Number(promo[30] || 0),
+                                // Camino 2
+                                c2_vida_12m: Number(promo[14] || 0),
+                                c2_conv_doble: Number(promo[15] || 0),
+                                c2_total: Number(promo[17] || 0),
+                                c2_ranking: Number(promo[31] || 0),
+                                // Camino 3
+                                c3_nueva_org: Number(promo[18] || 0),
+                                c3_conv_doble: Number(promo[19] || 0),
+                                c3_total: Number(promo[21] || 0),
+                                c3_ranking: Number(promo[32] || 0),
+                                // Candados
+                                asesores_ta: Number(promo[35] || 0),
+                                limra: Number(promo[36] || 0),
+                                igc: Number(promo[37] || 0),
+                                comisiones_reclutas: Number(promo[38] || 0),
+                                adjunto_ga: String(promo[39] || '')
+                            } : null,
+                            umbrales: {
+                                camino1: { '3d': c1_3d, '2d': c1_2d, '1d': c1_1d },
+                                camino2: { '3d': c2_3d, '2d': c2_2d, '1d': c2_1d },
+                                camino3: { '3d': c3_3d, '2d': c3_2d, '1d': c3_1d }
+                            },
+                            minimos: {
+                                camino1: { '3d': 23100000, '2d': 17955000, '1d': 14700000 },
+                                camino2: { '3d': 4400000, '2d': 3860000, '1d': 3310000 },
+                                camino3: { '3d': 5605000, '2d': 3475500, '1d': 2895000 },
+                                asesores_ta: 4,
+                                comisiones_reclutas: 367500,
+                                limra: 0.86,
+                                igc: 0.9025
+                            },
+                            rangos: {
+                                camino1: { '3d': [1, 3], '2d': [4, 6], '1d': [7, 9] },
+                                camino2: { '3d': [1, 5], '2d': [6, 10], '1d': [11, 15] },
+                                camino3: { '3d': [1, 7], '2d': [8, 14], '1d': [15, 21] }
+                            }
+                        };
+                        campaignDates.convenciones_promotores = fechaCorte;
+                        wb = null; ws = null; data = null;
+                    }
+                } catch(e) { console.warn('⚠️ Convenciones Promotores skip:', e.message); }
             }
             if (global.gc) global.gc();
         };
@@ -459,7 +557,7 @@ const run = async () => {
         const campaigns = {};
         const campaignDates = {};
 
-        const steps = ['mdrt', 'convenciones', 'legion_centurion', 'camino_cumbre', 'graduacion', 'proactiva_tech', 'reto_por_ciento'];
+        const steps = ['mdrt', 'convenciones', 'legion_centurion', 'camino_cumbre', 'graduacion', 'proactiva_tech', 'reto_por_ciento', 'convenciones_promotores'];
         for (const s of steps) {
             runStepInline(s, campaigns, campaignDates, directory, directoryFechas);
         }
@@ -792,6 +890,8 @@ const run = async () => {
             }
             fc.comparativo_vida = extractCutoffDate(wb);
         }
+
+        rg.convenciones_promotores = campaigns.convenciones_promotores;
 
         snapshot.data.campaigns = campaigns;
         snapshot.data.campaignDates = campaignDates;
