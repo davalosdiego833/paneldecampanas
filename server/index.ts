@@ -2146,12 +2146,18 @@ app.get('/api/resumen-general', (req, res) => {
             }
         }
 
+        const pePathCheck = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'pagado_emitido.xlsx');
+        const peAltCheck = path.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'pagado_emitido.xlsx');
+        const peLatest = fs.existsSync(pePathCheck) ? pePathCheck : (fs.existsSync(peAltCheck) ? peAltCheck : null);
+
         const xlsPath1 = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'PagPend.xls');
         const xlsPath2 = path.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'PagPend.xls');
         const xlsPath = fs.existsSync(xlsPath1) ? xlsPath1 : (fs.existsSync(xlsPath2) ? xlsPath2 : null);
 
-        if (xlsPath) {
-            console.log('[API] Encontrado PagPend.xls original. Decriptando y filtrando...');
+        const shouldProcessXlsApi = xlsPath && (!peLatest || fs.statSync(xlsPath).mtimeMs > fs.statSync(peLatest).mtimeMs);
+
+        if (shouldProcessXlsApi) {
+            console.log('[API] Encontrado PagPend.xls original más reciente. Decriptando y filtrando...');
             try {
                 const scriptPath = path.join(BASE_PATH, 'scripts', 'process_pagado_pendiente.py');
                 const localVenv = path.join(BASE_PATH, '.venv', 'bin', 'python');

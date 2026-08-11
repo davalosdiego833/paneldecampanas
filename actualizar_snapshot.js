@@ -467,12 +467,18 @@ const run = async () => {
         const fc = snapshot.data.fechas_corte;
 
         // 2. Reporte Pagado y Pendiente
+        const pePath1 = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'pagado_emitido.xlsx');
+        const pePath2 = path.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'pagado_emitido.xlsx');
+        const pePath = fs.existsSync(pePath1) ? pePath1 : (fs.existsSync(pePath2) ? pePath2 : null);
+
         const xlsPath1 = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'PagPend.xls');
         const xlsPath2 = path.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'PagPend.xls');
         const xlsPath = fs.existsSync(xlsPath1) ? xlsPath1 : (fs.existsSync(xlsPath2) ? xlsPath2 : null);
 
-        if (xlsPath) {
-            console.log('🔄 [SNAPSHOT] Encontrado PagPend.xls original. Decriptando y filtrando...');
+        const shouldProcessXls = xlsPath && (!pePath || fs.statSync(xlsPath).mtimeMs > fs.statSync(pePath).mtimeMs);
+
+        if (shouldProcessXls) {
+            console.log('🔄 [SNAPSHOT] Encontrado PagPend.xls original más reciente. Decriptando y filtrando...');
             try {
                 const scriptPath = path.join(BASE_PATH, 'scripts', 'process_pagado_pendiente.py');
                 const localVenv = path.join(BASE_PATH, '.venv', 'bin', 'python');
@@ -484,8 +490,7 @@ const run = async () => {
             }
         }
 
-        const pePath = path.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'pagado_emitido.xlsx');
-        if (fs.existsSync(pePath)) {
+        if (pePath && fs.existsSync(pePath)) {
             const wb = XLSX.readFile(pePath);
             const ws = wb.Sheets[wb.SheetNames[0]];
             const rawData = XLSX.utils.sheet_to_json(ws, { header: 1 });
@@ -523,12 +528,18 @@ const run = async () => {
         }
 
         // 2b. Reporte Pagado y Pendiente — Reclutas y Temporales
+        const peReclutasPath1 = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'pagado_emitido_reclutas.xlsx');
+        const peReclutasPath2 = path.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'pagado_emitido_reclutas.xlsx');
+        const peReclutasPath = fs.existsSync(peReclutasPath1) ? peReclutasPath1 : (fs.existsSync(peReclutasPath2) ? peReclutasPath2 : null);
+
         const xlsReclutasPath1 = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'PagPendReclutas.xls');
         const xlsReclutasPath2 = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'PagPen Recluta y Temp.xls');
         const xlsReclutasPath = fs.existsSync(xlsReclutasPath1) ? xlsReclutasPath1 : (fs.existsSync(xlsReclutasPath2) ? xlsReclutasPath2 : null);
 
-        if (xlsReclutasPath) {
-            console.log('🔄 [SNAPSHOT] Encontrado PagPendReclutas.xls original. Decriptando y filtrando Reclutas...');
+        const shouldProcessReclutasXls = xlsReclutasPath && (!peReclutasPath || fs.statSync(xlsReclutasPath).mtimeMs > fs.statSync(peReclutasPath).mtimeMs);
+
+        if (shouldProcessReclutasXls) {
+            console.log('🔄 [SNAPSHOT] Encontrado PagPendReclutas.xls original más reciente. Decriptando y filtrando Reclutas...');
             try {
                 const scriptPath = path.join(BASE_PATH, 'scripts', 'process_pagado_pendiente.py');
                 const localVenv = path.join(BASE_PATH, '.venv', 'bin', 'python');
@@ -540,8 +551,7 @@ const run = async () => {
             }
         }
 
-        const peReclutasPath = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'pagado_emitido_reclutas.xlsx');
-        if (fs.existsSync(peReclutasPath)) {
+        if (peReclutasPath && fs.existsSync(peReclutasPath)) {
             const wb = XLSX.readFile(peReclutasPath);
             const ws = wb.Sheets[wb.SheetNames[0]];
             const rawData = XLSX.utils.sheet_to_json(ws, { header: 1 });
