@@ -69,7 +69,7 @@ module.exports = { sendPushNotification };
 
 if (require.main === module) {
     const group = process.argv[2] || 'all';
-    const title = process.argv[3] || 'Ambriz Asesores — Actualización';
+    const title = process.argv[3] || 'Campaña Actualizada';
     const body = process.argv[4] || 'Se han publicado nuevos datos en la plataforma.';
     sendPushNotification({ group, title, body }).then(res => console.log('Resultado CLI Push:', res));
 }

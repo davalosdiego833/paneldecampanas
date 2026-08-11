@@ -879,7 +879,7 @@ const run = async () => {
             }
 
             for (const [date, names] of Object.entries(updatedCampaignsByDate)) {
-                const title = names.length > 1 ? 'Ambriz Asesores — Campañas Actualizadas' : 'Ambriz Asesores — Campaña Actualizada';
+                const title = names.length > 1 ? 'Campañas Actualizadas' : 'Campaña Actualizada';
                 const subject = names.length > 1 ? 'Las campañas' : 'La campaña';
                 const verb = names.length > 1 ? 'han sido actualizadas' : 'ha sido actualizada';
                 const body = `${subject} ${names.length === 2 ? names.join(' y ') : formatList(names)} ${verb} al ${date}.`;
@@ -898,7 +898,7 @@ const run = async () => {
             }
 
             for (const [date, names] of Object.entries(updatedAdminByDate)) {
-                const title = names.length > 1 ? 'Ambriz Asesores — Reportes Administrativos' : 'Ambriz Asesores — Reporte Administrativo';
+                const title = names.length > 1 ? 'Reportes Actualizados' : 'Reporte Actualizado';
                 const subject = names.length > 1 ? 'Los reportes de' : 'El reporte de';
                 const verb = names.length > 1 ? 'han sido actualizados' : 'ha sido actualizado';
                 const body = `${subject} ${names.length === 2 ? names.join(' y ') : formatList(names)} ${verb} al ${date}.`;
