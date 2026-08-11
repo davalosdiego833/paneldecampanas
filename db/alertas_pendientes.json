@@ -1,36 +1,5 @@
 {
-  "generatedAt": "11/8/2026, 2:42:00 a.m.",
-  "totalNew": 3,
-  "alerts": [
-    {
-      "id": "85c8eb07-8568-4893-8f2c-6cd818b4a681",
-      "asesor": "DESIREE DE LA PEÑA OROZCO",
-      "firstName": "Desiree",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "¡Nueva póliza pagada!",
-      "message": "Hola Desiree, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *2 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "c4fcd1a5-249e-451d-af1f-da8c1b0d4a44",
-      "asesor": "OSCAR RAMIREZ RUIZ",
-      "firstName": "Oscar",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "¡Nueva póliza pagada!",
-      "message": "Hola Oscar, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    },
-    {
-      "id": "9ccf3bc7-2112-409a-aaee-5446f0d8cba7",
-      "asesor": "JOSE ANTEMIO OLIVA SANTOS",
-      "firstName": "Jose",
-      "campaign": "pagado_emitido",
-      "type": "positive",
-      "event": "¡Nueva póliza emitida (pendiente de pago)!",
-      "message": "Hola Jose, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
-      "sent": false
-    }
-  ]
+  "generatedAt": "11/8/2026, 10:22:59 a.m.",
+  "totalNew": 0,
+  "alerts": []
 }
