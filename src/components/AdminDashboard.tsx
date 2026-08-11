@@ -170,7 +170,7 @@ const classifyAdvisors = (campaign: string, data: any[]) => {
             const infoLine = `Vida: ${formatCurrency(vida)} · RDA: ${formatCurrency(rda)} · Total: ${formatCurrency(total)}`;
 
             const missingPol = Math.max(0, 30 - polizas);
-            const missingCred = Math.max(0, 588500 - total);
+            const missingCred = Math.max(0, 620000 - total);
             const hasCandados = missingPol <= 0 && missingCred <= 0;
             const isQualified = lugar <= 480 && hasCandados;
 
@@ -1054,7 +1054,7 @@ const CampaignCopyButton: React.FC<{
             const total = Number(row.PA_Total || 0);
             const polizas = Number(row.Polizas || 0);
             const missingPol = Math.max(0, 30 - polizas);
-            const missingCred = Math.max(0, 588500 - total);
+            const missingCred = Math.max(0, 620000 - total);
             const hasCandados = missingPol <= 0 && missingCred <= 0;
             const isQualified = lugar <= 480 && hasCandados;
 

@@ -786,8 +786,8 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
                                 PA_Total: credits, Polizas: pols, Lugar: Number(row.Lugar || 9999),
                                 Lugar_480: Number(row.Lugar_480 || 0), Lugar_228: Number(row.Lugar_228 || 0),
                                 Lugar_108: Number(row.Lugar_108 || 0), Lugar_28: Number(row.Lugar_28 || 0),
-                                Califica: pols >= 30 && credits >= 588500,
-                                Cumple_Polizas: pols >= 30, Cumple_Creditos: credits >= 588500
+                                Califica: pols >= 30 && credits >= 620000,
+                                Cumple_Polizas: pols >= 30, Cumple_Creditos: credits >= 620000
                             });
                         }
 
@@ -904,7 +904,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const pols = Number(row[28] || 0);
         const lugar = Number(row[32] || 0);
         const cumplePolizas = pols >= 30;
-        const cumpleCreditos = credits >= 588500;
+        const cumpleCreditos = credits >= 620000;
         const califica = cumplePolizas && cumpleCreditos;
         return res.json({
             'Asesor': advisor, 'Clave': row[7] || '', 'Fecha_Corte': String(ws['B17']?.v || ""),

@@ -21,7 +21,7 @@ const Convenciones: React.FC<Props> = ({ data }) => {
     // Qualification Logic (Smnylo specific thresholds)
     // Use data provided by API if exists, otherwise calculate
     const cumple_polizas = data.Cumple_Polizas !== undefined ? Boolean(data.Cumple_Polizas) : (polizas >= 30);
-    const cumple_creditos = data.Cumple_Creditos !== undefined ? Boolean(data.Cumple_Creditos) : (creditos_totales >= 588500);
+    const cumple_creditos = data.Cumple_Creditos !== undefined ? Boolean(data.Cumple_Creditos) : (creditos_totales >= 620000);
     const califica = data.Califica !== undefined ? Boolean(data.Califica) : (cumple_polizas && cumple_creditos);
 
     let destino_alcanzado = "";
@@ -61,7 +61,7 @@ const Convenciones: React.FC<Props> = ({ data }) => {
                 fontWeight: 600,
                 textAlign: 'center'
             }}>
-                Dato importante: Para clasificar a convenciones necesitamos un mínimo de <b>30 pólizas</b> y un mínimo de <b>$588,500</b> de créditos.
+                Dato importante: Para clasificar a convenciones necesitamos un mínimo de <b>30 pólizas</b> y un mínimo de <b>$620,000</b> de créditos.
             </div>
 
             {/* Nivel de Convención */}
@@ -97,7 +97,7 @@ const Convenciones: React.FC<Props> = ({ data }) => {
                         <p style={{ fontSize: '0.8rem', opacity: 0.6, marginBottom: '4px', textTransform: 'uppercase' }}>Créditos Totales</p>
                         <p style={{ fontSize: '1.5rem', fontWeight: 800, color: cumple_creditos ? 'var(--success-green)' : 'var(--danger-red)' }}>{formatCurrency(creditos_totales)}</p>
                         <p style={{ fontSize: '0.7rem', color: cumple_creditos ? 'var(--success-green)' : 'var(--danger-red)', fontWeight: 700 }}>
-                            {cumple_creditos ? '✅ Mínimo OK' : `❌ Faltan ${formatCurrency(Math.max(0, 588500 - creditos_totales))}`}
+                            {cumple_creditos ? '✅ Mínimo OK' : `❌ Faltan ${formatCurrency(Math.max(0, 620000 - creditos_totales))}`}
                         </p>
                     </div>
                     <div className="glass-card" style={{ textAlign: 'center', borderBottom: cumple_polizas ? '4px solid var(--success-green)' : '4px solid var(--danger-red)' }}>

@@ -51,6 +51,9 @@ const getProtectedPath = (folder) => {
     const f = folder === 'proactiva_tech' ? 'proactivatech' : folder;
     const cwd = process.cwd();
     const candidates = [
+        `/home/u211138134/domains/panel.ambrizydavalos.com/${f}`,
+        `/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/${f}`,
+        `/home/u211138134/domains/panel.ambrizydavalos.com/public_html/${f}`,
         path.join(BASE_PATH, f),
         path.join(cwd, f),
         path.join(safeDirname, f),
@@ -69,21 +72,37 @@ const ADMIN_PATH = getProtectedPath('administrador');
 function findSnapshotPath() {
     const cwd = process.cwd();
     const candidates = [
+        '/home/u211138134/domains/panel.ambrizydavalos.com/db/resumen_snapshot.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/resumen_snapshot.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json',
+        '/home/u211138134/public_html/db/resumen_snapshot.json',
         path.join(cwd, 'db', 'resumen_snapshot.json'),
         path.join(cwd, '..', 'db', 'resumen_snapshot.json'),
+        path.join(cwd, '../..', 'db', 'resumen_snapshot.json'),
         path.join(safeDirname, 'db', 'resumen_snapshot.json'),
         path.join(safeDirname, '..', 'db', 'resumen_snapshot.json'),
         path.join(safeDirname, '../..', 'db', 'resumen_snapshot.json'),
+        path.join(safeDirname, '../../..', 'db', 'resumen_snapshot.json'),
         path.join(BASE_PATH, 'db', 'resumen_snapshot.json'),
         path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json'),
-        SNAPSHOT_PATH,
-        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/resumen_snapshot.json',
-        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json',
-        '/home/u211138134/public_html/db/resumen_snapshot.json'
+        SNAPSHOT_PATH
     ];
-    const found = candidates.find(p => safeExists(p));
-    if (found)
-        return found;
+    let newestPath = '';
+    let newestMtime = -1;
+    for (const p of candidates) {
+        if (safeExists(p)) {
+            try {
+                const stat = fs.statSync(p);
+                if (stat.mtimeMs > newestMtime) {
+                    newestMtime = stat.mtimeMs;
+                    newestPath = p;
+                }
+            }
+            catch (e) { }
+        }
+    }
+    if (newestPath)
+        return newestPath;
     return path.join(cwd, 'db', 'resumen_snapshot.json');
 }
 app.use(cors());
@@ -445,6 +464,9 @@ const extractCutoffDate = (wb, type) => {
 const readExcelData = (folderName, options = {}) => {
     const cwd = process.cwd();
     const candidateFolders = [
+        `/home/u211138134/domains/panel.ambrizydavalos.com/${folderName}`,
+        `/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/${folderName}`,
+        `/home/u211138134/domains/panel.ambrizydavalos.com/public_html/${folderName}`,
         getProtectedPath(folderName),
         path.join(BASE_PATH, folderName),
         path.join(cwd, folderName),
@@ -727,8 +749,8 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
                                 PA_Total: credits, Polizas: pols, Lugar: Number(row.Lugar || 9999),
                                 Lugar_480: Number(row.Lugar_480 || 0), Lugar_228: Number(row.Lugar_228 || 0),
                                 Lugar_108: Number(row.Lugar_108 || 0), Lugar_28: Number(row.Lugar_28 || 0),
-                                Califica: pols >= 30 && credits >= 588500,
-                                Cumple_Polizas: pols >= 30, Cumple_Creditos: credits >= 588500
+                                Califica: pols >= 30 && credits >= 620000,
+                                Cumple_Polizas: pols >= 30, Cumple_Creditos: credits >= 620000
                             });
                         }
                         if (normName === 'camino_cumbre') {
@@ -849,7 +871,7 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
         const pols = Number(row[28] || 0);
         const lugar = Number(row[32] || 0);
         const cumplePolizas = pols >= 30;
-        const cumpleCreditos = credits >= 588500;
+        const cumpleCreditos = credits >= 620000;
         const califica = cumplePolizas && cumpleCreditos;
         return res.json({
             'Asesor': advisor, 'Clave': row[7] || '', 'Fecha_Corte': String(ws['B17']?.v || ""),
@@ -2163,11 +2185,15 @@ app.get('/api/resumen-general', (req, res) => {
                 }));
             }
         }
+        const pePathCheck = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'pagado_emitido.xlsx');
+        const peAltCheck = path.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'pagado_emitido.xlsx');
+        const peLatest = fs.existsSync(pePathCheck) ? pePathCheck : (fs.existsSync(peAltCheck) ? peAltCheck : null);
         const xlsPath1 = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'PagPend.xls');
         const xlsPath2 = path.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'PagPend.xls');
         const xlsPath = fs.existsSync(xlsPath1) ? xlsPath1 : (fs.existsSync(xlsPath2) ? xlsPath2 : null);
-        if (xlsPath) {
-            console.log('[API] Encontrado PagPend.xls original. Decriptando y filtrando...');
+        const shouldProcessXlsApi = xlsPath && (!peLatest || fs.statSync(xlsPath).mtimeMs > fs.statSync(peLatest).mtimeMs);
+        if (shouldProcessXlsApi) {
+            console.log('[API] Encontrado PagPend.xls original más reciente. Decriptando y filtrando...');
             try {
                 const scriptPath = path.join(BASE_PATH, 'scripts', 'process_pagado_pendiente.py');
                 const localVenv = path.join(BASE_PATH, '.venv', 'bin', 'python');
