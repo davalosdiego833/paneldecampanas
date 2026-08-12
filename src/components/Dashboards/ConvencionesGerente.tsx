@@ -409,7 +409,7 @@ export const ConvencionesGerente: React.FC<Props> = ({ data }) => {
                                 justifyContent: 'center'
                             }}>
                                 <span style={{ fontSize: '0.68rem', color: '#8c94a8', textTransform: 'uppercase', fontWeight: 700 }}>Gerencia</span>
-                                <span style={{ fontSize: '1.3rem', fontWeight: 900, color: '#ffffff' }}>Mat {gerencia.mat}</span>
+                                <span style={{ fontSize: '1.3rem', fontWeight: 900, color: '#ffffff' }}>Suc {gerencia.suc}</span>
                             </div>
                         </div>
                     </div>
