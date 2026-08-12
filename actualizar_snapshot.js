@@ -613,7 +613,8 @@ const run = async () => {
         };
 
         const args = process.argv.slice(2);
-        const isNoPush = args.includes('--no-push') || args.includes('--silent');
+        const isNotify = args.includes('--notify');
+        const isNoPush = !isNotify || args.includes('--no-push') || args.includes('--silent');
         const stepArg = args.find(arg => arg.startsWith('--step='));
         const step = stepArg ? stepArg.split('=')[1] : null;
 
@@ -1054,7 +1055,7 @@ const run = async () => {
             };
 
             if (isNoPush) {
-                console.log('🔇 [PUSH] Notificaciones desactivadas por flag (--no-push / --silent).');
+                console.log('🔇 [PUSH] Modo silencioso por defecto (no se pasò --notify). Sin envìo de notificaciones.');
                 return;
             }
 
