@@ -613,6 +613,7 @@ const run = async () => {
         };
 
         const args = process.argv.slice(2);
+        const isNoPush = args.includes('--no-push') || args.includes('--silent');
         const stepArg = args.find(arg => arg.startsWith('--step='));
         const step = stepArg ? stepArg.split('=')[1] : null;
 
@@ -1052,14 +1053,27 @@ const run = async () => {
                 }
             };
 
+            if (isNoPush) {
+                console.log('🔇 [PUSH] Notificaciones desactivadas por flag (--no-push / --silent).');
+                return;
+            }
+
+            const NOTIFIED_DATES_FILE = path.join(DB_PATH, 'notified_dates.json');
+            let notifiedDates = {};
+            if (fs.existsSync(NOTIFIED_DATES_FILE)) {
+                try { notifiedDates = JSON.parse(fs.readFileSync(NOTIFIED_DATES_FILE, 'utf-8')); } catch (e) { notifiedDates = {}; }
+            }
+
             // 1. Detectar Cambios en Campañas (para Asesores / Promotoría -> group: 'all')
             const updatedCampaignsByDate = {};
             for (const [key, name] of Object.entries(CAMPAIGN_NAMES)) {
                 const oldDate = prevDates[key];
                 const newDate = newDates[key];
-                if (newDate && newDate !== oldDate) {
+                const lastNotified = notifiedDates[key];
+                if (newDate && newDate !== oldDate && newDate !== lastNotified) {
                     if (!updatedCampaignsByDate[newDate]) updatedCampaignsByDate[newDate] = [];
                     updatedCampaignsByDate[newDate].push(name);
+                    notifiedDates[key] = newDate;
                 }
             }
 
@@ -1076,9 +1090,11 @@ const run = async () => {
             for (const [key, name] of Object.entries(ADMIN_REPORT_NAMES)) {
                 const oldDate = prevAdminDates[key];
                 const newDate = newAdminDates[key];
-                if (newDate && newDate !== oldDate) {
+                const lastNotified = notifiedDates[key];
+                if (newDate && newDate !== oldDate && newDate !== lastNotified) {
                     if (!updatedAdminByDate[newDate]) updatedAdminByDate[newDate] = [];
                     updatedAdminByDate[newDate].push(name);
+                    notifiedDates[key] = newDate;
                 }
             }
 
@@ -1089,6 +1105,11 @@ const run = async () => {
                 const body = `${subject} ${names.length === 2 ? names.join(' y ') : formatList(names)} ${verb} al ${date}.`;
                 await sendPush('admin', title, body);
             }
+
+            // Guardar registro de fechas notificadas
+            try {
+                fs.writeFileSync(NOTIFIED_DATES_FILE, JSON.stringify(notifiedDates, null, 2));
+            } catch (e) {}
 
         } catch (e) {
             console.warn('⚠️ No se pudieron enviar notificaciones push:', e.message);
