@@ -64,6 +64,9 @@ const App: React.FC = () => {
     };
 
     const handleRoleSelect = (role: 'asesor' | 'admin') => {
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('device_user_role', role);
+        }
         if (role === 'asesor') {
             setPage('welcome');
         } else {
@@ -117,7 +120,10 @@ const App: React.FC = () => {
 
     const pageStr = page as string;
     const isAdminRole = pageStr.startsWith('admin_') || pageStr === 'resumen_promotoria' || pageStr === 'resumen_convenciones' || pageStr === 'gerencia_karen' || pageStr === 'centro_avisos';
-    const activePushRole: 'admin' | 'asesor' = isAdminRole ? 'admin' : 'asesor';
+    
+    // Check stored role so admin device remains tagged as admin even on login/welcome pages
+    const storedRole = typeof window !== 'undefined' ? localStorage.getItem('device_user_role') : null;
+    const activePushRole: 'admin' | 'asesor' = (isAdminRole || storedRole === 'admin') ? 'admin' : 'asesor';
 
     useEffect(() => {
         setOneSignalUserTags(activePushRole, selectedAdvisor || undefined, selectedAdvisor || undefined);

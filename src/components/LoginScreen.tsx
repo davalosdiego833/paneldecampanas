@@ -25,6 +25,9 @@ const LoginScreen: React.FC<Props> = ({ onSelectRole }) => {
 
             const data = await res.json();
             if (data.success) {
+                if (typeof window !== 'undefined') {
+                    localStorage.setItem('device_user_role', 'admin');
+                }
                 // Registrar actividad de admin en DB
                 fetch('/api/activity', {
                     method: 'POST',
