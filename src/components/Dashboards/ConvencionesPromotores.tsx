@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, DollarSign, ShieldCheck, Activity, Calendar, Trophy, ChevronRight, Sparkles, ArrowUpRight, ArrowDownRight, Award, Target, CheckCircle2, XCircle } from 'lucide-react';
+import { Users, DollarSign, ShieldCheck, Activity, Calendar, Trophy, ChevronRight, CheckCircle2, XCircle } from 'lucide-react';
 
 interface Props {
     data: any;
@@ -36,29 +36,28 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data }) => {
     const checkIGC = (promo.igc || 0) >= (minimos?.igc || 0.9025);
     const totalCandadosOk = [checkTA, checkReclutas, checkLIMRA, checkIGC].filter(Boolean).length;
 
-    // Helper for rendering Camino Card in Dribbble Style
+    // Helper for rendering Camino Card (Cleaned up, no subtitle/desglose, Diamantes ordered 1D -> 2D -> 3D)
     const renderCaminoCard = (
         titulo: string,
-        subtitulo: string,
         comisionesActuales: number,
         rankingActual: number,
-        caminoKey: 'camino1' | 'camino2' | 'camino3',
-        desgloseItems: { label: string; val: number }[]
+        caminoKey: 'camino1' | 'camino2' | 'camino3'
     ) => {
         const u = umbrales?.[caminoKey] || {};
         const m = minimos?.[caminoKey] || {};
         const r = rangos?.[caminoKey] || {};
 
+        // Ordered: 1 Diamante -> 2 Diamantes -> 3 Diamantes
         const diamantes = [
             {
-                key: '3d',
-                nombre: '3 Diamantes',
-                rango: `Lugares ${r['3d']?.[0]} al ${r['3d']?.[1]}`,
-                maxLugar: r['3d']?.[1] || 3,
-                minimoComision: m['3d'] || 0,
-                ultimoLugarComision: u['3d'] || 0,
-                accentColor: '#FFB800',
-                badgeBg: 'rgba(255, 184, 0, 0.12)',
+                key: '1d',
+                nombre: '1 Diamante',
+                rango: `Lugares ${r['1d']?.[0]} al ${r['1d']?.[1]}`,
+                maxLugar: r['1d']?.[1] || 9,
+                minimoComision: m['1d'] || 0,
+                ultimoLugarComision: u['1d'] || 0,
+                accentColor: '#3A86FF',
+                badgeBg: 'rgba(58, 134, 255, 0.12)',
             },
             {
                 key: '2d',
@@ -71,14 +70,14 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data }) => {
                 badgeBg: 'rgba(0, 230, 118, 0.12)',
             },
             {
-                key: '1d',
-                nombre: '1 Diamante',
-                rango: `Lugares ${r['1d']?.[0]} al ${r['1d']?.[1]}`,
-                maxLugar: r['1d']?.[1] || 9,
-                minimoComision: m['1d'] || 0,
-                ultimoLugarComision: u['1d'] || 0,
-                accentColor: '#3A86FF',
-                badgeBg: 'rgba(58, 134, 255, 0.12)',
+                key: '3d',
+                nombre: '3 Diamantes',
+                rango: `Lugares ${r['3d']?.[0]} al ${r['3d']?.[1]}`,
+                maxLugar: r['3d']?.[1] || 3,
+                minimoComision: m['3d'] || 0,
+                ultimoLugarComision: u['3d'] || 0,
+                accentColor: '#FFB800',
+                badgeBg: 'rgba(255, 184, 0, 0.12)',
             }
         ];
 
@@ -93,22 +92,17 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data }) => {
                     padding: '28px',
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: '24px',
+                    gap: '20px',
                     boxShadow: '0 12px 40px rgba(0, 0, 0, 0.25)'
                 }}
             >
                 {/* Header Camino */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px' }}>
-                    <div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                            <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#ffffff', margin: 0, letterSpacing: '-0.3px' }}>
-                                {titulo}
-                            </h3>
-                            <ChevronRight size={18} style={{ color: '#8c94a8' }} />
-                        </div>
-                        <p style={{ fontSize: '0.85rem', color: '#8c94a8', margin: '4px 0 0 0' }}>
-                            {subtitulo}
-                        </p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#ffffff', margin: 0, letterSpacing: '-0.3px' }}>
+                            {titulo}
+                        </h3>
+                        <ChevronRight size={18} style={{ color: '#8c94a8' }} />
                     </div>
 
                     <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
@@ -135,27 +129,7 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data }) => {
                     </div>
                 </div>
 
-                {/* Horizontal Desglose Strip (Dribbble pill style) */}
-                {desgloseItems && desgloseItems.length > 0 && (
-                    <div style={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        gap: '12px',
-                        background: '#121420',
-                        padding: '14px 20px',
-                        borderRadius: '14px',
-                        border: '1px solid rgba(255, 255, 255, 0.04)'
-                    }}>
-                        {desgloseItems.map((item, idx) => (
-                            <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: '2px', marginRight: '24px' }}>
-                                <span style={{ fontSize: '0.7rem', color: '#8c94a8', fontWeight: 600 }}>{item.label}</span>
-                                <span style={{ fontSize: '0.92rem', fontWeight: 700, color: '#ffffff' }}>{formatCurrency(item.val)}</span>
-                            </div>
-                        ))}
-                    </div>
-                )}
-
-                {/* Metas de Calificación (3 Diamantes Cards Grid) */}
+                {/* Metas de Calificación (1D -> 2D -> 3D) */}
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', marginTop: '4px' }}>
                     {diamantes.map((d) => {
                         const calificaPorLugar = rankingActual > 0 && rankingActual <= d.maxLugar;
@@ -218,7 +192,7 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data }) => {
                                     </div>
                                 </div>
 
-                                {/* Progress Bar (Sleek Dribbble Style) */}
+                                {/* Progress Bar */}
                                 <div>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.73rem', marginBottom: '6px' }}>
                                         <span style={{ color: '#8c94a8', fontWeight: 600 }}>Avance a Mínimo</span>
@@ -282,18 +256,15 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data }) => {
             maxWidth: '1440px',
             margin: '0 auto'
         }}>
-            {/* Top Bar Header (Dribbble Header Layout) */}
+            {/* Top Bar Header (Simplified Header: Title & Cutoff Date) */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
                 <div>
                     <h1 style={{ fontSize: '1.9rem', fontWeight: 900, margin: 0, letterSpacing: '-0.5px', color: '#ffffff' }}>
                         Convenciones Promotores 2026 - 2027
                     </h1>
-                    <p style={{ fontSize: '0.9rem', color: '#8c94a8', margin: '6px 0 0 0' }}>
-                        Estatus de la Promotoría <strong style={{ color: '#ffffff' }}>Mat {promo.mat}</strong> — {promo.oficina}
-                    </p>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     {/* Date Pill */}
                     <div style={{
                         padding: '10px 18px',
@@ -310,28 +281,13 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data }) => {
                         <Calendar size={16} />
                         Fecha de corte: {fechaCorte}
                     </div>
-
-                    {/* Overall Rank Pill */}
-                    <div style={{
-                        padding: '10px 20px',
-                        background: 'linear-gradient(135deg, rgba(255, 184, 0, 0.15) 0%, rgba(255, 42, 122, 0.15) 100%)',
-                        border: '1px solid rgba(255, 184, 0, 0.3)',
-                        borderRadius: '14px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '10px'
-                    }}>
-                        <Trophy size={18} style={{ color: '#FFB800' }} />
-                        <span style={{ fontSize: '0.75rem', color: '#8c94a8', textTransform: 'uppercase', fontWeight: 700 }}>Lugar General:</span>
-                        <span style={{ fontSize: '1.2rem', fontWeight: 900, color: '#FFB800' }}>#{promo.lugar_general}</span>
-                    </div>
                 </div>
             </div>
 
             {/* Upper Grid (Top Pages + Conversion Gauge Style) */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
                 
-                {/* 2x2 Grid: Metas y Candados Obligatorios (Top Left Card Style) */}
+                {/* 2x2 Grid: Metas y Candados Obligatorios */}
                 <div style={{
                     gridColumn: 'span 2',
                     background: '#181a29',
@@ -530,7 +486,7 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data }) => {
                     </div>
                 </div>
 
-                {/* Right Side Summary Panel (Conversion Gauge style from Dribbble) */}
+                {/* Right Side Summary Panel */}
                 <div style={{
                     background: '#181a29',
                     borderRadius: '20px',
@@ -546,13 +502,13 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data }) => {
                         Estatus por Camino
                     </h2>
 
-                    {/* Circular Ring Graphic / Mini Gauge */}
+                    {/* Circular Ring Graphic */}
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10px 0' }}>
                         <div style={{
                             width: '140px',
                             height: '140px',
                             borderRadius: '50%',
-                            background: 'conic-gradient(#FFB800 0% 33%, #00E676 33% 66%, #3A86FF 66% 100%)',
+                            background: 'conic-gradient(#3A86FF 0% 33%, #00E676 33% 66%, #FFB800 66% 100%)',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -578,7 +534,7 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data }) => {
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.83rem' }}>
                             <span style={{ color: '#8c94a8', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FFB800' }} />
+                                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3A86FF' }} />
                                 1er Camino (Comisiones Totales)
                             </span>
                             <span style={{ fontWeight: 800, color: '#ffffff' }}>#{promo.c1_ranking}</span>
@@ -592,7 +548,7 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data }) => {
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.83rem' }}>
                             <span style={{ color: '#8c94a8', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3A86FF' }} />
+                                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FFB800' }} />
                                 3er Camino (Nueva Org.)
                             </span>
                             <span style={{ fontWeight: 800, color: '#ffffff' }}>#{promo.c3_ranking}</span>
@@ -602,7 +558,7 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data }) => {
 
             </div>
 
-            {/* Main Section: The 3 Caminos (Detailed Dribbble Cards) */}
+            {/* Main Section: The 3 Caminos (Detailed Cleaned-Up Cards) */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                 <h2 style={{ fontSize: '1.3rem', fontWeight: 900, margin: 0, color: '#ffffff', letterSpacing: '-0.3px' }}>
                     🏆 Evaluación Detallada por Caminos
@@ -611,44 +567,25 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data }) => {
                 {/* 1er Camino */}
                 {renderCaminoCard(
                     '1er Camino — Comisiones Iniciales de Todos los Ramos',
-                    'Aplica comisiones iniciales de Vida, GMM Ind, DxN, Vida GyC y GMM GyC.',
                     promo.c1_comisiones_totales,
                     promo.c1_ranking,
-                    'camino1',
-                    [
-                        { label: 'Vida Acumulado', val: promo.c1_vida },
-                        { label: 'GMM & Acc. Ind.', val: promo.c1_gmm_ind },
-                        { label: 'DxN', val: promo.c1_dxn },
-                        { label: 'Vida GyC', val: promo.c1_vida_gyc },
-                        { label: 'GMM GyC', val: promo.c1_gmm_gyc },
-                        { label: 'Conv. al Doble', val: promo.c1_conv_doble }
-                    ]
+                    'camino1'
                 )}
 
                 {/* 2do Camino */}
                 {renderCaminoCard(
                     '2do Camino — Comisiones Asesores 12 Meses',
-                    'Comisiones generadas por la fuerza de ventas con antigüedad de 12 meses o menos.',
                     promo.c2_total,
                     promo.c2_ranking,
-                    'camino2',
-                    [
-                        { label: 'Vida Asesores 12m', val: promo.c2_vida_12m },
-                        { label: 'Conv. al Doble', val: promo.c2_conv_doble }
-                    ]
+                    'camino2'
                 )}
 
                 {/* 3er Camino */}
                 {renderCaminoCard(
                     '3er Camino — Comisiones Nueva Organización',
-                    'Comisiones de la nueva estructura de promotoría y desarrollo.',
                     promo.c3_total,
                     promo.c3_ranking,
-                    'camino3',
-                    [
-                        { label: 'Nueva Organización', val: promo.c3_nueva_org },
-                        { label: 'Conv. al Doble', val: promo.c3_conv_doble }
-                    ]
+                    'camino3'
                 )}
             </div>
 
