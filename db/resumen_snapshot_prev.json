@@ -1,5 +1,5 @@
 {
-  "updatedAt": "11/8/2026, 2:16:15 p.m.",
+  "updatedAt": "12/8/2026, 9:56:39 a.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -2276,6 +2276,46 @@
             ]
           }
         }
+      },
+      "convenciones_gerente": {
+        "fecha_corte": "",
+        "gerencia": {
+          "nombre": "KAREN MUNOZ GARCIA",
+          "mat": "2043",
+          "suc": "2856",
+          "c1_total": 53366.07,
+          "c1_ranking": 13,
+          "c2_total": 14077,
+          "c2_ranking": 41,
+          "c3_total": 53366.07,
+          "c3_ranking": 5,
+          "asesores_ta_gerencia": 1,
+          "meta_ta_gerencia": 4,
+          "asesores_ta_promotor": 1,
+          "meta_ta_promotor": 4,
+          "cumple_promotor": true
+        },
+        "primer_lugar": {
+          "c1_total": 257234.46,
+          "c2_total": 566869,
+          "c3_total": 152288.21
+        },
+        "minimos": {
+          "camino1": {
+            "1d": 2100000,
+            "2d": 2365000,
+            "3d": 2900000
+          },
+          "camino2": {
+            "1d": 2760000,
+            "2d": 3307500,
+            "3d": 4960000
+          },
+          "camino3": {
+            "1d": 1160000
+          },
+          "asesores_ta": 4
+        }
       }
     },
     "fechas_corte": {
@@ -3314,6 +3354,46 @@
             ]
           }
         }
+      },
+      "convenciones_gerente": {
+        "fecha_corte": "",
+        "gerencia": {
+          "nombre": "KAREN MUNOZ GARCIA",
+          "mat": "2043",
+          "suc": "2856",
+          "c1_total": 53366.07,
+          "c1_ranking": 13,
+          "c2_total": 14077,
+          "c2_ranking": 41,
+          "c3_total": 53366.07,
+          "c3_ranking": 5,
+          "asesores_ta_gerencia": 1,
+          "meta_ta_gerencia": 4,
+          "asesores_ta_promotor": 1,
+          "meta_ta_promotor": 4,
+          "cumple_promotor": true
+        },
+        "primer_lugar": {
+          "c1_total": 257234.46,
+          "c2_total": 566869,
+          "c3_total": 152288.21
+        },
+        "minimos": {
+          "camino1": {
+            "1d": 2100000,
+            "2d": 2365000,
+            "3d": 2900000
+          },
+          "camino2": {
+            "1d": 2760000,
+            "2d": 3307500,
+            "3d": 4960000
+          },
+          "camino3": {
+            "1d": 1160000
+          },
+          "asesores_ta": 4
+        }
       }
     },
     "campaignDates": {
@@ -3324,7 +3404,8 @@
       "graduacion": "31 de julio de 2026",
       "proactiva_tech": "31 de julio 2026",
       "reto_por_ciento": "31 DE JULIO 2026",
-      "convenciones_promotores": "31 de julio 2026"
+      "convenciones_promotores": "31 de julio 2026",
+      "convenciones_gerente": ""
     }
   }
 }

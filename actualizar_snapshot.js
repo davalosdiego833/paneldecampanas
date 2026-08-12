@@ -970,6 +970,9 @@ const run = async () => {
         rg.convenciones_promotores = campaigns.convenciones_promotores;
         rg.convenciones_gerente = campaigns.convenciones_gerente;
 
+        fc.convenciones_promotores = campaigns.convenciones_promotores?.fecha_corte || '';
+        fc.convenciones_gerente = campaigns.convenciones_gerente?.fecha_corte || '';
+
         snapshot.data.campaigns = campaigns;
         snapshot.data.campaignDates = campaignDates;
 
@@ -997,7 +1000,7 @@ const run = async () => {
 
             const CAMPAIGN_NAMES = {
                 mdrt: 'MDRT',
-                convenciones: 'Convenciones',
+                convenciones: 'Convención Asesores',
                 legion_centurion: 'Legión Centurión',
                 camino_cumbre: 'Camino a la Cumbre',
                 graduacion: 'Graduación',
@@ -1010,7 +1013,9 @@ const run = async () => {
                 pagado_pendiente_reclutas: 'Pagado / Pendiente (Reclutas)',
                 asesores_sin_emision: 'Asesores sin Emisión',
                 proactivos: 'Proactivos',
-                comparativo_vida: 'Comparativo de Vida'
+                comparativo_vida: 'Comparativo de Vida',
+                convenciones_promotores: 'Convención Promotoría',
+                convenciones_gerente: 'Convención Gerencia'
             };
 
             const formatList = (arr) => {

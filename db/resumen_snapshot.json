@@ -1,5 +1,5 @@
 {
-  "updatedAt": "12/8/2026, 9:56:39 a.m.",
+  "updatedAt": "12/8/2026, 11:21:56 a.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -2278,7 +2278,7 @@
         }
       },
       "convenciones_gerente": {
-        "fecha_corte": "",
+        "fecha_corte": "31 de julio 2026",
         "gerencia": {
           "nombre": "KAREN MUNOZ GARCIA",
           "mat": "2043",
@@ -2323,7 +2323,9 @@
       "pagado_pendiente_reclutas": "7 de agosto de 2026",
       "asesores_sin_emision": "30 de JUL de 2026",
       "proactivos": "28 de julio de 2026",
-      "comparativo_vida": "29 de julio de 2026"
+      "comparativo_vida": "29 de julio de 2026",
+      "convenciones_promotores": "31 de julio 2026",
+      "convenciones_gerente": "31 de julio 2026"
     },
     "campaigns": {
       "mdrt": [
@@ -3356,7 +3358,7 @@
         }
       },
       "convenciones_gerente": {
-        "fecha_corte": "",
+        "fecha_corte": "31 de julio 2026",
         "gerencia": {
           "nombre": "KAREN MUNOZ GARCIA",
           "mat": "2043",
@@ -3405,7 +3407,7 @@
       "proactiva_tech": "31 de julio 2026",
       "reto_por_ciento": "31 DE JULIO 2026",
       "convenciones_promotores": "31 de julio 2026",
-      "convenciones_gerente": ""
+      "convenciones_gerente": "31 de julio 2026"
     }
   }
 }
