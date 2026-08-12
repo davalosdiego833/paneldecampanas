@@ -37,9 +37,22 @@ const sendOneSignalNotification = async ({ appId, apiKey, group, title, body, ur
             app_id: appId,
             headings: { en: title, es: title },
             contents: { en: body, es: body },
-            url: url && url.startsWith('http') ? url : `https://panel.ambrizydavalos.com${url || '/'}`,
-            included_segments: ['Subscribers', 'Total Subscriptions', 'All']
+            url: url && url.startsWith('http') ? url : `https://panel.ambrizydavalos.com${url || '/'}`
         };
+
+        // Filter by role tag when group is NOT 'all'
+        if (group === 'admin') {
+            payload.filters = [
+                { field: 'tag', key: 'role', relation: '=', value: 'admin' }
+            ];
+        } else if (group === 'asesor') {
+            payload.filters = [
+                { field: 'tag', key: 'role', relation: '=', value: 'asesor' }
+            ];
+        } else {
+            // group === 'all' -> send to everyone
+            payload.included_segments = ['Subscribers', 'Total Subscriptions', 'All'];
+        }
 
         const data = JSON.stringify(payload);
 
@@ -125,7 +138,14 @@ const sendPushNotification = async ({ group = 'all', title, body, url = '/', ico
     const activeSubs = [];
 
     for (const sub of subscriptions) {
-        const isTarget = group === 'all' || group === 'admin' || (group === 'asesor' && (sub.role === 'asesor' || !sub.role));
+        let isTarget = false;
+        if (group === 'all') {
+            isTarget = true;
+        } else if (group === 'admin') {
+            isTarget = sub.role === 'admin';
+        } else if (group === 'asesor') {
+            isTarget = sub.role === 'asesor' || !sub.role;
+        }
         if (isTarget && sub.subscription && sub.subscription.endpoint) {
             try {
                 const pushOptions = {
