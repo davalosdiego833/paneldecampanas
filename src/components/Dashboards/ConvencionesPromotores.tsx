@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, CheckCircle, XCircle, AlertTriangle, Calendar, ShieldCheck, TrendingUp, DollarSign, Users, Sparkles } from 'lucide-react';
+import { Users, DollarSign, ShieldCheck, Activity, Calendar, Trophy, ChevronRight, Sparkles, ArrowUpRight, ArrowDownRight, Award, Target, CheckCircle2, XCircle } from 'lucide-react';
 
 interface Props {
     data: any;
@@ -11,9 +11,9 @@ const formatCurrency = (val: number) =>
     new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(val || 0);
 
 const formatPercent = (val: number) =>
-    ((val || 0) * 100).toFixed(2) + '%';
+    ((val || 0) * 100).toFixed(1) + '%';
 
-export const ConvencionesPromotores: React.FC<Props> = ({ data, themeMode = 'dark' }) => {
+export const ConvencionesPromotores: React.FC<Props> = ({ data }) => {
     const cpData = data?.convenciones_promotores || data?.campaigns?.convenciones_promotores;
     const promo = cpData?.promotoria;
     const umbrales = cpData?.umbrales;
@@ -23,8 +23,8 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data, themeMode = 'dar
 
     if (!promo) {
         return (
-            <div style={{ textAlign: 'center', padding: '60px', color: 'var(--text-secondary)' }}>
-                No hay información disponible de convenciones para la promotoría.
+            <div style={{ textAlign: 'center', padding: '80px 20px', color: '#8c94a8' }}>
+                <p style={{ fontSize: '1.1rem', fontWeight: 600 }}>No hay información disponible de convenciones para la promotoría.</p>
             </div>
         );
     }
@@ -34,9 +34,9 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data, themeMode = 'dar
     const checkReclutas = (promo.comisiones_reclutas || 0) >= (minimos?.comisiones_reclutas || 367500);
     const checkLIMRA = (promo.limra || 0) >= (minimos?.limra || 0.86);
     const checkIGC = (promo.igc || 0) >= (minimos?.igc || 0.9025);
-    const candadosCumplidos = checkTA && checkReclutas && checkLIMRA && checkIGC;
+    const totalCandadosOk = [checkTA, checkReclutas, checkLIMRA, checkIGC].filter(Boolean).length;
 
-    // Helper for rendering Camino Section
+    // Helper for rendering Camino Card in Dribbble Style
     const renderCaminoCard = (
         titulo: string,
         subtitulo: string,
@@ -57,9 +57,8 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data, themeMode = 'dar
                 maxLugar: r['3d']?.[1] || 3,
                 minimoComision: m['3d'] || 0,
                 ultimoLugarComision: u['3d'] || 0,
-                badgeColor: '#FBBF24',
-                bgColor: 'rgba(251, 191, 36, 0.08)',
-                borderColor: 'rgba(251, 191, 36, 0.3)'
+                accentColor: '#FFB800',
+                badgeBg: 'rgba(255, 184, 0, 0.12)',
             },
             {
                 key: '2d',
@@ -68,9 +67,8 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data, themeMode = 'dar
                 maxLugar: r['2d']?.[1] || 6,
                 minimoComision: m['2d'] || 0,
                 ultimoLugarComision: u['2d'] || 0,
-                badgeColor: '#34D399',
-                bgColor: 'rgba(52, 211, 153, 0.08)',
-                borderColor: 'rgba(52, 211, 153, 0.3)'
+                accentColor: '#00E676',
+                badgeBg: 'rgba(0, 230, 118, 0.12)',
             },
             {
                 key: '1d',
@@ -79,321 +77,536 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data, themeMode = 'dar
                 maxLugar: r['1d']?.[1] || 9,
                 minimoComision: m['1d'] || 0,
                 ultimoLugarComision: u['1d'] || 0,
-                badgeColor: '#60A5FA',
-                bgColor: 'rgba(96, 165, 250, 0.08)',
-                borderColor: 'rgba(96, 165, 250, 0.3)'
+                accentColor: '#3A86FF',
+                badgeBg: 'rgba(58, 134, 255, 0.12)',
             }
         ];
 
         return (
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 style={{
-                    background: 'var(--card-bg, #1a1a2e)',
-                    borderRadius: '16px',
-                    border: '1px solid var(--glass-border, rgba(255,255,255,0.1))',
-                    padding: '24px',
-                    boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+                    background: '#181a29',
+                    borderRadius: '20px',
+                    border: '1px solid rgba(255, 255, 255, 0.07)',
+                    padding: '28px',
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: '20px'
+                    gap: '24px',
+                    boxShadow: '0 12px 40px rgba(0, 0, 0, 0.25)'
                 }}
             >
                 {/* Header Camino */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px' }}>
                     <div>
-                        <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary, #fff)', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                            <TrendingUp size={20} style={{ color: '#42A5F5' }} />
-                            {titulo}
-                        </h3>
-                        <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary, #94a3b8)', marginTop: '4px', margin: 0 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#ffffff', margin: 0, letterSpacing: '-0.3px' }}>
+                                {titulo}
+                            </h3>
+                            <ChevronRight size={18} style={{ color: '#8c94a8' }} />
+                        </div>
+                        <p style={{ fontSize: '0.85rem', color: '#8c94a8', margin: '4px 0 0 0' }}>
                             {subtitulo}
                         </p>
                     </div>
 
-                    <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                         <div style={{ textAlign: 'right' }}>
-                            <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary, #94a3b8)', textTransform: 'uppercase', fontWeight: 600 }}>Total Camino</div>
-                            <div style={{ fontSize: '1.3rem', fontWeight: 800, color: '#00E676' }}>{formatCurrency(comisionesActuales)}</div>
-                        </div>
-                        <div style={{
-                            padding: '6px 14px',
-                            background: rankingActual <= 21 ? 'rgba(0,230,118,0.15)' : 'rgba(255,255,255,0.06)',
-                            border: `1px solid ${rankingActual <= 21 ? '#00E676' : 'rgba(255,255,255,0.15)'}`,
-                            borderRadius: '12px',
-                            textAlign: 'center'
-                        }}>
-                            <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary, #94a3b8)', textTransform: 'uppercase' }}>Ranking</div>
-                            <div style={{ fontSize: '1.1rem', fontWeight: 900, color: rankingActual <= 21 ? '#00E676' : 'var(--text-primary, #fff)' }}>
-                                #{rankingActual}
+                            <span style={{ fontSize: '0.72rem', color: '#8c94a8', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.5px' }}>Total Camino</span>
+                            <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#00E676', letterSpacing: '-0.5px' }}>
+                                {formatCurrency(comisionesActuales)}
                             </div>
+                        </div>
+
+                        <div style={{
+                            padding: '8px 16px',
+                            background: rankingActual <= 21 ? 'rgba(0, 230, 118, 0.12)' : 'rgba(255, 255, 255, 0.05)',
+                            border: `1px solid ${rankingActual <= 21 ? 'rgba(0, 230, 118, 0.3)' : 'rgba(255, 255, 255, 0.1)'}`,
+                            borderRadius: '14px',
+                            textAlign: 'center',
+                            minWidth: '85px'
+                        }}>
+                            <span style={{ fontSize: '0.68rem', color: '#8c94a8', textTransform: 'uppercase', fontWeight: 700, display: 'block' }}>Ranking</span>
+                            <span style={{ fontSize: '1.25rem', fontWeight: 900, color: rankingActual <= 21 ? '#00E676' : '#ffffff' }}>
+                                #{rankingActual}
+                            </span>
                         </div>
                     </div>
                 </div>
 
-                {/* Desglose de rubros del camino */}
+                {/* Horizontal Desglose Strip (Dribbble pill style) */}
                 {desgloseItems && desgloseItems.length > 0 && (
                     <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
-                        gap: '10px',
-                        background: 'rgba(255,255,255,0.03)',
-                        padding: '12px 16px',
-                        borderRadius: '12px',
-                        border: '1px solid rgba(255,255,255,0.05)'
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: '12px',
+                        background: '#121420',
+                        padding: '14px 20px',
+                        borderRadius: '14px',
+                        border: '1px solid rgba(255, 255, 255, 0.04)'
                     }}>
                         {desgloseItems.map((item, idx) => (
-                            <div key={idx}>
-                                <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary, #94a3b8)' }}>{item.label}</div>
-                                <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary, #fff)' }}>{formatCurrency(item.val)}</div>
+                            <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: '2px', marginRight: '24px' }}>
+                                <span style={{ fontSize: '0.7rem', color: '#8c94a8', fontWeight: 600 }}>{item.label}</span>
+                                <span style={{ fontSize: '0.92rem', fontWeight: 700, color: '#ffffff' }}>{formatCurrency(item.val)}</span>
                             </div>
                         ))}
                     </div>
                 )}
 
-                {/* Niveles de Diamantes */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                    <h4 style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-secondary, #94a3b8)', textTransform: 'uppercase', margin: 0, letterSpacing: '0.5px' }}>
-                        Metas de Calificación y Posición del Último Lugar:
-                    </h4>
+                {/* Metas de Calificación (3 Diamantes Cards Grid) */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', marginTop: '4px' }}>
+                    {diamantes.map((d) => {
+                        const calificaPorLugar = rankingActual > 0 && rankingActual <= d.maxLugar;
+                        const calificaPorMinimo = comisionesActuales >= d.minimoComision;
+                        const faltaMinimo = Math.max(0, d.minimoComision - comisionesActuales);
+                        const faltaUltimoLugar = Math.max(0, d.ultimoLugarComision - comisionesActuales);
+                        const pctMinimo = Math.min(100, (comisionesActuales / (d.minimoComision || 1)) * 100);
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '14px' }}>
-                        {diamantes.map((d) => {
-                            const calificaPorLugar = rankingActual > 0 && rankingActual <= d.maxLugar;
-                            const calificaPorMonomo = comisionesActuales >= d.minimoComision;
-                            const faltaMonomo = Math.max(0, d.minimoComision - comisionesActuales);
-                            const faltaUltimoLugar = Math.max(0, d.ultimoLugarComision - comisionesActuales);
-
-                            const pctMonomo = Math.min(100, (comisionesActuales / (d.minimoComision || 1)) * 100);
-
-                            return (
-                                <div
-                                    key={d.key}
-                                    style={{
-                                        background: d.bgColor,
-                                        border: `1px solid ${d.borderColor}`,
-                                        borderRadius: '14px',
-                                        padding: '16px',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        gap: '12px'
-                                    }}
-                                >
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                        <span style={{ fontSize: '1rem', fontWeight: 800, color: d.badgeColor, display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                            <Sparkles size={16} />
+                        return (
+                            <div
+                                key={d.key}
+                                style={{
+                                    background: '#121420',
+                                    borderRadius: '16px',
+                                    border: '1px solid rgba(255, 255, 255, 0.06)',
+                                    padding: '20px',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'space-between',
+                                    gap: '16px',
+                                    position: 'relative',
+                                    overflow: 'hidden'
+                                }}
+                            >
+                                {/* Top Badge Header */}
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                        <div style={{
+                                            width: '10px',
+                                            height: '10px',
+                                            borderRadius: '50%',
+                                            background: d.accentColor,
+                                            boxShadow: `0 0 10px ${d.accentColor}`
+                                        }} />
+                                        <span style={{ fontSize: '1.05rem', fontWeight: 800, color: '#ffffff' }}>
                                             {d.nombre}
                                         </span>
-                                        <span style={{ fontSize: '0.75rem', fontWeight: 700, background: 'rgba(255,255,255,0.1)', padding: '3px 8px', borderRadius: '6px', color: 'var(--text-primary, #fff)' }}>
-                                            {d.rango}
-                                        </span>
                                     </div>
+                                    <span style={{
+                                        fontSize: '0.72rem',
+                                        fontWeight: 700,
+                                        background: d.badgeBg,
+                                        color: d.accentColor,
+                                        padding: '4px 10px',
+                                        borderRadius: '8px'
+                                    }}>
+                                        {d.rango}
+                                    </span>
+                                </div>
 
-                                    {/* Mínimo de Comisiones Requerido */}
-                                    <div style={{ fontSize: '0.82rem', color: 'var(--text-primary, #fff)', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                            <span style={{ color: 'var(--text-secondary, #94a3b8)' }}>Mínimo de Campaña:</span>
-                                            <span style={{ fontWeight: 700 }}>{formatCurrency(d.minimoComision)}</span>
-                                        </div>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                            <span style={{ color: 'var(--text-secondary, #94a3b8)' }}>Último Lugar en Excel (#{d.maxLugar}):</span>
-                                            <span style={{ fontWeight: 700, color: d.badgeColor }}>{formatCurrency(d.ultimoLugarComision)}</span>
-                                        </div>
+                                {/* Numbers Breakdown */}
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.83rem' }}>
+                                        <span style={{ color: '#8c94a8' }}>Mínimo de Campaña</span>
+                                        <span style={{ fontWeight: 800, color: '#ffffff' }}>{formatCurrency(d.minimoComision)}</span>
                                     </div>
-
-                                    {/* Progreso Visual */}
-                                    <div>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-secondary, #94a3b8)', marginBottom: '4px' }}>
-                                            <span>Avance hacia Mínimo</span>
-                                            <span style={{ fontWeight: 700, color: d.badgeColor }}>{pctMonomo.toFixed(1)}%</span>
-                                        </div>
-                                        <div style={{ height: '8px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px', overflow: 'hidden' }}>
-                                            <div style={{ height: '100%', width: `${pctMonomo}%`, background: d.badgeColor, borderRadius: '4px', transition: 'width 0.5s ease' }} />
-                                        </div>
-                                    </div>
-
-                                    {/* Status / Faltantes */}
-                                    <div style={{ paddingTop: '8px', borderTop: '1px solid rgba(255,255,255,0.08)', fontSize: '0.78rem' }}>
-                                        {calificaPorLugar && calificaPorMonomo ? (
-                                            <div style={{ color: '#00E676', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
-                                                <CheckCircle size={14} /> ¡En zona de calificación!
-                                            </div>
-                                        ) : (
-                                            <div style={{ color: '#FF6B6B', display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                                                <span style={{ fontWeight: 700 }}>❌ Fuera de posición</span>
-                                                <span style={{ opacity: 0.8 }}>Falta para mínimo: <b>{formatCurrency(faltaMonomo)}</b></span>
-                                                <span style={{ opacity: 0.8 }}>Falta para último lugar (#{d.maxLugar}): <b>{formatCurrency(faltaUltimoLugar)}</b></span>
-                                            </div>
-                                        )}
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.83rem' }}>
+                                        <span style={{ color: '#8c94a8' }}>Último Lugar en Excel (#{d.maxLugar})</span>
+                                        <span style={{ fontWeight: 800, color: d.accentColor }}>{formatCurrency(d.ultimoLugarComision)}</span>
                                     </div>
                                 </div>
-                            );
-                        })}
-                    </div>
+
+                                {/* Progress Bar (Sleek Dribbble Style) */}
+                                <div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.73rem', marginBottom: '6px' }}>
+                                        <span style={{ color: '#8c94a8', fontWeight: 600 }}>Avance a Mínimo</span>
+                                        <span style={{ color: d.accentColor, fontWeight: 800 }}>{pctMinimo.toFixed(1)}%</span>
+                                    </div>
+                                    <div style={{ height: '6px', width: '100%', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '10px', overflow: 'hidden' }}>
+                                        <div style={{
+                                            height: '100%',
+                                            width: `${pctMinimo}%`,
+                                            background: `linear-gradient(90deg, ${d.accentColor} 0%, #ffffff 100%)`,
+                                            borderRadius: '10px',
+                                            transition: 'width 0.6s ease'
+                                        }} />
+                                    </div>
+                                </div>
+
+                                {/* Status Footer Badge */}
+                                <div style={{
+                                    paddingTop: '12px',
+                                    borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+                                    fontSize: '0.78rem'
+                                }}>
+                                    {calificaPorLugar && calificaPorMinimo ? (
+                                        <div style={{ color: '#00E676', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                            <CheckCircle2 size={16} /> ¡En Posición de Calificación!
+                                        </div>
+                                    ) : (
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                                            <div style={{ color: '#FF2A7A', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                                <XCircle size={15} /> Fuera de Posición
+                                            </div>
+                                            <div style={{ fontSize: '0.72rem', color: '#8c94a8', display: 'flex', justifyContent: 'space-between' }}>
+                                                <span>Falta a mínimo:</span>
+                                                <span style={{ color: '#ffffff', fontWeight: 700 }}>{formatCurrency(faltaMinimo)}</span>
+                                            </div>
+                                            <div style={{ fontSize: '0.72rem', color: '#8c94a8', display: 'flex', justifyContent: 'space-between' }}>
+                                                <span>Falta a último lugar:</span>
+                                                <span style={{ color: d.accentColor, fontWeight: 700 }}>{formatCurrency(faltaUltimoLugar)}</span>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
             </motion.div>
         );
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '28px', maxWidth: '1400px', margin: '0 auto' }}>
-            {/* Top Banner Header */}
-            <div style={{
-                background: 'linear-gradient(135deg, rgba(66, 165, 245, 0.15) 0%, rgba(156, 39, 176, 0.15) 100%)',
-                border: '1px solid rgba(66, 165, 245, 0.3)',
-                borderRadius: '16px',
-                padding: '24px 28px',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-                gap: '16px'
-            }}>
+        <div style={{
+            background: '#11131f',
+            padding: '24px 32px',
+            borderRadius: '24px',
+            color: '#ffffff',
+            fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '32px',
+            maxWidth: '1440px',
+            margin: '0 auto'
+        }}>
+            {/* Top Bar Header (Dribbble Header Layout) */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
                 <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <h2 style={{ fontSize: '1.6rem', fontWeight: 900, color: 'var(--text-primary, #fff)', margin: 0 }}>
-                            🏛️ Convenciones Promotores 2026-2027
-                        </h2>
-                        <span style={{
-                            padding: '4px 12px',
-                            background: 'rgba(0,122,255,0.2)',
-                            border: '1px solid rgba(0,122,255,0.4)',
-                            borderRadius: '20px',
-                            fontSize: '0.78rem',
-                            fontWeight: 700,
-                            color: '#42A5F5',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '4px'
-                        }}>
-                            <Calendar size={14} /> Fecha de corte: {fechaCorte}
-                        </span>
-                    </div>
-                    <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary, #94a3b8)', marginTop: '6px', margin: 0 }}>
-                        Estatus de la Promotoría <b>Mat {promo.mat}</b> — {promo.oficina}
+                    <h1 style={{ fontSize: '1.9rem', fontWeight: 900, margin: 0, letterSpacing: '-0.5px', color: '#ffffff' }}>
+                        Convenciones Promotores 2026 - 2027
+                    </h1>
+                    <p style={{ fontSize: '0.9rem', color: '#8c94a8', margin: '6px 0 0 0' }}>
+                        Estatus de la Promotoría <strong style={{ color: '#ffffff' }}>Mat {promo.mat}</strong> — {promo.oficina}
                     </p>
                 </div>
 
-                <div style={{
-                    padding: '12px 20px',
-                    background: 'rgba(0,0,0,0.3)',
-                    borderRadius: '12px',
-                    border: '1px solid rgba(255,255,255,0.1)',
-                    textAlign: 'center'
-                }}>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary, #94a3b8)', textTransform: 'uppercase', fontWeight: 600 }}>Lugar General Promotoría</div>
-                    <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#FFD93D' }}>
-                        #{promo.lugar_general}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                    {/* Date Pill */}
+                    <div style={{
+                        padding: '10px 18px',
+                        background: '#181a29',
+                        border: '1px solid rgba(255, 255, 255, 0.08)',
+                        borderRadius: '14px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        fontSize: '0.82rem',
+                        fontWeight: 600,
+                        color: '#3A86FF'
+                    }}>
+                        <Calendar size={16} />
+                        Fecha de corte: {fechaCorte}
+                    </div>
+
+                    {/* Overall Rank Pill */}
+                    <div style={{
+                        padding: '10px 20px',
+                        background: 'linear-gradient(135deg, rgba(255, 184, 0, 0.15) 0%, rgba(255, 42, 122, 0.15) 100%)',
+                        border: '1px solid rgba(255, 184, 0, 0.3)',
+                        borderRadius: '14px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '10px'
+                    }}>
+                        <Trophy size={18} style={{ color: '#FFB800' }} />
+                        <span style={{ fontSize: '0.75rem', color: '#8c94a8', textTransform: 'uppercase', fontWeight: 700 }}>Lugar General:</span>
+                        <span style={{ fontSize: '1.2rem', fontWeight: 900, color: '#FFB800' }}>#{promo.lugar_general}</span>
                     </div>
                 </div>
             </div>
 
-            {/* Candados Generales Obligatorios */}
-            <section>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
-                    <ShieldCheck size={22} style={{ color: candadosCumplidos ? '#00E676' : '#FFD93D' }} />
-                    <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-primary, #fff)', margin: 0 }}>
-                        Candados Generales Obligatorios (Requisitos Mínimos)
-                    </h3>
+            {/* Upper Grid (Top Pages + Conversion Gauge Style) */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+                
+                {/* 2x2 Grid: Metas y Candados Obligatorios (Top Left Card Style) */}
+                <div style={{
+                    gridColumn: 'span 2',
+                    background: '#181a29',
+                    borderRadius: '20px',
+                    border: '1px solid rgba(255, 255, 255, 0.07)',
+                    padding: '24px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '20px',
+                    boxShadow: '0 12px 40px rgba(0, 0, 0, 0.2)'
+                }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <h2 style={{ fontSize: '1.15rem', fontWeight: 800, margin: 0, color: '#ffffff', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <ShieldCheck size={20} style={{ color: '#3A86FF' }} />
+                            Candados Generales Obligatorios
+                        </h2>
+                        <span style={{ fontSize: '0.78rem', color: '#8c94a8', fontWeight: 600 }}>
+                            {totalCandadosOk} de 4 Cumplidos
+                        </span>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
+                        
+                        {/* Candado 1: Asesores TA */}
+                        <div style={{
+                            background: '#121420',
+                            padding: '18px',
+                            borderRadius: '16px',
+                            border: '1px solid rgba(255, 255, 255, 0.05)',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-between',
+                            gap: '12px'
+                        }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <div style={{
+                                    width: '36px',
+                                    height: '36px',
+                                    borderRadius: '10px',
+                                    background: 'linear-gradient(135deg, rgba(255, 42, 122, 0.2) 0%, rgba(156, 39, 176, 0.2) 100%)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}>
+                                    <Users size={18} style={{ color: '#FF2A7A' }} />
+                                </div>
+                                <span style={{
+                                    fontSize: '0.72rem',
+                                    fontWeight: 700,
+                                    padding: '4px 8px',
+                                    borderRadius: '6px',
+                                    background: checkTA ? 'rgba(0, 230, 118, 0.12)' : 'rgba(255, 42, 122, 0.12)',
+                                    color: checkTA ? '#00E676' : '#FF2A7A'
+                                }}>
+                                    {checkTA ? '✅ Cumplido' : '❌ Pendiente'}
+                                </span>
+                            </div>
+
+                            <div>
+                                <span style={{ fontSize: '0.72rem', color: '#8c94a8', fontWeight: 700, textTransform: 'uppercase' }}>Asesores TA Mes 4</span>
+                                <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#ffffff', marginTop: '2px' }}>
+                                    {promo.asesores_ta} <span style={{ fontSize: '0.9rem', color: '#8c94a8', fontWeight: 600 }}>/ {minimos?.asesores_ta || 4}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Candado 2: Comisiones Reclutas */}
+                        <div style={{
+                            background: '#121420',
+                            padding: '18px',
+                            borderRadius: '16px',
+                            border: '1px solid rgba(255, 255, 255, 0.05)',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-between',
+                            gap: '12px'
+                        }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <div style={{
+                                    width: '36px',
+                                    height: '36px',
+                                    borderRadius: '10px',
+                                    background: 'linear-gradient(135deg, rgba(255, 184, 0, 0.2) 0%, rgba(255, 87, 34, 0.2) 100%)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}>
+                                    <DollarSign size={18} style={{ color: '#FFB800' }} />
+                                </div>
+                                <span style={{
+                                    fontSize: '0.72rem',
+                                    fontWeight: 700,
+                                    padding: '4px 8px',
+                                    borderRadius: '6px',
+                                    background: checkReclutas ? 'rgba(0, 230, 118, 0.12)' : 'rgba(255, 42, 122, 0.12)',
+                                    color: checkReclutas ? '#00E676' : '#FF2A7A'
+                                }}>
+                                    {checkReclutas ? '✅ Cumplido' : '❌ Mín. $367.5k'}
+                                </span>
+                            </div>
+
+                            <div>
+                                <span style={{ fontSize: '0.72rem', color: '#8c94a8', fontWeight: 700, textTransform: 'uppercase' }}>Comisiones Reclutas</span>
+                                <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#ffffff', marginTop: '2px' }}>
+                                    {formatCurrency(promo.comisiones_reclutas)}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Candado 3: Persistencia LIMRA */}
+                        <div style={{
+                            background: '#121420',
+                            padding: '18px',
+                            borderRadius: '16px',
+                            border: '1px solid rgba(255, 255, 255, 0.05)',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-between',
+                            gap: '12px'
+                        }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <div style={{
+                                    width: '36px',
+                                    height: '36px',
+                                    borderRadius: '10px',
+                                    background: 'linear-gradient(135deg, rgba(58, 134, 255, 0.2) 0%, rgba(0, 242, 254, 0.2) 100%)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}>
+                                    <ShieldCheck size={18} style={{ color: '#3A86FF' }} />
+                                </div>
+                                <span style={{
+                                    fontSize: '0.72rem',
+                                    fontWeight: 700,
+                                    padding: '4px 8px',
+                                    borderRadius: '6px',
+                                    background: checkLIMRA ? 'rgba(0, 230, 118, 0.12)' : 'rgba(255, 42, 122, 0.12)',
+                                    color: checkLIMRA ? '#00E676' : '#FF2A7A'
+                                }}>
+                                    {checkLIMRA ? '✅ Min 86%' : '❌ Bajo'}
+                                </span>
+                            </div>
+
+                            <div>
+                                <span style={{ fontSize: '0.72rem', color: '#8c94a8', fontWeight: 700, textTransform: 'uppercase' }}>Persistencia LIMRA</span>
+                                <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#00E676', marginTop: '2px' }}>
+                                    {formatPercent(promo.limra)}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Candado 4: Índice IGC */}
+                        <div style={{
+                            background: '#121420',
+                            padding: '18px',
+                            borderRadius: '16px',
+                            border: '1px solid rgba(255, 255, 255, 0.05)',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-between',
+                            gap: '12px'
+                        }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <div style={{
+                                    width: '36px',
+                                    height: '36px',
+                                    borderRadius: '10px',
+                                    background: 'linear-gradient(135deg, rgba(0, 230, 118, 0.2) 0%, rgba(0, 184, 148, 0.2) 100%)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}>
+                                    <Activity size={18} style={{ color: '#00E676' }} />
+                                </div>
+                                <span style={{
+                                    fontSize: '0.72rem',
+                                    fontWeight: 700,
+                                    padding: '4px 8px',
+                                    borderRadius: '6px',
+                                    background: checkIGC ? 'rgba(0, 230, 118, 0.12)' : 'rgba(255, 42, 122, 0.12)',
+                                    color: checkIGC ? '#00E676' : '#FF2A7A'
+                                }}>
+                                    {checkIGC ? '✅ Min 90.25%' : '❌ Bajo'}
+                                </span>
+                            </div>
+
+                            <div>
+                                <span style={{ fontSize: '0.72rem', color: '#8c94a8', fontWeight: 700, textTransform: 'uppercase' }}>Índice IGC</span>
+                                <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#00E676', marginTop: '2px' }}>
+                                    {formatPercent(promo.igc)}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '14px' }}>
-                    {/* Candado 1: Asesores TA mes 4 */}
-                    <div style={{
-                        background: checkTA ? 'rgba(0, 230, 118, 0.08)' : 'rgba(255, 107, 107, 0.08)',
-                        border: `1px solid ${checkTA ? 'rgba(0, 230, 118, 0.3)' : 'rgba(255, 107, 107, 0.3)'}`,
-                        borderRadius: '14px',
-                        padding: '16px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '6px'
-                    }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-secondary, #94a3b8)' }}>ASESORES TA MES 4</span>
-                            {checkTA ? <CheckCircle size={18} color="#00E676" /> : <XCircle size={18} color="#FF6B6B" />}
-                        </div>
-                        <div style={{ fontSize: '1.4rem', fontWeight: 800, color: checkTA ? '#00E676' : '#FF6B6B' }}>
-                            {promo.asesores_ta} / {minimos?.asesores_ta || 4}
-                        </div>
-                        <div style={{ fontSize: '0.75rem', color: checkTA ? '#00E676' : '#FF6B6B', fontWeight: 600 }}>
-                            {checkTA ? '✅ Cumplido (mínimo 4)' : `❌ Faltan ${(minimos?.asesores_ta || 4) - promo.asesores_ta} asesores`}
+                {/* Right Side Summary Panel (Conversion Gauge style from Dribbble) */}
+                <div style={{
+                    background: '#181a29',
+                    borderRadius: '20px',
+                    border: '1px solid rgba(255, 255, 255, 0.07)',
+                    padding: '24px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    gap: '20px',
+                    boxShadow: '0 12px 40px rgba(0, 0, 0, 0.2)'
+                }}>
+                    <h2 style={{ fontSize: '1.15rem', fontWeight: 800, margin: 0, color: '#ffffff' }}>
+                        Estatus por Camino
+                    </h2>
+
+                    {/* Circular Ring Graphic / Mini Gauge */}
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10px 0' }}>
+                        <div style={{
+                            width: '140px',
+                            height: '140px',
+                            borderRadius: '50%',
+                            background: 'conic-gradient(#FFB800 0% 33%, #00E676 33% 66%, #3A86FF 66% 100%)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            boxShadow: '0 0 25px rgba(0,0,0,0.4)'
+                        }}>
+                            <div style={{
+                                width: '108px',
+                                height: '108px',
+                                borderRadius: '50%',
+                                background: '#181a29',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}>
+                                <span style={{ fontSize: '0.7rem', color: '#8c94a8', textTransform: 'uppercase', fontWeight: 700 }}>Lugar Global</span>
+                                <span style={{ fontSize: '1.5rem', fontWeight: 900, color: '#ffffff' }}>#{promo.lugar_general}</span>
+                            </div>
                         </div>
                     </div>
 
-                    {/* Candado 2: Comisiones Reclutas */}
-                    <div style={{
-                        background: checkReclutas ? 'rgba(0, 230, 118, 0.08)' : 'rgba(255, 107, 107, 0.08)',
-                        border: `1px solid ${checkReclutas ? 'rgba(0, 230, 118, 0.3)' : 'rgba(255, 107, 107, 0.3)'}`,
-                        borderRadius: '14px',
-                        padding: '16px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '6px'
-                    }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-secondary, #94a3b8)' }}>COMISIONES RECLUTAS JUL26-JUN27</span>
-                            {checkReclutas ? <CheckCircle size={18} color="#00E676" /> : <XCircle size={18} color="#FF6B6B" />}
+                    {/* Quick Rankings List */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.83rem' }}>
+                            <span style={{ color: '#8c94a8', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FFB800' }} />
+                                1er Camino (Comisiones Totales)
+                            </span>
+                            <span style={{ fontWeight: 800, color: '#ffffff' }}>#{promo.c1_ranking}</span>
                         </div>
-                        <div style={{ fontSize: '1.3rem', fontWeight: 800, color: checkReclutas ? '#00E676' : '#FF6B6B' }}>
-                            {formatCurrency(promo.comisiones_reclutas)}
+                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.83rem' }}>
+                            <span style={{ color: '#8c94a8', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#00E676' }} />
+                                2do Camino (Asesores 12m)
+                            </span>
+                            <span style={{ fontWeight: 800, color: '#ffffff' }}>#{promo.c2_ranking}</span>
                         </div>
-                        <div style={{ fontSize: '0.75rem', color: checkReclutas ? '#00E676' : '#FF6B6B', fontWeight: 600 }}>
-                            {checkReclutas ? '✅ Cumplido' : `❌ Mínimo $367,500 (Falta ${formatCurrency((minimos?.comisiones_reclutas || 367500) - promo.comisiones_reclutas)})`}
-                        </div>
-                    </div>
-
-                    {/* Candado 3: LIMRA */}
-                    <div style={{
-                        background: checkLIMRA ? 'rgba(0, 230, 118, 0.08)' : 'rgba(255, 107, 107, 0.08)',
-                        border: `1px solid ${checkLIMRA ? 'rgba(0, 230, 118, 0.3)' : 'rgba(255, 107, 107, 0.3)'}`,
-                        borderRadius: '14px',
-                        padding: '16px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '6px'
-                    }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-secondary, #94a3b8)' }}>LIMRA (PERSISTENCIA)</span>
-                            {checkLIMRA ? <CheckCircle size={18} color="#00E676" /> : <XCircle size={18} color="#FF6B6B" />}
-                        </div>
-                        <div style={{ fontSize: '1.4rem', fontWeight: 800, color: checkLIMRA ? '#00E676' : '#FF6B6B' }}>
-                            {formatPercent(promo.limra)}
-                        </div>
-                        <div style={{ fontSize: '0.75rem', color: checkLIMRA ? '#00E676' : '#FF6B6B', fontWeight: 600 }}>
-                            {checkLIMRA ? '✅ Cumplido (mínimo 86%)' : '❌ Menor al 86% requerido'}
-                        </div>
-                    </div>
-
-                    {/* Candado 4: IGC */}
-                    <div style={{
-                        background: checkIGC ? 'rgba(0, 230, 118, 0.08)' : 'rgba(255, 107, 107, 0.08)',
-                        border: `1px solid ${checkIGC ? 'rgba(0, 230, 118, 0.3)' : 'rgba(255, 107, 107, 0.3)'}`,
-                        borderRadius: '14px',
-                        padding: '16px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '6px'
-                    }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-secondary, #94a3b8)' }}>IGC</span>
-                            {checkIGC ? <CheckCircle size={18} color="#00E676" /> : <XCircle size={18} color="#FF6B6B" />}
-                        </div>
-                        <div style={{ fontSize: '1.4rem', fontWeight: 800, color: checkIGC ? '#00E676' : '#FF6B6B' }}>
-                            {formatPercent(promo.igc)}
-                        </div>
-                        <div style={{ fontSize: '0.75rem', color: checkIGC ? '#00E676' : '#FF6B6B', fontWeight: 600 }}>
-                            {checkIGC ? '✅ Cumplido (mínimo 90.25%)' : '❌ Menor a 90.25% requerido'}
+                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.83rem' }}>
+                            <span style={{ color: '#8c94a8', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3A86FF' }} />
+                                3er Camino (Nueva Org.)
+                            </span>
+                            <span style={{ fontWeight: 800, color: '#ffffff' }}>#{promo.c3_ranking}</span>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            {/* Los 3 Caminos */}
-            <section style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                <h3 style={{ fontSize: '1.3rem', fontWeight: 900, color: 'var(--text-primary, #fff)', margin: 0 }}>
-                    🏆 Evaluación por los 3 Caminos de Convención
-                </h3>
+            </div>
+
+            {/* Main Section: The 3 Caminos (Detailed Dribbble Cards) */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                <h2 style={{ fontSize: '1.3rem', fontWeight: 900, margin: 0, color: '#ffffff', letterSpacing: '-0.3px' }}>
+                    🏆 Evaluación Detallada por Caminos
+                </h2>
 
                 {/* 1er Camino */}
                 {renderCaminoCard(
@@ -437,7 +650,8 @@ export const ConvencionesPromotores: React.FC<Props> = ({ data, themeMode = 'dar
                         { label: 'Conv. al Doble', val: promo.c3_conv_doble }
                     ]
                 )}
-            </section>
+            </div>
+
         </div>
     );
 };
