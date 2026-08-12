@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, LogOut, Sun, Moon, Building2, UserCheck, Trophy, Sparkles } from 'lucide-react';
 import ConvencionesPromotores from './Dashboards/ConvencionesPromotores';
+import ConvencionesGerente from './Dashboards/ConvencionesGerente';
 
 interface Props {
     onBack: () => void;
@@ -188,27 +189,7 @@ export const ResumenConvenciones: React.FC<Props> = ({ onBack, onLogout, themeMo
                 ) : activeTab === 'promotoria' ? (
                     <ConvencionesPromotores data={data} themeMode={themeMode} />
                 ) : (
-                    <motion.div
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        style={{
-                            textAlign: 'center',
-                            padding: '100px 20px',
-                            background: '#181a29',
-                            borderRadius: '24px',
-                            border: '1px solid rgba(255, 255, 255, 0.07)',
-                            maxWidth: '700px',
-                            margin: '40px auto'
-                        }}
-                    >
-                        <div style={{ fontSize: '3.5rem', marginBottom: '16px' }}>🚧</div>
-                        <h2 style={{ fontSize: '1.6rem', fontWeight: 900, color: '#ffffff', margin: 0 }}>
-                            En Proceso
-                        </h2>
-                        <p style={{ color: '#8c94a8', marginTop: '10px', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                            Próximamente estará disponible el reporte y desglose de Convenciones para <strong>Gerencia de Agencia</strong>.
-                        </p>
-                    </motion.div>
+                    <ConvencionesGerente data={data} themeMode={themeMode} />
                 )}
             </div>
         </div>

@@ -529,6 +529,82 @@ const run = async () => {
                         wb = null; ws = null; data = null;
                     }
                 } catch(e) { console.warn('⚠️ Convenciones Promotores skip:', e.message); }
+            } else if (step === 'convenciones_gerente') {
+                try {
+                    console.log('Processing convenciones_gerente');
+                    const cpPath = path.join(BASE_PATH, 'convenciones', 'convenciones_promotores.xlsx');
+                    if (fs.existsSync(cpPath)) {
+                        let wb = XLSX.readFile(cpPath, { sheets: ['Gerente de Agencia', 'Gerente de Agencia 36'] });
+                        let ws1 = wb.Sheets['Gerente de Agencia'];
+                        let ws2 = wb.Sheets['Gerente de Agencia 36'];
+
+                        const data1 = XLSX.utils.sheet_to_json(ws1, { header: 1, range: 'A20:Z330' }).filter(r => r && r[1] && typeof r[1] === 'number');
+                        const data2 = XLSX.utils.sheet_to_json(ws2, { header: 1, range: 'A20:Z330' }).filter(r => r && r[1] && typeof r[1] === 'number');
+
+                        // Find Mat 2043 in both sheets
+                        const mat1 = data1.find(r => String(r[4]) === '2043');
+                        const mat2 = data2.find(r => String(r[4]) === '2043');
+
+                        // Find 1er Lugar in each Camino
+                        const topC1Row = data1.slice().sort((a, b) => (Number(b[11]) || 0) - (Number(a[11]) || 0))[0];
+                        const topC1Val = Number(topC1Row?.[11]) || 0;
+
+                        const topC2Row = data1.slice().sort((a, b) => (Number(b[14]) || 0) - (Number(a[14]) || 0))[0];
+                        const topC2Val = Number(topC2Row?.[14]) || 0;
+
+                        const topC3Row = data2.slice().sort((a, b) => (Number(b[10]) || 0) - (Number(a[10]) || 0))[0];
+                        const topC3Val = Number(topC3Row?.[10]) || 0;
+
+                        // Cutoff date
+                        let fechaCorte = campaigns.convenciones_promotores?.fecha_corte || '31 de julio 2026';
+                        const c15 = ws1['C15']?.v || ws1['B17']?.v;
+                        if (c15 && String(c15).trim()) {
+                            const dateMatch = String(c15).match(/(\d{1,2}-[A-Z]{3,4}-\d{4})/i) || String(c15).match(/al\s+(.+)/i);
+                            if (dateMatch) {
+                                let raw = dateMatch[1].replace(/\.\s*$/, '').trim();
+                                if (/31-JUL-2026/i.test(raw)) raw = '31 de julio 2026';
+                                fechaCorte = raw;
+                            }
+                        }
+
+                        campaigns.convenciones_gerente = {
+                            fecha_corte: fechaCorte,
+                            gerencia: mat1 ? {
+                                nombre: String(mat2?.[7] || mat1?.[7] || 'KAREN MUÑOZ GARCÍA'),
+                                mat: '2043',
+                                suc: '2856',
+                                // Camino 1 (Comisiones Asesores 12 Meses)
+                                c1_total: Number(mat1[11] || 0),
+                                c1_ranking: Number(mat1[15] || mat1[1] || 0),
+                                // Camino 2 (Comisiones Nueva Organización)
+                                c2_total: Number(mat1[14] || 0),
+                                c2_ranking: Number(mat1[16] || 0),
+                                // Camino 3 (Comisiones Asesores 12m Gerente 36m)
+                                c3_total: Number(mat2?.[10] || 0),
+                                c3_ranking: Number(mat2?.[1] || 0),
+                                // Candados
+                                asesores_ta_gerencia: Number(mat1[18] || 0),
+                                meta_ta_gerencia: Number(mat1[19] || 4),
+                                asesores_ta_promotor: Number(mat1[21] || 0),
+                                meta_ta_promotor: 4,
+                                cumple_promotor: String(mat1[22] || '').trim().toLowerCase() === 'si' || String(mat1[22] || '').trim() === 'i' || Number(mat1[21] || 0) >= 4
+                            } : null,
+                            primer_lugar: {
+                                c1_total: topC1Val,
+                                c2_total: topC2Val,
+                                c3_total: topC3Val
+                            },
+                            minimos: {
+                                camino1: { '1d': 2100000, '2d': 2365000, '3d': 2900000 },
+                                camino2: { '1d': 2760000, '2d': 3307500, '3d': 4960000 },
+                                camino3: { '1d': 1160000 },
+                                asesores_ta: 4
+                            }
+                        };
+                        campaignDates.convenciones_gerente = fechaCorte;
+                        wb = null; ws1 = null; ws2 = null;
+                    }
+                } catch(e) { console.warn('⚠️ Convenciones Gerente skip:', e.message); }
             }
             if (global.gc) global.gc();
         };
@@ -557,7 +633,7 @@ const run = async () => {
         const campaigns = {};
         const campaignDates = {};
 
-        const steps = ['mdrt', 'convenciones', 'legion_centurion', 'camino_cumbre', 'graduacion', 'proactiva_tech', 'reto_por_ciento', 'convenciones_promotores'];
+        const steps = ['mdrt', 'convenciones', 'legion_centurion', 'camino_cumbre', 'graduacion', 'proactiva_tech', 'reto_por_ciento', 'convenciones_promotores', 'convenciones_gerente'];
         for (const s of steps) {
             runStepInline(s, campaigns, campaignDates, directory, directoryFechas);
         }
@@ -892,6 +968,7 @@ const run = async () => {
         }
 
         rg.convenciones_promotores = campaigns.convenciones_promotores;
+        rg.convenciones_gerente = campaigns.convenciones_gerente;
 
         snapshot.data.campaigns = campaigns;
         snapshot.data.campaignDates = campaignDates;
