@@ -29,9 +29,12 @@ const resolveName = (clave, fallbackName, directory) => {
 };
 
 // Helper to get the most recent file in a folder
-const getMostRecentFile = (dirPath) => {
+const getMostRecentFile = (dirPath, excludePattern = null) => {
     if (!fs.existsSync(dirPath)) return null;
-    const files = fs.readdirSync(dirPath).filter(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm')) && !f.startsWith('~$'));
+    let files = fs.readdirSync(dirPath).filter(f => (f.endsWith('.xlsx') || f.endsWith('.xlsm')) && !f.startsWith('~$'));
+    if (excludePattern) {
+        files = files.filter(f => !excludePattern.test(f));
+    }
     if (files.length === 0) return null;
     
     return files.map(f => {
@@ -197,7 +200,7 @@ const run = async () => {
                 try {
                     console.log('Processing convenciones');
                     const convPath = path.join(BASE_PATH, 'convenciones');
-                    const recentFile = getMostRecentFile(convPath);
+                    const recentFile = getMostRecentFile(convPath, /promotor|gerente/i);
                     if (recentFile) {
                         let wb = readExcelSheetMemorySafe(path.join(convPath, recentFile), 0);
                         let ws = wb.Sheets[wb.SheetNames[0]];
