@@ -1,5 +1,16 @@
 {
-  "generatedAt": "12/8/2026, 12:30:15 p.m.",
-  "totalNew": 0,
-  "alerts": []
+  "generatedAt": "12/8/2026, 1:16:17 p.m.",
+  "totalNew": 1,
+  "alerts": [
+    {
+      "id": "fd78e68e-5a6e-4d22-91f9-f95caa0d8d13",
+      "asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+      "firstName": "Paulina",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Paulina, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    }
+  ]
 }

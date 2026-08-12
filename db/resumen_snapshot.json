@@ -1,5 +1,5 @@
 {
-  "updatedAt": "12/8/2026, 12:30:10 p.m.",
+  "updatedAt": "12/8/2026, 1:16:09 p.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -64,6 +64,42 @@
           "Total _Prima_Pendiente": 72817.26
         },
         {
+          "Nombre Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 2019.94,
+          "Recibo_Ordinario_Pagado": 4273.63,
+          "Total _Prima_Pagada": 6293.57,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 28233.37,
+          "Total _Prima_Pendiente": 28233.37
+        },
+        {
+          "Nombre Asesor": "ANAIS LUA MORENO",
+          "Sucursal": "2856",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 5667.45,
+          "Total _Prima_Pagada": 5667.45,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 112804.12,
+          "Total _Prima_Pendiente": 112804.12
+        },
+        {
+          "Nombre Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 5177.37,
+          "Total _Prima_Pagada": 5177.37,
+          "Pólizas_Pendinetes": 2,
+          "Recibo_Inicial_Pendiente": 3916.42,
+          "Recibo_Ordinario_Pendiente": 103682.37,
+          "Total _Prima_Pendiente": 107598.79
+        },
+        {
           "Nombre Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -88,18 +124,6 @@
           "Total _Prima_Pendiente": 4193.66
         },
         {
-          "Nombre Asesor": "ANAIS LUA MORENO",
-          "Sucursal": "2856",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 3933.48,
-          "Total _Prima_Pagada": 3933.48,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 114538.09,
-          "Total _Prima_Pendiente": 114538.09
-        },
-        {
           "Nombre Asesor": "ROGELIO TORRES ORTIZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -110,30 +134,6 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 47900.16,
           "Total _Prima_Pendiente": 47900.16
-        },
-        {
-          "Nombre Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 3443.75,
-          "Total _Prima_Pagada": 3443.75,
-          "Pólizas_Pendinetes": 2,
-          "Recibo_Inicial_Pendiente": 3916.42,
-          "Recibo_Ordinario_Pendiente": 105415.99,
-          "Total _Prima_Pendiente": 109332.41
-        },
-        {
-          "Nombre Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 3215.73,
-          "Total _Prima_Pagada": 3215.73,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 28233.37,
-          "Total _Prima_Pendiente": 28233.37
         },
         {
           "Nombre Asesor": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
@@ -358,10 +358,10 @@
           "Recibo_Inicial_Pagado": 0,
           "Recibo_Ordinario_Pagado": 0,
           "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 3,
-          "Recibo_Inicial_Pendiente": 2211997.08,
-          "Recibo_Ordinario_Pendiente": 2150747.29,
-          "Total _Prima_Pendiente": 4362744.37
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 90049.44,
+          "Recibo_Ordinario_Pendiente": 28799.65,
+          "Total _Prima_Pendiente": 118849.09
         },
         {
           "Nombre Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
@@ -2319,7 +2319,7 @@
       }
     },
     "fechas_corte": {
-      "pagado_pendiente": "7 de agosto de 2026",
+      "pagado_pendiente": "10 de agosto de 2026",
       "pagado_pendiente_reclutas": "7 de agosto de 2026",
       "asesores_sin_emision": "30 de JUL de 2026",
       "proactivos": "28 de julio de 2026",
