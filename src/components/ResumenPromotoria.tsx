@@ -14,7 +14,7 @@ interface Props {
     gerenciaName?: string;
 }
 
-type Section = 'pagado_pendiente' | 'asesores_sin_emision' | 'proactivos' | 'comparativo_vida' | 'estatus_polizas' | 'convenciones';
+type Section = 'pagado_pendiente' | 'asesores_sin_emision' | 'proactivos' | 'comparativo_vida' | 'estatus_polizas';
 
 const fmt = (n: number | null | undefined) => {
     if (n == null || isNaN(Number(n))) return '$0';
@@ -183,7 +183,6 @@ const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggl
         { key: 'asesores_sin_emision', label: 'Asesores sin Emisión', icon: <AlertTriangle size={18} /> },
         { key: 'proactivos', label: 'Proactivos', icon: <Activity size={18} /> },
         { key: 'comparativo_vida', label: 'Comparativo de Vida', icon: <TrendingUp size={18} /> },
-        { key: 'convenciones', label: 'Convenciones', icon: <Award size={18} /> },
         { key: 'estatus_polizas', label: 'Estatus Pólizas', icon: <Shield size={18} /> },
     ];
 
@@ -241,8 +240,6 @@ const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggl
                     onDateSelect={(d: string | null) => handleDateSelect('comparativo_vida', d)}
                     themeMode={themeMode}
                 />;
-            case 'convenciones':
-                return <ConvencionesPromotores data={data} themeMode={themeMode} />;
         }
     };
 

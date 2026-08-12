@@ -6,7 +6,7 @@ import { DeviceManagerModal } from './DeviceManagerModal';
 import { SlidersHorizontal, Bell, Send, Users, Activity, Info, ChevronDown, Smartphone } from 'lucide-react';
 
 interface Props {
-    onSelectOption: (option: 'asesores' | 'promotoria' | 'karen' | 'actividad' | 'meta24m' | 'staff' | 'centro_avisos' | 'infografias') => void;
+    onSelectOption: (option: 'asesores' | 'convenciones' | 'promotoria' | 'karen' | 'actividad' | 'meta24m' | 'staff' | 'centro_avisos' | 'infografias') => void;
     onLogout: () => void;
 }
 
@@ -220,6 +220,52 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                             </div>
                         </div>
                         <span style={{ fontSize: '1.2rem', color: '#00E676', opacity: 0.7 }}>→</span>
+                    </motion.button>
+
+                    {/* Convenciones */}
+                    <motion.button
+                        whileHover={{ scale: 1.02, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => {
+                            fetch('/api/activity', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    asesor: "Administrador",
+                                    accion: "Consultó Reporte Admin: Convenciones"
+                                })
+                            }).catch(e => console.error('Error', e));
+                            onSelectOption('convenciones');
+                        }}
+                        style={{
+                            width: '100%',
+                            padding: '20px 24px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '16px',
+                            background: 'linear-gradient(135deg, rgba(255, 184, 0, 0.12) 0%, rgba(255, 184, 0, 0.04) 100%)',
+                            border: '1px solid rgba(255, 184, 0, 0.25)',
+                            borderRadius: '12px',
+                            cursor: 'pointer',
+                            color: '#ffffff',
+                            fontFamily: 'inherit',
+                        }}
+                    >
+                        <div style={{
+                            width: '48px', height: '48px', borderRadius: '12px',
+                            background: 'linear-gradient(135deg, #FFB800 0%, #FF8800 100%)',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            flexShrink: 0, boxShadow: '0 4px 15px rgba(255, 184, 0, 0.3)',
+                        }}>
+                            <span style={{ fontSize: '24px' }}>🏆</span>
+                        </div>
+                        <div style={{ textAlign: 'left', flex: 1 }}>
+                            <div style={{ fontSize: '1.1rem', fontWeight: 700 }}>Convenciones</div>
+                            <div style={{ fontSize: '0.8rem', color: '#9ca3af', marginTop: '2px' }}>
+                                Calificación por Promotoría y Gerencia
+                            </div>
+                        </div>
+                        <span style={{ fontSize: '1.2rem', color: '#FFB800', opacity: 0.8 }}>→</span>
                     </motion.button>
 
                     {/* Resumen de Promotoría */}

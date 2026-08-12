@@ -5,6 +5,7 @@ import LoginScreen from './components/LoginScreen';
 import AdminHome from './components/AdminHome';
 import AdminDashboard from './components/AdminDashboard';
 import ResumenPromotoria from './components/ResumenPromotoria';
+import ResumenConvenciones from './components/ResumenConvenciones';
 import MetaDespacho from './components/MetaDespacho';
 import Welcome from './components/Welcome';
 import CampaignSelector from './components/CampaignSelector';
@@ -70,9 +71,11 @@ const App: React.FC = () => {
         }
     };
 
-    const handleAdminOption = (option: 'asesores' | 'promotoria' | 'karen' | 'actividad' | 'meta24m' | 'staff' | 'centro_avisos' | 'infografias') => {
+    const handleAdminOption = (option: 'asesores' | 'convenciones' | 'promotoria' | 'karen' | 'actividad' | 'meta24m' | 'staff' | 'centro_avisos' | 'infografias') => {
         if (option === 'asesores') {
             setPage('admin_dashboard');
+        } else if (option === 'convenciones') {
+            setPage('resumen_convenciones');
         } else if (option === 'promotoria') {
             setPage('resumen_promotoria');
         } else if (option === 'karen') {
@@ -113,7 +116,7 @@ const App: React.FC = () => {
     }, []);
 
     const pageStr = page as string;
-    const isAdminRole = pageStr.startsWith('admin_') || pageStr === 'resumen_promotoria' || pageStr === 'gerencia_karen' || pageStr === 'centro_avisos';
+    const isAdminRole = pageStr.startsWith('admin_') || pageStr === 'resumen_promotoria' || pageStr === 'resumen_convenciones' || pageStr === 'gerencia_karen' || pageStr === 'centro_avisos';
     const activePushRole: 'admin' | 'asesor' = isAdminRole ? 'admin' : 'asesor';
 
     useEffect(() => {
@@ -124,6 +127,7 @@ const App: React.FC = () => {
         if (page === 'login') return <LoginScreen onSelectRole={handleRoleSelect} />;
         if (page === 'admin_home') return <AdminHome onSelectOption={handleAdminOption} onLogout={handleLogout} />;
         if (page === 'admin_dashboard') return <AdminDashboard onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} />;
+        if (page === 'resumen_convenciones') return <ResumenConvenciones onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} />;
         if (page === 'resumen_promotoria') return <ResumenPromotoria onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} />;
         if (page === 'gerencia_karen') return <ResumenPromotoria onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} sucursalFilter={[2856]} gerenciaName="GERENCIA KAREN" />;
         if (page === 'admin_actividad') return <AdminActivity onLogout={handleLogout} onBack={() => setPage('admin_home')} themeMode={themeMode} toggleTheme={toggleTheme} />;
