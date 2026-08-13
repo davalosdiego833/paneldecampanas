@@ -1,15 +1,25 @@
 {
-  "generatedAt": "12/8/2026, 1:16:17 p.m.",
-  "totalNew": 1,
+  "generatedAt": "13/8/2026, 1:02:21 p.m.",
+  "totalNew": 2,
   "alerts": [
     {
-      "id": "fd78e68e-5a6e-4d22-91f9-f95caa0d8d13",
-      "asesor": "PAULINA LIZBETH SOTO MUÑIZ",
-      "firstName": "Paulina",
+      "id": "f0910a5b-ff13-444b-8b61-2ec1f741ce4d",
+      "asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
+      "firstName": "Humberto",
       "campaign": "pagado_emitido",
       "type": "positive",
-      "event": "¡Nueva póliza pagada!",
-      "message": "Hola Paulina, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Humberto, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "d7d7c823-f364-43e0-ab14-eca585ccd70e",
+      "asesor": "MARIO IVAN ROMERO GONZALEZ",
+      "firstName": "Mario",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Mario, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
       "sent": false
     }
   ]
