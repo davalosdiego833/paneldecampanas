@@ -76,6 +76,16 @@ const ADMIN_PATH = getProtectedPath('administrador');
 
 function findSnapshotPath(): string {
     const cwd = process.cwd();
+    
+    // Auto-clean stale external legacy snapshot if project-internal snapshot exists
+    try {
+        const legacyPath = '/home/u211138134/domains/panel.ambrizydavalos.com/db/resumen_snapshot.json';
+        const projectPath = path.join(cwd, 'db', 'resumen_snapshot.json');
+        if (fs.existsSync(legacyPath) && fs.existsSync(projectPath)) {
+            fs.unlinkSync(legacyPath);
+        }
+    } catch (e) {}
+
     const candidates = [
         path.join(cwd, 'db', 'resumen_snapshot.json'),
         path.join(safeDirname, 'db', 'resumen_snapshot.json'),
@@ -84,8 +94,7 @@ function findSnapshotPath(): string {
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/resumen_snapshot.json',
         path.join(BASE_PATH, 'db', 'resumen_snapshot.json'),
         path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json'),
-        SNAPSHOT_PATH,
-        '/home/u211138134/domains/panel.ambrizydavalos.com/db/resumen_snapshot.json'
+        SNAPSHOT_PATH
     ];
     
     let newestPath = '';
