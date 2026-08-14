@@ -71,42 +71,24 @@ const THEMES_PATH = path.join(BASE_PATH, 'themes');
 const ADMIN_PATH = getProtectedPath('administrador');
 function findSnapshotPath() {
     const cwd = process.cwd();
-    // Auto-clean stale external legacy snapshot if project-internal snapshot exists
-    try {
-        const legacyPath = '/home/u211138134/domains/panel.ambrizydavalos.com/db/resumen_snapshot.json';
-        const projectPath = path.join(cwd, 'db', 'resumen_snapshot.json');
-        if (fs.existsSync(legacyPath) && fs.existsSync(projectPath)) {
-            fs.unlinkSync(legacyPath);
-        }
+    const primaryPath = path.join(cwd, 'db', 'resumen_snapshot.json');
+    if (safeExists(primaryPath)) {
+        return primaryPath;
     }
-    catch (e) { }
     const candidates = [
-        path.join(cwd, 'db', 'resumen_snapshot.json'),
         path.join(safeDirname, 'db', 'resumen_snapshot.json'),
         path.join(safeDirname, '..', 'db', 'resumen_snapshot.json'),
-        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json',
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/resumen_snapshot.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json',
         path.join(BASE_PATH, 'db', 'resumen_snapshot.json'),
         path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json'),
         SNAPSHOT_PATH
     ];
-    let newestPath = '';
-    let newestMtime = -1;
     for (const p of candidates) {
-        if (safeExists(p)) {
-            try {
-                const stat = fs.statSync(p);
-                if (stat.mtimeMs > newestMtime) {
-                    newestMtime = stat.mtimeMs;
-                    newestPath = p;
-                }
-            }
-            catch (e) { }
-        }
+        if (safeExists(p))
+            return p;
     }
-    if (newestPath)
-        return newestPath;
-    return path.join(cwd, 'db', 'resumen_snapshot.json');
+    return primaryPath;
 }
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
