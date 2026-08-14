@@ -86,7 +86,14 @@ ssh $SSH_OPTS $SERVER_USER@$SERVER_IP << EOF
     cp -r \$PARENT_DIR/nodejs/dist/assets/* \$PARENT_DIR/public_html/assets/ 2>/dev/null || true
     cp -r \$PARENT_DIR/nodejs/dist/assets/* \$PARENT_DIR/public_html/dist/assets/ 2>/dev/null || true
     
-    ln -sfn \$PARENT_DIR/nodejs/node_modules \$PARENT_DIR/public_html/node_modules 2>/dev/null || true
+    # Asegurar copia del snapshot en todas las ubicaciones candidatas del servidor
+    mkdir -p \$PARENT_DIR/db 2>/dev/null || true
+    mkdir -p \$PARENT_DIR/public_html/db 2>/dev/null || true
+    cp -f \$PARENT_DIR/nodejs/db/resumen_snapshot.json \$PARENT_DIR/db/resumen_snapshot.json 2>/dev/null || true
+    cp -f \$PARENT_DIR/nodejs/db/resumen_snapshot.json \$PARENT_DIR/public_html/db/resumen_snapshot.json 2>/dev/null || true
+    touch \$PARENT_DIR/nodejs/db/resumen_snapshot.json 2>/dev/null || true
+    touch \$PARENT_DIR/db/resumen_snapshot.json 2>/dev/null || true
+    touch \$PARENT_DIR/public_html/db/resumen_snapshot.json 2>/dev/null || true
     
     # REINICIO DE PASSENGER (Solo touch, sin pkill)
     mkdir -p \$PARENT_DIR/public_html/tmp
