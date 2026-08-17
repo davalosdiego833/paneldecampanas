@@ -694,6 +694,20 @@ app.get('/api/admin/snapshot-status', (req, res) => {
     res.json({ exists: false });
 });
 
+app.get('/api/admin/restart-server', (req, res) => {
+    res.json({ success: true, message: 'Restarting Node.js process...' });
+    setTimeout(() => {
+        process.exit(0);
+    }, 300);
+});
+
+app.get('/api/admin/restart-server', (req, res) => {
+    res.json({ success: true, message: 'Restarting Node.js process...' });
+    setTimeout(() => {
+        process.exit(0);
+    }, 300);
+});
+
 app.get('/api/campaign/:name/data/:advisor', (req, res) => {
     const { name, advisor } = req.params;
     const { date } = req.query;
