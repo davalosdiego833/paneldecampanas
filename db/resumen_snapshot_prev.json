@@ -1,5 +1,5 @@
 {
-  "updatedAt": "17/8/2026, 10:34:35 a.m.",
+  "updatedAt": "17/8/2026, 10:43:38 a.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -1032,7 +1032,7 @@
           "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 0,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 7,
+          "Pólizas_Faltantes": 8,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 12,
           "Fecha_Conexion": "2021-05-25"
@@ -1044,7 +1044,7 @@
           "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 0,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 7,
+          "Pólizas_Faltantes": 8,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 12,
           "Fecha_Conexion": "2022-11-06"
@@ -1056,7 +1056,7 @@
           "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 0,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 7,
+          "Pólizas_Faltantes": 8,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 12,
           "Fecha_Conexion": "2015-06-17"
@@ -1068,22 +1068,10 @@
           "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 0,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 7,
+          "Pólizas_Faltantes": 8,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 12,
           "Fecha_Conexion": "2022-06-20"
-        },
-        {
-          "ASESOR": "TIARE DE LA CRUZ DZIB CABRERA",
-          "SUC": 2511,
-          "Polizas_Acumuladas_Mes_Ant.": 0,
-          "Polizas_Del_mes": 0,
-          "Polizas_Acumuladas_Total": 0,
-          "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 7,
-          "Proactivo_a_Dic": "NO",
-          "Pólizas_Faltantes_Para_Dic": 12,
-          "Fecha_Conexion": "2022-05-26"
         },
         {
           "ASESOR": "JOSE RENE DE ALBA MORALES",
@@ -1092,7 +1080,7 @@
           "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 1,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 6,
+          "Pólizas_Faltantes": 7,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 11,
           "Fecha_Conexion": "2024-10-17"
@@ -1104,7 +1092,7 @@
           "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 1.5,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 5.5,
+          "Pólizas_Faltantes": 6.5,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 10.5,
           "Fecha_Conexion": "2025-09-03"
@@ -1112,11 +1100,11 @@
         {
           "ASESOR": "MIREYA LIZETTE TORRES GARCIA",
           "SUC": 2043,
-          "Polizas_Acumuladas_Mes_Ant.": 1,
-          "Polizas_Del_mes": 1,
+          "Polizas_Acumuladas_Mes_Ant.": 2,
+          "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 2,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 5,
+          "Pólizas_Faltantes": 6,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 10,
           "Fecha_Conexion": "2024-02-21"
@@ -1128,7 +1116,7 @@
           "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 2.5,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 4.5,
+          "Pólizas_Faltantes": 5.5,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 9.5,
           "Fecha_Conexion": "2024-05-27"
@@ -1140,7 +1128,7 @@
           "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 3,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 4,
+          "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 9,
           "Fecha_Conexion": "2025-11-24"
@@ -1152,7 +1140,7 @@
           "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 3,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 4,
+          "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 9,
           "Fecha_Conexion": "2023-10-01"
@@ -1164,7 +1152,7 @@
           "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 3,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 4,
+          "Pólizas_Faltantes": 5,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 9,
           "Fecha_Conexion": "2023-03-13"
@@ -1176,7 +1164,7 @@
           "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 3.5,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 3.5,
+          "Pólizas_Faltantes": 4.5,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 8.5,
           "Fecha_Conexion": "2025-07-13"
@@ -1184,11 +1172,11 @@
         {
           "ASESOR": "LILIANA IVETTE CASTILLO SANCHEZ",
           "SUC": 2043,
-          "Polizas_Acumuladas_Mes_Ant.": 3.5,
-          "Polizas_Del_mes": 1,
+          "Polizas_Acumuladas_Mes_Ant.": 4.5,
+          "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 4.5,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 2.5,
+          "Pólizas_Faltantes": 3.5,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 7.5,
           "Fecha_Conexion": "2024-06-23"
@@ -1200,7 +1188,7 @@
           "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 4.5,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 2.5,
+          "Pólizas_Faltantes": 3.5,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 7.5,
           "Fecha_Conexion": "2023-10-16"
@@ -1212,7 +1200,7 @@
           "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 5,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 2,
+          "Pólizas_Faltantes": 3,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 7,
           "Fecha_Conexion": "2022-12-20"
@@ -1224,7 +1212,7 @@
           "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 5,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 2,
+          "Pólizas_Faltantes": 3,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 7,
           "Fecha_Conexion": "2024-12-12"
@@ -1236,7 +1224,7 @@
           "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 5.5,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 1.5,
+          "Pólizas_Faltantes": 2.5,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 6.5,
           "Fecha_Conexion": "2018-12-04"
@@ -1244,11 +1232,11 @@
         {
           "ASESOR": "VELIA PATRICIA BERNAL RAMOS",
           "SUC": 2856,
-          "Polizas_Acumuladas_Mes_Ant.": 4,
-          "Polizas_Del_mes": 1.5,
+          "Polizas_Acumuladas_Mes_Ant.": 5.5,
+          "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 5.5,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 1.5,
+          "Pólizas_Faltantes": 2.5,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 6.5,
           "Fecha_Conexion": "2025-10-13"
@@ -1256,11 +1244,11 @@
         {
           "ASESOR": "ROGELIO TORRES ORTIZ",
           "SUC": 2043,
-          "Polizas_Acumuladas_Mes_Ant.": 5.5,
-          "Polizas_Del_mes": 2,
+          "Polizas_Acumuladas_Mes_Ant.": 7.5,
+          "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 7.5,
-          "Proactivo_al_mes": "SÍ",
-          "Pólizas_Faltantes": 0,
+          "Proactivo_al_mes": "NO",
+          "Pólizas_Faltantes": 0.5,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 4.5,
           "Fecha_Conexion": "2023-12-03"
@@ -1293,32 +1281,32 @@
           "ASESOR": "PAULINA LIZBETH SOTO MUÑIZ",
           "SUC": 2043,
           "Polizas_Acumuladas_Mes_Ant.": 9.5,
-          "Polizas_Del_mes": 0,
-          "Polizas_Acumuladas_Total": 9.5,
+          "Polizas_Del_mes": 1,
+          "Polizas_Acumuladas_Total": 10.5,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "NO",
-          "Pólizas_Faltantes_Para_Dic": 2.5,
+          "Pólizas_Faltantes_Para_Dic": 1.5,
           "Fecha_Conexion": "2023-11-05"
         },
         {
           "ASESOR": "MARIA TERESA ASENCIO LOZANO",
           "SUC": 2043,
-          "Polizas_Acumuladas_Mes_Ant.": 8.5,
-          "Polizas_Del_mes": 1.5,
-          "Polizas_Acumuladas_Total": 10,
+          "Polizas_Acumuladas_Mes_Ant.": 11,
+          "Polizas_Del_mes": 0,
+          "Polizas_Acumuladas_Total": 11,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "NO",
-          "Pólizas_Faltantes_Para_Dic": 2,
+          "Pólizas_Faltantes_Para_Dic": 1,
           "Fecha_Conexion": "2020-11-23"
         },
         {
           "ASESOR": "DARINKA UREÑA CASILLAS",
           "SUC": 2043,
-          "Polizas_Acumuladas_Mes_Ant.": 15,
-          "Polizas_Del_mes": 1,
-          "Polizas_Acumuladas_Total": 16,
+          "Polizas_Acumuladas_Mes_Ant.": 17,
+          "Polizas_Del_mes": 0,
+          "Polizas_Acumuladas_Total": 17,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "SÍ",
@@ -1328,9 +1316,9 @@
         {
           "ASESOR": "MONICA ANDREA AMBRIZ GOMEZ",
           "SUC": 2043,
-          "Polizas_Acumuladas_Mes_Ant.": 21.5,
+          "Polizas_Acumuladas_Mes_Ant.": 22,
           "Polizas_Del_mes": 0.5,
-          "Polizas_Acumuladas_Total": 22,
+          "Polizas_Acumuladas_Total": 22.5,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "SÍ",
@@ -1340,9 +1328,9 @@
         {
           "ASESOR": "DESIREE DE LA PEÑA OROZCO",
           "SUC": 2043,
-          "Polizas_Acumuladas_Mes_Ant.": 15,
-          "Polizas_Del_mes": 0,
-          "Polizas_Acumuladas_Total": 15,
+          "Polizas_Acumuladas_Mes_Ant.": 15.5,
+          "Polizas_Del_mes": 2,
+          "Polizas_Acumuladas_Total": 17.5,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "SÍ",
@@ -1362,10 +1350,22 @@
           "Fecha_Conexion": "2022-02-23"
         },
         {
+          "ASESOR": "Asesor 118246",
+          "SUC": 2043,
+          "Polizas_Acumuladas_Mes_Ant.": 4,
+          "Polizas_Del_mes": 1,
+          "Polizas_Acumuladas_Total": 5,
+          "Proactivo_al_mes": "SÍ",
+          "Pólizas_Faltantes": 0,
+          "Proactivo_a_Dic": "SÍ",
+          "Pólizas_Faltantes_Para_Dic": 0,
+          "Fecha_Conexion": "N/A"
+        },
+        {
           "ASESOR": "MARIO IVAN ROMERO GONZALEZ",
           "SUC": 2856,
-          "Polizas_Acumuladas_Mes_Ant.": 6,
-          "Polizas_Del_mes": 1.5,
+          "Polizas_Acumuladas_Mes_Ant.": 7.5,
+          "Polizas_Del_mes": 0,
           "Polizas_Acumuladas_Total": 7.5,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
@@ -1376,9 +1376,9 @@
         {
           "ASESOR": "MONSERRAT VELASCO SANTOS",
           "SUC": 2043,
-          "Polizas_Acumuladas_Mes_Ant.": 8,
+          "Polizas_Acumuladas_Mes_Ant.": 11,
           "Polizas_Del_mes": 0,
-          "Polizas_Acumuladas_Total": 8,
+          "Polizas_Acumuladas_Total": 11,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "SÍ",
@@ -1388,9 +1388,9 @@
         {
           "ASESOR": "SOFIA CAMPILLO VASCONCELOS",
           "SUC": 2856,
-          "Polizas_Acumuladas_Mes_Ant.": 12,
+          "Polizas_Acumuladas_Mes_Ant.": 14,
           "Polizas_Del_mes": 0,
-          "Polizas_Acumuladas_Total": 12,
+          "Polizas_Acumuladas_Total": 14,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "SÍ",
@@ -2336,7 +2336,7 @@
       "pagado_pendiente": "13 de agosto de 2026",
       "pagado_pendiente_reclutas": "7 de agosto de 2026",
       "asesores_sin_emision": "13 de AGO de 2026",
-      "proactivos": "28 de julio de 2026",
+      "proactivos": "13 de agosto de 2026",
       "comparativo_vida": "29 de julio de 2026",
       "convenciones_promotores": "31 de julio 2026",
       "convenciones_gerente": "31 de julio 2026"
