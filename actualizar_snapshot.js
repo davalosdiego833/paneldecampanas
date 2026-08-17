@@ -235,7 +235,7 @@ const run = async () => {
                         let wb = readExcelSheetMemorySafe(path.join(legPath, recentFile), 0);
                         let ws = wb.Sheets[wb.SheetNames[0]];
                         let data = XLSX.utils.sheet_to_json(ws, { header: 1, range: 11 });
-                        const b9 = ws['B9']?.v || '';
+                        const b9 = ws['C9']?.v || ws['B9']?.v || ws['C8']?.v || ws['B8']?.v || extractCutoffDate(wb) || '';
                         const mMatch = String(b9).toLowerCase().match(/(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/);
                         const mIndex = mMatch ? MONTHS_ES.indexOf(mMatch[1]) + 1 : 1;
                         campaigns.legion_centurion = data.slice(1).filter(r => SUCURSALES_PROMO.includes(String(r[4] || ''))).map(r => ({
@@ -243,7 +243,7 @@ const run = async () => {
                             Total_Polizas: Number(r[10] || 0), Mes_Actual: mIndex,
                             Nivel: r[13] || '', EnMeta: String(r[11] || '').toLowerCase() === 'p'
                         }));
-                        campaignDates.legion_centurion = String(b9).match(/\d{1,2}\s+de\s+[a-z]+\s+de\s+\d{4}/i)?.[0] || '';
+                        campaignDates.legion_centurion = String(b9).match(/\d{1,2}\s+de\s+[a-z]+\s+de\s+\d{4}/i)?.[0] || extractCutoffDate(wb) || '';
                         wb = null; ws = null; data = null;
                     }
                 } catch(e) { console.warn('⚠️ Legión skip:', e.message); }
