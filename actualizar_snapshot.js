@@ -85,19 +85,19 @@ const extractCutoffDate = (wb) => {
 
 const readExcelSheetMemorySafe = (filePath, sheetSelector) => {
     const tempWb = XLSX.readFile(filePath, { bookSheets: true });
-    let targetSheet = null;
+    let targetSheets = [];
     if (typeof sheetSelector === 'function') {
-        targetSheet = tempWb.SheetNames.find(sheetSelector);
+        targetSheets = tempWb.SheetNames.filter(sheetSelector);
     } else if (typeof sheetSelector === 'string') {
-        targetSheet = tempWb.SheetNames.find(n => n.toUpperCase() === sheetSelector.toUpperCase());
+        const found = tempWb.SheetNames.find(n => n.toUpperCase() === sheetSelector.toUpperCase());
+        if (found) targetSheets.push(found);
     } else if (typeof sheetSelector === 'number') {
-        targetSheet = tempWb.SheetNames[sheetSelector];
+        if (tempWb.SheetNames[sheetSelector]) targetSheets.push(tempWb.SheetNames[sheetSelector]);
     }
-    if (!targetSheet) {
-        targetSheet = tempWb.SheetNames[0];
+    if (!targetSheets || targetSheets.length === 0) {
+        targetSheets = [tempWb.SheetNames[0]];
     }
-    const wb = XLSX.readFile(filePath, { sheets: [targetSheet] });
-    wb.SheetNames = [targetSheet];
+    const wb = XLSX.readFile(filePath, { sheets: targetSheets });
     return wb;
 };
 
@@ -336,9 +336,9 @@ const run = async () => {
                     const ptPath = path.join(BASE_PATH, 'proactivatech');
                     const recentFile = getMostRecentFile(ptPath);
                     if (recentFile) {
-                        const selector = n => n.toLowerCase().includes('asesores');
+                        const selector = n => n.toLowerCase().includes('asesores') || n.toUpperCase() === 'RESUMEN';
                         let wb = readExcelSheetMemorySafe(path.join(ptPath, recentFile), selector);
-                        let ws = wb.Sheets[wb.SheetNames[0]];
+                        let ws = wb.Sheets['ASESORES'] || wb.Sheets[wb.SheetNames[0]];
                         let data = XLSX.utils.sheet_to_json(ws, { range: 6 });
                         const advisorsData = data.slice(1);
 

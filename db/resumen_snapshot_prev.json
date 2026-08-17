@@ -1,5 +1,5 @@
 {
-  "updatedAt": "17/8/2026, 11:33:56 a.m.",
+  "updatedAt": "17/8/2026, 12:02:11 p.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -3510,6 +3510,16 @@
       ],
       "reto_por_ciento": [
         {
+          "Asesor": "DESIREE DE LA PEÑA OROZCO",
+          "Clave": "80122",
+          "Conexion": "28 de Septiembre de 2018",
+          "Conteo": 2.5,
+          "Cumplimiento": false,
+          "Suma_Comision": 51638.64,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
           "Asesor": "DARINKA UREÑA CASILLAS",
           "Clave": "90355",
           "Conexion": "28 de Abril de 2020",
@@ -3526,46 +3536,6 @@
           "Conteo": 1,
           "Cumplimiento": false,
           "Suma_Comision": 9960.95,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "DESIREE DE LA PEÑA OROZCO",
-          "Clave": "80122",
-          "Conexion": "28 de Septiembre de 2018",
-          "Conteo": 0.5,
-          "Cumplimiento": false,
-          "Suma_Comision": 3105.09,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
-          "Clave": "63441",
-          "Conexion": "21 de Junio de 2022",
-          "Conteo": 0,
-          "Cumplimiento": false,
-          "Suma_Comision": 0,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "KAREN MUÑOZ GARCIA",
-          "Clave": "81044",
-          "Conexion": "7 de Noviembre de 2022",
-          "Conteo": 0,
-          "Cumplimiento": false,
-          "Suma_Comision": 0,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "MARICELA ARREOLA LOPEZ",
-          "Clave": "80925",
-          "Conexion": "5 de Diciembre de 2018",
-          "Conteo": 0,
-          "Cumplimiento": false,
-          "Suma_Comision": 0,
           "Porcentaje": 0,
           "Extracomision": 0
         },
@@ -3590,9 +3560,9 @@
           "Extracomision": 0
         },
         {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "Conexion": "23 de Septiembre de 2019",
+          "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
+          "Clave": "63441",
+          "Conexion": "21 de Junio de 2022",
           "Conteo": 0,
           "Cumplimiento": false,
           "Suma_Comision": 0,
@@ -3610,9 +3580,29 @@
           "Extracomision": 0
         },
         {
-          "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
-          "Clave": "59120",
-          "Conexion": "27 de Mayo de 2022",
+          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+          "Clave": "87538",
+          "Conexion": "23 de Septiembre de 2019",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "KAREN MUÑOZ GARCIA",
+          "Clave": "81044",
+          "Conexion": "7 de Noviembre de 2022",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "MARICELA ARREOLA LOPEZ",
+          "Clave": "80925",
+          "Conexion": "5 de Diciembre de 2018",
           "Conteo": 0,
           "Cumplimiento": false,
           "Suma_Comision": 0,
@@ -3779,7 +3769,7 @@
       "camino_cumbre": "31 de julio de 2026",
       "graduacion": "31 de julio de 2026",
       "proactiva_tech": "31 de julio 2026",
-      "reto_por_ciento": "31 DE JULIO 2026",
+      "reto_por_ciento": "12 DE AGOSTO 2026",
       "convenciones_promotores": "31 de julio 2026",
       "convenciones_gerente": "31 de julio 2026"
     }
