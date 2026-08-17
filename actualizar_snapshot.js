@@ -98,6 +98,7 @@ const readExcelSheetMemorySafe = (filePath, sheetSelector) => {
         targetSheets = [tempWb.SheetNames[0]];
     }
     const wb = XLSX.readFile(filePath, { sheets: targetSheets });
+    wb.SheetNames = targetSheets;
     return wb;
 };
 

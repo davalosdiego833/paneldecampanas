@@ -1,5 +1,5 @@
 {
-  "updatedAt": "17/8/2026, 1:20:36 p.m.",
+  "updatedAt": "17/8/2026, 2:38:39 p.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -2378,7 +2378,168 @@
       "convenciones_gerente": "31 de julio 2026"
     },
     "campaigns": {
-      "mdrt": [],
+      "mdrt": [
+        {
+          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+          "Clave": "87538",
+          "PA_Acumulada": 2112770.74
+        },
+        {
+          "Asesor": "ANAIS LUA MORENO",
+          "Clave": "110453",
+          "PA_Acumulada": 1837452.67
+        },
+        {
+          "Asesor": "DESIREE DE LA PEÑA OROZCO",
+          "Clave": "80122",
+          "PA_Acumulada": 977924.28
+        },
+        {
+          "Asesor": "DARINKA UREÑA CASILLAS",
+          "Clave": "90355",
+          "PA_Acumulada": 869613.19
+        },
+        {
+          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+          "Clave": "47116",
+          "PA_Acumulada": 665083.43
+        },
+        {
+          "Asesor": "MARIA TERESA ASENCIO LOZANO",
+          "Clave": "94156",
+          "PA_Acumulada": 492182.27
+        },
+        {
+          "Asesor": "JORGE ANTONIO LUNA LARA",
+          "Clave": "111056",
+          "PA_Acumulada": 484888.42
+        },
+        {
+          "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+          "Clave": "104750",
+          "PA_Acumulada": 433129.99
+        },
+        {
+          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
+          "Clave": "116883",
+          "PA_Acumulada": 383849.43
+        },
+        {
+          "Asesor": "MONSERRAT VELASCO SANTOS",
+          "Clave": "117440",
+          "PA_Acumulada": 375489.68
+        },
+        {
+          "Asesor": "ROGELIO TORRES ORTIZ",
+          "Clave": "104718",
+          "PA_Acumulada": 300836.03
+        },
+        {
+          "Asesor": "MARICELA ARREOLA LOPEZ",
+          "Clave": "80925",
+          "PA_Acumulada": 292908.11
+        },
+        {
+          "Asesor": "GABRIELA CASTAÑEDA SALAZAR",
+          "Clave": "105696",
+          "PA_Acumulada": 280168.03
+        },
+        {
+          "Asesor": "MARIO IVAN ROMERO GONZALEZ",
+          "Clave": "118069",
+          "PA_Acumulada": 231694.94
+        },
+        {
+          "Asesor": "MARIA FERNANDA RIOS BERNAL",
+          "Clave": "103982",
+          "PA_Acumulada": 207152.09
+        },
+        {
+          "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
+          "Clave": "113450",
+          "PA_Acumulada": 207032.84
+        },
+        {
+          "Asesor": "JOSE RENE DE ALBA MORALES",
+          "Clave": "110575",
+          "PA_Acumulada": 191448.06
+        },
+        {
+          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
+          "Clave": "116876",
+          "PA_Acumulada": 186487.08
+        },
+        {
+          "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+          "Clave": "108404",
+          "PA_Acumulada": 184332.01
+        },
+        {
+          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
+          "Clave": "115047",
+          "PA_Acumulada": 174860.14
+        },
+        {
+          "Asesor": "JULIANA RIASCOS VALENCIA",
+          "Clave": "100677",
+          "PA_Acumulada": 155988.61
+        },
+        {
+          "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
+          "Clave": "118246",
+          "PA_Acumulada": 149134.11
+        },
+        {
+          "Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
+          "Clave": "107488",
+          "PA_Acumulada": 145772.58
+        },
+        {
+          "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
+          "Clave": "104343",
+          "PA_Acumulada": 140468.64
+        },
+        {
+          "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
+          "Clave": "115404",
+          "PA_Acumulada": 109491.68
+        },
+        {
+          "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
+          "Clave": "95148",
+          "PA_Acumulada": 103923.64
+        },
+        {
+          "Asesor": "MIREYA LIZETTE TORRES GARCIA",
+          "Clave": "106018",
+          "PA_Acumulada": 59325.88
+        },
+        {
+          "Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
+          "Clave": "114157",
+          "PA_Acumulada": 39589.27
+        },
+        {
+          "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
+          "Clave": "98797",
+          "PA_Acumulada": 33847.21
+        },
+        {
+          "Asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+          "Clave": "64502",
+          "PA_Acumulada": 8705.04
+        },
+        {
+          "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
+          "Clave": "63441",
+          "PA_Acumulada": 3827.07
+        },
+        {
+          "Asesor": "KAREN MUÑOZ GARCIA",
+          "Clave": "81044",
+          "PA_Acumulada": 2301.18
+        }
+      ],
       "convenciones": [
         {
           "Asesor": "MARIA TERESA ASENCIO LOZANO",
@@ -3139,7 +3300,72 @@
           "Mes_3_Prod": 2
         }
       ],
-      "graduacion": [],
+      "graduacion": [
+        {
+          "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
+          "Clave": "113450",
+          "Mes_Asesor": 13,
+          "Polizas_Totales": 15,
+          "Comisones": 130513,
+          "Fecha_Limite_Meta": "1 de Junio de 2026"
+        },
+        {
+          "Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
+          "Clave": "114157",
+          "Mes_Asesor": 11,
+          "Polizas_Totales": 9.5,
+          "Comisones": 59636.98,
+          "Fecha_Limite_Meta": "1 de Agosto de 2026"
+        },
+        {
+          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
+          "Clave": "115047",
+          "Mes_Asesor": 10,
+          "Polizas_Totales": 17,
+          "Comisones": 136531.5,
+          "Fecha_Limite_Meta": "1 de Septiembre de 2026"
+        },
+        {
+          "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
+          "Clave": "115404",
+          "Mes_Asesor": 9,
+          "Polizas_Totales": 12,
+          "Comisones": 85212.37,
+          "Fecha_Limite_Meta": "1 de Octubre de 2026"
+        },
+        {
+          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
+          "Clave": "116876",
+          "Mes_Asesor": 5,
+          "Polizas_Totales": 6.5,
+          "Comisones": 31248.76,
+          "Fecha_Limite_Meta": "1 de Febrero de 2027"
+        },
+        {
+          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
+          "Clave": "116883",
+          "Mes_Asesor": 4,
+          "Polizas_Totales": 14,
+          "Comisones": 56416.83,
+          "Fecha_Limite_Meta": "1 de Marzo de 2027"
+        },
+        {
+          "Asesor": "MONSERRAT VELASCO SANTOS",
+          "Clave": "117440",
+          "Mes_Asesor": 3,
+          "Polizas_Totales": 12,
+          "Comisones": 71696.4,
+          "Fecha_Limite_Meta": "1 de Abril de 2027"
+        },
+        {
+          "Asesor": "MARIO IVAN ROMERO GONZALEZ",
+          "Clave": "118069",
+          "Mes_Asesor": 2,
+          "Polizas_Totales": 7.5,
+          "Comisones": 51146.15,
+          "Fecha_Limite_Meta": "1 de Mayo de 2027"
+        }
+      ],
       "proactiva_tech": [
         {
           "Asesor": "MONSERRAT VELASCO SANTOS",
@@ -3544,7 +3770,7 @@
       }
     },
     "campaignDates": {
-      "mdrt": "29 de julio de 2026",
+      "mdrt": "12 de agosto de 2026",
       "convenciones": "31 de Julio de 2026",
       "legion_centurion": "17 de agosto de 2026",
       "camino_cumbre": "31 de julio de 2026",
