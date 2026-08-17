@@ -1,5 +1,36 @@
 {
-  "generatedAt": "17/8/2026, 9:09:32 a.m.",
-  "totalNew": 0,
-  "alerts": []
+  "generatedAt": "17/8/2026, 10:14:34 a.m.",
+  "totalNew": 3,
+  "alerts": [
+    {
+      "id": "58a6e114-a890-4107-9940-aa3af8a58f70",
+      "asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
+      "firstName": "Humberto",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Humberto, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "49ae9b04-1569-4a21-b01b-1bc18f7ea2c4",
+      "asesor": "MONSERRAT VELASCO SANTOS",
+      "firstName": "Monserrat",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Monserrat, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "0fb20bb4-3bc1-4076-9f23-b4bcd4cbfddd",
+      "asesor": "JOSE ANTEMIO OLIVA SANTOS",
+      "firstName": "Jose",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Jose, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    }
+  ]
 }
