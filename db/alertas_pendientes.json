@@ -1,5 +1,26 @@
 {
-  "generatedAt": "18/8/2026, 10:56:28 a.m.",
-  "totalNew": 0,
-  "alerts": []
+  "generatedAt": "19/8/2026, 1:46:17 p.m.",
+  "totalNew": 2,
+  "alerts": [
+    {
+      "id": "e319a6d9-5855-432e-92f7-bd6200da0d1b",
+      "asesor": "MARIO IVAN ROMERO GONZALEZ",
+      "firstName": "Mario",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Mario, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "064dfd86-cec7-4c3e-a772-f049503e1b1a",
+      "asesor": "PAULA ANGELICA LOMELI CAZARES",
+      "firstName": "Paula",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Paula, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    }
+  ]
 }
