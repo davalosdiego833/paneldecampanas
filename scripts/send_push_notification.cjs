@@ -142,9 +142,9 @@ const sendPushNotification = async ({ group = 'all', title, body, url = '/', ico
         if (group === 'all') {
             isTarget = true;
         } else if (group === 'admin') {
-            isTarget = sub.role === 'admin';
+            isTarget = sub.role === 'admin' || sub.clave === 'ADMIN' || (sub.name && String(sub.name).toLowerCase().includes('admin'));
         } else if (group === 'asesor') {
-            isTarget = sub.role === 'asesor' || !sub.role;
+            isTarget = (sub.role === 'asesor' || !sub.role) && sub.clave !== 'ADMIN' && !(sub.name && String(sub.name).toLowerCase().includes('admin'));
         }
         if (isTarget && sub.subscription && sub.subscription.endpoint) {
             try {
@@ -183,6 +183,39 @@ const sendPushNotification = async ({ group = 'all', title, body, url = '/', ico
                 }
             } catch (e) {}
         }
+
+        // Save to comunicados_history.json for Centro de Avisos
+        const historyTargets = [
+            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/comunicados_history.json',
+            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/comunicados_history.json',
+            path.join(dbDir, 'comunicados_history.json')
+        ];
+        let history = [];
+        const existingHistFile = historyTargets.find(p => fs.existsSync(p));
+        if (existingHistFile) {
+            try { history = JSON.parse(fs.readFileSync(existingHistFile, 'utf-8')); } catch { history = []; }
+        }
+        if (!Array.isArray(history)) history = [];
+        
+        history.unshift({
+            id: Date.now().toString(),
+            title,
+            body,
+            url: url || '/',
+            group,
+            timestamp: new Date().toISOString(),
+            successCount: Math.max(successCount, 1)
+        });
+        if (history.length > 50) history = history.slice(0, 50);
+
+        for (const hp of historyTargets) {
+            try {
+                const dir = path.dirname(hp);
+                if (fs.existsSync(dir)) {
+                    fs.writeFileSync(hp, JSON.stringify(history, null, 2));
+                }
+            } catch (e) {}
+        }
     }
 
     console.log(`[PUSH] Envío completado. Exitosos: ${successCount} de ${subscriptions.length} dispositivo(s).`);
@@ -190,3 +223,11 @@ const sendPushNotification = async ({ group = 'all', title, body, url = '/', ico
 };
 
 module.exports = { sendPushNotification };
+
+if (require.main === module) {
+    const group = process.argv[2] || 'all';
+    const title = process.argv[3] || 'Campaña Actualizada';
+    const body = process.argv[4] || 'Se han publicado nuevos datos en la plataforma.';
+    const url = process.argv[5] || '/';
+    sendPushNotification({ group, title, body, url }).then(res => console.log('Resultado CLI Push:', res));
+}
