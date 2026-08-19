@@ -1,5 +1,5 @@
 {
-  "updatedAt": "19/8/2026, 1:46:14 p.m.",
+  "updatedAt": "19/8/2026, 2:26:17 p.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -536,13 +536,13 @@
             "%_Asesores_con_pol_Pagada_Vida": 0.125,
             "Asesores_con_pol_Pagada_GMM": 1,
             "%_Asesores_con_pol_Pagada_GMM": 0.0417,
-            "Prima_Pagada_Vida": 263669.95,
-            "Prima_Pagada_GMM": 25840
+            "Prima_Pagada_Vida": 330019.11,
+            "Prima_Pagada_GMM": 54551
           },
           {
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2511,
-            "Agentes": 2,
+            "Agentes": 3,
             "Asesores_con_Emisión_Vida": 0,
             "%_Asesores_con_Emisión_Vida": 0,
             "Asesores_con_Emisión_GMM": 0,
@@ -558,16 +558,16 @@
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2856,
             "Agentes": 5,
-            "Asesores_con_Emisión_Vida": 1,
-            "%_Asesores_con_Emisión_Vida": 0.2,
+            "Asesores_con_Emisión_Vida": 2,
+            "%_Asesores_con_Emisión_Vida": 0.4,
             "Asesores_con_Emisión_GMM": 0,
             "%_Asesores_con_Emisión_GMM": 0,
-            "Asesores_con_pol_Pagada_Vida": 0,
-            "%_Asesores_con_pol_Pagada_Vida": 0,
+            "Asesores_con_pol_Pagada_Vida": 2,
+            "%_Asesores_con_pol_Pagada_Vida": 0.4,
             "Asesores_con_pol_Pagada_GMM": 0,
             "%_Asesores_con_pol_Pagada_GMM": 0,
-            "Prima_Pagada_Vida": 18272.09,
-            "Prima_Pagada_GMM": 0
+            "Prima_Pagada_Vida": 62884.99,
+            "Prima_Pagada_GMM": 18209
           }
         ],
         "individuals": [
@@ -581,7 +581,7 @@
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
             "Prima_Pagada_Vida": 13506.29,
-            "Prima_Pagada_GMM": 2870,
+            "Prima_Pagada_GMM": 6361,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i"
           },
@@ -594,7 +594,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 0,
+            "Prima_Pagada_Vida": 6049.46,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -625,7 +625,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 3468.29,
+            "Prima_Pagada_Vida": 12093.46,
             "Prima_Pagada_GMM": 2632,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i"
@@ -653,7 +653,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 1659.4,
+            "Prima_Pagada_Vida": 7590.14,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -668,7 +668,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 0,
+            "Prima_Pagada_Vida": 5443.04,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -683,7 +683,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 5019.7,
+            "Prima_Pagada_Vida": 16532.42,
             "Prima_Pagada_GMM": 2280,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -713,8 +713,8 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 11483.43,
-            "Prima_Pagada_GMM": 0,
+            "Prima_Pagada_Vida": 17290.35,
+            "Prima_Pagada_GMM": 14332,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
@@ -758,7 +758,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 0,
+            "Prima_Pagada_Vida": 2068.31,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -790,7 +790,7 @@
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
             "Prima_Pagada_Vida": 5025.06,
-            "Prima_Pagada_GMM": 0,
+            "Prima_Pagada_GMM": 3877,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i"
           },
@@ -815,15 +815,13 @@
             "Clave": 116876,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2856,
-            "Emitido_Vida": 0,
+            "Emitido_Vida": 1,
             "Emitido_GMM": 0,
-            "Pagado_Vida": 0,
+            "Pagado_Vida": 1,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 0,
+            "Prima_Pagada_Vida": 16392.68,
             "Prima_Pagada_GMM": 0,
-            "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_Vida": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
@@ -835,7 +833,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 1763.6,
+            "Prima_Pagada_Vida": 5808.77,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -850,7 +848,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 7537.55,
+            "Prima_Pagada_Vida": 10530.97,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
@@ -862,9 +860,9 @@
             "Suc": 2856,
             "Emitido_Vida": 1,
             "Emitido_GMM": 0,
-            "Pagado_Vida": 0,
+            "Pagado_Vida": 1,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 0,
+            "Prima_Pagada_Vida": 18368.13,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_GMM": "i"
           },
@@ -891,7 +889,21 @@
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
             "Prima_Pagada_Vida": 15302.69,
-            "Prima_Pagada_GMM": 4182,
+            "Prima_Pagada_GMM": 20734,
+            "Sin_Emisión_Vida": "i",
+            "Sin_Emisión_GMM": "i"
+          },
+          {
+            "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
+            "Clave": 59120,
+            "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+            "Suc": 2511,
+            "Emitido_Vida": 0,
+            "Emitido_GMM": 0,
+            "Pagado_Vida": 0,
+            "Pagado_GMM": 0,
+            "Prima_Pagada_Vida": 0,
+            "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i"
           },
@@ -920,7 +932,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 2,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 162964,
+            "Prima_Pagada_Vida": 171338.2,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_GMM": "i"
           },
@@ -933,7 +945,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 0,
+            "Prima_Pagada_Vida": 9886.12,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -963,7 +975,7 @@
             "Pagado_Vida": 0,
             "Pagado_GMM": 1,
             "Prima_Pagada_Vida": 8393.23,
-            "Prima_Pagada_GMM": 2305,
+            "Prima_Pagada_GMM": 7688,
             "Sin_Emisión_Vida": "i"
           },
           {
@@ -1003,8 +1015,8 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 0,
-            "Prima_Pagada_GMM": 0,
+            "Prima_Pagada_Vida": 5465.98,
+            "Prima_Pagada_GMM": 3285,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i"
           },
@@ -2371,7 +2383,7 @@
     "fechas_corte": {
       "pagado_pendiente": "18 de agosto de 2026",
       "pagado_pendiente_reclutas": "7 de agosto de 2026",
-      "asesores_sin_emision": "13 de AGO de 2026",
+      "asesores_sin_emision": "18 de AGO de 2026",
       "proactivos": "13 de agosto de 2026",
       "comparativo_vida": "12 de agosto de 2026",
       "convenciones_promotores": "31 de julio 2026",
