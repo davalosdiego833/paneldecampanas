@@ -1,5 +1,5 @@
 {
-  "updatedAt": "19/8/2026, 2:26:17 p.m.",
+  "updatedAt": "19/8/2026, 2:44:07 p.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -1086,6 +1086,18 @@
           "Fecha_Conexion": "2022-06-20"
         },
         {
+          "ASESOR": "TIARE DE LA CRUZ DZIB CABRERA",
+          "SUC": 2511,
+          "Polizas_Acumuladas_Mes_Ant.": 0,
+          "Polizas_Del_mes": 0,
+          "Polizas_Acumuladas_Total": 0,
+          "Proactivo_al_mes": "NO",
+          "Pólizas_Faltantes": 8,
+          "Proactivo_a_Dic": "NO",
+          "Pólizas_Faltantes_Para_Dic": 12,
+          "Fecha_Conexion": "2022-05-26"
+        },
+        {
           "ASESOR": "JOSE RENE DE ALBA MORALES",
           "SUC": 2043,
           "Polizas_Acumuladas_Mes_Ant.": 1,
@@ -1377,8 +1389,8 @@
           "ASESOR": "MARIO IVAN ROMERO GONZALEZ",
           "SUC": 2856,
           "Polizas_Acumuladas_Mes_Ant.": 7.5,
-          "Polizas_Del_mes": 0,
-          "Polizas_Acumuladas_Total": 7.5,
+          "Polizas_Del_mes": 1,
+          "Polizas_Acumuladas_Total": 8.5,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "SÍ",
@@ -2384,7 +2396,7 @@
       "pagado_pendiente": "18 de agosto de 2026",
       "pagado_pendiente_reclutas": "7 de agosto de 2026",
       "asesores_sin_emision": "18 de AGO de 2026",
-      "proactivos": "13 de agosto de 2026",
+      "proactivos": "17 de agosto de 2026",
       "comparativo_vida": "12 de agosto de 2026",
       "convenciones_promotores": "31 de julio 2026",
       "convenciones_gerente": "31 de julio 2026"

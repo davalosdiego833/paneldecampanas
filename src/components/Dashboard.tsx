@@ -8,6 +8,7 @@ import CaminoCumbre from './Dashboards/CaminoCumbre';
 import Graduacion from './Dashboards/Graduacion';
 import ProactivaTech from './Dashboards/ProactivaTech';
 import RetoPorCiento from './Dashboards/RetoPorCiento';
+import EducarEsCreer from './Dashboards/EducarEsCreer';
 
 
 interface Props {
@@ -97,6 +98,7 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor, themeMode }) => {
             case 'graduacion': return <Graduacion data={data} />;
             case 'proactiva_tech': return <ProactivaTech data={data} />;
             case 'reto_por_ciento': return <RetoPorCiento data={data} />;
+            case 'educar_es_creer': return <EducarEsCreer data={data} />;
             default: return (
                 <div style={{
                     display: 'grid',
