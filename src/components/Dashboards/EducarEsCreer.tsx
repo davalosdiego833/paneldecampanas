@@ -43,7 +43,7 @@ export const EducarEsCreer: React.FC<Props> = ({ data }) => {
                     }}
                 >
                     <Award size={20} />
-                    <span>🎓 Convenciones al Doble (Asesores)</span>
+                    <span>Convenciones al Doble (Asesores)</span>
                 </button>
 
                 <button
@@ -66,7 +66,7 @@ export const EducarEsCreer: React.FC<Props> = ({ data }) => {
                     }}
                 >
                     <Gift size={20} />
-                    <span>🎁 Kits Escolares (Clientes)</span>
+                    <span>Kits Escolares (Clientes)</span>
                 </button>
             </div>
 
