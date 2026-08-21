@@ -1703,6 +1703,16 @@ app.get('/api/historico-metas', (req, res) => {
         res.status(500).json({ error: 'Error reading history' });
     }
 });
+app.post('/api/historico-metas', (req, res) => {
+    try {
+        const filePath = path.join(DB_PATH_DYNAMIC, 'historico_metas.json');
+        fs.writeFileSync(filePath, JSON.stringify(req.body, null, 2));
+        res.json({ success: true });
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Write error' });
+    }
+});
 app.get('/api/daniela/resumen', (req, res) => {
     res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     res.setHeader('Pragma', 'no-cache');
