@@ -545,6 +545,18 @@
           "tareas_actividades": 20,
           "observaciones": "Fer Carlos registra una sólida actividad comercial en el área de Desarrollo con **5 Citas Iniciales** y **2 Citas de Cierre**. En el acompañamiento de equipo, suma **4 Sesiones 1:1**, **1 Sesión de Negocios** y un avance constante de **20 Tareas / Actividades** completadas.\n\nÁrea de mejora: Excelente seguimiento en agenda y sesiones individuales. El objetivo prioritario en esta etapa es avanzar en la conversión de las 2 Citas de Cierre para formalizar emisiones de pólizas e impulsar la reactivación de Arranques Rápidos."
         }
+      },
+      {
+        "date": "2026-08-21",
+        "data": {
+          "citas_iniciales": 5,
+          "citas_cierre": 2,
+          "sesiones_11": 5,
+          "sesiones_negocios": 1,
+          "arranque_rapido": 0,
+          "tareas_actividades": 20,
+          "observaciones": "Fer Carlos registra una sólida actividad comercial en el área de Desarrollo con **5 Citas Iniciales** y **2 Citas de Cierre**. En el acompañamiento de equipo, incrementa a **5 Sesiones 1:1** (+1 respecto al corte anterior), **1 Sesión de Negocios** y un avance constante de **20 Tareas / Actividades** completadas.\n\nÁrea de mejora: Excelente avance en el acompañamiento personalizado 1:1. El objetivo prioritario en esta etapa es avanzar en la conversión de las 2 Citas de Cierre para formalizar emisiones de pólizas e impulsar la reactivación de Arranques Rápidos."
+        }
       }
     ],
     "goals": {
@@ -849,6 +861,23 @@
           "recluta_citas": 0,
           "recluta_entrevistas": 6,
           "observaciones": "Shelsea muestra un avance masivo en este corte de mediados de agosto, alcanzando **346 contactos acumulados en el mes** (+203 respecto al corte anterior del 11 de agosto) y manteniendo **6 entrevistas de reclutamiento**. En el embudo de conversión, eleva la estructura a **11 Activos Totales** (8 Nosotras, +2 / 3 Karen), **11 candidatos en Enamoramiento** (+5), **3 Enamoramientos Karen**, **2 candidatos en Reserva Activa** (+2), **2 en Compensación** (+2) y **1 en etapa Administrativa** (+1).\n\nÁrea de mejora: Excelente dinamismo con un incremento masivo en prospección (+203 contactos en una semana) y movimiento en todas las fases. Con 2 candidatos ya en Compensación y 1 en Administrativa, la prioridad estratégica es acompañar estrechamente su proceso para concretar su contratación formal e integrarlos activamente al equipo."
+        }
+      },
+      {
+        "date": "2026-08-21",
+        "data": {
+          "activos_mes": 11,
+          "activos_totales": 14,
+          "activos_karen": 3,
+          "ent_enamoramiento": 16,
+          "enamoramientos_karen": 3,
+          "reserva_activa": 4,
+          "ent_compensacion": 1,
+          "ent_administrativa": 1,
+          "recluta_contactos": 435,
+          "recluta_citas": 0,
+          "recluta_entrevistas": 6,
+          "observaciones": "Shelsea registra un avance continuo en este corte con **435 contactos acumulados en el mes** (+89 respecto al corte del 18 de agosto) y mantiene **6 entrevistas de reclutamiento**. En el embudo de conversión, eleva la estructura a **14 Activos Totales** (11 Nosotros, +3 / 3 Karen), **16 candidatos en Enamoramiento Shelsea** (+5), **3 Enamoramientos Karen**, **4 candidatos en Reserva Activa** (+2), **1 en Compensación** y **1 en etapa Administrativa**.\n\nÁrea de mejora: Excelente aceleración en prospección (+89 nuevos contactos) y crecimiento de asesores activos (+3) y enamorados (+5). La prioridad estratégica es reactivar llamadas y citas de seguimiento para canalizar a los 16 candidatos en enamoramiento hacia compensación y contratación."
         }
       }
     ]

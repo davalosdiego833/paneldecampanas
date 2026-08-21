@@ -1,5 +1,26 @@
 {
-  "generatedAt": "20/8/2026, 12:47:04 p.m.",
-  "totalNew": 0,
-  "alerts": []
+  "generatedAt": "21/8/2026, 12:20:55 p.m.",
+  "totalNew": 2,
+  "alerts": [
+    {
+      "id": "c0be193a-9963-4830-94c1-e0e0e581b0da",
+      "asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+      "firstName": "Paulina",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Paulina, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *2 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "2115ec41-fb98-4b7f-a2c5-302b154b82f8",
+      "asesor": "JORGE ANTONIO LUNA LARA",
+      "firstName": "Jorge",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Jorge, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    }
+  ]
 }

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "19/8/2026, 2:44:07 p.m.",
+  "updatedAt": "20/8/2026, 12:47:00 p.m.",
   "data": {
     "resumen_general": {
       "pagado_pendiente": [
@@ -3791,7 +3791,423 @@
           },
           "asesores_ta": 4
         }
-      }
+      },
+      "educar_es_creer": [
+        {
+          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+          "Clave": "47116",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
+          "Clave": "59120",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
+          "Clave": "63441",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+          "Clave": "64502",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "PAULINA RODRIGUEZ DE LA MORA",
+          "Clave": "65046",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "MARIO ALFONSO SARMIENTO OROZCO",
+          "Clave": "69684",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "DESIREE DE LA PEÐA OROZCO",
+          "Clave": "80122",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "MARICELA ARREOLA LOPEZ",
+          "Clave": "80925",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "KAREN MUÐOZ GARCIA",
+          "Clave": "81044",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+          "Clave": "87538",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "ANDREA CELESTE IBAÐEZ RINCON",
+          "Clave": "88234",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "JOCELYN URIBE VARGAS",
+          "Clave": "90177",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "DARINKA UREÐA CASILLAS",
+          "Clave": "90355",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "MARIA TERESA ASENCIO LOZANO",
+          "Clave": "94156",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
+          "Clave": "95148",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
+          "Clave": "98797",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "JULIANA RIASCOS VALENCIA",
+          "Clave": "100677",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "SAMUEL NUÐO RIVERA",
+          "Clave": "101640",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
+          "Clave": "102825",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "MARIA FERNANDA RIOS BERNAL",
+          "Clave": "103982",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
+          "Clave": "104343",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "ROGELIO TORRES ORTIZ",
+          "Clave": "104718",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
+          "Clave": "104750",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "GABRIELA CASTAÐEDA SALAZAR",
+          "Clave": "105696",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "MIREYA LIZETTE TORRES GARCIA",
+          "Clave": "106018",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "ORLANDA JIMENA CERVANTES NUÐEZ",
+          "Clave": "107488",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+          "Clave": "108404",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
+          "Clave": "108405",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
+          "Clave": "109007",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "EVELYN CAROLINA VENEGAS IÐIGUEZ",
+          "Clave": "109998",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "ROCIO YANETH OCHOA IBARRA",
+          "Clave": "110105",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "ANAIS LUA MORENO",
+          "Clave": "110453",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "JOSE RENE DE ALBA MORALES",
+          "Clave": "110575",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "JORGE ANTONIO LUNA LARA",
+          "Clave": "111056",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
+          "Clave": "112083",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "LAURA DOLORES MONTAÐO MONTAÐO",
+          "Clave": "112522",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "ANA LAURA CONTRERAS IÐIGUEZ",
+          "Clave": "113450",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
+          "Clave": "114100",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "HANA SOFIA LOPEZ QUIÐONEZ",
+          "Clave": "114157",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
+          "Clave": "115047",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
+          "Clave": "115404",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
+          "Clave": "116876",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
+          "Clave": "116883",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "MONSERRAT VELASCO SANTOS",
+          "Clave": "117440",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "MARIO IVAN ROMERO GONZALEZ",
+          "Clave": "118069",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        },
+        {
+          "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
+          "Clave": "118246",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 950
+        }
+      ]
     },
     "campaignDates": {
       "mdrt": "12 de agosto de 2026",
@@ -3802,7 +4218,8 @@
       "proactiva_tech": "12 de agosto 2026",
       "reto_por_ciento": "12 DE AGOSTO 2026",
       "convenciones_promotores": "31 de julio 2026",
-      "convenciones_gerente": "31 de julio 2026"
+      "convenciones_gerente": "31 de julio 2026",
+      "educar_es_creer": "14 de agosto de 2026"
     }
   }
 }
