@@ -92,12 +92,13 @@ const sendPushNotification = async ({ group = 'all', title, body, url = '/', ico
     const onesignalConfigPath = path.join(dbDir, 'onesignal_config.json');
 
     // 1. Intentar envío vía OneSignal REST API (si está configurado)
+    let osSent = false;
     if (fs.existsSync(onesignalConfigPath)) {
         try {
             const osConfig = JSON.parse(fs.readFileSync(onesignalConfigPath, 'utf-8'));
             if (osConfig && osConfig.appId && osConfig.apiKey && osConfig.enabled) {
                 console.log('[PUSH] Disparando envío de notificaciones vía OneSignal Enterprise...');
-                await sendOneSignalNotification({
+                osSent = await sendOneSignalNotification({
                     appId: osConfig.appId,
                     apiKey: osConfig.apiKey,
                     group,
@@ -109,6 +110,11 @@ const sendPushNotification = async ({ group = 'all', title, body, url = '/', ico
         } catch (eOS) {
             console.error('[PUSH] Error en envío OneSignal:', eOS);
         }
+    }
+
+    if (osSent) {
+        console.log('[PUSH] Notificación enviada exitosamente por OneSignal. Omitiendo WebPush VAPID para prevenir notificaciones duplicadas.');
+        return { success: true, sent: 1, provider: 'onesignal' };
     }
 
     // 2. Envío simultáneo vía WebPush VAPID nativo
