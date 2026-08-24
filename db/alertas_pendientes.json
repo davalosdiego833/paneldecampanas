@@ -1,5 +1,66 @@
 {
-  "generatedAt": "24/8/2026, 12:21:14 p.m.",
-  "totalNew": 0,
-  "alerts": []
+  "generatedAt": "24/8/2026, 3:24:45 p.m.",
+  "totalNew": 6,
+  "alerts": [
+    {
+      "id": "c2529c12-49a5-44ff-a7db-92cdd67164ca",
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "firstName": "Monica",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #1)",
+      "message": "Hola Monica, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #1*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $53.6k* a tu meta.\n\nTu Prima Acumulada actual es de *$2.17M*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "8d40e21c-15e5-455d-8235-01d6264b039c",
+      "asesor": "DESIREE DE LA PEÑA OROZCO",
+      "firstName": "Desiree",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #3)",
+      "message": "Hola Desiree, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #3*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $3.3k* a tu meta.\n\nTu Prima Acumulada actual es de *$981.2k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "c673805f-d44a-4645-96f1-cdf806c0d528",
+      "asesor": "DARINKA UREÑA CASILLAS",
+      "firstName": "Darinka",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #4)",
+      "message": "Hola Darinka, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #4*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $600.00* a tu meta.\n\nTu Prima Acumulada actual es de *$870.2k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "14169a5a-70b4-40a5-a7aa-a49356bd3da3",
+      "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+      "firstName": "Rafael",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #5)",
+      "message": "Hola Rafael, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #5*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $275.79* a tu meta.\n\nTu Prima Acumulada actual es de *$665.4k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "415d479c-c44a-4c86-af3d-c8a3b94675e8",
+      "asesor": "MARIA TERESA ASENCIO LOZANO",
+      "firstName": "Maria",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #6)",
+      "message": "Hola Maria, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #6*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $209.26* a tu meta.\n\nTu Prima Acumulada actual es de *$492.4k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "6c9271e2-c2c9-43f1-b29e-5b1a15cbd6d6",
+      "asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+      "firstName": "Paulina",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #8)",
+      "message": "Hola Paulina, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #8*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *variaste $-4.3k* a tu meta.\n\nTu Prima Acumulada actual es de *$428.8k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    }
+  ]
 }

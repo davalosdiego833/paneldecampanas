@@ -77,26 +77,35 @@ const ADMIN_PATH = getProtectedPath('administrador');
 
 function findSnapshotPath(): string {
     const cwd = process.cwd();
-    const primaryPath = path.join(cwd, 'db', 'resumen_snapshot.json');
-    if (safeExists(primaryPath)) {
-        return primaryPath;
-    }
-
     const candidates = [
-        path.join(safeDirname, 'db', 'resumen_snapshot.json'),
-        path.join(safeDirname, '..', 'db', 'resumen_snapshot.json'),
+        path.join(cwd, 'db', 'resumen_snapshot.json'),
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/resumen_snapshot.json',
         '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/db/resumen_snapshot.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/resumen_snapshot.json',
+        path.join(safeDirname, 'db', 'resumen_snapshot.json'),
+        path.join(safeDirname, '..', 'db', 'resumen_snapshot.json'),
         path.join(BASE_PATH, 'db', 'resumen_snapshot.json'),
         path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json'),
         SNAPSHOT_PATH
     ];
 
+    let newestPath = path.join(cwd, 'db', 'resumen_snapshot.json');
+    let newestMtime = 0;
+
     for (const p of candidates) {
-        if (safeExists(p)) return p;
+        if (safeExists(p)) {
+            try {
+                const stat = fs.statSync(p);
+                if (stat.mtimeMs > newestMtime) {
+                    newestMtime = stat.mtimeMs;
+                    newestPath = p;
+                }
+            } catch (e) {}
+        }
     }
 
-    return primaryPath;
+    return newestPath;
 }
 
 app.use(cors());

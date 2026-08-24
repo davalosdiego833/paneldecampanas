@@ -91,9 +91,11 @@ ssh $SSH_OPTS $SERVER_USER@$SERVER_IP << EOF
     mkdir -p \$PARENT_DIR/public_html/db 2>/dev/null || true
     cp -f \$PARENT_DIR/nodejs/db/resumen_snapshot.json \$PARENT_DIR/db/resumen_snapshot.json 2>/dev/null || true
     cp -f \$PARENT_DIR/nodejs/db/resumen_snapshot.json \$PARENT_DIR/public_html/db/resumen_snapshot.json 2>/dev/null || true
+    cp -f \$PARENT_DIR/nodejs/db/resumen_snapshot.json \$PARENT_DIR/resumen_snapshot.json 2>/dev/null || true
     touch \$PARENT_DIR/nodejs/db/resumen_snapshot.json 2>/dev/null || true
     touch \$PARENT_DIR/db/resumen_snapshot.json 2>/dev/null || true
     touch \$PARENT_DIR/public_html/db/resumen_snapshot.json 2>/dev/null || true
+    touch \$PARENT_DIR/resumen_snapshot.json 2>/dev/null || true
     
     # REINICIO DE PASSENGER (Solo touch, sin pkill)
     mkdir -p \$PARENT_DIR/public_html/tmp
