@@ -47,17 +47,23 @@ const MetaDespacho: React.FC<Props> = ({ onBack, themeMode }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // 1. Fetch Historical Data (Closed Months)
-                const histRes = await fetch('/api/historico-metas');
-                const histData = await histRes.json();
-                const year2026 = histData["2026"] || {};
-                setHistorico(year2026);
-
-                // 2. Fetch Live data (Current month)
+                // 1. Fetch Live data (Current month)
                 const snapRes = await fetch('/api/admin/snapshot-status');
                 const snapStatus = await snapRes.json();
                 const res = await fetch(`/api/resumen-general?useSnapshot=${snapStatus.exists}`);
                 const d = await res.json();
+
+                // 2. Fetch Historical Data (Closed Months)
+                let apiHist = {};
+                try {
+                    const histRes = await fetch('/api/historico-metas');
+                    const histData = await histRes.json();
+                    apiHist = histData["2026"] || {};
+                } catch (e) {}
+
+                const snapHist = d?.historico_metas?.["2026"] || d?.data?.historico_metas?.["2026"] || {};
+                const merged2026 = { ...snapHist, ...apiHist };
+                setHistorico(merged2026);
 
                 if (d && d.pagado_pendiente) {
                     const totalLive = d.pagado_pendiente.reduce((sum: number, row: any) => {

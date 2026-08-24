@@ -783,6 +783,13 @@ const run = async () => {
         const rg = snapshot.data.resumen_general;
         const fc = snapshot.data.fechas_corte;
 
+        const histMetasPath = path.join(BASE_PATH, 'db', 'historico_metas.json');
+        if (fs.existsSync(histMetasPath)) {
+            try {
+                rg.historico_metas = JSON.parse(fs.readFileSync(histMetasPath, 'utf-8'));
+            } catch (e) {}
+        }
+
         // 2. Reporte Pagado y Pendiente
         const pePath1 = path.join(BASE_PATH, 'administrador', 'pagado_emitido', 'pagado_emitido.xlsx');
         const pePath2 = path.join(BASE_PATH, 'administrador', 'pagado_emitidido', 'pagado_emitido.xlsx');
@@ -1109,6 +1116,12 @@ const run = async () => {
 
         snapshot.data.campaigns = campaigns;
         snapshot.data.campaignDates = campaignDates;
+
+        if (fs.existsSync(histMetasPath)) {
+            try {
+                snapshot.data.historico_metas = JSON.parse(fs.readFileSync(histMetasPath, 'utf-8'));
+            } catch (e) {}
+        }
 
         if (!fs.existsSync(DB_PATH)) fs.mkdirSync(DB_PATH);
         fs.writeFileSync(SNAPSHOT_FILE, JSON.stringify(snapshot, null, 2));

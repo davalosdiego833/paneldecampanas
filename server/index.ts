@@ -2099,7 +2099,8 @@ app.get('/api/resumen-general', (req, res) => {
                 // Return flat structure compatible with frontend
                 return res.json({
                     ...rg,
-                    fechas_corte: rg.fechas_corte || snapshotData.data?.fechas_corte || snapshotData.fechas_corte || {}
+                    fechas_corte: rg.fechas_corte || snapshotData.data?.fechas_corte || snapshotData.fechas_corte || {},
+                    historico_metas: snapshotData.data?.historico_metas || snapshotData.historico_metas || {}
                 });
             }
         }
