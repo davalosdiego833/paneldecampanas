@@ -85,11 +85,21 @@ const sendOneSignalNotification = async ({ appId, apiKey, group, title, body, ur
     });
 };
 
+const getOneSignalConfigPath = () => {
+    const candidateFiles = [
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/onesignal_config.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/onesignal_config.json',
+        path.join(BASE_PATH, 'db', 'onesignal_config.json'),
+        path.join(process.cwd(), 'db', 'onesignal_config.json')
+    ];
+    return candidateFiles.find(p => fs.existsSync(p)) || path.join(BASE_PATH, 'db', 'onesignal_config.json');
+};
+
 const sendPushNotification = async ({ group = 'all', title, body, url = '/', icon = '/assets/logos/empresa/ambriz_logo.png' }) => {
     const dbDir = getDbPath();
     const vapidKeysPath = path.join(dbDir, 'vapid_keys.json');
     const subsPath = getSubscriptionsPath();
-    const onesignalConfigPath = path.join(dbDir, 'onesignal_config.json');
+    const onesignalConfigPath = getOneSignalConfigPath();
 
     // 1. Intentar envío vía OneSignal REST API (si está configurado)
     let osSent = false;

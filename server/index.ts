@@ -4,6 +4,7 @@ import cors from 'cors';
 import path from 'path';
 import fs from 'fs';
 import os from 'os';
+import https from 'https';
 import XLSX from 'xlsx';
 import dotenv from 'dotenv';
 import { fileURLToPath, pathToFileURL } from 'url';
@@ -2762,9 +2763,9 @@ const sendOneSignalDirect = async ({ group, title, body, url }: { group: string;
                     'Authorization': `Basic ${cfg.apiKey}`,
                     'Content-Length': Buffer.byteLength(data)
                 }
-            }, (res) => {
+            }, (res: any) => {
                 let bodyStr = '';
-                res.on('data', chunk => bodyStr += chunk);
+                res.on('data', (chunk: any) => bodyStr += chunk);
                 res.on('end', () => {
                     try {
                         const parsed = JSON.parse(bodyStr);
@@ -2780,7 +2781,7 @@ const sendOneSignalDirect = async ({ group, title, body, url }: { group: string;
                     }
                 });
             });
-            req.on('error', (err) => {
+            req.on('error', (err: any) => {
                 console.error('[ONESIGNAL DIRECT NETWORK ERROR]:', err);
                 resolve(null);
             });

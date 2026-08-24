@@ -4,9 +4,10 @@ import cors from 'cors';
 import path from 'path';
 import fs from 'fs';
 import os from 'os';
+import https from 'https';
 import XLSX from 'xlsx';
 import dotenv from 'dotenv';
-import { fileURLToPath, pathToFileURL } from 'url';
+import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
 const getModuleDirname = () => {
     try {
@@ -2761,40 +2762,116 @@ app.post('/api/push/unsubscribe', (req, res) => {
         res.status(500).json({ error: 'Unsubscribe error' });
     }
 });
+const sendOneSignalDirect = async ({ group, title, body, url }) => {
+    const candidateFiles = [
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/onesignal_config.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/onesignal_config.json',
+        path.join(DB_PATH_DYNAMIC, 'onesignal_config.json'),
+        path.join(BASE_PATH, 'db', 'onesignal_config.json'),
+        path.join(process.cwd(), 'db', 'onesignal_config.json')
+    ];
+    const configPath = candidateFiles.find(p => fs.existsSync(p));
+    if (!configPath)
+        return null;
+    try {
+        const cfg = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+        if (!cfg || !cfg.appId || !cfg.apiKey || !cfg.enabled)
+            return null;
+        return new Promise((resolve) => {
+            const payload = {
+                app_id: cfg.appId,
+                headings: { en: title, es: title },
+                contents: { en: body, es: body },
+                url: url && url.startsWith('http') ? url : `https://panel.ambrizydavalos.com${url || '/'}`
+            };
+            if (group === 'admin') {
+                payload.filters = [{ field: 'tag', key: 'role', relation: '=', value: 'admin' }];
+            }
+            else if (group === 'asesor') {
+                payload.filters = [{ field: 'tag', key: 'role', relation: '=', value: 'asesor' }];
+            }
+            else {
+                payload.included_segments = ['Subscribers', 'Total Subscriptions', 'Active Users', 'All'];
+            }
+            const data = JSON.stringify(payload);
+            const req = https.request({
+                hostname: 'onesignal.com',
+                port: 443,
+                path: '/api/v1/notifications',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'Authorization': `Basic ${cfg.apiKey}`,
+                    'Content-Length': Buffer.byteLength(data)
+                }
+            }, (res) => {
+                let bodyStr = '';
+                res.on('data', (chunk) => bodyStr += chunk);
+                res.on('end', () => {
+                    try {
+                        const parsed = JSON.parse(bodyStr);
+                        if (parsed && parsed.id) {
+                            console.log('[ONESIGNAL DIRECT SUCCESS] ID:', parsed.id);
+                            resolve({ success: true, sent: 1, provider: 'onesignal', id: parsed.id });
+                        }
+                        else {
+                            console.error('[ONESIGNAL DIRECT ERROR] Response:', bodyStr);
+                            resolve(null);
+                        }
+                    }
+                    catch (e) {
+                        resolve(null);
+                    }
+                });
+            });
+            req.on('error', (err) => {
+                console.error('[ONESIGNAL DIRECT NETWORK ERROR]:', err);
+                resolve(null);
+            });
+            req.write(data);
+            req.end();
+        });
+    }
+    catch (e) {
+        console.error('[ONESIGNAL DIRECT EXCEPTION]:', e);
+        return null;
+    }
+};
 app.post('/api/push/send-custom', async (req, res) => {
     try {
         const { group = 'all', title, body, url } = req.body;
         if (!title || !body) {
             return res.status(400).json({ error: 'Título y mensaje son requeridos' });
         }
-        const candidateScriptPaths = [
-            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/scripts/send_push_notification.cjs',
-            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/scripts/send_push_notification.cjs',
-            path.join(BASE_PATH, 'scripts', 'send_push_notification.cjs'),
-            path.join(BASE_PATH, 'public_html', 'scripts', 'send_push_notification.cjs'),
-            path.join(BASE_PATH, 'nodejs', 'scripts', 'send_push_notification.cjs'),
-            path.join(safeDirname, 'scripts', 'send_push_notification.cjs'),
-            path.join(process.cwd(), 'scripts', 'send_push_notification.cjs'),
-            path.join(BASE_PATH, 'scripts', 'send_push_notification.js')
-        ];
-        const scriptPath = candidateScriptPaths.find(p => fs.existsSync(p));
-        if (!scriptPath) {
-            return res.status(500).json({ error: 'Script de notificaciones no encontrado' });
+        // 1. Direct OneSignal sending (bulletproof & no module cache dependency)
+        let result = await sendOneSignalDirect({ group, title, body, url: url || '/' });
+        // 2. Fallback to external script ONLY if OneSignal was not sent
+        if (!result || !result.success) {
+            const candidateScriptPaths = [
+                '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/scripts/send_push_notification.cjs',
+                '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/scripts/send_push_notification.cjs',
+                path.join(BASE_PATH, 'scripts', 'send_push_notification.cjs'),
+                path.join(BASE_PATH, 'public_html', 'scripts', 'send_push_notification.cjs'),
+                path.join(BASE_PATH, 'nodejs', 'scripts', 'send_push_notification.cjs'),
+                path.join(safeDirname, 'scripts', 'send_push_notification.cjs'),
+                path.join(process.cwd(), 'scripts', 'send_push_notification.cjs')
+            ];
+            const scriptPath = candidateScriptPaths.find(p => fs.existsSync(p));
+            if (scriptPath) {
+                try {
+                    delete require.cache[require.resolve(scriptPath)];
+                    const mod = require(scriptPath);
+                    const fn = mod.sendPushNotification || mod.default;
+                    if (typeof fn === 'function') {
+                        result = await fn({ group, title, body, url: url || '/' });
+                    }
+                }
+                catch (e1) { }
+            }
         }
-        let sendPushNotificationFn;
-        try {
-            const mod = require(scriptPath);
-            sendPushNotificationFn = mod.sendPushNotification || mod.default;
+        if (!result) {
+            return res.status(500).json({ error: 'No se pudo enviar la notificación' });
         }
-        catch (e1) {
-            const fileUrl = pathToFileURL(scriptPath).href;
-            const mod = await import(fileUrl);
-            sendPushNotificationFn = mod.sendPushNotification || mod.default;
-        }
-        if (typeof sendPushNotificationFn !== 'function') {
-            return res.status(500).json({ error: 'No se pudo cargar la función de envío de notificaciones' });
-        }
-        const result = await sendPushNotificationFn({ group, title, body, url: url || '/' });
         // Guardar en historial
         const historyPath = path.join(DB_PATH_DYNAMIC, 'comunicados_history.json');
         let history = [];
