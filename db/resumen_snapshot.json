@@ -1,5 +1,5 @@
 {
-  "updatedAt": "24/8/2026, 12:21:11 p.m.",
+  "updatedAt": "24/8/2026, 1:02:38 p.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -3623,9 +3623,39 @@
           "Extracomision": 0
         },
         {
-          "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
-          "Clave": "95148",
-          "Conexion": "21 de Diciembre de 2022",
+          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+          "Clave": "87538",
+          "Conexion": "23 de Septiembre de 2019",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+          "Clave": "47116",
+          "Conexion": "24 de Febrero de 2022",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "MARICELA ARREOLA LOPEZ",
+          "Clave": "80925",
+          "Conexion": "5 de Diciembre de 2018",
+          "Conteo": 0,
+          "Cumplimiento": false,
+          "Suma_Comision": 0,
+          "Porcentaje": 0,
+          "Extracomision": 0
+        },
+        {
+          "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
+          "Clave": "59120",
+          "Conexion": "27 de Mayo de 2022",
           "Conteo": 0,
           "Cumplimiento": false,
           "Suma_Comision": 0,
@@ -3653,19 +3683,9 @@
           "Extracomision": 0
         },
         {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "Conexion": "24 de Febrero de 2022",
-          "Conteo": 0,
-          "Cumplimiento": false,
-          "Suma_Comision": 0,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "Conexion": "23 de Septiembre de 2019",
+          "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
+          "Clave": "95148",
+          "Conexion": "21 de Diciembre de 2022",
           "Conteo": 0,
           "Cumplimiento": false,
           "Suma_Comision": 0,
@@ -3676,16 +3696,6 @@
           "Asesor": "KAREN MUÑOZ GARCIA",
           "Clave": "81044",
           "Conexion": "7 de Noviembre de 2022",
-          "Conteo": 0,
-          "Cumplimiento": false,
-          "Suma_Comision": 0,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "MARICELA ARREOLA LOPEZ",
-          "Clave": "80925",
-          "Conexion": "5 de Diciembre de 2018",
           "Conteo": 0,
           "Cumplimiento": false,
           "Suma_Comision": 0,
@@ -4268,7 +4278,7 @@
       "camino_cumbre": "19 de agosto de 2026",
       "graduacion": "31 de julio de 2026",
       "proactiva_tech": "19 de agosto 2026",
-      "reto_por_ciento": "12 DE AGOSTO 2026",
+      "reto_por_ciento": "19 DE AGOSTO 2026",
       "convenciones_promotores": "31 de julio 2026",
       "convenciones_gerente": "31 de julio 2026",
       "educar_es_creer": "14 de agosto de 2026"
