@@ -1,5 +1,5 @@
 {
-  "updatedAt": "24/8/2026, 3:24:41 p.m.",
+  "updatedAt": "25/8/2026, 11:16:59 a.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -43,12 +43,12 @@
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 52177.88,
-          "Total _Prima_Pagada": 52177.88,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 247240.02,
-          "Total _Prima_Pendiente": 247240.02
+          "Recibo_Ordinario_Pagado": 56135.2,
+          "Total _Prima_Pagada": 56135.2,
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 84784.83,
+          "Recibo_Ordinario_Pendiente": 243282.71,
+          "Total _Prima_Pendiente": 328067.54
         },
         {
           "Nombre Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
@@ -107,8 +107,8 @@
           "Total _Prima_Pagada": 16532.42,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 65931.12,
-          "Total _Prima_Pendiente": 65931.12
+          "Recibo_Ordinario_Pendiente": 62070.69,
+          "Total _Prima_Pendiente": 62070.69
         },
         {
           "Nombre Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
@@ -315,6 +315,30 @@
           "Total _Prima_Pendiente": 6572.15
         },
         {
+          "Nombre Asesor": "LUVIA PATRICIA FIGUEROA CASTRO",
+          "Sucursal": "2856",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 3610.04,
+          "Total _Prima_Pagada": 3610.04,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 17237.12,
+          "Total _Prima_Pendiente": 17237.12
+        },
+        {
+          "Nombre Asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
+          "Sucursal": "2856",
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 3052.25,
+          "Recibo_Ordinario_Pagado": 0,
+          "Total _Prima_Pagada": 3052.25,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 33574.79,
+          "Total _Prima_Pendiente": 33574.79
+        },
+        {
           "Nombre Asesor": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -375,18 +399,6 @@
           "Total _Prima_Pendiente": 1843.19
         },
         {
-          "Nombre Asesor": "LUVIA PATRICIA FIGUEROA CASTRO",
-          "Sucursal": "2856",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 1777.67,
-          "Total _Prima_Pagada": 1777.67,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 19069.49,
-          "Total _Prima_Pendiente": 19069.49
-        },
-        {
           "Nombre Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -405,10 +417,10 @@
           "Recibo_Inicial_Pagado": 0,
           "Recibo_Ordinario_Pagado": 1627.21,
           "Total _Prima_Pagada": 1627.21,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 15800.91,
-          "Total _Prima_Pendiente": 15800.91
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 1958.21,
+          "Recibo_Ordinario_Pendiente": 37341.24,
+          "Total _Prima_Pendiente": 39299.45
         },
         {
           "Nombre Asesor": "GERARDO DANIEL BARAJAS TORRES",
@@ -2428,7 +2440,7 @@
       }
     },
     "fechas_corte": {
-      "pagado_pendiente": "20 de agosto de 2026",
+      "pagado_pendiente": "21 de agosto de 2026",
       "pagado_pendiente_reclutas": "7 de agosto de 2026",
       "asesores_sin_emision": "18 de AGO de 2026",
       "proactivos": "17 de agosto de 2026",

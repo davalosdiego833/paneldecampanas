@@ -1,5 +1,5 @@
 {
-  "updatedAt": "25/8/2026, 11:16:59 a.m.",
+  "updatedAt": "26/8/2026, 1:10:14 p.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -22,9 +22,33 @@
           "Recibo_Ordinario_Pagado": 8374.2,
           "Total _Prima_Pagada": 171338.2,
           "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 93618.86,
+          "Recibo_Inicial_Pendiente": 72756.09,
           "Recibo_Ordinario_Pendiente": 80161.03,
-          "Total _Prima_Pendiente": 173779.89
+          "Total _Prima_Pendiente": 152917.12
+        },
+        {
+          "Nombre Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 2,
+          "Recibo_Inicial_Pagado": 85004.68,
+          "Recibo_Ordinario_Pagado": 63882.48,
+          "Total _Prima_Pagada": 148887.16,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 235535.47,
+          "Total _Prima_Pendiente": 235535.47
+        },
+        {
+          "Nombre Asesor": "JOSE RENE DE ALBA MORALES",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 90049.44,
+          "Recibo_Ordinario_Pagado": 14399.82,
+          "Total _Prima_Pagada": 104449.26,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 14399.82,
+          "Total _Prima_Pendiente": 14399.82
         },
         {
           "Nombre Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
@@ -39,16 +63,16 @@
           "Total _Prima_Pendiente": 28233.37
         },
         {
-          "Nombre Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+          "Nombre Asesor": "MONSERRAT VELASCO SANTOS",
           "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 56135.2,
-          "Total _Prima_Pagada": 56135.2,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 84784.83,
-          "Recibo_Ordinario_Pendiente": 243282.71,
-          "Total _Prima_Pendiente": 328067.54
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 2211.03,
+          "Recibo_Ordinario_Pagado": 66617.46,
+          "Total _Prima_Pagada": 68828.49,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 69823.8,
+          "Total _Prima_Pendiente": 69823.8
         },
         {
           "Nombre Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
@@ -91,12 +115,24 @@
           "Sucursal": "2856",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 17290.35,
-          "Total _Prima_Pagada": 17290.35,
+          "Recibo_Ordinario_Pagado": 17363.6,
+          "Total _Prima_Pagada": 17363.6,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 101181.23,
-          "Total _Prima_Pendiente": 101181.23
+          "Recibo_Ordinario_Pendiente": 98929.74,
+          "Total _Prima_Pendiente": 98929.74
+        },
+        {
+          "Nombre Asesor": "JULIANA RIASCOS VALENCIA",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 16956.37,
+          "Total _Prima_Pagada": 16956.37,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 0,
+          "Total _Prima_Pendiente": 0
         },
         {
           "Nombre Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
@@ -107,8 +143,8 @@
           "Total _Prima_Pagada": 16532.42,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 62070.69,
-          "Total _Prima_Pendiente": 62070.69
+          "Recibo_Ordinario_Pendiente": 38466.09,
+          "Total _Prima_Pendiente": 38466.09
         },
         {
           "Nombre Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
@@ -119,8 +155,8 @@
           "Total _Prima_Pagada": 15302.69,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 53684.04,
-          "Total _Prima_Pendiente": 53684.04
+          "Recibo_Ordinario_Pendiente": 51962.79,
+          "Total _Prima_Pendiente": 51962.79
         },
         {
           "Nombre Asesor": "ANA VERONICA GONZALEZ GAYTAN",
@@ -135,52 +171,52 @@
           "Total _Prima_Pendiente": 5220.9
         },
         {
-          "Nombre Asesor": "JULIANA RIASCOS VALENCIA",
+          "Nombre Asesor": "MARICELA ARREOLA LOPEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 13506.29,
-          "Total _Prima_Pagada": 13506.29,
+          "Recibo_Ordinario_Pagado": 15040.89,
+          "Total _Prima_Pagada": 15040.89,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 0,
-          "Total _Prima_Pendiente": 0
+          "Recibo_Ordinario_Pendiente": 13568.13,
+          "Total _Prima_Pendiente": 13568.13
         },
         {
           "Nombre Asesor": "ROGELIO TORRES ORTIZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 12093.46,
-          "Total _Prima_Pagada": 12093.46,
+          "Recibo_Ordinario_Pagado": 14560.31,
+          "Total _Prima_Pagada": 14560.31,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 33442.54,
-          "Total _Prima_Pendiente": 33442.54
+          "Recibo_Ordinario_Pendiente": 30975.68,
+          "Total _Prima_Pendiente": 30975.68
         },
         {
-          "Nombre Asesor": "MONSERRAT VELASCO SANTOS",
+          "Nombre Asesor": "DARINKA UREÑA CASILLAS",
           "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 10530.97,
-          "Total _Prima_Pagada": 10530.97,
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 12340.66,
+          "Recibo_Ordinario_Pagado": 0,
+          "Total _Prima_Pagada": 12340.66,
           "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 58297.52,
-          "Recibo_Ordinario_Pendiente": 69823.8,
-          "Total _Prima_Pendiente": 128121.32
+          "Recibo_Inicial_Pendiente": 5042.65,
+          "Recibo_Ordinario_Pendiente": 142360.86,
+          "Total _Prima_Pendiente": 147403.51
         },
         {
-          "Nombre Asesor": "MARICELA ARREOLA LOPEZ",
+          "Nombre Asesor": "GABRIELA CASTAÑEDA SALAZAR",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 9886.12,
-          "Total _Prima_Pagada": 9886.12,
+          "Recibo_Ordinario_Pagado": 10596.4,
+          "Total _Prima_Pagada": 10596.4,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 18063.4,
-          "Total _Prima_Pendiente": 18063.4
+          "Recibo_Ordinario_Pendiente": 89590.05,
+          "Total _Prima_Pendiente": 89590.05
         },
         {
           "Nombre Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
@@ -219,18 +255,6 @@
           "Total _Prima_Pendiente": 17698.48
         },
         {
-          "Nombre Asesor": "GABRIELA CASTAÑEDA SALAZAR",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 7590.14,
-          "Total _Prima_Pagada": 7590.14,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 92596.31,
-          "Total _Prima_Pendiente": 92596.31
-        },
-        {
           "Nombre Asesor": "MARIA TERESA ASENCIO LOZANO",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -241,6 +265,18 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 1888.66,
           "Total _Prima_Pendiente": 1888.66
+        },
+        {
+          "Nombre Asesor": "VELIA PATRICIA BERNAL RAMOS",
+          "Sucursal": "2856",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 6813.99,
+          "Total _Prima_Pagada": 6813.99,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 21526.27,
+          "Total _Prima_Pendiente": 21526.27
         },
         {
           "Nombre Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
@@ -291,18 +327,6 @@
           "Total _Prima_Pendiente": 103783.01
         },
         {
-          "Nombre Asesor": "VELIA PATRICIA BERNAL RAMOS",
-          "Sucursal": "2856",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 5025.06,
-          "Total _Prima_Pagada": 5025.06,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 23315.2,
-          "Total _Prima_Pendiente": 23315.2
-        },
-        {
           "Nombre Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -325,6 +349,18 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 17237.12,
           "Total _Prima_Pendiente": 17237.12
+        },
+        {
+          "Nombre Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 1958.21,
+          "Recibo_Ordinario_Pagado": 1627.21,
+          "Total _Prima_Pagada": 3585.42,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 37341.24,
+          "Total _Prima_Pendiente": 37341.24
         },
         {
           "Nombre Asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
@@ -381,10 +417,10 @@
           "Recibo_Inicial_Pagado": 1454.68,
           "Recibo_Ordinario_Pagado": 509.43,
           "Total _Prima_Pagada": 1964.11,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 24377.75,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 26239.01,
-          "Total _Prima_Pendiente": 50616.76
+          "Total _Prima_Pendiente": 26239.01
         },
         {
           "Nombre Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
@@ -409,18 +445,6 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 17392.81,
           "Total _Prima_Pendiente": 17392.81
-        },
-        {
-          "Nombre Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 1627.21,
-          "Total _Prima_Pagada": 1627.21,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 1958.21,
-          "Recibo_Ordinario_Pendiente": 37341.24,
-          "Total _Prima_Pendiente": 39299.45
         },
         {
           "Nombre Asesor": "GERARDO DANIEL BARAJAS TORRES",
@@ -457,18 +481,6 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 12581.61,
           "Total _Prima_Pendiente": 12581.61
-        },
-        {
-          "Nombre Asesor": "JOSE RENE DE ALBA MORALES",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 90049.44,
-          "Recibo_Ordinario_Pendiente": 28799.65,
-          "Total _Prima_Pendiente": 118849.09
         },
         {
           "Nombre Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
@@ -517,18 +529,6 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 3208.07,
           "Total _Prima_Pendiente": 3208.07
-        },
-        {
-          "Nombre Asesor": "DARINKA UREÑA CASILLAS",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 5042.65,
-          "Recibo_Ordinario_Pendiente": 130020.2,
-          "Total _Prima_Pendiente": 135062.85
         },
         {
           "Nombre Asesor": "PAULINA RODRIGUEZ DE LA MORA",
@@ -2440,7 +2440,7 @@
       }
     },
     "fechas_corte": {
-      "pagado_pendiente": "21 de agosto de 2026",
+      "pagado_pendiente": "25 de agosto de 2026",
       "pagado_pendiente_reclutas": "7 de agosto de 2026",
       "asesores_sin_emision": "18 de AGO de 2026",
       "proactivos": "17 de agosto de 2026",
