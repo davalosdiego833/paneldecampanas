@@ -97,7 +97,7 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                         </div>
                         <div>
                             <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
-                                Reportes Ejecutivos de Promotoría
+                                Reportes Promotoría
                             </h3>
                             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: '2px 0 0 0' }}>
                                 Consulta métricas y producción de la promotoría
