@@ -1108,6 +1108,82 @@ const run = async () => {
             fc.comparativo_vida = extractCutoffDate(wb);
         }
 
+        // 6. QsQ Vida
+        let qsqVidaPath = path.join(BASE_PATH, 'administrador', 'QsQ Vida', 'QsQ Asesores Vida.xlsm');
+        if (!fs.existsSync(qsqVidaPath)) {
+            qsqVidaPath = path.join(BASE_PATH, 'administrador', 'QsQ Vida', 'QsQ Asesores Vida.xlsx');
+        }
+        if (!fs.existsSync(qsqVidaPath)) {
+            qsqVidaPath = path.join(BASE_PATH, 'NOCHE ESTRELLAS', 'REPORTES', 'QsQ Asesores Vida.xlsm');
+        }
+        if (fs.existsSync(qsqVidaPath)) {
+            const wb = XLSX.readFile(qsqVidaPath);
+            const ws = wb.Sheets['QsQ Asesores'] || wb.Sheets[wb.SheetNames[0]];
+            const rawData = XLSX.utils.sheet_to_json(ws, { header: 1 });
+            
+            const formatExcelDate = (val) => {
+                if (!val) return 'N/A';
+                if (typeof val === 'number') {
+                    const d = XLSX.SSF.parse_date_code(val);
+                    if (d) {
+                        const day = String(d.d).padStart(2, '0');
+                        const month = String(d.m).padStart(2, '0');
+                        const year = String(d.y).slice(-2);
+                        return `${day}/${month}/${year}`;
+                    }
+                }
+                if (typeof val === 'string' && val.includes('-')) {
+                    const parts = val.split('T')[0].split('-');
+                    if (parts.length === 3) {
+                        return `${parts[2]}/${parts[1]}/${parts[0].slice(-2)}`;
+                    }
+                }
+                return String(val).trim();
+            };
+
+            const formatPct = (val) => {
+                if (val == null || val === '') return '0.00%';
+                const num = Number(val);
+                if (isNaN(num)) return String(val);
+                return (num * 100).toFixed(2) + '%';
+            };
+
+            const rows2043 = [];
+            for (let r = 24; r < rawData.length; r++) {
+                const row = rawData[r];
+                if (!row) continue;
+                const mat = String(row[4] || '').trim();
+                const suc = String(row[5] || '').trim();
+                if (mat === '2043' || suc === '2043') {
+                    const rawName = String(row[8] || '').trim();
+                    if (!rawName) continue;
+                    rows2043.push({
+                        lugar: Number(row[0]) || 0,
+                        nombre: cleanNameText(rawName),
+                        conexion: formatExcelDate(row[9]),
+                        prima_meta_ant: Number(row[11]) || 0,
+                        prima_meta_mes: Number(row[12]) || 0,
+                        prima_meta_acum: Number(row[13]) || 0,
+                        polizas_cc_mes: Number(row[17]) || 0,
+                        polizas_cc_acum: Number(row[18]) || 0,
+                        limra: formatPct(row[25]),
+                        igc: formatPct(row[26]),
+                        limra_num: Number(row[25]) || 0,
+                        igc_num: Number(row[26]) || 0
+                    });
+                }
+            }
+
+            // Sort by Prima Meta Acumulada Mes Actual descending
+            rows2043.sort((a, b) => b.prima_meta_acum - a.prima_meta_acum);
+
+            rg.qsq_vida = {
+                top5: rows2043.slice(0, 5),
+                all: rows2043
+            };
+            fc.qsq_vida = extractCutoffDate(wb);
+        }
+
         rg.convenciones_promotores = campaigns.convenciones_promotores;
         rg.convenciones_gerente = campaigns.convenciones_gerente;
 

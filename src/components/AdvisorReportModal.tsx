@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Activity, AlertTriangle, TrendingUp, HeartPulse, Lightbulb, Hospital, X } from 'lucide-react';
 import { Proactivos, AsesoresSinEmision, ComparativoVida } from './ResumenPromotoria';
+import { QsQVidaContent } from './QsQVida';
 
 export type ReportKey = 'proactivos' | 'asesores_sin_emision' | 'comparativo_vida' | 'comparativo_gmm' | 'qsq_vida' | 'qsq_gmm';
 
@@ -45,7 +46,7 @@ export const REPORT_CONFIGS: Record<ReportKey, { title: string; subtitle: string
         subtitle: 'Análisis y métricas Quién es Quién en Vida',
         icon: <Lightbulb size={22} />,
         color: '#FFB74D',
-        status: 'upcoming'
+        status: 'active'
     },
     qsq_gmm: {
         title: 'QsQ GMM',
@@ -195,6 +196,14 @@ export const AdvisorReportModal: React.FC<Props> = ({ reportKey, onClose, themeM
                         onDateSelect={(d) => handleDateSelect('comparativo_vida', d)}
                         themeMode={themeMode}
                         isAdvisorView={true}
+                    />
+                );
+            case 'qsq_vida':
+                return (
+                    <QsQVidaContent
+                        data={data.qsq_vida || null}
+                        fechaCorte={fechaCorte}
+                        themeMode={themeMode}
                     />
                 );
             default:
