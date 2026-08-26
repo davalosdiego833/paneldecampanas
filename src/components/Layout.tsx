@@ -20,7 +20,12 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
     const [showAdminLogin, setShowAdminLogin] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     const [password, setPassword] = useState('');
-    const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+    const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(() => {
+        if (typeof window !== 'undefined') {
+            return window.innerWidth <= 768;
+        }
+        return false;
+    });
     const [isNotifCenterOpen, setIsNotifCenterOpen] = useState(false);
     const [unreadCount, setUnreadCount] = useState(0);
 
@@ -31,9 +36,36 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
         }
     };
 
+    const handleNavClick = (action: () => void) => {
+        action();
+        if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+            setSidebarCollapsed(true);
+        }
+    };
+
     return (
         <div className="app-layout" data-theme={themeMode} style={{ position: 'relative' }}>
             <SeasonalEffects effect={theme?.efecto} themeId={theme?.id} />
+
+            {/* Telón / Backdrop para móviles cuando el menú está abierto */}
+            {!sidebarCollapsed && (
+                <div
+                    className="mobile-sidebar-backdrop"
+                    onClick={() => setSidebarCollapsed(true)}
+                    style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'rgba(0, 0, 0, 0.65)',
+                        backdropFilter: 'blur(4px)',
+                        WebkitBackdropFilter: 'blur(4px)',
+                        zIndex: 998,
+                        transition: 'opacity 0.3s ease'
+                    }}
+                />
+            )}
 
             {/* Botón flotante para mostrar menú cuando está oculto */}
             {sidebarCollapsed && (
@@ -42,45 +74,33 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
                     title="Mostrar Menú Lateral"
                     style={{
                         position: 'fixed',
-                        top: '18px',
-                        left: '18px',
+                        top: '16px',
+                        left: '16px',
                         zIndex: 999,
-                        background: 'var(--glass-bg)',
+                        background: 'rgba(15, 23, 42, 0.85)',
                         backdropFilter: 'blur(16px)',
                         WebkitBackdropFilter: 'blur(16px)',
-                        border: '1px solid var(--glass-border)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
                         borderRadius: '12px',
-                        color: '#007AFF',
+                        color: 'var(--text-primary)',
                         padding: '10px 16px',
                         cursor: 'pointer',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '8px',
-                        boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+                        boxShadow: '0 8px 24px rgba(0,0,0,0.5)',
                         fontSize: '0.85rem',
                         fontWeight: 700,
                         transition: 'all 0.2s ease'
                     }}
                 >
-                    <ChevronRight size={18} />
+                    <ChevronRight size={18} color="var(--accent-gold)" />
                     <span>Mostrar Menú</span>
                 </button>
             )}
 
             {/* Sidebar */}
-            <aside 
-                className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}
-                style={{
-                    width: sidebarCollapsed ? '0px' : undefined,
-                    minWidth: sidebarCollapsed ? '0px' : undefined,
-                    padding: sidebarCollapsed ? '0px' : undefined,
-                    margin: sidebarCollapsed ? '0px' : undefined,
-                    opacity: sidebarCollapsed ? 0 : 1,
-                    border: sidebarCollapsed ? 'none' : undefined,
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    overflow: 'hidden'
-                }}
-            >
+            <aside className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
                 <div style={{ position: 'relative', padding: '0 10px 20px 10px', textAlign: 'center' }}>
                     <button
                         onClick={() => setSidebarCollapsed(true)}
@@ -116,7 +136,7 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
                 <nav style={{ flex: 1 }}>
                     {page !== 'welcome' && (
                         <button
-                            onClick={onGoHome}
+                            onClick={() => handleNavClick(onGoHome)}
                             className="nav-item"
                         >
                             <Home className="nav-icon" size={20} />
@@ -125,7 +145,7 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
                     )}
 
                     <button
-                        onClick={() => setIsNotifCenterOpen(true)}
+                        onClick={() => handleNavClick(() => setIsNotifCenterOpen(true))}
                         className="nav-item"
                         style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}
                     >
@@ -142,7 +162,7 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
 
                     {page === 'dashboard' && (
                         <button
-                            onClick={() => setPage('campaign_selector')}
+                            onClick={() => handleNavClick(() => setPage('campaign_selector'))}
                             className="nav-item active"
                         >
                             <FolderOpen className="nav-icon" size={20} />
@@ -178,7 +198,7 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                             <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--success-green)', letterSpacing: '0.05em', textAlign: 'center' }}>ADMIN MODE</span>
                             <button
-                                onClick={() => setIsAdmin(false)}
+                                onClick={() => handleNavClick(() => setIsAdmin(false))}
                                 className="nav-item"
                                 style={{ color: 'var(--danger-red)', paddingLeft: 0, justifyContent: 'center' }}
                             >
@@ -212,7 +232,7 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
                     {/* Botón Cerrar Sesión - regresa al Login */}
                     {onLogout && (
                         <button
-                            onClick={onLogout}
+                            onClick={() => handleNavClick(onLogout)}
                             className="nav-item"
                             style={{ color: 'var(--text-secondary)', justifyContent: 'center', fontSize: '0.85rem', marginTop: '8px' }}
                         >
@@ -225,13 +245,6 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
             {/* Main Content */}
             <main 
                 className={`main-content ${sidebarCollapsed ? 'expanded' : ''}`}
-                style={{
-                    padding: sidebarCollapsed ? '32px 32px 32px 80px' : '32px 48px',
-                    maxWidth: sidebarCollapsed ? '100%' : '1400px',
-                    margin: sidebarCollapsed ? '0' : '0 auto',
-                    width: '100%',
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
-                }}
             >
                 {children}
             </main>
