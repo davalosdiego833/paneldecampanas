@@ -5,7 +5,7 @@ import { Proactivos, AsesoresSinEmision, ComparativoVida } from './ResumenPromot
 import { QsQVidaContent } from './QsQVida';
 import { QsQGmmContent } from './QsQGmm';
 
-export type ReportKey = 'proactivos' | 'asesores_sin_emision' | 'comparativo_vida' | 'comparativo_gmm' | 'qsq_vida' | 'qsq_gmm';
+export type ReportKey = 'proactivos' | 'asesores_sin_emision' | 'comparativo_vida' | 'qsq_vida' | 'qsq_gmm';
 
 interface Props {
     reportKey: ReportKey | null;
@@ -34,13 +34,6 @@ export const REPORT_CONFIGS: Record<ReportKey, { title: string; subtitle: string
         icon: <TrendingUp size={22} />,
         color: '#42A5F5',
         status: 'active'
-    },
-    comparativo_gmm: {
-        title: 'Comparativo GMM',
-        subtitle: 'Año anterior vs. año actual en Pólizas y Prima GMM',
-        icon: <HeartPulse size={22} />,
-        color: '#BA68C8',
-        status: 'upcoming'
     },
     qsq_vida: {
         title: 'QsQ Vida',
