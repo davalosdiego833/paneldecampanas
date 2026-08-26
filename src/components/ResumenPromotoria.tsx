@@ -635,7 +635,7 @@ const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string; selectedDate:
 };
 
 /* ========== SECTION 2: ASESORES SIN EMISIÓN ========== */
-const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate: string | null; onDateSelect: (d: string | null) => void; themeMode: 'dark' | 'light' }> = ({ data, fechaCorte, selectedDate, onDateSelect, themeMode }) => {
+export const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate: string | null; onDateSelect: (d: string | null) => void; themeMode: 'dark' | 'light'; isAdvisorView?: boolean }> = ({ data, fechaCorte, selectedDate, onDateSelect, themeMode, isAdvisorView = false }) => {
     const [viewMode, setViewMode] = useState<'emision' | 'pagos'>('emision');
     const [ramoMode, setRamoMode] = useState<'todos' | 'vida' | 'gmm'>('todos');
 
@@ -700,7 +700,7 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate
                 <KPICard title="Prima Pagada GMM" value={fmt(totalPrimaPagGMM)} color="#42A5F5" />
             </div>
 
-            {summaryBySucursal.length > 0 && (
+            {summaryBySucursal.length > 0 && !isAdvisorView && (
                 <div className="glass-card" style={{ padding: '24px' }}>
                     <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '16px', color: 'var(--text-primary)' }}>📊 Resumen por Sucursal</h3>
                     <DataTable headers={['Nombre', 'Sucursal', 'Agentes', 'Em. Vida', '% Em. Vida', 'Em. GMM', '% Em. GMM', 'Pag. Vida', '% Pag. Vida', 'Pag. GMM', '% Pag. GMM', 'Prima Vida', 'Prima GMM']}
@@ -817,7 +817,7 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate
                         {/* TABLA 2: ASESORES SIN EMISIÓN */}
                         <SearchableTable
                             title={`⚪ Asesores SIN EMISIÓN DE PÓLIZAS ${ramoMode === 'vida' ? '(Vida)' : ramoMode === 'gmm' ? '(GMM)' : '(Vida y GMM)'} (${sinEmisionList.length})`}
-                            headers={['#', 'Asesor', 'Suc', 'Prima Vida', 'Prima GMM', 'Estatus', 'Acción']}
+                            headers={isAdvisorView ? ['#', 'Asesor', 'Suc', 'Prima Vida', 'Prima GMM', 'Estatus'] : ['#', 'Asesor', 'Suc', 'Prima Vida', 'Prima GMM', 'Estatus', 'Acción']}
                             rows={sinEmisionList.map((r: any, i: number) => {
                                 const firstName = (r.Asesor || '').split(' ')[0];
                                 const isCritVida = r['3_Meses_Sin_Emisión_Vida'] === 'i' || r['3_Meses_Sin_Emisión_Vida'] === 'x';
@@ -842,15 +842,18 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate
                                     else status = '❌ Sin Emisión ni Pago';
                                 }
 
-                                return [
+                                const row = [
                                     i + 1,
                                     r.Asesor,
                                     r.Suc,
                                     fmt(r.Prima_Pagada_Vida),
                                     fmt(r.Prima_Pagada_GMM),
-                                    status,
-                                    <SinEmisionCopyButton fechaCorte={fechaCorte} asesorNombre={firstName} />
+                                    status
                                 ];
+                                if (!isAdvisorView) {
+                                    row.push(<SinEmisionCopyButton fechaCorte={fechaCorte} asesorNombre={firstName} />);
+                                }
+                                return row;
                             })}
                         />
                     </>
@@ -874,7 +877,7 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate
                         {/* TABLA 4: ASESORES SIN PÓLIZAS PAGADAS */}
                         <SearchableTable
                             title={`⚪ Asesores SIN PÓLIZAS PAGADAS ${ramoMode === 'vida' ? '(Vida)' : ramoMode === 'gmm' ? '(GMM)' : '(Vida y GMM)'} (${sinPagosList.length})`}
-                            headers={['#', 'Asesor', 'Suc', 'Prima Vida', 'Prima GMM', 'Estatus', 'Acción']}
+                            headers={isAdvisorView ? ['#', 'Asesor', 'Suc', 'Prima Vida', 'Prima GMM', 'Estatus'] : ['#', 'Asesor', 'Suc', 'Prima Vida', 'Prima GMM', 'Estatus', 'Acción']}
                             rows={sinPagosList.map((r: any, i: number) => {
                                 const firstName = (r.Asesor || '').split(' ')[0];
                                 const isCritVida = r['3_Meses_Sin_Emisión_Vida'] === 'i' || r['3_Meses_Sin_Emisión_Vida'] === 'x';
@@ -899,15 +902,18 @@ const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selectedDate
                                     else status = '❌ Sin Póliza Pagada';
                                 }
 
-                                return [
+                                const row = [
                                     i + 1,
                                     r.Asesor,
                                     r.Suc,
                                     fmt(r.Prima_Pagada_Vida),
                                     fmt(r.Prima_Pagada_GMM),
-                                    status,
-                                    <SinEmisionCopyButton fechaCorte={fechaCorte} asesorNombre={firstName} />
+                                    status
                                 ];
+                                if (!isAdvisorView) {
+                                    row.push(<SinEmisionCopyButton fechaCorte={fechaCorte} asesorNombre={firstName} />);
+                                }
+                                return row;
                             })}
                         />
                     </>
@@ -1017,7 +1023,7 @@ const ProactivoCopyButton: React.FC<{
 };
 
 /* ========== SECTION 3: PROACTIVOS ========== */
-const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDate: string | null; onDateSelect: (d: string | null) => void; themeMode: 'dark' | 'light' }> = ({ data, fechaCorte, selectedDate, onDateSelect, themeMode }) => {
+export const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDate: string | null; onDateSelect: (d: string | null) => void; themeMode: 'dark' | 'light'; isAdvisorView?: boolean }> = ({ data, fechaCorte, selectedDate, onDateSelect, themeMode, isAdvisorView = false }) => {
     const [filterStatus, setFilterStatus] = React.useState('all');
     const [sortMode, setSortMode] = React.useState('polizas_desc');
     const isProactive = (val: any) => {
@@ -1069,19 +1075,25 @@ const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDate: stri
         if (idx !== -1) { mesRequisito = idx + 1; break; }
     }
 
-    const headers = ['#', 'Asesor', 'F. Conexión', 'Suc', 'Acum. Ant.', 'Del Mes', 'Acum. Total', 'Proactivo Mes', 'Falt. Mes', 'Proactivo Dic', 'Falt. Dic', 'Acción'];
+    const headers = isAdvisorView 
+        ? ['#', 'Asesor', 'F. Conexión', 'Suc', 'Acum. Ant.', 'Del Mes', 'Acum. Total', 'Proactivo Mes', 'Falt. Mes', 'Proactivo Dic', 'Falt. Dic']
+        : ['#', 'Asesor', 'F. Conexión', 'Suc', 'Acum. Ant.', 'Del Mes', 'Acum. Total', 'Proactivo Mes', 'Falt. Mes', 'Proactivo Dic', 'Falt. Dic', 'Acción'];
+        
     const rows = sortedData.map((r: any, i: number) => {
         const polizasAcum = Number(r.Polizas_Acumuladas_Total) || 0;
         const faltantesMes = Math.max(0, mesRequisito - polizasAcum);
         const fechaDisplay = r.Fecha_Conexion && r.Fecha_Conexion !== 'N/A' ? r.Fecha_Conexion.split('-').reverse().join('/') : 'N/A';
-        return [
+        const row = [
             i + 1, r.ASESOR, fechaDisplay, r.SUC, fmtNum(r['Polizas_Acumuladas_Mes_Ant.']), fmtNum(r.Polizas_Del_mes), fmtNum(polizasAcum),
             isProactive(r.Proactivo_al_mes) ? '✅ Sí' : '❌ No', 
             fmtNum(faltantesMes), 
             isProactive(r.Proactivo_a_Dic) ? '✅ Sí' : '❌ No', 
-            fmtNum(r.Pólizas_Faltantes_Para_Dic),
-            !isProactive(r.Proactivo_al_mes) && faltantesMes > 0 ? <ProactivoCopyButton fechaCorte={fechaCorte} polizasAcumuladas={polizasAcum} /> : ''
+            fmtNum(r.Pólizas_Faltantes_Para_Dic)
         ];
+        if (!isAdvisorView) {
+            row.push(!isProactive(r.Proactivo_al_mes) && faltantesMes > 0 ? <ProactivoCopyButton fechaCorte={fechaCorte} polizasAcumuladas={polizasAcum} /> : '');
+        }
+        return row;
     });
 
     return (
@@ -1162,7 +1174,7 @@ const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDate: stri
 };
 
 /* ========== SECTION 4: COMPARATIVO DE VIDA ========== */
-const ComparativoVida: React.FC<{ data: any; fechaCorte: string; isGerencia?: boolean; selectedDate: string | null; onDateSelect: (d: string | null) => void; themeMode: 'dark' | 'light' }> = ({ data, fechaCorte, isGerencia, selectedDate, onDateSelect, themeMode }) => {
+export const ComparativoVida: React.FC<{ data: any; fechaCorte: string; isGerencia?: boolean; selectedDate: string | null; onDateSelect: (d: string | null) => void; themeMode: 'dark' | 'light'; isAdvisorView?: boolean }> = ({ data, fechaCorte, isGerencia, selectedDate, onDateSelect, themeMode, isAdvisorView = false }) => {
     if (!data) return <div>No hay datos</div>;
     const individuals = data.individuals || [];
     const summary = data.generalSummary;
@@ -1308,8 +1320,8 @@ const ComparativoVida: React.FC<{ data: any; fechaCorte: string; isGerencia?: bo
                 </div>
             </div>
 
-            {/* Full Summary Table (Only if generalSummary exists) */}
-            {summary && (
+            {/* Full Summary Table (Only if generalSummary exists and not advisor view) */}
+            {summary && !isAdvisorView && (
                 <div className="glass-card" style={{ padding: '28px', borderLeft: '4px solid #007AFF' }}>
                     <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '20px', color: 'var(--text-primary)' }}>
                         📊 {isGerencia ? 'Resumen General de la Gerencia' : 'Resumen General de la Promotoría'}

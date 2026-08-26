@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ThemeConfig } from '../types';
-import { Search, ChevronDown, Check, X, Bell, Shield, GraduationCap, Plane, Users, Smartphone, TrendingUp, Stethoscope, Award } from 'lucide-react';
+import { Search, ChevronDown, Check, X, Bell, Shield, GraduationCap, Plane, Users, Smartphone, TrendingUp, Stethoscope, Award, BarChart3 } from 'lucide-react';
 import { BasesCampanasExplorer } from './BasesCampanasExplorer';
+import { AdvisorReportModal, REPORT_CONFIGS, ReportKey } from './AdvisorReportModal';
 
 interface Props {
     theme: ThemeConfig | null;
@@ -16,6 +17,7 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
     const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
     const [quote, setQuote] = useState<string>('');
     const [isAvisosOpen, setIsAvisosOpen] = useState<boolean>(false);
+    const [selectedReportKey, setSelectedReportKey] = useState<ReportKey | null>(null);
 
     const quotes = [
         "El éxito no es el final, el fracaso no es fatal: lo que cuenta es el valor para continuar.",
@@ -74,6 +76,103 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                     {theme?.config_home?.icono || '🏆'} {theme?.config_home?.subtitulo || 'Bienvenido al Portal de Campañas'}
                 </p>
                 <p style={{ fontStyle: 'italic', opacity: 0.6, fontSize: '0.95rem', marginTop: '10px' }}>"{quote}"</p>
+            </div>
+
+            {/* Reportes Ejecutivos de Promotoría para Asesores */}
+            <div 
+                className="glass-card" 
+                style={{ 
+                    padding: '24px', 
+                    borderRadius: '16px', 
+                    borderLeft: '4px solid #007AFF', 
+                    textAlign: 'left',
+                    background: 'rgba(15, 23, 42, 0.65)',
+                    backdropFilter: 'blur(16px)'
+                }}
+            >
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', marginBottom: '18px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <div style={{ background: 'rgba(0, 122, 255, 0.15)', border: '1px solid rgba(0, 122, 255, 0.3)', borderRadius: '10px', padding: '8px', display: 'flex' }}>
+                            <BarChart3 size={22} color="#007AFF" />
+                        </div>
+                        <div>
+                            <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
+                                Reportes Ejecutivos de Promotoría
+                            </h3>
+                            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: '2px 0 0 0' }}>
+                                Consulta métricas y producción de la promotoría
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '12px' }}>
+                    {(Object.keys(REPORT_CONFIGS) as ReportKey[]).map(key => {
+                        const cfg = REPORT_CONFIGS[key];
+                        return (
+                            <button
+                                key={key}
+                                onClick={() => setSelectedReportKey(key)}
+                                style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    padding: '16px 10px',
+                                    borderRadius: '14px',
+                                    border: `1px solid ${cfg.color}35`,
+                                    background: 'rgba(255, 255, 255, 0.03)',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s ease',
+                                    position: 'relative',
+                                    gap: '8px',
+                                    textAlign: 'center'
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.transform = 'translateY(-3px)';
+                                    e.currentTarget.style.background = `${cfg.color}15`;
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.transform = 'translateY(0)';
+                                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                                }}
+                            >
+                                {cfg.status === 'upcoming' && (
+                                    <span style={{
+                                        position: 'absolute',
+                                        top: '6px',
+                                        right: '6px',
+                                        fontSize: '0.6rem',
+                                        fontWeight: 800,
+                                        background: 'rgba(255, 183, 77, 0.15)',
+                                        color: '#FFB74D',
+                                        border: '1px solid rgba(255, 183, 77, 0.3)',
+                                        borderRadius: '6px',
+                                        padding: '1px 5px'
+                                    }}>
+                                        Próximamente
+                                    </span>
+                                )}
+                                <div style={{
+                                    width: '42px',
+                                    height: '42px',
+                                    borderRadius: '12px',
+                                    background: `${cfg.color}15`,
+                                    border: `1px solid ${cfg.color}30`,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    color: cfg.color
+                                }}>
+                                    {cfg.icon}
+                                </div>
+                                <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.2 }}>
+                                    {cfg.title}
+                                </span>
+                            </button>
+                        );
+                    })}
+                </div>
             </div>
 
             {/* Executive Notice Center (Abanico Desplegable) */}
@@ -574,6 +673,13 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                     </motion.button>
                 )}
             </div>
+
+            {/* Modal de Reportes Ejecutivos para Asesores */}
+            <AdvisorReportModal
+                reportKey={selectedReportKey}
+                onClose={() => setSelectedReportKey(null)}
+                themeMode={theme?.id === 'light' ? 'light' : 'dark'}
+            />
         </motion.div>
     );
 };
