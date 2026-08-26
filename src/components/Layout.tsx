@@ -77,7 +77,7 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
                         top: '16px',
                         left: '16px',
                         zIndex: 999,
-                        background: 'rgba(15, 23, 42, 0.85)',
+                        background: themeMode === 'light' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(15, 23, 42, 0.85)',
                         backdropFilter: 'blur(16px)',
                         WebkitBackdropFilter: 'blur(16px)',
                         border: '1px solid rgba(255, 255, 255, 0.2)',

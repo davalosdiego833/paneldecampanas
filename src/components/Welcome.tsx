@@ -85,9 +85,7 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                     padding: '24px', 
                     borderRadius: '16px', 
                     borderLeft: '4px solid #007AFF', 
-                    textAlign: 'left',
-                    background: 'rgba(15, 23, 42, 0.65)',
-                    backdropFilter: 'blur(16px)'
+                    textAlign: 'left'
                 }}
             >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', marginBottom: '18px' }}>
@@ -121,7 +119,7 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                                     padding: '16px 10px',
                                     borderRadius: '14px',
                                     border: `1px solid ${cfg.color}35`,
-                                    background: 'rgba(255, 255, 255, 0.03)',
+                                    background: 'var(--glass-bg)',
                                     cursor: 'pointer',
                                     transition: 'all 0.2s ease',
                                     position: 'relative',
@@ -130,11 +128,11 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                                 }}
                                 onMouseEnter={(e) => {
                                     e.currentTarget.style.transform = 'translateY(-3px)';
-                                    e.currentTarget.style.background = `${cfg.color}15`;
+                                    e.currentTarget.style.background = `${cfg.color}20`;
                                 }}
                                 onMouseLeave={(e) => {
                                     e.currentTarget.style.transform = 'translateY(0)';
-                                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                                    e.currentTarget.style.background = 'var(--glass-bg)';
                                 }}
                             >
                                 {cfg.status === 'upcoming' && (
@@ -183,9 +181,6 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                     borderLeft: `4px solid ${theme?.colores?.acentos || 'var(--accent-gold)'}`,
                     padding: '20px 24px',
                     borderRadius: '16px',
-                    background: 'rgba(15, 23, 42, 0.65)',
-                    backdropFilter: 'blur(16px)',
-                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4)',
                     transition: 'all 0.3s ease'
                 }}
             >
