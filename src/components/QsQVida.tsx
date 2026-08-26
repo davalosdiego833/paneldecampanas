@@ -188,8 +188,8 @@ export const QsQVidaContent: React.FC<Props> = ({ data, fechaCorte, themeMode })
                                 <th style={{ padding: '12px 10px', textAlign: 'right', color: '#FFB74D' }}>Prima Meta (Ant)</th>
                                 <th style={{ padding: '12px 10px', textAlign: 'right', color: '#FFB74D' }}>Prima Meta (Mes)</th>
                                 <th style={{ padding: '12px 10px', textAlign: 'right', color: '#FFB74D' }}>Prima Meta (Acum)</th>
-                                <th style={{ padding: '12px 10px', textAlign: 'center', color: '#42A5F5' }}>CC (Mes)</th>
-                                <th style={{ padding: '12px 10px', textAlign: 'center', color: '#42A5F5' }}>CC (Acum)</th>
+                                <th style={{ padding: '12px 10px', textAlign: 'center', color: '#42A5F5' }}>Pólizas CC (Mes)</th>
+                                <th style={{ padding: '12px 10px', textAlign: 'center', color: '#42A5F5' }}>Pólizas CC (Acum)</th>
                                 <th style={{ padding: '12px 10px', textAlign: 'center', color: '#00E676' }}>LIMRA</th>
                                 <th style={{ padding: '12px 10px', textAlign: 'center', color: '#00E676' }}>IGC</th>
                             </tr>
