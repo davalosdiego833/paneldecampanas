@@ -1,5 +1,5 @@
 {
-  "updatedAt": "24/8/2026, 1:02:38 p.m.",
+  "updatedAt": "24/8/2026, 3:24:41 p.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -2441,7 +2441,7 @@
         {
           "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
           "Clave": "87538",
-          "PA_Acumulada": 2112770.74
+          "PA_Acumulada": 2166327.24
         },
         {
           "Asesor": "ANAIS LUA MORENO",
@@ -2451,22 +2451,22 @@
         {
           "Asesor": "DESIREE DE LA PEÑA OROZCO",
           "Clave": "80122",
-          "PA_Acumulada": 977924.28
+          "PA_Acumulada": 981224.95
         },
         {
           "Asesor": "DARINKA UREÑA CASILLAS",
           "Clave": "90355",
-          "PA_Acumulada": 869613.19
+          "PA_Acumulada": 870213.19
         },
         {
           "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
           "Clave": "47116",
-          "PA_Acumulada": 665083.43
+          "PA_Acumulada": 665359.22
         },
         {
           "Asesor": "MARIA TERESA ASENCIO LOZANO",
           "Clave": "94156",
-          "PA_Acumulada": 492182.27
+          "PA_Acumulada": 492391.53
         },
         {
           "Asesor": "JORGE ANTONIO LUNA LARA",
@@ -2476,7 +2476,7 @@
         {
           "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
           "Clave": "104750",
-          "PA_Acumulada": 433129.99
+          "PA_Acumulada": 428798.27
         },
         {
           "Asesor": "SOFIA CAMPILLO VASCONCELOS",
@@ -2506,12 +2506,12 @@
         {
           "Asesor": "MARIO IVAN ROMERO GONZALEZ",
           "Clave": "118069",
-          "PA_Acumulada": 231694.94
+          "PA_Acumulada": 268467.78
         },
         {
           "Asesor": "MARIA FERNANDA RIOS BERNAL",
           "Clave": "103982",
-          "PA_Acumulada": 207152.09
+          "PA_Acumulada": 246675.09
         },
         {
           "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
@@ -2544,9 +2544,9 @@
           "PA_Acumulada": 155988.61
         },
         {
-          "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
-          "Clave": "118246",
-          "PA_Acumulada": 149134.11
+          "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
+          "Clave": "104343",
+          "PA_Acumulada": 148137.76
         },
         {
           "Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
@@ -2554,9 +2554,9 @@
           "PA_Acumulada": 145772.58
         },
         {
-          "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
-          "Clave": "104343",
-          "PA_Acumulada": 140468.64
+          "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
+          "Clave": "118246",
+          "PA_Acumulada": 125552.01
         },
         {
           "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
@@ -2571,7 +2571,7 @@
         {
           "Asesor": "MIREYA LIZETTE TORRES GARCIA",
           "Clave": "106018",
-          "PA_Acumulada": 59325.88
+          "PA_Acumulada": 59625.88
         },
         {
           "Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
@@ -2597,6 +2597,11 @@
           "Asesor": "KAREN MUÑOZ GARCIA",
           "Clave": "81044",
           "PA_Acumulada": 2301.18
+        },
+        {
+          "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
+          "Clave": "59120",
+          "PA_Acumulada": 0
         }
       ],
       "convenciones": [
@@ -4272,7 +4277,7 @@
       ]
     },
     "campaignDates": {
-      "mdrt": "12 de agosto de 2026",
+      "mdrt": "19 de agosto de 2026",
       "convenciones": "31 de Julio de 2026",
       "legion_centurion": "19 de agosto de 2026",
       "camino_cumbre": "19 de agosto de 2026",
