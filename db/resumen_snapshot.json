@@ -1,5 +1,5 @@
 {
-  "updatedAt": "26/8/2026, 3:54:21 p.m.",
+  "updatedAt": "26/8/2026, 4:13:44 p.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -2783,6 +2783,365 @@
           }
         ]
       },
+      "qsq_gmm": {
+        "top5_inicial": [
+          {
+            "lugar": 280,
+            "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
+            "conexion": "23/09/19",
+            "polizas_iniciales": 14,
+            "inicial": 691558.52,
+            "renovacion": 2837183.7,
+            "total_gmm": 3528742.22
+          },
+          {
+            "lugar": 3374,
+            "nombre": "JORGE ANTONIO LUNA LARA",
+            "conexion": "13/12/24",
+            "polizas_iniciales": 6,
+            "inicial": 275189.5,
+            "renovacion": 58699.43,
+            "total_gmm": 333888.93
+          },
+          {
+            "lugar": 1243,
+            "nombre": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+            "conexion": "24/02/22",
+            "polizas_iniciales": 4,
+            "inicial": 223502.21,
+            "renovacion": 994266.34,
+            "total_gmm": 1217768.55
+          },
+          {
+            "lugar": 2927,
+            "nombre": "PAULINA LIZBETH SOTO MUÑIZ",
+            "conexion": "06/11/23",
+            "polizas_iniciales": 3,
+            "inicial": 197715.84,
+            "renovacion": 229859.53,
+            "total_gmm": 427575.37
+          },
+          {
+            "lugar": 2360,
+            "nombre": "MARIA TERESA ASENCIO LOZANO",
+            "conexion": "24/11/20",
+            "polizas_iniciales": 12,
+            "inicial": 141661.61,
+            "renovacion": 452212.57,
+            "total_gmm": 593874.18
+          }
+        ],
+        "top5_renovacion": [
+          {
+            "lugar": 280,
+            "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
+            "conexion": "23/09/19",
+            "polizas_iniciales": 14,
+            "inicial": 691558.52,
+            "renovacion": 2837183.7,
+            "total_gmm": 3528742.22
+          },
+          {
+            "lugar": 1243,
+            "nombre": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+            "conexion": "24/02/22",
+            "polizas_iniciales": 4,
+            "inicial": 223502.21,
+            "renovacion": 994266.34,
+            "total_gmm": 1217768.55
+          },
+          {
+            "lugar": 1550,
+            "nombre": "DESIREE DE LA PEÑA OROZCO",
+            "conexion": "28/09/18",
+            "polizas_iniciales": 0,
+            "inicial": 18265.21,
+            "renovacion": 970672.37,
+            "total_gmm": 988937.58
+          },
+          {
+            "lugar": 1948,
+            "nombre": "DARINKA UREÑA CASILLAS",
+            "conexion": "28/04/20",
+            "polizas_iniciales": 4,
+            "inicial": 97907.38,
+            "renovacion": 659989.5,
+            "total_gmm": 757896.88
+          },
+          {
+            "lugar": 2360,
+            "nombre": "MARIA TERESA ASENCIO LOZANO",
+            "conexion": "24/11/20",
+            "polizas_iniciales": 12,
+            "inicial": 141661.61,
+            "renovacion": 452212.57,
+            "total_gmm": 593874.18
+          }
+        ],
+        "all": [
+          {
+            "lugar": 280,
+            "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
+            "conexion": "23/09/19",
+            "polizas_iniciales": 14,
+            "inicial": 691558.52,
+            "renovacion": 2837183.7,
+            "total_gmm": 3528742.22
+          },
+          {
+            "lugar": 1243,
+            "nombre": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+            "conexion": "24/02/22",
+            "polizas_iniciales": 4,
+            "inicial": 223502.21,
+            "renovacion": 994266.34,
+            "total_gmm": 1217768.55
+          },
+          {
+            "lugar": 1550,
+            "nombre": "DESIREE DE LA PEÑA OROZCO",
+            "conexion": "28/09/18",
+            "polizas_iniciales": 0,
+            "inicial": 18265.21,
+            "renovacion": 970672.37,
+            "total_gmm": 988937.58
+          },
+          {
+            "lugar": 1948,
+            "nombre": "DARINKA UREÑA CASILLAS",
+            "conexion": "28/04/20",
+            "polizas_iniciales": 4,
+            "inicial": 97907.38,
+            "renovacion": 659989.5,
+            "total_gmm": 757896.88
+          },
+          {
+            "lugar": 2360,
+            "nombre": "MARIA TERESA ASENCIO LOZANO",
+            "conexion": "24/11/20",
+            "polizas_iniciales": 12,
+            "inicial": 141661.61,
+            "renovacion": 452212.57,
+            "total_gmm": 593874.18
+          },
+          {
+            "lugar": 2772,
+            "nombre": "MARICELA ARREOLA LOPEZ",
+            "conexion": "05/12/18",
+            "polizas_iniciales": 1,
+            "inicial": 21339.92,
+            "renovacion": 445077.56,
+            "total_gmm": 466417.48
+          },
+          {
+            "lugar": 2927,
+            "nombre": "PAULINA LIZBETH SOTO MUÑIZ",
+            "conexion": "06/11/23",
+            "polizas_iniciales": 3,
+            "inicial": 197715.84,
+            "renovacion": 229859.53,
+            "total_gmm": 427575.37
+          },
+          {
+            "lugar": 3260,
+            "nombre": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
+            "conexion": "21/12/22",
+            "polizas_iniciales": 2,
+            "inicial": 38991.1,
+            "renovacion": 316719.61,
+            "total_gmm": 355710.71
+          },
+          {
+            "lugar": 3374,
+            "nombre": "JORGE ANTONIO LUNA LARA",
+            "conexion": "13/12/24",
+            "polizas_iniciales": 6,
+            "inicial": 275189.5,
+            "renovacion": 58699.43,
+            "total_gmm": 333888.93
+          },
+          {
+            "lugar": 3560,
+            "nombre": "GABRIELA CASTAÑEDA SALAZAR",
+            "conexion": "19/12/23",
+            "polizas_iniciales": 1,
+            "inicial": 120024.63,
+            "renovacion": 181245.1,
+            "total_gmm": 301269.73
+          },
+          {
+            "lugar": 3677,
+            "nombre": "ANAIS LUA MORENO",
+            "conexion": "04/11/24",
+            "polizas_iniciales": 1,
+            "inicial": 111171.42,
+            "renovacion": 171905.14,
+            "total_gmm": 283076.56
+          },
+          {
+            "lugar": 3798,
+            "nombre": "ORLANDA JIMENA CERVANTES NUÑEZ",
+            "conexion": "28/05/24",
+            "polizas_iniciales": 1,
+            "inicial": 115538.79,
+            "renovacion": 149157.93,
+            "total_gmm": 264696.72
+          },
+          {
+            "lugar": 4580,
+            "nombre": "JORGE ALBERTO PRECIADO GONZALEZ",
+            "conexion": "02/10/23",
+            "polizas_iniciales": 2,
+            "inicial": 18787.48,
+            "renovacion": 157972.43,
+            "total_gmm": 176759.91
+          },
+          {
+            "lugar": 4822,
+            "nombre": "JULIANA RIASCOS VALENCIA",
+            "conexion": "14/03/23",
+            "polizas_iniciales": 2,
+            "inicial": 65748.29,
+            "renovacion": 87711.47,
+            "total_gmm": 153459.76
+          },
+          {
+            "lugar": 5198,
+            "nombre": "FERNANDO JAVIER DAVALOS FLORES",
+            "conexion": "26/05/21",
+            "polizas_iniciales": 0,
+            "inicial": 4765.74,
+            "renovacion": 119466.39,
+            "total_gmm": 124232.13
+          },
+          {
+            "lugar": 5487,
+            "nombre": "ROGELIO TORRES ORTIZ",
+            "conexion": "04/12/23",
+            "polizas_iniciales": 3,
+            "inicial": 48882.84,
+            "renovacion": 55865.83,
+            "total_gmm": 104748.67
+          },
+          {
+            "lugar": 5625,
+            "nombre": "LILIANA IVETTE CASTILLO SANCHEZ",
+            "conexion": "24/06/24",
+            "polizas_iniciales": 1,
+            "inicial": 96311.08,
+            "renovacion": 0,
+            "total_gmm": 96311.08
+          },
+          {
+            "lugar": 5742,
+            "nombre": "MARIA FERNANDA RIOS BERNAL",
+            "conexion": "17/10/23",
+            "polizas_iniciales": 3,
+            "inicial": 60493.92,
+            "renovacion": 29801.69,
+            "total_gmm": 90295.61
+          },
+          {
+            "lugar": 6012,
+            "nombre": "MARIA FERNANDA CARLOS VAZQUEZ",
+            "conexion": "21/06/22",
+            "polizas_iniciales": 0,
+            "inicial": 5523.21,
+            "renovacion": 70826.16,
+            "total_gmm": 76349.37
+          },
+          {
+            "lugar": 6089,
+            "nombre": "HANA SOFIA LOPEZ QUIÑONEZ",
+            "conexion": "04/09/25",
+            "polizas_iniciales": 1,
+            "inicial": 37398.46,
+            "renovacion": 35761.3,
+            "total_gmm": 73159.76
+          },
+          {
+            "lugar": 6295,
+            "nombre": "ANA VERONICA GONZALEZ GAYTAN",
+            "conexion": "25/11/25",
+            "polizas_iniciales": 4,
+            "inicial": 64956.98,
+            "renovacion": 0,
+            "total_gmm": 64956.98
+          },
+          {
+            "lugar": 6382,
+            "nombre": "KAREN MUÑOZ GARCIA",
+            "conexion": "07/11/22",
+            "polizas_iniciales": 0,
+            "inicial": 0,
+            "renovacion": 61857.61,
+            "total_gmm": 61857.61
+          },
+          {
+            "lugar": 7013,
+            "nombre": "ANA LAURA CONTRERAS IÑIGUEZ",
+            "conexion": "14/07/25",
+            "polizas_iniciales": 1,
+            "inicial": 4403.78,
+            "renovacion": 35682.85,
+            "total_gmm": 40086.63
+          },
+          {
+            "lugar": 7030,
+            "nombre": "VELIA PATRICIA BERNAL RAMOS",
+            "conexion": "14/10/25",
+            "polizas_iniciales": 2,
+            "inicial": 39429.69,
+            "renovacion": 0,
+            "total_gmm": 39429.69
+          },
+          {
+            "lugar": 7078,
+            "nombre": "SOFIA CAMPILLO VASCONCELOS",
+            "conexion": "14/04/26",
+            "polizas_iniciales": 2,
+            "inicial": 37982.41,
+            "renovacion": 0,
+            "total_gmm": 37982.41
+          },
+          {
+            "lugar": 7200,
+            "nombre": "TIARE DE LA CRUZ DZIB CABRERA",
+            "conexion": "27/05/22",
+            "polizas_iniciales": 0,
+            "inicial": 0,
+            "renovacion": 34640.7,
+            "total_gmm": 34640.7
+          },
+          {
+            "lugar": 7495,
+            "nombre": "MARIO IVAN ROMERO GONZALEZ",
+            "conexion": "19/06/26",
+            "polizas_iniciales": 3,
+            "inicial": 26596.29,
+            "renovacion": 0,
+            "total_gmm": 26596.29
+          },
+          {
+            "lugar": 8461,
+            "nombre": "PAULA ANGELICA LOMELI CAZARES",
+            "conexion": "30/03/26",
+            "polizas_iniciales": 1,
+            "inicial": 2565.18,
+            "renovacion": 0,
+            "total_gmm": 2565.18
+          },
+          {
+            "lugar": 8493,
+            "nombre": "MIREYA LIZETTE TORRES GARCIA",
+            "conexion": "22/02/24",
+            "polizas_iniciales": 0,
+            "inicial": 0,
+            "renovacion": 1674.4,
+            "total_gmm": 1674.4
+          }
+        ]
+      },
       "convenciones_promotores": {
         "fecha_corte": "31 de julio 2026",
         "promotoria": {
@@ -2942,6 +3301,7 @@
       "proactivos": "17 de agosto de 2026",
       "comparativo_vida": "12 de agosto de 2026",
       "qsq_vida": "31 de julio de 2026",
+      "qsq_gmm": "31 de Julio de 2026",
       "convenciones_promotores": "31 de julio 2026",
       "convenciones_gerente": "31 de julio 2026"
     },

@@ -1184,6 +1184,86 @@ const run = async () => {
             fc.qsq_vida = extractCutoffDate(wb);
         }
 
+        // 7. QsQ GMM
+        let qsqGmmPath = path.join(BASE_PATH, 'administrador', ' QsQ GMM', 'QsQ GMM.xlsx');
+        if (!fs.existsSync(qsqGmmPath)) {
+            qsqGmmPath = path.join(BASE_PATH, 'administrador', 'QsQ GMM', 'QsQ GMM.xlsx');
+        }
+        if (!fs.existsSync(qsqGmmPath)) {
+            qsqGmmPath = path.join(BASE_PATH, 'NOCHE ESTRELLAS', 'REPORTES', 'QsQ GMM.xlsx');
+        }
+        if (fs.existsSync(qsqGmmPath)) {
+            const wb = XLSX.readFile(qsqGmmPath);
+            const ws = wb.Sheets['Prima Comisión Asesores'] || wb.Sheets[wb.SheetNames[0]];
+            const rawData = XLSX.utils.sheet_to_json(ws, { header: 1 });
+            
+            const formatExcelDate = (val) => {
+                if (!val) return 'N/A';
+                if (typeof val === 'number') {
+                    const d = XLSX.SSF.parse_date_code(val);
+                    if (d) {
+                        const day = String(d.d).padStart(2, '0');
+                        const month = String(d.m).padStart(2, '0');
+                        const year = String(d.y).slice(-2);
+                        return `${day}/${month}/${year}`;
+                    }
+                }
+                if (typeof val === 'string' && val.includes('-')) {
+                    const parts = val.split('T')[0].split('-');
+                    if (parts.length === 3) {
+                        return `${parts[2]}/${parts[1]}/${parts[0].slice(-2)}`;
+                    }
+                }
+                return String(val).trim();
+            };
+
+            const rows2043Gmm = [];
+            for (let r = 11; r < rawData.length; r++) {
+                const row = rawData[r];
+                if (!row) continue;
+                const mat = String(row[3] || '').trim();
+                const suc = String(row[4] || '').trim();
+                if (mat === '2043' || suc === '2043') {
+                    const rawName = String(row[7] || '').trim();
+                    if (!rawName) continue;
+                    rows2043Gmm.push({
+                        lugar: Number(row[0]) || 0,
+                        nombre: cleanNameText(rawName),
+                        conexion: formatExcelDate(row[9]),
+                        polizas_iniciales: Number(row[10]) || 0,
+                        inicial: Number(row[11]) || 0,
+                        renovacion: Number(row[12]) || 0,
+                        total_gmm: Number(row[13]) || 0
+                    });
+                }
+            }
+
+            const top5Inicial = [...rows2043Gmm].sort((a, b) => b.inicial - a.inicial).slice(0, 5);
+            const top5Renovacion = [...rows2043Gmm].sort((a, b) => b.renovacion - a.renovacion).slice(0, 5);
+            const allRowsSorted = [...rows2043Gmm].sort((a, b) => b.total_gmm - a.total_gmm);
+
+            let gmmCutoff = '31 de Julio de 2026';
+            for (let r = 0; r < Math.min(rawData.length, 10); r++) {
+                const cellText = String(rawData[r]?.[0] || rawData[r]?.[1] || '').trim();
+                if (cellText.toLowerCase().includes('cierre de')) {
+                    const match = cellText.match(/cierre de ([a-záéíóúñ]+) de (\d{4})/i);
+                    if (match) {
+                        const month = match[1];
+                        const year = match[2];
+                        const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1).toLowerCase();
+                        gmmCutoff = `31 de ${capitalizedMonth} de ${year}`;
+                    }
+                }
+            }
+
+            rg.qsq_gmm = {
+                top5_inicial: top5Inicial,
+                top5_renovacion: top5Renovacion,
+                all: allRowsSorted
+            };
+            fc.qsq_gmm = gmmCutoff;
+        }
+
         rg.convenciones_promotores = campaigns.convenciones_promotores;
         rg.convenciones_gerente = campaigns.convenciones_gerente;
 

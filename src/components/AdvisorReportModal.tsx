@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Activity, AlertTriangle, TrendingUp, HeartPulse, Lightbulb, Hospital, X } from 'lucide-react';
 import { Proactivos, AsesoresSinEmision, ComparativoVida } from './ResumenPromotoria';
 import { QsQVidaContent } from './QsQVida';
+import { QsQGmmContent } from './QsQGmm';
 
 export type ReportKey = 'proactivos' | 'asesores_sin_emision' | 'comparativo_vida' | 'comparativo_gmm' | 'qsq_vida' | 'qsq_gmm';
 
@@ -53,7 +54,7 @@ export const REPORT_CONFIGS: Record<ReportKey, { title: string; subtitle: string
         subtitle: 'Análisis y métricas Quién es Quién en GMM',
         icon: <Hospital size={22} />,
         color: '#80CBC4',
-        status: 'upcoming'
+        status: 'active'
     }
 };
 
@@ -202,6 +203,14 @@ export const AdvisorReportModal: React.FC<Props> = ({ reportKey, onClose, themeM
                 return (
                     <QsQVidaContent
                         data={data.qsq_vida || null}
+                        fechaCorte={fechaCorte}
+                        themeMode={themeMode}
+                    />
+                );
+            case 'qsq_gmm':
+                return (
+                    <QsQGmmContent
+                        data={data.qsq_gmm || null}
                         fechaCorte={fechaCorte}
                         themeMode={themeMode}
                     />
