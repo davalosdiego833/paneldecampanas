@@ -12,6 +12,7 @@ const CampaignSelector: React.FC<Props> = ({ advisor, onCampaignSelect }) => {
     const [dates, setDates] = useState<Record<string, string>>({});
 
     const logoMapping: Record<string, string> = {
+        "premios": "/assets/logos/campanas/premios.png",
         "legion_centurion": "/assets/logos/campanas/legion_centurion.png",
         "mdrt": "/assets/logos/campanas/mdrt.png",
         "convenciones": "/assets/logos/campanas/convenciones.png",
@@ -119,18 +120,14 @@ const CampaignSelector: React.FC<Props> = ({ advisor, onCampaignSelect }) => {
                             marginBottom: '24px',
                             flex: 1
                         }}>
-                            {camp === 'premios' ? (
-                                <span style={{ fontSize: '5rem' }}>🏆</span>
-                            ) : (
-                                <img
-                                    src={logoMapping[camp] || '/assets/logos/campanas/generic.png'}
-                                    alt={camp}
-                                    style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.3))' }}
-                                    onError={(e) => {
-                                        (e.target as HTMLImageElement).src = '/assets/logos/campanas/generic.png';
-                                    }}
-                                />
-                            )}
+                            <img
+                                src={logoMapping[camp] || '/assets/logos/campanas/generic.png'}
+                                alt={camp}
+                                style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.3))' }}
+                                onError={(e) => {
+                                    (e.target as HTMLImageElement).src = '/assets/logos/campanas/generic.png';
+                                }}
+                            />
                         </div>
                         <button className="btn-primary" style={{ fontSize: '0.9rem', padding: '12px 24px' }}>
                             ENTRAR A {camp.replace(/_/g, ' ').toUpperCase()}

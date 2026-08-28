@@ -1,5 +1,26 @@
 {
-  "generatedAt": "26/8/2026, 4:13:49 p.m.",
-  "totalNew": 0,
-  "alerts": []
+  "generatedAt": "28/8/2026, 3:28:50 p.m.",
+  "totalNew": 2,
+  "alerts": [
+    {
+      "id": "4afcccdf-3301-4eea-a662-e6fb985483b7",
+      "asesor": "PAULA ANGELICA LOMELI CAZARES",
+      "firstName": "Paula",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Paula, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "b697a551-dded-44fa-9283-687dfe2aa2f3",
+      "asesor": "VELIA PATRICIA BERNAL RAMOS",
+      "firstName": "Velia",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Velia, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    }
+  ]
 }
