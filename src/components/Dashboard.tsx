@@ -9,6 +9,7 @@ import Graduacion from './Dashboards/Graduacion';
 import ProactivaTech from './Dashboards/ProactivaTech';
 import RetoPorCiento from './Dashboards/RetoPorCiento';
 import EducarEsCreer from './Dashboards/EducarEsCreer';
+import BonoPremios from './Dashboards/BonoPremios';
 
 
 interface Props {
@@ -23,6 +24,7 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor, themeMode }) => {
     const [selectedDate, setSelectedDate] = useState<string | null>(null);
 
     useEffect(() => {
+        if (campaign === 'premios') { setLoading(false); return; }
         setLoading(true);
         const url = `/api/campaign/${campaign}/data/${advisor}${selectedDate ? `?date=${selectedDate}` : ''}`;
         fetch(url)
@@ -44,6 +46,8 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor, themeMode }) => {
                 setLoading(false);
             });
     }, [campaign, advisor, selectedDate]);
+
+    if (campaign === 'premios') return <BonoPremios advisor={advisor} />;
 
     if (loading) return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '400px', flexDirection: 'column', gap: '20px' }}>

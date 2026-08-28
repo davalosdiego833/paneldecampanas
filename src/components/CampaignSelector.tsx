@@ -7,7 +7,7 @@ interface Props {
 }
 
 const CampaignSelector: React.FC<Props> = ({ advisor, onCampaignSelect }) => {
-    const campaignOrder = ["legion_centurion", "mdrt", "convenciones", "camino_cumbre", "graduacion", "proactiva_tech", "reto_por_ciento", "educar_es_creer"];
+    const campaignOrder = ["premios", "legion_centurion", "mdrt", "convenciones", "camino_cumbre", "graduacion", "proactiva_tech", "reto_por_ciento", "educar_es_creer"];
     const [campaigns, setCampaigns] = useState<string[]>(campaignOrder);
     const [dates, setDates] = useState<Record<string, string>>({});
 
@@ -119,14 +119,18 @@ const CampaignSelector: React.FC<Props> = ({ advisor, onCampaignSelect }) => {
                             marginBottom: '24px',
                             flex: 1
                         }}>
-                            <img
-                                src={logoMapping[camp] || '/assets/logos/campanas/generic.png'}
-                                alt={camp}
-                                style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.3))' }}
-                                onError={(e) => {
-                                    (e.target as HTMLImageElement).src = '/assets/logos/campanas/generic.png';
-                                }}
-                            />
+                            {camp === 'premios' ? (
+                                <span style={{ fontSize: '5rem' }}>🏆</span>
+                            ) : (
+                                <img
+                                    src={logoMapping[camp] || '/assets/logos/campanas/generic.png'}
+                                    alt={camp}
+                                    style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.3))' }}
+                                    onError={(e) => {
+                                        (e.target as HTMLImageElement).src = '/assets/logos/campanas/generic.png';
+                                    }}
+                                />
+                            )}
                         </div>
                         <button className="btn-primary" style={{ fontSize: '0.9rem', padding: '12px 24px' }}>
                             ENTRAR A {camp.replace(/_/g, ' ').toUpperCase()}

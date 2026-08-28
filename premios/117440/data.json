@@ -1,0 +1,106 @@
+{
+  "clave": "117440",
+  "timestamp": "2026-08-27T19:47:54.315Z",
+  "urlDashboard": "https://hojameta.mnyl.com.mx/front/agentes?fecha=21-08-2026&numeroAgente=117440",
+  "resumen": {
+    "cabecera": {
+      "_raw": [
+        "Asesor: MONSERRAT VELASCO SANTOS",
+        "Clave: 117440",
+        "Avance Al: 21-08-2026",
+        "Fecha Concurso: 07/05/2026",
+        "Tipo: Training Allowance",
+        "Pólizas Vida",
+        "12",
+        "Pólizas VI + GMMI",
+        "12",
+        "Comisión Meta",
+        "$71,009",
+        "Pólizas Bimestre",
+        "0",
+        "LIMRA",
+        "75.5%",
+        "IGC",
+        "91%",
+        "Histórico de Bonos",
+        "Ene",
+        "Feb",
+        "Mar",
+        "Abr",
+        "May",
+        "Jun",
+        "Jul",
+        "Ago",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dic",
+        "Historico de Bono 2026",
+        "$26,387",
+        "$23,749",
+        "$21,110",
+        "$18,471",
+        "$15,832",
+        "$13,194",
+        "$10,555",
+        "$7,916",
+        "$5,277"
+      ]
+    },
+    "resumenBonos": [
+      [
+        "Bonos",
+        "Bono Mes",
+        "Bono Acumulado",
+        "Gana Bono",
+        ""
+      ],
+      [
+        "Bono TA",
+        "$2,151.83",
+        "$71,009.03",
+        "",
+        ""
+      ],
+      [
+        "Bono Bimestral por Pólizas",
+        "$0.00",
+        "$0.00",
+        "",
+        ""
+      ],
+      [
+        "Bono Beneficios",
+        "$0.00",
+        "$0.00",
+        "",
+        ""
+      ],
+      [
+        "Bono Conexión",
+        "$0.00",
+        "$0.00",
+        "",
+        ""
+      ],
+      [
+        "Bono Desarrollo",
+        "$0.00",
+        "$0.00",
+        "",
+        ""
+      ],
+      [
+        "Total",
+        "$2,151.83",
+        "$71,009.03",
+        "",
+        ""
+      ]
+    ],
+    "todoElTexto": " Asesor: MONSERRAT VELASCO SANTOS\n Clave: 117440\n Avance Al: 21-08-2026\n Fecha Concurso: 07/05/2026\n Tipo: Training Allowance\n Pólizas Vida\n12\n Pólizas VI + GMMI\n12\n Comisión Meta\n$71,009\n Pólizas Bimestre\n0\n LIMRA\n75.5%\n IGC\n91%\nHistórico de Bonos\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2026\n$26,387\n$23,749\n$21,110\n$18,471\n$15,832\n$13,194\n$10,555\n$7,916\n$5,277\n$2,639\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nTabla de Acumulados\nBonos\tBono Mes\tBono Acumulado\tGana Bono\t\nBono TA\t$2,151.83\t$71,009.03\t\t\nBono Bimestral por Pólizas\t$0.00\t$0.00\t\t\nBono Beneficios\t$0.00\t$0.00\t\t\nBono Conexión\t$0.00\t$0.00\t\t\nBono Desarrollo\t$0.00\t$0.00\t\t\nTotal\t$2,151.83\t$71,009.03\t \t \nIngresos por Bonos\nCopyright © 2024 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información"
+  },
+  "pareceVacio": false,
+  "detalleModalTexto": " Asesor: MONSERRAT VELASCO SANTOS\n Clave: 117440\n Avance Al: 21-08-2026\n Fecha Concurso: 07/05/2026\n Tipo: Training Allowance\n Pólizas Vida\n12\n Pólizas VI + GMMI\n12\n Comisión Meta\n$71,009\n Pólizas Bimestre\n0\n LIMRA\n75.5%\n IGC\n91%\nHistórico de Bonos\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2026\n$26,387\n$23,749\n$21,110\n$18,471\n$15,832\n$13,194\n$10,555\n$7,916\n$5,277\n$2,639\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nTabla de Acumulados\nBonos\tBono Mes\tBono Acumulado\tGana Bono\t\nBono TA\t$2,151.83\t$71,009.03\t\t\nBono Bimestral por Pólizas\t$0.00\t$0.00\t\t\nBono Beneficios\t$0.00\t$0.00\t\t\nBono Conexión\t$0.00\t$0.00\t\t\nBono Desarrollo\t$0.00\t$0.00\t\t\nTotal\t$2,151.83\t$71,009.03\t \t \nIngresos por Bonos\nBono Training Allowance\n×\nResumen Bonos TA\nBono\tReal\tMeta\tCumple\n Mes\t4\t\t\n Bono TA\t\t\t\n Pólizas Mes VI\t0.00\t\t\n Pólizas Mes GMMI\t0.00\t\t\n Pólizas Sem VI\t12.00\t4.00\t\n Pólizas Sem VI+GMMI\t12.00\t12.00\t\n Comisión Meta Mes\t$2,152\t\t\n Comisión Meta Sem\t$71,009\t$31,000\t\n Comisión Pago Sem\t$71,009\t\t\n % Bono Inicial\t100.00%\t\t\n Bono Calculado\t$71,009\t \t \n Bono Tope\t$102,000\t \t \n Excedente\t$0\t \t \n % Bono Excedente\t35.00%\t \t \n  Bono Excedente\t$0\t \t \n Bono TA\t$71,009\n Bono Semestral\t$0\n Bonos Anticipados\t$68,857\n Bono a Pagar\t$2,152\n \tVer Detalle Bonos\nHistoria de Meses Ganados\n1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11\t12\n\t\t\t\nBonos Anticipados\nMay/2026\nJun/2026\nJul/2026\nAgo/2026\n$30,000.00\n$24,000.00\n$18,000.00\n$12,000.00\n$6,000.00\n$0.00\nDownload SVG\nDownload PNG\nDownload CSV\nResumen Bonos TA [Mes 4] Ago/2026\nPólizas Vida\nMeta:4\n15\n12\n9\n6\n3\n0\nAvance: 12\nDownload SVG\nDownload PNG\nDownload CSV\nPólizas Vida + GMMI\nMeta:12\n15\n12\n9\n6\n3\n0\nAvance: 12\nDownload SVG\nDownload PNG\nDownload CSV\nComisión Vida + GMMI\nMeta:$31,000\n$80,000\n$60,000\n$40,000\n$20,000\n$0\nAvance: $71,009\nDownload SVG\nDownload PNG\nDownload CSV\nCopyright © 2024 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información",
+  "intentos": 1
+}

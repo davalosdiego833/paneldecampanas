@@ -1,5 +1,85 @@
 [
   {
+    "id": "1787882364961",
+    "asesor": "MONSERRAT VELASCO SANTOS",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-27",
+    "hora": "19:59:24",
+    "timestamp": 1787882364959
+  },
+  {
+    "id": "1787882347354",
+    "asesor": "MONSERRAT VELASCO SANTOS",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-27",
+    "hora": "19:59:07",
+    "timestamp": 1787882347321
+  },
+  {
+    "id": "1787881080956",
+    "asesor": "MONSERRAT VELASCO SANTOS",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-27",
+    "hora": "19:38:00",
+    "timestamp": 1787881080955
+  },
+  {
+    "id": "1787881079588",
+    "asesor": "MONSERRAT VELASCO SANTOS",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-27",
+    "hora": "19:37:59",
+    "timestamp": 1787881079576
+  },
+  {
+    "id": "1787880894732",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-27",
+    "hora": "19:34:54",
+    "timestamp": 1787880894731
+  },
+  {
+    "id": "1787880880184",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-27",
+    "hora": "19:34:40",
+    "timestamp": 1787880880132
+  },
+  {
+    "id": "1787880522502",
+    "asesor": "MONSERRAT VELASCO SANTOS",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-27",
+    "hora": "19:28:42",
+    "timestamp": 1787880522501
+  },
+  {
+    "id": "1787880506667",
+    "asesor": "MONSERRAT VELASCO SANTOS",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-27",
+    "hora": "19:28:26",
+    "timestamp": 1787880506655
+  },
+  {
+    "id": "1787880175420",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-27",
+    "hora": "19:22:55",
+    "timestamp": 1787880175418
+  },
+  {
+    "id": "1787880145812",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-27",
+    "hora": "19:22:25",
+    "timestamp": 1787880145753
+  },
+  {
     "id": "1776709728119",
     "asesor": "⚡ SISTEMA",
     "accion": "📥 Nueva Actualización de Reportes (Push)",

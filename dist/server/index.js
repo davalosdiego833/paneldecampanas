@@ -651,6 +651,32 @@ app.get('/api/campaigns', (req, res) => {
         res.status(500).json({ error: 'Could not list campaigns' });
     }
 });
+// Reporte de Premios (Bono TA / Bono Vida) — datos capturados por descargar_premios.js
+// en premios/<clave>/data.json. Resuelve nombre de asesor -> clave usando el mismo
+// directorio que ya usan las demás campañas.
+app.get('/api/premios/:advisor', (req, res) => {
+    const { advisor } = req.params;
+    try {
+        const dir = getAdvisorDirectory();
+        // El :advisor puede venir como nombre completo o ya como clave directa
+        let clave = Object.keys(dir).find(key => dir[key] === advisor) || advisor;
+        const candidatePaths = [
+            path.join(BASE_PATH, 'premios', clave, 'data.json'),
+            path.join(safeDirname, 'premios', clave, 'data.json'),
+            path.join(process.cwd(), 'premios', clave, 'data.json'),
+        ];
+        const filePath = candidatePaths.find(p => safeExists(p));
+        if (!filePath) {
+            return res.status(404).json({ error: 'Sin reporte de premios para este asesor', clave });
+        }
+        const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+        res.json(data);
+    }
+    catch (error) {
+        console.error('Error leyendo premios:', error);
+        res.status(500).json({ error: 'Error al leer el reporte de premios' });
+    }
+});
 app.get('/api/advisors', (req, res) => {
     try {
         const advisors = getCachedAdvisors();
