@@ -1,5 +1,245 @@
 [
   {
+    "id": "1787951355973",
+    "asesor": "MONSERRAT VELASCO SANTOS",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-28",
+    "hora": "15:09:15",
+    "timestamp": 1787951355958
+  },
+  {
+    "id": "1787951180990",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-28",
+    "hora": "15:06:20",
+    "timestamp": 1787951180989
+  },
+  {
+    "id": "1787951179204",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-28",
+    "hora": "15:06:19",
+    "timestamp": 1787951179203
+  },
+  {
+    "id": "1787951077070",
+    "asesor": "MONSERRAT VELASCO SANTOS",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-28",
+    "hora": "15:04:37",
+    "timestamp": 1787951077069
+  },
+  {
+    "id": "1787951060331",
+    "asesor": "MONSERRAT VELASCO SANTOS",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-28",
+    "hora": "15:04:20",
+    "timestamp": 1787951060314
+  },
+  {
+    "id": "1787950461052",
+    "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-28",
+    "hora": "14:54:21",
+    "timestamp": 1787950461051
+  },
+  {
+    "id": "1787950441065",
+    "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-28",
+    "hora": "14:54:01",
+    "timestamp": 1787950441064
+  },
+  {
+    "id": "1787950439852",
+    "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-28",
+    "hora": "14:53:59",
+    "timestamp": 1787950439851
+  },
+  {
+    "id": "1787950387848",
+    "asesor": "MONSERRAT VELASCO SANTOS",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-28",
+    "hora": "14:53:07",
+    "timestamp": 1787950387847
+  },
+  {
+    "id": "1787950386535",
+    "asesor": "MONSERRAT VELASCO SANTOS",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-28",
+    "hora": "14:53:06",
+    "timestamp": 1787950386533
+  },
+  {
+    "id": "1787950265607",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-28",
+    "hora": "14:51:05",
+    "timestamp": 1787950265603
+  },
+  {
+    "id": "1787950261257",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-28",
+    "hora": "14:51:01",
+    "timestamp": 1787950261244
+  },
+  {
+    "id": "1787950083616",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-28",
+    "hora": "14:48:03",
+    "timestamp": 1787950083615
+  },
+  {
+    "id": "1787950082002",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-28",
+    "hora": "14:48:02",
+    "timestamp": 1787950082000
+  },
+  {
+    "id": "1787950065516",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-28",
+    "hora": "14:47:45",
+    "timestamp": 1787950065515
+  },
+  {
+    "id": "1787950064191",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-28",
+    "hora": "14:47:44",
+    "timestamp": 1787950064124
+  },
+  {
+    "id": "1787949867969",
+    "asesor": "JOSE ANTEMIO OLIVA SANTOS",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-28",
+    "hora": "14:44:27",
+    "timestamp": 1787949867968
+  },
+  {
+    "id": "1787949855434",
+    "asesor": "JOSE ANTEMIO OLIVA SANTOS",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-28",
+    "hora": "14:44:15",
+    "timestamp": 1787949855414
+  },
+  {
+    "id": "1787949750077",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-28",
+    "hora": "14:42:30",
+    "timestamp": 1787949750076
+  },
+  {
+    "id": "1787949737521",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-28",
+    "hora": "14:42:17",
+    "timestamp": 1787949737426
+  },
+  {
+    "id": "1787948648373",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-28",
+    "hora": "14:24:08",
+    "timestamp": 1787948648372
+  },
+  {
+    "id": "1787948635899",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-28",
+    "hora": "14:23:55",
+    "timestamp": 1787948635881
+  },
+  {
+    "id": "1787946705153",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-28",
+    "hora": "13:51:45",
+    "timestamp": 1787946705152
+  },
+  {
+    "id": "1787946702205",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-28",
+    "hora": "13:51:42",
+    "timestamp": 1787946702204
+  },
+  {
+    "id": "1787946602636",
+    "asesor": "MONSERRAT VELASCO SANTOS",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-28",
+    "hora": "13:50:02",
+    "timestamp": 1787946602635
+  },
+  {
+    "id": "1787946601253",
+    "asesor": "MONSERRAT VELASCO SANTOS",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-28",
+    "hora": "13:50:01",
+    "timestamp": 1787946601252
+  },
+  {
+    "id": "1787946590395",
+    "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-28",
+    "hora": "13:49:50",
+    "timestamp": 1787946590394
+  },
+  {
+    "id": "1787946578505",
+    "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-28",
+    "hora": "13:49:38",
+    "timestamp": 1787946578504
+  },
+  {
+    "id": "1787946557975",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-08-28",
+    "hora": "13:49:17",
+    "timestamp": 1787946557974
+  },
+  {
+    "id": "1787946542084",
+    "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-08-28",
+    "hora": "13:49:02",
+    "timestamp": 1787946542015
+  },
+  {
     "id": "1787882364961",
     "asesor": "MONSERRAT VELASCO SANTOS",
     "accion": "Consultó Campaña: PREMIOS",

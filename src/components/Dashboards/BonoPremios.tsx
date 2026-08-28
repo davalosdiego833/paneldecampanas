@@ -6,7 +6,10 @@ import {
 } from '../../utils/parsePremiosDetalle';
 import {
     calcularBonoTA, calcularBonoVida, TABLA_TA, semestreDeMes,
+    cumpleCandadoPolizasVida, pctBonoPorGrupoYLimra, primaFaltantePorGrupo,
 } from '../../utils/bonoTablas';
+
+const MESES_ES = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
 
 interface Props {
     advisor: string;
@@ -106,7 +109,10 @@ const VistaBonoTA: React.FC<{ cab: CabeceraPremios; det: DetalleTA }> = ({ cab, 
         const nuevasPolizasSemVIGMMI = det.polizasSemVIGMMI + polizasExtra;
         // Aproximación: sumamos las pólizas extra a ambos conteos (vida y vida+gmmi)
         const nuevasPolizasSemVI = det.polizasSemVI + polizasExtra;
-        return calcularBonoTA(mes, nuevaComision, nuevasPolizasSemVIGMMI, nuevasPolizasSemVI);
+        // ignorarCandadoPolizas=true: la calculadora siempre proyecta el monto,
+        // aunque las pólizas no alcancen — la advertencia de abajo avisa cuando
+        // el resultado es hipotético.
+        return calcularBonoTA(mes, nuevaComision, nuevasPolizasSemVIGMMI, nuevasPolizasSemVI, true);
     }, [primaExtra, polizasExtra, det, mes]);
 
     const faltaComision = Math.max(0, fila.comisionMeta - det.comisionPagoSem);
@@ -185,7 +191,7 @@ const VistaBonoTA: React.FC<{ cab: CabeceraPremios; det: DetalleTA }> = ({ cab, 
                 </div>
                 {!proyeccion.cumplePolizas && (
                     <p style={{ fontSize: '0.8rem', color: '#ff6b6b', marginBottom: '12px' }}>
-                        ⚠️ Con esas pólizas todavía no cumplirías el mínimo del mes — el bono seguiría en $0 aunque subas la comisión. Ajusta "Pólizas adicionales" para ver el cálculo completo.
+                        ⚠️ Con esas pólizas todavía no cumplirías el mínimo del mes, así que en la realidad tu bono seguiría en $0. <strong>El cálculo de abajo es una simulación</strong> asumiendo que sí llegas al mínimo — ajusta "Pólizas adicionales" si quieres ver el escenario real.
                     </p>
                 )}
 
@@ -250,13 +256,77 @@ const VistaBonoTA: React.FC<{ cab: CabeceraPremios; det: DetalleTA }> = ({ cab, 
     );
 };
 
+// Tabla "Prima Faltante": para cada Grupo (1=mejor % de bono, 16=peor) muestra
+// cuánta prima le falta al asesor para calificar ahí en cada mes restante del
+// semestre, y el % de Bono Inicial que le tocaría según su LIMRA actual si
+// calificara en ese grupo. Resalta el Grupo Tope (techo de sus anticipos) y el
+// Grupo Calculado real (si ya tiene uno).
+const TablaPrimaFaltante: React.FC<{
+    primaActual: number; mesEnSemestre: number; esSegundoSemestreDelAnio: boolean;
+    limra: number; grupoCalculado: number; grupoTope: number;
+}> = ({ primaActual, mesEnSemestre, esSegundoSemestreDelAnio, limra, grupoCalculado, grupoTope }) => {
+    const mesesRestantes: number[] = [];
+    for (let m = mesEnSemestre; m <= 6; m++) mesesRestantes.push(m);
+    const calMes = (m: number) => esSegundoSemestreDelAnio ? 6 + m : m;
+
+    return (
+        <div className="glass-card" style={{ padding: '20px' }}>
+            <h4 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '4px', opacity: 0.8 }}>📊 Prima faltante por grupo</h4>
+            <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '14px' }}>
+                Cuánta prima inicial más necesitas acumular (desde hoy) para calificar en cada grupo, y el % de Bono Inicial que pagaría ese grupo según tu LIMRA actual.
+            </p>
+            <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.78rem', minWidth: '560px' }}>
+                    <thead>
+                        <tr style={{ color: 'var(--text-secondary)', textAlign: 'right' }}>
+                            <th style={{ textAlign: 'left', padding: '6px 8px' }}>Grupo</th>
+                            {mesesRestantes.map(m => <th key={m} style={{ padding: '6px 8px' }}>{MESES_ES[calMes(m) - 1]}</th>)}
+                            <th style={{ padding: '6px 8px' }}>% Bono</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {Array.from({ length: 16 }, (_, i) => i + 1).map(g => {
+                            const esTope = g === grupoTope;
+                            const esCalculado = g === grupoCalculado && grupoCalculado > 0;
+                            return (
+                                <tr key={g} style={{
+                                    background: esCalculado ? 'rgba(212,175,55,0.18)' : esTope ? 'rgba(255,255,255,0.06)' : 'transparent',
+                                    fontWeight: (esTope || esCalculado) ? 700 : 400
+                                }}>
+                                    <td style={{ padding: '4px 8px' }}>
+                                        {g}{esCalculado && ' 🏆'}{esTope && !esCalculado && ' (tope)'}
+                                    </td>
+                                    {mesesRestantes.map(m => (
+                                        <td key={m} style={{ padding: '4px 8px', textAlign: 'right' }}>
+                                            {fmt(primaFaltantePorGrupo(primaActual, g, m))}
+                                        </td>
+                                    ))}
+                                    <td style={{ padding: '4px 8px', textAlign: 'right', color: 'var(--accent-gold)' }}>
+                                        {fmtPct(pctBonoPorGrupoYLimra(g, limra))}
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+            <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: '10px' }}>
+                🏆 = tu Grupo Calculado real hoy · (tope) = el Grupo Tope que limita tus anticipos este semestre (heredado del semestre anterior).
+            </p>
+        </div>
+    );
+};
+
 // ---------------------------------------------------------------------------
 // BONO VIDA
 // ---------------------------------------------------------------------------
 const VistaBonoVida: React.FC<{ cab: CabeceraPremios; det: DetalleVida }> = ({ cab, det }) => {
     const avanceAlMes = Number((cab.avanceAl.split('-')[1] || cab.indicadores['Avance Al']?.split('-')[1] || '1'));
     const mesEnSemestre = ((avanceAlMes - 1) % 6) + 1;
+    const esSegundoSemestreDelAnio = avanceAlMes > 6;
     const antiguedadMeses = mesesEntre(cab.fechaConcurso, cab.avanceAl || cab.indicadores['Avance Al'] || cab.fechaConcurso);
+
+    const candado = cumpleCandadoPolizasVida(mesEnSemestre, esSegundoSemestreDelAnio, det.polizaMes, det.polizasSemestre, det.polizasAnual);
 
     const [primaExtra, setPrimaExtra] = useState(0);
 
@@ -269,40 +339,112 @@ const VistaBonoVida: React.FC<{ cab: CabeceraPremios; det: DetalleVida }> = ({ c
         igc: det.igc,
         antiguedadMeses,
         grupoTopeAnticipo: det.grupoTope || null,
-    }), [primaExtra, det, mesEnSemestre, antiguedadMeses]);
+        esSegundoSemestreDelAnio,
+        polizaMes: det.polizaMes,
+        polizasSemestre: det.polizasSemestre,
+        polizasAnual: det.polizasAnual,
+        // La calculadora siempre proyecta el monto asumiendo que sí cumples
+        // pólizas — `cumplePolizas` en el resultado nos dice si eso es real o
+        // hipotético, y lo avisamos aparte (ver aviso debajo).
+        ignorarCandadoPolizas: true,
+    }), [primaExtra, det, mesEnSemestre, antiguedadMeses, esSegundoSemestreDelAnio]);
 
-    const faltaPolizasSem = Math.max(0, det.polizasSemestreMeta - det.polizasSemestre);
-    const faltaPolizasAnual = Math.max(0, det.polizasAnualMeta - det.polizasAnual);
-    const faltaPolizaMes = Math.max(0, det.polizaMesMeta - det.polizaMes);
+    const bonoSemestralTotal = det.montoBonoInicial + det.montoBonoRenovacion;
+    const bonoAnticipado = det.bonosAnticipados || 0;
+    const bonoAPagarReal = det.bonosAPagar || Math.max(0, bonoSemestralTotal - bonoAnticipado);
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '12px' }}>
-                <Stat label="Grupo calculado" value={det.grupoCalculado ? `Grupo ${det.grupoCalculado}` : 'Sin grupo'} sub={det.grupoTope ? `Tope anticipo: Grupo ${det.grupoTope}` : undefined} />
-                <Stat label="LIMRA" value={fmtPct(det.limra)} sub={`% Bono Inicial: ${fmtPct(det.pctBonoInicial)}`} />
-                <Stat label="IGC" value={fmtPct(det.igc)} sub={`% Bono Renovación: ${fmtPct(det.pctBonoRenovacion)}`} />
-                <Stat label="Prima inicial acum. sem." value={fmt(det.primaMetaSem)} />
-                <Stat label="Prima renovación sem." value={fmt(det.primaRenovacionSem)} />
-            </div>
-
-            <div className="glass-card" style={{ padding: '20px' }}>
-                <h4 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '14px', opacity: 0.8 }}>¿Qué te falta?</h4>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    <Gate ok={faltaPolizaMes === 0} label={faltaPolizaMes === 0 ? 'Mínimo de pólizas del mes cumplido' : 'Te falta 1 póliza este mes (mínimo mensual)'} />
-                    <Gate ok={faltaPolizasSem === 0} label={faltaPolizasSem === 0 ? 'Mínimo de pólizas del semestre cumplido' : `Te faltan ${faltaPolizasSem} pólizas del semestre`} />
-                    {det.polizasAnualMeta > 0 && (
-                        <Gate ok={faltaPolizasAnual === 0} label={faltaPolizasAnual === 0 ? 'Mínimo de pólizas anual cumplido' : `Te faltan ${faltaPolizasAnual} pólizas del año`} />
-                    )}
-                    <Gate ok={det.grupoCalculado > 0} label={det.grupoCalculado > 0 ? `Calificaste en Grupo ${det.grupoCalculado}` : 'Aún no calificas en ningún grupo de prima'} />
-                    <Gate ok={det.pctBonoInicial > 0} label={det.pctBonoInicial > 0 ? 'Bono Inicial calculado (desbloquea Bono Renovación)' : 'Sin Bono Inicial — tampoco cobras Bono Renovación'} />
+            {/* ============ BONO INICIAL ============ */}
+            <div>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '12px' }}>📋 Bono Inicial</h3>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '12px' }}>
+                    <Stat label="Bono Inicial" value={fmt(det.montoBonoInicial)} />
+                    <Stat label="Pólizas del mes" value={`${det.polizaMes}`} sub={candado.metaMensual !== null ? `Meta: ${candado.metaMensual}` : 'No aplica (cierre)'} />
+                    <Stat label="Pólizas del semestre" value={`${det.polizasSemestre}`} sub={`Meta: ${candado.metaSemestral}`} />
+                    {esSegundoSemestreDelAnio && <Stat label="Pólizas del año" value={`${det.polizasAnual}`} sub={`Meta: ${candado.metaAnual}`} />}
+                    <Stat label="Prima Meta Mes" value={fmt(det.primaMetaMes)} />
+                    <Stat label="Prima Meta Sem" value={fmt(det.primaMetaSem)} />
+                    <Stat label="Grupo Calculado" value={det.grupoCalculado ? `Grupo ${det.grupoCalculado}` : 'Sin grupo'} sub={`Tope anticipo: Grupo ${det.grupoTope}`} />
+                    <Stat label="LIMRA" value={fmtPct(det.limra)} />
+                    <Stat label="% Bono Inicial" value={fmtPct(det.pctBonoInicial)} sub="Sobre tu prima pagada" />
                 </div>
             </div>
 
-            {/* Calculadora */}
+            <TablaPrimaFaltante
+                primaActual={det.primaMetaSem}
+                mesEnSemestre={mesEnSemestre}
+                esSegundoSemestreDelAnio={esSegundoSemestreDelAnio}
+                limra={det.limra}
+                grupoCalculado={det.grupoCalculado}
+                grupoTope={det.grupoTope}
+            />
+
+            {/* ============ ¿QUÉ TE FALTA? — resumen específico y accionable ============ */}
+            <div className="glass-card" style={{ padding: '20px' }}>
+                <h4 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '4px', opacity: 0.8 }}>¿Qué te falta para ganar bono?</h4>
+                <p style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginBottom: '14px' }}>
+                    El candado de pólizas necesita: la meta del mes SIEMPRE, más la del semestre {esSegundoSemestreDelAnio ? 'o la del año (la que cumplas primero)' : ''}.
+                </p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <Gate ok={candado.cumpleMensual} label={candado.cumpleMensual
+                        ? `Mínimo del mes cumplido (${det.polizaMes}/${candado.metaMensual ?? '—'})`
+                        : `Te falta vender en este mes específico (llevas ${det.polizaMes} de ${candado.metaMensual})`} />
+                    {esSegundoSemestreDelAnio ? (
+                        <Gate ok={candado.cumpleSemestral || candado.cumpleAnual} label={
+                            (candado.cumpleSemestral || candado.cumpleAnual)
+                                ? `Cumples por ${candado.cumpleSemestral ? 'semestre' : 'año'} (${candado.cumpleSemestral ? `${det.polizasSemestre}/${candado.metaSemestral} sem.` : `${det.polizasAnual}/${candado.metaAnual} año`})`
+                                : `Te faltan ${Math.max(0, candado.metaSemestral - det.polizasSemestre)} pólizas del semestre O ${Math.max(0, (candado.metaAnual || 0) - det.polizasAnual)} del año (con cualquiera de las dos desbloqueas)`
+                        } />
+                    ) : (
+                        <Gate ok={candado.cumpleSemestral} label={candado.cumpleSemestral
+                            ? `Mínimo del semestre cumplido (${det.polizasSemestre}/${candado.metaSemestral})`
+                            : `Te faltan ${Math.max(0, candado.metaSemestral - det.polizasSemestre)} pólizas del semestre`} />
+                    )}
+                    <Gate ok={det.grupoCalculado > 0} label={det.grupoCalculado > 0
+                        ? `Calificaste en Grupo ${det.grupoCalculado} de prima`
+                        : `Aún no calificas en ningún grupo — revisa la tabla de arriba para ver cuánta prima falta`} />
+                    <Gate ok={det.montoBonoInicial > 0} label={det.montoBonoInicial > 0
+                        ? 'Bono Inicial ganado (esto desbloquea el Bono Renovación)'
+                        : 'Sin Bono Inicial todavía — mientras no lo ganes, tampoco cobras Bono Renovación'} />
+                </div>
+            </div>
+
+            {/* ============ BONO RENOVACIÓN ============ */}
+            <div>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '12px' }}>🔁 Bono Renovación</h3>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '12px' }}>
+                    <Stat label="Bono Renovación" value={fmt(det.montoBonoRenovacion)} />
+                    <Stat label="IGC" value={fmtPct(det.igc)} />
+                    <Stat label="Prima Renovación Sem" value={fmt(det.primaRenovacionSem)} />
+                    <Stat label="% Bono Renovación" value={fmtPct(det.pctBonoRenovacion)} sub="Sobre tu prima de renovación" />
+                </div>
+            </div>
+
+            {/* ============ RESUMEN DE PAGO (Inicial + Renovación) ============ */}
+            <div className="glass-card" style={{ padding: '20px', border: '1px solid var(--accent-gold)', background: 'rgba(212,175,55,0.06)' }}>
+                <h4 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '14px' }}>💰 Tu Bono Vida de este corte</h4>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '16px', textAlign: 'center' }}>
+                    <div>
+                        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '4px' }}>Bono Semestral (Inicial + Renovación)</p>
+                        <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>{fmt(bonoSemestralTotal)}</p>
+                    </div>
+                    <div>
+                        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '4px' }}>Ya te habían anticipado</p>
+                        <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>− {fmt(bonoAnticipado)}</p>
+                    </div>
+                    <div>
+                        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '4px' }}>Bono a pagar este mes</p>
+                        <p style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent-gold)' }}>= {fmt(bonoAPagarReal)}</p>
+                    </div>
+                </div>
+            </div>
+
+            {/* ============ CALCULADORA (Bono Inicial, + Renovación al final) ============ */}
             <div className="glass-card" style={{ padding: '20px', border: '1px dashed var(--accent-gold)' }}>
-                <h4 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '4px' }}>🧮 Calculadora — ¿si vendo más prima?</h4>
+                <h4 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '4px' }}>🧮 Calculadora — ¿si vendo más prima inicial?</h4>
                 <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '16px' }}>
-                    Simula prima inicial adicional (a lo que ya llevas acumulado en el semestre) y ve a qué grupo subes.
+                    Simula prima inicial adicional (a lo que ya llevas acumulado en el semestre) y mira paso a paso cómo se calcularía tu bono.
                 </p>
                 <label style={{ fontSize: '0.8rem', display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '18px', maxWidth: '220px' }}>
                     Prima adicional
@@ -310,17 +452,57 @@ const VistaBonoVida: React.FC<{ cab: CabeceraPremios; det: DetalleVida }> = ({ c
                         onChange={e => setPrimaExtra(Number(e.target.value) || 0)}
                         style={{ padding: '8px 10px', borderRadius: '8px', border: '1px solid var(--border, #444)', background: 'transparent', color: 'inherit' }} />
                 </label>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '12px' }}>
-                    <Stat label="Nuevo grupo" value={proyeccion.grupo ? `Grupo ${proyeccion.grupo}` : 'Sin grupo'} />
-                    <Stat label="% Bono Inicial" value={fmtPct(proyeccion.pctBonoInicialAplicado)} sub={proyeccion.pisoAplicado ? 'Aplicó piso de 9.8%' : undefined} />
-                    <Stat label="% Bono Renovación" value={fmtPct(proyeccion.pctBonoRenovacion)} />
-                    <Stat label="Bono total estimado" value={fmt(proyeccion.bonoTotalCalculado)} />
-                </div>
-                {!proyeccion.limraElegible && (
-                    <p style={{ marginTop: '12px', fontSize: '0.8rem', color: '#ff6b6b' }}>
-                        Tu LIMRA está por debajo del mínimo requerido para tu antigüedad — no calificarías para bono aunque subas de grupo.
+
+                {!proyeccion.cumplePolizas && (
+                    <p style={{ fontSize: '0.8rem', color: '#ff6b6b', marginBottom: '12px' }}>
+                        ⚠️ Con tus pólizas actuales todavía no cumplirías el candado (mes {esSegundoSemestreDelAnio ? '+ semestre o año' : '+ semestre'}), así que en la realidad tu bono seguiría en $0 con esa prima. <strong>El cálculo de abajo es una simulación</strong> asumiendo que sí llegas al mínimo de pólizas — así ves cuánto ganarías si cumples ambas cosas.
                     </p>
                 )}
+                {proyeccion.cumplePolizas && !proyeccion.limraElegible && (
+                    <p style={{ fontSize: '0.8rem', color: '#ff6b6b', marginBottom: '12px' }}>
+                        ⚠️ Tu LIMRA está por debajo del mínimo requerido para tu antigüedad — no calificarías para bono aunque subas de grupo.
+                    </p>
+                )}
+
+                {/* Desglose paso a paso: de dónde sale cada número */}
+                <div style={{ background: 'rgba(0,0,0,0.15)', borderRadius: '10px', padding: '16px 18px' }}>
+                    <FilaRecibo
+                        label="Nueva prima inicial acumulada"
+                        nota={primaExtra > 0 ? `${fmt(det.primaMetaSem)} + ${fmt(primaExtra)}` : 'Lo que ya llevas, sin agregar nada todavía'}
+                        valor={fmt(det.primaMetaSem + primaExtra)}
+                    />
+                    <FilaRecibo
+                        label="Nuevo Grupo calificado"
+                        nota={det.grupoTope ? `Tus anticipos se topan al Grupo ${det.grupoTope} (el de tu semestre anterior)` : 'Es tu primer semestre, sin tope de anticipo'}
+                        valor={proyeccion.grupo ? `Grupo ${proyeccion.grupo}` : 'Sin grupo'}
+                    />
+                    <FilaRecibo
+                        label="% Bono Inicial"
+                        nota={`Grupo × tu banda de LIMRA (${fmtPct(det.limra)})` + (proyeccion.pisoAplicado ? ' — se aplicó el piso mínimo de 9.8%' : '')}
+                        valor={fmtPct(proyeccion.pctBonoInicialAplicado)}
+                        operador="×"
+                    />
+                    <FilaRecibo
+                        label="Bono Inicial estimado"
+                        nota={`${fmtPct(proyeccion.pctBonoInicialAplicado)} × ${fmt(det.primaPagoSem + primaExtra)} de prima pagada`}
+                        valor={fmt(proyeccion.bonoInicialCalculado)}
+                        operador="="
+                    />
+                    <FilaRecibo
+                        label="+ Bono Renovación (mismo grupo, tu IGC actual)"
+                        nota={proyeccion.bonoInicialCalculado > 0
+                            ? `${fmtPct(proyeccion.pctBonoRenovacion)} × ${fmt(det.primaRenovacionSem)} de prima de renovación`
+                            : 'No se activa: primero necesitas ganar Bono Inicial'}
+                        valor={fmt(proyeccion.bonoRenovacionCalculado)}
+                        operador="+"
+                    />
+                    <FilaRecibo
+                        label="Bono Semestral estimado (Inicial + Renovación)"
+                        valor={fmt(proyeccion.bonoTotalCalculado)}
+                        operador="="
+                        final
+                    />
+                </div>
             </div>
         </div>
     );

@@ -137,9 +137,11 @@ export interface DetalleVida {
     limra: number;
     primaPagoSem: number;
     pctBonoInicial: number;
+    montoBonoInicial: number;
     igc: number;
     primaRenovacionSem: number;
     pctBonoRenovacion: number;
+    montoBonoRenovacion: number;
     bonoSemestral: number;
     bonosAnticipados: number;
     bonosAPagar: number;
@@ -161,9 +163,14 @@ export function parseDetalleVida(texto: string): DetalleVida {
         limra: limpiarPorcentaje(m['LIMRA']?.[0]),
         primaPagoSem: limpiarNumero(m['Prima Pago Sem']?.[0]),
         pctBonoInicial: limpiarPorcentaje(m['% Bono Inicial']?.[0]),
+        // "Bono Inicial" aparece 2 veces en el texto: la 1a (aquí, header con monto en $)
+        // y una 2a vacía dentro de la sub-sección de Bono Renovación (solo checkmark de
+        // dependencia) — mapaFilasTabla se queda con la 1a, que es justo la que trae el monto.
+        montoBonoInicial: limpiarNumero(m['Bono Inicial']?.[0]),
         igc: limpiarPorcentaje(m['IGC']?.[0]),
         primaRenovacionSem: limpiarNumero(m['Prima Renovación Sem']?.[0]),
         pctBonoRenovacion: limpiarPorcentaje(m['% Bono Renovación']?.[0]),
+        montoBonoRenovacion: limpiarNumero(m['Bono Renovación']?.[0]),
         bonoSemestral: limpiarNumero(m['Bono Semestral']?.[0]),
         bonosAnticipados: limpiarNumero(m['Bonos Anticipados']?.[0]),
         bonosAPagar: limpiarNumero(m['Bonos a Pagar']?.[0] || m['Bono a Pagar']?.[0]),

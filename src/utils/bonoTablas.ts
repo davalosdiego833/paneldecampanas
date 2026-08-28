@@ -56,12 +56,13 @@ export function calcularBonoTA(
     mes: number,
     comisionAcumuladaSemestre: number,
     polizasVidaGmmiAcumuladas: number,
-    polizasVidaAcumuladas: number
+    polizasVidaAcumuladas: number,
+    ignorarCandadoPolizas: boolean = false
 ): ResultadoTA {
     const fila = TABLA_TA.find(f => f.mes === mes) || TABLA_TA[0];
     const cumplePolizas = polizasVidaGmmiAcumuladas >= fila.polizasAcumVidaGmmi && polizasVidaAcumuladas >= fila.minPolizasVida;
 
-    if (!cumplePolizas) {
+    if (!cumplePolizas && !ignorarCandadoPolizas) {
         return { mes, fila, cumplePolizas, bonoBase: 0, bonoMaximoCalculado: 0, bonoExcedente: 0, bonoTotalCalculado: 0 };
     }
 
@@ -182,9 +183,36 @@ function bandaIgc(igc: number): number | null {
     return null; // por debajo de 91%, no hay columna -> no calcula
 }
 
+// El "candado" de pólizas del Bono Inicial (Bono Vida) tiene 3 partes, tal como
+// lo describe el Cuaderno: "al menos una póliza inicial pagada mensual Y un
+// acumulado de pólizas semestrales O anuales". La meta anual solo existe (y por
+// lo tanto solo se puede usar como alternativa) en el 2º semestre del año.
+export function cumpleCandadoPolizasVida(
+    mesEnSemestre: number,
+    esSegundoSemestreDelAnio: boolean,
+    polizaMes: number,
+    polizasSemestre: number,
+    polizasAnual: number
+): { cumple: boolean; cumpleMensual: boolean; cumpleSemestral: boolean; cumpleAnual: boolean; metaMensual: number | null; metaSemestral: number; metaAnual: number | null } {
+    const idx = Math.min(Math.max(mesEnSemestre, 1), 6) - 1;
+    const metaMensual = TABLA_POLIZAS_VIDA.mensual[idx];
+    const metaSemestral = TABLA_POLIZAS_VIDA.semestral[idx];
+    const metaAnual = esSegundoSemestreDelAnio ? TABLA_POLIZAS_VIDA.anual[idx] : null;
+
+    const cumpleMensual = metaMensual === null ? true : polizaMes >= metaMensual; // mes de cierre (6) no exige mensual
+    const cumpleSemestral = polizasSemestre >= metaSemestral;
+    const cumpleAnual = metaAnual !== null && polizasAnual >= metaAnual;
+
+    return {
+        cumple: cumpleMensual && (cumpleSemestral || cumpleAnual),
+        cumpleMensual, cumpleSemestral, cumpleAnual, metaMensual, metaSemestral, metaAnual
+    };
+}
+
 export interface ResultadoVida {
     grupo: number | null;
     limraElegible: boolean;
+    cumplePolizas: boolean;
     pctBonoInicial: number;
     pctBonoInicialAplicado: number; // con piso 9.8% si aplica
     pisoAplicado: boolean;
@@ -203,16 +231,30 @@ export function calcularBonoVida(params: {
     igc: number;
     antiguedadMeses: number;
     grupoTopeAnticipo?: number | null; // grupo con el que cerró el semestre anterior (o null si es su 1er semestre)
+    esSegundoSemestreDelAnio?: boolean;
+    polizaMes?: number;
+    polizasSemestre?: number;
+    polizasAnual?: number;
+    // Si true, calcula el monto del bono como si el candado de pólizas SÍ se
+    // cumpliera (para la calculadora "¿cuánto ganaría si vendo esto Y cumplo
+    // pólizas?"). `cumplePolizas` en el resultado sigue reflejando la realidad,
+    // así la UI puede mostrar la proyección Y la advertencia al mismo tiempo.
+    ignorarCandadoPolizas?: boolean;
 }): ResultadoVida {
-    const { primaIniAcumulada, primaPagoIniAcumulada, primaRenovacionAcumulada, mesEnSemestre, limra, igc, antiguedadMeses, grupoTopeAnticipo } = params;
+    const {
+        primaIniAcumulada, primaPagoIniAcumulada, primaRenovacionAcumulada, mesEnSemestre, limra, igc, antiguedadMeses, grupoTopeAnticipo,
+        esSegundoSemestreDelAnio = false, polizaMes = 0, polizasSemestre = 0, polizasAnual = 0, ignorarCandadoPolizas = false
+    } = params;
 
     const grupoReal = calcularGrupoVida(primaIniAcumulada, mesEnSemestre);
     const limraMinimo = limraMinimoPorAntiguedad(antiguedadMeses);
     const limraElegible = limra >= limraMinimo;
+    const cumplePolizas = cumpleCandadoPolizasVida(mesEnSemestre, esSegundoSemestreDelAnio, polizaMes, polizasSemestre, polizasAnual).cumple;
+    const bloqueaPolizas = !cumplePolizas && !ignorarCandadoPolizas;
 
-    if (grupoReal === null || !limraElegible) {
+    if (grupoReal === null || !limraElegible || bloqueaPolizas) {
         return {
-            grupo: grupoReal, limraElegible, pctBonoInicial: 0, pctBonoInicialAplicado: 0, pisoAplicado: false,
+            grupo: grupoReal, limraElegible, cumplePolizas, pctBonoInicial: 0, pctBonoInicialAplicado: 0, pisoAplicado: false,
             bonoInicialCalculado: 0, pctBonoRenovacion: 0, bonoRenovacionCalculado: 0, bonoTotalCalculado: 0
         };
     }
@@ -242,6 +284,7 @@ export function calcularBonoVida(params: {
     return {
         grupo: grupoReal,
         limraElegible,
+        cumplePolizas,
         pctBonoInicial: pctBonoInicialReal,
         pctBonoInicialAplicado,
         pisoAplicado,
@@ -258,6 +301,13 @@ export function primaFaltantePorGrupo(primaAcumuladaActual: number, grupo: numbe
     const col = Math.min(Math.max(mesEnSemestre, 1), 6) - 1;
     const umbral = TABLA_GRUPO_PRIMA[grupo - 1][col];
     return Math.max(0, umbral - primaAcumuladaActual);
+}
+
+// % Bono Inicial que correspondería a un Grupo dado según la banda de LIMRA actual
+// (sin piso 9.8%, sin tope de anticipo) — útil para pintar la columna "% Bono" de
+// la tabla de Prima Faltante.
+export function pctBonoPorGrupoYLimra(grupo: number, limra: number): number {
+    return TABLA_LIMRA_BONO[grupo - 1][bandaLimra(limra)];
 }
 
 export function formatoMoneda(v: number): string {
