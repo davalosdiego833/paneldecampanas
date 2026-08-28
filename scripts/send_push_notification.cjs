@@ -95,6 +95,43 @@ const getOneSignalConfigPath = () => {
     return candidateFiles.find(p => fs.existsSync(p)) || path.join(BASE_PATH, 'db', 'onesignal_config.json');
 };
 
+const saveToHistory = (dbDir, { title, body, url, group, successCount }) => {
+    const historyTargets = [
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/comunicados_history.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/comunicados_history.json',
+        path.join(dbDir, 'comunicados_history.json')
+    ];
+    let history = [];
+    const existingHistFile = historyTargets.find(p => fs.existsSync(p));
+    if (existingHistFile) {
+        try { history = JSON.parse(fs.readFileSync(existingHistFile, 'utf-8')); } catch { history = []; }
+    }
+    if (!Array.isArray(history)) history = [];
+    
+    history.unshift({
+        id: Date.now().toString(),
+        title,
+        body,
+        url: url || '/',
+        group,
+        timestamp: new Date().toISOString(),
+        successCount: Math.max(successCount, 1)
+    });
+    if (history.length > 50) history = history.slice(0, 50);
+
+    for (const hp of historyTargets) {
+        try {
+            const dir = path.dirname(hp);
+            if (fs.existsSync(dir)) {
+                fs.writeFileSync(hp, JSON.stringify(history, null, 2));
+            } else if (hp === path.join(dbDir, 'comunicados_history.json')) {
+                fs.mkdirSync(dbDir, { recursive: true });
+                fs.writeFileSync(hp, JSON.stringify(history, null, 2));
+            }
+        } catch (e) {}
+    }
+};
+
 const sendPushNotification = async ({ group = 'all', title, body, url = '/', icon = '/assets/logos/empresa/ambriz_logo.png' }) => {
     const dbDir = getDbPath();
     const vapidKeysPath = path.join(dbDir, 'vapid_keys.json');
@@ -123,13 +160,15 @@ const sendPushNotification = async ({ group = 'all', title, body, url = '/', ico
     }
 
     if (osSent) {
-        console.log('[PUSH] Notificación enviada exitosamente por OneSignal. Omitiendo WebPush VAPID para prevenir notificaciones duplicadas.');
+        console.log('[PUSH] Notificación enviada exitosamente por OneSignal. Registrando en Centro de Avisos...');
+        saveToHistory(dbDir, { title, body, url, group, successCount: 1 });
         return { success: true, sent: 1, provider: 'onesignal' };
     }
 
     // 2. Envío simultáneo vía WebPush VAPID nativo
     if (!fs.existsSync(vapidKeysPath) || !fs.existsSync(subsPath)) {
         console.log('[PUSH] No se encontraron llaves VAPID o base de datos de suscripciones.');
+        saveToHistory(dbDir, { title, body, url, group, successCount: 1 });
         return { success: true, sent: 1 };
     }
 
@@ -184,7 +223,7 @@ const sendPushNotification = async ({ group = 'all', title, body, url = '/', ico
         }
     }
 
-    // Dual-write to sync server directories (ONLY when executing on production server)
+    // Dual-write push_subscriptions to sync server directories (ONLY when executing on production server)
     const isServerEnv = process.cwd().includes('domains/panel.ambrizydavalos.com') || fs.existsSync('/home/u211138134/domains/panel.ambrizydavalos.com');
     if (isServerEnv) {
         const writeTargets = [
@@ -199,40 +238,10 @@ const sendPushNotification = async ({ group = 'all', title, body, url = '/', ico
                 }
             } catch (e) {}
         }
-
-        // Save to comunicados_history.json for Centro de Avisos
-        const historyTargets = [
-            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/comunicados_history.json',
-            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/comunicados_history.json',
-            path.join(dbDir, 'comunicados_history.json')
-        ];
-        let history = [];
-        const existingHistFile = historyTargets.find(p => fs.existsSync(p));
-        if (existingHistFile) {
-            try { history = JSON.parse(fs.readFileSync(existingHistFile, 'utf-8')); } catch { history = []; }
-        }
-        if (!Array.isArray(history)) history = [];
-        
-        history.unshift({
-            id: Date.now().toString(),
-            title,
-            body,
-            url: url || '/',
-            group,
-            timestamp: new Date().toISOString(),
-            successCount: Math.max(successCount, 1)
-        });
-        if (history.length > 50) history = history.slice(0, 50);
-
-        for (const hp of historyTargets) {
-            try {
-                const dir = path.dirname(hp);
-                if (fs.existsSync(dir)) {
-                    fs.writeFileSync(hp, JSON.stringify(history, null, 2));
-                }
-            } catch (e) {}
-        }
     }
+
+    // Save to comunicados_history.json for Centro de Avisos
+    saveToHistory(dbDir, { title, body, url, group, successCount });
 
     console.log(`[PUSH] Envío completado. Exitosos: ${successCount} de ${subscriptions.length} dispositivo(s).`);
     return { success: true, sent: Math.max(successCount, 1) };
