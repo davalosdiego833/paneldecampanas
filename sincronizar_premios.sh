@@ -13,6 +13,8 @@ PARENT_DIR="/home/u211138134/domains/panel.ambrizydavalos.com"
 SSH_OPTS="-o KexAlgorithms=curve25519-sha256,ecdh-sha2-nistp256,diffie-hellman-group14-sha256 -o BatchMode=yes -i $SSH_KEY -p $SERVER_PORT"
 
 echo "📤 Subiendo premios/ al servidor real..."
-rsync -avz -e "ssh $SSH_OPTS" premios/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/premios/
-rsync -avz -e "ssh $SSH_OPTS" premios/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/premios/ 2>/dev/null || true
+# --delete: el servidor debe reflejar EXACTAMENTE lo que hay en local (así, si
+# se borra algo aquí -p. ej. capturas de debug viejas- también desaparece allá).
+rsync -avz --delete -e "ssh $SSH_OPTS" premios/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/premios/
+rsync -avz --delete -e "ssh $SSH_OPTS" premios/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/premios/ 2>/dev/null || true
 echo "✅ Reportes de Premios actualizados en la página real."
