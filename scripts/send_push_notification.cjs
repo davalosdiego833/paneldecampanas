@@ -50,8 +50,10 @@ const sendOneSignalNotification = async ({ appId, apiKey, group, title, body, ur
                 { field: 'tag', key: 'role', relation: '=', value: 'asesor' }
             ];
         } else {
-            // group === 'all' -> send to everyone
-            payload.included_segments = ['Subscribers', 'Total Subscriptions', 'All'];
+            // group === 'all' -> send to everyone.
+            // 'All' es el único nombre de segmento real de OneSignal; los otros
+            // valores que había aquí eran etiquetas del dashboard, no segmentos.
+            payload.included_segments = ['All'];
         }
 
         const data = JSON.stringify(payload);

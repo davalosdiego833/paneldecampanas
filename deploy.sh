@@ -49,6 +49,7 @@ rsync -avz --exclude "comentarios_polizas.json" --exclude "actividad.json" --exc
 rsync -avz --exclude "comentarios_polizas.json" --exclude "actividad.json" --exclude "staff_activity.json" --exclude "push_subscriptions.json" --exclude "comunicados_history.json" -e "ssh $SSH_OPTS" db/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/db/ 2>/dev/null || true
 rsync -avz -e "ssh $SSH_OPTS" db/comunicados_history.json $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/db/comunicados_history.json 2>/dev/null || true
 rsync -avz -e "ssh $SSH_OPTS" db/comunicados_history.json $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/db/comunicados_history.json 2>/dev/null || true
+rsync -avz -e "ssh $SSH_OPTS" db/comunicados_history.json $SERVER_USER@$SERVER_IP:$PARENT_DIR/db/comunicados_history.json 2>/dev/null || true
 mkdir -p db_temp_tmp 2>/dev/null || true
 rsync -avz -e "ssh $SSH_OPTS" db/resumen_snapshot.json $SERVER_USER@$SERVER_IP:$PARENT_DIR/db/resumen_snapshot.json 2>/dev/null || true
 rsync -avz -e "ssh $SSH_OPTS" administrador/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/administrador/
