@@ -155,8 +155,6 @@ export const TABLA_IGC_BONO: number[][] = [
     [1.0, 1.2, 1.3, 1.5],
 ];
 
-export const PISO_BONO_INICIAL_PCT = 9.8; // Solo aplica: Bono Inicial de Vida + mes 13-36 + índices mínimos cumplidos
-
 // Devuelve el mejor grupo (1=mejor) cuyo umbral de prima ya se alcanzó, o null si
 // ni siquiera el grupo 16 (el más bajo) se alcanzó.
 export function calcularGrupoVida(primaAcumulada: number, mesEnSemestre: number): number | null {
@@ -175,7 +173,7 @@ function bandaLimra(limra: number): number {
     return 0; // banda "índice mínimo"
 }
 
-function bandaIgc(igc: number): number | null {
+export function bandaIgc(igc: number): number | null {
     if (igc >= 95.75) return 3;
     if (igc >= 95) return 2;
     if (igc >= 92.5) return 1;
@@ -214,8 +212,7 @@ export interface ResultadoVida {
     limraElegible: boolean;
     cumplePolizas: boolean;
     pctBonoInicial: number;
-    pctBonoInicialAplicado: number; // con piso 9.8% si aplica
-    pisoAplicado: boolean;
+    pctBonoInicialAplicado: number; // igual a pctBonoInicial — no existe ningún piso, sale directo de la Tabla 5
     bonoInicialCalculado: number;
     pctBonoRenovacion: number;
     bonoRenovacionCalculado: number;
@@ -254,7 +251,7 @@ export function calcularBonoVida(params: {
 
     if (grupoReal === null || !limraElegible || bloqueaPolizas) {
         return {
-            grupo: grupoReal, limraElegible, cumplePolizas, pctBonoInicial: 0, pctBonoInicialAplicado: 0, pisoAplicado: false,
+            grupo: grupoReal, limraElegible, cumplePolizas, pctBonoInicial: 0, pctBonoInicialAplicado: 0,
             bonoInicialCalculado: 0, pctBonoRenovacion: 0, bonoRenovacionCalculado: 0, bonoTotalCalculado: 0
         };
     }
@@ -264,10 +261,11 @@ export function calcularBonoVida(params: {
     const grupoEfectivo = grupoTopeAnticipo ? Math.max(grupoReal, grupoTopeAnticipo) : grupoReal;
 
     const banda = bandaLimra(limra);
+    // El % de Bono Inicial sale directo de la Tabla 5 (Grupo × banda de LIMRA).
+    // El 9.8% que aparece en esa tabla es solo la celda Grupo 1 × Índice Mínimo —
+    // NO es un piso universal que se le aplique a otros grupos. No existe tal piso.
     const pctBonoInicialReal = TABLA_LIMRA_BONO[grupoEfectivo - 1][banda];
-    const enVentanaPiso = antiguedadMeses >= 13 && antiguedadMeses <= 36;
-    const pisoAplicado = enVentanaPiso && pctBonoInicialReal < PISO_BONO_INICIAL_PCT;
-    const pctBonoInicialAplicado = pisoAplicado ? PISO_BONO_INICIAL_PCT : pctBonoInicialReal;
+    const pctBonoInicialAplicado = pctBonoInicialReal;
 
     const bonoInicialCalculado = (pctBonoInicialAplicado / 100) * primaPagoIniAcumulada;
 
@@ -287,7 +285,6 @@ export function calcularBonoVida(params: {
         cumplePolizas,
         pctBonoInicial: pctBonoInicialReal,
         pctBonoInicialAplicado,
-        pisoAplicado,
         bonoInicialCalculado,
         pctBonoRenovacion,
         bonoRenovacionCalculado,

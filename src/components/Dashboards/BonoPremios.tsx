@@ -8,6 +8,7 @@ import {
     calcularBonoTA, calcularBonoVida, TABLA_TA, semestreDeMes,
     cumpleCandadoPolizasVida, pctBonoPorGrupoYLimra, primaFaltantePorGrupo,
 } from '../../utils/bonoTablas';
+import SelectorCalculadoraGenerica from './CalculadorasGenericas';
 
 const MESES_ES = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
 
@@ -21,8 +22,8 @@ interface PremiosData {
     detalleModalTexto: string;
 }
 
-const fmt = (v: number) => v.toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
-const fmtPct = (v: number) => `${v.toLocaleString('es-MX', { maximumFractionDigits: 1 })}%`;
+export const fmt = (v: number) => v.toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
+export const fmtPct = (v: number) => `${v.toLocaleString('es-MX', { maximumFractionDigits: 1 })}%`;
 
 function mesesEntre(fechaInicioDDMMYYYY: string, fechaFinDDMMYYYY: string): number {
     const [d1, m1, y1] = fechaInicioDDMMYYYY.split('/').map(Number);
@@ -33,7 +34,7 @@ function mesesEntre(fechaInicioDDMMYYYY: string, fechaFinDDMMYYYY: string): numb
     return Math.max(1, meses);
 }
 
-const Stat: React.FC<{ label: string; value: string; sub?: string }> = ({ label, value, sub }) => (
+export const Stat: React.FC<{ label: string; value: string; sub?: string }> = ({ label, value, sub }) => (
     <div className="glass-card" style={{ textAlign: 'center', padding: '18px 12px' }}>
         <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.03em' }}>{label}</p>
         <p style={{ fontSize: '1.4rem', fontWeight: 700 }}>{value}</p>
@@ -41,7 +42,7 @@ const Stat: React.FC<{ label: string; value: string; sub?: string }> = ({ label,
     </div>
 );
 
-const Gate: React.FC<{ ok: boolean; label: string }> = ({ ok, label }) => (
+export const Gate: React.FC<{ ok: boolean; label: string }> = ({ ok, label }) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem' }}>
         <span>{ok ? '✅' : '🔴'}</span>
         <span style={{ color: ok ? 'inherit' : 'var(--text-secondary)' }}>{label}</span>
@@ -50,7 +51,7 @@ const Gate: React.FC<{ ok: boolean; label: string }> = ({ ok, label }) => (
 
 // Fila de un "recibo" paso a paso: etiqueta + operador (+/−/×/=) + valor.
 // Úsalo para justificar de dónde sale cada cantidad de la calculadora.
-const FilaRecibo: React.FC<{ label: string; valor: string; operador?: '+' | '−' | '×' | '='; final?: boolean; nota?: string }> = ({ label, valor, operador, final, nota }) => (
+export const FilaRecibo: React.FC<{ label: string; valor: string; operador?: '+' | '−' | '×' | '='; final?: boolean; nota?: string }> = ({ label, valor, operador, final, nota }) => (
     <div style={{
         display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '12px',
         padding: final ? '10px 0 0' : '4px 0',
@@ -478,7 +479,7 @@ const VistaBonoVida: React.FC<{ cab: CabeceraPremios; det: DetalleVida }> = ({ c
                     />
                     <FilaRecibo
                         label="% Bono Inicial"
-                        nota={`Grupo × tu banda de LIMRA (${fmtPct(det.limra)})` + (proyeccion.pisoAplicado ? ' — se aplicó el piso mínimo de 9.8%' : '')}
+                        nota={`Grupo × tu banda de LIMRA (${fmtPct(det.limra)})`}
                         valor={fmtPct(proyeccion.pctBonoInicialAplicado)}
                         operador="×"
                     />
@@ -536,15 +537,7 @@ const BonoPremios: React.FC<Props> = ({ advisor }) => {
         </div>
     );
 
-    if (notFound || !data) return (
-        <div className="glass-card" style={{ padding: '60px', textAlign: 'center', maxWidth: '600px', margin: '40px auto' }}>
-            <div style={{ fontSize: '3rem', marginBottom: '20px' }}>🏆</div>
-            <h2 className="text-gold" style={{ fontSize: '1.5rem', marginBottom: '16px', fontWeight: 800 }}>Tu Reporte de Premios aún no está disponible</h2>
-            <p className="text-muted" style={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
-                Pídele a la promotoría que lo actualice y en un momento aparecerá aquí.
-            </p>
-        </div>
-    );
+    if (notFound || !data) return <SelectorCalculadoraGenerica />;
 
     const cab = parseCabecera(data.resumen.cabecera._raw);
     const resumenBonos = parseResumenBonos(data.resumen.resumenBonos);

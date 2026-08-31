@@ -1,0 +1,106 @@
+{
+  "clave": "110453",
+  "timestamp": "2026-08-31T19:15:56.922Z",
+  "urlDashboard": "https://hojameta.mnyl.com.mx/front/agentes?fecha=21-08-2026&numeroAgente=110453",
+  "resumen": {
+    "cabecera": {
+      "_raw": [
+        "Asesor: ANAIS LUA MORENO",
+        "Clave: 110453",
+        "Avance Al: 21-08-2026",
+        "Fecha Concurso: 04/11/2024",
+        "Tipo: Nuevo Profesional",
+        "Pólizas Vida",
+        "0",
+        "Prima Meta Vida",
+        "$32,544",
+        "Prima Renov Vida",
+        "$100,705",
+        "Pólizas GMMI",
+        "0",
+        "Primas Iniciales GMMI",
+        "$11,963",
+        "Primas Renov GMMI",
+        "$11,220",
+        "LIMRA",
+        "96.58%",
+        "IGC",
+        "98.77%",
+        "Histórico de Bonos",
+        "2025",
+        "2026",
+        "Ene",
+        "Feb",
+        "Mar",
+        "Abr",
+        "May",
+        "Jun",
+        "Jul",
+        "Ago",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dic",
+        "Historico de Bono 2025,2026",
+        "$482,241",
+        "$434,017",
+        "$385,793"
+      ]
+    },
+    "resumenBonos": [
+      [
+        "Bonos",
+        "Bono Mes",
+        "Bono Acumulado",
+        "Gana",
+        ""
+      ],
+      [
+        "Bono Vida",
+        "$0.00",
+        "$520,325.34",
+        "",
+        ""
+      ],
+      [
+        "Bono GMMI",
+        "$0.00",
+        "$0.00",
+        "",
+        ""
+      ],
+      [
+        "Bono Beneficios",
+        "$ 0.00",
+        "$ 0.00",
+        "",
+        ""
+      ],
+      [
+        "Bono Conexión",
+        "$ 0.00",
+        "$ 0.00",
+        "",
+        ""
+      ],
+      [
+        "Bono Desarrollo",
+        "$ 0.00",
+        "$ 0.00",
+        "",
+        ""
+      ],
+      [
+        "Total",
+        "$ 0.00",
+        "$ 520,325.34",
+        "",
+        ""
+      ]
+    ],
+    "todoElTexto": " Asesor: ANAIS LUA MORENO\n Clave: 110453\n Avance Al: 21-08-2026\n Fecha Concurso: 04/11/2024\n Tipo: Nuevo Profesional\n Pólizas Vida\n0\n Prima Meta Vida\n$32,544\n Prima Renov Vida\n$100,705\n Pólizas GMMI\n0\n Primas Iniciales GMMI\n$11,963\n Primas Renov GMMI\n$11,220\n LIMRA\n96.58%\n IGC\n98.77%\nHistórico de Bonos\n2025\n2026\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2025,2026\n$482,241\n$434,017\n$385,793\n$337,569\n$289,345\n$241,120\n$192,896\n$144,672\n$96,448\n$48,224\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nResumen de Bonos\nBonos\tBono Mes\tBono Acumulado\tGana\t\nBono Vida\t$0.00\t$520,325.34\t\t\nBono GMMI\t$0.00\t$0.00\t\t\nBono Beneficios\t$ 0.00\t$ 0.00\t\t\nBono Conexión\t$ 0.00\t$ 0.00\t\t\nBono Desarrollo\t$ 0.00\t$ 0.00\t\t\nTotal\t$ 0.00\t$ 520,325.34\t \t \nIngresos por Bonos\nCopyright © 2023 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información"
+  },
+  "pareceVacio": false,
+  "detalleModalTexto": " Asesor: ANAIS LUA MORENO\n Clave: 110453\n Avance Al: 21-08-2026\n Fecha Concurso: 04/11/2024\n Tipo: Nuevo Profesional\n Pólizas Vida\n0\n Prima Meta Vida\n$32,544\n Prima Renov Vida\n$100,705\n Pólizas GMMI\n0\n Primas Iniciales GMMI\n$11,963\n Primas Renov GMMI\n$11,220\n LIMRA\n96.58%\n IGC\n98.77%\nHistórico de Bonos\n2025\n2026\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2025,2026\n$482,241\n$434,017\n$385,793\n$337,569\n$289,345\n$241,120\n$192,896\n$144,672\n$96,448\n$48,224\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nResumen de Bonos\nBonos\tBono Mes\tBono Acumulado\tGana\t\nBono Vida\t$0.00\t$520,325.34\t\t\nBono GMMI\t$0.00\t$0.00\t\t\nBono Beneficios\t$ 0.00\t$ 0.00\t\t\nBono Conexión\t$ 0.00\t$ 0.00\t\t\nBono Desarrollo\t$ 0.00\t$ 0.00\t\t\nTotal\t$ 0.00\t$ 520,325.34\t \t \nIngresos por Bonos\nBono Vida\n×\nResumen Bonos Vida\nBonos\tReal\tMeta\tCumple\n Bono Inicial\t$0\t \t\n Póliza Mes\t0.00\t1.00\t\n Pólizas Semestre\t0.00\t5.00\t\n Pólizas Anual\t17.00\t20.00\t\n Prima Meta Mes\t$13,561\t \t\n Prima Meta Sem\t$32,544\t \t\n Grupo Calculado\t0\t \t \n Grupo Tope\t7\t \t \n LIMRA\t96.58%\t \t \n Prima Pago Sem\t$32,544\t \t \n % Bono Inicial\t0.00%\t \t \n \t \t \t \n Bono Renovación\t$0\t \t\n Bono Inicial\t \t \t\n IGC\t98.77%\t \t\n Prima Renovación Sem\t$100,705\t \t \n % Bono Renovación\t0.00%\t \t \n \t \t \t \n Bono Semestral\t$0\n Bonos Anticipados\t$0\n Bonos a Pagar\t$0\n\nVer Detalle Pólizas MSI\n\t\nVer Detalle Bonos\n\n \t \nBonos Anticipados\nJulio\nAgosto\nSeptiembre\nOctubre\nNoviembre\n$2.00\n$1.60\n$1.20\n$0.80\n$0.40\n$0.00\nDownload SVG\nDownload PNG\nDownload CSV\nLIMRA\n 96.58%\n75.5%\t87.5%\t89.5%\t91.5%\t95.5%\nIGC\n 98.77%\n91%\t92.5%\t95%\t95.75%\nPrima Meta Acum(Gpo)\nPrima Meta Acum: $32,544\nMínimo Pólizas\nMeta: 5\n6\n5\n4\n3\n2\n1\n0\nFalta: 5\nDownload SVG\nDownload PNG\nDownload CSV\nPrima Faltante\nGrupo/Mes\tJul\tAgo\tSep\tOct\tNov\tDic\t% Bono\n1\t\t$877,456\t$1,337,456\t$1,792,456\t$2,247,456\t$2,702,456\t45.00%\n2\t\t$802,456\t$1,222,456\t$1,637,456\t$2,057,456\t$2,472,456\t43.00%\n3\t\t$677,456\t$1,032,456\t$1,387,456\t$1,742,456\t$2,092,456\t40.00%\n4\t\t$612,456\t$937,456\t$1,257,456\t$1,582,456\t$1,912,456\t37.00%\n5\t\t$572,456\t$872,456\t$1,182,456\t$1,482,456\t$1,787,456\t35.00%\n6\t\t$527,456\t$802,456\t$1,082,456\t$1,367,456\t$1,642,456\t33.00%\n7\t\t$467,456\t$712,456\t$967,456\t$1,212,456\t$1,462,456\t31.00%\n8\t\t$397,456\t$607,456\t$827,456\t$1,042,456\t$1,257,456\t29.00%\n9\t\t$342,456\t$522,456\t$707,456\t$897,456\t$1,082,456\t27.00%\n10\t\t$282,456\t$442,456\t$607,456\t$757,456\t$917,456\t25.00%\n11\t\t$212,456\t$337,456\t$457,456\t$582,456\t$702,456\t23.00%\n12\t\t$142,456\t$227,456\t$317,456\t$407,456\t$492,456\t21.00%\n13\t\t$107,456\t$182,456\t$247,456\t$322,456\t$387,456\t19.00%\n14\t\t$97,456\t$157,456\t$227,456\t$287,456\t$352,456\t17.00%\n15\t\t$77,456\t$127,456\t$187,456\t$242,456\t$297,456\t15.00%\n16\t\t$57,456\t$102,456\t$152,456\t$192,456\t$242,456\t14.00%\nGpo Tope Ant.\nGpo Tope Alc.\nCopyright © 2023 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información\nEl porcentaje para Prima Meta Acum (GPO) es 0%\nNo hay rangos para Prima Meta",
+  "intentos": 1
+}

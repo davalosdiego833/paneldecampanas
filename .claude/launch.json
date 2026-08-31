@@ -3,9 +3,7 @@
   "configurations": [
     {
       "name": "panel-dev",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 5173
+      "url": "http://localhost:3000"
     }
   ]
 }

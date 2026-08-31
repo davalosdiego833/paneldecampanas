@@ -58,6 +58,8 @@ rsync -avz -e "ssh $SSH_OPTS" mdrt/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/m
 rsync -avz -e "ssh $SSH_OPTS" proactivatech/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/proactivatech/
 rsync -avz -e "ssh $SSH_OPTS" public/bases_campanas/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/bases_campanas/
 rsync -avz -e "ssh $SSH_OPTS" public/bases_campanas/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/bases_campanas/ 2>/dev/null || true
+rsync -avz -e "ssh $SSH_OPTS" premios/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/premios/ 2>/dev/null || true
+rsync -avz -e "ssh $SSH_OPTS" premios/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/public_html/premios/ 2>/dev/null || true
 rsync -avz -e "ssh $SSH_OPTS" "estatus polizas/" $SERVER_USER@$SERVER_IP:"'$PARENT_DIR/nodejs/estatus polizas/'"
 rsync -avz -e "ssh $SSH_OPTS" "estatus polizas/" $SERVER_USER@$SERVER_IP:"'$PARENT_DIR/public_html/estatus polizas/'" 2>/dev/null || true
 
