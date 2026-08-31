@@ -2826,7 +2826,10 @@ const sendOneSignalDirect = async ({ group, title, body, url }) => {
                 payload.filters = [{ field: 'tag', key: 'role', relation: '=', value: 'asesor' }];
             }
             else {
-                payload.included_segments = ['Subscribers', 'Total Subscriptions', 'Active Users', 'All'];
+                // 'All' es el único nombre de segmento real de OneSignal para "todos".
+                // (Los otros valores que había aquí eran etiquetas del dashboard, no
+                // segmentos reales — OneSignal podía ignorarlos o fallar el envío.)
+                payload.included_segments = ['All'];
             }
             const data = JSON.stringify(payload);
             const req = https.request({
