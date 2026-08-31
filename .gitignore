@@ -10,3 +10,7 @@ node_modules
 # Database runtime overrides (keep snapshot in git)
 db/onesignal_config.json
 db/push_subscriptions.json
+
+# Capturas/dumps de debug del scraper de Premios (solo data.json debe versionarse)
+premios/*/*.png
+premios/*/*.txt
