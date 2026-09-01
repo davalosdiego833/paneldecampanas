@@ -1,5 +1,5 @@
 {
-  "updatedAt": "28/8/2026, 3:28:45 p.m.",
+  "updatedAt": "31/8/2026, 4:06:26 p.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -55,24 +55,24 @@
           "Sucursal": "2043",
           "Pólizas-Pagadas": 2,
           "Recibo_Inicial_Pagado": 31798.96,
-          "Recibo_Ordinario_Pagado": 37240.77,
-          "Total _Prima_Pagada": 69039.73,
+          "Recibo_Ordinario_Pagado": 49011.06,
+          "Total _Prima_Pagada": 80810.02,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 28233.37,
-          "Total _Prima_Pendiente": 28233.37
+          "Recibo_Ordinario_Pendiente": 16463.08,
+          "Total _Prima_Pendiente": 16463.08
         },
         {
           "Nombre Asesor": "MONSERRAT VELASCO SANTOS",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 1,
           "Recibo_Inicial_Pagado": 2211.03,
-          "Recibo_Ordinario_Pagado": 66617.46,
-          "Total _Prima_Pagada": 68828.49,
+          "Recibo_Ordinario_Pagado": 72024.35,
+          "Total _Prima_Pagada": 74235.38,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 69823.8,
-          "Total _Prima_Pendiente": 69823.8
+          "Recibo_Ordinario_Pendiente": 64416.9,
+          "Total _Prima_Pendiente": 64416.9
         },
         {
           "Nombre Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
@@ -147,6 +147,18 @@
           "Total _Prima_Pendiente": 0
         },
         {
+          "Nombre Asesor": "ANA VERONICA GONZALEZ GAYTAN",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 16805.03,
+          "Total _Prima_Pagada": 16805.03,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 3480.6,
+          "Total _Prima_Pendiente": 3480.6
+        },
+        {
           "Nombre Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -157,6 +169,18 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 38466.09,
           "Total _Prima_Pendiente": 38466.09
+        },
+        {
+          "Nombre Asesor": "ROGELIO TORRES ORTIZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 16294.28,
+          "Total _Prima_Pagada": 16294.28,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 29241.71,
+          "Total _Prima_Pendiente": 29241.71
         },
         {
           "Nombre Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
@@ -171,18 +195,6 @@
           "Total _Prima_Pendiente": 51962.79
         },
         {
-          "Nombre Asesor": "ANA VERONICA GONZALEZ GAYTAN",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 15064.73,
-          "Total _Prima_Pagada": 15064.73,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 5220.9,
-          "Total _Prima_Pendiente": 5220.9
-        },
-        {
           "Nombre Asesor": "MARICELA ARREOLA LOPEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -193,18 +205,6 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 13568.13,
           "Total _Prima_Pendiente": 13568.13
-        },
-        {
-          "Nombre Asesor": "ROGELIO TORRES ORTIZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 14560.31,
-          "Total _Prima_Pagada": 14560.31,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 30975.68,
-          "Total _Prima_Pendiente": 30975.68
         },
         {
           "Nombre Asesor": "GABRIELA CASTAÑEDA SALAZAR",
@@ -327,6 +327,18 @@
           "Total _Prima_Pendiente": 103783.01
         },
         {
+          "Nombre Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 1958.21,
+          "Recibo_Ordinario_Pagado": 3564.58,
+          "Total _Prima_Pagada": 5522.79,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 35403.87,
+          "Total _Prima_Pendiente": 35403.87
+        },
+        {
           "Nombre Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -363,28 +375,16 @@
           "Total _Prima_Pendiente": 17237.12
         },
         {
-          "Nombre Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 1,
-          "Recibo_Inicial_Pagado": 1958.21,
-          "Recibo_Ordinario_Pagado": 1627.21,
-          "Total _Prima_Pagada": 3585.42,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 37341.24,
-          "Total _Prima_Pendiente": 37341.24
-        },
-        {
           "Nombre Asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
           "Sucursal": "2856",
           "Pólizas-Pagadas": 1,
           "Recibo_Inicial_Pagado": 3052.25,
           "Recibo_Ordinario_Pagado": 0,
           "Total _Prima_Pagada": 3052.25,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 33574.79,
-          "Total _Prima_Pendiente": 33574.79
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 1739.6,
+          "Recibo_Ordinario_Pendiente": 52710.36,
+          "Total _Prima_Pendiente": 54449.96
         },
         {
           "Nombre Asesor": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
@@ -397,6 +397,18 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 0,
           "Total _Prima_Pendiente": 0
+        },
+        {
+          "Nombre Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 2475.99,
+          "Total _Prima_Pagada": 2475.99,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 21619.43,
+          "Total _Prima_Pendiente": 21619.43
         },
         {
           "Nombre Asesor": "OSCAR RAMIREZ RUIZ",
@@ -505,30 +517,6 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 3035.72,
           "Total _Prima_Pendiente": 3035.72
-        },
-        {
-          "Nombre Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 24095.39,
-          "Total _Prima_Pendiente": 24095.39
-        },
-        {
-          "Nombre Asesor": "SAMUEL NUÑO RIVERA",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 3208.07,
-          "Total _Prima_Pendiente": 3208.07
         },
         {
           "Nombre Asesor": "PAULINA RODRIGUEZ DE LA MORA",
@@ -3295,7 +3283,7 @@
       }
     },
     "fechas_corte": {
-      "pagado_pendiente": "27 de agosto de 2026",
+      "pagado_pendiente": "28 de agosto de 2026",
       "pagado_pendiente_reclutas": "7 de agosto de 2026",
       "asesores_sin_emision": "18 de AGO de 2026",
       "proactivos": "17 de agosto de 2026",
