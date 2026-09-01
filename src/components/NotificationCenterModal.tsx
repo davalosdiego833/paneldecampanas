@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Bell, CheckCircle2, X, ExternalLink, Calendar, Info } from 'lucide-react';
+import { PdfViewerModal } from './PdfViewerModal';
 
 export interface ComunicadoItem {
     id: string;
@@ -83,10 +84,14 @@ export const NotificationCenterModal: React.FC<NotificationCenterModalProps> = (
         }
     };
 
+    const [selectedPdf, setSelectedPdf] = useState<{ title: string; url: string } | null>(null);
+
     const handleActionClick = (item: ComunicadoItem) => {
         markAsRead(item.id);
         if (item.url) {
-            if (item.url.startsWith('http')) {
+            if (item.url.toLowerCase().includes('.pdf') || item.url.includes('/bases_campanas')) {
+                setSelectedPdf({ title: item.title, url: item.url });
+            } else if (item.url.startsWith('http')) {
                 window.open(item.url, '_blank');
             } else {
                 window.location.href = item.url;
@@ -363,6 +368,13 @@ export const NotificationCenterModal: React.FC<NotificationCenterModalProps> = (
                     </button>
                 </div>
             </div>
+
+            <PdfViewerModal
+                isOpen={!!selectedPdf}
+                pdfUrl={selectedPdf?.url || null}
+                title={selectedPdf?.title || null}
+                onClose={() => setSelectedPdf(null)}
+            />
         </div>
     );
 };
