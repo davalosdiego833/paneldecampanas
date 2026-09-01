@@ -1,5 +1,5 @@
 {
-  "updatedAt": "1/9/2026, 9:41:17 a.m.",
+  "updatedAt": "1/9/2026, 9:51:36 a.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -3298,27 +3298,27 @@
         {
           "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
           "Clave": "87538",
-          "PA_Acumulada": 2177754.04
+          "PA_Acumulada": 2297726.17
         },
         {
           "Asesor": "ANAIS LUA MORENO",
           "Clave": "110453",
-          "PA_Acumulada": 1837452.67
+          "PA_Acumulada": 1837560.92
         },
         {
           "Asesor": "DESIREE DE LA PEÑA OROZCO",
           "Clave": "80122",
-          "PA_Acumulada": 982425.12
+          "PA_Acumulada": 982530.8
         },
         {
           "Asesor": "DARINKA UREÑA CASILLAS",
           "Clave": "90355",
-          "PA_Acumulada": 870213.19
+          "PA_Acumulada": 894931.85
         },
         {
           "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
           "Clave": "47116",
-          "PA_Acumulada": 665359.22
+          "PA_Acumulada": 665865.91
         },
         {
           "Asesor": "MARIA TERESA ASENCIO LOZANO",
@@ -3336,19 +3336,24 @@
           "PA_Acumulada": 463126.1
         },
         {
+          "Asesor": "MONSERRAT VELASCO SANTOS",
+          "Clave": "117440",
+          "PA_Acumulada": 433954.65
+        },
+        {
           "Asesor": "SOFIA CAMPILLO VASCONCELOS",
           "Clave": "116883",
           "PA_Acumulada": 383849.43
         },
         {
-          "Asesor": "MONSERRAT VELASCO SANTOS",
-          "Clave": "117440",
-          "PA_Acumulada": 375489.68
-        },
-        {
           "Asesor": "MARICELA ARREOLA LOPEZ",
           "Clave": "80925",
           "PA_Acumulada": 292908.11
+        },
+        {
+          "Asesor": "JOSE RENE DE ALBA MORALES",
+          "Clave": "110575",
+          "PA_Acumulada": 281633.71
         },
         {
           "Asesor": "GABRIELA CASTAÑEDA SALAZAR",
@@ -3371,24 +3376,19 @@
           "PA_Acumulada": 219305.68
         },
         {
-          "Asesor": "MARIA FERNANDA RIOS BERNAL",
-          "Clave": "103982",
-          "PA_Acumulada": 207152.09
+          "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+          "Clave": "108404",
+          "PA_Acumulada": 207864.37
         },
         {
           "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
           "Clave": "113450",
-          "PA_Acumulada": 207032.84
+          "PA_Acumulada": 207392.84
         },
         {
-          "Asesor": "JOSE RENE DE ALBA MORALES",
-          "Clave": "110575",
-          "PA_Acumulada": 191448.06
-        },
-        {
-          "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
-          "Clave": "108404",
-          "PA_Acumulada": 184332.01
+          "Asesor": "MARIA FERNANDA RIOS BERNAL",
+          "Clave": "103982",
+          "PA_Acumulada": 207152.09
         },
         {
           "Asesor": "VELIA PATRICIA BERNAL RAMOS",
@@ -3413,7 +3413,7 @@
         {
           "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
           "Clave": "104343",
-          "PA_Acumulada": 118522.21
+          "PA_Acumulada": 118948.32
         },
         {
           "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
@@ -3431,14 +3431,14 @@
           "PA_Acumulada": 59625.88
         },
         {
+          "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
+          "Clave": "98797",
+          "PA_Acumulada": 39848.49
+        },
+        {
           "Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
           "Clave": "114157",
           "PA_Acumulada": 39589.27
-        },
-        {
-          "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
-          "Clave": "98797",
-          "PA_Acumulada": 33847.21
         },
         {
           "Asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
@@ -5148,7 +5148,7 @@
       ]
     },
     "campaignDates": {
-      "mdrt": "21 de agosto de 2026",
+      "mdrt": "26 de agosto de 2026",
       "convenciones": "21 de Agosto de 2026",
       "legion_centurion": "26 de agosto de 2026",
       "camino_cumbre": "19 de agosto de 2026",
