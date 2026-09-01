@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ThemeConfig } from '../types';
-import { Search, ChevronDown, Check, X, Bell, Shield, GraduationCap, Plane, Users, Smartphone, TrendingUp, Stethoscope, Award, BarChart3 } from 'lucide-react';
+import { Search, ChevronDown, Check, X, Bell, Shield, GraduationCap, Plane, Users, Smartphone, TrendingUp, Stethoscope, Award, BarChart3, Car, Zap, Gift, Heart } from 'lucide-react';
 import { BasesCampanasExplorer } from './BasesCampanasExplorer';
 import { AdvisorReportModal, REPORT_CONFIGS, ReportKey } from './AdvisorReportModal';
 
@@ -225,7 +225,7 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                             gap: '6px'
                         }}>
                             <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: theme?.colores?.acentos || 'var(--accent-gold)' }} />
-                            8 Comunicados
+                            9 Comunicados
                         </span>
                     </div>
 
@@ -241,7 +241,7 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                             color: 'var(--text-secondary)',
                             border: '1px solid rgba(255, 255, 255, 0.1)'
                         }}>
-                            Agosto 2026
+                            Septiembre 2026
                         </span>
                         <div style={{
                             display: 'flex',
@@ -278,235 +278,102 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                             style={{ overflow: 'hidden' }}
                         >
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', paddingTop: '20px', borderTop: '1px solid rgba(255, 255, 255, 0.08)', marginTop: '16px' }}>
-                                {/* Item 1: Legión Centurión */}
-                                <div style={{
-                                    padding: '16px 20px',
-                                    borderRadius: '12px',
-                                    background: 'rgba(255, 255, 255, 0.03)',
-                                    border: '1px solid rgba(255, 255, 255, 0.06)',
-                                    display: 'flex',
-                                    gap: '16px',
-                                    alignItems: 'flex-start'
-                                }}>
-                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(212, 175, 55, 0.15)', color: 'var(--accent-gold)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                        <Shield size={20} />
-                                    </div>
+                                {/* Item 1: Conduce tu Éxito 2026 */}
+                                <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(212, 175, 55, 0.3)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(212, 175, 55, 0.15)', color: 'var(--accent-gold)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Car size={20} /></div>
                                     <div style={{ flex: 1 }}>
                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
-                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>
-                                                Legión Centurión — Objetivo Agosto
-                                            </strong>
-                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(212, 175, 55, 0.15)', color: 'var(--accent-gold)' }}>
-                                                META DEL MES
-                                            </span>
+                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>🏎️ Campaña Cierre de Año "Conduce tu Éxito 2026"</strong>
+                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(212, 175, 55, 0.15)', color: 'var(--accent-gold)' }}>1 SEP – 31 DIC 2026</span>
                                         </div>
-                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
-                                            La meta acumulada para este mes de Agosto es de <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>32 pólizas acumuladas</span> como mínimo. Mantén el ritmo y asegura tu lugar en la élite de la promotoría.
-                                        </p>
+                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>¡Cierra el año estrenando auto! Gana un <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>BMW X1 Híbrido Conectable</span> (1er lugar Nacional) o un <span style={{ color: '#42A5F5', fontWeight: 700 }}>Toyota Prius HEV</span> en tu Dirección Comercial. Además, califica a bonos en efectivo de <span style={{ color: '#66BB6A', fontWeight: 700 }}>$7,000, $10,000 y $15,000 MXN</span>. *Pólizas Momentum cuentan con 50% adicional en conteo.*</p>
                                     </div>
                                 </div>
-
-                                {/* Item 2: Educar es Creer */}
-                                <div style={{
-                                    padding: '16px 20px',
-                                    borderRadius: '12px',
-                                    background: 'rgba(255, 255, 255, 0.03)',
-                                    border: '1px solid rgba(255, 255, 255, 0.06)',
-                                    display: 'flex',
-                                    gap: '16px',
-                                    alignItems: 'flex-start'
-                                }}>
-                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(66, 165, 245, 0.15)', color: '#42A5F5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                        <GraduationCap size={20} />
-                                    </div>
+                                {/* Item 2: Impulso 10K */}
+                                <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(255, 152, 0, 0.15)', color: '#FFB74D', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Zap size={20} /></div>
                                     <div style={{ flex: 1 }}>
                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
-                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>
-                                                Campaña Educar Es Creer — Segubeca
-                                            </strong>
-                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(66, 165, 245, 0.15)', color: '#42A5F5' }}>
-                                                1 AGO – 30 SEP 2026
-                                            </span>
+                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>⚡ Campaña Impulso 10K (Nuevos Asesores)</strong>
+                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(255, 152, 0, 0.15)', color: '#FFB74D' }}>SEPTIEMBRE 2026</span>
                                         </div>
-                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
-                                            ¡En este regreso a clases Segubeca vale más!
-                                        </p>
-                                        <div style={{ marginTop: '8px', fontSize: '0.88rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                                            <div>• <strong style={{ color: 'var(--text-primary)' }}>Para Asesores:</strong> Ponderación en Cuaderno de Concursos para plazos ≥ 9 años sube al <span style={{ color: '#FF6B6B', fontWeight: 700 }}>120% en UDIS</span> y <span style={{ color: '#FF6B6B', fontWeight: 700 }}>75% en DLLS</span>. En Convenciones pondera al <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>DOBLE</span>.</div>
-                                            <div>• <strong style={{ color: 'var(--text-primary)' }}>Para Clientes:</strong> Regalo de Kit de Regreso a Clases (lonchera, libreta y colores) para las primeras <span style={{ fontWeight: 700 }}>1,000 pólizas</span> emitidas y pagadas con prima anualizada ≥ $30,000.</div>
-                                        </div>
+                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>¡Únete en septiembre y recibe un <span style={{ color: '#FF6B6B', fontWeight: 700 }}>Bono de Bienvenida de $10,000 MXN</span> al lograr tu conexión con SMNYL! Cortes semanales los viernes con depósito los lunes directamente a tu estado de cuenta.</p>
                                     </div>
                                 </div>
-
-                                {/* Item 3: Bono 15 MDRT */}
-                                <div style={{
-                                    padding: '16px 20px',
-                                    borderRadius: '12px',
-                                    background: 'rgba(255, 255, 255, 0.03)',
-                                    border: '1px solid rgba(255, 255, 255, 0.06)',
-                                    display: 'flex',
-                                    gap: '16px',
-                                    alignItems: 'flex-start'
-                                }}>
-                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(156, 39, 176, 0.15)', color: '#BA68C8', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                        <Plane size={20} />
-                                    </div>
+                                {/* Item 3: Momentum Eur3ka */}
+                                <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(156, 39, 176, 0.15)', color: '#BA68C8', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Gift size={20} /></div>
                                     <div style={{ flex: 1 }}>
                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
-                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>
-                                                Bono 15 MDRT — Asistencia a Orlando, Florida
-                                            </strong>
-                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(156, 39, 176, 0.15)', color: '#BA68C8' }}>
-                                                CONEXIÓN 2022 A 2026
-                                            </span>
+                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>🎁 Campaña Momentum Eur3ka 2026</strong>
+                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(156, 39, 176, 0.15)', color: '#BA68C8' }}>1 SEP – 31 OCT 2026</span>
                                         </div>
-                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
-                                            Alcanza la meta de Miembro MDRT 2027 al 100% de producción SMNYL y asiste a la Reunión Anual 2027 en Orlando, Florida para recibir un <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>Bono Especial de $15,000 MXN</span> abonado a tu estado de cuenta.
-                                        </p>
+                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>Gana una <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>Gift Card de Amazon</span> por cada póliza emitida y pagada proveniéndote de Momentum (vencimientos e indemnizaciones): desde <span style={{ fontWeight: 700 }}>$3,000 MXN</span> ($35k a $49.9k), <span style={{ fontWeight: 700 }}>$4,500 MXN</span> ($50k a $99.9k) hasta <span style={{ color: '#FF6B6B', fontWeight: 700 }}>$6,000 MXN</span> ($100k+).</p>
                                     </div>
                                 </div>
-
-                                {/* Item 4: Mentores MDRT */}
-                                <div style={{
-                                    padding: '16px 20px',
-                                    borderRadius: '12px',
-                                    background: 'rgba(255, 255, 255, 0.03)',
-                                    border: '1px solid rgba(255, 255, 255, 0.06)',
-                                    display: 'flex',
-                                    gap: '16px',
-                                    alignItems: 'flex-start'
-                                }}>
-                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(76, 175, 80, 0.15)', color: '#81C784', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                        <Users size={20} />
-                                    </div>
+                                {/* Item 4: Vida Mujer Asesores */}
+                                <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(233, 30, 99, 0.15)', color: '#F06292', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><TrendingUp size={20} /></div>
                                     <div style={{ flex: 1 }}>
                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
-                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>
-                                                Campaña Mentores MDRT 2026
-                                            </strong>
-                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(255, 107, 107, 0.15)', color: '#FF6B6B' }}>
-                                                REGISTRO LÍMITE: 31 AGO
-                                            </span>
+                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>🌺 Campaña El Poder de Elegirte — Vida Mujer (Asesores)</strong>
+                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(233, 30, 99, 0.15)', color: '#F06292' }}>1 SEP – 31 OCT 2026</span>
                                         </div>
-                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
-                                            ¡Impulsa a la próxima generación de Miembros MDRT y comparte tu camino al éxito!
-                                        </p>
-                                        <div style={{ marginTop: '8px', fontSize: '0.88rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                                            <div>• <strong style={{ color: 'var(--text-primary)' }}>Mentores (MDRT 2026):</strong> Reciben <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>$15,000 MXN</span> por cada mentee que logre MDRT 2027 (hasta 3 mentees = $45,000 MXN).</div>
-                                            <div>• <strong style={{ color: 'var(--text-primary)' }}>Mentees:</strong> Asesores que nunca hayan sido MDRT reciben <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>$15,000 MXN</span> al lograr su membresía y asistir a Orlando.</div>
-                                        </div>
+                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>¡Vida Mujer vale más! En Cuaderno de Concursos para Prima Meta y Pago, la producción en Dólares y UDIS incrementa su ponderación al <span style={{ color: '#FF6B6B', fontWeight: 700 }}>150%</span>. Además, para Convenciones pondera al <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>DOBLE (200%)</span>.</p>
                                     </div>
                                 </div>
-
-                                {/* Item 5: ProactivaTech 2.0 */}
-                                <div style={{
-                                    padding: '16px 20px',
-                                    borderRadius: '12px',
-                                    background: 'rgba(255, 255, 255, 0.03)',
-                                    border: '1px solid rgba(255, 255, 255, 0.06)',
-                                    display: 'flex',
-                                    gap: '16px',
-                                    alignItems: 'flex-start'
-                                }}>
-                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(0, 188, 212, 0.15)', color: '#4DD0E1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                        <Smartphone size={20} />
-                                    </div>
+                                {/* Item 5: Vida Mujer Clientes */}
+                                <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(0, 188, 212, 0.15)', color: '#4DD0E1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Heart size={20} /></div>
                                     <div style={{ flex: 1 }}>
                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
-                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>
-                                                Campaña ProactivaTech 2.0
-                                            </strong>
-                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(255, 107, 107, 0.15)', color: '#FF6B6B' }}>
-                                                CIERRE ESTE MES (AGOSTO)
-                                            </span>
+                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>🕯️ Campaña El Poder de Elegirte — Vida Mujer (Clientes)</strong>
+                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(0, 188, 212, 0.15)', color: '#4DD0E1' }}>1,000 PÓLIZAS NACIONALES</span>
                                         </div>
-                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
-                                            ¡Último mes de la campaña! Cumple con tus metas de pólizas y comisiones para ganar desde unos <span style={{ fontWeight: 700 }}>AirPods Pro 3</span> hasta el <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>iPhone 17 Pro Max</span>.
-                                        </p>
+                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>Tus clientas que contraten una póliza de Vida Mujer (prima anualizada ≥ $30,000 MXN) recibirán un <span style={{ color: '#4DD0E1', fontWeight: 700 }}>Kit de Velas aromáticas de regalo</span> para regalarse un momento de calma y conexión. *Limitado a las primeras 1,000 pólizas.*</p>
                                     </div>
                                 </div>
-
-                                {/* Item 6: Bono de Conexión */}
-                                <div style={{
-                                    padding: '16px 20px',
-                                    borderRadius: '12px',
-                                    background: 'rgba(255, 255, 255, 0.03)',
-                                    border: '1px solid rgba(255, 255, 255, 0.06)',
-                                    display: 'flex',
-                                    gap: '16px',
-                                    alignItems: 'flex-start'
-                                }}>
-                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(255, 152, 0, 0.15)', color: '#FFB74D', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                        <Award size={20} />
-                                    </div>
+                                {/* Item 6: Legión Centurión (36) */}
+                                <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(212, 175, 55, 0.15)', color: 'var(--accent-gold)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Shield size={20} /></div>
                                     <div style={{ flex: 1 }}>
                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
-                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>
-                                                Bono de Conexión — Referidos
-                                            </strong>
-                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(255, 152, 0, 0.15)', color: '#FFB74D' }}>
-                                                JUNIO – OCTUBRE 2026
-                                            </span>
+                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>Legión Centurión — Objetivo Septiembre</strong>
+                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(212, 175, 55, 0.15)', color: 'var(--accent-gold)' }}>META DEL MES</span>
                                         </div>
-                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
-                                            ¡Obtén <span style={{ color: '#FF6B6B', fontWeight: 700 }}>$10,000 MXN adicionales</span> de Bono de Conexión por cada Asesor referido conectado! (Aplica en el mes 1).
-                                        </p>
+                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>La meta acumulada para este mes de Septiembre es de <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>36 pólizas acumuladas</span> como mínimo. Mantén el ritmo y asegura tu lugar en la élite de la promotoría.</p>
                                     </div>
                                 </div>
-
-                                {/* Item 7: Reto Por Ciento */}
-                                <div style={{
-                                    padding: '16px 20px',
-                                    borderRadius: '12px',
-                                    background: 'rgba(255, 255, 255, 0.03)',
-                                    border: '1px solid rgba(255, 255, 255, 0.06)',
-                                    display: 'flex',
-                                    gap: '16px',
-                                    alignItems: 'flex-start'
-                                }}>
-                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(233, 30, 99, 0.15)', color: '#F06292', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                        <TrendingUp size={20} />
-                                    </div>
+                                {/* Item 7: Educar es Creer */}
+                                <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(66, 165, 245, 0.15)', color: '#42A5F5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><GraduationCap size={20} /></div>
                                     <div style={{ flex: 1 }}>
                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
-                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>
-                                                Campaña Reto Por Ciento
-                                            </strong>
-                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(233, 30, 99, 0.15)', color: '#F06292' }}>
-                                                ASESORES CONSOLIDADOS
-                                            </span>
+                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>Campaña Educar Es Creer — Segubeca</strong>
+                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(66, 165, 245, 0.15)', color: '#42A5F5' }}>1 AGO – 30 SEP 2026</span>
                                         </div>
-                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
-                                            <span style={{ color: '#FF6B6B', fontWeight: 700 }}>"GANA EXTRA COMISIÓN"</span> incrementando tu producción en comparación con tu histórico.
-                                        </p>
+                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>¡En este regreso a clases Segubeca vale más! <br/> • Asesores: Doble ponderación para Convenciones.<br/> • Clientes: Kit de Regreso a Clases para las primeras 1,000 pólizas.</p>
                                     </div>
                                 </div>
-
-                                {/* Item 8: Requisitos Médicos */}
-                                <div style={{
-                                    padding: '16px 20px',
-                                    borderRadius: '12px',
-                                    background: 'rgba(255, 255, 255, 0.03)',
-                                    border: '1px solid rgba(255, 255, 255, 0.06)',
-                                    display: 'flex',
-                                    gap: '16px',
-                                    alignItems: 'flex-start'
-                                }}>
-                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(0, 150, 136, 0.15)', color: '#80CBC4', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                        <Stethoscope size={20} />
-                                    </div>
+                                {/* Item 8: Bono 15 MDRT */}
+                                <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(156, 39, 176, 0.15)', color: '#BA68C8', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Plane size={20} /></div>
                                     <div style={{ flex: 1 }}>
                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
-                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>
-                                                Tabla de Requisitos Médicos
-                                            </strong>
-                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(0, 150, 136, 0.15)', color: '#80CBC4' }}>
-                                                VIGENTE 2026
-                                            </span>
+                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>Bono 15 MDRT — Asistencia a Orlando, Florida</strong>
                                         </div>
-                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
-                                            Consulta el tabulador actualizado con exámenes y requerimientos médicos por edad y suma asegurada en la sección de Bases PDF.
-                                        </p>
+                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>Alcanza la meta de Miembro MDRT 2027 al 100% de producción SMNYL y asiste a la Reunión Anual 2027 en Orlando, Florida para recibir un <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>Bono Especial de $15,000 MXN</span>.</p>
+                                    </div>
+                                </div>
+                                {/* Item 9: Bono de Conexión */}
+                                <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(255, 152, 0, 0.15)', color: '#FFB74D', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Award size={20} /></div>
+                                    <div style={{ flex: 1 }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
+                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>Bono de Conexión — Referidos</strong>
+                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(255, 152, 0, 0.15)', color: '#FFB74D' }}>VIGENTE</span>
+                                        </div>
+                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>¡Obtén <span style={{ color: '#FF6B6B', fontWeight: 700 }}>$10,000 MXN adicionales</span> de Bono de Conexión por cada Asesor referido conectado!</p>
                                     </div>
                                 </div>
                             </div>

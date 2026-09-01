@@ -4,9 +4,10 @@ import cors from 'cors';
 import path from 'path';
 import fs from 'fs';
 import os from 'os';
+import https from 'https';
 import XLSX from 'xlsx';
 import dotenv from 'dotenv';
-import { fileURLToPath, pathToFileURL } from 'url';
+import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
 const getModuleDirname = () => {
     try {
@@ -71,24 +72,33 @@ const THEMES_PATH = path.join(BASE_PATH, 'themes');
 const ADMIN_PATH = getProtectedPath('administrador');
 function findSnapshotPath() {
     const cwd = process.cwd();
-    const primaryPath = path.join(cwd, 'db', 'resumen_snapshot.json');
-    if (safeExists(primaryPath)) {
-        return primaryPath;
-    }
     const candidates = [
-        path.join(safeDirname, 'db', 'resumen_snapshot.json'),
-        path.join(safeDirname, '..', 'db', 'resumen_snapshot.json'),
+        path.join(cwd, 'db', 'resumen_snapshot.json'),
         '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/resumen_snapshot.json',
         '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/resumen_snapshot.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/db/resumen_snapshot.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/resumen_snapshot.json',
+        path.join(safeDirname, 'db', 'resumen_snapshot.json'),
+        path.join(safeDirname, '..', 'db', 'resumen_snapshot.json'),
         path.join(BASE_PATH, 'db', 'resumen_snapshot.json'),
         path.join(DB_PATH_DYNAMIC, 'resumen_snapshot.json'),
         SNAPSHOT_PATH
     ];
+    let newestPath = path.join(cwd, 'db', 'resumen_snapshot.json');
+    let newestMtime = 0;
     for (const p of candidates) {
-        if (safeExists(p))
-            return p;
+        if (safeExists(p)) {
+            try {
+                const stat = fs.statSync(p);
+                if (stat.mtimeMs > newestMtime) {
+                    newestMtime = stat.mtimeMs;
+                    newestPath = p;
+                }
+            }
+            catch (e) { }
+        }
     }
-    return primaryPath;
+    return newestPath;
 }
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
@@ -639,6 +649,32 @@ app.get('/api/campaigns', (req, res) => {
     }
     catch (error) {
         res.status(500).json({ error: 'Could not list campaigns' });
+    }
+});
+// Reporte de Premios (Bono TA / Bono Vida) — datos capturados por descargar_premios.js
+// en premios/<clave>/data.json. Resuelve nombre de asesor -> clave usando el mismo
+// directorio que ya usan las demás campañas.
+app.get('/api/premios/:advisor', (req, res) => {
+    const { advisor } = req.params;
+    try {
+        const dir = getAdvisorDirectory();
+        // El :advisor puede venir como nombre completo o ya como clave directa
+        let clave = Object.keys(dir).find(key => dir[key] === advisor) || advisor;
+        const candidatePaths = [
+            path.join(BASE_PATH, 'premios', clave, 'data.json'),
+            path.join(safeDirname, 'premios', clave, 'data.json'),
+            path.join(process.cwd(), 'premios', clave, 'data.json'),
+        ];
+        const filePath = candidatePaths.find(p => safeExists(p));
+        if (!filePath) {
+            return res.status(404).json({ error: 'Sin reporte de premios para este asesor', clave });
+        }
+        const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+        res.json(data);
+    }
+    catch (error) {
+        console.error('Error leyendo premios:', error);
+        res.status(500).json({ error: 'Error al leer el reporte de premios' });
     }
 });
 app.get('/api/advisors', (req, res) => {
@@ -1703,6 +1739,16 @@ app.get('/api/historico-metas', (req, res) => {
         res.status(500).json({ error: 'Error reading history' });
     }
 });
+app.post('/api/historico-metas', (req, res) => {
+    try {
+        const filePath = path.join(DB_PATH_DYNAMIC, 'historico_metas.json');
+        fs.writeFileSync(filePath, JSON.stringify(req.body, null, 2));
+        res.json({ success: true });
+    }
+    catch (e) {
+        res.status(500).json({ error: 'Write error' });
+    }
+});
 app.get('/api/daniela/resumen', (req, res) => {
     res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     res.setHeader('Pragma', 'no-cache');
@@ -2117,7 +2163,8 @@ app.get('/api/resumen-general', (req, res) => {
                 // Return flat structure compatible with frontend
                 return res.json({
                     ...rg,
-                    fechas_corte: rg.fechas_corte || snapshotData.data?.fechas_corte || snapshotData.fechas_corte || {}
+                    fechas_corte: rg.fechas_corte || snapshotData.data?.fechas_corte || snapshotData.fechas_corte || {},
+                    historico_metas: snapshotData.data?.historico_metas || snapshotData.historico_metas || {}
                 });
             }
         }
@@ -2750,40 +2797,119 @@ app.post('/api/push/unsubscribe', (req, res) => {
         res.status(500).json({ error: 'Unsubscribe error' });
     }
 });
+const sendOneSignalDirect = async ({ group, title, body, url }) => {
+    const candidateFiles = [
+        '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/db/onesignal_config.json',
+        '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/db/onesignal_config.json',
+        path.join(DB_PATH_DYNAMIC, 'onesignal_config.json'),
+        path.join(BASE_PATH, 'db', 'onesignal_config.json'),
+        path.join(process.cwd(), 'db', 'onesignal_config.json')
+    ];
+    const configPath = candidateFiles.find(p => fs.existsSync(p));
+    if (!configPath)
+        return null;
+    try {
+        const cfg = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+        if (!cfg || !cfg.appId || !cfg.apiKey || !cfg.enabled)
+            return null;
+        return new Promise((resolve) => {
+            const payload = {
+                app_id: cfg.appId,
+                headings: { en: title, es: title },
+                contents: { en: body, es: body },
+                url: url && url.startsWith('http') ? url : `https://panel.ambrizydavalos.com${url || '/'}`
+            };
+            if (group === 'admin') {
+                payload.filters = [{ field: 'tag', key: 'role', relation: '=', value: 'admin' }];
+            }
+            else if (group === 'asesor') {
+                payload.filters = [{ field: 'tag', key: 'role', relation: '=', value: 'asesor' }];
+            }
+            else {
+                // 'All' es el único nombre de segmento real de OneSignal para "todos".
+                // (Los otros valores que había aquí eran etiquetas del dashboard, no
+                // segmentos reales — OneSignal podía ignorarlos o fallar el envío.)
+                payload.included_segments = ['All'];
+            }
+            const data = JSON.stringify(payload);
+            const req = https.request({
+                hostname: 'onesignal.com',
+                port: 443,
+                path: '/api/v1/notifications',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'Authorization': `Basic ${cfg.apiKey}`,
+                    'Content-Length': Buffer.byteLength(data)
+                }
+            }, (res) => {
+                let bodyStr = '';
+                res.on('data', (chunk) => bodyStr += chunk);
+                res.on('end', () => {
+                    try {
+                        const parsed = JSON.parse(bodyStr);
+                        if (parsed && parsed.id) {
+                            console.log('[ONESIGNAL DIRECT SUCCESS] ID:', parsed.id);
+                            resolve({ success: true, sent: 1, provider: 'onesignal', id: parsed.id });
+                        }
+                        else {
+                            console.error('[ONESIGNAL DIRECT ERROR] Response:', bodyStr);
+                            resolve(null);
+                        }
+                    }
+                    catch (e) {
+                        resolve(null);
+                    }
+                });
+            });
+            req.on('error', (err) => {
+                console.error('[ONESIGNAL DIRECT NETWORK ERROR]:', err);
+                resolve(null);
+            });
+            req.write(data);
+            req.end();
+        });
+    }
+    catch (e) {
+        console.error('[ONESIGNAL DIRECT EXCEPTION]:', e);
+        return null;
+    }
+};
 app.post('/api/push/send-custom', async (req, res) => {
     try {
         const { group = 'all', title, body, url } = req.body;
         if (!title || !body) {
             return res.status(400).json({ error: 'Título y mensaje son requeridos' });
         }
-        const candidateScriptPaths = [
-            '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/scripts/send_push_notification.cjs',
-            '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/scripts/send_push_notification.cjs',
-            path.join(BASE_PATH, 'scripts', 'send_push_notification.cjs'),
-            path.join(BASE_PATH, 'public_html', 'scripts', 'send_push_notification.cjs'),
-            path.join(BASE_PATH, 'nodejs', 'scripts', 'send_push_notification.cjs'),
-            path.join(safeDirname, 'scripts', 'send_push_notification.cjs'),
-            path.join(process.cwd(), 'scripts', 'send_push_notification.cjs'),
-            path.join(BASE_PATH, 'scripts', 'send_push_notification.js')
-        ];
-        const scriptPath = candidateScriptPaths.find(p => fs.existsSync(p));
-        if (!scriptPath) {
-            return res.status(500).json({ error: 'Script de notificaciones no encontrado' });
+        // 1. Direct OneSignal sending (bulletproof & no module cache dependency)
+        let result = await sendOneSignalDirect({ group, title, body, url: url || '/' });
+        // 2. Fallback to external script ONLY if OneSignal was not sent
+        if (!result || !result.success) {
+            const candidateScriptPaths = [
+                '/home/u211138134/domains/panel.ambrizydavalos.com/nodejs/scripts/send_push_notification.cjs',
+                '/home/u211138134/domains/panel.ambrizydavalos.com/public_html/scripts/send_push_notification.cjs',
+                path.join(BASE_PATH, 'scripts', 'send_push_notification.cjs'),
+                path.join(BASE_PATH, 'public_html', 'scripts', 'send_push_notification.cjs'),
+                path.join(BASE_PATH, 'nodejs', 'scripts', 'send_push_notification.cjs'),
+                path.join(safeDirname, 'scripts', 'send_push_notification.cjs'),
+                path.join(process.cwd(), 'scripts', 'send_push_notification.cjs')
+            ];
+            const scriptPath = candidateScriptPaths.find(p => fs.existsSync(p));
+            if (scriptPath) {
+                try {
+                    delete require.cache[require.resolve(scriptPath)];
+                    const mod = require(scriptPath);
+                    const fn = mod.sendPushNotification || mod.default;
+                    if (typeof fn === 'function') {
+                        result = await fn({ group, title, body, url: url || '/' });
+                    }
+                }
+                catch (e1) { }
+            }
         }
-        let sendPushNotificationFn;
-        try {
-            const mod = require(scriptPath);
-            sendPushNotificationFn = mod.sendPushNotification || mod.default;
+        if (!result) {
+            return res.status(500).json({ error: 'No se pudo enviar la notificación' });
         }
-        catch (e1) {
-            const fileUrl = pathToFileURL(scriptPath).href;
-            const mod = await import(fileUrl);
-            sendPushNotificationFn = mod.sendPushNotification || mod.default;
-        }
-        if (typeof sendPushNotificationFn !== 'function') {
-            return res.status(500).json({ error: 'No se pudo cargar la función de envío de notificaciones' });
-        }
-        const result = await sendPushNotificationFn({ group, title, body, url: url || '/' });
         // Guardar en historial
         const historyPath = path.join(DB_PATH_DYNAMIC, 'comunicados_history.json');
         let history = [];
