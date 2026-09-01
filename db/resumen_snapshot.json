@@ -1,5 +1,5 @@
 {
-  "updatedAt": "1/9/2026, 9:27:41 a.m.",
+  "updatedAt": "1/9/2026, 9:35:45 a.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -4322,149 +4322,149 @@
         {
           "Asesor": "MONSERRAT VELASCO SANTOS",
           "Clave": "117440",
-          "Polizas": 5,
-          "Comisiones": 32586.89,
-          "Ranking": 159
+          "Polizas": 6,
+          "Comisiones": 48351.05,
+          "Ranking": 143
         },
         {
           "Asesor": "ANAIS LUA MORENO",
           "Clave": "110453",
           "Polizas": 4,
           "Comisiones": 507338.17,
-          "Ranking": 236
+          "Ranking": 332
         },
         {
           "Asesor": "MARIO IVAN ROMERO GONZALEZ",
           "Clave": "118069",
           "Polizas": 3.5,
           "Comisiones": 38284.1,
-          "Ranking": 347
+          "Ranking": 456
+        },
+        {
+          "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+          "Clave": "108404",
+          "Polizas": 3,
+          "Comisiones": 12323.32,
+          "Ranking": 646
         },
         {
           "Asesor": "SOFIA CAMPILLO VASCONCELOS",
           "Clave": "116883",
           "Polizas": 3,
           "Comisiones": 3962.04,
-          "Ranking": 568
+          "Ranking": 702
+        },
+        {
+          "Asesor": "JOSE RENE DE ALBA MORALES",
+          "Clave": "110575",
+          "Polizas": 2,
+          "Comisiones": 102182.01,
+          "Ranking": 874
+        },
+        {
+          "Asesor": "JORGE ANTONIO LUNA LARA",
+          "Clave": "111056",
+          "Polizas": 2,
+          "Comisiones": 41128.86,
+          "Ranking": 889
+        },
+        {
+          "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+          "Clave": "104750",
+          "Polizas": 2,
+          "Comisiones": 20920.57,
+          "Ranking": 949
         },
         {
           "Asesor": "ROGELIO TORRES ORTIZ",
           "Clave": "104718",
           "Polizas": 2,
           "Comisiones": 18102.02,
-          "Ranking": 805
-        },
-        {
-          "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
-          "Clave": "108404",
-          "Polizas": 2,
-          "Comisiones": 11735.75,
-          "Ranking": 875
+          "Ranking": 972
         },
         {
           "Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
           "Clave": "107488",
           "Polizas": 2,
           "Comisiones": 1369.96,
-          "Ranking": 1050
+          "Ranking": 1238
         },
         {
           "Asesor": "JULIANA RIASCOS VALENCIA",
           "Clave": "100677",
           "Polizas": 1.5,
-          "Comisiones": 10182.13,
-          "Ranking": 1147
+          "Comisiones": 10494.32,
+          "Ranking": 1329
         },
         {
-          "Asesor": "JOSE RENE DE ALBA MORALES",
-          "Clave": "110575",
+          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
+          "Clave": "116876",
           "Polizas": 1,
-          "Comisiones": 67554.97,
-          "Ranking": 1253
-        },
-        {
-          "Asesor": "JORGE ANTONIO LUNA LARA",
-          "Clave": "111056",
-          "Polizas": 1,
-          "Comisiones": 39391.21,
-          "Ranking": 1257
-        },
-        {
-          "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
-          "Clave": "104750",
-          "Polizas": 1,
-          "Comisiones": 10374.6,
-          "Ranking": 1392
+          "Comisiones": 4922.86,
+          "Ranking": 1752
         },
         {
           "Asesor": "GABRIELA CASTAÑEDA SALAZAR",
           "Clave": "105696",
           "Polizas": 1,
-          "Comisiones": 2208.6,
-          "Ranking": 1681
+          "Comisiones": 3311.99,
+          "Ranking": 1812
         },
         {
           "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
           "Clave": "113450",
           "Polizas": 1,
           "Comisiones": 1973.55,
-          "Ranking": 1709
+          "Ranking": 1903
         },
         {
           "Asesor": "MIREYA LIZETTE TORRES GARCIA",
           "Clave": "106018",
           "Polizas": 1,
           "Comisiones": 1217.93,
-          "Ranking": 1796
+          "Ranking": 1998
         },
         {
           "Asesor": "VELIA PATRICIA BERNAL RAMOS",
           "Clave": "115047",
           "Polizas": 1,
-          "Comisiones": 554.55,
-          "Ranking": 1875
+          "Comisiones": 1109.98,
+          "Ranking": 2006
+        },
+        {
+          "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
+          "Clave": "118246",
+          "Polizas": 1,
+          "Comisiones": 543.87,
+          "Ranking": 2089
         },
         {
           "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
           "Clave": "104343",
           "Polizas": 0.5,
           "Comisiones": 1392.47,
-          "Ranking": 2149
+          "Ranking": 2342
         },
         {
           "Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
           "Clave": "114157",
           "Polizas": 0,
           "Comisiones": 0,
-          "Ranking": 4776
+          "Ranking": 3386
         },
         {
           "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
           "Clave": "115404",
           "Polizas": 0,
           "Comisiones": 0,
-          "Ranking": 3964
-        },
-        {
-          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
-          "Clave": "116876",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 4063
-        },
-        {
-          "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
-          "Clave": "118246",
-          "Polizas": 0,
-          "Comisiones": 0,
-          "Ranking": 3552
+          "Ranking": 3444
         },
         {
           "Asesor": "MARIA FERNANDA RIOS BERNAL",
           "Clave": "103982",
           "Polizas": 0,
           "Comisiones": 0,
-          "Ranking": 3682
+          "Ranking": 5018
         }
       ],
       "reto_por_ciento": [
@@ -5153,7 +5153,7 @@
       "legion_centurion": "26 de agosto de 2026",
       "camino_cumbre": "19 de agosto de 2026",
       "graduacion": "31 de julio de 2026",
-      "proactiva_tech": "19 de agosto 2026",
+      "proactiva_tech": "26 de agosto 2026",
       "reto_por_ciento": "19 DE AGOSTO 2026",
       "convenciones_promotores": "21 de agosto 2026",
       "convenciones_gerente": "21-AGO-2026",
