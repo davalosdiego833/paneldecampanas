@@ -1,5 +1,5 @@
 {
-  "updatedAt": "1/9/2026, 10:31:51 a.m.",
+  "updatedAt": "1/9/2026, 10:47:05 a.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -1127,25 +1127,13 @@
           "ASESOR": "JOSE RENE DE ALBA MORALES",
           "SUC": 2043,
           "Polizas_Acumuladas_Mes_Ant.": 1,
-          "Polizas_Del_mes": 0,
-          "Polizas_Acumuladas_Total": 1,
+          "Polizas_Del_mes": 1,
+          "Polizas_Acumuladas_Total": 2,
           "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 7,
+          "Pólizas_Faltantes": 6,
           "Proactivo_a_Dic": "NO",
-          "Pólizas_Faltantes_Para_Dic": 11,
+          "Pólizas_Faltantes_Para_Dic": 10,
           "Fecha_Conexion": "2024-10-17"
-        },
-        {
-          "ASESOR": "HANA SOFIA LOPEZ QUIÑONEZ",
-          "SUC": 2043,
-          "Polizas_Acumuladas_Mes_Ant.": 1.5,
-          "Polizas_Del_mes": 0,
-          "Polizas_Acumuladas_Total": 1.5,
-          "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 6.5,
-          "Proactivo_a_Dic": "NO",
-          "Pólizas_Faltantes_Para_Dic": 10.5,
-          "Fecha_Conexion": "2025-09-03"
         },
         {
           "ASESOR": "MIREYA LIZETTE TORRES GARCIA",
@@ -1220,18 +1208,6 @@
           "Fecha_Conexion": "2025-07-13"
         },
         {
-          "ASESOR": "LILIANA IVETTE CASTILLO SANCHEZ",
-          "SUC": 2043,
-          "Polizas_Acumuladas_Mes_Ant.": 4.5,
-          "Polizas_Del_mes": 0,
-          "Polizas_Acumuladas_Total": 4.5,
-          "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 3.5,
-          "Proactivo_a_Dic": "NO",
-          "Pólizas_Faltantes_Para_Dic": 7.5,
-          "Fecha_Conexion": "2024-06-23"
-        },
-        {
           "ASESOR": "MARIA FERNANDA RIOS BERNAL",
           "SUC": 2043,
           "Polizas_Acumuladas_Mes_Ant.": 4.5,
@@ -1254,18 +1230,6 @@
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 7,
           "Fecha_Conexion": "2022-12-20"
-        },
-        {
-          "ASESOR": "JORGE ANTONIO LUNA LARA",
-          "SUC": 2043,
-          "Polizas_Acumuladas_Mes_Ant.": 5,
-          "Polizas_Del_mes": 0,
-          "Polizas_Acumuladas_Total": 5,
-          "Proactivo_al_mes": "NO",
-          "Pólizas_Faltantes": 3,
-          "Proactivo_a_Dic": "NO",
-          "Pólizas_Faltantes_Para_Dic": 7,
-          "Fecha_Conexion": "2024-12-12"
         },
         {
           "ASESOR": "MARICELA ARREOLA LOPEZ",
@@ -1292,6 +1256,30 @@
           "Fecha_Conexion": "2025-10-13"
         },
         {
+          "ASESOR": "LILIANA IVETTE CASTILLO SANCHEZ",
+          "SUC": 2043,
+          "Polizas_Acumuladas_Mes_Ant.": 4.5,
+          "Polizas_Del_mes": 1,
+          "Polizas_Acumuladas_Total": 5.5,
+          "Proactivo_al_mes": "NO",
+          "Pólizas_Faltantes": 2.5,
+          "Proactivo_a_Dic": "NO",
+          "Pólizas_Faltantes_Para_Dic": 6.5,
+          "Fecha_Conexion": "2024-06-23"
+        },
+        {
+          "ASESOR": "JORGE ANTONIO LUNA LARA",
+          "SUC": 2043,
+          "Polizas_Acumuladas_Mes_Ant.": 5,
+          "Polizas_Del_mes": 1,
+          "Polizas_Acumuladas_Total": 6,
+          "Proactivo_al_mes": "NO",
+          "Pólizas_Faltantes": 2,
+          "Proactivo_a_Dic": "NO",
+          "Pólizas_Faltantes_Para_Dic": 6,
+          "Fecha_Conexion": "2024-12-12"
+        },
+        {
           "ASESOR": "ROGELIO TORRES ORTIZ",
           "SUC": 2043,
           "Polizas_Acumuladas_Mes_Ant.": 7.5,
@@ -1307,12 +1295,12 @@
           "ASESOR": "PAULA ANGELICA LOMELI CAZARES",
           "SUC": 2856,
           "Polizas_Acumuladas_Mes_Ant.": 6.5,
-          "Polizas_Del_mes": 0,
-          "Polizas_Acumuladas_Total": 6.5,
+          "Polizas_Del_mes": 1,
+          "Polizas_Acumuladas_Total": 7.5,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "NO",
-          "Pólizas_Faltantes_Para_Dic": 3.5,
+          "Pólizas_Faltantes_Para_Dic": 2.5,
           "Fecha_Conexion": "2026-03-29"
         },
         {
@@ -1328,16 +1316,16 @@
           "Fecha_Conexion": "2023-12-18"
         },
         {
-          "ASESOR": "PAULINA LIZBETH SOTO MUÑIZ",
+          "ASESOR": "Asesor 118915",
           "SUC": 2043,
-          "Polizas_Acumuladas_Mes_Ant.": 9.5,
+          "Polizas_Acumuladas_Mes_Ant.": 2,
           "Polizas_Del_mes": 1,
-          "Polizas_Acumuladas_Total": 10.5,
+          "Polizas_Acumuladas_Total": 3,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "NO",
-          "Pólizas_Faltantes_Para_Dic": 1.5,
-          "Fecha_Conexion": "2023-11-05"
+          "Pólizas_Faltantes_Para_Dic": 2,
+          "Fecha_Conexion": "N/A"
         },
         {
           "ASESOR": "MARIA TERESA ASENCIO LOZANO",
@@ -1355,8 +1343,8 @@
           "ASESOR": "DARINKA UREÑA CASILLAS",
           "SUC": 2043,
           "Polizas_Acumuladas_Mes_Ant.": 17,
-          "Polizas_Del_mes": 0,
-          "Polizas_Acumuladas_Total": 17,
+          "Polizas_Del_mes": 1,
+          "Polizas_Acumuladas_Total": 18,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "SÍ",
@@ -1367,8 +1355,8 @@
           "ASESOR": "MONICA ANDREA AMBRIZ GOMEZ",
           "SUC": 2043,
           "Polizas_Acumuladas_Mes_Ant.": 22,
-          "Polizas_Del_mes": 0.5,
-          "Polizas_Acumuladas_Total": 22.5,
+          "Polizas_Del_mes": 2.5,
+          "Polizas_Acumuladas_Total": 24.5,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "SÍ",
@@ -1403,8 +1391,8 @@
           "ASESOR": "JOSE ANTEMIO OLIVA SANTOS",
           "SUC": 2043,
           "Polizas_Acumuladas_Mes_Ant.": 4,
-          "Polizas_Del_mes": 1,
-          "Polizas_Acumuladas_Total": 5,
+          "Polizas_Del_mes": 1.5,
+          "Polizas_Acumuladas_Total": 5.5,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "SÍ",
@@ -1427,8 +1415,8 @@
           "ASESOR": "MONSERRAT VELASCO SANTOS",
           "SUC": 2043,
           "Polizas_Acumuladas_Mes_Ant.": 11,
-          "Polizas_Del_mes": 0,
-          "Polizas_Acumuladas_Total": 11,
+          "Polizas_Del_mes": 1,
+          "Polizas_Acumuladas_Total": 12,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "SÍ",
@@ -1458,6 +1446,18 @@
           "Proactivo_a_Dic": "SÍ",
           "Pólizas_Faltantes_Para_Dic": 0,
           "Fecha_Conexion": "2024-11-03"
+        },
+        {
+          "ASESOR": "PAULINA LIZBETH SOTO MUÑIZ",
+          "SUC": 2043,
+          "Polizas_Acumuladas_Mes_Ant.": 9.5,
+          "Polizas_Del_mes": 2.5,
+          "Polizas_Acumuladas_Total": 12,
+          "Proactivo_al_mes": "SÍ",
+          "Pólizas_Faltantes": 0,
+          "Proactivo_a_Dic": "SÍ",
+          "Pólizas_Faltantes_Para_Dic": 0,
+          "Fecha_Conexion": "2023-11-05"
         }
       ],
       "comparativo_vida": {
@@ -3277,7 +3277,7 @@
       "pagado_pendiente": "28 de agosto de 2026",
       "pagado_pendiente_reclutas": "7 de agosto de 2026",
       "asesores_sin_emision": "27 de AGO de 2026",
-      "proactivos": "17 de agosto de 2026",
+      "proactivos": "28 de agosto de 2026",
       "comparativo_vida": "12 de agosto de 2026",
       "qsq_vida": "31 de julio de 2026",
       "qsq_gmm": "31 de Julio de 2026",
