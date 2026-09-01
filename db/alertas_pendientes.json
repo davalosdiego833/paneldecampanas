@@ -1,5 +1,76 @@
 {
-  "generatedAt": "1/9/2026, 9:41:21 a.m.",
-  "totalNew": 0,
-  "alerts": []
+  "generatedAt": "1/9/2026, 9:51:49 a.m.",
+  "totalNew": 7,
+  "alerts": [
+    {
+      "id": "cbe298a8-2d78-45ba-a800-bba38ba25239",
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "firstName": "Monica",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #1)",
+      "message": "Hola Monica, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #1*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $120.0k* a tu meta.\n\nTu Prima Acumulada actual es de *$2.30M*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "c8239a92-77c9-4652-8c68-80b877c317f3",
+      "asesor": "ANAIS LUA MORENO",
+      "firstName": "Anais",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #2)",
+      "message": "Hola Anais, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #2*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $108.25* a tu meta.\n\nTu Prima Acumulada actual es de *$1.84M*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "a5b23cfa-e080-4fab-bea5-3937c3ec840f",
+      "asesor": "DESIREE DE LA PEÑA OROZCO",
+      "firstName": "Desiree",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #3)",
+      "message": "Hola Desiree, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #3*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $105.68* a tu meta.\n\nTu Prima Acumulada actual es de *$982.5k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "59da9033-4379-455a-b1f6-b67d40d3fedd",
+      "asesor": "DARINKA UREÑA CASILLAS",
+      "firstName": "Darinka",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #4)",
+      "message": "Hola Darinka, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #4*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $24.7k* a tu meta.\n\nTu Prima Acumulada actual es de *$894.9k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "e8198226-a7f8-4488-b0f3-bf7468878ef3",
+      "asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+      "firstName": "Rafael",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #5)",
+      "message": "Hola Rafael, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #5*. Respecto a la medición anterior, *te mantuviste en la misma posición* y *sumaste $506.69* a tu meta.\n\nTu Prima Acumulada actual es de *$665.9k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "a40f427e-e736-47b3-a889-127c9336c37d",
+      "asesor": "MONSERRAT VELASCO SANTOS",
+      "firstName": "Monserrat",
+      "campaign": "mdrt",
+      "type": "positive",
+      "event": "Top 10 MDRT (Lugar #9)",
+      "message": "Hola Monserrat, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! 🏆\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #9*. Respecto a la medición anterior, *subiste 1 posiciones* y *sumaste $58.5k* a tu meta.\n\nTu Prima Acumulada actual es de *$434.0k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "1e1e8cc7-a1f2-4d69-9505-bc76e40581e5",
+      "asesor": "SOFIA CAMPILLO VASCONCELOS",
+      "firstName": "Sofia",
+      "campaign": "mdrt",
+      "type": "risk",
+      "event": "Top 10 MDRT (Lugar #10)",
+      "message": "Hola Sofia, ¿cómo estás? 👋\n¡Perteneces al selecto TOP 10 de MDRT de nuestra promotoría! ⚠️\n\nEn la última actualización del ranking de MDRT te posicionaste en el *Lugar #10*. Respecto a la medición anterior, *bajaste 1 posiciones* y *variaste $0.00* a tu meta.\n\nTu Prima Acumulada actual es de *$383.8k*.\n¡Vamos con todo por ese reconocimiento internacional! 🌎\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    }
+  ]
 }
