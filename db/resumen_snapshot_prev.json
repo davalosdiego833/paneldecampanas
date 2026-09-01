@@ -1,5 +1,5 @@
 {
-  "updatedAt": "31/8/2026, 7:28:17 p.m.",
+  "updatedAt": "31/8/2026, 7:56:14 p.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -3131,48 +3131,48 @@
         ]
       },
       "convenciones_promotores": {
-        "fecha_corte": "31 de julio 2026",
+        "fecha_corte": "21 de agosto 2026",
         "promotoria": {
-          "lugar_general": 69,
+          "lugar_general": 67,
           "mat": "2043",
           "oficina": "GUADALAJARA (A. RODRIGUEZ",
-          "c1_vida": 270632.88,
+          "c1_vida": 438665.75,
           "c1_dxn": 0,
-          "c1_gmm_ind": 34544.34,
+          "c1_gmm_ind": 53424.7,
           "c1_vida_gyc": 0,
           "c1_gmm_gyc": 0,
           "c1_conv_doble": 0,
-          "c1_comisiones_totales": 305177.22,
-          "c1_ranking": 69,
-          "c2_vida_12m": 78343.38,
+          "c1_comisiones_totales": 492090.45,
+          "c1_ranking": 67,
+          "c2_vida_12m": 118586.27,
           "c2_conv_doble": 0,
-          "c2_total": 78343.38,
-          "c2_ranking": 50,
-          "c3_nueva_org": 93104,
+          "c2_total": 118586.27,
+          "c2_ranking": 49,
+          "c3_nueva_org": 150556,
           "c3_conv_doble": 0,
-          "c3_total": 93104,
-          "c3_ranking": 36,
-          "asesores_ta": 1,
-          "limra": 0.9344,
-          "igc": 0.9247,
-          "comisiones_reclutas": 0,
+          "c3_total": 150556,
+          "c3_ranking": 39,
+          "asesores_ta": 2,
+          "limra": 0.9312,
+          "igc": 0.9229,
+          "comisiones_reclutas": 14351.14,
           "adjunto_ga": "SI"
         },
         "umbrales": {
           "camino1": {
-            "3d": 3089945.06,
-            "2d": 1992761.67,
-            "1d": 1523352.24
+            "3d": 5201846.3,
+            "2d": 2777281.96,
+            "1d": 2522177.09
           },
           "camino2": {
-            "3d": 381872.47,
-            "2d": 260973.02,
-            "1d": 182831.62
+            "3d": 469322.23,
+            "2d": 335046.62,
+            "1d": 288908.97
           },
           "camino3": {
-            "3d": 386882,
-            "2d": 223304,
-            "1d": 149803
+            "3d": 564640,
+            "2d": 332897,
+            "1d": 257336
           }
         },
         "minimos": {
@@ -3242,27 +3242,27 @@
         }
       },
       "convenciones_gerente": {
-        "fecha_corte": "31 de julio 2026",
+        "fecha_corte": "21-AGO-2026",
         "gerencia": {
           "nombre": "KAREN MUNOZ GARCIA",
           "mat": "2043",
           "suc": "2856",
-          "c1_total": 53366.07,
-          "c1_ranking": 13,
-          "c2_total": 14077,
-          "c2_ranking": 41,
-          "c3_total": 53366.07,
+          "c1_total": 71094.43,
+          "c1_ranking": 16,
+          "c2_total": 21435,
+          "c2_ranking": 42,
+          "c3_total": 71094.43,
           "c3_ranking": 5,
           "asesores_ta_gerencia": 1,
           "meta_ta_gerencia": 4,
-          "asesores_ta_promotor": 1,
+          "asesores_ta_promotor": 2,
           "meta_ta_promotor": 4,
           "cumple_promotor": true
         },
         "primer_lugar": {
-          "c1_total": 257234.46,
-          "c2_total": 566869,
-          "c3_total": 152288.21
+          "c1_total": 540899.54,
+          "c2_total": 1206777,
+          "c3_total": 331833.57
         },
         "minimos": {
           "camino1": {
@@ -3290,8 +3290,8 @@
       "comparativo_vida": "12 de agosto de 2026",
       "qsq_vida": "31 de julio de 2026",
       "qsq_gmm": "31 de Julio de 2026",
-      "convenciones_promotores": "31 de julio 2026",
-      "convenciones_gerente": "31 de julio 2026"
+      "convenciones_promotores": "21 de agosto 2026",
+      "convenciones_gerente": "21-AGO-2026"
     },
     "campaigns": {
       "mdrt": [
@@ -4580,48 +4580,48 @@
         }
       ],
       "convenciones_promotores": {
-        "fecha_corte": "31 de julio 2026",
+        "fecha_corte": "21 de agosto 2026",
         "promotoria": {
-          "lugar_general": 69,
+          "lugar_general": 67,
           "mat": "2043",
           "oficina": "GUADALAJARA (A. RODRIGUEZ",
-          "c1_vida": 270632.88,
+          "c1_vida": 438665.75,
           "c1_dxn": 0,
-          "c1_gmm_ind": 34544.34,
+          "c1_gmm_ind": 53424.7,
           "c1_vida_gyc": 0,
           "c1_gmm_gyc": 0,
           "c1_conv_doble": 0,
-          "c1_comisiones_totales": 305177.22,
-          "c1_ranking": 69,
-          "c2_vida_12m": 78343.38,
+          "c1_comisiones_totales": 492090.45,
+          "c1_ranking": 67,
+          "c2_vida_12m": 118586.27,
           "c2_conv_doble": 0,
-          "c2_total": 78343.38,
-          "c2_ranking": 50,
-          "c3_nueva_org": 93104,
+          "c2_total": 118586.27,
+          "c2_ranking": 49,
+          "c3_nueva_org": 150556,
           "c3_conv_doble": 0,
-          "c3_total": 93104,
-          "c3_ranking": 36,
-          "asesores_ta": 1,
-          "limra": 0.9344,
-          "igc": 0.9247,
-          "comisiones_reclutas": 0,
+          "c3_total": 150556,
+          "c3_ranking": 39,
+          "asesores_ta": 2,
+          "limra": 0.9312,
+          "igc": 0.9229,
+          "comisiones_reclutas": 14351.14,
           "adjunto_ga": "SI"
         },
         "umbrales": {
           "camino1": {
-            "3d": 3089945.06,
-            "2d": 1992761.67,
-            "1d": 1523352.24
+            "3d": 5201846.3,
+            "2d": 2777281.96,
+            "1d": 2522177.09
           },
           "camino2": {
-            "3d": 381872.47,
-            "2d": 260973.02,
-            "1d": 182831.62
+            "3d": 469322.23,
+            "2d": 335046.62,
+            "1d": 288908.97
           },
           "camino3": {
-            "3d": 386882,
-            "2d": 223304,
-            "1d": 149803
+            "3d": 564640,
+            "2d": 332897,
+            "1d": 257336
           }
         },
         "minimos": {
@@ -4691,27 +4691,27 @@
         }
       },
       "convenciones_gerente": {
-        "fecha_corte": "31 de julio 2026",
+        "fecha_corte": "21-AGO-2026",
         "gerencia": {
           "nombre": "KAREN MUNOZ GARCIA",
           "mat": "2043",
           "suc": "2856",
-          "c1_total": 53366.07,
-          "c1_ranking": 13,
-          "c2_total": 14077,
-          "c2_ranking": 41,
-          "c3_total": 53366.07,
+          "c1_total": 71094.43,
+          "c1_ranking": 16,
+          "c2_total": 21435,
+          "c2_ranking": 42,
+          "c3_total": 71094.43,
           "c3_ranking": 5,
           "asesores_ta_gerencia": 1,
           "meta_ta_gerencia": 4,
-          "asesores_ta_promotor": 1,
+          "asesores_ta_promotor": 2,
           "meta_ta_promotor": 4,
           "cumple_promotor": true
         },
         "primer_lugar": {
-          "c1_total": 257234.46,
-          "c2_total": 566869,
-          "c3_total": 152288.21
+          "c1_total": 540899.54,
+          "c2_total": 1206777,
+          "c3_total": 331833.57
         },
         "minimos": {
           "camino1": {
@@ -5155,8 +5155,8 @@
       "graduacion": "31 de julio de 2026",
       "proactiva_tech": "19 de agosto 2026",
       "reto_por_ciento": "19 DE AGOSTO 2026",
-      "convenciones_promotores": "31 de julio 2026",
-      "convenciones_gerente": "31 de julio 2026",
+      "convenciones_promotores": "21 de agosto 2026",
+      "convenciones_gerente": "21-AGO-2026",
       "educar_es_creer": "14 de agosto de 2026"
     },
     "historico_metas": {
