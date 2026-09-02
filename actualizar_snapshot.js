@@ -619,13 +619,14 @@ const run = async () => {
                     let puntosPorAsesor = {};
                     let polizasDetallePorAsesor = {};
                     let clientesKitsPorAsesor = {};
-                    let cutoffDateStr = '14 de agosto de 2026';
+                    let cutoffDateStr = '';
                     let kitsGanadosNac = 50;
                     let kitsRestantesNac = 950;
 
                     if (fs.existsSync(convPath)) {
                         let wbConv = readExcelSheetMemorySafe(convPath, () => true);
                         if (wbConv) {
+                            cutoffDateStr = extractCutoffDate(wbConv) || '28 de agosto de 2026';
                             let wsAsesores = wbConv.Sheets['Asesores'] || wbConv.Sheets[wbConv.SheetNames[0]];
                             if (wsAsesores) {
                                 let rawAsesores = XLSX.utils.sheet_to_json(wsAsesores, { header: 1 });

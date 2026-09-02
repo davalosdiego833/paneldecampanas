@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2/9/2026, 9:43:58 a.m.",
+  "updatedAt": "2/9/2026, 3:08:35 p.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -4741,7 +4741,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
@@ -4750,7 +4750,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
@@ -4759,7 +4759,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
@@ -4768,7 +4768,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "PAULINA RODRIGUEZ DE LA MORA",
@@ -4777,7 +4777,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "MARIO ALFONSO SARMIENTO OROZCO",
@@ -4786,7 +4786,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "DESIREE DE LA PEÐA OROZCO",
@@ -4795,7 +4795,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "MARICELA ARREOLA LOPEZ",
@@ -4804,7 +4804,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "KAREN MUÐOZ GARCIA",
@@ -4813,7 +4813,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
@@ -4822,7 +4822,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "ANDREA CELESTE IBAÐEZ RINCON",
@@ -4831,7 +4831,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "JOCELYN URIBE VARGAS",
@@ -4840,16 +4840,26 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "DARINKA UREÐA CASILLAS",
           "Clave": "90355",
-          "Puntos_Doble": 0,
-          "Polizas_Detalle": [],
+          "Puntos_Doble": 4179.42,
+          "Polizas_Detalle": [
+            {
+              "Poliza": "VI0003009468",
+              "F_Emision": "46259",
+              "F_Pago": "46259",
+              "Forma_Pago": "SEMESTRAL",
+              "Plan": "SEGUBECA 18 PRIMA CONSTANTE",
+              "Prima_Recibo": 24718.66,
+              "Comisiones": 4179.42
+            }
+          ],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "MARIA TERESA ASENCIO LOZANO",
@@ -4858,7 +4868,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
@@ -4867,7 +4877,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
@@ -4876,7 +4886,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "JULIANA RIASCOS VALENCIA",
@@ -4885,7 +4895,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "SAMUEL NUÐO RIVERA",
@@ -4894,7 +4904,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
@@ -4903,7 +4913,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "MARIA FERNANDA RIOS BERNAL",
@@ -4912,7 +4922,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
@@ -4921,7 +4931,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "ROGELIO TORRES ORTIZ",
@@ -4930,16 +4940,26 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
           "Clave": "104750",
-          "Puntos_Doble": 0,
-          "Polizas_Detalle": [],
+          "Puntos_Doble": 10374.6,
+          "Polizas_Detalle": [
+            {
+              "Poliza": "VI0003008357",
+              "F_Emision": "46252",
+              "F_Pago": "46253",
+              "Forma_Pago": "ANUAL",
+              "Plan": "SEGUBECA 18 PRIMA CONSTANTE",
+              "Prima_Recibo": 29811.32,
+              "Comisiones": 10374.6
+            }
+          ],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "GABRIELA CASTAÐEDA SALAZAR",
@@ -4948,7 +4968,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "MIREYA LIZETTE TORRES GARCIA",
@@ -4957,7 +4977,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "ORLANDA JIMENA CERVANTES NUÐEZ",
@@ -4966,7 +4986,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
@@ -4975,7 +4995,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
@@ -4984,7 +5004,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
@@ -4993,7 +5013,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "EVELYN CAROLINA VENEGAS IÐIGUEZ",
@@ -5002,7 +5022,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "ROCIO YANETH OCHOA IBARRA",
@@ -5011,7 +5031,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "ANAIS LUA MORENO",
@@ -5020,16 +5040,26 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "JOSE RENE DE ALBA MORALES",
           "Clave": "110575",
-          "Puntos_Doble": 0,
-          "Polizas_Detalle": [],
+          "Puntos_Doble": 34627.04,
+          "Polizas_Detalle": [
+            {
+              "Poliza": "VI0003004107",
+              "F_Emision": "46230",
+              "F_Pago": "46259",
+              "Forma_Pago": "ANUAL",
+              "Plan": "SEGUBECA 18 PRIMA CONSTANTE",
+              "Prima_Recibo": 90185.65,
+              "Comisiones": 34627.04
+            }
+          ],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "JORGE ANTONIO LUNA LARA",
@@ -5038,7 +5068,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
@@ -5047,7 +5077,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "LAURA DOLORES MONTAÐO MONTAÐO",
@@ -5056,7 +5086,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "ANA LAURA CONTRERAS IÐIGUEZ",
@@ -5065,7 +5095,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
@@ -5074,7 +5104,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "HANA SOFIA LOPEZ QUIÐONEZ",
@@ -5083,7 +5113,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "VELIA PATRICIA BERNAL RAMOS",
@@ -5092,7 +5122,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
@@ -5101,7 +5131,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "PAULA ANGELICA LOMELI CAZARES",
@@ -5110,7 +5140,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "SOFIA CAMPILLO VASCONCELOS",
@@ -5119,7 +5149,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "MONSERRAT VELASCO SANTOS",
@@ -5128,7 +5158,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "MARIO IVAN ROMERO GONZALEZ",
@@ -5137,7 +5167,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         },
         {
           "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
@@ -5146,7 +5176,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 950
+          "Kits_Restantes_Nacional": 760
         }
       ]
     },
@@ -5160,7 +5190,7 @@
       "reto_por_ciento": "26 DE AGOSTO 2026",
       "convenciones_promotores": "21 de agosto 2026",
       "convenciones_gerente": "21-AGO-2026",
-      "educar_es_creer": "14 de agosto de 2026"
+      "educar_es_creer": "28 de agosto de 2026"
     },
     "historico_metas": {
       "2026": {
