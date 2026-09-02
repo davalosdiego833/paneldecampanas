@@ -17,7 +17,7 @@ import CentroAvisos from './components/CentroAvisos';
 import InfografiaGenerator from './components/InfografiaGenerator';
 import { PushNotificationPrompt } from './components/PushNotificationPrompt';
 
-import { initOneSignal, setOneSignalUserTags } from './utils/OneSignalService';
+import { initOneSignal, setOneSignalUserTags, loginOneSignalIdentity } from './utils/OneSignalService';
 
 const App: React.FC = () => {
     const [page, setPage] = useState<Page>('login');
@@ -125,9 +125,18 @@ const App: React.FC = () => {
     const storedRole = typeof window !== 'undefined' ? localStorage.getItem('device_user_role') : null;
     const activePushRole: 'admin' | 'asesor' = (isAdminRole || storedRole === 'admin') ? 'admin' : 'asesor';
 
+    // Identidad real de la persona detrás del dispositivo: la clave del asesor
+    // seleccionado, o el nombre que el admin capturó una vez en el login.
+    // Sin esto, OneSignal no puede distinguir "el mismo Diego reinstalando"
+    // de "un admin nuevo" — cada re-registro se veía como un dispositivo
+    // fantasma más, acumulándose sin límite.
+    const adminIdentityName = typeof window !== 'undefined' ? localStorage.getItem('admin_identity_name') : null;
+    const identityId = activePushRole === 'admin' ? (adminIdentityName || undefined) : (selectedAdvisor || undefined);
+
     useEffect(() => {
-        setOneSignalUserTags(activePushRole, selectedAdvisor || undefined, selectedAdvisor || undefined);
-    }, [activePushRole, selectedAdvisor]);
+        setOneSignalUserTags(activePushRole, identityId, identityId);
+        if (identityId) loginOneSignalIdentity(identityId);
+    }, [activePushRole, identityId]);
 
     const renderMainContent = () => {
         if (page === 'login') return <LoginScreen onSelectRole={handleRoleSelect} />;

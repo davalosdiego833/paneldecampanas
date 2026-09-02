@@ -43,6 +43,24 @@ export const initOneSignal = (appId: string) => {
     });
 };
 
+// Vincula este dispositivo a una identidad real de OneSignal (login).
+// Esto es lo que evita que cada reinstalación/reregistro cree un dispositivo
+// "fantasma" nuevo — al hacer login con el mismo id, OneSignal reconoce que
+// es la misma persona en vez de tratarla como un anónimo distinto cada vez.
+export const loginOneSignalIdentity = (externalId: string) => {
+    if (typeof window === 'undefined' || !externalId || externalId === 'UNKNOWN') return;
+
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    window.OneSignalDeferred.push(async (OneSignal: any) => {
+        try {
+            await OneSignal.login(externalId);
+            console.log('[ONESIGNAL] Identidad vinculada (login):', externalId);
+        } catch (e) {
+            console.warn('[ONESIGNAL] Error en login:', e);
+        }
+    });
+};
+
 export const setOneSignalUserTags = (role: 'admin' | 'asesor', clave?: string, name?: string) => {
     if (typeof window === 'undefined') return;
 

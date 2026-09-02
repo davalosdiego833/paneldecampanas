@@ -5,11 +5,37 @@ interface Props {
     onSelectRole: (role: 'asesor' | 'admin') => void;
 }
 
+const ADMIN_NAME_KEY = 'admin_identity_name';
+
 const LoginScreen: React.FC<Props> = ({ onSelectRole }) => {
     const [isAdminMode, setIsAdminMode] = useState(false);
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+
+    // Paso 2 del login admin: identificar QUIÉN es (solo se pide una vez por
+    // dispositivo — así cada admin queda distinguible en vez de que todos
+    // se vean como "Administrador" genérico).
+    const [needsIdentity, setNeedsIdentity] = useState(false);
+    const [adminNameInput, setAdminNameInput] = useState('');
+
+    const finishAdminLogin = (adminName: string) => {
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('device_user_role', 'admin');
+            localStorage.setItem(ADMIN_NAME_KEY, adminName);
+        }
+        // Registrar actividad de admin en DB, ya con el nombre real
+        fetch('/api/activity', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                asesor: adminName,
+                accion: "Inició Sesión / Entró al Dashboard"
+            })
+        }).catch(e => console.error('Error logging admin login', e));
+
+        onSelectRole('admin');
+    };
 
     const handleAdminLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -25,20 +51,12 @@ const LoginScreen: React.FC<Props> = ({ onSelectRole }) => {
 
             const data = await res.json();
             if (data.success) {
-                if (typeof window !== 'undefined') {
-                    localStorage.setItem('device_user_role', 'admin');
+                const storedName = typeof window !== 'undefined' ? localStorage.getItem(ADMIN_NAME_KEY) : null;
+                if (storedName) {
+                    finishAdminLogin(storedName);
+                } else {
+                    setNeedsIdentity(true);
                 }
-                // Registrar actividad de admin en DB
-                fetch('/api/activity', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        asesor: "Administrador",
-                        accion: "Inició Sesión / Entró al Dashboard"
-                    })
-                }).catch(e => console.error('Error logging admin login', e));
-
-                onSelectRole('admin');
             } else {
                 setError('Contraseña incorrecta');
             }
@@ -47,6 +65,13 @@ const LoginScreen: React.FC<Props> = ({ onSelectRole }) => {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleIdentitySubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        const name = adminNameInput.trim();
+        if (!name) return;
+        finishAdminLogin(name);
     };
 
     return (
@@ -124,7 +149,7 @@ const LoginScreen: React.FC<Props> = ({ onSelectRole }) => {
                             fontWeight: 400,
                         }}
                     >
-                        {isAdminMode ? 'Ingresa la clave de administración' : 'Selecciona tu perfil para continuar'}
+                        {needsIdentity ? '¿Quién eres?' : (isAdminMode ? 'Ingresa la clave de administración' : 'Selecciona tu perfil para continuar')}
                     </p>
                 </div>
 
@@ -146,7 +171,63 @@ const LoginScreen: React.FC<Props> = ({ onSelectRole }) => {
                     }}
                 >
                     <AnimatePresence mode="wait">
-                        {!isAdminMode ? (
+                        {needsIdentity ? (
+                            <motion.form
+                                key="admin-identity"
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -20 }}
+                                onSubmit={handleIdentitySubmit}
+                                style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
+                            >
+                                <div>
+                                    <label style={{ display: 'block', fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', marginBottom: '8px', fontWeight: 500 }}>
+                                        Es la primera vez que entras desde este dispositivo — ¿cuál es tu nombre?
+                                    </label>
+                                    <input
+                                        autoFocus
+                                        type="text"
+                                        value={adminNameInput}
+                                        onChange={(e) => setAdminNameInput(e.target.value)}
+                                        placeholder="Ej. Diego, Karen..."
+                                        style={{
+                                            width: '100%',
+                                            padding: '14px 18px',
+                                            background: 'rgba(255,255,255,0.05)',
+                                            border: '1px solid rgba(0, 122, 255, 0.3)',
+                                            borderRadius: '10px',
+                                            color: '#fff',
+                                            fontSize: '1.05rem',
+                                            outline: 'none',
+                                            textAlign: 'center'
+                                        }}
+                                    />
+                                    <p style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.35)', marginTop: '8px', textAlign: 'center' }}>
+                                        Solo se pregunta una vez por dispositivo, para identificar de quién son las notificaciones.
+                                    </p>
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    disabled={!adminNameInput.trim()}
+                                    style={{
+                                        width: '100%',
+                                        padding: '14px',
+                                        background: 'linear-gradient(135deg, #007AFF 0%, #005ec4 100%)',
+                                        border: 'none',
+                                        borderRadius: '10px',
+                                        color: '#fff',
+                                        cursor: !adminNameInput.trim() ? 'not-allowed' : 'pointer',
+                                        fontWeight: 700,
+                                        fontSize: '0.9rem',
+                                        boxShadow: '0 4px 15px rgba(0, 122, 255, 0.3)',
+                                        opacity: !adminNameInput.trim() ? 0.6 : 1
+                                    }}
+                                >
+                                    Continuar
+                                </button>
+                            </motion.form>
+                        ) : !isAdminMode ? (
                             <motion.div
                                 key="roles"
                                 initial={{ opacity: 0, x: -20 }}
