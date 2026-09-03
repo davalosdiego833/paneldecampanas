@@ -56,14 +56,19 @@ for (let i = 1; i < rows.length; i++) {
     const r = rows[i];
     const nombre = String(r[0] || '').trim();
     if (!nombre) continue;
+    const primaVida = Number(r[3]) || 0;
+    const primaGmm = Number(r[5]) || 0;
     tabla.push({
         asesor: nombre,
         polizas: Number(r[1]) || 0,
         vida: Number(r[2]) || 0,
-        primaVida: Number(r[3]) || 0,
+        primaVida,
         gmm: Number(r[4]) || 0,
-        primaGmm: Number(r[5]) || 0,
-        primaTotal: Number(r[6]) || 0,
+        primaGmm,
+        // Se calcula en vez de leer la columna G: si alguien edita a mano
+        // Prima Pagada Vida/GMM en Excel, esa celda de "Prima total" no
+        // siempre se recalcula sola y queda desfasada.
+        primaTotal: primaVida + primaGmm,
     });
 }
 

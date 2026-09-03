@@ -1,7 +1,7 @@
 {
   "mes": "AGOSTO",
   "mesLabel": "Agosto 2026",
-  "generadoEn": "2026-09-03T17:55:27.095Z",
+  "generadoEn": "2026-09-03T20:28:55.323Z",
   "tabla": [
     {
       "asesor": "DESIREE DE LA PEÑA OROZCO",
@@ -68,12 +68,12 @@
     },
     {
       "asesor": "PAULA ANGELICA LOMELI CAZARES",
-      "polizas": 2,
-      "vida": 2,
-      "primaVida": 18717.237649529998,
+      "polizas": 1,
+      "vida": 1,
+      "primaVida": 16404.630299279997,
       "gmm": 0,
       "primaGmm": 0,
-      "primaTotal": 18717.237649529998
+      "primaTotal": 16404.630299279997
     },
     {
       "asesor": "DARINKA UREÑA CASILLAS",
@@ -140,20 +140,20 @@
     }
   ],
   "totales": {
-    "primaVida": 563907.9751373928,
-    "polizasVida": 20,
+    "primaVida": 561595.3677871427,
+    "polizasVida": 19,
     "primaGmm": 37128.26,
     "polizasGmm": 2.5,
-    "primaTotal": 601036.2351373928,
-    "polizasTotal": 22.5
+    "primaTotal": 598723.6277871428,
+    "polizasTotal": 21.5
   },
   "campeones": [
     {
       "key": "polizasVida",
       "categoria": "Pólizas Vida",
       "novato": {
-        "nombre": "PAULA ANGELICA LOMELI CAZARES",
-        "raw": "PAU LOMELI"
+        "nombre": "MONSERRAT VELASCO SANTOS",
+        "raw": "MONSE"
       },
       "profesional": {
         "nombre": "DESIREE DE LA PEÑA OROZCO",
