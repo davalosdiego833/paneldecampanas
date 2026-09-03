@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ThemeConfig } from '../types';
-import { Search, ChevronDown, Check, X, Bell, Shield, GraduationCap, Plane, Users, Smartphone, TrendingUp, Stethoscope, Award, BarChart3, Car, Zap, Gift, Heart, FileText, Eye } from 'lucide-react';
+import { Search, ChevronDown, Check, X, Bell, Shield, GraduationCap, Plane, Users, Smartphone, TrendingUp, Stethoscope, Award, BarChart3, Car, Zap, Gift, Heart, FileText, Eye, Trophy, ArrowLeft } from 'lucide-react';
 import { BasesCampanasExplorer } from './BasesCampanasExplorer';
 import { AdvisorReportModal, REPORT_CONFIGS, ReportKey } from './AdvisorReportModal';
 import { PdfViewerModal } from './PdfViewerModal';
+import CierreMes from './Dashboards/CierreMes';
 
 interface Props {
     theme: ThemeConfig | null;
@@ -20,6 +21,7 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
     const [isAvisosOpen, setIsAvisosOpen] = useState<boolean>(false);
     const [selectedReportKey, setSelectedReportKey] = useState<ReportKey | null>(null);
     const [selectedPdf, setSelectedPdf] = useState<{ title: string; path: string } | null>(null);
+    const [showCierreMes, setShowCierreMes] = useState<boolean>(false);
 
     const quotes = [
         "El éxito no es el final, el fracaso no es fatal: lo que cuenta es el valor para continuar.",
@@ -173,6 +175,43 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                         );
                     })}
                 </div>
+            </div>
+
+            {/* Cierre de Mes y Campeones */}
+            <div
+                className="glass-card"
+                style={{
+                    padding: '24px',
+                    borderRadius: '16px',
+                    borderLeft: '4px solid var(--accent-gold)',
+                    textAlign: 'left',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    flexWrap: 'wrap',
+                    gap: '16px'
+                }}
+            >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <div style={{ background: 'rgba(212, 175, 55, 0.15)', border: '1px solid rgba(212, 175, 55, 0.3)', borderRadius: '10px', padding: '8px', display: 'flex', color: 'var(--accent-gold)' }}>
+                        <Trophy size={22} />
+                    </div>
+                    <div>
+                        <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
+                            Cierre de Mes y Campeones
+                        </h3>
+                        <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: '2px 0 0 0' }}>
+                            Producción del mes y los campeones de cada categoría
+                        </p>
+                    </div>
+                </div>
+                <button
+                    onClick={() => setShowCierreMes(true)}
+                    className="btn-primary"
+                    style={{ padding: '12px 22px', borderRadius: '10px', fontWeight: 700, fontSize: '0.9rem', cursor: 'pointer', whiteSpace: 'nowrap' }}
+                >
+                    Ver Cierre de Mes
+                </button>
             </div>
 
             {/* Executive Notice Center (Abanico Desplegable) */}
@@ -605,6 +644,82 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                 title={selectedPdf?.title || null}
                 onClose={() => setSelectedPdf(null)}
             />
+
+            {/* Pantalla de Cierre de Mes y Campeones, con botón de regresar al menú */}
+            <AnimatePresence>
+                {showCierreMes && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        style={{
+                            position: 'fixed',
+                            inset: 0,
+                            zIndex: 1100,
+                            background: theme?.id === 'light' ? 'rgba(240, 242, 245, 0.96)' : 'rgba(10, 15, 30, 0.85)',
+                            backdropFilter: 'blur(16px)',
+                            WebkitBackdropFilter: 'blur(16px)',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            overflowY: 'auto'
+                        }}
+                    >
+                        <div
+                            style={{
+                                position: 'sticky',
+                                top: 0,
+                                zIndex: 10,
+                                background: theme?.id === 'light' ? 'rgba(255, 255, 255, 0.92)' : 'rgba(15, 23, 42, 0.9)',
+                                backdropFilter: 'blur(20px)',
+                                borderBottom: '1px solid var(--glass-border)',
+                                padding: '16px 24px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                gap: '16px'
+                            }}
+                        >
+                            <button
+                                onClick={() => setShowCierreMes(false)}
+                                className="btn-ghost"
+                                style={{
+                                    display: 'flex', alignItems: 'center', gap: '8px',
+                                    padding: '8px 16px', borderRadius: '10px',
+                                    border: '1px solid var(--glass-border)', color: 'var(--text-primary)',
+                                    fontWeight: 700, fontSize: '0.9rem', cursor: 'pointer'
+                                }}
+                            >
+                                <ArrowLeft size={18} />
+                                <span>Volver al Menú Principal</span>
+                            </button>
+
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                <span style={{ color: 'var(--accent-gold)', display: 'flex', alignItems: 'center' }}>
+                                    <Trophy size={20} />
+                                </span>
+                                <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
+                                    Cierre de Mes y Campeones
+                                </h2>
+                            </div>
+
+                            <button
+                                onClick={() => setShowCierreMes(false)}
+                                style={{
+                                    background: 'rgba(255, 255, 255, 0.06)', border: '1px solid var(--glass-border)',
+                                    borderRadius: '8px', color: 'var(--text-secondary)', padding: '6px',
+                                    cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'
+                                }}
+                            >
+                                <X size={20} />
+                            </button>
+                        </div>
+
+                        <div style={{ padding: '32px 24px', maxWidth: '1300px', width: '100%', margin: '0 auto' }}>
+                            <CierreMes />
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.div>
     );
 };

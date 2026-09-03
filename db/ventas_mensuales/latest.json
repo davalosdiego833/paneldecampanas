@@ -1,0 +1,200 @@
+{
+  "mes": "AGOSTO",
+  "mesLabel": "Agosto 2026",
+  "generadoEn": "2026-09-03T17:55:27.095Z",
+  "tabla": [
+    {
+      "asesor": "DESIREE DE LA PEÑA OROZCO",
+      "polizas": 2,
+      "vida": 2,
+      "primaVida": 163000.16845350998,
+      "gmm": 0,
+      "primaGmm": 0,
+      "primaTotal": 163000.16845350998
+    },
+    {
+      "asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+      "polizas": 2.5,
+      "vida": 2,
+      "primaVida": 64137.03144217,
+      "gmm": 0.5,
+      "primaGmm": 26627.46,
+      "primaTotal": 90764.49144217
+    },
+    {
+      "asesor": "JOSE RENE DE ALBA MORALES",
+      "polizas": 1,
+      "vida": 1,
+      "primaVida": 90033.45425668,
+      "gmm": 0,
+      "primaGmm": 0,
+      "primaTotal": 90033.45425668
+    },
+    {
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "polizas": 2.5,
+      "vida": 2,
+      "primaVida": 86047.3999781774,
+      "gmm": 0.5,
+      "primaGmm": 2305.19,
+      "primaTotal": 88352.5899781774
+    },
+    {
+      "asesor": "MONSERRAT VELASCO SANTOS",
+      "polizas": 1,
+      "vida": 1,
+      "primaVida": 58335.86210191999,
+      "gmm": 0,
+      "primaGmm": 0,
+      "primaTotal": 58335.86210191999
+    },
+    {
+      "asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
+      "polizas": 1,
+      "vida": 1,
+      "primaVida": 33322.85476690999,
+      "gmm": 0,
+      "primaGmm": 0,
+      "primaTotal": 33322.85476690999
+    },
+    {
+      "asesor": "MARIO IVAN ROMERO GONZALEZ",
+      "polizas": 1.5,
+      "vida": 1,
+      "primaVida": 18377.59324875,
+      "gmm": 0.5,
+      "primaGmm": 2026.22,
+      "primaTotal": 20403.81324875
+    },
+    {
+      "asesor": "PAULA ANGELICA LOMELI CAZARES",
+      "polizas": 2,
+      "vida": 2,
+      "primaVida": 18717.237649529998,
+      "gmm": 0,
+      "primaGmm": 0,
+      "primaTotal": 18717.237649529998
+    },
+    {
+      "asesor": "DARINKA UREÑA CASILLAS",
+      "polizas": 2,
+      "vida": 2,
+      "primaVida": 14722.244738280298,
+      "gmm": 0,
+      "primaGmm": 0,
+      "primaTotal": 14722.244738280298
+    },
+    {
+      "asesor": "JOSE ANTEMIO OLIVA SANTOS",
+      "polizas": 1.5,
+      "vida": 1,
+      "primaVida": 1965.0347711552001,
+      "gmm": 0.5,
+      "primaGmm": 5451.7,
+      "primaTotal": 7416.7347711552
+    },
+    {
+      "asesor": "JORGE ANTONIO LUNA LARA",
+      "polizas": 1,
+      "vida": 1,
+      "primaVida": 6092.73195629,
+      "gmm": 0,
+      "primaGmm": 0,
+      "primaTotal": 6092.73195629
+    },
+    {
+      "asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
+      "polizas": 2,
+      "vida": 2,
+      "primaVida": 4798.5596049,
+      "gmm": 0,
+      "primaGmm": 0,
+      "primaTotal": 4798.5596049
+    },
+    {
+      "asesor": "OSCAR RAMIREZ RUIZ",
+      "polizas": 1,
+      "vida": 1,
+      "primaVida": 2397.1862700000006,
+      "gmm": 0,
+      "primaGmm": 0,
+      "primaTotal": 2397.1862700000006
+    },
+    {
+      "asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+      "polizas": 1,
+      "vida": 1,
+      "primaVida": 1960.61589912,
+      "gmm": 0,
+      "primaGmm": 0,
+      "primaTotal": 1960.61589912
+    },
+    {
+      "asesor": "VELIA PATRICIA BERNAL RAMOS",
+      "polizas": 0.5,
+      "vida": 0,
+      "primaVida": 0,
+      "gmm": 0.5,
+      "primaGmm": 717.69,
+      "primaTotal": 717.69
+    }
+  ],
+  "totales": {
+    "primaVida": 563907.9751373928,
+    "polizasVida": 20,
+    "primaGmm": 37128.26,
+    "polizasGmm": 2.5,
+    "primaTotal": 601036.2351373928,
+    "polizasTotal": 22.5
+  },
+  "campeones": [
+    {
+      "key": "polizasVida",
+      "categoria": "Pólizas Vida",
+      "novato": {
+        "nombre": "PAULA ANGELICA LOMELI CAZARES",
+        "raw": "PAU LOMELI"
+      },
+      "profesional": {
+        "nombre": "DESIREE DE LA PEÑA OROZCO",
+        "raw": "DESI"
+      }
+    },
+    {
+      "key": "primaVida",
+      "categoria": "Prima Vida",
+      "novato": {
+        "nombre": "MONSERRAT VELASCO SANTOS",
+        "raw": "MONSE"
+      },
+      "profesional": {
+        "nombre": "DESIREE DE LA PEÑA OROZCO",
+        "raw": "DESI"
+      }
+    },
+    {
+      "key": "polizasGmm",
+      "categoria": "Pólizas GMM",
+      "novato": {
+        "nombre": "JOSE ANTEMIO OLIVA SANTOS",
+        "raw": "ANTEMIO"
+      },
+      "profesional": {
+        "nombre": "PAULINA LIZBETH SOTO MUÑIZ",
+        "raw": "PAU SOTO"
+      }
+    },
+    {
+      "key": "primaGmm",
+      "categoria": "Prima GMM",
+      "novato": {
+        "nombre": "JOSE ANTEMIO OLIVA SANTOS",
+        "raw": "ANTEMIO"
+      },
+      "profesional": {
+        "nombre": "PAULINA LIZBETH SOTO MUÑIZ",
+        "raw": "PAU SOTO"
+      }
+    }
+  ]
+}

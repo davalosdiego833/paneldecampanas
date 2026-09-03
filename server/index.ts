@@ -729,6 +729,25 @@ function servirPremiosCarpeta(carpeta: string) {
 app.get('/api/premios-promotoria', servirPremiosCarpeta('PROMOTORIA'));
 app.get('/api/premios-ga', servirPremiosCarpeta('GA_KAREN'));
 
+// Reporte de "Cierre de Mes" (tabla de ventas + campeones por categoría),
+// generado a mano por el admin con VENTAS_MENSUALES/generar_reporte_cierre.cjs
+app.get('/api/ventas-mensuales/latest', (req, res) => {
+    try {
+        const candidatePaths = [
+            path.join(BASE_PATH, 'db', 'ventas_mensuales', 'latest.json'),
+            path.join(safeDirname, 'db', 'ventas_mensuales', 'latest.json'),
+            path.join(process.cwd(), 'db', 'ventas_mensuales', 'latest.json'),
+        ];
+        const filePath = candidatePaths.find(p => safeExists(p));
+        if (!filePath) return res.status(404).json({ error: 'Aún no se ha publicado el cierre de mes' });
+        const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+        res.json(data);
+    } catch (error) {
+        console.error('Error leyendo cierre de mes:', error);
+        res.status(500).json({ error: 'Error al leer el cierre de mes' });
+    }
+});
+
 app.get('/api/advisors', (req, res) => {
     try {
         const advisors = getCachedAdvisors();
