@@ -67,7 +67,7 @@ export const FilaRecibo: React.FC<{ label: string; valor: string; operador?: '+'
     </div>
 );
 
-const ResumenBonosTabla: React.FC<{ filas: FilaResumenBono[]; activo: string }> = ({ filas, activo }) => (
+export const ResumenBonosTabla: React.FC<{ filas: FilaResumenBono[]; activo: string }> = ({ filas, activo }) => (
     <div className="glass-card" style={{ padding: '20px' }}>
         <h4 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '14px', opacity: 0.8 }}>Resumen de bonos</h4>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>

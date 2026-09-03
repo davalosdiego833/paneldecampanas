@@ -106,6 +106,27 @@ async function clickPorTexto(page, texto, { exact = true, tag = '*' } = {}) {
     return true;
 }
 
+// Algunas ventanas emergentes pasan por 1-2 páginas intermedias de redirección
+// (ASP viejo -> hojameta) DESPUÉS de que "network idle" ya se cumplió una vez.
+// Si tratamos de leer justo en ese instante, el frame se "desconecta" (detached)
+// a media redirección. Aquí esperamos a que la URL deje de cambiar antes de
+// dar por buena la página.
+async function esperarPaginaEstable(page, { intentos = 6, esperaMs = 1200 } = {}) {
+    let urlAnterior = null;
+    for (let i = 0; i < intentos; i++) {
+        let urlActual;
+        try { urlActual = page.url(); } catch (e) { urlActual = null; }
+        if (urlActual && urlActual === urlAnterior && urlActual !== 'about:blank') {
+            // Confirmar además que el DOM responde (no está a media navegación)
+            const listo = await page.evaluate(() => document.readyState).catch(() => null);
+            if (listo === 'complete' || listo === 'interactive') return true;
+        }
+        urlAnterior = urlActual;
+        await delay(esperaMs);
+    }
+    return false;
+}
+
 async function volcarDebug(page, prefijo, carpeta) {
     try {
         await page.screenshot({ path: path.join(carpeta, `${prefijo}.png`), fullPage: true });
@@ -148,6 +169,261 @@ async function extraerResumenAsesor(page) {
             todoElTexto: bodyText
         };
     });
+}
+
+// Intenta cerrar el modal actualmente abierto en hojameta (botón "X" de la
+// esquina superior derecha). Prueba varias estrategias porque no sabemos de
+// antemano la marca exacta del botón.
+async function cerrarModalActual(page) {
+    const intentos = [
+        () => clickPorTexto(page, '×'),
+        () => clickPorTexto(page, 'X'),
+        () => clickPorTexto(page, 'x'),
+    ];
+    for (const intentar of intentos) {
+        try {
+            if (await intentar()) return true;
+        } catch (e) {}
+    }
+    // Fallback: buscar un botón/ícono de cerrar por clase/aria-label típico de
+    // modales Bootstrap/jQuery, o el que ya vimos en las capturas (esquina
+    // superior derecha de la barra azul del modal).
+    const cerrado = await page.evaluate(() => {
+        const candidatos = Array.from(document.querySelectorAll(
+            '.close, [aria-label="Close"], [aria-label="close"], .modal-header .close, button.close, .k-icon.k-i-close, .fa-times, .fa-close'
+        ));
+        const visible = candidatos.find(el => {
+            const r = el.getBoundingClientRect();
+            return r.width > 0 && r.height > 0;
+        });
+        if (visible) { visible.click(); return true; }
+        return false;
+    }).catch(() => false);
+    if (cerrado) return true;
+    // Último recurso: tecla Escape.
+    try { await page.keyboard.press('Escape'); return true; } catch (e) { return false; }
+}
+
+// Extrae TODAS las tablas visibles de la página/modal actual como texto plano
+// por filas (para parseo posterior en el front, similar a extraerResumenAsesor).
+async function extraerTodasLasTablas(page) {
+    return await page.evaluate(() => {
+        const tablas = Array.from(document.querySelectorAll('table'));
+        return tablas.map(t => ({
+            headerHint: t.innerText.slice(0, 80).replace(/\s+/g, ' '),
+            filas: Array.from(t.querySelectorAll('tr')).map(tr =>
+                Array.from(tr.querySelectorAll('td,th')).map(td => td.innerText.trim())
+            ).filter(f => f.length > 0)
+        })).filter(t => t.filas.length > 0);
+    });
+}
+
+// Extrae cabecera (Asesor/Promotoría/GA + tarjetas de indicadores) + tabla
+// "Resumen de Bonos", igual que extraerResumenAsesor pero reusable para
+// Promotoría y Gerente de Agencia.
+async function extraerResumenGeneral(page) {
+    return await page.evaluate(() => {
+        const bodyText = document.body.innerText || '';
+        const lineas = bodyText.split('\n').map(l => l.trim()).filter(Boolean);
+        const cabecera = { _raw: lineas.slice(0, 40) };
+
+        const tablas = Array.from(document.querySelectorAll('table'));
+        let resumenBonos = null;
+        for (const t of tablas) {
+            const headerText = t.innerText.slice(0, 200);
+            if (/Bonos[\s\S]*Bono Mes[\s\S]*Acumulado/i.test(headerText) || /Bono Mes/i.test(headerText)) {
+                resumenBonos = Array.from(t.querySelectorAll('tr')).map(tr =>
+                    Array.from(tr.querySelectorAll('td,th')).map(td => td.innerText.trim())
+                ).filter(f => f.length > 0);
+                break;
+            }
+        }
+        return { cabecera, resumenBonos, todoElTexto: bodyText };
+    });
+}
+
+// Descarga el Reporte de Premios de la Promotoría (Bono Vida + Subsidios) y,
+// desde ahí, el de la Gerente de Agencia (Bono Inicial + Apoyo).
+async function procesarPromotoria(browser) {
+    console.log(`\n🏢 Procesando reporte de PROMOTORÍA y GERENTE DE AGENCIA...`);
+    const carpetaPromotoria = path.join(OUTPUT_DIR, 'PROMOTORIA');
+    const carpetaGA = path.join(OUTPUT_DIR, 'GA_KAREN');
+    if (!fs.existsSync(carpetaPromotoria)) fs.mkdirSync(carpetaPromotoria, { recursive: true });
+    if (!fs.existsSync(carpetaGA)) fs.mkdirSync(carpetaGA, { recursive: true });
+
+    const pages = await browser.pages();
+    let page = pages.find(p => p.url().includes('lineamonterrey') || p.url().includes('asesordeseguros'));
+    if (!page) throw new Error('No se encontró una pestaña logueada en el portal. Abre el portal e inicia sesión.');
+
+    page.removeAllListeners('dialog');
+    page.on('dialog', async (d) => { await d.dismiss().catch(() => {}); });
+
+    let popupPromotor;
+    const resultado = { timestamp: new Date().toISOString(), promotoria: {}, gerenteAgencia: {} };
+
+    try {
+        console.log('   🔗 Navegando a Reportes > Premios...');
+        await page.goto('https://www.lineamonterrey.com.mx/AsesoresWeb/Reportes/Premios/Promotor/PremiosPromotor.aspx', { waitUntil: 'domcontentloaded', timeout: 60000 });
+        await delay(2500);
+
+        console.log('   🖱️ Clic en "AMBRIZ Y DAVALOS SC"...');
+        const clickNombre = await clickPorTexto(page, 'AMBRIZ Y DAVALOS SC', { tag: 'a' });
+        if (!clickNombre) throw new Error('No se encontró el link de "AMBRIZ Y DAVALOS SC"');
+        await delay(2000);
+
+        console.log('   🖱️ Clic en "Aceptar"...');
+        const esperaPromotor = esperarNuevaPagina(browser);
+        const clickAceptar = await clickPorTexto(page, 'Aceptar');
+        if (!clickAceptar) throw new Error('No se encontró el botón "Aceptar"');
+        await delay(1500);
+        popupPromotor = await esperaPromotor;
+        console.log(`   ✅ Ventana Promotor abierta: ${popupPromotor.url()}`);
+        await delay(2500);
+        await volcarDebug(popupPromotor, '1_dashboard_promotoria', carpetaPromotoria);
+
+        // --- Resumen general de la Promotoría (cabecera + Resumen de Bonos) ---
+        resultado.promotoria.resumen = await extraerResumenGeneral(popupPromotor);
+
+        // --- Bono Vida ---
+        console.log('   🖱️ Clic en fila "Bono Vida"...');
+        const clickBonoVida = await clickPorTexto(popupPromotor, 'Bono Vida');
+        if (clickBonoVida) {
+            await delay(2000);
+            await volcarDebug(popupPromotor, '2_bono_vida', carpetaPromotoria);
+            resultado.promotoria.bonoVidaTexto = await popupPromotor.evaluate(() => document.body.innerText);
+            resultado.promotoria.bonoVidaTablas = await extraerTodasLasTablas(popupPromotor);
+
+            // Prima Faltante Nva Org (botón dentro del modal de Bono Vida)
+            console.log('   🖱️ Clic en "Ver Prima Faltante Nva Org."...');
+            let clickFaltante = await clickPorTexto(popupPromotor, 'Ver Prima Faltante Nva Org.');
+            if (!clickFaltante) clickFaltante = await clickPorTexto(popupPromotor, 'Ver Prima Faltante Nva Org', { exact: false });
+            if (clickFaltante) {
+                await delay(1500);
+                await volcarDebug(popupPromotor, '3_prima_faltante', carpetaPromotoria);
+                resultado.promotoria.primaFaltanteTablas = await extraerTodasLasTablas(popupPromotor);
+                await cerrarModalActual(popupPromotor); // cierra el popup de Prima Faltante
+                await delay(1000);
+            } else {
+                console.log('   ⚠️ No se encontró el botón "Ver Prima Faltante Nva Org."');
+            }
+
+            await cerrarModalActual(popupPromotor); // cierra el modal de Bono Vida
+            await delay(1500);
+        } else {
+            console.log('   ⚠️ No se encontró la fila "Bono Vida" en el Resumen de Bonos');
+        }
+
+        // --- Subsidios ---
+        console.log('   🖱️ Clic en fila "Subsidios"...');
+        const clickSubsidios = await clickPorTexto(popupPromotor, 'Subsidios');
+        if (clickSubsidios) {
+            await delay(2000);
+            await volcarDebug(popupPromotor, '4_subsidios', carpetaPromotoria);
+            resultado.promotoria.subsidiosTexto = await popupPromotor.evaluate(() => document.body.innerText);
+            resultado.promotoria.subsidiosTablas = await extraerTodasLasTablas(popupPromotor);
+            await cerrarModalActual(popupPromotor);
+            await delay(1500);
+        } else {
+            console.log('   ⚠️ No se encontró la fila "Subsidios" en el Resumen de Bonos');
+        }
+
+        fs.writeFileSync(path.join(carpetaPromotoria, 'data.json'), JSON.stringify(resultado.promotoria, null, 2));
+        console.log('   💾 Guardado en premios/PROMOTORIA/data.json');
+
+        // --- Gerente de Agencia (Karen): "GA" abre una lista ("Mis Gerentes de
+        // Agencia") con DOS íconos por fila: una ❌/✅ de estatus de Apoyo (que
+        // solo expande un mini-resumen inline si le da clic) y, más a la
+        // derecha, un ícono ↗ real de navegación (<a target="_blank">) que abre
+        // en pestaña nueva el dashboard completo de esa Gerente. Hay que
+        // asegurarnos de clickear ESE, no el de estatus.
+        console.log('   🖱️ Clic en indicador "GA"...');
+        const clickGA = await clickPorTexto(popupPromotor, 'GA');
+        if (!clickGA) {
+            console.log('   ⚠️ No se encontró el indicador "GA" — se omite el reporte de Gerente de Agencia.');
+        } else {
+            await delay(1500);
+            await volcarDebug(popupPromotor, '5a_lista_ga', carpetaGA);
+
+            console.log('   🖱️ Clic en el ícono ↗ de detalle de Karen...');
+            const esperaGA = esperarNuevaPagina(browser);
+            const marcaIconoGA = `mcp-icono-ga-${Date.now()}`;
+            const iconoGAEncontrado = await popupPromotor.evaluate((marca) => {
+                const filas = Array.from(document.querySelectorAll('tr')).filter(tr => /karen/i.test(tr.innerText));
+                for (const fila of filas) {
+                    // Preferimos un <a> real con target="_blank" o href (el ↗
+                    // de navegación); si no hay, tomamos el ÚLTIMO ícono de la
+                    // fila (el ↗ está más a la derecha que la ❌ de estatus).
+                    let clicable = fila.querySelector('a[target="_blank"], a[href]:not([href="#"])');
+                    if (!clicable) {
+                        const iconos = Array.from(fila.querySelectorAll('a, svg, i, [class*="icon"]'));
+                        const ultimo = iconos[iconos.length - 1];
+                        clicable = ultimo?.closest('a, button, td') || ultimo;
+                    }
+                    if (clicable) { clicable.setAttribute('data-mcp-target', marca); return true; }
+                }
+                return false;
+            }, marcaIconoGA);
+            let popupGA = null;
+            if (iconoGAEncontrado) {
+                const handleIconoGA = await popupPromotor.$(`[data-mcp-target="${marcaIconoGA}"]`);
+                await handleIconoGA?.evaluate(el => el.scrollIntoView({ block: 'center' })).catch(() => {});
+                try { await handleIconoGA.click(); } catch (e) { await handleIconoGA.evaluate(el => el.click()); }
+                popupGA = await esperaGA.catch(() => null);
+            } else {
+                console.log('   ⚠️ No se encontró el ícono de detalle de Karen en la lista de Gerentes de Agencia');
+            }
+
+            const paginaGA = popupGA || popupPromotor;
+            if (popupGA) {
+                console.log('   ⏳ Esperando a que termine de redirigir a hojameta...');
+                await esperarPaginaEstable(paginaGA);
+            }
+            await delay(1500);
+            await volcarDebug(paginaGA, '5_dashboard_ga', carpetaGA);
+            console.log(`   ✅ Reporte de GA en: ${paginaGA.url()}`);
+
+            resultado.gerenteAgencia.resumen = await extraerResumenGeneral(paginaGA);
+
+            // --- Bono Inicial (GA) ---
+            console.log('   🖱️ Clic en fila "Bono Inicial"...');
+            const clickBonoInicial = await clickPorTexto(paginaGA, 'Bono Inicial');
+            if (clickBonoInicial) {
+                await delay(2500); // el detalle de asesores (DataTable) puede tardar en cargar
+                await volcarDebug(paginaGA, '6_bono_inicial_ga', carpetaGA);
+                resultado.gerenteAgencia.bonoInicialTexto = await paginaGA.evaluate(() => document.body.innerText);
+                resultado.gerenteAgencia.bonoInicialTablas = await extraerTodasLasTablas(paginaGA);
+                await cerrarModalActual(paginaGA);
+                await delay(1500);
+            } else {
+                console.log('   ⚠️ No se encontró la fila "Bono Inicial" en el Resumen de Bonos de GA');
+            }
+
+            // --- Apoyos (GA) ---
+            console.log('   🖱️ Clic en fila "Apoyos"...');
+            let clickApoyo = await clickPorTexto(paginaGA, 'Apoyos');
+            if (!clickApoyo) clickApoyo = await clickPorTexto(paginaGA, 'Apoyo');
+            if (!clickApoyo) clickApoyo = await clickPorTexto(paginaGA, 'Bono Apoyos', { exact: false });
+            if (clickApoyo) {
+                await delay(2000);
+                await volcarDebug(paginaGA, '7_apoyo_ga', carpetaGA);
+                resultado.gerenteAgencia.apoyoTexto = await paginaGA.evaluate(() => document.body.innerText);
+                resultado.gerenteAgencia.apoyoTablas = await extraerTodasLasTablas(paginaGA);
+                await cerrarModalActual(paginaGA);
+                await delay(1500);
+            } else {
+                console.log('   ⚠️ No se encontró la fila "Apoyo" en el Resumen de Bonos de GA');
+            }
+
+            if (popupGA) await popupGA.close().catch(() => {});
+        }
+
+        fs.writeFileSync(path.join(carpetaGA, 'data.json'), JSON.stringify(resultado.gerenteAgencia, null, 2));
+        console.log('   💾 Guardado en premios/GA_KAREN/data.json');
+
+        return resultado;
+    } finally {
+        await popupPromotor?.close().catch(() => {});
+    }
 }
 
 async function procesarAsesor(browser, clave, intento = 1) {
@@ -314,13 +590,18 @@ async function procesarAsesor(browser, clave, intento = 1) {
 }
 
 async function main() {
-    if (CLAVES.length === 0) {
-        console.error('❌ Debes indicar al menos una clave. Ej: node descargar_premios.js 47116 117440');
+    const soloPromotoria = CLAVES.includes('--promotoria');
+    const clavesAsesores = CLAVES.filter(c => c !== '--promotoria');
+
+    if (clavesAsesores.length === 0 && !soloPromotoria) {
+        console.error('❌ Debes indicar al menos una clave, o --promotoria. Ej: node descargar_premios.js 47116 117440');
+        console.error('   Para el reporte de Promotoría + Gerente de Agencia: node descargar_premios.js --promotoria');
         process.exit(1);
     }
 
     console.log('🚀 Iniciando descarga de Reportes de Premios...');
-    console.log(`   Claves a procesar: ${CLAVES.join(', ')}`);
+    if (clavesAsesores.length > 0) console.log(`   Claves a procesar: ${clavesAsesores.join(', ')}`);
+    if (soloPromotoria) console.log('   + Reporte de Promotoría / Gerente de Agencia');
 
     let browser;
     try {
@@ -330,10 +611,19 @@ async function main() {
         process.exit(1);
     }
 
+    if (soloPromotoria) {
+        try {
+            await procesarPromotoria(browser);
+        } catch (err) {
+            console.error('   ❌ Error procesando Promotoría/GA:', err.message);
+        }
+        await delay(1500);
+    }
+
     const resultados = [];
     const fallidos = [];
 
-    for (const clave of CLAVES) {
+    for (const clave of clavesAsesores) {
         try {
             const r = await procesarAsesor(browser, clave);
             resultados.push(r);
@@ -346,7 +636,7 @@ async function main() {
     }
 
     console.log('\n✨ Proceso completado.');
-    console.log(`   ✅ Procesados: ${resultados.length}/${CLAVES.length}`);
+    console.log(`   ✅ Procesados: ${resultados.length}/${clavesAsesores.length}`);
     if (fallidos.length > 0) {
         console.log(`   ⚠️ Necesitan revisión manual (Opción B): ${fallidos.join(', ')}`);
     }

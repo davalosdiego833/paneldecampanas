@@ -6,6 +6,8 @@ import EstatusPolizasContent from './EstatusPolizas';
 import ConvencionesPromotores from './Dashboards/ConvencionesPromotores';
 import { QsQVidaContent } from './QsQVida';
 import { QsQGmmContent } from './QsQGmm';
+import BonoPromotoria from './Dashboards/BonoPromotoria';
+import BonoGerenteAgencia from './Dashboards/BonoGerenteAgencia';
 
 interface Props {
     onBack: () => void;
@@ -16,7 +18,7 @@ interface Props {
     gerenciaName?: string;
 }
 
-type Section = 'pagado_pendiente' | 'asesores_sin_emision' | 'proactivos' | 'comparativo_vida' | 'qsq_vida' | 'qsq_gmm' | 'estatus_polizas';
+type Section = 'pagado_pendiente' | 'asesores_sin_emision' | 'proactivos' | 'comparativo_vida' | 'qsq_vida' | 'qsq_gmm' | 'estatus_polizas' | 'reporte_premios';
 
 const fmt = (n: number | null | undefined) => {
     if (n == null || isNaN(Number(n))) return '$0';
@@ -188,6 +190,7 @@ const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggl
         { key: 'qsq_vida', label: 'QsQ Vida', icon: <Lightbulb size={18} /> },
         { key: 'qsq_gmm', label: 'QsQ GMM', icon: <Hospital size={18} /> },
         { key: 'estatus_polizas', label: 'Estatus Pólizas', icon: <Shield size={18} /> },
+        { key: 'reporte_premios', label: 'Reporte de Premios', icon: <Award size={18} /> },
     ];
 
     // Hide 'Estatus Pólizas' if we are in a Gerencia view (sucursalFilter is active)
@@ -202,6 +205,9 @@ const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggl
     const renderContent = () => {
         // Estatus Pólizas manages its own data loading, render it independently
         if (section === 'estatus_polizas') return <EstatusPolizasContent />;
+        // Reporte de Premios también maneja su propia carga (fetch a su propio
+        // endpoint), independiente del resto de secciones de esta pantalla.
+        if (section === 'reporte_premios') return isGerencia ? <BonoGerenteAgencia /> : <BonoPromotoria />;
 
         if (loading) return <div style={{ textAlign: 'center', padding: '80px', color: 'var(--text-secondary)' }}>Cargando datos...</div>;
         if (!data) return <div style={{ textAlign: 'center', padding: '80px', color: 'var(--danger-red)' }}>Error al cargar datos</div>;
