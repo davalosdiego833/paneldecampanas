@@ -1,5 +1,46 @@
 {
-  "generatedAt": "2/9/2026, 3:08:40 p.m.",
-  "totalNew": 0,
-  "alerts": []
+  "generatedAt": "3/9/2026, 11:10:36 a.m.",
+  "totalNew": 4,
+  "alerts": [
+    {
+      "id": "94185274-10d9-4c50-9bcc-e60389feab98",
+      "asesor": "DARINKA UREÑA CASILLAS",
+      "firstName": "Darinka",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Darinka, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *2 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "dd1dd996-e278-4686-8f46-450c6f373926",
+      "asesor": "PAULA ANGELICA LOMELI CAZARES",
+      "firstName": "Paula",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Paula, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *2 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "1e061a62-9b0d-4386-94b6-5cfafda6eb72",
+      "asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
+      "firstName": "Luis",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Luis, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *2 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "1b50e2dc-819e-4c2e-9f00-c98742f5b5bf",
+      "asesor": "GUILLERMO JOSE RAMIREZ RAMIREZ",
+      "firstName": "Guillermo",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Guillermo, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    }
+  ]
 }

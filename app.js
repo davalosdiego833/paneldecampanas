@@ -677,6 +677,30 @@ app.get('/api/premios/:advisor', (req, res) => {
         res.status(500).json({ error: 'Error al leer el reporte de premios' });
     }
 });
+// Reportes de Premios de la Promotoría y de la Gerente de Agencia (solo admin).
+// Son entidades únicas (no hay "cuál clave" que resolver como en /api/premios/:advisor).
+function servirPremiosCarpeta(carpeta) {
+    return (req, res) => {
+        try {
+            const candidatePaths = [
+                path.join(BASE_PATH, 'premios', carpeta, 'data.json'),
+                path.join(safeDirname, 'premios', carpeta, 'data.json'),
+                path.join(process.cwd(), 'premios', carpeta, 'data.json'),
+            ];
+            const filePath = candidatePaths.find(p => safeExists(p));
+            if (!filePath)
+                return res.status(404).json({ error: 'Reporte aún no descargado' });
+            const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+            res.json(data);
+        }
+        catch (error) {
+            console.error('Error leyendo premios:', error);
+            res.status(500).json({ error: 'Error al leer el reporte de premios' });
+        }
+    };
+}
+app.get('/api/premios-promotoria', servirPremiosCarpeta('PROMOTORIA'));
+app.get('/api/premios-ga', servirPremiosCarpeta('GA_KAREN'));
 app.get('/api/advisors', (req, res) => {
     try {
         const advisors = getCachedAdvisors();
