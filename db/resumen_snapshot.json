@@ -1,5 +1,5 @@
 {
-  "updatedAt": "7/9/2026, 11:53:01 a.m.",
+  "updatedAt": "7/9/2026, 12:23:45 p.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -3946,7 +3946,7 @@
         {
           "Asesor": "DARINKA UREÑA CASILLAS",
           "Clave": "90355",
-          "Total_Polizas": 22.5,
+          "Total_Polizas": 23.5,
           "Mes_Actual": 8,
           "Nivel": "",
           "EnMeta": false
@@ -3978,7 +3978,15 @@
         {
           "Asesor": "SOFIA CAMPILLO VASCONCELOS",
           "Clave": "116883",
-          "Total_Polizas": 10.5,
+          "Total_Polizas": 11.5,
+          "Mes_Actual": 8,
+          "Nivel": "",
+          "EnMeta": false
+        },
+        {
+          "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+          "Clave": "104750",
+          "Total_Polizas": 10,
           "Mes_Actual": 8,
           "Nivel": "",
           "EnMeta": false
@@ -3992,17 +4000,9 @@
           "EnMeta": false
         },
         {
-          "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
-          "Clave": "104750",
-          "Total_Polizas": 9.5,
-          "Mes_Actual": 8,
-          "Nivel": "",
-          "EnMeta": false
-        },
-        {
-          "Asesor": "MARIA TERESA ASENCIO LOZANO",
-          "Clave": "94156",
-          "Total_Polizas": 8.5,
+          "Asesor": "ROGELIO TORRES ORTIZ",
+          "Clave": "104718",
+          "Total_Polizas": 8,
           "Mes_Actual": 8,
           "Nivel": "",
           "EnMeta": false
@@ -4016,8 +4016,16 @@
           "EnMeta": false
         },
         {
-          "Asesor": "ROGELIO TORRES ORTIZ",
-          "Clave": "104718",
+          "Asesor": "MARIO IVAN ROMERO GONZALEZ",
+          "Clave": "118069",
+          "Total_Polizas": 8,
+          "Mes_Actual": 8,
+          "Nivel": "",
+          "EnMeta": false
+        },
+        {
+          "Asesor": "MARIA TERESA ASENCIO LOZANO",
+          "Clave": "94156",
           "Total_Polizas": 8,
           "Mes_Actual": 8,
           "Nivel": "",
@@ -4032,17 +4040,9 @@
           "EnMeta": false
         },
         {
-          "Asesor": "MARIO IVAN ROMERO GONZALEZ",
-          "Clave": "118069",
-          "Total_Polizas": 7.5,
-          "Mes_Actual": 8,
-          "Nivel": "",
-          "EnMeta": false
-        },
-        {
           "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
           "Clave": "108404",
-          "Total_Polizas": 5.5,
+          "Total_Polizas": 6.5,
           "Mes_Actual": 8,
           "Nivel": "",
           "EnMeta": false
@@ -4064,9 +4064,9 @@
           "EnMeta": false
         },
         {
-          "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
-          "Clave": "113450",
-          "Total_Polizas": 4.5,
+          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
+          "Clave": "116876",
+          "Total_Polizas": 5,
           "Mes_Actual": 8,
           "Nivel": "",
           "EnMeta": false
@@ -4074,15 +4074,15 @@
         {
           "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
           "Clave": "118246",
-          "Total_Polizas": 4,
+          "Total_Polizas": 4.5,
           "Mes_Actual": 8,
           "Nivel": "",
           "EnMeta": false
         },
         {
-          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
-          "Clave": "116876",
-          "Total_Polizas": 4,
+          "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
+          "Clave": "113450",
+          "Total_Polizas": 4.5,
           "Mes_Actual": 8,
           "Nivel": "",
           "EnMeta": false
@@ -4104,6 +4104,14 @@
           "EnMeta": false
         },
         {
+          "Asesor": "Asesor 118915",
+          "Clave": "118915",
+          "Total_Polizas": 3,
+          "Mes_Actual": 8,
+          "Nivel": "",
+          "EnMeta": false
+        },
+        {
           "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
           "Clave": "115404",
           "Total_Polizas": 2.5,
@@ -4120,6 +4128,14 @@
           "EnMeta": false
         },
         {
+          "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
+          "Clave": "104343",
+          "Total_Polizas": 2.5,
+          "Mes_Actual": 8,
+          "Nivel": "",
+          "EnMeta": false
+        },
+        {
           "Asesor": "MIREYA LIZETTE TORRES GARCIA",
           "Clave": "106018",
           "Total_Polizas": 2,
@@ -4128,25 +4144,9 @@
           "EnMeta": false
         },
         {
-          "Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
-          "Clave": "107488",
-          "Total_Polizas": 2,
-          "Mes_Actual": 8,
-          "Nivel": "",
-          "EnMeta": false
-        },
-        {
-          "Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
-          "Clave": "114157",
-          "Total_Polizas": 1.5,
-          "Mes_Actual": 8,
-          "Nivel": "",
-          "EnMeta": false
-        },
-        {
-          "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
-          "Clave": "104343",
-          "Total_Polizas": 1.5,
+          "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
+          "Clave": "59120",
+          "Total_Polizas": 0,
           "Mes_Actual": 8,
           "Nivel": "",
           "EnMeta": false
@@ -4154,14 +4154,6 @@
         {
           "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
           "Clave": "63441",
-          "Total_Polizas": 0,
-          "Mes_Actual": 8,
-          "Nivel": "",
-          "EnMeta": false
-        },
-        {
-          "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
-          "Clave": "59120",
           "Total_Polizas": 0,
           "Mes_Actual": 8,
           "Nivel": "",
@@ -5213,7 +5205,7 @@
     "campaignDates": {
       "mdrt": "26 de agosto de 2026",
       "convenciones": "21 de Agosto de 2026",
-      "legion_centurion": "26 de agosto de 2026",
+      "legion_centurion": "31 de agosto de 2026",
       "camino_cumbre": "26 de agosto de 2026",
       "graduacion": "31 de julio de 2026",
       "proactiva_tech": "26 de agosto 2026",
