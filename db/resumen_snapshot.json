@@ -1,5 +1,5 @@
 {
-  "updatedAt": "7/9/2026, 6:55:20 p.m.",
+  "updatedAt": "8/9/2026, 9:24:36 a.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -3323,7 +3323,7 @@
         {
           "Asesor": "DESIREE DE LA PEÑA OROZCO",
           "Clave": "80122",
-          "PA_Acumulada": 982530.8
+          "PA_Acumulada": 1032810.54
         },
         {
           "Asesor": "DARINKA UREÑA CASILLAS",
@@ -3333,12 +3333,7 @@
         {
           "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
           "Clave": "47116",
-          "PA_Acumulada": 665865.91
-        },
-        {
-          "Asesor": "MARIA TERESA ASENCIO LOZANO",
-          "Clave": "94156",
-          "PA_Acumulada": 492768.17
+          "PA_Acumulada": 665891.89
         },
         {
           "Asesor": "JORGE ANTONIO LUNA LARA",
@@ -3348,7 +3343,12 @@
         {
           "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
           "Clave": "104750",
-          "PA_Acumulada": 463126.1
+          "PA_Acumulada": 486080.81
+        },
+        {
+          "Asesor": "MARIA TERESA ASENCIO LOZANO",
+          "Clave": "94156",
+          "PA_Acumulada": 478615.59
         },
         {
           "Asesor": "MONSERRAT VELASCO SANTOS",
@@ -3391,14 +3391,14 @@
           "PA_Acumulada": 219305.68
         },
         {
+          "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
+          "Clave": "113450",
+          "PA_Acumulada": 211587.83
+        },
+        {
           "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
           "Clave": "108404",
           "PA_Acumulada": 207864.37
-        },
-        {
-          "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
-          "Clave": "113450",
-          "PA_Acumulada": 207392.84
         },
         {
           "Asesor": "MARIA FERNANDA RIOS BERNAL",
@@ -3406,9 +3406,14 @@
           "PA_Acumulada": 207152.09
         },
         {
+          "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
+          "Clave": "118246",
+          "PA_Acumulada": 205530.99
+        },
+        {
           "Asesor": "VELIA PATRICIA BERNAL RAMOS",
           "Clave": "115047",
-          "PA_Acumulada": 174860.14
+          "PA_Acumulada": 175001.09
         },
         {
           "Asesor": "JULIANA RIASCOS VALENCIA",
@@ -3416,14 +3421,9 @@
           "PA_Acumulada": 156169.12
         },
         {
-          "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
-          "Clave": "118246",
-          "PA_Acumulada": 149134.11
-        },
-        {
           "Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
           "Clave": "107488",
-          "PA_Acumulada": 145772.58
+          "PA_Acumulada": 122053.92
         },
         {
           "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
@@ -3441,6 +3441,11 @@
           "PA_Acumulada": 103923.64
         },
         {
+          "Asesor": "Asesor 118915",
+          "Clave": "118915",
+          "PA_Acumulada": 98864.88
+        },
+        {
           "Asesor": "MIREYA LIZETTE TORRES GARCIA",
           "Clave": "106018",
           "PA_Acumulada": 59625.88
@@ -3449,11 +3454,6 @@
           "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
           "Clave": "98797",
           "PA_Acumulada": 39848.49
-        },
-        {
-          "Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
-          "Clave": "114157",
-          "PA_Acumulada": 39589.27
         },
         {
           "Asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
@@ -5085,7 +5085,7 @@
       ]
     },
     "campaignDates": {
-      "mdrt": "26 de agosto de 2026",
+      "mdrt": "31 de agosto de 2026",
       "convenciones": "21 de Agosto de 2026",
       "legion_centurion": "31 de agosto de 2026",
       "camino_cumbre": "26 de agosto de 2026",

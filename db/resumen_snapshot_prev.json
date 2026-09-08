@@ -1,5 +1,5 @@
 {
-  "updatedAt": "7/9/2026, 1:00:19 p.m.",
+  "updatedAt": "7/9/2026, 6:55:20 p.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -4467,118 +4467,7 @@
           "Ranking": 4936
         }
       ],
-      "reto_por_ciento": [
-        {
-          "Asesor": "DESIREE DE LA PEÑA OROZCO",
-          "Clave": "80122",
-          "Conexion": "28 de Septiembre de 2018",
-          "Conteo": 2.5,
-          "Cumplimiento": false,
-          "Suma_Comision": 51638.64,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "DARINKA UREÑA CASILLAS",
-          "Clave": "90355",
-          "Conexion": "28 de Abril de 2020",
-          "Conteo": 2.5,
-          "Cumplimiento": false,
-          "Suma_Comision": 14368.07,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "Conexion": "23 de Septiembre de 2019",
-          "Conteo": 1,
-          "Cumplimiento": false,
-          "Suma_Comision": 32759.26,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "MARIA TERESA ASENCIO LOZANO",
-          "Clave": "94156",
-          "Conexion": "24 de Noviembre de 2020",
-          "Conteo": 1,
-          "Cumplimiento": false,
-          "Suma_Comision": 9960.95,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
-          "Clave": "95148",
-          "Conexion": "21 de Diciembre de 2022",
-          "Conteo": 0,
-          "Cumplimiento": false,
-          "Suma_Comision": 0,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "Conexion": "24 de Febrero de 2022",
-          "Conteo": 0,
-          "Cumplimiento": false,
-          "Suma_Comision": 0,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
-          "Clave": "98797",
-          "Conexion": "26 de Mayo de 2021",
-          "Conteo": 0,
-          "Cumplimiento": false,
-          "Suma_Comision": 0,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
-          "Clave": "59120",
-          "Conexion": "27 de Mayo de 2022",
-          "Conteo": 0,
-          "Cumplimiento": false,
-          "Suma_Comision": 0,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
-          "Clave": "63441",
-          "Conexion": "21 de Junio de 2022",
-          "Conteo": 0,
-          "Cumplimiento": false,
-          "Suma_Comision": 0,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "KAREN MUÑOZ GARCIA",
-          "Clave": "81044",
-          "Conexion": "7 de Noviembre de 2022",
-          "Conteo": 0,
-          "Cumplimiento": false,
-          "Suma_Comision": 0,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        },
-        {
-          "Asesor": "MARICELA ARREOLA LOPEZ",
-          "Clave": "80925",
-          "Conexion": "5 de Diciembre de 2018",
-          "Conteo": 0,
-          "Cumplimiento": false,
-          "Suma_Comision": 0,
-          "Porcentaje": 0,
-          "Extracomision": 0
-        }
-      ],
+      "reto_por_ciento": [],
       "convenciones_promotores": {
         "fecha_corte": "21 de agosto 2026",
         "promotoria": {
@@ -5202,7 +5091,7 @@
       "camino_cumbre": "26 de agosto de 2026",
       "graduacion": "31 de julio de 2026",
       "proactiva_tech": "31 de agosto 2026",
-      "reto_por_ciento": "26 DE AGOSTO 2026",
+      "reto_por_ciento": "31 DE AGOSTO 2026",
       "convenciones_promotores": "21 de agosto 2026",
       "convenciones_gerente": "21-AGO-2026",
       "educar_es_creer": "31 de agosto de 2026"
