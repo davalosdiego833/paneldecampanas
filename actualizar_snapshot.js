@@ -454,7 +454,7 @@ const run = async () => {
                             return found ? Number(found[comCol] || 0) : 0;
                         };
 
-                        // Camino 1 thresholds (ranking col 30, comisiones col 13)
+                        // Camino 1 thresholds (ranking col 30, comisiones col 13) — sin cambios, aplica a "Lineas Personales"
                         const c1_3d = findRankVal(30, 13, 3);   // 3 Diamantes: lugar 3
                         const c1_2d = findRankVal(30, 13, 6);   // 2 Diamantes: lugar 6
                         const c1_1d = findRankVal(30, 13, 9);   // 1 Diamante: lugar 9
@@ -553,11 +553,11 @@ const run = async () => {
                         const topC1Row = data1.slice().sort((a, b) => (Number(b[11]) || 0) - (Number(a[11]) || 0))[0];
                         const topC1Val = Number(topC1Row?.[11]) || 0;
 
-                        const topC2Row = data1.slice().sort((a, b) => (Number(b[14]) || 0) - (Number(a[14]) || 0))[0];
-                        const topC2Val = Number(topC2Row?.[14]) || 0;
+                        const topC2Row = data1.slice().sort((a, b) => (Number(b[15]) || 0) - (Number(a[15]) || 0))[0];
+                        const topC2Val = Number(topC2Row?.[15]) || 0;
 
-                        const topC3Row = data2.slice().sort((a, b) => (Number(b[10]) || 0) - (Number(a[10]) || 0))[0];
-                        const topC3Val = Number(topC3Row?.[10]) || 0;
+                        const topC3Row = data2.slice().sort((a, b) => (Number(b[11]) || 0) - (Number(a[11]) || 0))[0];
+                        const topC3Val = Number(topC3Row?.[11]) || 0;
 
                         // Cutoff date
                         let fechaCorte = campaigns.convenciones_promotores?.fecha_corte || '31 de julio 2026';
@@ -577,14 +577,14 @@ const run = async () => {
                                 nombre: String(mat2?.[7] || mat1?.[7] || 'KAREN MUÑOZ GARCÍA'),
                                 mat: '2043',
                                 suc: '2856',
-                                // Camino 1 (Comisiones Asesores 12 Meses)
+                                // Camino 1 (Comisiones Asesores 12 Meses): L=Total Asesores 12 Mes, Q=1er Camino (ranking)
                                 c1_total: Number(mat1[11] || 0),
-                                c1_ranking: Number(mat1[15] || mat1[1] || 0),
-                                // Camino 2 (Comisiones Nueva Organización)
-                                c2_total: Number(mat1[14] || 0),
-                                c2_ranking: Number(mat1[16] || 0),
-                                // Camino 3 (Comisiones Asesores 12m Gerente 36m)
-                                c3_total: Number(mat2?.[10] || 0),
+                                c1_ranking: Number(mat1[16] || mat1[1] || 0),
+                                // Camino 2 (Comisiones Nueva Organización): P=Total Nueva Organización, R=2do Camino (ranking)
+                                c2_total: Number(mat1[15] || 0),
+                                c2_ranking: Number(mat1[17] || 0),
+                                // Camino 3 (Comisiones Asesores 12m Gerente 36m, hoja "Gerente de Agencia 36"): L=Total Asesores 12 Mes, B=Lugar (ranking)
+                                c3_total: Number(mat2?.[11] || 0),
                                 c3_ranking: Number(mat2?.[1] || 0),
                                 // Candados
                                 asesores_ta_gerencia: Number(mat1[18] || 0),

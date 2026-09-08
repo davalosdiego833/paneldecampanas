@@ -1,5 +1,16 @@
 {
-  "generatedAt": "8/9/2026, 10:41:20 a.m.",
-  "totalNew": 0,
-  "alerts": []
+  "generatedAt": "8/9/2026, 1:40:39 p.m.",
+  "totalNew": 1,
+  "alerts": [
+    {
+      "id": "b65dfd7a-f307-4708-b790-7a67f7d9069e",
+      "asesor": "VELIA PATRICIA BERNAL RAMOS",
+      "firstName": "Velia",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Velia, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    }
+  ]
 }
