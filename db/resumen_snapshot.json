@@ -1,5 +1,5 @@
 {
-  "updatedAt": "8/9/2026, 9:35:15 a.m.",
+  "updatedAt": "8/9/2026, 9:53:10 a.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -4263,66 +4263,66 @@
         {
           "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
           "Clave": "113450",
-          "Mes_Asesor": 13,
+          "Mes_Asesor": 14,
           "Polizas_Totales": 15,
           "Comisones": 130513,
           "Fecha_Limite_Meta": "1 de Junio de 2026"
         },
         {
-          "Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
-          "Clave": "114157",
-          "Mes_Asesor": 11,
-          "Polizas_Totales": 9.5,
-          "Comisones": 59636.98,
-          "Fecha_Limite_Meta": "1 de Agosto de 2026"
-        },
-        {
           "Asesor": "VELIA PATRICIA BERNAL RAMOS",
           "Clave": "115047",
-          "Mes_Asesor": 10,
-          "Polizas_Totales": 17,
-          "Comisones": 136531.5,
+          "Mes_Asesor": 11,
+          "Polizas_Totales": 17.5,
+          "Comisones": 140484.68,
           "Fecha_Limite_Meta": "1 de Septiembre de 2026"
         },
         {
           "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
           "Clave": "115404",
-          "Mes_Asesor": 9,
+          "Mes_Asesor": 10,
           "Polizas_Totales": 12,
-          "Comisones": 85212.37,
+          "Comisones": 91690.86,
           "Fecha_Limite_Meta": "1 de Octubre de 2026"
         },
         {
           "Asesor": "PAULA ANGELICA LOMELI CAZARES",
           "Clave": "116876",
-          "Mes_Asesor": 5,
-          "Polizas_Totales": 6.5,
-          "Comisones": 31248.76,
+          "Mes_Asesor": 6,
+          "Polizas_Totales": 8.5,
+          "Comisones": 38767.38,
           "Fecha_Limite_Meta": "1 de Febrero de 2027"
         },
         {
           "Asesor": "SOFIA CAMPILLO VASCONCELOS",
           "Clave": "116883",
-          "Mes_Asesor": 4,
+          "Mes_Asesor": 5,
           "Polizas_Totales": 14,
-          "Comisones": 56416.83,
+          "Comisones": 60364.2,
           "Fecha_Limite_Meta": "1 de Marzo de 2027"
         },
         {
           "Asesor": "MONSERRAT VELASCO SANTOS",
           "Clave": "117440",
-          "Mes_Asesor": 3,
-          "Polizas_Totales": 12,
-          "Comisones": 71696.4,
+          "Mes_Asesor": 4,
+          "Polizas_Totales": 13,
+          "Comisones": 91688.88,
           "Fecha_Limite_Meta": "1 de Abril de 2027"
         },
         {
           "Asesor": "MARIO IVAN ROMERO GONZALEZ",
           "Clave": "118069",
-          "Mes_Asesor": 2,
-          "Polizas_Totales": 7.5,
-          "Comisones": 51146.15,
+          "Mes_Asesor": 3,
+          "Polizas_Totales": 9,
+          "Comisones": 59265.79,
           "Fecha_Limite_Meta": "1 de Mayo de 2027"
+        },
+        {
+          "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
+          "Clave": "118246",
+          "Mes_Asesor": 1,
+          "Polizas_Totales": 5.5,
+          "Comisones": 15290.41,
+          "Fecha_Limite_Meta": "1 de Julio de 2027"
         }
       ],
       "proactiva_tech": [
@@ -5089,7 +5089,7 @@
       "convenciones": "21 de Agosto de 2026",
       "legion_centurion": "31 de agosto de 2026",
       "camino_cumbre": "31 de agosto de 2026",
-      "graduacion": "31 de julio de 2026",
+      "graduacion": "31 de agosto de 2026",
       "proactiva_tech": "31 de agosto 2026",
       "reto_por_ciento": "31 DE AGOSTO 2026",
       "convenciones_promotores": "21 de agosto 2026",
