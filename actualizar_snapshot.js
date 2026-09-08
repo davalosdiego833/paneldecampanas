@@ -405,7 +405,7 @@ const run = async () => {
                     if (recentFile) {
                         let wb = readExcelSheetMemorySafe(path.join(rpcPath, recentFile), n => n.toUpperCase() === 'ASESORES');
                         let ws = wb.Sheets[wb.SheetNames[0]];
-                        let raw = XLSX.utils.sheet_to_json(ws, { range: 7 });
+                        let raw = extractData(ws);
                         campaigns.reto_por_ciento = raw.filter(r => {
                             const matKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'MATRIZ' || k.trim().toUpperCase() === 'PROM_MAT'));
                             const sucKey = Object.keys(r).find(k => k && (k.trim().toUpperCase() === 'SUCURSAL' || k.trim().toUpperCase() === 'PROM_SUC'));
