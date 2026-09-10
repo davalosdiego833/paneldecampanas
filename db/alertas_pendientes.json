@@ -1,15 +1,25 @@
 {
-  "generatedAt": "8/9/2026, 1:40:39 p.m.",
-  "totalNew": 1,
+  "generatedAt": "9/9/2026, 1:14:34 p.m.",
+  "totalNew": 2,
   "alerts": [
     {
-      "id": "b65dfd7a-f307-4708-b790-7a67f7d9069e",
-      "asesor": "VELIA PATRICIA BERNAL RAMOS",
-      "firstName": "Velia",
+      "id": "32669f48-3610-4f44-a3eb-44bec7ad3305",
+      "asesor": "ANAIS LUA MORENO",
+      "firstName": "Anais",
       "campaign": "pagado_emitido",
       "type": "positive",
       "event": "¡Nueva póliza pagada!",
-      "message": "Hola Velia, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "message": "Hola Anais, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "39a62f9a-916c-43a9-891f-7383ad1b0ae5",
+      "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+      "firstName": "Monica",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Monica, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
       "sent": false
     }
   ]
