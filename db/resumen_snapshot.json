@@ -1,5 +1,5 @@
 {
-  "updatedAt": "9/9/2026, 7:42:40 p.m.",
+  "updatedAt": "10/9/2026, 10:29:08 a.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -1328,7 +1328,7 @@
           "Fecha_Conexion": "2023-12-18"
         },
         {
-          "ASESOR": "Asesor 118915",
+          "ASESOR": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
           "SUC": 2043,
           "Polizas_Acumuladas_Mes_Ant.": 2,
           "Polizas_Del_mes": 1,
@@ -1337,7 +1337,7 @@
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 2,
-          "Fecha_Conexion": "N/A"
+          "Fecha_Conexion": "2026-08-27"
         },
         {
           "ASESOR": "MARIA TERESA ASENCIO LOZANO",
@@ -3441,7 +3441,7 @@
           "PA_Acumulada": 103923.64
         },
         {
-          "Asesor": "Asesor 118915",
+          "Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
           "Clave": "118915",
           "PA_Acumulada": 98864.88
         },
@@ -3590,7 +3590,7 @@
           "RDA": 0
         },
         {
-          "Asesor": "Asesor 118915",
+          "Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
           "Clave": "118915",
           "PA_Total": 29550.8,
           "Polizas": 3,
@@ -4090,7 +4090,7 @@
           "EnMeta": false
         },
         {
-          "Asesor": "Asesor 118915",
+          "Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
           "Clave": "118915",
           "Total_Polizas": 3,
           "Mes_Actual": 8,
@@ -4236,7 +4236,7 @@
           "Mes_3_Prod": 0
         },
         {
-          "Asesor": "Asesor 118915",
+          "Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
           "Clave": "118915",
           "Mes_Asesor": 1,
           "Polizas_Totales": 3,
@@ -4397,7 +4397,7 @@
           "Ranking": 1618
         },
         {
-          "Asesor": "Asesor 118915",
+          "Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
           "Clave": "118915",
           "Polizas": 1,
           "Comisiones": 11851.85,
@@ -5176,6 +5176,34 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 50,
+          "Kits_Restantes_Nacional": 674
+        },
+        {
+          "Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
+          "Clave": "118915",
+          "Puntos_Doble": 11851.85,
+          "Polizas_Detalle": [
+            {
+              "Poliza": "VI0003006952",
+              "F_Emision": "46245",
+              "F_Pago": "46247",
+              "Forma_Pago": "ANUAL",
+              "Plan": "SEGUBECA 18 PRIMA CONSTANTE",
+              "Prima_Recibo": 33327.6,
+              "Comisiones": 11851.85
+            }
+          ],
+          "Clientes_Kits": [
+            {
+              "Poliza": "VI0003006952",
+              "F_Emision": "46245",
+              "F_Pago": "46247",
+              "Forma_Pago": "ANUAL",
+              "Plan": "SEGUBECA 18 PRIMA CONSTANTE",
+              "Prima_Recibo": 33327.6
+            }
+          ],
           "Kits_Ganados_Nacional": 50,
           "Kits_Restantes_Nacional": 674
         }
