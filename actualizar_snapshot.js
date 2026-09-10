@@ -559,17 +559,11 @@ const run = async () => {
                         const topC3Row = data2.slice().sort((a, b) => (Number(b[11]) || 0) - (Number(a[11]) || 0))[0];
                         const topC3Val = Number(topC3Row?.[11]) || 0;
 
-                        // Cutoff date
-                        let fechaCorte = campaigns.convenciones_promotores?.fecha_corte || '31 de julio 2026';
-                        const c15 = ws1['C15']?.v || ws1['B17']?.v;
-                        if (c15 && String(c15).trim()) {
-                            const dateMatch = String(c15).match(/(\d{1,2}-[A-Z]{3,4}-\d{4})/i) || String(c15).match(/al\s+(.+)/i);
-                            if (dateMatch) {
-                                let raw = dateMatch[1].replace(/\.\s*$/, '').trim();
-                                if (/31-JUL-2026/i.test(raw)) raw = '31 de julio 2026';
-                                fechaCorte = raw;
-                            }
-                        }
+                        // Cutoff date: siempre es la misma que Convenciones Promotores (mismo archivo, mismo corte).
+                        // Antes se intentaba leer C15 de esta hoja, pero esa celda solo guarda la ruta de red
+                        // del archivo (ej. "U:\...\09 Convenciones Promotores 04-SEP-2026.xlsx"), no una fecha
+                        // de corte real, y el regex capturaba por error la fecha del nombre del archivo.
+                        const fechaCorte = campaigns.convenciones_promotores?.fecha_corte || '31 de julio 2026';
 
                         campaigns.convenciones_gerente = {
                             fecha_corte: fechaCorte,

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "8/9/2026, 1:40:22 p.m.",
+  "updatedAt": "9/9/2026, 12:58:35 p.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -19,20 +19,32 @@
           "Sucursal": "2856",
           "Pólizas-Pagadas": 1,
           "Recibo_Inicial_Pagado": 39037.05,
-          "Recibo_Ordinario_Pagado": 1821.92,
-          "Total _Prima_Pagada": 40858.97,
+          "Recibo_Ordinario_Pagado": 6821.96,
+          "Total _Prima_Pagada": 45859.01,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 24779.71,
-          "Total _Prima_Pendiente": 24779.71
+          "Recibo_Ordinario_Pendiente": 19745.09,
+          "Total _Prima_Pendiente": 19745.09
+        },
+        {
+          "Nombre Asesor": "ANAIS LUA MORENO",
+          "Sucursal": "2856",
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 29655.2,
+          "Recibo_Ordinario_Pagado": 11503.4,
+          "Total _Prima_Pagada": 41158.6,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 89858.54,
+          "Total _Prima_Pendiente": 89858.54
         },
         {
           "Nombre Asesor": "SOFIA CAMPILLO VASCONCELOS",
           "Sucursal": "2856",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 13505.41,
-          "Total _Prima_Pagada": 13505.41,
+          "Recibo_Ordinario_Pagado": 14976.76,
+          "Total _Prima_Pagada": 14976.76,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 94372.73,
@@ -51,16 +63,16 @@
           "Total _Prima_Pendiente": 65066.43
         },
         {
-          "Nombre Asesor": "ANAIS LUA MORENO",
-          "Sucursal": "2856",
+          "Nombre Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+          "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 9440.07,
-          "Total _Prima_Pagada": 9440.07,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 89858.54,
-          "Total _Prima_Pendiente": 89858.54
+          "Recibo_Ordinario_Pagado": 9142.64,
+          "Total _Prima_Pagada": 9142.64,
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 9832.18,
+          "Recibo_Ordinario_Pendiente": 234093.61,
+          "Total _Prima_Pendiente": 243925.79
         },
         {
           "Nombre Asesor": "ANDREA CELESTE IBAÑEZ RINCON",
@@ -73,18 +85,6 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 3845.25,
           "Total _Prima_Pendiente": 3845.25
-        },
-        {
-          "Nombre Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 7409.62,
-          "Total _Prima_Pagada": 7409.62,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 235826.63,
-          "Total _Prima_Pendiente": 235826.63
         },
         {
           "Nombre Asesor": "MARICELA ARREOLA LOPEZ",
@@ -147,6 +147,18 @@
           "Total _Prima_Pendiente": 31449.72
         },
         {
+          "Nombre Asesor": "PAULA ANGELICA LOMELI CAZARES",
+          "Sucursal": "2856",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 3524.19,
+          "Total _Prima_Pagada": 3524.19,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 68825.82,
+          "Total _Prima_Pendiente": 68825.82
+        },
+        {
           "Nombre Asesor": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -181,6 +193,18 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 5453.73,
           "Total _Prima_Pendiente": 5453.73
+        },
+        {
+          "Nombre Asesor": "JOSE ANTEMIO OLIVA SANTOS",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 1967.73,
+          "Total _Prima_Pagada": 1967.73,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 26288.67,
+          "Total _Prima_Pendiente": 26288.67
         },
         {
           "Nombre Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
@@ -291,18 +315,6 @@
           "Total _Prima_Pendiente": 49113.6
         },
         {
-          "Nombre Asesor": "JOSE ANTEMIO OLIVA SANTOS",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 28256.41,
-          "Total _Prima_Pendiente": 28256.41
-        },
-        {
           "Nombre Asesor": "MARIO IVAN ROMERO GONZALEZ",
           "Sucursal": "2856",
           "Pólizas-Pagadas": 0,
@@ -313,18 +325,6 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 42404.25,
           "Total _Prima_Pendiente": 42404.25
-        },
-        {
-          "Nombre Asesor": "PAULA ANGELICA LOMELI CAZARES",
-          "Sucursal": "2856",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 68825.82,
-          "Total _Prima_Pendiente": 68825.82
         },
         {
           "Nombre Asesor": "GERARDO DANIEL BARAJAS TORRES",
@@ -3298,7 +3298,7 @@
       }
     },
     "fechas_corte": {
-      "pagado_pendiente": "4 de septiembre de 2026",
+      "pagado_pendiente": "8 de septiembre de 2026",
       "pagado_pendiente_reclutas": "7 de agosto de 2026",
       "asesores_sin_emision": "27 de AGO de 2026",
       "proactivos": "28 de agosto de 2026",
