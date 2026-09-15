@@ -7,6 +7,7 @@ import {
 import {
     calcularBonoTA, calcularBonoVida, TABLA_TA, semestreDeMes,
     cumpleCandadoPolizasVida, pctBonoPorGrupoYLimra, primaFaltantePorGrupo,
+    proyectarBonoInicialParaGrupo,
 } from '../../utils/bonoTablas';
 import SelectorCalculadoraGenerica from './CalculadorasGenericas';
 
@@ -263,9 +264,9 @@ const VistaBonoTA: React.FC<{ cab: CabeceraPremios; det: DetalleTA }> = ({ cab, 
 // calificara en ese grupo. Resalta el Grupo Tope (techo de sus anticipos) y el
 // Grupo Calculado real (si ya tiene uno).
 const TablaPrimaFaltante: React.FC<{
-    primaActual: number; mesEnSemestre: number; esSegundoSemestreDelAnio: boolean;
-    limra: number; grupoCalculado: number; grupoTope: number;
-}> = ({ primaActual, mesEnSemestre, esSegundoSemestreDelAnio, limra, grupoCalculado, grupoTope }) => {
+    primaActual: number; primaPagoActual: number; mesEnSemestre: number; esSegundoSemestreDelAnio: boolean;
+    limra: number; antiguedadMeses: number; grupoCalculado: number; grupoTope: number; bonoAnticipado: number;
+}> = ({ primaActual, primaPagoActual, mesEnSemestre, esSegundoSemestreDelAnio, limra, antiguedadMeses, grupoCalculado, grupoTope, bonoAnticipado }) => {
     const mesesRestantes: number[] = [];
     for (let m = mesEnSemestre; m <= 6; m++) mesesRestantes.push(m);
     const calMes = (m: number) => esSegundoSemestreDelAnio ? 6 + m : m;
@@ -283,12 +284,36 @@ const TablaPrimaFaltante: React.FC<{
                             <th style={{ textAlign: 'left', padding: '6px 8px' }}>Grupo</th>
                             {mesesRestantes.map(m => <th key={m} style={{ padding: '6px 8px' }}>{MESES_ES[calMes(m) - 1]}</th>)}
                             <th style={{ padding: '6px 8px' }}>% Bono</th>
+                            <th style={{ padding: '6px 8px' }}>Bono si pagas esto este mes</th>
+                            <th style={{ padding: '6px 8px' }}>Bono proyectado del semestre</th>
                         </tr>
                     </thead>
                     <tbody>
                         {Array.from({ length: 16 }, (_, i) => i + 1).map(g => {
                             const esTope = g === grupoTope;
                             const esCalculado = g === grupoCalculado && grupoCalculado > 0;
+                            const bonoDelMes = proyectarBonoInicialParaGrupo({
+                                grupoObjetivo: g,
+                                primaMetaAcumulada: primaActual,
+                                primaPagoAcumulada: primaPagoActual,
+                                mesEnSemestre, // mes actual — sí respeta el Grupo Tope
+                                limra,
+                                antiguedadMeses,
+                                grupoTopeAnticipo: grupoTope || null,
+                            });
+                            const bonoDelSemestre = proyectarBonoInicialParaGrupo({
+                                grupoObjetivo: g,
+                                primaMetaAcumulada: primaActual,
+                                primaPagoAcumulada: primaPagoActual,
+                                mesEnSemestre: 6, // cierre de semestre — ya no aplica el tope
+                                limra,
+                                antiguedadMeses,
+                                grupoTopeAnticipo: null,
+                            });
+                            // Ambas columnas se muestran netas: lo que ya te habían anticipado
+                            // se resta, para que el número sea lo que realmente te quedaría por cobrar.
+                            const bonoDelMesNeto = Math.max(0, bonoDelMes - bonoAnticipado);
+                            const bonoDelSemestreNeto = Math.max(0, bonoDelSemestre - bonoAnticipado);
                             return (
                                 <tr key={g} style={{
                                     background: esCalculado ? 'rgba(212,175,55,0.18)' : esTope ? 'rgba(255,255,255,0.06)' : 'transparent',
@@ -305,6 +330,12 @@ const TablaPrimaFaltante: React.FC<{
                                     <td style={{ padding: '4px 8px', textAlign: 'right', color: 'var(--accent-gold)' }}>
                                         {fmtPct(pctBonoPorGrupoYLimra(g, limra))}
                                     </td>
+                                    <td style={{ padding: '4px 8px', textAlign: 'right' }}>
+                                        {fmt(bonoDelMesNeto)}
+                                    </td>
+                                    <td style={{ padding: '4px 8px', textAlign: 'right', fontWeight: 700 }}>
+                                        {fmt(bonoDelSemestreNeto)}
+                                    </td>
                                 </tr>
                             );
                         })}
@@ -313,6 +344,7 @@ const TablaPrimaFaltante: React.FC<{
             </div>
             <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: '10px' }}>
                 🏆 = tu Grupo Calculado real hoy · (tope) = el Grupo Tope que limita tus anticipos este semestre (heredado del semestre anterior).
+                "Bono si pagas esto este mes" respeta tu Grupo Tope (como un anticipo real de este mes). "Bono proyectado del semestre" asume que llegas a ese grupo para el cierre, cuando el Grupo Tope ya no aplica. Ambos ya restan lo que ya te habían anticipado, y asumen que también cumples el candado de pólizas.
             </p>
         </div>
     );
@@ -374,11 +406,14 @@ const VistaBonoVida: React.FC<{ cab: CabeceraPremios; det: DetalleVida }> = ({ c
 
             <TablaPrimaFaltante
                 primaActual={det.primaMetaSem}
+                primaPagoActual={det.primaPagoSem}
                 mesEnSemestre={mesEnSemestre}
                 esSegundoSemestreDelAnio={esSegundoSemestreDelAnio}
                 limra={det.limra}
+                antiguedadMeses={antiguedadMeses}
                 grupoCalculado={det.grupoCalculado}
                 grupoTope={det.grupoTope}
+                bonoAnticipado={det.bonosAnticipados || 0}
             />
 
             {/* ============ ¿QUÉ TE FALTA? — resumen específico y accionable ============ */}

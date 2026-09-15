@@ -307,6 +307,40 @@ export function pctBonoPorGrupoYLimra(grupo: number, limra: number): number {
     return TABLA_LIMRA_BONO[grupo - 1][bandaLimra(limra)];
 }
 
+// Proyecta cuánto Bono Inicial se generaría si el asesor llega a `grupoObjetivo`
+// en `mesEnSemestre` (pagando la prima que le falta para ese grupo en ese mes).
+// Se reutiliza para la tabla de Prima Faltante en dos modos:
+//  - "Bono si pagas esto este mes": mesEnSemestre = mes actual, SÍ respeta el
+//    Grupo Tope (grupoTopeAnticipo), porque el tope sigue vigente en un anticipo
+//    a mitad de semestre.
+//  - "Bono proyectado del semestre": mesEnSemestre = 6 (cierre), grupoTopeAnticipo
+//    en null, porque el tope deja de aplicar en el recálculo de cierre.
+// Siempre asume que si se paga esa prima, también se cumple el candado de
+// pólizas (mismo criterio "mejor caso" que ya usa la calculadora de simulación).
+export function proyectarBonoInicialParaGrupo(params: {
+    grupoObjetivo: number;
+    primaMetaAcumulada: number;
+    primaPagoAcumulada: number;
+    mesEnSemestre: number;
+    limra: number;
+    antiguedadMeses: number;
+    grupoTopeAnticipo: number | null;
+}): number {
+    const primaExtra = primaFaltantePorGrupo(params.primaMetaAcumulada, params.grupoObjetivo, params.mesEnSemestre);
+    const resultado = calcularBonoVida({
+        primaIniAcumulada: params.primaMetaAcumulada + primaExtra,
+        primaPagoIniAcumulada: params.primaPagoAcumulada + primaExtra,
+        primaRenovacionAcumulada: 0, // no nos interesa la Renovación en esta proyección
+        mesEnSemestre: params.mesEnSemestre,
+        limra: params.limra,
+        igc: 0, // no afecta el Bono Inicial, solo el de Renovación (que no usamos aquí)
+        antiguedadMeses: params.antiguedadMeses,
+        grupoTopeAnticipo: params.grupoTopeAnticipo,
+        ignorarCandadoPolizas: true,
+    });
+    return resultado.bonoInicialCalculado;
+}
+
 export function formatoMoneda(v: number): string {
     return v.toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
 }

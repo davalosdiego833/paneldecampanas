@@ -1,5 +1,5 @@
 #!/bin/bash
-export PATH=$PATH:/usr/local/bin:/opt/homebrew/bin
+export PATH=/opt/homebrew/bin:/usr/local/bin:$PATH
 
 # Configuración
 SERVER_IP="195.35.10.40"

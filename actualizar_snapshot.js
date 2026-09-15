@@ -902,70 +902,72 @@ const run = async () => {
         }
 
         // 3. Asesores sin Emisión
-        let sinEmPath = path.join(BASE_PATH, 'administrador', 'asesores_sin_emision', 'Asesores sin Emision.xlsx');
-        if (!fs.existsSync(sinEmPath)) {
-            sinEmPath = path.join(BASE_PATH, 'administrador', 'asesores_sin_emision', 'Asesores sin Emision.xls');
-        }
-        if (fs.existsSync(sinEmPath)) {
-            const wb = XLSX.readFile(sinEmPath);
-            const wsP = wb.Sheets['Promotores'];
-            const wsA = wb.Sheets['Asesores'];
-            
-            rg.asesores_sin_emision = { summaryBySucursal: [], individuals: [] };
-            
-            if (wsP) {
-                const dat = XLSX.utils.sheet_to_json(wsP, { header: 1, range: 4 });
-                rg.asesores_sin_emision.summaryBySucursal = dat
-                    .filter(r => {
-                        const matId = String(r[3] || '').trim();
-                        const sucId = String(r[4] || '').trim();
-                        return SUCURSALES_ADMIN.includes(matId) || SUCURSALES_ADMIN.includes(sucId);
-                    })
-                    .map(r => ({
-                        Sucursal: r[5] || r[2],
-                        Suc: r[4] || r[1],
-                        Agentes: Number(r[6] || 0),
-                        Asesores_con_Emisión_Vida: Number(r[7] || 0),
-                        '%_Asesores_con_Emisión_Vida': Number(r[8] || 0),
-                        Asesores_con_Emisión_GMM: Number(r[9] || 0),
-                        '%_Asesores_con_Emisión_GMM': Number(r[10] || 0),
-                        Asesores_con_pol_Pagada_Vida: Number(r[11] || 0),
-                        '%_Asesores_con_pol_Pagada_Vida': Number(r[12] || 0),
-                        Asesores_con_pol_Pagada_GMM: Number(r[13] || 0),
-                        '%_Asesores_con_pol_Pagada_GMM': Number(r[14] || 0),
-                        Prima_Pagada_Vida: Number(r[15] || 0),
-                        Prima_Pagada_GMM: Number(r[16] || 0)
-                    }));
+        try {
+            let sinEmPath = path.join(BASE_PATH, 'administrador', 'asesores_sin_emision', 'Asesores sin Emision.xlsx');
+            if (!fs.existsSync(sinEmPath)) {
+                sinEmPath = path.join(BASE_PATH, 'administrador', 'asesores_sin_emision', 'Asesores sin Emision.xls');
             }
-            
-            if (wsA) {
-                const dat = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 4 });
-                rg.asesores_sin_emision.individuals = dat
-                    .filter(r => {
-                        const claveStr = String(r[6] || '').trim();
-                        const matId = String(r[3] || '').trim();
-                        const sucId = String(r[4] || '').trim();
-                        return SUCURSALES_ADMIN.includes(matId) || SUCURSALES_ADMIN.includes(sucId) || !!directory[claveStr];
-                    })
-                    .map(r => ({
-                        Asesor: resolveName(r[6], r[7], directory),
-                        Clave: r[6],
-                        Sucursal: r[5],
-                        Suc: r[4],
-                        Emitido_Vida: Number(r[10] || 0),
-                        Emitido_GMM: Number(r[11] || 0),
-                        Pagado_Vida: Number(r[12] || 0),
-                        Pagado_GMM: Number(r[13] || 0),
-                        Prima_Pagada_Vida: Number(r[14] || 0),
-                        Prima_Pagada_GMM: Number(r[15] || 0),
-                        Sin_Emisión_Vida: r[16],
-                        Sin_Emisión_GMM: r[17],
-                        '3_Meses_Sin_Emisión_Vida': r[18],
-                        '3_Meses_Sin_Emisión_GMM': r[19]
-                    }));
+            if (fs.existsSync(sinEmPath)) {
+                const wb = XLSX.readFile(sinEmPath);
+                const wsP = wb.Sheets['Promotores'];
+                const wsA = wb.Sheets['Asesores'];
+                
+                rg.asesores_sin_emision = { summaryBySucursal: [], individuals: [] };
+                
+                if (wsP) {
+                    const dat = XLSX.utils.sheet_to_json(wsP, { header: 1, range: 4 });
+                    rg.asesores_sin_emision.summaryBySucursal = dat
+                        .filter(r => {
+                            const matId = String(r[3] || '').trim();
+                            const sucId = String(r[4] || '').trim();
+                            return SUCURSALES_ADMIN.includes(matId) || SUCURSALES_ADMIN.includes(sucId);
+                        })
+                        .map(r => ({
+                            Sucursal: r[5] || r[2],
+                            Suc: r[4] || r[1],
+                            Agentes: Number(r[6] || 0),
+                            Asesores_con_Emisión_Vida: Number(r[7] || 0),
+                            '%_Asesores_con_Emisión_Vida': Number(r[8] || 0),
+                            Asesores_con_Emisión_GMM: Number(r[9] || 0),
+                            '%_Asesores_con_Emisión_GMM': Number(r[10] || 0),
+                            Asesores_con_pol_Pagada_Vida: Number(r[11] || 0),
+                            '%_Asesores_con_pol_Pagada_Vida': Number(r[12] || 0),
+                            Asesores_con_pol_Pagada_GMM: Number(r[13] || 0),
+                            '%_Asesores_con_pol_Pagada_GMM': Number(r[14] || 0),
+                            Prima_Pagada_Vida: Number(r[15] || 0),
+                            Prima_Pagada_GMM: Number(r[16] || 0)
+                        }));
+                }
+                
+                if (wsA) {
+                    const dat = XLSX.utils.sheet_to_json(wsA, { header: 1, range: 4 });
+                    rg.asesores_sin_emision.individuals = dat
+                        .filter(r => {
+                            const claveStr = String(r[6] || '').trim();
+                            const matId = String(r[3] || '').trim();
+                            const sucId = String(r[4] || '').trim();
+                            return SUCURSALES_ADMIN.includes(matId) || SUCURSALES_ADMIN.includes(sucId) || !!directory[claveStr];
+                        })
+                        .map(r => ({
+                            Asesor: resolveName(r[6], r[7], directory),
+                            Clave: r[6],
+                            Sucursal: r[5],
+                            Suc: r[4],
+                            Emitido_Vida: Number(r[10] || 0),
+                            Emitido_GMM: Number(r[11] || 0),
+                            Pagado_Vida: Number(r[12] || 0),
+                            Pagado_GMM: Number(r[13] || 0),
+                            Prima_Pagada_Vida: Number(r[14] || 0),
+                            Prima_Pagada_GMM: Number(r[15] || 0),
+                            Sin_Emisión_Vida: r[16],
+                            Sin_Emisión_GMM: r[17],
+                            '3_Meses_Sin_Emisión_Vida': r[18],
+                            '3_Meses_Sin_Emisión_GMM': r[19]
+                        }));
+                }
+                fc.asesores_sin_emision = extractCutoffDate(wb);
             }
-            fc.asesores_sin_emision = extractCutoffDate(wb);
-        }
+        } catch(e) { console.warn('⚠️ Asesores sin emisión skip:', e.message); }
 
         // 4. Proactivos
         const proPath = path.join(BASE_PATH, 'administrador', 'proactivos', 'Proactivos.xlsx');
