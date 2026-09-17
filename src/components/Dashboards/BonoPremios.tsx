@@ -11,6 +11,7 @@ import {
 } from '../../utils/bonoTablas';
 import SelectorCalculadoraGenerica from './CalculadorasGenericas';
 import { PestanaIndices, IndicesAnteriores } from './BonoIndices';
+import { PestanaPonderacion } from './BonoPonderacion';
 
 const MESES_ES = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
 
@@ -595,15 +596,7 @@ const PestanasBonoVida: React.FC<{
 
             {tab === 'bono' && <VistaBonoVida cab={cab} det={det} />}
             {tab === 'indices' && <PestanaIndices det={det} antiguedadMeses={antiguedadMeses} indicesAnteriores={indicesAnteriores} />}
-            {tab === 'ponderacion' && (
-                <div className="glass-card" style={{ padding: '60px 24px', textAlign: 'center' }}>
-                    <div style={{ fontSize: '2.5rem', marginBottom: '16px' }}>⚖️</div>
-                    <h3 className="text-gold" style={{ fontSize: '1.2rem', marginBottom: '10px', fontWeight: 800 }}>Próximamente</h3>
-                    <p className="text-muted" style={{ fontSize: '0.9rem', maxWidth: '440px', margin: '0 auto' }}>
-                        Aquí vas a poder consultar la ponderación de productos que aplica a tu prima. Lo estamos construyendo.
-                    </p>
-                </div>
-            )}
+            {tab === 'ponderacion' && <PestanaPonderacion />}
         </div>
     );
 };
