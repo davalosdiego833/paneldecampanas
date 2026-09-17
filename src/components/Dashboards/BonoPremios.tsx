@@ -10,6 +10,7 @@ import {
     proyectarBonoInicialParaGrupo,
 } from '../../utils/bonoTablas';
 import SelectorCalculadoraGenerica from './CalculadorasGenericas';
+import { PestanaIndices, IndicesAnteriores } from './BonoIndices';
 
 const MESES_ES = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
 
@@ -21,14 +22,17 @@ interface PremiosData {
     clave: string;
     resumen: { cabecera: { _raw: string[] }, resumenBonos: string[][] | null };
     detalleModalTexto: string;
+    indicesAnteriores?: IndicesAnteriores | null;
 }
 
 export const fmt = (v: number) => v.toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
 export const fmtPct = (v: number) => `${v.toLocaleString('es-MX', { maximumFractionDigits: 1 })}%`;
 
 function mesesEntre(fechaInicioDDMMYYYY: string, fechaFinDDMMYYYY: string): number {
-    const [d1, m1, y1] = fechaInicioDDMMYYYY.split('/').map(Number);
-    const [d2, m2, y2] = fechaFinDDMMYYYY.split('/').map(Number);
+    // La fecha de concurso normalmente viene con "/" (28/09/2018) y la fecha de
+    // "Avance Al" con "-" (21-08-2026) — aceptamos ambos separadores.
+    const [d1, m1, y1] = fechaInicioDDMMYYYY.split(/[/-]/).map(Number);
+    const [d2, m2, y2] = fechaFinDDMMYYYY.split(/[/-]/).map(Number);
     if (!y1 || !y2) return 1;
     let meses = (y2 - y1) * 12 + (m2 - m1) + 1;
     if (d2 < d1) meses -= 1;
@@ -284,7 +288,7 @@ const TablaPrimaFaltante: React.FC<{
                             <th style={{ textAlign: 'left', padding: '6px 8px' }}>Grupo</th>
                             {mesesRestantes.map(m => <th key={m} style={{ padding: '6px 8px' }}>{MESES_ES[calMes(m) - 1]}</th>)}
                             <th style={{ padding: '6px 8px' }}>% Bono</th>
-                            <th style={{ padding: '6px 8px' }}>Bono si pagas esto este mes</th>
+                            <th style={{ padding: '6px 8px' }}>Bono proyectado del mes</th>
                             <th style={{ padding: '6px 8px' }}>Bono proyectado del semestre</th>
                         </tr>
                     </thead>
@@ -344,7 +348,7 @@ const TablaPrimaFaltante: React.FC<{
             </div>
             <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: '10px' }}>
                 🏆 = tu Grupo Calculado real hoy · (tope) = el Grupo Tope que limita tus anticipos este semestre (heredado del semestre anterior).
-                "Bono si pagas esto este mes" respeta tu Grupo Tope (como un anticipo real de este mes). "Bono proyectado del semestre" asume que llegas a ese grupo para el cierre, cuando el Grupo Tope ya no aplica. Ambos ya restan lo que ya te habían anticipado, y asumen que también cumples el candado de pólizas.
+                "Bono proyectado del mes" respeta tu Grupo Tope (como un anticipo real de este mes). "Bono proyectado del semestre" asume que llegas a ese grupo para el cierre, cuando el Grupo Tope ya no aplica. Ambos ya restan lo que ya te habían anticipado, y asumen que también cumples el candado de pólizas.
             </p>
         </div>
     );
@@ -545,6 +549,66 @@ const VistaBonoVida: React.FC<{ cab: CabeceraPremios; det: DetalleVida }> = ({ c
 };
 
 // ---------------------------------------------------------------------------
+// Pestañas del reporte para Asesores Nuevos Profesionales (Bono Vida).
+// Los Asesores en Desarrollo (Training Allowance) NO tienen estas pestañas —
+// solo ven la vista de Bono directo (ver VistaBonoTA más arriba).
+// ---------------------------------------------------------------------------
+type TabBonoVida = 'bono' | 'indices' | 'ponderacion';
+
+const PestanasBonoVida: React.FC<{
+    cab: CabeceraPremios;
+    det: DetalleVida;
+    antiguedadMeses: number;
+    indicesAnteriores: IndicesAnteriores | null;
+}> = ({ cab, det, antiguedadMeses, indicesAnteriores }) => {
+    const [tab, setTab] = useState<TabBonoVida>('bono');
+
+    const tabs: { key: TabBonoVida; label: string }[] = [
+        { key: 'bono', label: '💰 Bono' },
+        { key: 'indices', label: '📈 Índices' },
+        { key: 'ponderacion', label: '⚖️ Ponderación Productos' },
+    ];
+
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', borderBottom: '1px solid var(--border, rgba(255,255,255,0.1))', paddingBottom: '2px' }}>
+                {tabs.map(t => (
+                    <button
+                        key={t.key}
+                        onClick={() => setTab(t.key)}
+                        style={{
+                            padding: '10px 16px',
+                            borderRadius: '10px 10px 0 0',
+                            border: 'none',
+                            borderBottom: tab === t.key ? '2px solid var(--accent-gold)' : '2px solid transparent',
+                            background: tab === t.key ? 'rgba(212,175,55,0.1)' : 'transparent',
+                            color: tab === t.key ? 'var(--accent-gold)' : 'var(--text-secondary)',
+                            fontWeight: tab === t.key ? 700 : 500,
+                            fontSize: '0.88rem',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        {t.label}
+                    </button>
+                ))}
+            </div>
+
+            {tab === 'bono' && <VistaBonoVida cab={cab} det={det} />}
+            {tab === 'indices' && <PestanaIndices det={det} antiguedadMeses={antiguedadMeses} indicesAnteriores={indicesAnteriores} />}
+            {tab === 'ponderacion' && (
+                <div className="glass-card" style={{ padding: '60px 24px', textAlign: 'center' }}>
+                    <div style={{ fontSize: '2.5rem', marginBottom: '16px' }}>⚖️</div>
+                    <h3 className="text-gold" style={{ fontSize: '1.2rem', marginBottom: '10px', fontWeight: 800 }}>Próximamente</h3>
+                    <p className="text-muted" style={{ fontSize: '0.9rem', maxWidth: '440px', margin: '0 auto' }}>
+                        Aquí vas a poder consultar la ponderación de productos que aplica a tu prima. Lo estamos construyendo.
+                    </p>
+                </div>
+            )}
+        </div>
+    );
+};
+
+// ---------------------------------------------------------------------------
 // Componente principal
 // ---------------------------------------------------------------------------
 const BonoPremios: React.FC<Props> = ({ advisor }) => {
@@ -578,6 +642,7 @@ const BonoPremios: React.FC<Props> = ({ advisor }) => {
     const resumenBonos = parseResumenBonos(data.resumen.resumenBonos);
     const esTA = /training/i.test(cab.tipo);
     const activo = resumenBonos.reduce((a, b) => (b.bonoAcumulado > (a?.bonoAcumulado || 0) ? b : a), resumenBonos[0]);
+    const antiguedadMeses = mesesEntre(cab.fechaConcurso, cab.avanceAl || cab.indicadores['Avance Al'] || cab.fechaConcurso);
 
     return (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
@@ -594,7 +659,14 @@ const BonoPremios: React.FC<Props> = ({ advisor }) => {
 
             {esTA
                 ? <VistaBonoTA cab={cab} det={parseDetalleTA(data.detalleModalTexto)} />
-                : <VistaBonoVida cab={cab} det={parseDetalleVida(data.detalleModalTexto)} />
+                : (
+                    <PestanasBonoVida
+                        cab={cab}
+                        det={parseDetalleVida(data.detalleModalTexto)}
+                        antiguedadMeses={antiguedadMeses}
+                        indicesAnteriores={data.indicesAnteriores || null}
+                    />
+                )
             }
         </motion.div>
     );

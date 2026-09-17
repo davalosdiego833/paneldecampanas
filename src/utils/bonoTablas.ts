@@ -165,7 +165,12 @@ export function calcularGrupoVida(primaAcumulada: number, mesEnSemestre: number)
     return null;
 }
 
-function bandaLimra(limra: number): number {
+// Bandas de la Tabla 5 (% Bono Inicial) — se exportan para dibujar los gauges
+// de salud de LIMRA/IGC con los mismos cortes oficiales, sin duplicar números.
+export const LIMRA_BANDAS = [87.5, 89.5, 91.5, 95.5];
+export const IGC_BANDAS = [91, 92.5, 95, 95.75];
+
+export function bandaLimra(limra: number): number {
     if (limra >= 95.5) return 4;
     if (limra >= 91.5) return 3;
     if (limra >= 89.5) return 2;
@@ -305,6 +310,14 @@ export function primaFaltantePorGrupo(primaAcumuladaActual: number, grupo: numbe
 // la tabla de Prima Faltante.
 export function pctBonoPorGrupoYLimra(grupo: number, limra: number): number {
     return TABLA_LIMRA_BONO[grupo - 1][bandaLimra(limra)];
+}
+
+// Lo mismo que la anterior pero para el % de Bono Renovación (Tabla 6), según
+// Grupo y banda de IGC. Si el IGC está por debajo de 91% no hay banda (0%).
+export function pctBonoRenovacionPorGrupoYIgc(grupo: number, igc: number): number {
+    const banda = bandaIgc(igc);
+    if (banda === null) return 0;
+    return TABLA_IGC_BONO[grupo - 1][banda];
 }
 
 // Proyecta cuánto Bono Inicial se generaría si el asesor llega a `grupoObjetivo`

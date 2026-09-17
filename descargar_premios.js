@@ -21,6 +21,48 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// --- Monitoreo de LIMRA/IGC entre actualizaciones ---
+// Antes de sobreescribir el data.json de un asesor, leemos el anterior (si existe)
+// y sacamos su LIMRA/IGC de la cabecera, para que el reporte pueda mostrar si
+// subieron, bajaron o se mantuvieron igual desde el corte pasado.
+function extraerIndicadoresCabecera(rawArr) {
+    if (!Array.isArray(rawArr)) return {};
+    let i = 0;
+    for (; i < rawArr.length; i++) {
+        if (/^(Asesor|Clave|Avance Al|Fecha Concurso|Tipo):/.test(String(rawArr[i]))) continue;
+        break;
+    }
+    const indicadores = {};
+    for (; i < rawArr.length - 1; i += 2) {
+        const label = rawArr[i];
+        const val = rawArr[i + 1];
+        if (/^Histórico/i.test(String(label))) break;
+        indicadores[label] = val;
+    }
+    return indicadores;
+}
+
+function limpiarPorcentajeIndice(v) {
+    if (v === undefined || v === null) return null;
+    const n = parseFloat(String(v).replace(/[^0-9.-]/g, ''));
+    return Number.isNaN(n) ? null : n;
+}
+
+function leerIndicesAnteriores(dataJsonPath) {
+    try {
+        if (!fs.existsSync(dataJsonPath)) return null;
+        const anterior = JSON.parse(fs.readFileSync(dataJsonPath, 'utf-8'));
+        const indicadores = extraerIndicadoresCabecera(anterior?.resumen?.cabecera?._raw);
+        const limra = limpiarPorcentajeIndice(indicadores['LIMRA']);
+        const igc = limpiarPorcentajeIndice(indicadores['IGC']);
+        if (limra === null && igc === null) return null;
+        return { limra, igc, fecha: anterior.timestamp || null };
+    } catch (e) {
+        console.warn('   ⚠️ No se pudieron leer los índices de la actualización anterior:', e.message);
+        return null;
+    }
+}
+
 // Espera a que se abra una ventana/pestaña nueva (window.open / target=_blank)
 // y regresa la Page correspondiente ya cargada.
 function esperarNuevaPagina(browser, timeout = 20000) {
@@ -568,6 +610,9 @@ async function procesarAsesor(browser, clave, intento = 1) {
 
         const detalleModal = await popupAsesor.evaluate(() => document.body.innerText);
 
+        const rutaDataJson = path.join(carpetaAsesor, 'data.json');
+        const indicesAnteriores = leerIndicesAnteriores(rutaDataJson);
+
         const resultado = {
             clave,
             timestamp: new Date().toISOString(),
@@ -575,11 +620,15 @@ async function procesarAsesor(browser, clave, intento = 1) {
             resumen,
             pareceVacio,
             detalleModalTexto: detalleModal,
-            intentos: intento
+            intentos: intento,
+            indicesAnteriores
         };
 
-        fs.writeFileSync(path.join(carpetaAsesor, 'data.json'), JSON.stringify(resultado, null, 2));
+        fs.writeFileSync(rutaDataJson, JSON.stringify(resultado, null, 2));
         console.log(`   💾 Guardado en premios/${clave}/data.json`);
+        if (indicesAnteriores) {
+            console.log(`   📊 Índices anteriores: LIMRA ${indicesAnteriores.limra}% · IGC ${indicesAnteriores.igc}%`);
+        }
 
         return resultado;
 
