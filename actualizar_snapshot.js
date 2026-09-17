@@ -732,6 +732,138 @@ const run = async () => {
                     campaigns.educar_es_creer = eecAdvisors;
                     campaignDates.educar_es_creer = cutoffDateStr;
                 } catch(e) { console.warn('⚠️ Educar es Creer skip:', e.message); }
+            } else if (step === 'poder_elegirte') {
+                try {
+                    console.log('Processing poder_elegirte');
+                    const peFolder = path.join(BASE_PATH, 'poder_elegirte');
+                    const convPath = path.join(peFolder, 'El poder de elegirte Convenciones.xlsx');
+                    const cliPath = path.join(peFolder, 'El Poder De Elegirte Clientes.xlsx');
+
+                    let puntosPorAsesor = {};
+                    let polizasDetallePorAsesor = {};
+                    let clientesKitsPorAsesor = {};
+                    let cutoffDateStr = '';
+                    let kitsGanadosNac = 0;
+                    let kitsRestantesNac = 1000;
+
+                    if (fs.existsSync(convPath)) {
+                        let wbConv = readExcelSheetMemorySafe(convPath, () => true);
+                        if (wbConv) {
+                            cutoffDateStr = extractCutoffDate(wbConv) || '';
+                            let wsAsesores = wbConv.Sheets['Asesores'] || wbConv.Sheets[wbConv.SheetNames[0]];
+                            if (wsAsesores) {
+                                let rawAsesores = XLSX.utils.sheet_to_json(wsAsesores, { header: 1 });
+                                for (let r = 0; r < rawAsesores.length; r++) {
+                                    const row = rawAsesores[r];
+                                    if (!row) continue;
+                                    const strRow = row.map(x => x !== null && x !== undefined ? String(x).trim() : '');
+                                    const matVal = strRow[4] || strRow[3] || '';
+                                    const sucVal = strRow[5] || strRow[4] || '';
+                                    const claveVal = strRow[6] || strRow[5] || '';
+                                    if (SUCURSALES_PROMO.includes(matVal) || SUCURSALES_PROMO.includes(sucVal) || (claveVal && directory[claveVal])) {
+                                        const ptsDoble = Number(row[8] || 0); // Col 9: Beneficio Vida Mujer
+                                        if (claveVal) {
+                                            puntosPorAsesor[claveVal] = (puntosPorAsesor[claveVal] || 0) + ptsDoble;
+                                        }
+                                    }
+                                }
+                            }
+
+                            let wsPolizas = wbConv.Sheets['Detalle de Pólizas'] || wbConv.Sheets[wbConv.SheetNames[1]];
+                            if (wsPolizas) {
+                                let rawPol = XLSX.utils.sheet_to_json(wsPolizas, { header: 1 });
+                                for (let r = 0; r < rawPol.length; r++) {
+                                    const row = rawPol[r];
+                                    if (!row) continue;
+                                    const strRow = row.map(x => x !== null && x !== undefined ? String(x).trim() : '');
+                                    const matVal = strRow[3] || strRow[2] || '';
+                                    const sucVal = strRow[4] || strRow[3] || '';
+                                    const claveVal = strRow[6] || strRow[5] || '';
+                                    if (SUCURSALES_PROMO.includes(matVal) || SUCURSALES_PROMO.includes(sucVal) || (claveVal && directory[claveVal])) {
+                                        if (!polizasDetallePorAsesor[claveVal]) polizasDetallePorAsesor[claveVal] = [];
+                                        polizasDetallePorAsesor[claveVal].push({
+                                            Poliza: strRow[7] || strRow[6] || 'N/A',
+                                            F_Emision: strRow[8] || 'N/A',
+                                            F_Pago: strRow[9] || 'N/A',
+                                            Forma_Pago: strRow[10] || 'N/A',
+                                            Plan: strRow[12] || 'VIDA MUJER',
+                                            Prima_Recibo: Number(row[13] || 0),
+                                            Comisiones: Number(row[15] || 0)
+                                        });
+                                    }
+                                }
+                            }
+                            wbConv = null;
+                        }
+                    }
+
+                    if (fs.existsSync(cliPath)) {
+                        let wbCli = readExcelSheetMemorySafe(cliPath, () => true);
+                        if (wbCli) {
+                            if (!cutoffDateStr) cutoffDateStr = extractCutoffDate(wbCli) || '';
+                            let wsAsesoresCli = wbCli.Sheets['Asesores'] || wbCli.Sheets[wbCli.SheetNames[0]];
+                            if (wsAsesoresCli) {
+                                let rawCli = XLSX.utils.sheet_to_json(wsAsesoresCli, { header: 1 });
+                                for (let r = 0; r < Math.min(15, rawCli.length); r++) {
+                                    const row = rawCli[r];
+                                    if (!row) continue;
+                                    for (let c = 0; c < row.length; c++) {
+                                        const val = String(row[c] || '').toUpperCase();
+                                        if (val.includes('KITS GANADOS')) {
+                                            const cand = Number(rawCli[r + 1]?.[c]);
+                                            if (rawCli[r + 1] && !isNaN(cand)) kitsGanadosNac = cand;
+                                        }
+                                        if (val.includes('KITS RESTANTES')) {
+                                            const cand = Number(rawCli[r + 1]?.[c]);
+                                            if (rawCli[r + 1] && !isNaN(cand)) kitsRestantesNac = cand;
+                                        }
+                                    }
+                                }
+                            }
+
+                            let wsPolizasCli = wbCli.Sheets['Detalle de Pólizas'] || wbCli.Sheets[wbCli.SheetNames[1]];
+                            if (wsPolizasCli) {
+                                let rawPolCli = XLSX.utils.sheet_to_json(wsPolizasCli, { header: 1 });
+                                for (let r = 0; r < rawPolCli.length; r++) {
+                                    const row = rawPolCli[r];
+                                    if (!row) continue;
+                                    const strRow = row.map(x => x !== null && x !== undefined ? String(x).trim() : '');
+                                    const matVal = strRow[3] || strRow[2] || '';
+                                    const sucVal = strRow[4] || strRow[3] || '';
+                                    const claveVal = strRow[5] || strRow[4] || '';
+                                    if (SUCURSALES_PROMO.includes(matVal) || SUCURSALES_PROMO.includes(sucVal) || (claveVal && directory[claveVal])) {
+                                        if (!clientesKitsPorAsesor[claveVal]) clientesKitsPorAsesor[claveVal] = [];
+                                        clientesKitsPorAsesor[claveVal].push({
+                                            Poliza: strRow[6] || strRow[5] || 'N/A',
+                                            F_Emision: strRow[7] || 'N/A',
+                                            F_Pago: strRow[8] || 'N/A',
+                                            Forma_Pago: strRow[9] || 'N/A',
+                                            Plan: strRow[11] || 'VIDA MUJER',
+                                            Prima_Recibo: Number(row[12] || 0)
+                                        });
+                                    }
+                                }
+                            }
+                            wbCli = null;
+                        }
+                    }
+
+                    const peAdvisors = [];
+                    Object.keys(directory).forEach(clave => {
+                        peAdvisors.push({
+                            Asesor: directory[clave],
+                            Clave: clave,
+                            Puntos_Doble: puntosPorAsesor[clave] || 0,
+                            Polizas_Detalle: polizasDetallePorAsesor[clave] || [],
+                            Clientes_Kits: clientesKitsPorAsesor[clave] || [],
+                            Kits_Ganados_Nacional: kitsGanadosNac,
+                            Kits_Restantes_Nacional: kitsRestantesNac
+                        });
+                    });
+
+                    campaigns.poder_elegirte = peAdvisors;
+                    campaignDates.poder_elegirte = cutoffDateStr;
+                } catch(e) { console.warn('⚠️ El Poder de Elegirte skip:', e.message); }
             }
             if (global.gc) global.gc();
         };
@@ -762,7 +894,7 @@ const run = async () => {
         const campaigns = {};
         const campaignDates = {};
 
-        const steps = ['mdrt', 'convenciones', 'legion_centurion', 'camino_cumbre', 'graduacion', 'proactiva_tech', 'reto_por_ciento', 'convenciones_promotores', 'convenciones_gerente', 'educar_es_creer'];
+        const steps = ['mdrt', 'convenciones', 'legion_centurion', 'camino_cumbre', 'graduacion', 'proactiva_tech', 'reto_por_ciento', 'convenciones_promotores', 'convenciones_gerente', 'educar_es_creer', 'poder_elegirte'];
         for (const s of steps) {
             runStepInline(s, campaigns, campaignDates, directory, directoryFechas);
         }
@@ -1306,7 +1438,8 @@ const run = async () => {
                 graduacion: 'Graduación',
                 proactiva_tech: 'ProactivaTech 2.0',
                 reto_por_ciento: 'Reto Por Ciento',
-                educar_es_creer: 'Educar es Creer'
+                educar_es_creer: 'Educar es Creer',
+                poder_elegirte: 'El Poder de Elegirte'
             };
 
             const ADMIN_REPORT_NAMES = {

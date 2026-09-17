@@ -9,6 +9,7 @@ import Graduacion from './Dashboards/Graduacion';
 import ProactivaTech from './Dashboards/ProactivaTech';
 import RetoPorCiento from './Dashboards/RetoPorCiento';
 import EducarEsCreer from './Dashboards/EducarEsCreer';
+import PoderDeElegirte from './Dashboards/PoderDeElegirte';
 import BonoPremios from './Dashboards/BonoPremios';
 
 
@@ -103,6 +104,7 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor, themeMode }) => {
             case 'proactiva_tech': return <ProactivaTech data={data} />;
             case 'reto_por_ciento': return <RetoPorCiento data={data} />;
             case 'educar_es_creer': return <EducarEsCreer data={data} />;
+            case 'poder_elegirte': return <PoderDeElegirte data={data} />;
             default: return (
                 <div style={{
                     display: 'grid',
