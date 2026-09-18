@@ -103,6 +103,12 @@ async function main() {
     console.log('\n📥 Descargando Reportes Administrativos (Proactivos, Sin Emisión, Comparativo Vida)...\n');
     await correrComando('node', ['run_admin_download.js']);
 
+    // run_admin_download.js no regenera el snapshot por su cuenta — sin este paso,
+    // db/resumen_snapshot.json se queda con los datos de la descarga anterior
+    // (la de descargar_campanas.js) y no con la descarga fresca de arriba.
+    console.log('\n🔄 Actualizando snapshot con los reportes recién descargados...\n');
+    await correrComando('node', ['actualizar_snapshot.js']);
+
     console.log('\n📤 Publicando reportes administrativos al servidor real...\n');
     await correrComando('bash', ['deploy_datos.sh', ...CARPETAS_ADMIN_DOWNLOAD]);
 

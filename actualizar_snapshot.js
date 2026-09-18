@@ -1225,10 +1225,7 @@ const run = async () => {
         }
 
         // 7. QsQ GMM
-        let qsqGmmPath = path.join(BASE_PATH, 'administrador', ' QsQ GMM', 'QsQ GMM.xlsx');
-        if (!fs.existsSync(qsqGmmPath)) {
-            qsqGmmPath = path.join(BASE_PATH, 'administrador', 'QsQ GMM', 'QsQ GMM.xlsx');
-        }
+        let qsqGmmPath = path.join(BASE_PATH, 'administrador', 'QsQ GMM', 'QsQ GMM.xlsx');
         if (!fs.existsSync(qsqGmmPath)) {
             qsqGmmPath = path.join(BASE_PATH, 'NOCHE ESTRELLAS', 'REPORTES', 'QsQ GMM.xlsx');
         }
