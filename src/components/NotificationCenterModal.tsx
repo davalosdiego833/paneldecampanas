@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Bell, CheckCircle2, X, ExternalLink, Calendar, Info } from 'lucide-react';
 import { PdfViewerModal } from './PdfViewerModal';
+import { useComunicados, ComunicadoItem } from '../hooks/useComunicados';
 
-export interface ComunicadoItem {
-    id: string;
-    timestamp: string;
-    group: 'all' | 'admin' | 'asesor';
-    title: string;
-    body: string;
-    url?: string;
-    sender?: string;
-}
+export type { ComunicadoItem };
 
 interface NotificationCenterModalProps {
     isOpen: boolean;
@@ -25,64 +18,13 @@ export const NotificationCenterModal: React.FC<NotificationCenterModalProps> = (
     role,
     onUnreadCountChange
 }) => {
-    const [comunicados, setComunicados] = useState<ComunicadoItem[]>([]);
-    const [loading, setLoading] = useState(false);
-    const [readIds, setReadIds] = useState<string[]>(() => {
-        try {
-            return JSON.parse(localStorage.getItem('read_comunicados_ids') || '[]');
-        } catch {
-            return [];
-        }
-    });
+    const { comunicados, loading, readIds, markAsRead, markAllAsRead, unreadCount } = useComunicados(role);
 
     useEffect(() => {
-        if (isOpen) {
-            fetchHistory();
-        }
-    }, [isOpen, role]);
-
-    useEffect(() => {
-        const unreadCount = comunicados.filter(c => !readIds.includes(c.id)).length;
         if (onUnreadCountChange) {
             onUnreadCountChange(unreadCount);
         }
-    }, [comunicados, readIds]);
-
-    const fetchHistory = async () => {
-        try {
-            setLoading(true);
-            const res = await fetch('/api/comunicados/history');
-            if (res.ok) {
-                const data = await res.json();
-                if (Array.isArray(data)) {
-                    const filtered = data.filter((item: ComunicadoItem) => {
-                        if (role === 'admin') return true;
-                        return item.group === 'all' || item.group === 'asesor';
-                    });
-                    filtered.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-                    setComunicados(filtered);
-                }
-            }
-        } catch (e) {
-            console.error('[NOTIF CENTER] Error cargando historial:', e);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const markAllAsRead = () => {
-        const allIds = comunicados.map(c => c.id);
-        setReadIds(allIds);
-        localStorage.setItem('read_comunicados_ids', JSON.stringify(allIds));
-    };
-
-    const markAsRead = (id: string) => {
-        if (!readIds.includes(id)) {
-            const updated = [...readIds, id];
-            setReadIds(updated);
-            localStorage.setItem('read_comunicados_ids', JSON.stringify(updated));
-        }
-    };
+    }, [unreadCount]);
 
     const [selectedPdf, setSelectedPdf] = useState<{ title: string; url: string } | null>(null);
 
@@ -100,8 +42,6 @@ export const NotificationCenterModal: React.FC<NotificationCenterModalProps> = (
     };
 
     if (!isOpen) return null;
-
-    const unreadCount = comunicados.filter(c => !readIds.includes(c.id)).length;
 
     return (
         <div style={{

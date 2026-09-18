@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Home, FolderOpen, Settings, LogOut, Sun, Moon, ChevronLeft, ChevronRight, Bell } from 'lucide-react';
 import { ThemeConfig, Page } from '../types';
 import SeasonalEffects from './SeasonalEffects';
 import { NotificationCenterModal } from './NotificationCenterModal';
+import { AvisosEntryModal } from './AvisosEntryModal';
+import { useComunicados } from '../hooks/useComunicados';
+
+const AVISOS_PROMPT_SESSION_KEY = 'avisos_prompt_shown_session';
 
 interface Props {
     children: React.ReactNode;
@@ -27,7 +31,21 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
         return false;
     });
     const [isNotifCenterOpen, setIsNotifCenterOpen] = useState(false);
-    const [unreadCount, setUnreadCount] = useState(0);
+
+    // Siempre en contexto de asesor: esta Layout solo envuelve las pantallas
+    // de asesor (welcome/campaign_selector/dashboard); el toggle de admin del
+    // sidebar es un modo aparte que no afecta qué avisos le corresponden a
+    // quien está usando el dispositivo.
+    const { unread, unreadCount } = useComunicados('asesor');
+    const [showAvisosPrompt, setShowAvisosPrompt] = useState(false);
+
+    useEffect(() => {
+        if (page !== 'welcome' || unreadCount === 0) return;
+        if (typeof window === 'undefined') return;
+        if (sessionStorage.getItem(AVISOS_PROMPT_SESSION_KEY)) return;
+        sessionStorage.setItem(AVISOS_PROMPT_SESSION_KEY, '1');
+        setShowAvisosPrompt(true);
+    }, [page, unreadCount]);
 
     const handleAdminLogin = () => {
         if (password === 'Diego080303') {
@@ -254,8 +272,19 @@ const Layout: React.FC<Props> = ({ children, theme, page, setPage, onGoHome, sel
                 isOpen={isNotifCenterOpen}
                 onClose={() => setIsNotifCenterOpen(false)}
                 role={isAdmin ? 'admin' : 'asesor'}
-                onUnreadCountChange={(count) => setUnreadCount(count)}
             />
+
+            {/* Aviso de entrada: si hay avisos sin leer, se muestra una vez por sesión al llegar a Inicio */}
+            {showAvisosPrompt && (
+                <AvisosEntryModal
+                    unread={unread}
+                    onVerAvisos={() => {
+                        setShowAvisosPrompt(false);
+                        setIsNotifCenterOpen(true);
+                    }}
+                    onDismiss={() => setShowAvisosPrompt(false)}
+                />
+            )}
         </div>
     );
 };
