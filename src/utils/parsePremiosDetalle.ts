@@ -123,6 +123,18 @@ export function parseDetalleTA(texto: string): DetalleTA {
     };
 }
 
+// Desglose Inicial vs Renovación de "Bonos Anticipados", reconstruido corte a
+// corte por descargar_premios.js (el portal solo da el combinado). Ver el
+// comentario junto a calcularAnticiposDesglosados() en ese script para el
+// detalle del algoritmo.
+export interface AnticiposDesglosados {
+    semestreKey: string;
+    inicialAnticipadoAcumulado: number;
+    renovacionAnticipadoAcumulado: number;
+    anticipadosCombinadoUltimoCorte: number;
+    actualizadoEn: string;
+}
+
 export interface DetalleVida {
     polizaMes: number;
     polizaMesMeta: number;

@@ -6,8 +6,6 @@ import LegionCenturion from './Dashboards/LegionCenturion';
 import Convenciones from './Dashboards/Convenciones';
 import CaminoCumbre from './Dashboards/CaminoCumbre';
 import Graduacion from './Dashboards/Graduacion';
-import ProactivaTech from './Dashboards/ProactivaTech';
-import RetoPorCiento from './Dashboards/RetoPorCiento';
 import EducarEsCreer from './Dashboards/EducarEsCreer';
 import PoderDeElegirte from './Dashboards/PoderDeElegirte';
 import BonoPremios from './Dashboards/BonoPremios';
@@ -58,34 +56,6 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor, themeMode }) => {
     );
 
     if (!data) {
-        if (campaign === 'proactiva_tech') {
-            return (
-                <div className="glass-card" style={{ padding: '60px', textAlign: 'center', maxWidth: '600px', margin: '40px auto' }}>
-                    <div style={{ fontSize: '3rem', marginBottom: '20px' }}>💻</div>
-                    <h2 className="text-gold" style={{ fontSize: '1.5rem', marginBottom: '16px', fontWeight: 800 }}>No participas en esta campaña</h2>
-                    <p className="text-muted" style={{ fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '24px' }}>
-                        La campaña <b>Proactiva Tech 2.0</b> está dirigida exclusivamente a asesores cuya fecha de conexión con la promotoría sea del año <b>2023 en adelante</b>.
-                    </p>
-                    <p className="text-muted" style={{ fontSize: '0.85rem' }}>
-                        Si crees que esto es un error, por favor ponte en contacto con la administración para verificar tu fecha de conexión registrada.
-                    </p>
-                </div>
-            );
-        }
-        if (campaign === 'reto_por_ciento') {
-            return (
-                <div className="glass-card" style={{ padding: '60px', textAlign: 'center', maxWidth: '600px', margin: '40px auto' }}>
-                    <div style={{ fontSize: '3rem', marginBottom: '20px' }}>🎯</div>
-                    <h2 className="text-gold" style={{ fontSize: '1.5rem', marginBottom: '16px', fontWeight: 800 }}>No participas en esta campaña</h2>
-                    <p className="text-muted" style={{ fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '24px' }}>
-                        La campaña <b>Reto Por Ciento (Julio - Agosto 2026)</b> está dirigida exclusivamente a <b>Asesores Consolidados</b> con año de conexión <b>2022 o anteriores</b>.
-                    </p>
-                    <p className="text-muted" style={{ fontSize: '0.85rem' }}>
-                        Si crees que esto es un error, por favor ponte en contacto con la administración para verificar tu fecha de conexión registrada.
-                    </p>
-                </div>
-            );
-        }
         return (
             <div className="glass-card" style={{ padding: '60px', textAlign: 'center' }}>
                 <h2 className="text-gold" style={{ fontSize: '1.5rem', marginBottom: '16px' }}>Datos no encontrados</h2>
@@ -101,8 +71,6 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor, themeMode }) => {
             case 'convenciones': return <Convenciones data={data} />;
             case 'camino_cumbre': return <CaminoCumbre data={data} />;
             case 'graduacion': return <Graduacion data={data} />;
-            case 'proactiva_tech': return <ProactivaTech data={data} />;
-            case 'reto_por_ciento': return <RetoPorCiento data={data} />;
             case 'educar_es_creer': return <EducarEsCreer data={data} />;
             case 'poder_elegirte': return <PoderDeElegirte data={data} />;
             default: return (

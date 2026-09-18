@@ -63,6 +63,135 @@ function leerIndicesAnteriores(dataJsonPath) {
     }
 }
 
+// --- Desglose Inicial vs Renovación de "Bonos Anticipados" (solo Bono Vida) ---
+// El portal (hojameta) SOLO reporta un "Bonos Anticipados" combinado (Inicial +
+// Renovación juntos) y lo neta contra "Bono Semestral" (también combinado) para
+// sacar "Bonos a Pagar". No hay forma de pedirle el desglose directo.
+// Para poder mostrar "cuánto de lo ya anticipado es de Inicial" y "cuánto de
+// Renovación" por separado, lo reconstruimos nosotros comparando cada corte
+// contra el anterior (mismo patrón que ya usa leerIndicesAnteriores arriba):
+//   - Mientras el combinado no suba, no hubo pago nuevo -> no tocamos nada.
+//   - Cuando el combinado sube (se detectó un pago), repartimos el incremento
+//     proporcional a lo que el corte ANTERIOR decía que llevaba calculado cada
+//     bono (Inicial vs Renovación) -- es la mejor aproximación posible dado que
+//     el portal no da el detalle, y garantiza que la suma de los dos
+//     desglosados siempre cuadre exacto con el combinado real del portal.
+//   - Al cambiar de semestre (Bono Vida se reinicia cada semestre) reseteamos
+//     el acumulado a cero.
+function extraerCampoCabecera(rawArr, campo) {
+    if (!Array.isArray(rawArr)) return null;
+    for (const linea of rawArr) {
+        const m = String(linea).match(new RegExp(`^${campo}:\\s*(.*)$`));
+        if (m) return m[1].trim();
+    }
+    return null;
+}
+
+function mapaFilasTabla(texto) {
+    const mapa = {};
+    const lineas = String(texto || '').split('\n');
+    for (const linea of lineas) {
+        if (!linea.includes('\t')) continue;
+        const celdas = linea.split('\t').map(c => c.trim());
+        const etiqueta = celdas[0].trim();
+        if (!etiqueta) continue;
+        // Solo la primera vez que aparece cada etiqueta (evita pisar "Bono Inicial"
+        // del resumen con el de la sub-sección de Renovación, igual que en el front).
+        if (!(etiqueta in mapa)) mapa[etiqueta] = celdas.slice(1);
+    }
+    return mapa;
+}
+
+function parseMontosVida(texto) {
+    const m = mapaFilasTabla(texto);
+    return {
+        montoBonoInicial: limpiarPorcentajeIndice(m['Bono Inicial']?.[0]) || 0,
+        montoBonoRenovacion: limpiarPorcentajeIndice(m['Bono Renovación']?.[0]) || 0,
+        bonosAnticipados: limpiarPorcentajeIndice(m['Bonos Anticipados']?.[0]) || 0,
+    };
+}
+
+function calcularSemestreKey(avanceAlStr) {
+    // "Avance Al" viene como dd-mm-yyyy
+    const partes = String(avanceAlStr || '').split(/[-/]/).map(Number);
+    if (partes.length < 3 || !partes[1] || !partes[2]) return null;
+    const [, mes, anio] = partes;
+    return `${anio}-${mes <= 6 ? 'S1' : 'S2'}`;
+}
+
+function leerAnticiposAnteriores(dataJsonPath) {
+    try {
+        if (!fs.existsSync(dataJsonPath)) return null;
+        const anterior = JSON.parse(fs.readFileSync(dataJsonPath, 'utf-8'));
+        if (!anterior?.detalleModalTexto) return null;
+        const montos = parseMontosVida(anterior.detalleModalTexto);
+        return { ...montos, tracking: anterior.anticiposDesglosados || null };
+    } catch (e) {
+        console.warn('   ⚠️ No se pudieron leer los anticipos de la actualización anterior:', e.message);
+        return null;
+    }
+}
+
+function calcularAnticiposDesglosados({ anterior, montoBonoInicialActual, montoBonoRenovacionActual, bonosAnticipadosActual, semestreKeyActual }) {
+    const redondear = n => Math.round(n * 100) / 100;
+    const trackingAnterior = anterior?.tracking || null;
+    const semestreNuevo = !trackingAnterior || trackingAnterior.semestreKey !== semestreKeyActual;
+
+    if (semestreNuevo) {
+        // No hay corte anterior del mismo semestre del que partir -> no podemos
+        // atribuir con certeza un anticipo que ya viniera de antes. En la práctica
+        // esto arranca en $0, pero por si el portal ya trae algo anticipado desde
+        // el primer corte del semestre, lo repartimos proporcional a lo calculado
+        // de hoy como mejor esfuerzo, y seguimos el rastreo desde aquí en adelante.
+        const totalActual = montoBonoInicialActual + montoBonoRenovacionActual;
+        const inicial = bonosAnticipadosActual > 0 && totalActual > 0
+            ? bonosAnticipadosActual * (montoBonoInicialActual / totalActual)
+            : 0;
+        return {
+            semestreKey: semestreKeyActual,
+            inicialAnticipadoAcumulado: redondear(inicial),
+            renovacionAnticipadoAcumulado: redondear(bonosAnticipadosActual - inicial),
+            anticipadosCombinadoUltimoCorte: bonosAnticipadosActual,
+            actualizadoEn: new Date().toISOString(),
+        };
+    }
+
+    let inicialAcum = trackingAnterior.inicialAnticipadoAcumulado || 0;
+    let renovacionAcum = trackingAnterior.renovacionAnticipadoAcumulado || 0;
+    const combinadoAnterior = trackingAnterior.anticipadosCombinadoUltimoCorte || 0;
+    const delta = bonosAnticipadosActual - combinadoAnterior;
+
+    if (delta > 0.5) {
+        // Pago nuevo detectado: repartimos el incremento proporcional a lo que el
+        // corte anterior decía que llevaba calculado cada bono.
+        const baseInicial = anterior?.montoBonoInicial || 0;
+        const baseRenovacion = anterior?.montoBonoRenovacion || 0;
+        const baseTotal = baseInicial + baseRenovacion;
+        const deltaInicial = baseTotal > 0 ? delta * (baseInicial / baseTotal) : delta / 2;
+        inicialAcum += deltaInicial;
+        renovacionAcum += (delta - deltaInicial);
+    } else if (delta < -0.5) {
+        // El combinado bajó (poco común: correcciones del portal). Reescalamos
+        // ambos acumulados proporcionalmente para no quedar con una suma mayor
+        // al nuevo total que reporta el portal.
+        const totalAcumAnterior = inicialAcum + renovacionAcum;
+        if (totalAcumAnterior > 0) {
+            const factor = Math.max(0, bonosAnticipadosActual) / totalAcumAnterior;
+            inicialAcum *= factor;
+            renovacionAcum *= factor;
+        }
+    }
+    // |delta| <= 0.5 -> sin pago nuevo, dejamos el acumulado tal cual estaba.
+
+    return {
+        semestreKey: semestreKeyActual,
+        inicialAnticipadoAcumulado: redondear(inicialAcum),
+        renovacionAnticipadoAcumulado: redondear(renovacionAcum),
+        anticipadosCombinadoUltimoCorte: bonosAnticipadosActual,
+        actualizadoEn: new Date().toISOString(),
+    };
+}
+
 // Espera a que se abra una ventana/pestaña nueva (window.open / target=_blank)
 // y regresa la Page correspondiente ya cargada.
 function esperarNuevaPagina(browser, timeout = 20000) {
@@ -613,6 +742,27 @@ async function procesarAsesor(browser, clave, intento = 1) {
         const rutaDataJson = path.join(carpetaAsesor, 'data.json');
         const indicesAnteriores = leerIndicesAnteriores(rutaDataJson);
 
+        // Desglose Inicial vs Renovación de lo ya anticipado — solo aplica a Bono
+        // Vida (Nuevo Profesional). Bono TA no separa Inicial/Renovación.
+        const tipoCab = extraerCampoCabecera(resumen.cabecera._raw, 'Tipo') || '';
+        const esBonoVida = tipoCab && !/training/i.test(tipoCab);
+        let anticiposDesglosados = null;
+        if (esBonoVida) {
+            const avanceAlCab = extraerCampoCabecera(resumen.cabecera._raw, 'Avance Al');
+            const semestreKeyActual = calcularSemestreKey(avanceAlCab);
+            if (semestreKeyActual) {
+                const montosActuales = parseMontosVida(detalleModal);
+                const anticiposAnteriores = leerAnticiposAnteriores(rutaDataJson);
+                anticiposDesglosados = calcularAnticiposDesglosados({
+                    anterior: anticiposAnteriores,
+                    montoBonoInicialActual: montosActuales.montoBonoInicial,
+                    montoBonoRenovacionActual: montosActuales.montoBonoRenovacion,
+                    bonosAnticipadosActual: montosActuales.bonosAnticipados,
+                    semestreKeyActual,
+                });
+            }
+        }
+
         const resultado = {
             clave,
             timestamp: new Date().toISOString(),
@@ -621,13 +771,17 @@ async function procesarAsesor(browser, clave, intento = 1) {
             pareceVacio,
             detalleModalTexto: detalleModal,
             intentos: intento,
-            indicesAnteriores
+            indicesAnteriores,
+            anticiposDesglosados
         };
 
         fs.writeFileSync(rutaDataJson, JSON.stringify(resultado, null, 2));
         console.log(`   💾 Guardado en premios/${clave}/data.json`);
         if (indicesAnteriores) {
             console.log(`   📊 Índices anteriores: LIMRA ${indicesAnteriores.limra}% · IGC ${indicesAnteriores.igc}%`);
+        }
+        if (anticiposDesglosados) {
+            console.log(`   💰 Anticipos desglosados: Inicial ${anticiposDesglosados.inicialAnticipadoAcumulado} · Renovación ${anticiposDesglosados.renovacionAnticipadoAcumulado}`);
         }
 
         return resultado;

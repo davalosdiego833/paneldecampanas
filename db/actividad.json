@@ -1,5 +1,213 @@
 [
   {
+    "id": "1789754508251",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-09-18",
+    "hora": "12:01:48",
+    "timestamp": 1789754508249
+  },
+  {
+    "id": "1789754502247",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-09-18",
+    "hora": "12:01:42",
+    "timestamp": 1789754502201
+  },
+  {
+    "id": "1789689444486",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-09-17",
+    "hora": "17:57:24",
+    "timestamp": 1789689444485
+  },
+  {
+    "id": "1789689436889",
+    "asesor": "QA",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-09-17",
+    "hora": "17:57:16",
+    "timestamp": 1789689436872
+  },
+  {
+    "id": "1789689391406",
+    "asesor": "FERNANDO JAVIER DAVALOS FLORES",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-09-17",
+    "hora": "17:56:31",
+    "timestamp": 1789689391336
+  },
+  {
+    "id": "1789688154900",
+    "asesor": "ANAIS LUA MORENO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-09-17",
+    "hora": "17:35:54",
+    "timestamp": 1789688154848
+  },
+  {
+    "id": "1789686703844",
+    "asesor": "ANAIS LUA MORENO",
+    "accion": "Consultó Campaña: PODER ELEGIRTE",
+    "fecha": "2026-09-17",
+    "hora": "17:11:43",
+    "timestamp": 1789686703843
+  },
+  {
+    "id": "1789686688503",
+    "asesor": "ANAIS LUA MORENO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-09-17",
+    "hora": "17:11:28",
+    "timestamp": 1789686688436
+  },
+  {
+    "id": "1789670079771",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-09-17",
+    "hora": "12:34:39",
+    "timestamp": 1789670079768
+  },
+  {
+    "id": "1789670073451",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-09-17",
+    "hora": "12:34:33",
+    "timestamp": 1789670073415
+  },
+  {
+    "id": "1789667963546",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-09-17",
+    "hora": "11:59:23",
+    "timestamp": 1789667963544
+  },
+  {
+    "id": "1789667958977",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-09-17",
+    "hora": "11:59:18",
+    "timestamp": 1789667958967
+  },
+  {
+    "id": "1789667836435",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-09-17",
+    "hora": "11:57:16",
+    "timestamp": 1789667836434
+  },
+  {
+    "id": "1789667831766",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-09-17",
+    "hora": "11:57:11",
+    "timestamp": 1789667831734
+  },
+  {
+    "id": "1789667639294",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-09-17",
+    "hora": "11:53:59",
+    "timestamp": 1789667639292
+  },
+  {
+    "id": "1789667634482",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-09-17",
+    "hora": "11:53:54",
+    "timestamp": 1789667634472
+  },
+  {
+    "id": "1789667514649",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-09-17",
+    "hora": "11:51:54",
+    "timestamp": 1789667514646
+  },
+  {
+    "id": "1789667508599",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-09-17",
+    "hora": "11:51:48",
+    "timestamp": 1789667508531
+  },
+  {
+    "id": "1789157091614",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-09-11",
+    "hora": "14:04:51",
+    "timestamp": 1789157091601
+  },
+  {
+    "id": "1789157085199",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-09-11",
+    "hora": "14:04:45",
+    "timestamp": 1789157085154
+  },
+  {
+    "id": "1789156383091",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-09-11",
+    "hora": "13:53:03",
+    "timestamp": 1789156383090
+  },
+  {
+    "id": "1789156377726",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-09-11",
+    "hora": "13:52:57",
+    "timestamp": 1789156377670
+  },
+  {
+    "id": "1788459578986",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Consultó Campaña: CIERRE MES",
+    "fecha": "2026-09-03",
+    "hora": "12:19:38",
+    "timestamp": 1788459578985
+  },
+  {
+    "id": "1788459571843",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-09-03",
+    "hora": "12:19:31",
+    "timestamp": 1788459571781
+  },
+  {
+    "id": "1788458730594",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Consultó Campaña: CIERRE MES",
+    "fecha": "2026-09-03",
+    "hora": "12:05:30",
+    "timestamp": 1788458730584
+  },
+  {
+    "id": "1788458722763",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-09-03",
+    "hora": "12:05:22",
+    "timestamp": 1788458722685
+  },
+  {
     "id": "1788374419113",
     "asesor": "Diego",
     "accion": "Inició Sesión / Entró al Dashboard",

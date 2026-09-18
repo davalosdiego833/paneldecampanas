@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import {
     parseCabecera, parseDetalleTA, parseDetalleVida, parseResumenBonos,
-    limpiarNumero, CabeceraPremios, DetalleTA, DetalleVida, FilaResumenBono
+    limpiarNumero, CabeceraPremios, DetalleTA, DetalleVida, FilaResumenBono, AnticiposDesglosados
 } from '../../utils/parsePremiosDetalle';
 import {
     calcularBonoTA, calcularBonoVida, TABLA_TA, semestreDeMes,
@@ -24,6 +24,7 @@ interface PremiosData {
     resumen: { cabecera: { _raw: string[] }, resumenBonos: string[][] | null };
     detalleModalTexto: string;
     indicesAnteriores?: IndicesAnteriores | null;
+    anticiposDesglosados?: AnticiposDesglosados | null;
 }
 
 export const fmt = (v: number) => v.toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
@@ -270,7 +271,13 @@ const VistaBonoTA: React.FC<{ cab: CabeceraPremios; det: DetalleTA }> = ({ cab, 
 // Grupo Calculado real (si ya tiene uno).
 const TablaPrimaFaltante: React.FC<{
     primaActual: number; primaPagoActual: number; mesEnSemestre: number; esSegundoSemestreDelAnio: boolean;
-    limra: number; antiguedadMeses: number; grupoCalculado: number; grupoTope: number; bonoAnticipado: number;
+    limra: number; antiguedadMeses: number; grupoCalculado: number; grupoTope: number;
+    // Ojo: esta tabla proyecta puro Bono INICIAL (proyectarBonoInicialParaGrupo
+    // fuerza Renovación a 0), así que `bonoAnticipado` debe ser el anticipo YA
+    // AISLADO de Inicial (det.anticiposDesglosados.inicialAnticipadoAcumulado),
+    // nunca el combinado Inicial+Renovación del portal — si no, la resta mezcla
+    // unidades distintas y el neto sale mal (o en $0 por el Math.max de abajo).
+    bonoAnticipado: number;
 }> = ({ primaActual, primaPagoActual, mesEnSemestre, esSegundoSemestreDelAnio, limra, antiguedadMeses, grupoCalculado, grupoTope, bonoAnticipado }) => {
     const mesesRestantes: number[] = [];
     for (let m = mesEnSemestre; m <= 6; m++) mesesRestantes.push(m);
@@ -349,7 +356,7 @@ const TablaPrimaFaltante: React.FC<{
             </div>
             <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: '10px' }}>
                 🏆 = tu Grupo Calculado real hoy · (tope) = el Grupo Tope que limita tus anticipos este semestre (heredado del semestre anterior).
-                "Bono proyectado del mes" respeta tu Grupo Tope (como un anticipo real de este mes). "Bono proyectado del semestre" asume que llegas a ese grupo para el cierre, cuando el Grupo Tope ya no aplica. Ambos ya restan lo que ya te habían anticipado, y asumen que también cumples el candado de pólizas.
+                "Bono proyectado del mes" respeta tu Grupo Tope (como un anticipo real de este mes). "Bono proyectado del semestre" asume que llegas a ese grupo para el cierre, cuando el Grupo Tope ya no aplica. Ambos ya restan lo que ya te habían anticipado de Bono Inicial (no incluye Renovación, porque esta tabla es solo Inicial), y asumen que también cumples el candado de pólizas.
             </p>
         </div>
     );
@@ -358,7 +365,7 @@ const TablaPrimaFaltante: React.FC<{
 // ---------------------------------------------------------------------------
 // BONO VIDA
 // ---------------------------------------------------------------------------
-const VistaBonoVida: React.FC<{ cab: CabeceraPremios; det: DetalleVida }> = ({ cab, det }) => {
+const VistaBonoVida: React.FC<{ cab: CabeceraPremios; det: DetalleVida; anticiposDesglosados: AnticiposDesglosados | null }> = ({ cab, det, anticiposDesglosados }) => {
     const avanceAlMes = Number((cab.avanceAl.split('-')[1] || cab.indicadores['Avance Al']?.split('-')[1] || '1'));
     const mesEnSemestre = ((avanceAlMes - 1) % 6) + 1;
     const esSegundoSemestreDelAnio = avanceAlMes > 6;
@@ -391,6 +398,15 @@ const VistaBonoVida: React.FC<{ cab: CabeceraPremios; det: DetalleVida }> = ({ c
     const bonoAnticipado = det.bonosAnticipados || 0;
     const bonoAPagarReal = det.bonosAPagar || Math.max(0, bonoSemestralTotal - bonoAnticipado);
 
+    // Desglose Inicial vs Renovación de lo ya anticipado (reconstruido corte a
+    // corte por descargar_premios.js, porque el portal solo da el combinado de
+    // arriba). Si todavía no hay historial (asesor nuevo en el reporte, o primer
+    // corte tras activar esto), asumimos $0 anticipado de cada uno.
+    const inicialAnticipado = anticiposDesglosados?.inicialAnticipadoAcumulado ?? 0;
+    const renovacionAnticipado = anticiposDesglosados?.renovacionAnticipadoAcumulado ?? 0;
+    const inicialPendiente = Math.max(0, det.montoBonoInicial - inicialAnticipado);
+    const renovacionPendiente = Math.max(0, det.montoBonoRenovacion - renovacionAnticipado);
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             {/* ============ BONO INICIAL ============ */}
@@ -409,6 +425,29 @@ const VistaBonoVida: React.FC<{ cab: CabeceraPremios; det: DetalleVida }> = ({ c
                 </div>
             </div>
 
+            <div className="glass-card" style={{ padding: '20px', border: '1px solid var(--accent-gold)', background: 'rgba(212,175,55,0.06)' }}>
+                <h4 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '14px' }}>💰 Bono Inicial — calculado, anticipado y pendiente</h4>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '16px', textAlign: 'center' }}>
+                    <div>
+                        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '4px' }}>Bono Inicial calculado</p>
+                        <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>{fmt(det.montoBonoInicial)}</p>
+                    </div>
+                    <div>
+                        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '4px' }}>Ya te habían anticipado (Inicial)</p>
+                        <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>− {fmt(inicialAnticipado)}</p>
+                    </div>
+                    <div>
+                        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '4px' }}>Pendiente de pago (Inicial)</p>
+                        <p style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent-gold)' }}>= {fmt(inicialPendiente)}</p>
+                    </div>
+                </div>
+                {!anticiposDesglosados && (
+                    <p style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginTop: '12px', textAlign: 'center' }}>
+                        Todavía no hay historial para desglosar el anticipo entre Inicial y Renovación — se va a ir calculando solo a partir del próximo corte en el que el portal marque un pago nuevo.
+                    </p>
+                )}
+            </div>
+
             <TablaPrimaFaltante
                 primaActual={det.primaMetaSem}
                 primaPagoActual={det.primaPagoSem}
@@ -418,7 +457,7 @@ const VistaBonoVida: React.FC<{ cab: CabeceraPremios; det: DetalleVida }> = ({ c
                 antiguedadMeses={antiguedadMeses}
                 grupoCalculado={det.grupoCalculado}
                 grupoTope={det.grupoTope}
-                bonoAnticipado={det.bonosAnticipados || 0}
+                bonoAnticipado={inicialAnticipado}
             />
 
             {/* ============ ¿QUÉ TE FALTA? — resumen específico y accionable ============ */}
@@ -460,6 +499,29 @@ const VistaBonoVida: React.FC<{ cab: CabeceraPremios; det: DetalleVida }> = ({ c
                     <Stat label="Prima Renovación Sem" value={fmt(det.primaRenovacionSem)} />
                     <Stat label="% Bono Renovación" value={fmtPct(det.pctBonoRenovacion)} sub="Sobre tu prima de renovación" />
                 </div>
+            </div>
+
+            <div className="glass-card" style={{ padding: '20px', border: '1px solid var(--accent-gold)', background: 'rgba(212,175,55,0.06)' }}>
+                <h4 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '14px' }}>💰 Bono Renovación — calculado, anticipado y pendiente</h4>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '16px', textAlign: 'center' }}>
+                    <div>
+                        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '4px' }}>Bono Renovación calculado</p>
+                        <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>{fmt(det.montoBonoRenovacion)}</p>
+                    </div>
+                    <div>
+                        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '4px' }}>Ya te habían anticipado (Renovación)</p>
+                        <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>− {fmt(renovacionAnticipado)}</p>
+                    </div>
+                    <div>
+                        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '4px' }}>Pendiente de pago (Renovación)</p>
+                        <p style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent-gold)' }}>= {fmt(renovacionPendiente)}</p>
+                    </div>
+                </div>
+                {!anticiposDesglosados && (
+                    <p style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginTop: '12px', textAlign: 'center' }}>
+                        Todavía no hay historial para desglosar el anticipo entre Inicial y Renovación — se va a ir calculando solo a partir del próximo corte en el que el portal marque un pago nuevo.
+                    </p>
+                )}
             </div>
 
             {/* ============ RESUMEN DE PAGO (Inicial + Renovación) ============ */}
@@ -561,7 +623,8 @@ const PestanasBonoVida: React.FC<{
     det: DetalleVida;
     antiguedadMeses: number;
     indicesAnteriores: IndicesAnteriores | null;
-}> = ({ cab, det, antiguedadMeses, indicesAnteriores }) => {
+    anticiposDesglosados: AnticiposDesglosados | null;
+}> = ({ cab, det, antiguedadMeses, indicesAnteriores, anticiposDesglosados }) => {
     const [tab, setTab] = useState<TabBonoVida>('bono');
 
     const tabs: { key: TabBonoVida; label: string }[] = [
@@ -594,7 +657,7 @@ const PestanasBonoVida: React.FC<{
                 ))}
             </div>
 
-            {tab === 'bono' && <VistaBonoVida cab={cab} det={det} />}
+            {tab === 'bono' && <VistaBonoVida cab={cab} det={det} anticiposDesglosados={anticiposDesglosados} />}
             {tab === 'indices' && <PestanaIndices det={det} antiguedadMeses={antiguedadMeses} indicesAnteriores={indicesAnteriores} />}
             {tab === 'ponderacion' && <PestanaPonderacion />}
         </div>
@@ -658,6 +721,7 @@ const BonoPremios: React.FC<Props> = ({ advisor }) => {
                         det={parseDetalleVida(data.detalleModalTexto)}
                         antiguedadMeses={antiguedadMeses}
                         indicesAnteriores={data.indicesAnteriores || null}
+                        anticiposDesglosados={data.anticiposDesglosados || null}
                     />
                 )
             }
