@@ -11,8 +11,12 @@ const __dirname = path.dirname(__filename);
 
 const REPORTES_URL = 'https://www.asesordeseguros.com.mx/ComoVamos/Reportesdeventas/ReportePromotor.aspx?folderId=100&view=gridview&pageSize=10';
 
-// Carpetas del portal que contienen archivos descargables (se ignora "Quién es quién")
-const CARPETAS_PORTAL = ['Campañas', 'Esparcimiento', 'Informativos', 'Pagado Pendiente'];
+// Carpetas del portal que contienen archivos descargables.
+// "Quién es quién" agregada 2026-09-18 — si el nombre exacto de la carpeta en
+// el portal no coincide con este string, esta carpeta simplemente no se va a
+// procesar (sale en el log como "carpeta no encontrada" o similar); hay que
+// verificarlo contra el portal real y ajustar el texto si hace falta.
+const CARPETAS_PORTAL = ['Campañas', 'Esparcimiento', 'Informativos', 'Pagado Pendiente', 'Quién es quién'];
 
 // Reglas planas: se aplican al nombre del archivo descargado sin importar de qué
 // carpeta del portal salió. `campaignKey` debe existir en campaignDates o fechas_corte
@@ -37,7 +41,13 @@ const REGLAS = [
     { regex: /proactivo/i, dir: path.join('administrador', 'proactivos'), campaignKey: 'proactivos', label: 'Proactivos' },
     { regex: /sin emisi/i, dir: path.join('administrador', 'asesores_sin_emision'), campaignKey: 'asesores_sin_emision', label: 'Asesores sin Emisión' },
     // Específico a "Comparativo Vida" — "Comparativo GMM" es un reporte distinto sin pipeline propio
-    { regex: /comparativo.*vida/i, dir: path.join('administrador', 'comparativo_vida'), rename: 'Comparativo Vida.xlsm', campaignKey: 'comparativo_vida', label: 'Comparativo de Vida' }
+    { regex: /comparativo.*vida/i, dir: path.join('administrador', 'comparativo_vida'), rename: 'Comparativo Vida.xlsm', campaignKey: 'comparativo_vida', label: 'Comparativo de Vida' },
+    // Quién es Quién — nombres de destino calcados de lo que actualizar_snapshot.js
+    // ya esperaba leer (estaba listo desde antes, solo faltaba la descarga).
+    { regex: /qsq.*vida|quien.*es.*quien.*vida/i, dir: path.join('administrador', 'QsQ Vida'), rename: 'QsQ Asesores Vida.xlsm', campaignKey: 'qsq_vida', label: 'QsQ Vida' },
+    { regex: /qsq.*gmm|quien.*es.*quien.*gmm/i, dir: path.join('administrador', 'QsQ GMM'), rename: 'QsQ GMM.xlsx', campaignKey: 'qsq_gmm', label: 'QsQ GMM' },
+    // Ranking Promotores — misma página que QsQ, nombre exacto en el portal sin confirmar.
+    { regex: /ranking.*promotor/i, dir: path.join('administrador', 'ranking_promotores'), campaignKey: 'ranking_promotores', label: 'Ranking Promotores' },
 ];
 
 async function delay(time) {

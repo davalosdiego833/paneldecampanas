@@ -1028,6 +1028,21 @@ const run = async () => {
             fc.proactivos = extractCutoffDate(wb);
         }
 
+        // Ranking Promotores (agregado 2026-09-18): SOLO se extrae la fecha de
+        // corte para el archivado histórico mensual — no se agrega a los
+        // dashboards del panel (rg), decisión deliberada para no tocar esa
+        // parte del código sin conocerla a fondo.
+        try {
+            const rankingDir = path.join(BASE_PATH, 'administrador', 'ranking_promotores');
+            if (fs.existsSync(rankingDir)) {
+                const archivosRanking = fs.readdirSync(rankingDir).filter(f => /\.(xlsx|xlsm|xls)$/i.test(f) && !f.startsWith('~$'));
+                if (archivosRanking.length > 0) {
+                    const wbRanking = XLSX.readFile(path.join(rankingDir, archivosRanking[0]));
+                    fc.ranking_promotores = extractCutoffDate(wbRanking);
+                }
+            }
+        } catch (e) { console.warn('⚠️ Ranking Promotores (fecha) skip:', e.message); }
+
         // 5. Comparativo de Vida
         let cvPath = path.join(BASE_PATH, 'administrador', 'comparativo_vida', 'Comparativo Vida.xlsm');
         if (!fs.existsSync(cvPath)) {
@@ -1343,7 +1358,12 @@ const run = async () => {
                 proactivos: 'Proactivos',
                 comparativo_vida: 'Comparativo de Vida',
                 convenciones_promotores: 'Convención Promotoría',
-                convenciones_gerente: 'Convención Gerencia'
+                convenciones_gerente: 'Convención Gerencia',
+                qsq_vida: 'QsQ Vida',
+                qsq_gmm: 'QsQ GMM',
+                // ranking_promotores deliberadamente NO está aquí — todavía no
+                // tiene apartado propio en el panel, notificar sería mandar a
+                // los admins a buscar algo que no pueden ver en el sitio.
             };
 
             const formatList = (arr) => {

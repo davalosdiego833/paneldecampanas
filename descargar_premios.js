@@ -125,7 +125,8 @@ function leerAnticiposAnteriores(dataJsonPath) {
         const anterior = JSON.parse(fs.readFileSync(dataJsonPath, 'utf-8'));
         if (!anterior?.detalleModalTexto) return null;
         const montos = parseMontosVida(anterior.detalleModalTexto);
-        return { ...montos, tracking: anterior.anticiposDesglosados || null };
+        const avanceAlAnterior = extraerCampoCabecera(anterior?.resumen?.cabecera?._raw, 'Avance Al');
+        return { ...montos, semestreKey: calcularSemestreKey(avanceAlAnterior), tracking: anterior.anticiposDesglosados || null };
     } catch (e) {
         console.warn('   ⚠️ No se pudieron leer los anticipos de la actualización anterior:', e.message);
         return null;
@@ -134,38 +135,34 @@ function leerAnticiposAnteriores(dataJsonPath) {
 
 function calcularAnticiposDesglosados({ anterior, montoBonoInicialActual, montoBonoRenovacionActual, bonosAnticipadosActual, semestreKeyActual }) {
     const redondear = n => Math.round(n * 100) / 100;
-    const trackingAnterior = anterior?.tracking || null;
-    const semestreNuevo = !trackingAnterior || trackingAnterior.semestreKey !== semestreKeyActual;
 
-    if (semestreNuevo) {
-        // No hay corte anterior del mismo semestre del que partir -> no podemos
-        // atribuir con certeza un anticipo que ya viniera de antes. En la práctica
-        // esto arranca en $0, pero por si el portal ya trae algo anticipado desde
-        // el primer corte del semestre, lo repartimos proporcional a lo calculado
-        // de hoy como mejor esfuerzo, y seguimos el rastreo desde aquí en adelante.
-        const totalActual = montoBonoInicialActual + montoBonoRenovacionActual;
-        const inicial = bonosAnticipadosActual > 0 && totalActual > 0
-            ? bonosAnticipadosActual * (montoBonoInicialActual / totalActual)
-            : 0;
-        return {
-            semestreKey: semestreKeyActual,
-            inicialAnticipadoAcumulado: redondear(inicial),
-            renovacionAnticipadoAcumulado: redondear(bonosAnticipadosActual - inicial),
-            anticipadosCombinadoUltimoCorte: bonosAnticipadosActual,
-            actualizadoEn: new Date().toISOString(),
-        };
-    }
+    // ¿El corte anterior es del MISMO semestre que estamos calculando ahora? Si es
+    // de un semestre ya cerrado (o no hay corte anterior), su "calculado" no sirve
+    // como base para repartir -- sería mezclar un semestre viejo con el nuevo.
+    const anteriorEsMismoSemestre = !!anterior && anterior.semestreKey === semestreKeyActual;
 
-    let inicialAcum = trackingAnterior.inicialAnticipadoAcumulado || 0;
-    let renovacionAcum = trackingAnterior.renovacionAnticipadoAcumulado || 0;
-    const combinadoAnterior = trackingAnterior.anticipadosCombinadoUltimoCorte || 0;
+    // De dónde partimos: si ya veníamos rastreando ESTE semestre, seguimos desde
+    // ahí. Si no (primera corrida de este script, o cambio de semestre), partimos
+    // de $0 -- el "delta" de abajo se encarga de repartir todo lo que el portal ya
+    // traiga anticipado desde ese punto en adelante.
+    const trackingAnterior = (anteriorEsMismoSemestre && anterior.tracking && anterior.tracking.semestreKey === semestreKeyActual)
+        ? anterior.tracking
+        : null;
+
+    let inicialAcum = trackingAnterior?.inicialAnticipadoAcumulado || 0;
+    let renovacionAcum = trackingAnterior?.renovacionAnticipadoAcumulado || 0;
+    const combinadoAnterior = trackingAnterior?.anticipadosCombinadoUltimoCorte || 0;
     const delta = bonosAnticipadosActual - combinadoAnterior;
 
     if (delta > 0.5) {
         // Pago nuevo detectado: repartimos el incremento proporcional a lo que el
-        // corte anterior decía que llevaba calculado cada bono.
-        const baseInicial = anterior?.montoBonoInicial || 0;
-        const baseRenovacion = anterior?.montoBonoRenovacion || 0;
+        // corte anterior decía que llevaba calculado cada bono -- usamos el
+        // calculado DE ESE CORTE (no el de hoy), porque el candado de pólizas de
+        // este mes puede haber dejado el "Real" de hoy en $0 aunque sí les hayan
+        // pagado lo que llevaban antes. Si no hay un corte anterior del mismo
+        // semestre del que partir, usamos como último recurso lo calculado de hoy.
+        const baseInicial = anteriorEsMismoSemestre ? (anterior.montoBonoInicial || 0) : montoBonoInicialActual;
+        const baseRenovacion = anteriorEsMismoSemestre ? (anterior.montoBonoRenovacion || 0) : montoBonoRenovacionActual;
         const baseTotal = baseInicial + baseRenovacion;
         const deltaInicial = baseTotal > 0 ? delta * (baseInicial / baseTotal) : delta / 2;
         inicialAcum += deltaInicial;

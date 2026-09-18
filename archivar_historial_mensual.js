@@ -85,6 +85,9 @@ function main() {
         { origen: path.join('administrador', 'comparativo_vida'), patrones: [/comparativo/i], claveFecha: fechas_corte.comparativo_vida, destino: (m) => path.join(DESTINO_BASE, 'PROMO', 'comparativo vida', m.anio) },
         // Confirmado con Diego: el crudo (PagPend.xls), no el procesado.
         { origen: path.join('administrador', 'pagado_emitido'), patrones: [/^PagPend\.xls$/i], claveFecha: fechas_corte.pagado_pendiente, destino: (m) => path.join(DESTINO_BASE, 'PROMO', 'PAG & EMI', m.anio) },
+        { origen: path.join('administrador', 'QsQ Vida'), patrones: [/.*/], claveFecha: fechas_corte.qsq_vida, destino: (m) => path.join(DESTINO_BASE, 'PROMO', 'QsQ asesores', m.anio) },
+        { origen: path.join('administrador', 'QsQ GMM'), patrones: [/.*/], claveFecha: fechas_corte.qsq_gmm, destino: (m) => path.join(DESTINO_BASE, 'PROMO', 'QSQ GMM', m.anio) },
+        { origen: path.join('administrador', 'ranking_promotores'), patrones: [/.*/], claveFecha: fechas_corte.ranking_promotores, destino: (m) => path.join(DESTINO_BASE, 'PROMO', 'Ranking promotores', m.anio) },
     ];
 
     for (const item of MAPEO) {

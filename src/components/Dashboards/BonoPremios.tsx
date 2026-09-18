@@ -12,6 +12,7 @@ import {
 import SelectorCalculadoraGenerica from './CalculadorasGenericas';
 import { PestanaIndices, IndicesAnteriores } from './BonoIndices';
 import { PestanaPonderacion } from './BonoPonderacion';
+import { PestanaCalendarioPagos } from './CalendarioPagosPremios';
 
 const MESES_ES = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
 
@@ -612,11 +613,40 @@ const VistaBonoVida: React.FC<{ cab: CabeceraPremios; det: DetalleVida; anticipo
 };
 
 // ---------------------------------------------------------------------------
-// Pestañas del reporte para Asesores Nuevos Profesionales (Bono Vida).
-// Los Asesores en Desarrollo (Training Allowance) NO tienen estas pestañas —
-// solo ven la vista de Bono directo (ver VistaBonoTA más arriba).
+// Barra de pestañas genérica (mismo look en Bono Vida y Bono TA).
 // ---------------------------------------------------------------------------
-type TabBonoVida = 'bono' | 'indices' | 'ponderacion';
+function BarraPestanas<T extends string>({ tab, setTab, tabs }: {
+    tab: T; setTab: (t: T) => void; tabs: { key: T; label: string }[];
+}) {
+    return (
+        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', borderBottom: '1px solid var(--border, rgba(255,255,255,0.1))', paddingBottom: '2px' }}>
+            {tabs.map(t => (
+                <button
+                    key={t.key}
+                    onClick={() => setTab(t.key)}
+                    style={{
+                        padding: '10px 16px',
+                        borderRadius: '10px 10px 0 0',
+                        border: 'none',
+                        borderBottom: tab === t.key ? '2px solid var(--accent-gold)' : '2px solid transparent',
+                        background: tab === t.key ? 'rgba(212,175,55,0.1)' : 'transparent',
+                        color: tab === t.key ? 'var(--accent-gold)' : 'var(--text-secondary)',
+                        fontWeight: tab === t.key ? 700 : 500,
+                        fontSize: '0.88rem',
+                        cursor: 'pointer'
+                    }}
+                >
+                    {t.label}
+                </button>
+            ))}
+        </div>
+    );
+}
+
+// ---------------------------------------------------------------------------
+// Pestañas del reporte para Asesores Nuevos Profesionales (Bono Vida).
+// ---------------------------------------------------------------------------
+type TabBonoVida = 'bono' | 'indices' | 'ponderacion' | 'calendario';
 
 const PestanasBonoVida: React.FC<{
     cab: CabeceraPremios;
@@ -631,35 +661,42 @@ const PestanasBonoVida: React.FC<{
         { key: 'bono', label: '💰 Bono' },
         { key: 'indices', label: '📈 Índices' },
         { key: 'ponderacion', label: '⚖️ Ponderación Productos' },
+        { key: 'calendario', label: '📅 Calendario' },
     ];
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', borderBottom: '1px solid var(--border, rgba(255,255,255,0.1))', paddingBottom: '2px' }}>
-                {tabs.map(t => (
-                    <button
-                        key={t.key}
-                        onClick={() => setTab(t.key)}
-                        style={{
-                            padding: '10px 16px',
-                            borderRadius: '10px 10px 0 0',
-                            border: 'none',
-                            borderBottom: tab === t.key ? '2px solid var(--accent-gold)' : '2px solid transparent',
-                            background: tab === t.key ? 'rgba(212,175,55,0.1)' : 'transparent',
-                            color: tab === t.key ? 'var(--accent-gold)' : 'var(--text-secondary)',
-                            fontWeight: tab === t.key ? 700 : 500,
-                            fontSize: '0.88rem',
-                            cursor: 'pointer'
-                        }}
-                    >
-                        {t.label}
-                    </button>
-                ))}
-            </div>
+            <BarraPestanas tab={tab} setTab={setTab} tabs={tabs} />
 
             {tab === 'bono' && <VistaBonoVida cab={cab} det={det} anticiposDesglosados={anticiposDesglosados} />}
             {tab === 'indices' && <PestanaIndices det={det} antiguedadMeses={antiguedadMeses} indicesAnteriores={indicesAnteriores} />}
             {tab === 'ponderacion' && <PestanaPonderacion />}
+            {tab === 'calendario' && <PestanaCalendarioPagos />}
+        </div>
+    );
+};
+
+// ---------------------------------------------------------------------------
+// Pestañas del reporte para Asesores en Desarrollo (Bono TA). Antes VistaBonoTA
+// se mostraba directo sin pestañas — se le agrega esta barra solo para meter el
+// Calendario sin tocar su contenido de Bono.
+// ---------------------------------------------------------------------------
+type TabBonoTA = 'bono' | 'calendario';
+
+const PestanasBonoTA: React.FC<{ cab: CabeceraPremios; det: DetalleTA }> = ({ cab, det }) => {
+    const [tab, setTab] = useState<TabBonoTA>('bono');
+
+    const tabs: { key: TabBonoTA; label: string }[] = [
+        { key: 'bono', label: '💰 Bono' },
+        { key: 'calendario', label: '📅 Calendario' },
+    ];
+
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <BarraPestanas tab={tab} setTab={setTab} tabs={tabs} />
+
+            {tab === 'bono' && <VistaBonoTA cab={cab} det={det} />}
+            {tab === 'calendario' && <PestanaCalendarioPagos />}
         </div>
     );
 };
@@ -714,7 +751,7 @@ const BonoPremios: React.FC<Props> = ({ advisor }) => {
             <ResumenBonosTabla filas={resumenBonos} activo={activo?.nombre || ''} />
 
             {esTA
-                ? <VistaBonoTA cab={cab} det={parseDetalleTA(data.detalleModalTexto)} />
+                ? <PestanasBonoTA cab={cab} det={parseDetalleTA(data.detalleModalTexto)} />
                 : (
                     <PestanasBonoVida
                         cab={cab}

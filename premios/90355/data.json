@@ -1,43 +1,50 @@
 {
   "clave": "90355",
-  "timestamp": "2026-09-17T21:46:28.016Z",
-  "urlDashboard": "https://hojameta.mnyl.com.mx/front/agentes?fecha=31-08-2026&numeroAgente=90355",
+  "timestamp": "2026-09-18T19:00:33.511Z",
+  "urlDashboard": "https://hojameta.mnyl.com.mx/front/agentes?fecha=11-09-2026&numeroAgente=90355",
   "resumen": {
     "cabecera": {
       "_raw": [
         "Asesor: DARINKA URE�A CASILLAS",
         "Clave: 90355",
-        "Avance Al: 31-08-2026",
+        "Avance Al: 11-09-2026",
         "Fecha Concurso: 28/04/2020",
         "Tipo: Nuevo Profesional",
         "Pólizas Vida",
-        "0",
+        "3",
         "Prima Meta Vida",
-        "0",
+        "$58,368",
         "Prima Renov Vida",
-        "0",
+        "$732,686",
         "Pólizas GMMI",
-        "0",
+        "2",
         "Primas Iniciales GMMI",
-        "0",
+        "$27,943",
         "Primas Renov GMMI",
-        "0",
+        "$212,179",
         "LIMRA",
-        "0",
+        "100%",
         "IGC",
-        "0",
+        "96.19%",
         "Histórico de Bonos",
-        "Resumen de Bonos",
-        "Bonos\tBono Mes\tBono Acumulado\tGana",
-        "Bono Vida",
-        "Bono GMMI",
-        "Bono Beneficios",
-        "Bono Conexión",
-        "Bono Desarrollo",
-        "Total",
-        "Ingresos por Bonos",
-        "Copyright © 2023 SMNYL All rights reserved.",
-        "by Dirección de Tecnologías de la Información"
+        "2025",
+        "2026",
+        "Ene",
+        "Feb",
+        "Mar",
+        "Abr",
+        "May",
+        "Jun",
+        "Jul",
+        "Ago",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dic",
+        "Historico de Bono 2025,2026",
+        "$129,199",
+        "$116,279",
+        "$103,359"
       ]
     },
     "resumenBonos": [
@@ -50,55 +57,62 @@
       ],
       [
         "Bono Vida",
-        "",
-        "",
+        "$0.00",
+        "$239,992.97",
         "",
         ""
       ],
       [
         "Bono GMMI",
-        "",
-        "",
+        "$0.00",
+        "$0.00",
         "",
         ""
       ],
       [
         "Bono Beneficios",
-        "",
-        "",
+        "$ 0.00",
+        "$ 0.00",
         "",
         ""
       ],
       [
         "Bono Conexión",
-        "",
-        "",
+        "$ 0.00",
+        "$ 15,000.00",
         "",
         ""
       ],
       [
         "Bono Desarrollo",
-        "",
-        "",
+        "$ 0.00",
+        "$ 0.00",
         "",
         ""
       ],
       [
         "Total",
-        "",
-        "",
+        "$ 0.00",
+        "$ 254,992.97",
         "",
         ""
       ]
     ],
-    "todoElTexto": " Asesor: DARINKA URE�A CASILLAS\n Clave: 90355\n Avance Al: 31-08-2026\n Fecha Concurso: 28/04/2020\n Tipo: Nuevo Profesional\n Pólizas Vida\n0\n Prima Meta Vida\n0\n Prima Renov Vida\n0\n Pólizas GMMI\n0\n Primas Iniciales GMMI\n0\n Primas Renov GMMI\n0\n LIMRA\n0\n IGC\n0\nHistórico de Bonos\nResumen de Bonos\nBonos\tBono Mes\tBono Acumulado\tGana\t\nBono Vida\t\t\t\t\nBono GMMI\t\t\t\t\nBono Beneficios\t\t\t\t\nBono Conexión\t\t\t\t\nBono Desarrollo\t\t\t\t\nTotal\t\t\t \t \nIngresos por Bonos\nCopyright © 2023 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información"
+    "todoElTexto": " Asesor: DARINKA URE�A CASILLAS\n Clave: 90355\n Avance Al: 11-09-2026\n Fecha Concurso: 28/04/2020\n Tipo: Nuevo Profesional\n Pólizas Vida\n3\n Prima Meta Vida\n$58,368\n Prima Renov Vida\n$732,686\n Pólizas GMMI\n2\n Primas Iniciales GMMI\n$27,943\n Primas Renov GMMI\n$212,179\n LIMRA\n100%\n IGC\n96.19%\nHistórico de Bonos\n2025\n2026\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2025,2026\n$129,199\n$116,279\n$103,359\n$90,439\n$77,519\n$64,599\n$51,679\n$38,759\n$25,839\n$12,919\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nResumen de Bonos\nBonos\tBono Mes\tBono Acumulado\tGana\t\nBono Vida\t$0.00\t$239,992.97\t\t\nBono GMMI\t$0.00\t$0.00\t\t\nBono Beneficios\t$ 0.00\t$ 0.00\t\t\nBono Conexión\t$ 0.00\t$ 15,000.00\t\t\nBono Desarrollo\t$ 0.00\t$ 0.00\t\t\nTotal\t$ 0.00\t$ 254,992.97\t \t \nIngresos por Bonos\nCopyright © 2023 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información"
   },
   "pareceVacio": false,
-  "detalleModalTexto": " Asesor: DARINKA URE�A CASILLAS\n Clave: 90355\n Avance Al: 31-08-2026\n Fecha Concurso: 28/04/2020\n Tipo: Nuevo Profesional\n Pólizas Vida\n0\n Prima Meta Vida\n0\n Prima Renov Vida\n0\n Pólizas GMMI\n0\n Primas Iniciales GMMI\n0\n Primas Renov GMMI\n0\n LIMRA\n0\n IGC\n0\nHistórico de Bonos\nResumen de Bonos\nBonos\tBono Mes\tBono Acumulado\tGana\t\nBono Vida\t\t\t\t\nBono GMMI\t\t\t\t\nBono Beneficios\t\t\t\t\nBono Conexión\t\t\t\t\nBono Desarrollo\t\t\t\t\nTotal\t\t\t \t \nIngresos por Bonos\nBono Vida\n×\nResumen Bonos Vida\nBonos\tReal\tMeta\tCumple\n Bono Inicial\t$0\t \t\n Póliza Mes\t2.00\t1.00\t\n Pólizas Semestre\t3.00\t5.00\t\n Pólizas Anual\t22.00\t20.00\t\n Prima Meta Mes\t$28,974\t \t\n Prima Meta Sem\t$58,368\t \t\n Grupo Calculado\t0\t \t \n Grupo Tope\t12\t \t \n LIMRA\t100.00%\t \t \n Prima Pago Sem\t$58,368\t \t \n % Bono Inicial\t0.00%\t \t \n \t \t \t \n Bono Renovación\t$0\t \t\n Bono Inicial\t \t \t\n IGC\t96.52%\t \t\n Prima Renovación Sem\t$691,145\t \t \n % Bono Renovación\t0.00%\t \t \n \t \t \t \n Bono Semestral\t$0\n Bonos Anticipados\t$0\n Bonos a Pagar\t$0\n\nVer Detalle Pólizas MSI\n\t\nVer Detalle Bonos\n\n \t \nBonos Anticipados\nJulio\nAgosto\nSeptiembre\nOctubre\nNoviembre\n$2.00\n$1.60\n$1.20\n$0.80\n$0.40\n$0.00\nDownload SVG\nDownload PNG\nDownload CSV\nLIMRA\n 100%\n84.5%\t87.5%\t89.5%\t91.5%\t95.5%\nIGC\n 96.52%\n91%\t92.5%\t95%\t95.75%\nPrima Meta Acum(Gpo)\nPrima Meta Acum: $58,368\nMínimo Pólizas\nMeta: 5\n6\n5\n4\n3\n2\n1\n0\nPolizas Acum: 3\nFalta: 2\nDownload SVG\nDownload PNG\nDownload CSV\nPrima Faltante\nGrupo/Mes\tJul\tAgo\tSep\tOct\tNov\tDic\t% Bono\n1\t\t$851,632\t$1,311,632\t$1,766,632\t$2,221,632\t$2,676,632\t45.00%\n2\t\t$776,632\t$1,196,632\t$1,611,632\t$2,031,632\t$2,446,632\t43.00%\n3\t\t$651,632\t$1,006,632\t$1,361,632\t$1,716,632\t$2,066,632\t40.00%\n4\t\t$586,632\t$911,632\t$1,231,632\t$1,556,632\t$1,886,632\t37.00%\n5\t\t$546,632\t$846,632\t$1,156,632\t$1,456,632\t$1,761,632\t35.00%\n6\t\t$501,632\t$776,632\t$1,056,632\t$1,341,632\t$1,616,632\t33.00%\n7\t\t$441,632\t$686,632\t$941,632\t$1,186,632\t$1,436,632\t31.00%\n8\t\t$371,632\t$581,632\t$801,632\t$1,016,632\t$1,231,632\t29.00%\n9\t\t$316,632\t$496,632\t$681,632\t$871,632\t$1,056,632\t27.00%\n10\t\t$256,632\t$416,632\t$581,632\t$731,632\t$891,632\t25.00%\n11\t\t$186,632\t$311,632\t$431,632\t$556,632\t$676,632\t23.00%\n12\t\t$116,632\t$201,632\t$291,632\t$381,632\t$466,632\t21.00%\n13\t\t$81,632\t$156,632\t$221,632\t$296,632\t$361,632\t19.00%\n14\t\t$71,632\t$131,632\t$201,632\t$261,632\t$326,632\t17.00%\n15\t\t$51,632\t$101,632\t$161,632\t$216,632\t$271,632\t15.00%\n16\t\t$31,632\t$76,632\t$126,632\t$166,632\t$216,632\t14.00%\nGpo Tope Ant.\nGpo Tope Alc.\nCopyright © 2023 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información\nEl porcentaje para Prima Meta Acum (GPO) es 0%\nNo hay rangos para Prima Meta",
+  "detalleModalTexto": " Asesor: DARINKA URE�A CASILLAS\n Clave: 90355\n Avance Al: 11-09-2026\n Fecha Concurso: 28/04/2020\n Tipo: Nuevo Profesional\n Pólizas Vida\n3\n Prima Meta Vida\n$58,368\n Prima Renov Vida\n$732,686\n Pólizas GMMI\n2\n Primas Iniciales GMMI\n$27,943\n Primas Renov GMMI\n$212,179\n LIMRA\n100%\n IGC\n96.19%\nHistórico de Bonos\n2025\n2026\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2025,2026\n$129,199\n$116,279\n$103,359\n$90,439\n$77,519\n$64,599\n$51,679\n$38,759\n$25,839\n$12,919\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nResumen de Bonos\nBonos\tBono Mes\tBono Acumulado\tGana\t\nBono Vida\t$0.00\t$239,992.97\t\t\nBono GMMI\t$0.00\t$0.00\t\t\nBono Beneficios\t$ 0.00\t$ 0.00\t\t\nBono Conexión\t$ 0.00\t$ 15,000.00\t\t\nBono Desarrollo\t$ 0.00\t$ 0.00\t\t\nTotal\t$ 0.00\t$ 254,992.97\t \t \nIngresos por Bonos\nBono Vida\n×\nResumen Bonos Vida\nBonos\tReal\tMeta\tCumple\n Bono Inicial\t$0\t \t\n Póliza Mes\t0.00\t1.00\t\n Pólizas Semestre\t3.00\t7.50\t\n Pólizas Anual\t22.00\t22.50\t\n Prima Meta Mes\t$0\t \t\n Prima Meta Sem\t$58,368\t \t\n Grupo Calculado\t0\t \t \n Grupo Tope\t12\t \t \n LIMRA\t100.00%\t \t \n Prima Pago Sem\t$58,368\t \t \n % Bono Inicial\t0.00%\t \t \n \t \t \t \n Bono Renovación\t$0\t \t\n Bono Inicial\t \t \t\n IGC\t96.19%\t \t\n Prima Renovación Sem\t$732,686\t \t \n % Bono Renovación\t0.00%\t \t \n \t \t \t \n Bono Semestral\t$0\n Bonos Anticipados\t$0\n Bonos a Pagar\t$0\n\nVer Detalle Pólizas MSI\n\t\nVer Detalle Bonos\n\n \t \nBonos Anticipados\nJulio\nAgosto\nSeptiembre\nOctubre\nNoviembre\n$2.00\n$1.60\n$1.20\n$0.80\n$0.40\n$0.00\nDownload SVG\nDownload PNG\nDownload CSV\nLIMRA\n 100%\n84.5%\t87.5%\t89.5%\t91.5%\t95.5%\nIGC\n 96.19%\n91%\t92.5%\t95%\t95.75%\nPrima Meta Acum(Gpo)\nPrima Meta Acum: $58,368\nMínimo Pólizas\nMeta: 7.5\n8\n6\n4\n2\n0\nPolizas Acum: 3\nFalta: 4.5\nDownload SVG\nDownload PNG\nDownload CSV\nPrima Faltante\nGrupo/Mes\tJul\tAgo\tSep\tOct\tNov\tDic\t% Bono\n1\t\t\t$1,311,632\t$1,766,632\t$2,221,632\t$2,676,632\t45.00%\n2\t\t\t$1,196,632\t$1,611,632\t$2,031,632\t$2,446,632\t43.00%\n3\t\t\t$1,006,632\t$1,361,632\t$1,716,632\t$2,066,632\t40.00%\n4\t\t\t$911,632\t$1,231,632\t$1,556,632\t$1,886,632\t37.00%\n5\t\t\t$846,632\t$1,156,632\t$1,456,632\t$1,761,632\t35.00%\n6\t\t\t$776,632\t$1,056,632\t$1,341,632\t$1,616,632\t33.00%\n7\t\t\t$686,632\t$941,632\t$1,186,632\t$1,436,632\t31.00%\n8\t\t\t$581,632\t$801,632\t$1,016,632\t$1,231,632\t29.00%\n9\t\t\t$496,632\t$681,632\t$871,632\t$1,056,632\t27.00%\n10\t\t\t$416,632\t$581,632\t$731,632\t$891,632\t25.00%\n11\t\t\t$311,632\t$431,632\t$556,632\t$676,632\t23.00%\n12\t\t\t$201,632\t$291,632\t$381,632\t$466,632\t21.00%\n13\t\t\t$156,632\t$221,632\t$296,632\t$361,632\t19.00%\n14\t\t\t$131,632\t$201,632\t$261,632\t$326,632\t17.00%\n15\t\t\t$101,632\t$161,632\t$216,632\t$271,632\t15.00%\n16\t\t\t$76,632\t$126,632\t$166,632\t$216,632\t14.00%\nGpo Tope Ant.\nGpo Tope Alc.\nCopyright © 2023 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información\nEl porcentaje para Prima Meta Acum (GPO) es 0%\nNo hay rangos para Prima Meta",
   "intentos": 1,
   "indicesAnteriores": {
-    "limra": 100,
-    "igc": 96.52,
-    "fecha": "2026-08-31T19:14:30.724Z"
+    "limra": 0,
+    "igc": 0,
+    "fecha": "2026-09-17T21:46:28.016Z"
+  },
+  "anticiposDesglosados": {
+    "semestreKey": "2026-S2",
+    "inicialAnticipadoAcumulado": 0,
+    "renovacionAnticipadoAcumulado": 0,
+    "anticipadosCombinadoUltimoCorte": 0,
+    "actualizadoEn": "2026-09-18T19:11:04.605Z"
   }
 }

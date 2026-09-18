@@ -124,8 +124,39 @@ Mapeo carpeta origen → destino (nombres exactos ya acordados con Diego):
 - `administrador/pagado_emitido` → `PROMO/PAG & EMI/<año>/<MES>.ext` — usa
   específicamente `PagPend.xls` (el crudo; confirmado con Diego, NO el
   procesado `pagado_emitido.xlsx` que también vive en esa carpeta).
-- `educar_es_creer` y `poder_elegirte` — **NO se archivan** (Diego no tiene
-  carpeta para esas todavía; decisión explícita, no un olvido).
+- `administrador/QsQ Vida` → `PROMO/QsQ asesores/<año>/<MES>.ext`
+- `administrador/QsQ GMM` → `PROMO/QSQ GMM/<año>/<MES>.ext`
+- `educar_es_creer`, `poder_elegirte`, y `pagado_pendiente_reclutas` — **NO se
+  archivan** (decisión explícita, no un olvido).
+
+## Quién es Quién (agregado 2026-09-18, SIN PROBAR contra el portal real)
+
+`descargar_campanas.js` ahora incluye `'Quién es quién'` en `CARPETAS_PORTAL`
+y 2 reglas nuevas (`qsq.*vida`, `qsq.*gmm`) que renombran a exactamente lo que
+`actualizar_snapshot.js` ya esperaba leer desde antes (`QsQ Asesores Vida.xlsm`,
+`QsQ GMM.xlsx`) — ese código de lectura ya existía, solo faltaba la descarga.
+**Ojo:** no se pudo verificar el nombre exacto de la carpeta "Quién es quién"
+ni de los archivos contra el portal real (necesita sesión logueada). En la
+próxima corrida real, revisar el log — si dice que no encontró la carpeta o
+que hay archivos en "sin regla / ignorados", hay que ajustar el texto exacto
+o el regex.
+
+**Notificaciones**: `qsq_vida` y `qsq_gmm` SÍ están en `ADMIN_REPORT_NAMES`
+(grupo `admin`) — notifican cuando cambian. `ranking_promotores` deliberadamente
+NO está en ninguna lista de notificación (ni CAMPAIGN_NAMES ni ADMIN_REPORT_NAMES)
+porque todavía no tiene apartado en el panel — decisión explícita de Diego.
+
+## Ranking Promotores (agregado 2026-09-18, SIN PROBAR contra el portal real)
+
+Confirmado por Diego: vive en la misma página "Reporte Promotor" que QsQ, así
+que ya está en `CARPETAS_PORTAL` (mismo folder "Quién es quién" en el portal)
+con una regla nueva. A diferencia de QsQ, no había código previo que lo leyera
+para nada — así que en `actualizar_snapshot.js` solo se agregó un bloque
+AISLADO y mínimo que extrae la fecha de corte (para poder archivarlo por mes)
+sin tocar `rg`/dashboards del panel — Ranking Promotores NO aparece en
+ninguna vista del sitio, solo se descarga y se archiva. Si en el futuro se
+quiere mostrar en el panel, es un trabajo aparte (parsear columnas reales del
+archivo, que no se ha visto todavía).
 
 ## Proyecto hermano
 
