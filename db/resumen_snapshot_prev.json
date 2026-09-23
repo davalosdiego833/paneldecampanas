@@ -1,5 +1,5 @@
 {
-  "updatedAt": "18/9/2026, 1:57:09 p.m.",
+  "updatedAt": "23/9/2026, 4:10:46 p.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -16,16 +16,40 @@
       },
       "pagado_pendiente": [
         {
+          "Nombre Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 3,
+          "Recibo_Inicial_Pagado": 134134.05,
+          "Recibo_Ordinario_Pagado": 5442.15,
+          "Total _Prima_Pagada": 139576.2,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 35695.8,
+          "Total _Prima_Pendiente": 35695.8
+        },
+        {
           "Nombre Asesor": "ANAIS LUA MORENO",
           "Sucursal": "2856",
-          "Pólizas-Pagadas": 1,
-          "Recibo_Inicial_Pagado": 29655.2,
-          "Recibo_Ordinario_Pagado": 19128.87,
-          "Total _Prima_Pagada": 48784.07,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 35695.85,
+          "Pólizas-Pagadas": 2,
+          "Recibo_Inicial_Pagado": 31348.75,
+          "Recibo_Ordinario_Pagado": 53131.17,
+          "Total _Prima_Pagada": 84479.92,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 82233.07,
-          "Total _Prima_Pendiente": 117928.92
+          "Total _Prima_Pendiente": 82233.07
+        },
+        {
+          "Nombre Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 6853.85,
+          "Recibo_Ordinario_Pagado": 76663.98,
+          "Total _Prima_Pagada": 83517.83,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 166964.16,
+          "Total _Prima_Pendiente": 166964.16
         },
         {
           "Nombre Asesor": "VELIA PATRICIA BERNAL RAMOS",
@@ -40,16 +64,28 @@
           "Total _Prima_Pendiente": 19745.09
         },
         {
-          "Nombre Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+          "Nombre Asesor": "DESIREE DE LA PEÑA OROZCO",
           "Sucursal": "2043",
-          "Pólizas-Pagadas": 1,
-          "Recibo_Inicial_Pagado": 37215.83,
-          "Recibo_Ordinario_Pagado": 5442.15,
-          "Total _Prima_Pagada": 42657.98,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 35695.8,
-          "Total _Prima_Pendiente": 35695.8
+          "Pólizas-Pagadas": 2,
+          "Recibo_Inicial_Pagado": 7045.66,
+          "Recibo_Ordinario_Pagado": 24936.66,
+          "Total _Prima_Pagada": 31982.32,
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 72893.8,
+          "Recibo_Ordinario_Pendiente": 137881.24,
+          "Total _Prima_Pendiente": 210775.04
+        },
+        {
+          "Nombre Asesor": "ROGELIO TORRES ORTIZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 21193.35,
+          "Total _Prima_Pagada": 21193.35,
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 17672.07,
+          "Recibo_Ordinario_Pendiente": 13450.01,
+          "Total _Prima_Pendiente": 31122.08
         },
         {
           "Nombre Asesor": "SOFIA CAMPILLO VASCONCELOS",
@@ -64,28 +100,52 @@
           "Total _Prima_Pendiente": 88707.11
         },
         {
-          "Nombre Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 1,
-          "Recibo_Inicial_Pagado": 6853.85,
-          "Recibo_Ordinario_Pagado": 12121.29,
-          "Total _Prima_Pagada": 18975.14,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 231506.85,
-          "Total _Prima_Pendiente": 231506.85
-        },
-        {
-          "Nombre Asesor": "ROGELIO TORRES ORTIZ",
+          "Nombre Asesor": "MARICELA ARREOLA LOPEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 18318.58,
-          "Total _Prima_Pagada": 18318.58,
+          "Recibo_Ordinario_Pagado": 20509.75,
+          "Total _Prima_Pagada": 20509.75,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 16324.8,
-          "Total _Prima_Pendiente": 16324.8
+          "Recibo_Ordinario_Pendiente": 7492.65,
+          "Total _Prima_Pendiente": 7492.65
+        },
+        {
+          "Nombre Asesor": "MONSERRAT VELASCO SANTOS",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 15217.64,
+          "Total _Prima_Pagada": 15217.64,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 59872.08,
+          "Total _Prima_Pendiente": 59872.08
+        },
+        {
+          "Nombre Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 14591.69,
+          "Total _Prima_Pagada": 14591.69,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 5738.18,
+          "Total _Prima_Pendiente": 5738.18
+        },
+        {
+          "Nombre Asesor": "OSCAR RAMIREZ RUIZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 12054.68,
+          "Recibo_Ordinario_Pagado": 2401.3,
+          "Total _Prima_Pagada": 14455.98,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 36067.65,
+          "Total _Prima_Pendiente": 36067.65
         },
         {
           "Nombre Asesor": "JULIANA RIASCOS VALENCIA",
@@ -100,28 +160,28 @@
           "Total _Prima_Pendiente": 0
         },
         {
-          "Nombre Asesor": "MONSERRAT VELASCO SANTOS",
+          "Nombre Asesor": "GABRIELA CASTAÑEDA SALAZAR",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 12218.55,
-          "Total _Prima_Pagada": 12218.55,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 62871.21,
-          "Total _Prima_Pendiente": 62871.21
+          "Recibo_Ordinario_Pagado": 10691.34,
+          "Total _Prima_Pagada": 10691.34,
+          "Pólizas_Pendinetes": 2,
+          "Recibo_Inicial_Pendiente": 59086.36,
+          "Recibo_Ordinario_Pendiente": 82953.16,
+          "Total _Prima_Pendiente": 142039.52
         },
         {
-          "Nombre Asesor": "OSCAR RAMIREZ RUIZ",
+          "Nombre Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
           "Sucursal": "2043",
-          "Pólizas-Pagadas": 1,
-          "Recibo_Inicial_Pagado": 12054.68,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 12054.68,
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 9124.58,
+          "Total _Prima_Pagada": 9124.58,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 38468.95,
-          "Total _Prima_Pendiente": 38468.95
+          "Recibo_Ordinario_Pendiente": 0,
+          "Total _Prima_Pendiente": 0
         },
         {
           "Nombre Asesor": "ANDREA CELESTE IBAÑEZ RINCON",
@@ -136,28 +196,40 @@
           "Total _Prima_Pendiente": 3845.25
         },
         {
-          "Nombre Asesor": "DESIREE DE LA PEÑA OROZCO",
+          "Nombre Asesor": "MIREYA LIZETTE TORRES GARCIA",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 8390.05,
-          "Total _Prima_Pagada": 8390.05,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 72893.8,
-          "Recibo_Ordinario_Pendiente": 75998.97,
-          "Total _Prima_Pendiente": 148892.77
-        },
-        {
-          "Nombre Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 7624.07,
-          "Total _Prima_Pagada": 7624.07,
+          "Recibo_Ordinario_Pagado": 7955.43,
+          "Total _Prima_Pagada": 7955.43,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 12705.8,
-          "Total _Prima_Pendiente": 12705.8
+          "Recibo_Ordinario_Pendiente": 15958.78,
+          "Total _Prima_Pendiente": 15958.78
+        },
+        {
+          "Nombre Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 1203.25,
+          "Recibo_Ordinario_Pagado": 6686.19,
+          "Total _Prima_Pagada": 7889.44,
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 29652.91,
+          "Recibo_Ordinario_Pendiente": 33210.76,
+          "Total _Prima_Pendiente": 62863.67
+        },
+        {
+          "Nombre Asesor": "MARIA TERESA ASENCIO LOZANO",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 7019.13,
+          "Total _Prima_Pagada": 7019.13,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 0,
+          "Total _Prima_Pendiente": 0
         },
         {
           "Nombre Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
@@ -168,20 +240,44 @@
           "Total _Prima_Pagada": 6968.21,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 47121.66,
-          "Total _Prima_Pendiente": 47121.66
+          "Recibo_Ordinario_Pendiente": 45397.15,
+          "Total _Prima_Pendiente": 45397.15
         },
         {
-          "Nombre Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
-          "Sucursal": "2043",
+          "Nombre Asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
+          "Sucursal": "2856",
           "Pólizas-Pagadas": 1,
-          "Recibo_Inicial_Pagado": 1203.25,
-          "Recibo_Ordinario_Pagado": 4925.15,
-          "Total _Prima_Pagada": 6128.4,
-          "Pólizas_Pendinetes": 1,
-          "Recibo_Inicial_Pendiente": 29652.91,
-          "Recibo_Ordinario_Pendiente": 31449.72,
-          "Total _Prima_Pendiente": 61102.63
+          "Recibo_Inicial_Pagado": 1742.89,
+          "Recibo_Ordinario_Pagado": 4800.92,
+          "Total _Prima_Pagada": 6543.81,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 67181,
+          "Total _Prima_Pendiente": 67181
+        },
+        {
+          "Nombre Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
+          "Sucursal": "2856",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 6098.62,
+          "Total _Prima_Pagada": 6098.62,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 4273.44,
+          "Total _Prima_Pendiente": 4273.44
+        },
+        {
+          "Nombre Asesor": "JORGE ANTONIO LUNA LARA",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 6097.65,
+          "Total _Prima_Pagada": 6097.65,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 60976.47,
+          "Total _Prima_Pendiente": 60976.47
         },
         {
           "Nombre Asesor": "MARIA FERNANDA RIOS BERNAL",
@@ -196,64 +292,16 @@
           "Total _Prima_Pendiente": 0
         },
         {
-          "Nombre Asesor": "MARICELA ARREOLA LOPEZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 5431.4,
-          "Total _Prima_Pagada": 5431.4,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 12899.71,
-          "Total _Prima_Pendiente": 12899.71
-        },
-        {
-          "Nombre Asesor": "MARIA TERESA ASENCIO LOZANO",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 4709.73,
-          "Total _Prima_Pagada": 4709.73,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 2309.36,
-          "Total _Prima_Pendiente": 2309.36
-        },
-        {
-          "Nombre Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
-          "Sucursal": "2856",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 3961.9,
-          "Total _Prima_Pagada": 3961.9,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 6410.16,
-          "Total _Prima_Pendiente": 6410.16
-        },
-        {
           "Nombre Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 3898.73,
-          "Total _Prima_Pagada": 3898.73,
+          "Recibo_Ordinario_Pagado": 5686.91,
+          "Total _Prima_Pagada": 5686.91,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 52826.69,
-          "Total _Prima_Pendiente": 52826.69
-        },
-        {
-          "Nombre Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 3041.47,
-          "Total _Prima_Pagada": 3041.47,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 0,
-          "Total _Prima_Pendiente": 0
+          "Recibo_Ordinario_Pendiente": 51038.52,
+          "Total _Prima_Pendiente": 51038.52
         },
         {
           "Nombre Asesor": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
@@ -266,6 +314,18 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 0,
           "Total _Prima_Pendiente": 0
+        },
+        {
+          "Nombre Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 2513.54,
+          "Total _Prima_Pagada": 2513.54,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 3062.5,
+          "Total _Prima_Pendiente": 3062.5
         },
         {
           "Nombre Asesor": "GUILLERMO JOSE RAMIREZ RAMIREZ",
@@ -292,6 +352,18 @@
           "Total _Prima_Pendiente": 83766.15
         },
         {
+          "Nombre Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 2072.23,
+          "Total _Prima_Pagada": 2072.23,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 16577.8,
+          "Total _Prima_Pendiente": 16577.8
+        },
+        {
           "Nombre Asesor": "JOSE ANTEMIO OLIVA SANTOS",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -316,28 +388,16 @@
           "Total _Prima_Pendiente": 10804.65
         },
         {
-          "Nombre Asesor": "MIREYA LIZETTE TORRES GARCIA",
-          "Sucursal": "2043",
+          "Nombre Asesor": "LUVIA PATRICIA FIGUEROA CASTRO",
+          "Sucursal": "2856",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 1773.2,
-          "Total _Prima_Pagada": 1773.2,
+          "Recibo_Ordinario_Pagado": 1781.04,
+          "Total _Prima_Pagada": 1781.04,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 21333.38,
-          "Total _Prima_Pendiente": 21333.38
-        },
-        {
-          "Nombre Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 1761.04,
-          "Total _Prima_Pagada": 1761.04,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 7337.05,
-          "Total _Prima_Pendiente": 7337.05
+          "Recibo_Ordinario_Pendiente": 15488.7,
+          "Total _Prima_Pendiente": 15488.7
         },
         {
           "Nombre Asesor": "PAULINA RODRIGUEZ DE LA MORA",
@@ -352,30 +412,6 @@
           "Total _Prima_Pendiente": 3494.59
         },
         {
-          "Nombre Asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
-          "Sucursal": "2856",
-          "Pólizas-Pagadas": 1,
-          "Recibo_Inicial_Pagado": 1742.89,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 1742.89,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 71981.92,
-          "Total _Prima_Pendiente": 71981.92
-        },
-        {
-          "Nombre Asesor": "GABRIELA CASTAÑEDA SALAZAR",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 1737.43,
-          "Total _Prima_Pagada": 1737.43,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 91447.4,
-          "Total _Prima_Pendiente": 91447.4
-        },
-        {
           "Nombre Asesor": "MARIO IVAN ROMERO GONZALEZ",
           "Sucursal": "2856",
           "Pólizas-Pagadas": 0,
@@ -386,6 +422,18 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 40741.71,
           "Total _Prima_Pendiente": 40741.71
+        },
+        {
+          "Nombre Asesor": "GERARDO DANIEL BARAJAS TORRES",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 1598.75,
+          "Total _Prima_Pagada": 1598.75,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 0,
+          "Total _Prima_Pendiente": 0
         },
         {
           "Nombre Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
@@ -424,30 +472,6 @@
           "Total _Prima_Pendiente": 49113.6
         },
         {
-          "Nombre Asesor": "GERARDO DANIEL BARAJAS TORRES",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 4796.14,
-          "Total _Prima_Pendiente": 4796.14
-        },
-        {
-          "Nombre Asesor": "LUVIA PATRICIA FIGUEROA CASTRO",
-          "Sucursal": "2856",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 17269.74,
-          "Total _Prima_Pendiente": 17269.74
-        },
-        {
           "Nombre Asesor": "ANA VERONICA GONZALEZ GAYTAN",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -482,30 +506,6 @@
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 17425.73,
           "Total _Prima_Pendiente": 17425.73
-        },
-        {
-          "Nombre Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 18650.03,
-          "Total _Prima_Pendiente": 18650.03
-        },
-        {
-          "Nombre Asesor": "JORGE ANTONIO LUNA LARA",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 67074.12,
-          "Total _Prima_Pendiente": 67074.12
         },
         {
           "Nombre Asesor": "JOSE RENE DE ALBA MORALES",
@@ -574,12 +574,24 @@
           "Sucursal": "2043",
           "Pólizas-Pagadas": 1,
           "Recibo_Inicial_Pagado": 12054.68,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 12054.68,
+          "Recibo_Ordinario_Pagado": 2401.3,
+          "Total _Prima_Pagada": 14455.98,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 38468.95,
-          "Total _Prima_Pendiente": 38468.95
+          "Recibo_Ordinario_Pendiente": 36067.65,
+          "Total _Prima_Pendiente": 36067.65
+        },
+        {
+          "Nombre Asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 1742.89,
+          "Recibo_Ordinario_Pagado": 4800.92,
+          "Total _Prima_Pagada": 6543.81,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 67181,
+          "Total _Prima_Pendiente": 67181
         },
         {
           "Nombre Asesor": "GUILLERMO JOSE RAMIREZ RAMIREZ",
@@ -594,28 +606,16 @@
           "Total _Prima_Pendiente": 27369.85
         },
         {
-          "Nombre Asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 1,
-          "Recibo_Inicial_Pagado": 1742.89,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 1742.89,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 71981.92,
-          "Total _Prima_Pendiente": 71981.92
-        },
-        {
           "Nombre Asesor": "GERARDO DANIEL BARAJAS TORRES",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
           "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
+          "Recibo_Ordinario_Pagado": 1598.75,
+          "Total _Prima_Pagada": 1598.75,
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 4796.14,
-          "Total _Prima_Pendiente": 4796.14
+          "Recibo_Ordinario_Pendiente": 0,
+          "Total _Prima_Pendiente": 0
         }
       ],
       "asesores_sin_emision": {
@@ -624,16 +624,16 @@
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
             "Agentes": 23,
-            "Asesores_con_Emisión_Vida": 3,
-            "%_Asesores_con_Emisión_Vida": 0.1304,
-            "Asesores_con_Emisión_GMM": 2,
-            "%_Asesores_con_Emisión_GMM": 0.087,
-            "Asesores_con_pol_Pagada_Vida": 3,
-            "%_Asesores_con_pol_Pagada_Vida": 0.1304,
-            "Asesores_con_pol_Pagada_GMM": 2,
-            "%_Asesores_con_pol_Pagada_GMM": 0.087,
-            "Prima_Pagada_Vida": 153860.64,
-            "Prima_Pagada_GMM": 91517
+            "Asesores_con_Emisión_Vida": 6,
+            "%_Asesores_con_Emisión_Vida": 0.2609,
+            "Asesores_con_Emisión_GMM": 4,
+            "%_Asesores_con_Emisión_GMM": 0.1739,
+            "Asesores_con_pol_Pagada_Vida": 4,
+            "%_Asesores_con_pol_Pagada_Vida": 0.1739,
+            "Asesores_con_pol_Pagada_GMM": 3,
+            "%_Asesores_con_pol_Pagada_GMM": 0.1304,
+            "Prima_Pagada_Vida": 389030.67,
+            "Prima_Pagada_GMM": 123116
           },
           {
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
@@ -662,7 +662,7 @@
             "%_Asesores_con_pol_Pagada_Vida": 0.4,
             "Asesores_con_pol_Pagada_GMM": 1,
             "%_Asesores_con_pol_Pagada_GMM": 0.2,
-            "Prima_Pagada_Vida": 118313.14,
+            "Prima_Pagada_Vida": 154008.99,
             "Prima_Pagada_GMM": 13596
           }
         ],
@@ -720,13 +720,12 @@
             "Clave": 104718,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
-            "Emitido_Vida": 0,
+            "Emitido_Vida": 1,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 18318.58,
+            "Prima_Pagada_Vida": 21193.35,
             "Prima_Pagada_GMM": 0,
-            "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i"
           },
           {
@@ -734,11 +733,11 @@
             "Clave": 104750,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
-            "Emitido_Vida": 1,
+            "Emitido_Vida": 3,
             "Emitido_GMM": 0,
-            "Pagado_Vida": 1,
+            "Pagado_Vida": 3,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 42657.98,
+            "Prima_Pagada_Vida": 139576.2,
             "Prima_Pagada_GMM": 1680,
             "Sin_Emisión_GMM": "i"
           },
@@ -747,15 +746,13 @@
             "Clave": 105696,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
-            "Emitido_Vida": 0,
+            "Emitido_Vida": 2,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 1737.43,
+            "Prima_Pagada_Vida": 10691.34,
             "Prima_Pagada_GMM": 0,
-            "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_Vida": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
@@ -767,7 +764,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 1773.2,
+            "Prima_Pagada_Vida": 7955.43,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -782,7 +779,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 1,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 6128.4,
+            "Prima_Pagada_Vida": 7889.44,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
@@ -794,9 +791,9 @@
             "Suc": 2856,
             "Emitido_Vida": 2,
             "Emitido_GMM": 1,
-            "Pagado_Vida": 1,
+            "Pagado_Vida": 2,
             "Pagado_GMM": 1,
-            "Prima_Pagada_Vida": 48784.07,
+            "Prima_Pagada_Vida": 84479.92,
             "Prima_Pagada_GMM": 9719
           },
           {
@@ -823,7 +820,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 0,
+            "Prima_Pagada_Vida": 6097.65,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -838,7 +835,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 0,
+            "Prima_Pagada_Vida": 2072.23,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -914,7 +911,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 12218.55,
+            "Prima_Pagada_Vida": 15217.64,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -939,13 +936,12 @@
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
             "Emitido_Vida": 0,
-            "Emitido_GMM": 0,
+            "Emitido_GMM": 1,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
             "Prima_Pagada_Vida": 1967.73,
-            "Prima_Pagada_GMM": 0,
-            "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Prima_Pagada_GMM": 5452,
+            "Sin_Emisión_Vida": "i"
           },
           {
             "Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
@@ -1013,14 +1009,12 @@
             "Clave": 80122,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
-            "Emitido_Vida": 0,
-            "Emitido_GMM": 0,
-            "Pagado_Vida": 0,
-            "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 8390.05,
-            "Prima_Pagada_GMM": 0,
-            "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Emitido_Vida": 2,
+            "Emitido_GMM": 1,
+            "Pagado_Vida": 2,
+            "Pagado_GMM": 1,
+            "Prima_Pagada_Vida": 31982.32,
+            "Prima_Pagada_GMM": 26147
           },
           {
             "Asesor": "MARICELA ARREOLA LOPEZ",
@@ -1031,7 +1025,7 @@
             "Emitido_GMM": 1,
             "Pagado_Vida": 0,
             "Pagado_GMM": 1,
-            "Prima_Pagada_Vida": 5431.4,
+            "Prima_Pagada_Vida": 20509.75,
             "Prima_Pagada_GMM": 32732,
             "Sin_Emisión_Vida": "i",
             "3_Meses_Sin_Emisión_Vida": "i"
@@ -1056,10 +1050,10 @@
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
             "Emitido_Vida": 1,
-            "Emitido_GMM": 1,
+            "Emitido_GMM": 2,
             "Pagado_Vida": 1,
             "Pagado_GMM": 1,
-            "Prima_Pagada_Vida": 18975.14,
+            "Prima_Pagada_Vida": 83517.83,
             "Prima_Pagada_GMM": 33920
           },
           {
@@ -1085,7 +1079,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 4709.73,
+            "Prima_Pagada_Vida": 7019.13,
             "Prima_Pagada_GMM": 3139,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -1100,7 +1094,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 3898.73,
+            "Prima_Pagada_Vida": 5686.91,
             "Prima_Pagada_GMM": 9994,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -1416,8 +1410,8 @@
           "ASESOR": "DESIREE DE LA PEÑA OROZCO",
           "SUC": 2043,
           "Polizas_Acumuladas_Mes_Ant.": 17.5,
-          "Polizas_Del_mes": 0,
-          "Polizas_Acumuladas_Total": 17.5,
+          "Polizas_Del_mes": 2.5,
+          "Polizas_Acumuladas_Total": 20,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "SÍ",
@@ -1488,8 +1482,8 @@
           "ASESOR": "ANAIS LUA MORENO",
           "SUC": 2856,
           "Polizas_Acumuladas_Mes_Ant.": 14.5,
-          "Polizas_Del_mes": 1.5,
-          "Polizas_Acumuladas_Total": 16,
+          "Polizas_Del_mes": 2.5,
+          "Polizas_Acumuladas_Total": 17,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "SÍ",
@@ -1500,8 +1494,8 @@
           "ASESOR": "PAULINA LIZBETH SOTO MUÑIZ",
           "SUC": 2043,
           "Polizas_Acumuladas_Mes_Ant.": 12,
-          "Polizas_Del_mes": 1,
-          "Polizas_Acumuladas_Total": 13,
+          "Polizas_Del_mes": 3,
+          "Polizas_Acumuladas_Total": 15,
           "Proactivo_al_mes": "SÍ",
           "Pólizas_Faltantes": 0,
           "Proactivo_a_Dic": "SÍ",
@@ -1516,9 +1510,9 @@
           "Crec_Polizas_Pagadas": -125,
           "%_Crec_Polizas_Pagadas": -0.36443148688046645,
           "Prima_Pagada_Año_Anterior": 15259.67,
-          "Prima_Pagada_Añoa_Actual": 11037.23,
-          "Crec_Prima_Pagada": -4222.4400000000005,
-          "%_Crec_Prima_Pagada": -0.27670585274779863
+          "Prima_Pagada_Añoa_Actual": 11166.989999999998,
+          "Crec_Prima_Pagada": -4092.680000000002,
+          "%_Crec_Prima_Pagada": -0.2682023923191001
         },
         "individuals": [
           {
@@ -1589,9 +1583,9 @@
             "Crec_Polizas_Pagadas": -8,
             "%_Crec_Polizas_Pagadas": -0.32,
             "Prima_Pagada_Año_Anterior": 1493.37,
-            "Prima_Pagada_Año_Actual": 956.2,
-            "Crec_Prima_Pagada": -537.17,
-            "%_Crec_Prima_Pagada": -0.3597
+            "Prima_Pagada_Año_Actual": 959.85,
+            "Crec_Prima_Pagada": -533.52,
+            "%_Crec_Prima_Pagada": -0.3573
           },
           {
             "Nombre del Asesor": "MARICELA ARREOLA LOPEZ",
@@ -1601,9 +1595,9 @@
             "Crec_Polizas_Pagadas": -2,
             "%_Crec_Polizas_Pagadas": -0.2857,
             "Prima_Pagada_Año_Anterior": 239.98,
-            "Prima_Pagada_Año_Actual": 174.95,
-            "Crec_Prima_Pagada": -65.03,
-            "%_Crec_Prima_Pagada": -0.271
+            "Prima_Pagada_Año_Actual": 190.02,
+            "Crec_Prima_Pagada": -49.96,
+            "%_Crec_Prima_Pagada": -0.2082
           },
           {
             "Nombre del Asesor": "KAREN MUÑOZ GARCIA",
@@ -1649,9 +1643,9 @@
             "Crec_Polizas_Pagadas": -5,
             "%_Crec_Polizas_Pagadas": -0.2174,
             "Prima_Pagada_Año_Anterior": 1980.44,
-            "Prima_Pagada_Año_Actual": 1409.41,
-            "Crec_Prima_Pagada": -571.03,
-            "%_Crec_Prima_Pagada": -0.2883
+            "Prima_Pagada_Año_Actual": 1473.95,
+            "Crec_Prima_Pagada": -506.49,
+            "%_Crec_Prima_Pagada": -0.2557
           },
           {
             "Nombre del Asesor": "ANDREA CELESTE IBAÑEZ RINCON",
@@ -1685,9 +1679,9 @@
             "Crec_Polizas_Pagadas": -2,
             "%_Crec_Polizas_Pagadas": -0.1053,
             "Prima_Pagada_Año_Anterior": 939.77,
-            "Prima_Pagada_Año_Actual": 777.74,
-            "Crec_Prima_Pagada": -162.03,
-            "%_Crec_Prima_Pagada": -0.1724
+            "Prima_Pagada_Año_Actual": 780.1,
+            "Crec_Prima_Pagada": -159.67,
+            "%_Crec_Prima_Pagada": -0.1699
           },
           {
             "Nombre del Asesor": "MARIA TERESA ASENCIO LOZANO",
@@ -1721,9 +1715,9 @@
             "Crec_Polizas_Pagadas": 0,
             "%_Crec_Polizas_Pagadas": 0,
             "Prima_Pagada_Año_Anterior": 1532.52,
-            "Prima_Pagada_Año_Actual": 57.34,
-            "Crec_Prima_Pagada": -1475.18,
-            "%_Crec_Prima_Pagada": -0.9626
+            "Prima_Pagada_Año_Actual": 63.03,
+            "Crec_Prima_Pagada": -1469.49,
+            "%_Crec_Prima_Pagada": -0.9589
           },
           {
             "Nombre del Asesor": "FERNANDO JAVIER DAVALOS FLORES",
@@ -1757,9 +1751,9 @@
             "Crec_Polizas_Pagadas": -9,
             "%_Crec_Polizas_Pagadas": -0.8182,
             "Prima_Pagada_Año_Anterior": 227.81,
-            "Prima_Pagada_Año_Actual": 187.19,
-            "Crec_Prima_Pagada": -40.62,
-            "%_Crec_Prima_Pagada": -0.1783
+            "Prima_Pagada_Año_Actual": 188.21,
+            "Crec_Prima_Pagada": -39.6,
+            "%_Crec_Prima_Pagada": -0.1738
           },
           {
             "Nombre del Asesor": "SAMUEL NUÑO RIVERA",
@@ -1793,8 +1787,8 @@
             "Crec_Polizas_Pagadas": 3,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 60.81,
-            "Crec_Prima_Pagada": 60.81,
+            "Prima_Pagada_Año_Actual": 66.87,
+            "Crec_Prima_Pagada": 66.87,
             "%_Crec_Prima_Pagada": 1
           },
           {
@@ -1817,9 +1811,9 @@
             "Crec_Polizas_Pagadas": -13,
             "%_Crec_Polizas_Pagadas": -0.6842,
             "Prima_Pagada_Año_Anterior": 618.66,
-            "Prima_Pagada_Año_Actual": 266.78,
-            "Crec_Prima_Pagada": -351.88,
-            "%_Crec_Prima_Pagada": -0.5688
+            "Prima_Pagada_Año_Actual": 269.66,
+            "Crec_Prima_Pagada": -349,
+            "%_Crec_Prima_Pagada": -0.5641
           },
           {
             "Nombre del Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
@@ -1841,9 +1835,9 @@
             "Crec_Polizas_Pagadas": 1,
             "%_Crec_Polizas_Pagadas": 0.125,
             "Prima_Pagada_Año_Anterior": 229.06,
-            "Prima_Pagada_Año_Actual": 234.62,
-            "Crec_Prima_Pagada": 5.56,
-            "%_Crec_Prima_Pagada": 0.0243
+            "Prima_Pagada_Año_Actual": 240.51,
+            "Crec_Prima_Pagada": 11.45,
+            "%_Crec_Prima_Pagada": 0.05
           },
           {
             "Nombre del Asesor": "MIREYA LIZETTE TORRES GARCIA",
@@ -1853,9 +1847,9 @@
             "Crec_Polizas_Pagadas": -1,
             "%_Crec_Polizas_Pagadas": -0.3333,
             "Prima_Pagada_Año_Anterior": 79.02,
-            "Prima_Pagada_Año_Actual": 89.83,
-            "Crec_Prima_Pagada": 10.81,
-            "%_Crec_Prima_Pagada": 0.1368
+            "Prima_Pagada_Año_Actual": 95.28,
+            "Crec_Prima_Pagada": 16.26,
+            "%_Crec_Prima_Pagada": 0.2058
           },
           {
             "Nombre del Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
@@ -1865,9 +1859,9 @@
             "Crec_Polizas_Pagadas": -23,
             "%_Crec_Polizas_Pagadas": -0.92,
             "Prima_Pagada_Año_Anterior": 775.13,
-            "Prima_Pagada_Año_Actual": 281.19,
-            "Crec_Prima_Pagada": -493.94,
-            "%_Crec_Prima_Pagada": -0.6372
+            "Prima_Pagada_Año_Actual": 282.73,
+            "Crec_Prima_Pagada": -492.4,
+            "%_Crec_Prima_Pagada": -0.6352
           },
           {
             "Nombre del Asesor": "ARMANDO JONATHAN DE LA CRUZ DIAZ",
@@ -1997,9 +1991,9 @@
             "Crec_Polizas_Pagadas": -7.5,
             "%_Crec_Polizas_Pagadas": -0.3333,
             "Prima_Pagada_Año_Anterior": 560.28,
-            "Prima_Pagada_Año_Actual": 1835.47,
-            "Crec_Prima_Pagada": 1275.19,
-            "%_Crec_Prima_Pagada": 2.276
+            "Prima_Pagada_Año_Actual": 1837.26,
+            "Crec_Prima_Pagada": 1276.98,
+            "%_Crec_Prima_Pagada": 2.2792
           },
           {
             "Nombre del Asesor": "JOSE RENE DE ALBA MORALES",
@@ -2105,9 +2099,9 @@
             "Crec_Polizas_Pagadas": -5,
             "%_Crec_Polizas_Pagadas": -0.625,
             "Prima_Pagada_Año_Anterior": 170.58,
-            "Prima_Pagada_Año_Actual": 191.1,
-            "Crec_Prima_Pagada": 20.52,
-            "%_Crec_Prima_Pagada": 0.1203
+            "Prima_Pagada_Año_Actual": 193.17,
+            "Crec_Prima_Pagada": 22.59,
+            "%_Crec_Prima_Pagada": 0.1324
           },
           {
             "Nombre del Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
@@ -2117,9 +2111,9 @@
             "Crec_Polizas_Pagadas": -7,
             "%_Crec_Polizas_Pagadas": -0.875,
             "Prima_Pagada_Año_Anterior": 93.39,
-            "Prima_Pagada_Año_Actual": 149.51,
-            "Crec_Prima_Pagada": 56.12,
-            "%_Crec_Prima_Pagada": 0.6009
+            "Prima_Pagada_Año_Actual": 151.65,
+            "Crec_Prima_Pagada": 58.26,
+            "%_Crec_Prima_Pagada": 0.6238
           },
           {
             "Nombre del Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
@@ -2213,8 +2207,8 @@
             "Crec_Polizas_Pagadas": 2,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 133.7,
-            "Crec_Prima_Pagada": 133.7,
+            "Prima_Pagada_Año_Actual": 135.48,
+            "Crec_Prima_Pagada": 135.48,
             "%_Crec_Prima_Pagada": 1
           },
           {
@@ -2249,8 +2243,8 @@
             "Crec_Polizas_Pagadas": 13,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 191.01,
-            "Crec_Prima_Pagada": 191.01,
+            "Prima_Pagada_Año_Actual": 192.78,
+            "Crec_Prima_Pagada": 192.78,
             "%_Crec_Prima_Pagada": 1
           },
           {
@@ -2261,8 +2255,8 @@
             "Crec_Polizas_Pagadas": 12,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 307.09,
-            "Crec_Prima_Pagada": 307.09,
+            "Prima_Pagada_Año_Actual": 310.09,
+            "Crec_Prima_Pagada": 310.09,
             "%_Crec_Prima_Pagada": 1
           },
           {
@@ -2321,8 +2315,8 @@
             "Crec_Polizas_Pagadas": 3,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 6.54,
-            "Crec_Prima_Pagada": 6.54,
+            "Prima_Pagada_Año_Actual": 9.6,
+            "Crec_Prima_Pagada": 9.6,
             "%_Crec_Prima_Pagada": 1
           },
           {
@@ -3447,48 +3441,48 @@
         ]
       },
       "convenciones_promotores": {
-        "fecha_corte": "31 de agosto 2026",
+        "fecha_corte": "11 de septiembre 2026",
         "promotoria": {
           "lugar_general": 59,
           "mat": "2043",
           "oficina": "GUADALAJARA (A. RODRIGUEZ",
-          "c1_vida": 658406.5,
+          "c1_vida": 676230.89,
           "c1_dxn": 0,
-          "c1_gmm_ind": 81390.58,
+          "c1_gmm_ind": 90783.06,
           "c1_vida_gyc": 70391.64,
           "c1_gmm_gyc": 0,
           "c1_conv_doble": 0,
-          "c1_comisiones_totales": 871221.63,
+          "c1_comisiones_totales": 898438.5,
           "c1_ranking": 59,
-          "c2_vida_12m": 186231.17,
+          "c2_vida_12m": 185972.56,
           "c2_conv_doble": 0,
-          "c2_total": 198083.17,
-          "c2_ranking": 47,
-          "c3_nueva_org": 228974,
+          "c2_total": 197824.56,
+          "c2_ranking": 52,
+          "c3_nueva_org": 243034,
           "c3_conv_doble": 0,
-          "c3_total": 273976,
-          "c3_ranking": 28,
+          "c3_total": 288036,
+          "c3_ranking": 30,
           "asesores_ta": 2,
-          "limra": 0.935,
-          "igc": 0.9227,
+          "limra": 0.9324,
+          "igc": 0.9212,
           "comisiones_reclutas": 32655.45,
           "adjunto_ga": "SI"
         },
         "umbrales": {
           "camino1": {
-            "3d": 7347537.49,
-            "2d": 4408640.83,
-            "1d": 3956216.56
+            "3d": 8017872.98,
+            "2d": 4541175.41,
+            "1d": 4143023.68
           },
           "camino2": {
-            "3d": 658137.93,
-            "2d": 447311.37,
-            "1d": 399667.79
+            "3d": 708993.43,
+            "2d": 484480.61,
+            "1d": 424126.51
           },
           "camino3": {
-            "3d": 726495,
-            "2d": 439810,
-            "1d": 356048
+            "3d": 796148,
+            "2d": 453046,
+            "1d": 365087
           }
         },
         "minimos": {
@@ -3558,16 +3552,16 @@
         }
       },
       "convenciones_gerente": {
-        "fecha_corte": "31 de agosto 2026",
+        "fecha_corte": "11 de septiembre 2026",
         "gerencia": {
           "nombre": "KAREN MUNOZ GARCIA",
           "mat": "2043",
           "suc": "2856",
           "c1_total": 0,
-          "c1_ranking": 17,
-          "c2_total": 37826,
-          "c2_ranking": 35,
-          "c3_total": 97793.14,
+          "c1_ranking": 18,
+          "c2_total": 41190,
+          "c2_ranking": 38,
+          "c3_total": 97534.53,
           "c3_ranking": 6,
           "asesores_ta_gerencia": 1,
           "meta_ta_gerencia": 4,
@@ -3577,8 +3571,8 @@
         },
         "primer_lugar": {
           "c1_total": 136121,
-          "c2_total": 1492923,
-          "c3_total": 499848
+          "c2_total": 1541590,
+          "c3_total": 503648.27
         },
         "minimos": {
           "camino1": {
@@ -3599,15 +3593,15 @@
       }
     },
     "fechas_corte": {
-      "pagado_pendiente": "17 de septiembre de 2026",
-      "pagado_pendiente_reclutas": "17 de septiembre de 2026",
-      "asesores_sin_emision": "17 de SEP de 2026",
-      "proactivos": "17 de septiembre de 2026",
-      "comparativo_vida": "15 de septiembre de 2026",
+      "pagado_pendiente": "22 de septiembre de 2026",
+      "pagado_pendiente_reclutas": "22 de septiembre de 2026",
+      "asesores_sin_emision": "21 de SEP de 2026",
+      "proactivos": "22 de septiembre de 2026",
+      "comparativo_vida": "18 de septiembre de 2026",
       "qsq_vida": "31 de agosto de 2026",
       "qsq_gmm": "31 de Agosto de 2026",
-      "convenciones_promotores": "31 de agosto 2026",
-      "convenciones_gerente": "31 de agosto 2026"
+      "convenciones_promotores": "11 de septiembre 2026",
+      "convenciones_gerente": "11 de septiembre 2026"
     },
     "campaigns": {
       "mdrt": [
@@ -3776,29 +3770,29 @@
         {
           "Asesor": "DESIREE DE LA PEÑA OROZCO",
           "Clave": "80122",
-          "PA_Total": 127639.23,
+          "PA_Total": 129159.52,
           "Polizas": 4.5,
-          "Lugar": 190,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
-          "Comision_Vida": 54142.5,
+          "Lugar": 222,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
+          "Comision_Vida": 55662.79,
           "RDA": 0
         },
         {
           "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
           "Clave": "87538",
-          "PA_Total": 85110.99,
-          "Polizas": 4,
-          "Lugar": 409,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
-          "Comision_Vida": 77941.96,
+          "PA_Total": 93994.84,
+          "Polizas": 6.5,
+          "Lugar": 393,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
+          "Comision_Vida": 81836.04,
           "RDA": 0
         },
         {
@@ -3806,97 +3800,111 @@
           "Clave": "110575",
           "PA_Total": 79325.42,
           "Polizas": 2,
-          "Lugar": 459,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
+          "Lugar": 532,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
           "Comision_Vida": 44698.38,
           "RDA": 0
         },
         {
           "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
           "Clave": "104750",
-          "PA_Total": 45764.3,
+          "PA_Total": 47118.5,
           "Polizas": 2.5,
-          "Lugar": 988,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
-          "Comision_Vida": 30119.04,
+          "Lugar": 1091,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
+          "Comision_Vida": 31186.93,
           "RDA": 0
         },
         {
           "Asesor": "MONSERRAT VELASCO SANTOS",
           "Clave": "117440",
-          "PA_Total": 44193.82,
+          "PA_Total": 44973.11,
           "Polizas": 4,
-          "Lugar": 1026,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
-          "Comision_Vida": 44193.82,
+          "Lugar": 1159,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
+          "Comision_Vida": 44973.11,
           "RDA": 0
         },
         {
           "Asesor": "MARIA TERESA ASENCIO LOZANO",
           "Clave": "94156",
-          "PA_Total": 43722.3,
+          "PA_Total": 44135.76,
           "Polizas": 3.5,
-          "Lugar": 1039,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
+          "Lugar": 1191,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
           "Comision_Vida": 41582.36,
           "RDA": 0
         },
         {
           "Asesor": "MARIO IVAN ROMERO GONZALEZ",
           "Clave": "118069",
-          "PA_Total": 35907.24,
+          "PA_Total": 36387.87,
           "Polizas": 3,
-          "Lugar": 1312,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
-          "Comision_Vida": 30589.83,
+          "Lugar": 1484,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
+          "Comision_Vida": 31070.46,
           "RDA": 0
         },
         {
-          "Asesor": "DARINKA UREÑA CASILLAS",
-          "Clave": "90355",
-          "PA_Total": 31565.94,
-          "Polizas": 4,
-          "Lugar": 1546,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
-          "Comision_Vida": 21650.33,
+          "Asesor": "ANAIS LUA MORENO",
+          "Clave": "110453",
+          "PA_Total": 34862.39,
+          "Polizas": 1.5,
+          "Lugar": 1577,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
+          "Comision_Vida": 30635.19,
           "RDA": 0
         },
         {
           "Asesor": "ROGELIO TORRES ORTIZ",
           "Clave": "104718",
-          "PA_Total": 30367.06,
+          "PA_Total": 34413,
           "Polizas": 3,
-          "Lugar": 1622,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
-          "Comision_Vida": 25214.4,
+          "Lugar": 1600,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
+          "Comision_Vida": 29260.34,
+          "RDA": 0
+        },
+        {
+          "Asesor": "DARINKA UREÑA CASILLAS",
+          "Clave": "90355",
+          "PA_Total": 31977.32,
+          "Polizas": 4,
+          "Lugar": 1741,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
+          "Comision_Vida": 21650.33,
           "RDA": 0
         },
         {
@@ -3904,125 +3912,111 @@
           "Clave": "118915",
           "PA_Total": 29550.8,
           "Polizas": 3,
-          "Lugar": 1675,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
+          "Lugar": 1889,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
           "Comision_Vida": 17698.95,
           "RDA": 0
         },
         {
           "Asesor": "VELIA PATRICIA BERNAL RAMOS",
           "Clave": "115047",
-          "PA_Total": 23822.67,
+          "PA_Total": 26029.2,
           "Polizas": 3,
-          "Lugar": 2068,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
-          "Comision_Vida": 21528.61,
-          "RDA": 0
-        },
-        {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "PA_Total": 21944.23,
-          "Polizas": 0,
-          "Lugar": 2238,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
-          "Comision_Vida": 15243.18,
+          "Lugar": 2138,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
+          "Comision_Vida": 23029.11,
           "RDA": 0
         },
         {
           "Asesor": "SOFIA CAMPILLO VASCONCELOS",
           "Clave": "116883",
-          "PA_Total": 21530.44,
+          "PA_Total": 23188.4,
           "Polizas": 2,
-          "Lugar": 2286,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
-          "Comision_Vida": 21530.44,
-          "RDA": 0
-        },
-        {
-          "Asesor": "ANAIS LUA MORENO",
-          "Clave": "110453",
-          "PA_Total": 19863.25,
-          "Polizas": 0,
-          "Lugar": 2446,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
-          "Comision_Vida": 17384.12,
+          "Lugar": 2376,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
+          "Comision_Vida": 23188.4,
           "RDA": 0
         },
         {
           "Asesor": "MARICELA ARREOLA LOPEZ",
           "Clave": "80925",
-          "PA_Total": 17277.44,
-          "Polizas": 0,
-          "Lugar": 2755,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
+          "PA_Total": 23111.23,
+          "Polizas": 0.5,
+          "Lugar": 2383,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
           "Comision_Vida": 17277.44,
+          "RDA": 0
+        },
+        {
+          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+          "Clave": "47116",
+          "PA_Total": 22522.95,
+          "Polizas": 0,
+          "Lugar": 2442,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
+          "Comision_Vida": 15821.9,
           "RDA": 0
         },
         {
           "Asesor": "JULIANA RIASCOS VALENCIA",
           "Clave": "100677",
-          "PA_Total": 15663.47,
+          "PA_Total": 18565.84,
           "Polizas": 0,
-          "Lugar": 2978,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
-          "Comision_Vida": 13368.11,
+          "Lugar": 2870,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
+          "Comision_Vida": 15755.59,
           "RDA": 0
         },
         {
           "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
           "Clave": "118246",
-          "PA_Total": 15290.41,
+          "PA_Total": 15895.77,
           "Polizas": 5.5,
-          "Lugar": 3034,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
-          "Comision_Vida": 14351.14,
+          "Lugar": 3200,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
+          "Comision_Vida": 14956.5,
           "RDA": 0
         },
         {
           "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
           "Clave": "108404",
-          "PA_Total": 13611.37,
-          "Polizas": 3,
-          "Lugar": 3283,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
-          "Comision_Vida": 13004.82,
+          "PA_Total": 14419.91,
+          "Polizas": 4,
+          "Lugar": 3408,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
+          "Comision_Vida": 13813.36,
           "RDA": 0
         },
         {
@@ -4030,13 +4024,27 @@
           "Clave": "105696",
           "PA_Total": 13324.79,
           "Polizas": 0,
-          "Lugar": 3337,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
+          "Lugar": 3573,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
           "Comision_Vida": 12864.97,
+          "RDA": 0
+        },
+        {
+          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
+          "Clave": "116876",
+          "PA_Total": 9152.44,
+          "Polizas": 1,
+          "Lugar": 4362,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
+          "Comision_Vida": 8964.33,
           "RDA": 0
         },
         {
@@ -4044,40 +4052,26 @@
           "Clave": "106018",
           "PA_Total": 9103.55,
           "Polizas": 1,
-          "Lugar": 4104,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
+          "Lugar": 4369,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
           "Comision_Vida": 9103.55,
-          "RDA": 0
-        },
-        {
-          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
-          "Clave": "116876",
-          "PA_Total": 8939.62,
-          "Polizas": 2,
-          "Lugar": 4139,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
-          "Comision_Vida": 8751.51,
           "RDA": 0
         },
         {
           "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
           "Clave": "115404",
-          "PA_Total": 8143.19,
+          "PA_Total": 8746.27,
           "Polizas": 0,
-          "Lugar": 4306,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
+          "Lugar": 4441,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
           "Comision_Vida": 7068.97,
           "RDA": 0
         },
@@ -4086,12 +4080,12 @@
           "Clave": "95148",
           "PA_Total": 8001.44,
           "Polizas": 0,
-          "Lugar": 4350,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
+          "Lugar": 4614,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
           "Comision_Vida": 6258.53,
           "RDA": 0
         },
@@ -4100,12 +4094,12 @@
           "Clave": "103982",
           "PA_Total": 4338.75,
           "Polizas": 0,
-          "Lugar": 5539,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
+          "Lugar": 5736,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
           "Comision_Vida": 3633.28,
           "RDA": 0
         },
@@ -4114,12 +4108,12 @@
           "Clave": "81044",
           "PA_Total": 4223.39,
           "Polizas": 0,
-          "Lugar": 5581,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
+          "Lugar": 5781,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
           "Comision_Vida": 525.2,
           "RDA": 0
         },
@@ -4128,12 +4122,12 @@
           "Clave": "104343",
           "PA_Total": 4057.95,
           "Polizas": 0,
-          "Lugar": 5642,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
+          "Lugar": 5843,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
           "Comision_Vida": 2290.77,
           "RDA": 0
         },
@@ -4142,12 +4136,12 @@
           "Clave": "111056",
           "PA_Total": 3894.81,
           "Polizas": 2,
-          "Lugar": 5708,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
+          "Lugar": 5905,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
           "Comision_Vida": 1737.65,
           "RDA": 0
         },
@@ -4156,12 +4150,12 @@
           "Clave": "113450",
           "PA_Total": 3015.11,
           "Polizas": 0,
-          "Lugar": 6056,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
+          "Lugar": 6257,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
           "Comision_Vida": 2530.7,
           "RDA": 0
         },
@@ -4170,12 +4164,12 @@
           "Clave": "63441",
           "PA_Total": 2440.92,
           "Polizas": 0,
-          "Lugar": 6356,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
+          "Lugar": 6544,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
           "Comision_Vida": 1225.82,
           "RDA": 0
         },
@@ -4184,12 +4178,12 @@
           "Clave": "98797",
           "PA_Total": 985.74,
           "Polizas": 0,
-          "Lugar": 7274,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
+          "Lugar": 7367,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
           "Comision_Vida": 985.74,
           "RDA": 0
         },
@@ -4198,12 +4192,12 @@
           "Clave": "59120",
           "PA_Total": 0,
           "Polizas": 0,
-          "Lugar": 10077,
-          "Lugar_495": 74448.2,
-          "Lugar_480": 74448.2,
-          "Lugar_228": 113915.66,
-          "Lugar_108": 171428.06,
-          "Lugar_28": 422829.4,
+          "Lugar": 10037,
+          "Lugar_495": 82624.82,
+          "Lugar_480": 82624.82,
+          "Lugar_228": 127301.4,
+          "Lugar_108": 187332.76,
+          "Lugar_28": 489646.74,
           "Comision_Vida": 0,
           "RDA": 0
         }
@@ -4555,7 +4549,7 @@
           "Clave": "115047",
           "Mes_Asesor": 12,
           "Polizas_Totales": 18.5,
-          "Comisones": 156454.58,
+          "Comisones": 157160.61,
           "Fecha_Limite_Meta": "1 de Septiembre de 2026"
         },
         {
@@ -4570,8 +4564,8 @@
           "Asesor": "PAULA ANGELICA LOMELI CAZARES",
           "Clave": "116876",
           "Mes_Asesor": 7,
-          "Polizas_Totales": 8.5,
-          "Comisones": 39719.44,
+          "Polizas_Totales": 7.5,
+          "Comisones": 38980.2,
           "Fecha_Limite_Meta": "1 de Febrero de 2027"
         },
         {
@@ -4595,7 +4589,7 @@
           "Clave": "118069",
           "Mes_Asesor": 4,
           "Polizas_Totales": 9,
-          "Comisones": 59265.79,
+          "Comisones": 59746.42,
           "Fecha_Limite_Meta": "1 de Mayo de 2027"
         },
         {
@@ -4608,48 +4602,48 @@
         }
       ],
       "convenciones_promotores": {
-        "fecha_corte": "31 de agosto 2026",
+        "fecha_corte": "11 de septiembre 2026",
         "promotoria": {
           "lugar_general": 59,
           "mat": "2043",
           "oficina": "GUADALAJARA (A. RODRIGUEZ",
-          "c1_vida": 658406.5,
+          "c1_vida": 676230.89,
           "c1_dxn": 0,
-          "c1_gmm_ind": 81390.58,
+          "c1_gmm_ind": 90783.06,
           "c1_vida_gyc": 70391.64,
           "c1_gmm_gyc": 0,
           "c1_conv_doble": 0,
-          "c1_comisiones_totales": 871221.63,
+          "c1_comisiones_totales": 898438.5,
           "c1_ranking": 59,
-          "c2_vida_12m": 186231.17,
+          "c2_vida_12m": 185972.56,
           "c2_conv_doble": 0,
-          "c2_total": 198083.17,
-          "c2_ranking": 47,
-          "c3_nueva_org": 228974,
+          "c2_total": 197824.56,
+          "c2_ranking": 52,
+          "c3_nueva_org": 243034,
           "c3_conv_doble": 0,
-          "c3_total": 273976,
-          "c3_ranking": 28,
+          "c3_total": 288036,
+          "c3_ranking": 30,
           "asesores_ta": 2,
-          "limra": 0.935,
-          "igc": 0.9227,
+          "limra": 0.9324,
+          "igc": 0.9212,
           "comisiones_reclutas": 32655.45,
           "adjunto_ga": "SI"
         },
         "umbrales": {
           "camino1": {
-            "3d": 7347537.49,
-            "2d": 4408640.83,
-            "1d": 3956216.56
+            "3d": 8017872.98,
+            "2d": 4541175.41,
+            "1d": 4143023.68
           },
           "camino2": {
-            "3d": 658137.93,
-            "2d": 447311.37,
-            "1d": 399667.79
+            "3d": 708993.43,
+            "2d": 484480.61,
+            "1d": 424126.51
           },
           "camino3": {
-            "3d": 726495,
-            "2d": 439810,
-            "1d": 356048
+            "3d": 796148,
+            "2d": 453046,
+            "1d": 365087
           }
         },
         "minimos": {
@@ -4719,16 +4713,16 @@
         }
       },
       "convenciones_gerente": {
-        "fecha_corte": "31 de agosto 2026",
+        "fecha_corte": "11 de septiembre 2026",
         "gerencia": {
           "nombre": "KAREN MUNOZ GARCIA",
           "mat": "2043",
           "suc": "2856",
           "c1_total": 0,
-          "c1_ranking": 17,
-          "c2_total": 37826,
-          "c2_ranking": 35,
-          "c3_total": 97793.14,
+          "c1_ranking": 18,
+          "c2_total": 41190,
+          "c2_ranking": 38,
+          "c3_total": 97534.53,
           "c3_ranking": 6,
           "asesores_ta_gerencia": 1,
           "meta_ta_gerencia": 4,
@@ -4738,8 +4732,8 @@
         },
         "primer_lugar": {
           "c1_total": 136121,
-          "c2_total": 1492923,
-          "c3_total": 499848
+          "c2_total": 1541590,
+          "c3_total": 503648.27
         },
         "minimos": {
           "camino1": {
@@ -4766,7 +4760,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
@@ -4775,7 +4769,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
@@ -4784,7 +4778,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
@@ -4793,7 +4787,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "PAULINA RODRIGUEZ DE LA MORA",
@@ -4802,7 +4796,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "MARIO ALFONSO SARMIENTO OROZCO",
@@ -4811,7 +4805,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "DESIREE DE LA PEÐA OROZCO",
@@ -4820,7 +4814,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "MARICELA ARREOLA LOPEZ",
@@ -4829,7 +4823,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "KAREN MUÐOZ GARCIA",
@@ -4838,7 +4832,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
@@ -4847,7 +4841,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "ANDREA CELESTE IBAÐEZ RINCON",
@@ -4856,7 +4850,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "JOCELYN URIBE VARGAS",
@@ -4865,7 +4859,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "DARINKA UREÐA CASILLAS",
@@ -4893,7 +4887,7 @@
             }
           ],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "MARIA TERESA ASENCIO LOZANO",
@@ -4902,7 +4896,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
@@ -4911,7 +4905,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
@@ -4920,7 +4914,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "JULIANA RIASCOS VALENCIA",
@@ -4929,7 +4923,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "SAMUEL NUÐO RIVERA",
@@ -4938,7 +4932,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
@@ -4947,7 +4941,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "MARIA FERNANDA RIOS BERNAL",
@@ -4956,7 +4950,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
@@ -4965,7 +4959,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "ROGELIO TORRES ORTIZ",
@@ -4974,7 +4968,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
@@ -5002,7 +4996,7 @@
             }
           ],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "GABRIELA CASTAÐEDA SALAZAR",
@@ -5011,7 +5005,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "MIREYA LIZETTE TORRES GARCIA",
@@ -5020,7 +5014,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "ORLANDA JIMENA CERVANTES NUÐEZ",
@@ -5029,7 +5023,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
@@ -5038,7 +5032,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
@@ -5047,7 +5041,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
@@ -5056,7 +5050,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "EVELYN CAROLINA VENEGAS IÐIGUEZ",
@@ -5065,7 +5059,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "ROCIO YANETH OCHOA IBARRA",
@@ -5074,7 +5068,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "ANAIS LUA MORENO",
@@ -5083,7 +5077,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "JOSE RENE DE ALBA MORALES",
@@ -5102,7 +5096,7 @@
           ],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "JORGE ANTONIO LUNA LARA",
@@ -5111,7 +5105,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
@@ -5120,7 +5114,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "LAURA DOLORES MONTAÐO MONTAÐO",
@@ -5129,7 +5123,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "ANA LAURA CONTRERAS IÐIGUEZ",
@@ -5138,7 +5132,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
@@ -5147,7 +5141,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "HANA SOFIA LOPEZ QUIÐONEZ",
@@ -5156,7 +5150,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "VELIA PATRICIA BERNAL RAMOS",
@@ -5165,7 +5159,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
@@ -5174,7 +5168,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "PAULA ANGELICA LOMELI CAZARES",
@@ -5183,7 +5177,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "SOFIA CAMPILLO VASCONCELOS",
@@ -5192,7 +5186,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "MONSERRAT VELASCO SANTOS",
@@ -5201,7 +5195,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "MARIO IVAN ROMERO GONZALEZ",
@@ -5210,7 +5204,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
@@ -5219,7 +5213,7 @@
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         },
         {
           "Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
@@ -5247,7 +5241,7 @@
             }
           ],
           "Kits_Ganados_Nacional": 50,
-          "Kits_Restantes_Nacional": 568
+          "Kits_Restantes_Nacional": 499
         }
       ],
       "poder_elegirte": [
@@ -5257,8 +5251,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
@@ -5266,8 +5260,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
@@ -5275,8 +5269,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
@@ -5284,8 +5278,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "PAULINA RODRIGUEZ DE LA MORA",
@@ -5293,8 +5287,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "MARIO ALFONSO SARMIENTO OROZCO",
@@ -5302,8 +5296,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "DESIREE DE LA PEÐA OROZCO",
@@ -5311,8 +5305,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "MARICELA ARREOLA LOPEZ",
@@ -5320,8 +5314,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "KAREN MUÐOZ GARCIA",
@@ -5329,8 +5323,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
@@ -5338,8 +5332,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "ANDREA CELESTE IBAÐEZ RINCON",
@@ -5347,8 +5341,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "JOCELYN URIBE VARGAS",
@@ -5356,8 +5350,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "DARINKA UREÐA CASILLAS",
@@ -5365,8 +5359,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "MARIA TERESA ASENCIO LOZANO",
@@ -5374,8 +5368,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
@@ -5383,8 +5377,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
@@ -5392,8 +5386,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "JULIANA RIASCOS VALENCIA",
@@ -5401,8 +5395,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "SAMUEL NUÐO RIVERA",
@@ -5410,8 +5404,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
@@ -5419,8 +5413,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "MARIA FERNANDA RIOS BERNAL",
@@ -5428,8 +5422,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
@@ -5437,8 +5431,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "ROGELIO TORRES ORTIZ",
@@ -5446,8 +5440,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "PAULINA LIZBETH SOTO MUÐIZ",
@@ -5455,8 +5449,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "GABRIELA CASTAÐEDA SALAZAR",
@@ -5464,8 +5458,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "MIREYA LIZETTE TORRES GARCIA",
@@ -5473,8 +5467,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "ORLANDA JIMENA CERVANTES NUÐEZ",
@@ -5482,8 +5476,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
@@ -5491,8 +5485,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
@@ -5500,8 +5494,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
@@ -5509,8 +5503,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "EVELYN CAROLINA VENEGAS IÐIGUEZ",
@@ -5518,8 +5512,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "ROCIO YANETH OCHOA IBARRA",
@@ -5527,8 +5521,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "ANAIS LUA MORENO",
@@ -5555,8 +5549,8 @@
               "Prima_Recibo": 29670.21
             }
           ],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "JOSE RENE DE ALBA MORALES",
@@ -5564,8 +5558,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "JORGE ANTONIO LUNA LARA",
@@ -5573,8 +5567,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
@@ -5582,8 +5576,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "LAURA DOLORES MONTAÐO MONTAÐO",
@@ -5591,8 +5585,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "ANA LAURA CONTRERAS IÐIGUEZ",
@@ -5600,8 +5594,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
@@ -5609,8 +5603,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "HANA SOFIA LOPEZ QUIÐONEZ",
@@ -5618,8 +5612,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "VELIA PATRICIA BERNAL RAMOS",
@@ -5637,8 +5631,8 @@
             }
           ],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
@@ -5646,8 +5640,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "PAULA ANGELICA LOMELI CAZARES",
@@ -5655,8 +5649,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "SOFIA CAMPILLO VASCONCELOS",
@@ -5664,8 +5658,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "MONSERRAT VELASCO SANTOS",
@@ -5673,8 +5667,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "MARIO IVAN ROMERO GONZALEZ",
@@ -5682,8 +5676,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
@@ -5691,8 +5685,8 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         },
         {
           "Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
@@ -5700,21 +5694,21 @@
           "Puntos_Doble": 0,
           "Polizas_Detalle": [],
           "Clientes_Kits": [],
-          "Kits_Ganados_Nacional": 35,
-          "Kits_Restantes_Nacional": 965
+          "Kits_Ganados_Nacional": 74,
+          "Kits_Restantes_Nacional": 926
         }
       ]
     },
     "campaignDates": {
-      "mdrt": "11 de septiembre de 2026",
-      "convenciones": "04 de Septiembre de 2026",
+      "mdrt": "18 de septiembre de 2026",
+      "convenciones": "11 de septiembre 2026",
       "legion_centurion": "09 de septiembre de 2026",
-      "camino_cumbre": "15 de septiembre de 2026",
-      "graduacion": "11 de septiembre de 2026",
-      "convenciones_promotores": "31 de agosto 2026",
-      "convenciones_gerente": "31 de agosto 2026",
-      "educar_es_creer": "11 de septiembre de 2026",
-      "poder_elegirte": "11 de septiembre de 2026"
+      "camino_cumbre": "18 de septiembre de 2026",
+      "graduacion": "15 de septiembre de 2026",
+      "convenciones_promotores": "11 de septiembre 2026",
+      "convenciones_gerente": "11 de septiembre 2026",
+      "educar_es_creer": "15 de septiembre de 2026",
+      "poder_elegirte": "15 de septiembre de 2026"
     },
     "historico_metas": {
       "2026": {
