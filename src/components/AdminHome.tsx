@@ -3,7 +3,11 @@ import { motion } from 'framer-motion';
 import { NotificationBroadcastModal } from './NotificationBroadcastModal';
 import { NotificationCenterModal } from './NotificationCenterModal';
 import { DeviceManagerModal } from './DeviceManagerModal';
+import { AvisosEntryModal } from './AvisosEntryModal';
+import { useComunicados } from '../hooks/useComunicados';
 import { SlidersHorizontal, Bell, Send, Users, Activity, Info, ChevronDown, Smartphone } from 'lucide-react';
+
+const AVISOS_PROMPT_SESSION_KEY_ADMIN = 'avisos_prompt_shown_session_admin';
 
 interface Props {
     onSelectOption: (option: 'asesores' | 'convenciones' | 'promotoria' | 'karen' | 'actividad' | 'meta24m' | 'staff' | 'centro_avisos' | 'infografias') => void;
@@ -14,9 +18,19 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
     const [isBroadcastOpen, setIsBroadcastOpen] = useState(false);
     const [isNotifCenterOpen, setIsNotifCenterOpen] = useState(false);
     const [isDeviceManagerOpen, setIsDeviceManagerOpen] = useState(false);
-    const [unreadCount, setUnreadCount] = useState(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
+
+    const { unread, unreadCount } = useComunicados('admin');
+    const [showAvisosPrompt, setShowAvisosPrompt] = useState(false);
+
+    useEffect(() => {
+        if (unreadCount === 0) return;
+        if (typeof window === 'undefined') return;
+        if (sessionStorage.getItem(AVISOS_PROMPT_SESSION_KEY_ADMIN)) return;
+        sessionStorage.setItem(AVISOS_PROMPT_SESSION_KEY_ADMIN, '1');
+        setShowAvisosPrompt(true);
+    }, [unreadCount]);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -670,7 +684,6 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                 isOpen={isNotifCenterOpen}
                 onClose={() => setIsNotifCenterOpen(false)}
                 role="admin"
-                onUnreadCountChange={(count) => setUnreadCount(count)}
             />
 
             {/* Device Manager Modal */}
@@ -678,6 +691,18 @@ const AdminHome: React.FC<Props> = ({ onSelectOption, onLogout }) => {
                 isOpen={isDeviceManagerOpen}
                 onClose={() => setIsDeviceManagerOpen(false)}
             />
+
+            {/* Aviso de entrada: si hay avisos sin leer, se muestra una vez por sesión al llegar al panel admin */}
+            {showAvisosPrompt && (
+                <AvisosEntryModal
+                    unread={unread}
+                    onVerAvisos={() => {
+                        setShowAvisosPrompt(false);
+                        setIsNotifCenterOpen(true);
+                    }}
+                    onDismiss={() => setShowAvisosPrompt(false)}
+                />
+            )}
         </div>
     );
 };
