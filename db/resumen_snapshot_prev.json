@@ -1,5 +1,5 @@
 {
-  "updatedAt": "23/9/2026, 4:34:30 p.m.",
+  "updatedAt": "25/9/2026, 2:21:51 p.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -630,10 +630,10 @@
             "%_Asesores_con_Emisión_GMM": 0.1739,
             "Asesores_con_pol_Pagada_Vida": 4,
             "%_Asesores_con_pol_Pagada_Vida": 0.1739,
-            "Asesores_con_pol_Pagada_GMM": 3,
-            "%_Asesores_con_pol_Pagada_GMM": 0.1304,
-            "Prima_Pagada_Vida": 389030.67,
-            "Prima_Pagada_GMM": 123116
+            "Asesores_con_pol_Pagada_GMM": 4,
+            "%_Asesores_con_pol_Pagada_GMM": 0.1739,
+            "Prima_Pagada_Vida": 441200.19,
+            "Prima_Pagada_GMM": 125824
           },
           {
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
@@ -663,7 +663,7 @@
             "Asesores_con_pol_Pagada_GMM": 1,
             "%_Asesores_con_pol_Pagada_GMM": 0.2,
             "Prima_Pagada_Vida": 154008.99,
-            "Prima_Pagada_GMM": 13596
+            "Prima_Pagada_GMM": 15234
           }
         ],
         "individuals": [
@@ -679,9 +679,7 @@
             "Prima_Pagada_Vida": 12261.72,
             "Prima_Pagada_GMM": 2870,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_Vida": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "MARIA FERNANDA RIOS BERNAL",
@@ -695,9 +693,7 @@
             "Prima_Pagada_Vida": 6060.91,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_Vida": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
@@ -711,9 +707,7 @@
             "Prima_Pagada_Vida": 0,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_Vida": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "ROGELIO TORRES ORTIZ",
@@ -724,7 +718,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 21193.35,
+            "Prima_Pagada_Vida": 23664.87,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_GMM": "i"
           },
@@ -752,8 +746,7 @@
             "Pagado_GMM": 0,
             "Prima_Pagada_Vida": 10691.34,
             "Prima_Pagada_GMM": 0,
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "MIREYA LIZETTE TORRES GARCIA",
@@ -767,8 +760,7 @@
             "Prima_Pagada_Vida": 7955.43,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
@@ -777,12 +769,11 @@
             "Suc": 2043,
             "Emitido_Vida": 2,
             "Emitido_GMM": 0,
-            "Pagado_Vida": 1,
+            "Pagado_Vida": 2,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 7889.44,
+            "Prima_Pagada_Vida": 37542.35,
             "Prima_Pagada_GMM": 0,
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "ANAIS LUA MORENO",
@@ -808,8 +799,7 @@
             "Prima_Pagada_Vida": 0,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "JORGE ANTONIO LUNA LARA",
@@ -823,8 +813,7 @@
             "Prima_Pagada_Vida": 6097.65,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
@@ -838,9 +827,7 @@
             "Prima_Pagada_Vida": 2072.23,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_Vida": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "VELIA PATRICIA BERNAL RAMOS",
@@ -852,7 +839,7 @@
             "Pagado_Vida": 1,
             "Pagado_GMM": 0,
             "Prima_Pagada_Vida": 45859.01,
-            "Prima_Pagada_GMM": 3877,
+            "Prima_Pagada_GMM": 5515,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i"
           },
@@ -868,9 +855,7 @@
             "Prima_Pagada_Vida": 0,
             "Prima_Pagada_GMM": 3335,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_Vida": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "PAULA ANGELICA LOMELI CAZARES",
@@ -884,8 +869,7 @@
             "Prima_Pagada_Vida": 1211,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "SOFIA CAMPILLO VASCONCELOS",
@@ -899,8 +883,7 @@
             "Prima_Pagada_Vida": 20796.52,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "MONSERRAT VELASCO SANTOS",
@@ -914,8 +897,7 @@
             "Prima_Pagada_Vida": 15217.64,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "MARIO IVAN ROMERO GONZALEZ",
@@ -938,9 +920,9 @@
             "Emitido_Vida": 0,
             "Emitido_GMM": 1,
             "Pagado_Vida": 0,
-            "Pagado_GMM": 0,
+            "Pagado_GMM": 1,
             "Prima_Pagada_Vida": 1967.73,
-            "Prima_Pagada_GMM": 5452,
+            "Prima_Pagada_GMM": 8160,
             "Sin_Emisión_Vida": "i"
           },
           {
@@ -955,8 +937,7 @@
             "Prima_Pagada_Vida": 0,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
@@ -970,9 +951,7 @@
             "Prima_Pagada_Vida": 6968.21,
             "Prima_Pagada_GMM": 1507,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_Vida": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
@@ -1000,9 +979,7 @@
             "Prima_Pagada_Vida": 0,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_Vida": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "DESIREE DE LA PEÑA OROZCO",
@@ -1027,8 +1004,7 @@
             "Pagado_GMM": 1,
             "Prima_Pagada_Vida": 20509.75,
             "Prima_Pagada_GMM": 32732,
-            "Sin_Emisión_Vida": "i",
-            "3_Meses_Sin_Emisión_Vida": "i"
+            "Sin_Emisión_Vida": "i"
           },
           {
             "Asesor": "KAREN MUÑOZ GARCIA",
@@ -1049,11 +1025,11 @@
             "Clave": 87538,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
-            "Emitido_Vida": 1,
+            "Emitido_Vida": 2,
             "Emitido_GMM": 2,
             "Pagado_Vida": 1,
             "Pagado_GMM": 1,
-            "Prima_Pagada_Vida": 83517.83,
+            "Prima_Pagada_Vida": 93416.06,
             "Prima_Pagada_GMM": 33920
           },
           {
@@ -1065,7 +1041,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 2362.88,
+            "Prima_Pagada_Vida": 12509.74,
             "Prima_Pagada_GMM": 2340,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i"
@@ -1082,8 +1058,7 @@
             "Prima_Pagada_Vida": 7019.13,
             "Prima_Pagada_GMM": 3139,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
@@ -1097,9 +1072,7 @@
             "Prima_Pagada_Vida": 5686.91,
             "Prima_Pagada_GMM": 9994,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_Vida": "i",
-            "3_Meses_Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
@@ -3595,7 +3568,7 @@
     "fechas_corte": {
       "pagado_pendiente": "22 de septiembre de 2026",
       "pagado_pendiente_reclutas": "22 de septiembre de 2026",
-      "asesores_sin_emision": "21 de SEP de 2026",
+      "asesores_sin_emision": "24 de SEP de 2026",
       "proactivos": "22 de septiembre de 2026",
       "comparativo_vida": "18 de septiembre de 2026",
       "qsq_vida": "31 de agosto de 2026",
@@ -3606,44 +3579,9 @@
     "campaigns": {
       "mdrt": [
         {
-          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Clave": "87538",
-          "PA_Acumulada": 2441510.97
-        },
-        {
-          "Asesor": "ANAIS LUA MORENO",
-          "Clave": "110453",
-          "PA_Acumulada": 1867609.13
-        },
-        {
-          "Asesor": "DESIREE DE LA PEÑA OROZCO",
-          "Clave": "80122",
-          "PA_Acumulada": 1035219.11
-        },
-        {
-          "Asesor": "DARINKA UREÑA CASILLAS",
-          "Clave": "90355",
-          "PA_Acumulada": 928486.1
-        },
-        {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "PA_Acumulada": 666559.24
-        },
-        {
-          "Asesor": "JORGE ANTONIO LUNA LARA",
-          "Clave": "111056",
-          "PA_Acumulada": 489275.5
-        },
-        {
-          "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
-          "Clave": "104750",
-          "PA_Acumulada": 486133.8
-        },
-        {
-          "Asesor": "MARIA TERESA ASENCIO LOZANO",
-          "Clave": "94156",
-          "PA_Acumulada": 478615.59
+          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
+          "Clave": "115047",
+          "PA_Acumulada": 221467.08
         },
         {
           "Asesor": "MONSERRAT VELASCO SANTOS",
@@ -3651,104 +3589,24 @@
           "PA_Acumulada": 433954.65
         },
         {
+          "Asesor": "MARIA FERNANDA RIOS BERNAL",
+          "Clave": "103982",
+          "PA_Acumulada": 173632.09
+        },
+        {
           "Asesor": "SOFIA CAMPILLO VASCONCELOS",
           "Clave": "116883",
           "PA_Acumulada": 383849.43
         },
         {
-          "Asesor": "MARICELA ARREOLA LOPEZ",
-          "Clave": "80925",
-          "PA_Acumulada": 293324.43
+          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+          "Clave": "47116",
+          "PA_Acumulada": 668403.74
         },
         {
-          "Asesor": "JOSE RENE DE ALBA MORALES",
-          "Clave": "110575",
-          "PA_Acumulada": 281633.71
-        },
-        {
-          "Asesor": "GABRIELA CASTAÑEDA SALAZAR",
-          "Clave": "105696",
-          "PA_Acumulada": 280168.03
-        },
-        {
-          "Asesor": "ROGELIO TORRES ORTIZ",
-          "Clave": "104718",
-          "PA_Acumulada": 276609.94
-        },
-        {
-          "Asesor": "MARIO IVAN ROMERO GONZALEZ",
-          "Clave": "118069",
-          "PA_Acumulada": 275964.66
-        },
-        {
-          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
-          "Clave": "116876",
-          "PA_Acumulada": 247058.68
-        },
-        {
-          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
-          "Clave": "115047",
-          "PA_Acumulada": 221467.08
-        },
-        {
-          "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
-          "Clave": "108404",
-          "PA_Acumulada": 213864.37
-        },
-        {
-          "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
-          "Clave": "113450",
-          "PA_Acumulada": 211587.83
-        },
-        {
-          "Asesor": "MARIA FERNANDA RIOS BERNAL",
-          "Clave": "103982",
-          "PA_Acumulada": 207152.09
-        },
-        {
-          "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
-          "Clave": "118246",
-          "PA_Acumulada": 205530.99
-        },
-        {
-          "Asesor": "JULIANA RIASCOS VALENCIA",
-          "Clave": "100677",
-          "PA_Acumulada": 156270.34
-        },
-        {
-          "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
-          "Clave": "104343",
-          "PA_Acumulada": 111867.46
-        },
-        {
-          "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
-          "Clave": "115404",
-          "PA_Acumulada": 109531.33
-        },
-        {
-          "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
-          "Clave": "95148",
-          "PA_Acumulada": 103923.64
-        },
-        {
-          "Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
-          "Clave": "118915",
-          "PA_Acumulada": 98864.88
-        },
-        {
-          "Asesor": "MIREYA LIZETTE TORRES GARCIA",
-          "Clave": "106018",
-          "PA_Acumulada": 59925.87
-        },
-        {
-          "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
-          "Clave": "98797",
-          "PA_Acumulada": 39848.49
-        },
-        {
-          "Asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
-          "Clave": "64502",
-          "PA_Acumulada": 8705.04
+          "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
+          "Clave": "59120",
+          "PA_Acumulada": 0
         },
         {
           "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
@@ -3756,14 +3614,129 @@
           "PA_Acumulada": 3827.07
         },
         {
+          "Asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+          "Clave": "64502",
+          "PA_Acumulada": 8705.04
+        },
+        {
+          "Asesor": "DESIREE DE LA PEÑA OROZCO",
+          "Clave": "80122",
+          "PA_Acumulada": 1187513.77
+        },
+        {
+          "Asesor": "MARICELA ARREOLA LOPEZ",
+          "Clave": "80925",
+          "PA_Acumulada": 321541.66
+        },
+        {
           "Asesor": "KAREN MUÑOZ GARCIA",
           "Clave": "81044",
           "PA_Acumulada": 2301.18
         },
         {
-          "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
-          "Clave": "59120",
-          "PA_Acumulada": 0
+          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+          "Clave": "87538",
+          "PA_Acumulada": 2431273.93
+        },
+        {
+          "Asesor": "DARINKA UREÑA CASILLAS",
+          "Clave": "90355",
+          "PA_Acumulada": 928486.1
+        },
+        {
+          "Asesor": "MARIA TERESA ASENCIO LOZANO",
+          "Clave": "94156",
+          "PA_Acumulada": 479401.34
+        },
+        {
+          "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
+          "Clave": "95148",
+          "PA_Acumulada": 103923.64
+        },
+        {
+          "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
+          "Clave": "98797",
+          "PA_Acumulada": 39848.49
+        },
+        {
+          "Asesor": "JULIANA RIASCOS VALENCIA",
+          "Clave": "100677",
+          "PA_Acumulada": 156447.69
+        },
+        {
+          "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
+          "Clave": "104343",
+          "PA_Acumulada": 111902.35
+        },
+        {
+          "Asesor": "ROGELIO TORRES ORTIZ",
+          "Clave": "104718",
+          "PA_Acumulada": 276609.94
+        },
+        {
+          "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+          "Clave": "104750",
+          "PA_Acumulada": 621480.04
+        },
+        {
+          "Asesor": "GABRIELA CASTAÑEDA SALAZAR",
+          "Clave": "105696",
+          "PA_Acumulada": 280168.03
+        },
+        {
+          "Asesor": "MIREYA LIZETTE TORRES GARCIA",
+          "Clave": "106018",
+          "PA_Acumulada": 59925.87
+        },
+        {
+          "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+          "Clave": "108404",
+          "PA_Acumulada": 261373.73
+        },
+        {
+          "Asesor": "ANAIS LUA MORENO",
+          "Clave": "110453",
+          "PA_Acumulada": 1936971.35
+        },
+        {
+          "Asesor": "JOSE RENE DE ALBA MORALES",
+          "Clave": "110575",
+          "PA_Acumulada": 281633.71
+        },
+        {
+          "Asesor": "JORGE ANTONIO LUNA LARA",
+          "Clave": "111056",
+          "PA_Acumulada": 489275.5
+        },
+        {
+          "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
+          "Clave": "113450",
+          "PA_Acumulada": 211587.83
+        },
+        {
+          "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
+          "Clave": "115404",
+          "PA_Acumulada": 109531.33
+        },
+        {
+          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
+          "Clave": "116876",
+          "PA_Acumulada": 219305.68
+        },
+        {
+          "Asesor": "MARIO IVAN ROMERO GONZALEZ",
+          "Clave": "118069",
+          "PA_Acumulada": 275966.64
+        },
+        {
+          "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
+          "Clave": "118246",
+          "PA_Acumulada": 203511.25
+        },
+        {
+          "Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
+          "Clave": "118915",
+          "PA_Acumulada": 98864.88
         }
       ],
       "convenciones": [
@@ -5700,7 +5673,7 @@
       ]
     },
     "campaignDates": {
-      "mdrt": "18 de septiembre de 2026",
+      "mdrt": "23 de septiembre de 2026",
       "convenciones": "11 de septiembre 2026",
       "legion_centurion": "09 de septiembre de 2026",
       "camino_cumbre": "18 de septiembre de 2026",
