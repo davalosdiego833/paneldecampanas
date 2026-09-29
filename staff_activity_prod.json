@@ -569,6 +569,35 @@
           "tareas_actividades": 73,
           "observaciones": "Fernanda presenta un repunte masivo y espectacular en este corte, llenando de forma explosiva todo su embudo de Desarrollo. Destaca con un crecimiento extraordinario en **66 Citas Iniciales** (+61), **19 Citas de Cierre** (+17) y una reactivación estelar de **14 Arranques Rápidos** (de 0 a 14). Asimismo, eleva su acompañamiento a **8 Sesiones 1:1**, **3 Sesiones de Negocios** y completa **73 Tareas / Actividades** en su bitácora.\n\nÁrea de mejora: El volumen de prospección, agendamiento y acompañamiento ha sido soberbio. El foco absoluto y prioritario para los siguientes días debe ser mantener la máxima presión en el seguimiento de esas 19 Citas de Cierre para acelerar la conversión a firmas de contratos y emisiones de pólizas cobradas."
         }
+      },
+      {
+        "date": "2026-09-01",
+        "type": "lunes_cierre",
+        "month_start": true,
+        "data": {
+          "citas_iniciales": 0,
+          "citas_cierre": 0,
+          "polizas": 0,
+          "contratos_firmados": 0,
+          "sesiones_11": 0,
+          "sesiones_negocios": 0,
+          "arranque_rapido": 0,
+          "tareas_actividades": 0
+        }
+      },
+      {
+        "date": "2026-09-29",
+        "data": {
+          "citas_iniciales": 31,
+          "citas_cierre": 8,
+          "polizas": 0,
+          "contratos_firmados": 0,
+          "sesiones_11": 23,
+          "sesiones_negocios": 6,
+          "arranque_rapido": 8,
+          "tareas_actividades": 57,
+          "observaciones": "Fer Carlos registra una sólida actividad comercial en el área de Desarrollo con **31 Citas Iniciales** y **8 Citas de Cierre**. En el acompañamiento de equipo, acumula **23 Sesiones 1:1**, **6 Sesiones de Negocios** y **8 Arranques Rápidos**, junto con **57 Tareas / Actividades** completadas en su bitácora.\n\nÁrea de mejora: Excelente ritmo de acompañamiento y sesiones individuales. La prioridad en este periodo es avanzar en la conversión de las 8 Citas de Cierre para formalizar firmas de contratos y emisiones de pólizas cobradas."
+        }
       }
     ],
     "goals": {
