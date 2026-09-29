@@ -920,6 +920,43 @@
           "recluta_entrevistas": 6,
           "observaciones": "Shelsea registra un avance continuo en este corte con **435 contactos acumulados en el mes** (+89 respecto al corte del 18 de agosto) y mantiene **6 entrevistas de reclutamiento**. En el embudo de conversión, eleva la estructura a **14 Activos Totales** (11 Nosotros, +3 / 3 Karen), **16 candidatos en Enamoramiento Shelsea** (+5), **3 Enamoramientos Karen**, **4 candidatos en Reserva Activa** (+2), **1 en Compensación** y **1 en etapa Administrativa**.\n\nÁrea de mejora: Excelente aceleración en prospección (+89 nuevos contactos) y crecimiento de asesores activos (+3) y enamorados (+5). La prioridad estratégica es reactivar llamadas y citas de seguimiento para canalizar a los 16 candidatos en enamoramiento hacia compensación y contratación."
         }
+      },
+      {
+        "date": "2026-09-01",
+        "type": "lunes_cierre",
+        "month_start": true,
+        "data": {
+          "activos_mes": 0,
+          "activos_totales": 0,
+          "activos_karen": 0,
+          "ent_enamoramiento": 0,
+          "enamoramientos_karen": 0,
+          "reserva_activa": 0,
+          "ent_compensacion": 0,
+          "ent_administrativa": 0,
+          "recluta_contactos": 0,
+          "recluta_citas": 0,
+          "recluta_entrevistas": 0
+        }
+      },
+      {
+        "date": "2026-09-29",
+        "data": {
+          "activos_mes": 15,
+          "activos_totales": 19,
+          "activos_karen": 4,
+          "reserva_activa": 0,
+          "ent_enamoramiento": 15,
+          "enamoramientos_karen": 4,
+          "ent_compensacion": 1,
+          "ent_administrativa": 1,
+          "recluta_contactos": 397,
+          "recluta_citas": 0,
+          "recluta_entrevistas": 4,
+          "enamoramientos_mes": 3,
+          "ingresos_mes": 0,
+          "observaciones": "Shelsea registra una sólida actividad de reclutamiento en septiembre con **397 Contactos en el mes**, **4 Entrevistas de reclutamiento** y **3 nuevos Enamoramientos en el mes**.\n\nEn la estructura general del embudo, alcanza **19 Activos Totales (Septiembre)** (15 Nosotros / 4 Karen), **15 candidatos en Enamoramiento Shelsea**, **4 en Enamoramiento Karen**, **1 en Compensación** y **1 en etapa Administrativa**.\n\nÁrea de mejora: Excelente dinamismo y volumen en la captación inicial (+397 contactos). La prioridad estratégica es agilizar el proceso de los candidatos en Compensación y Administrativa para concretar su incorporación formal."
+        }
       }
     ]
   }
