@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Sun, Moon, LogOut, ArrowLeft, DollarSign, Users, TrendingUp, Activity, AlertTriangle, CheckCircle, XCircle, Search, Calendar, Shield, MessageSquare, ChevronLeft, ChevronRight, Award, Lightbulb, Hospital } from 'lucide-react';
+import { Sun, Moon, LogOut, ArrowLeft, DollarSign, Users, TrendingUp, Activity, AlertTriangle, CheckCircle, XCircle, Search, Calendar, MessageSquare, ChevronLeft, ChevronRight, Award, Lightbulb, Hospital } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
-import EstatusPolizasContent from './EstatusPolizas';
 import ConvencionesPromotores from './Dashboards/ConvencionesPromotores';
 import { QsQVidaContent } from './QsQVida';
 import { QsQGmmContent } from './QsQGmm';
@@ -18,7 +17,7 @@ interface Props {
     gerenciaName?: string;
 }
 
-type Section = 'pagado_pendiente' | 'asesores_sin_emision' | 'proactivos' | 'comparativo_vida' | 'qsq_vida' | 'qsq_gmm' | 'estatus_polizas' | 'reporte_premios';
+type Section = 'pagado_pendiente' | 'asesores_sin_emision' | 'proactivos' | 'comparativo_vida' | 'qsq_vida' | 'qsq_gmm' | 'reporte_premios';
 
 const fmt = (n: number | null | undefined) => {
     if (n == null || isNaN(Number(n))) return '$0';
@@ -189,22 +188,15 @@ const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggl
         { key: 'comparativo_vida', label: 'Comparativo de Vida', icon: <TrendingUp size={18} /> },
         { key: 'qsq_vida', label: 'QsQ Vida', icon: <Lightbulb size={18} /> },
         { key: 'qsq_gmm', label: 'QsQ GMM', icon: <Hospital size={18} /> },
-        { key: 'estatus_polizas', label: 'Estatus Pólizas', icon: <Shield size={18} /> },
         { key: 'reporte_premios', label: 'Reporte de Premios', icon: <Award size={18} /> },
     ];
 
-    // Hide 'Estatus Pólizas' if we are in a Gerencia view (sucursalFilter is active)
     const isGerencia = sucursalFilter && sucursalFilter.length > 0;
-    const sections = allSections.filter(s => {
-        if (s.key === 'estatus_polizas' && isGerencia) return false;
-        return true;
-    });
+    const sections = allSections;
 
     const sidebarLabel = gerenciaName || 'RESUMEN PROMOTORÍA';
 
     const renderContent = () => {
-        // Estatus Pólizas manages its own data loading, render it independently
-        if (section === 'estatus_polizas') return <EstatusPolizasContent />;
         // Reporte de Premios también maneja su propia carga (fetch a su propio
         // endpoint), independiente del resto de secciones de esta pantalla.
         if (section === 'reporte_premios') return isGerencia ? <BonoGerenteAgencia /> : <BonoPromotoria />;

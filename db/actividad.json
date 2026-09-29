@@ -1,5 +1,21 @@
 [
   {
+    "id": "1790701356903",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Promotoría",
+    "fecha": "2026-09-29",
+    "hora": "11:02:36",
+    "timestamp": 1790701356902
+  },
+  {
+    "id": "1790701350546",
+    "asesor": "QA",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-09-29",
+    "hora": "11:02:30",
+    "timestamp": 1790701350502
+  },
+  {
     "id": "1790204982302",
     "asesor": "QA",
     "accion": "Inició Sesión / Entró al Dashboard",
