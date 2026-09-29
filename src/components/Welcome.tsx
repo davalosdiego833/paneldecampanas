@@ -12,8 +12,13 @@ interface Props {
     onAdvisorSelect: (name: string) => void;
 }
 
+interface AdvisorEntry {
+    clave: string;
+    name: string;
+}
+
 const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
-    const [advisors, setAdvisors] = useState<string[]>([]);
+    const [advisors, setAdvisors] = useState<AdvisorEntry[]>([]);
     const [selectedName, setSelectedName] = useState<string>('');
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
@@ -36,11 +41,11 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
     ];
 
     useEffect(() => {
-        fetch('/api/advisors')
+        fetch('/api/advisors-with-clave')
             .then(res => res.json())
             .then(data => {
                 if (Array.isArray(data)) {
-                    setAdvisors(data.sort());
+                    setAdvisors(data);
                 } else {
                     setAdvisors([]);
                 }
@@ -54,7 +59,10 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
 
     const safeAdvisors = Array.isArray(advisors) ? advisors : [];
     const filteredAdvisors = searchTerm.length > 0
-        ? safeAdvisors.filter(name => name && typeof name === 'string' && name.toLowerCase().includes(searchTerm.toLowerCase()))
+        ? safeAdvisors.filter(a =>
+            a.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            a.clave.includes(searchTerm)
+        )
         : safeAdvisors;
 
     return (
@@ -559,9 +567,9 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                                 }}
                             >
                                 {filteredAdvisors.length > 0 ? (
-                                    filteredAdvisors.map(name => (
+                                    filteredAdvisors.map(({ name, clave }) => (
                                         <button
-                                            key={name}
+                                            key={clave}
                                             onClick={() => {
                                                 setSelectedName(name);
                                                 setSearchTerm('');
@@ -581,13 +589,27 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                                                 display: 'flex',
                                                 justifyContent: 'space-between',
                                                 alignItems: 'center',
+                                                gap: '12px',
                                                 marginBottom: '2px'
                                             }}
                                             onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.05)')}
                                             onMouseLeave={(e) => (e.currentTarget.style.background = selectedName === name ? 'rgba(0,122,255,0.15)' : 'none')}
                                         >
-                                            {name}
-                                            {selectedName === name && <Check size={18} />}
+                                            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>
+                                            <span style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+                                                <span style={{
+                                                    fontSize: '0.78rem',
+                                                    fontWeight: 700,
+                                                    color: selectedName === name ? '#007AFF' : 'var(--text-secondary)',
+                                                    background: selectedName === name ? 'rgba(0,122,255,0.12)' : 'rgba(255,255,255,0.06)',
+                                                    padding: '3px 9px',
+                                                    borderRadius: '20px',
+                                                    letterSpacing: '0.02em'
+                                                }}>
+                                                    {clave}
+                                                </span>
+                                                {selectedName === name && <Check size={18} />}
+                                            </span>
                                         </button>
                                     ))
                                 ) : (

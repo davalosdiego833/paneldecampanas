@@ -757,6 +757,17 @@ app.get('/api/advisors', (req, res) => {
     }
 });
 
+app.get('/api/advisors-with-clave', (req, res) => {
+    try {
+        getCachedAdvisors(); // asegura que cachedDirectoryMap esté poblado
+        const list = Object.entries(cachedDirectoryMap).map(([clave, name]) => ({ clave, name }));
+        list.sort((a, b) => a.name.localeCompare(b.name, 'es'));
+        res.json(list);
+    } catch (error) {
+        res.status(500).json({ error: 'Could not list advisors with clave' });
+    }
+});
+
 app.get('/api/admin/snapshot-status', (req, res) => {
     const found = findSnapshotPath();
     if (safeExists(found)) {
