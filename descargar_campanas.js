@@ -126,9 +126,28 @@ const extractConvencionesPromotoresDate = (filePath) => {
     return '';
 };
 
+// QsQ GMM: la hoja "Comisión Asesores" trae un número de negocio (ej. una prima)
+// que por coincidencia cae en el rango de fecha de Excel (44000-50000), así que el
+// escáner genérico lo confunde con una fecha real y nunca detecta cambios de verdad.
+// Buscamos el texto "Al cierre de <mes> de <año>" igual que actualizar_snapshot.js.
+const extractQsqGmmDate = (filePath) => {
+    const wb = XLSX.readFile(filePath);
+    const ws = wb.Sheets['Prima Comisión Asesores'] || wb.Sheets[wb.SheetNames[0]];
+    const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+    for (let r = 0; r < Math.min(data.length, 10); r++) {
+        const cellText = String(data[r]?.[0] || data[r]?.[1] || '').trim();
+        if (cellText.toLowerCase().includes('cierre de')) {
+            const m = cellText.match(/cierre de ([a-záéíóúñ]+) de (\d{4})/i);
+            if (m) return `31 de ${m[1].charAt(0).toUpperCase() + m[1].slice(1).toLowerCase()} de ${m[2]}`;
+        }
+    }
+    return '';
+};
+
 const extractCutoffDate = (regla, filePath) => {
     try {
         if (regla.dateFrom === 'convenciones_promotores_b17') return extractConvencionesPromotoresDate(filePath);
+        if (regla.campaignKey === 'qsq_gmm') return extractQsqGmmDate(filePath);
         const wb = XLSX.readFile(filePath);
         return extractCutoffDateGeneric(wb);
     } catch (e) {
