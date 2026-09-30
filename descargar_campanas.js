@@ -9,7 +9,10 @@ import XLSX from 'xlsx';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const REPORTES_URL = 'https://www.asesordeseguros.com.mx/ComoVamos/Reportesdeventas/ReportePromotor.aspx?folderId=100&view=gridview&pageSize=10';
+// pageSize alto a propósito: con 10, la carpeta "Campañas" del portal (que trae
+// más de 10 archivos) se corta antes de llegar a "Legion Centurion.zip" — orden
+// alfabético lo deja justo después del límite, así que el robot nunca lo veía.
+const REPORTES_URL = 'https://www.asesordeseguros.com.mx/ComoVamos/Reportesdeventas/ReportePromotor.aspx?folderId=100&view=gridview&pageSize=100';
 
 // Carpetas del portal que contienen archivos descargables.
 // "Quién es quién" agregada 2026-09-18 — si el nombre exacto de la carpeta en

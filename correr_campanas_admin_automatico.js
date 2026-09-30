@@ -12,7 +12,10 @@ const KEYCHAIN_SERVICE = 'asesores-portal-smnyl';
 const CHROME_PATH = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 // Página real de reportes (misma que usa descargar_campanas.js). Si no hay sesión,
 // el portal redirige solo a la pantalla de login y regresa aquí después.
-const TARGET_URL = 'https://www.asesordeseguros.com.mx/ComoVamos/Reportesdeventas/ReportePromotor.aspx?folderId=100&view=gridview&pageSize=10';
+// pageSize alto a propósito: con 10, la carpeta "Campañas" del portal (que trae
+// más de 10 archivos) se corta antes de llegar a "Legion Centurion.zip" — orden
+// alfabético lo deja justo después del límite, así que el robot nunca lo veía.
+const TARGET_URL = 'https://www.asesordeseguros.com.mx/ComoVamos/Reportesdeventas/ReportePromotor.aspx?folderId=100&view=gridview&pageSize=100';
 
 // Mismo puerto que ya usan lanzar_navegador.js / descargar_campanas.js / run_admin_download.js
 const REMOTE_DEBUGGING_PORT = 9222;
