@@ -660,8 +660,8 @@ export const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selec
     const totalAgentes = individuals.length;
     const sinEmisionVida = individuals.filter((r: any) => r.Sin_Emisión_Vida === 'i').length;
     const sinEmisionGMM = individuals.filter((r: any) => r.Sin_Emisión_GMM === 'i').length;
-    const tresMesesVida = individuals.filter((r: any) => r['3_Meses_Sin_Emisión_Vida'] === 'i').length;
-    const tresMesesGMM = individuals.filter((r: any) => r['3_Meses_Sin_Emisión_GMM'] === 'i').length;
+    const tresMesesVida = individuals.filter((r: any) => r['3_Meses_Sin_Emisión_Vida'] === 'i' || r['3_Meses_Sin_Emisión_Vida'] === 'x').length;
+    const tresMesesGMM = individuals.filter((r: any) => r['3_Meses_Sin_Emisión_GMM'] === 'i' || r['3_Meses_Sin_Emisión_GMM'] === 'x').length;
     const totalPrimaPagVida = individuals.reduce((s: number, r: any) => s + (Number(r.Prima_Pagada_Vida) || 0), 0);
     const totalPrimaPagGMM = individuals.reduce((s: number, r: any) => s + (Number(r.Prima_Pagada_GMM) || 0), 0);
 

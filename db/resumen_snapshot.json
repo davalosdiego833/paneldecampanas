@@ -1,5 +1,5 @@
 {
-  "updatedAt": "28/9/2026, 7:56:42 p.m.",
+  "updatedAt": "30/9/2026, 11:16:36 a.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -624,16 +624,16 @@
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
             "Agentes": 23,
-            "Asesores_con_Emisión_Vida": 6,
-            "%_Asesores_con_Emisión_Vida": 0.2609,
+            "Asesores_con_Emisión_Vida": 8,
+            "%_Asesores_con_Emisión_Vida": 0.3478,
             "Asesores_con_Emisión_GMM": 4,
             "%_Asesores_con_Emisión_GMM": 0.1739,
             "Asesores_con_pol_Pagada_Vida": 4,
             "%_Asesores_con_pol_Pagada_Vida": 0.1739,
             "Asesores_con_pol_Pagada_GMM": 4,
             "%_Asesores_con_pol_Pagada_GMM": 0.1739,
-            "Prima_Pagada_Vida": 441200.19,
-            "Prima_Pagada_GMM": 125824
+            "Prima_Pagada_Vida": 545726.87,
+            "Prima_Pagada_GMM": 149212
           },
           {
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
@@ -662,7 +662,7 @@
             "%_Asesores_con_pol_Pagada_Vida": 0.4,
             "Asesores_con_pol_Pagada_GMM": 1,
             "%_Asesores_con_pol_Pagada_GMM": 0.2,
-            "Prima_Pagada_Vida": 154008.99,
+            "Prima_Pagada_Vida": 161789.53,
             "Prima_Pagada_GMM": 15234
           }
         ],
@@ -679,7 +679,9 @@
             "Prima_Pagada_Vida": 12261.72,
             "Prima_Pagada_GMM": 2870,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_Vida": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "MARIA FERNANDA RIOS BERNAL",
@@ -693,7 +695,9 @@
             "Prima_Pagada_Vida": 6060.91,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_Vida": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
@@ -707,7 +711,9 @@
             "Prima_Pagada_Vida": 0,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_Vida": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "ROGELIO TORRES ORTIZ",
@@ -731,7 +737,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 3,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 139576.2,
+            "Prima_Pagada_Vida": 141311.87,
             "Prima_Pagada_GMM": 1680,
             "Sin_Emisión_GMM": "i"
           },
@@ -744,9 +750,10 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 10691.34,
-            "Prima_Pagada_GMM": 0,
-            "Sin_Emisión_GMM": "i"
+            "Prima_Pagada_Vida": 12748.41,
+            "Prima_Pagada_GMM": 14893,
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "MIREYA LIZETTE TORRES GARCIA",
@@ -760,7 +767,8 @@
             "Prima_Pagada_Vida": 7955.43,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
@@ -771,9 +779,10 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 2,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 37542.35,
-            "Prima_Pagada_GMM": 0,
-            "Sin_Emisión_GMM": "i"
+            "Prima_Pagada_Vida": 39504.27,
+            "Prima_Pagada_GMM": 3353,
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "ANAIS LUA MORENO",
@@ -784,7 +793,7 @@
             "Emitido_GMM": 1,
             "Pagado_Vida": 2,
             "Pagado_GMM": 1,
-            "Prima_Pagada_Vida": 84479.92,
+            "Prima_Pagada_Vida": 88684.63,
             "Prima_Pagada_GMM": 9719
           },
           {
@@ -796,10 +805,11 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 0,
+            "Prima_Pagada_Vida": 14427.08,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "JORGE ANTONIO LUNA LARA",
@@ -811,9 +821,10 @@
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
             "Prima_Pagada_Vida": 6097.65,
-            "Prima_Pagada_GMM": 0,
+            "Prima_Pagada_GMM": 2994,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
@@ -827,7 +838,9 @@
             "Prima_Pagada_Vida": 2072.23,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_Vida": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "VELIA PATRICIA BERNAL RAMOS",
@@ -838,7 +851,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 1,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 45859.01,
+            "Prima_Pagada_Vida": 47651.33,
             "Prima_Pagada_GMM": 5515,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i"
@@ -855,7 +868,9 @@
             "Prima_Pagada_Vida": 0,
             "Prima_Pagada_GMM": 3335,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_Vida": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "PAULA ANGELICA LOMELI CAZARES",
@@ -869,7 +884,8 @@
             "Prima_Pagada_Vida": 1211,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "SOFIA CAMPILLO VASCONCELOS",
@@ -883,21 +899,22 @@
             "Prima_Pagada_Vida": 20796.52,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "MONSERRAT VELASCO SANTOS",
             "Clave": 117440,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
-            "Emitido_Vida": 0,
+            "Emitido_Vida": 1,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
             "Prima_Pagada_Vida": 15217.64,
             "Prima_Pagada_GMM": 0,
-            "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "MARIO IVAN ROMERO GONZALEZ",
@@ -908,7 +925,7 @@
             "Emitido_GMM": 1,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 1662.54,
+            "Prima_Pagada_Vida": 3446.05,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i"
           },
@@ -917,13 +934,12 @@
             "Clave": 118246,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
-            "Emitido_Vida": 0,
+            "Emitido_Vida": 1,
             "Emitido_GMM": 1,
             "Pagado_Vida": 0,
             "Pagado_GMM": 1,
             "Prima_Pagada_Vida": 1967.73,
-            "Prima_Pagada_GMM": 8160,
-            "Sin_Emisión_Vida": "i"
+            "Prima_Pagada_GMM": 8160
           },
           {
             "Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
@@ -934,10 +950,11 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 0,
+            "Prima_Pagada_Vida": 16371.2,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
@@ -949,9 +966,11 @@
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
             "Prima_Pagada_Vida": 6968.21,
-            "Prima_Pagada_GMM": 1507,
+            "Prima_Pagada_GMM": 3655,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_Vida": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
@@ -979,7 +998,9 @@
             "Prima_Pagada_Vida": 0,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_Vida": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "DESIREE DE LA PEÑA OROZCO",
@@ -1004,7 +1025,8 @@
             "Pagado_GMM": 1,
             "Prima_Pagada_Vida": 20509.75,
             "Prima_Pagada_GMM": 32732,
-            "Sin_Emisión_Vida": "i"
+            "Sin_Emisión_Vida": "i",
+            "3_Meses_Sin_Emisión_Vida": "i"
           },
           {
             "Asesor": "KAREN MUÑOZ GARCIA",
@@ -1027,9 +1049,9 @@
             "Suc": 2043,
             "Emitido_Vida": 2,
             "Emitido_GMM": 2,
-            "Pagado_Vida": 1,
+            "Pagado_Vida": 2,
             "Pagado_GMM": 1,
-            "Prima_Pagada_Vida": 93416.06,
+            "Prima_Pagada_Vida": 161389.8,
             "Prima_Pagada_GMM": 33920
           },
           {
@@ -1058,7 +1080,8 @@
             "Prima_Pagada_Vida": 7019.13,
             "Prima_Pagada_GMM": 3139,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
@@ -1072,7 +1095,9 @@
             "Prima_Pagada_Vida": 5686.91,
             "Prima_Pagada_GMM": 9994,
             "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_Vida": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
@@ -3568,7 +3593,7 @@
     "fechas_corte": {
       "pagado_pendiente": "25 de septiembre de 2026",
       "pagado_pendiente_reclutas": "25 de septiembre de 2026",
-      "asesores_sin_emision": "25 de SEP de 2026",
+      "asesores_sin_emision": "28 de SEP de 2026",
       "proactivos": "24 de septiembre de 2026",
       "comparativo_vida": "18 de septiembre de 2026",
       "qsq_vida": "31 de agosto de 2026",
