@@ -1,5 +1,21 @@
 [
   {
+    "id": "1790872919627",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Consultó Campaña: PREMIOS",
+    "fecha": "2026-10-01",
+    "hora": "10:41:59",
+    "timestamp": 1790872919612
+  },
+  {
+    "id": "1790872911435",
+    "asesor": "DESIREE DE LA PEÑA OROZCO",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-10-01",
+    "hora": "10:41:51",
+    "timestamp": 1790872911396
+  },
+  {
     "id": "1790701356903",
     "asesor": "Administrador",
     "accion": "Consultó Reporte Admin: Resumen de Promotoría",

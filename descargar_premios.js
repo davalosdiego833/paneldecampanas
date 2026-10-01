@@ -715,11 +715,21 @@ async function procesarAsesor(browser, clave, intento = 1) {
             .filter(n => !Number.isNaN(n));
         const todoCero = valoresCabecera.length > 0 && valoresCabecera.every(n => n === 0);
 
+        // La cabecera puede cargar bien (LIMRA, Prima Meta, etc.) mientras el widget
+        // "Resumen de Bonos" todavía no trae sus valores por AJAX -- vimos un caso real
+        // donde la tabla llegó con la estructura correcta (filas Bono Vida/GMMI/.../Total)
+        // pero TODAS las celdas de "Bono Mes"/"Bono Acumulado" vacías, y como
+        // resumenBonos.length sí era > 0 el chequeo de arriba no lo agarraba -> se
+        // guardaba ese reporte con montos en $0 sin que nadie se diera cuenta.
+        const filasDatosResumenBonos = (resumen.resumenBonos || []).slice(1); // sin el header
+        const filaTieneValor = f => f.length > 2 && (f[1] || '').trim() !== '' && (f[2] || '').trim() !== '';
+        const resumenBonosVacio = filasDatosResumenBonos.length > 0 && !filasDatosResumenBonos.some(filaTieneValor);
+
         const pareceVacio = !resumen.resumenBonos || resumen.resumenBonos.length === 0 ||
-            resumen.todoElTexto.trim().length < 100 || todoCero;
+            resumen.todoElTexto.trim().length < 100 || todoCero || resumenBonosVacio;
 
         if (pareceVacio && intento < MAX_INTENTOS) {
-            console.log(`   ⚠️ La página cargó vacía/en ceros (posible falla de hojameta, todoCero=${todoCero}). Recargando y reintentando...`);
+            console.log(`   ⚠️ La página cargó vacía/en ceros (posible falla de hojameta, todoCero=${todoCero}, resumenBonosVacio=${resumenBonosVacio}). Recargando y reintentando...`);
             await popupAsesor.close().catch(() => {});
             await popupPromotor.close().catch(() => {});
             await delay(4000);

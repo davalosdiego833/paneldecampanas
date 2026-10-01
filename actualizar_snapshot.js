@@ -246,6 +246,46 @@ const run = async () => {
                         }));
                         campaignDates.legion_centurion = String(b9).match(/\d{1,2}\s+de\s+[a-z]+\s+de\s+\d{4}/i)?.[0] || extractCutoffDate(wb) || '';
                         wb = null; ws = null; data = null;
+
+                        // Detalle de pólizas por asesor (hoja "Detalle"): cada quien puede ver,
+                        // dentro de su campaña, exactamente qué pólizas le están contando para
+                        // Legión en lo que va del año. La hoja es nacional (decenas de miles de
+                        // filas con hasta columna XFA por un artefacto de formato), así que se
+                        // acota la lectura a A5:T<ultima fila real> para que no sea lentísimo.
+                        try {
+                            let wbD = readExcelSheetMemorySafe(path.join(legPath, recentFile), 'Detalle');
+                            let wsD = wbD.Sheets['Detalle'];
+                            if (wsD) {
+                                const lastRowMatch = (wsD['!ref'] || '').match(/:[A-Z]+(\d+)$/);
+                                const lastRow = lastRowMatch ? Number(lastRowMatch[1]) : 100000;
+                                const rawDetalle = XLSX.utils.sheet_to_json(wsD, { range: `A5:T${lastRow}` });
+                                const detalleMap = {};
+                                rawDetalle.forEach(r => {
+                                    const mat = String(r['MAT / UNIDAD'] || '').trim();
+                                    if (!SUCURSALES_PROMO.includes(mat)) return;
+                                    const clave = String(r['AGENTE'] || '').trim();
+                                    if (!clave) return;
+                                    if (!detalleMap[clave]) detalleMap[clave] = [];
+                                    detalleMap[clave].push({
+                                        Poliza: r['POLIZA'] || '',
+                                        Emision: formatExcelDate(r['EMISIÓN']),
+                                        Pago: formatExcelDate(r['PAGO']),
+                                        Forma_Pago: r['FORMA PAGO'] || '',
+                                        Mes: r['MES'] || '',
+                                        Plan: r['PLAN  o  POOL \\ RAMO'] || '',
+                                        Prima_Anualizada: Number(r['PRIMA ANUALIZADA'] || 0),
+                                        Comisiones: Number(r['COMISIONES'] || 0),
+                                        Participacion: Number(r['% PARTICIP.'] || 0),
+                                        Conteo: Number(r['CONTEO'] || 0),
+                                        Momentum: r['MOMENTUM'] || '',
+                                        Personal: r['PERSONAL'] || '',
+                                        Observaciones: r['OBSERVACIONES'] || ''
+                                    });
+                                });
+                                campaigns.legion_centurion_detalle = detalleMap;
+                            }
+                            wbD = null; wsD = null;
+                        } catch (eD) { console.warn('⚠️ Legión detalle de pólizas skip:', eD.message); }
                     }
                 } catch(e) { console.warn('⚠️ Legión skip:', e.message); }
             } else if (step === 'camino_cumbre') {

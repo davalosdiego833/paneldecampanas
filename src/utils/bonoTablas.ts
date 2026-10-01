@@ -100,10 +100,17 @@ export const TABLA_GRUPO_PRIMA: number[][] = [
 ].map(fila => fila.map(v => v * 1000));
 
 // Tabla 3: metas mínimas de pólizas (mensual, semestral acum, anual acum -solo 2º sem-)
+// Actualizada 2026-10-01: la aseguradora bajó las metas de pólizas Semestral y
+// Anual ~20% (factor 0.8 parejo sobre la tabla anterior: Semestral pasó de
+// 2.5/mes a 2/mes; Anual de 2.5/mes efectivo a 2/mes). Confirmado con el reporte
+// real de un asesor en mes 3 del semestre: el portal mostró Meta Semestral 6.00
+// (antes 7.5 → 7.5×0.8=6.0 exacto) y Meta Anual 18.00 (antes 22.5 → 22.5×0.8=18.0
+// exacto). La meta Mensual (1 póliza) NO cambió — Diego lo confirmó viendo el
+// portal real.
 export const TABLA_POLIZAS_VIDA = {
     mensual: [1, 1, 1, 1, 1, null], // mes 6 no aplica meta mensual (cierre de semestre)
-    semestral: [2.5, 5, 7.5, 10, 12.5, 15],
-    anual: [17.5, 20, 22.5, 25, 27.5, 30], // solo aplica en el 2º semestre del año
+    semestral: [2, 4, 6, 8, 10, 12],
+    anual: [14, 16, 18, 20, 22, 24], // solo aplica en el 2º semestre del año
 };
 
 // Tabla 4: índice LIMRA mínimo requerido según antigüedad (meses de concurso)

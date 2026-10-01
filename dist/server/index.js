@@ -804,6 +804,8 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
                         if (normName === 'legion_centurion') {
                             const mIndex = Number(row.Mes_Actual || 1);
                             const totalPol = Number(row.Total_Polizas || 0);
+                            const detalleMap = campaigns.legion_centurion_detalle || {};
+                            const polizasDetalle = detalleMap[String(row.Clave || '')] || [];
                             return res.json({
                                 Asesor: row.Asesor, Clave: row.Clave, Fecha_Corte: fechaCorte,
                                 Mes_Actual: mIndex, Total_Polizas: totalPol,
@@ -812,7 +814,8 @@ app.get('/api/campaign/:name/data/:advisor', (req, res) => {
                                 Oro: Math.max(0, (7.5 * mIndex) - totalPol),
                                 Platino: Math.max(0, (10 * mIndex) - totalPol),
                                 Promedio_Mensual: totalPol / mIndex,
-                                Va_En_Meta: row.EnMeta ? "✅ EN META" : "❌ POR DEBAJO"
+                                Va_En_Meta: row.EnMeta ? "✅ EN META" : "❌ POR DEBAJO",
+                                Polizas_Detalle: polizasDetalle
                             });
                         }
                         if (normName === 'convenciones') {

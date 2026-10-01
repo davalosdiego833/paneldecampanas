@@ -6,6 +6,24 @@ interface Props {
     data: AdvisorData;
 }
 
+interface PolizaDetalle {
+    Poliza: string;
+    Emision: string;
+    Pago: string;
+    Forma_Pago: string;
+    Mes: string;
+    Plan: string;
+    Prima_Anualizada: number;
+    Comisiones: number;
+    Participacion: number;
+    Conteo: number;
+    Momentum: string;
+    Personal: string;
+    Observaciones: string;
+}
+
+const fmtMoney = (v: number) => new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(v || 0);
+
 const LegionCenturion: React.FC<Props> = ({ data }) => {
     const total_polizas = Number(data.Total_Polizas || 0);
     const promedio = Number(data.Promedio_Mensual || 0);
@@ -13,6 +31,7 @@ const LegionCenturion: React.FC<Props> = ({ data }) => {
     const mes_actual = Number(data.Mes_Actual || 1);
     const meta_polizas = 48;
     const progress_pct = Math.min(100, (total_polizas / meta_polizas) * 100);
+    const polizasDetalle: PolizaDetalle[] = Array.isArray(data.Polizas_Detalle) ? data.Polizas_Detalle : [];
 
     const isInMeta = va_en_meta.includes('EN META');
     const statusColor = isInMeta ? 'var(--success-green)' : 'var(--danger-red)';
@@ -94,6 +113,46 @@ const LegionCenturion: React.FC<Props> = ({ data }) => {
                     </div>
                 </div>
             </section>
+
+            {polizasDetalle.length > 0 && (
+                <section>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '16px', opacity: 0.8 }}>
+                        Detalle de tus Pólizas ({polizasDetalle.length})
+                    </h3>
+                    <p style={{ fontSize: '0.85rem', opacity: 0.6, marginBottom: '16px' }}>
+                        Todo lo que te está contando para Legión Centurión en lo que va del año.
+                    </p>
+                    <div className="glass-card" style={{ padding: '0', overflow: 'hidden' }}>
+                        <div style={{ overflowX: 'auto' }}>
+                            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8rem', minWidth: '960px' }}>
+                                <thead>
+                                    <tr style={{ background: 'rgba(0,122,255,0.08)' }}>
+                                        {['Póliza', 'Emisión', 'Pago', 'Forma de Pago', 'Plan / Ramo', 'Prima Anualizada', 'Comisiones', '% Particip.', 'Conteo', 'Observaciones'].map((h, i) => (
+                                            <th key={i} style={{ padding: '12px 14px', textAlign: i === 0 ? 'left' : 'center', fontWeight: 700, borderBottom: '2px solid var(--glass-border)', whiteSpace: 'nowrap' }}>{h}</th>
+                                        ))}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {polizasDetalle.map((p, i) => (
+                                        <tr key={i} style={{ borderBottom: '1px solid var(--glass-border)', background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.02)' }}>
+                                            <td style={{ padding: '10px 14px', whiteSpace: 'nowrap' }}>{p.Poliza}</td>
+                                            <td style={{ padding: '10px 14px', textAlign: 'center', whiteSpace: 'nowrap' }}>{p.Emision}</td>
+                                            <td style={{ padding: '10px 14px', textAlign: 'center', whiteSpace: 'nowrap' }}>{p.Pago}</td>
+                                            <td style={{ padding: '10px 14px', textAlign: 'center', whiteSpace: 'nowrap' }}>{p.Forma_Pago}</td>
+                                            <td style={{ padding: '10px 14px' }}>{p.Plan}</td>
+                                            <td style={{ padding: '10px 14px', textAlign: 'center', whiteSpace: 'nowrap' }}>{fmtMoney(p.Prima_Anualizada)}</td>
+                                            <td style={{ padding: '10px 14px', textAlign: 'center', whiteSpace: 'nowrap' }}>{fmtMoney(p.Comisiones)}</td>
+                                            <td style={{ padding: '10px 14px', textAlign: 'center' }}>{(p.Participacion * 100).toFixed(0)}%</td>
+                                            <td style={{ padding: '10px 14px', textAlign: 'center', fontWeight: 700, color: 'var(--primary-blue)' }}>{p.Conteo}</td>
+                                            <td style={{ padding: '10px 14px', fontSize: '0.75rem', opacity: 0.75 }}>{p.Observaciones}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            )}
         </div>
     );
 };

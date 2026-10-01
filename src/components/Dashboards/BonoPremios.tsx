@@ -26,6 +26,10 @@ interface PremiosData {
     detalleModalTexto: string;
     indicesAnteriores?: IndicesAnteriores | null;
     anticiposDesglosados?: AnticiposDesglosados | null;
+    // true si el script sospechó, al momento de capturar, que hojameta no había
+    // terminado de cargar (cabecera o "Resumen de Bonos" en $0/vacío). Úsalo para
+    // avisar en pantalla en vez de mostrar montos que podrían ser falsos.
+    pareceVacio?: boolean;
 }
 
 export const fmt = (v: number) => v.toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
@@ -747,6 +751,18 @@ const BonoPremios: React.FC<Props> = ({ advisor }) => {
                     </p>
                 </div>
             </header>
+
+            {data.pareceVacio && (
+                <div className="glass-card" style={{ padding: '18px 20px', border: '1px solid #ff6b6b', background: 'rgba(255,107,107,0.08)', display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                    <span style={{ fontSize: '1.2rem' }}>⚠️</span>
+                    <div>
+                        <p style={{ fontWeight: 700, marginBottom: '4px' }}>Esta captura puede estar incompleta</p>
+                        <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
+                            Al momento de descargar este corte, el portal (hojameta) parecía no haber terminado de cargar — algunos montos en $0 podrían no ser reales. No tomes decisiones con estos números todavía; vuelve a correr el Reporte de Premios para esta clave.
+                        </p>
+                    </div>
+                </div>
+            )}
 
             <ResumenBonosTabla filas={resumenBonos} activo={activo?.nombre || ''} />
 
