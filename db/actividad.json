@@ -1,5 +1,93 @@
 [
   {
+    "id": "1790877964249",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Promotoría",
+    "fecha": "2026-10-01",
+    "hora": "12:06:04",
+    "timestamp": 1790877964243
+  },
+  {
+    "id": "1790877951430",
+    "asesor": "QA",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-10-01",
+    "hora": "12:05:51",
+    "timestamp": 1790877951420
+  },
+  {
+    "id": "1790877882341",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Promotoría",
+    "fecha": "2026-10-01",
+    "hora": "12:04:42",
+    "timestamp": 1790877882333
+  },
+  {
+    "id": "1790877864048",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Asesores",
+    "fecha": "2026-10-01",
+    "hora": "12:04:24",
+    "timestamp": 1790877864037
+  },
+  {
+    "id": "1790877847967",
+    "asesor": "QA",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-10-01",
+    "hora": "12:04:07",
+    "timestamp": 1790877847851
+  },
+  {
+    "id": "1790876591037",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Promotoría",
+    "fecha": "2026-10-01",
+    "hora": "11:43:11",
+    "timestamp": 1790876591027
+  },
+  {
+    "id": "1790876576645",
+    "asesor": "QA",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-10-01",
+    "hora": "11:42:56",
+    "timestamp": 1790876576589
+  },
+  {
+    "id": "1790876489844",
+    "asesor": "Administrador",
+    "accion": "Consultó Reporte Admin: Resumen de Promotoría",
+    "fecha": "2026-10-01",
+    "hora": "11:41:29",
+    "timestamp": 1790876489772
+  },
+  {
+    "id": "1790876449199",
+    "asesor": "QA",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-10-01",
+    "hora": "11:40:49",
+    "timestamp": 1790876449038
+  },
+  {
+    "id": "1790875558079",
+    "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+    "accion": "Consultó Campaña: LEGION CENTURION",
+    "fecha": "2026-10-01",
+    "hora": "11:25:57",
+    "timestamp": 1790875557949
+  },
+  {
+    "id": "1790875544829",
+    "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+    "accion": "Inició Sesión / Entró al Dashboard",
+    "fecha": "2026-10-01",
+    "hora": "11:25:44",
+    "timestamp": 1790875544549
+  },
+  {
     "id": "1790872919627",
     "asesor": "DESIREE DE LA PEÑA OROZCO",
     "accion": "Consultó Campaña: PREMIOS",

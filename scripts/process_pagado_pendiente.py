@@ -83,6 +83,16 @@ def process_file(xls_path):
         idx_pri_pen_ini = headers.index('PRIPENINI')
         idx_pri_pen_ord = headers.index('PRIPENORD')
         idx_prim_pen = headers.index('PRIMPEN')
+        idx_conexion = headers.index('CONEXION') if 'CONEXION' in headers else None
+
+        def conexion_iso(val):
+            if not val:
+                return ''
+            try:
+                dt = xlrd.xldate_as_datetime(val, wb.datemode)
+                return dt.strftime('%Y-%m-%d')
+            except Exception:
+                return ''
 
         # Filtros de la promotoría
         PROMO_SUCURSALES = ['2043', '2856', '2511']
@@ -113,6 +123,7 @@ def process_file(xls_path):
                         'PRIPENINI': float(row[idx_pri_pen_ini] or 0),
                         'PRIPENORD': float(row[idx_pri_pen_ord] or 0),
                         'PRIMPEN': float(row[idx_prim_pen] or 0),
+                        'CONEXION': conexion_iso(row[idx_conexion]) if idx_conexion is not None else '',
                     })
             else:
                 idx_ramo = headers.index('OPERACION')
@@ -143,6 +154,7 @@ def process_file(xls_path):
                             'PRIPENINI': float(row[idx_pri_pen_ini] or 0),
                             'PRIPENORD': float(row[idx_pri_pen_ord] or 0),
                             'PRIMPEN': float(row[idx_prim_pen] or 0),
+                            'CONEXION': conexion_iso(row[idx_conexion]) if idx_conexion is not None else '',
                         })
 
         print(f"[PROCESS] Filtrado completado. {len(filtered_rows)} registros de la promotoría encontrados.")
@@ -151,9 +163,9 @@ def process_file(xls_path):
         wb_new = openpyxl.Workbook()
         ws_new = wb_new.active
 
-        ws_new.append([cutoff_date_str] + [''] * 12)
-        ws_new.append([''] * 13)
-        ws_new.append([''] * 13)
+        ws_new.append([cutoff_date_str] + [''] * 13)
+        ws_new.append([''] * 14)
+        ws_new.append([''] * 14)
 
         for row in filtered_rows:
             ws_new.append([
@@ -169,7 +181,8 @@ def process_file(xls_path):
                 row['POLPEN'],
                 row['PRIPENINI'],
                 row['PRIPENORD'],
-                row['PRIMPEN']
+                row['PRIMPEN'],
+                row['CONEXION']
             ])
 
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Hospital, Search, Award, RefreshCw } from 'lucide-react';
+import { FilterSelect, UNIDAD_OPTIONS, ANTIGUEDAD_OPTIONS, mesesDesdeConexion } from './ResumenPromotoria';
 
 interface QsQGmmRow {
     lugar: number;
     nombre: string;
+    suc?: string | number;
     conexion: string;
+    conexion_iso?: string;
     polizas_iniciales: number;
     inicial: number;
     renovacion: number;
@@ -34,6 +37,8 @@ const fmtNum = (n: number | null | undefined) => {
 
 export const QsQGmmContent: React.FC<Props> = ({ data, fechaCorte, themeMode }) => {
     const [search, setSearch] = useState('');
+    const [unidad, setUnidad] = useState('todas');
+    const [antiguedad, setAntiguedad] = useState('todas');
 
     if (!data || !data.all || data.all.length === 0) {
         return (
@@ -47,9 +52,22 @@ export const QsQGmmContent: React.FC<Props> = ({ data, fechaCorte, themeMode }) 
     const top5Renovacion = data.top5_renovacion || data.all.slice(0, 5);
     const allRows = data.all || [];
 
-    const filteredRows = allRows.filter(r => 
-        (r.nombre || '').toLowerCase().includes(search.toLowerCase())
-    );
+    const filteredRows = allRows.filter(r => {
+        if (search && !(r.nombre || '').toLowerCase().includes(search.toLowerCase())) return false;
+        if (unidad !== 'todas') {
+            const suc = String(r.suc ?? '').trim();
+            if (unidad === '2043' && suc !== '2043' && suc !== '2511') return false;
+            if (unidad === '2856' && suc !== '2856') return false;
+        }
+        if (antiguedad !== 'todas') {
+            const m = mesesDesdeConexion(r.conexion_iso);
+            if (m === null) return false;
+            if (antiguedad === 'junior' && m > 12) return false;
+            if (antiguedad === 'medio' && (m < 13 || m > 48)) return false;
+            if (antiguedad === 'senior' && m <= 60) return false;
+        }
+        return true;
+    });
 
     return (
         <motion.div 
@@ -65,7 +83,7 @@ export const QsQGmmContent: React.FC<Props> = ({ data, fechaCorte, themeMode }) 
                             <Hospital size={24} color="#80CBC4" />
                         </div>
                         <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
-                            🏥 QsQ GMM (Matriz 2043)
+                            🏥 QsQ GMM
                         </h2>
                     </div>
                     <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', margin: 0 }}>
@@ -227,17 +245,21 @@ export const QsQGmmContent: React.FC<Props> = ({ data, fechaCorte, themeMode }) 
                         📊 Detalle Completo — GMM Individual ({allRows.length} Asesores)
                     </h3>
 
-                    {/* Search Bar */}
-                    <div style={{ position: 'relative', minWidth: '240px' }}>
-                        <Search size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }} />
-                        <input
-                            type="text"
-                            placeholder="Buscar por nombre de asesor..."
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            className="input-modern"
-                            style={{ paddingLeft: '36px', fontSize: '0.85rem', width: '100%' }}
-                        />
+                    {/* Search Bar + Filtros */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'flex-end' }}>
+                        <div style={{ position: 'relative', minWidth: '220px' }}>
+                            <Search size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }} />
+                            <input
+                                type="text"
+                                placeholder="Buscar por nombre de asesor..."
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                                className="input-modern"
+                                style={{ paddingLeft: '36px', fontSize: '0.85rem', width: '100%' }}
+                            />
+                        </div>
+                        <FilterSelect label="Unidad" value={unidad} onChange={setUnidad} options={UNIDAD_OPTIONS} />
+                        <FilterSelect label="Antigüedad" value={antiguedad} onChange={setAntiguedad} options={ANTIGUEDAD_OPTIONS} />
                     </div>
                 </div>
 
@@ -247,6 +269,7 @@ export const QsQGmmContent: React.FC<Props> = ({ data, fechaCorte, themeMode }) 
                             <tr style={{ borderBottom: '2px solid var(--glass-border)', color: 'var(--text-secondary)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                                 <th style={{ padding: '12px 10px' }}>#</th>
                                 <th style={{ padding: '12px 10px' }}>Nombre del Asesor</th>
+                                <th style={{ padding: '12px 10px' }}>Suc</th>
                                 <th style={{ padding: '12px 10px' }}>Conexión</th>
                                 <th style={{ padding: '12px 10px', textAlign: 'center', color: '#42A5F5' }}>Pólizas Iniciales</th>
                                 <th style={{ padding: '12px 10px', textAlign: 'right', color: '#80CBC4' }}>Inicial (GMM)</th>
@@ -265,6 +288,7 @@ export const QsQGmmContent: React.FC<Props> = ({ data, fechaCorte, themeMode }) 
                                 >
                                     <td style={{ padding: '12px 10px', color: 'var(--text-secondary)', fontWeight: 700 }}>{i + 1}</td>
                                     <td style={{ padding: '12px 10px', color: 'var(--text-primary)', fontWeight: 600 }}>{r.nombre}</td>
+                                    <td style={{ padding: '12px 10px', color: 'var(--text-secondary)' }}>{r.suc ?? '—'}</td>
                                     <td style={{ padding: '12px 10px', color: 'var(--text-secondary)' }}>{r.conexion}</td>
                                     <td style={{ padding: '12px 10px', textAlign: 'center', fontWeight: 700, color: '#42A5F5' }}>{fmtNum(r.polizas_iniciales)}</td>
                                     <td style={{ padding: '12px 10px', textAlign: 'right', color: '#80CBC4', fontWeight: 600 }}>{fmt(r.inicial)}</td>
@@ -276,7 +300,7 @@ export const QsQGmmContent: React.FC<Props> = ({ data, fechaCorte, themeMode }) 
                     </table>
                 </div>
 
-                {search && (
+                {(search || unidad !== 'todas' || antiguedad !== 'todas') && (
                     <div style={{ marginTop: '12px', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
                         Mostrando {filteredRows.length} de {allRows.length} asesores
                     </div>

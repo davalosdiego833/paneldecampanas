@@ -1,5 +1,5 @@
 {
-  "updatedAt": "1/10/2026, 11:23:27 a.m.",
+  "updatedAt": "1/10/2026, 12:00:36 p.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -25,7 +25,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 144635.2,
-          "Total _Prima_Pendiente": 144635.2
+          "Total _Prima_Pendiente": 144635.2,
+          "Fecha_Conexion": "2019-09-23"
         },
         {
           "Nombre Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
@@ -37,7 +38,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 30697.04,
-          "Total _Prima_Pendiente": 30697.04
+          "Total _Prima_Pendiente": 30697.04,
+          "Fecha_Conexion": "2023-11-06"
         },
         {
           "Nombre Asesor": "ANAIS LUA MORENO",
@@ -49,7 +51,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 78028.36,
-          "Total _Prima_Pendiente": 78028.36
+          "Total _Prima_Pendiente": 78028.36,
+          "Fecha_Conexion": "2024-11-04"
         },
         {
           "Nombre Asesor": "VELIA PATRICIA BERNAL RAMOS",
@@ -61,7 +64,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 17952.77,
-          "Total _Prima_Pendiente": 17952.77
+          "Total _Prima_Pendiente": 17952.77,
+          "Fecha_Conexion": "2025-10-14"
         },
         {
           "Nombre Asesor": "ROGELIO TORRES ORTIZ",
@@ -73,7 +77,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 10978.48,
-          "Total _Prima_Pendiente": 10978.48
+          "Total _Prima_Pendiente": 10978.48,
+          "Fecha_Conexion": "2023-12-04"
         },
         {
           "Nombre Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
@@ -85,7 +90,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 31248.84,
-          "Total _Prima_Pendiente": 31248.84
+          "Total _Prima_Pendiente": 31248.84,
+          "Fecha_Conexion": "2024-06-24"
         },
         {
           "Nombre Asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
@@ -97,7 +103,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 67181,
-          "Total _Prima_Pendiente": 67181
+          "Total _Prima_Pendiente": 67181,
+          "Fecha_Conexion": "2026-07-14"
         },
         {
           "Nombre Asesor": "DESIREE DE LA PEÑA OROZCO",
@@ -109,7 +116,8 @@
           "Pólizas_Pendinetes": 2,
           "Recibo_Inicial_Pendiente": 99962.16,
           "Recibo_Ordinario_Pendiente": 137881.24,
-          "Total _Prima_Pendiente": 237843.4
+          "Total _Prima_Pendiente": 237843.4,
+          "Fecha_Conexion": "2018-09-28"
         },
         {
           "Nombre Asesor": "MONSERRAT VELASCO SANTOS",
@@ -121,7 +129,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 80679.26,
-          "Total _Prima_Pendiente": 80679.26
+          "Total _Prima_Pendiente": 80679.26,
+          "Fecha_Conexion": "2026-05-07"
         },
         {
           "Nombre Asesor": "SOFIA CAMPILLO VASCONCELOS",
@@ -133,7 +142,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 84870.93,
-          "Total _Prima_Pendiente": 84870.93
+          "Total _Prima_Pendiente": 84870.93,
+          "Fecha_Conexion": "2026-04-14"
         },
         {
           "Nombre Asesor": "MARICELA ARREOLA LOPEZ",
@@ -145,7 +155,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 7492.65,
-          "Total _Prima_Pendiente": 7492.65
+          "Total _Prima_Pendiente": 7492.65,
+          "Fecha_Conexion": "2018-12-05"
         },
         {
           "Nombre Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
@@ -157,7 +168,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 0,
-          "Total _Prima_Pendiente": 0
+          "Total _Prima_Pendiente": 0,
+          "Fecha_Conexion": "2024-05-28"
         },
         {
           "Nombre Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
@@ -169,7 +181,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 32742.4,
-          "Total _Prima_Pendiente": 32742.4
+          "Total _Prima_Pendiente": 32742.4,
+          "Fecha_Conexion": "2026-08-28"
         },
         {
           "Nombre Asesor": "OSCAR RAMIREZ RUIZ",
@@ -181,7 +194,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 36067.65,
-          "Total _Prima_Pendiente": 36067.65
+          "Total _Prima_Pendiente": 36067.65,
+          "Fecha_Conexion": "2026-06-29"
         },
         {
           "Nombre Asesor": "JOSE RENE DE ALBA MORALES",
@@ -193,7 +207,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 0,
-          "Total _Prima_Pendiente": 0
+          "Total _Prima_Pendiente": 0,
+          "Fecha_Conexion": "2024-10-18"
         },
         {
           "Nombre Asesor": "GABRIELA CASTAÑEDA SALAZAR",
@@ -205,7 +220,8 @@
           "Pólizas_Pendinetes": 2,
           "Recibo_Inicial_Pendiente": 5179.68,
           "Recibo_Ordinario_Pendiente": 137872.6,
-          "Total _Prima_Pendiente": 143052.28
+          "Total _Prima_Pendiente": 143052.28,
+          "Fecha_Conexion": "2023-12-19"
         },
         {
           "Nombre Asesor": "DARINKA UREÑA CASILLAS",
@@ -217,7 +233,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 76989.35,
-          "Total _Prima_Pendiente": 76989.35
+          "Total _Prima_Pendiente": 76989.35,
+          "Fecha_Conexion": "2020-04-28"
         },
         {
           "Nombre Asesor": "JULIANA RIASCOS VALENCIA",
@@ -229,7 +246,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 0,
-          "Total _Prima_Pendiente": 0
+          "Total _Prima_Pendiente": 0,
+          "Fecha_Conexion": "2023-03-14"
         },
         {
           "Nombre Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
@@ -241,7 +259,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 0,
-          "Total _Prima_Pendiente": 0
+          "Total _Prima_Pendiente": 0,
+          "Fecha_Conexion": "2024-06-28"
         },
         {
           "Nombre Asesor": "ANDREA CELESTE IBAÑEZ RINCON",
@@ -253,7 +272,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 3845.25,
-          "Total _Prima_Pendiente": 3845.25
+          "Total _Prima_Pendiente": 3845.25,
+          "Fecha_Conexion": "2019-11-25"
         },
         {
           "Nombre Asesor": "MIREYA LIZETTE TORRES GARCIA",
@@ -265,7 +285,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 15958.78,
-          "Total _Prima_Pendiente": 15958.78
+          "Total _Prima_Pendiente": 15958.78,
+          "Fecha_Conexion": "2024-02-22"
         },
         {
           "Nombre Asesor": "MARIA TERESA ASENCIO LOZANO",
@@ -277,7 +298,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 0,
-          "Total _Prima_Pendiente": 0
+          "Total _Prima_Pendiente": 0,
+          "Fecha_Conexion": "2020-11-24"
         },
         {
           "Nombre Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
@@ -289,7 +311,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 45397.15,
-          "Total _Prima_Pendiente": 45397.15
+          "Total _Prima_Pendiente": 45397.15,
+          "Fecha_Conexion": "2022-02-24"
         },
         {
           "Nombre Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
@@ -301,7 +324,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 4273.44,
-          "Total _Prima_Pendiente": 4273.44
+          "Total _Prima_Pendiente": 4273.44,
+          "Fecha_Conexion": "2025-07-25"
         },
         {
           "Nombre Asesor": "JORGE ANTONIO LUNA LARA",
@@ -313,7 +337,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 60976.47,
-          "Total _Prima_Pendiente": 60976.47
+          "Total _Prima_Pendiente": 60976.47,
+          "Fecha_Conexion": "2024-12-13"
         },
         {
           "Nombre Asesor": "MARIA FERNANDA RIOS BERNAL",
@@ -325,7 +350,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 0,
-          "Total _Prima_Pendiente": 0
+          "Total _Prima_Pendiente": 0,
+          "Fecha_Conexion": "2023-10-17"
         },
         {
           "Nombre Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
@@ -337,7 +363,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 51038.52,
-          "Total _Prima_Pendiente": 51038.52
+          "Total _Prima_Pendiente": 51038.52,
+          "Fecha_Conexion": "2022-12-21"
         },
         {
           "Nombre Asesor": "JOSE ANTEMIO OLIVA SANTOS",
@@ -349,7 +376,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 20567.37,
-          "Total _Prima_Pendiente": 20567.37
+          "Total _Prima_Pendiente": 20567.37,
+          "Fecha_Conexion": "2026-08-05"
         },
         {
           "Nombre Asesor": "LUVIA PATRICIA FIGUEROA CASTRO",
@@ -361,7 +389,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 13652.86,
-          "Total _Prima_Pendiente": 13652.86
+          "Total _Prima_Pendiente": 13652.86,
+          "Fecha_Conexion": "2025-12-19"
         },
         {
           "Nombre Asesor": "MARIO IVAN ROMERO GONZALEZ",
@@ -373,7 +402,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 38958.2,
-          "Total _Prima_Pendiente": 38958.2
+          "Total _Prima_Pendiente": 38958.2,
+          "Fecha_Conexion": "2026-06-19"
         },
         {
           "Nombre Asesor": "PAULA ANGELICA LOMELI CAZARES",
@@ -385,7 +415,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 41354.29,
-          "Total _Prima_Pendiente": 41354.29
+          "Total _Prima_Pendiente": 41354.29,
+          "Fecha_Conexion": "2026-03-30"
         },
         {
           "Nombre Asesor": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
@@ -397,7 +428,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 0,
-          "Total _Prima_Pendiente": 0
+          "Total _Prima_Pendiente": 0,
+          "Fecha_Conexion": "2024-10-31"
         },
         {
           "Nombre Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
@@ -409,7 +441,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 3062.5,
-          "Total _Prima_Pendiente": 3062.5
+          "Total _Prima_Pendiente": 3062.5,
+          "Fecha_Conexion": "2023-07-10"
         },
         {
           "Nombre Asesor": "GUILLERMO JOSE RAMIREZ RAMIREZ",
@@ -421,7 +454,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 27369.85,
-          "Total _Prima_Pendiente": 27369.85
+          "Total _Prima_Pendiente": 27369.85,
+          "Fecha_Conexion": "2026-08-25"
         },
         {
           "Nombre Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
@@ -433,7 +467,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 16577.8,
-          "Total _Prima_Pendiente": 16577.8
+          "Total _Prima_Pendiente": 16577.8,
+          "Fecha_Conexion": "2025-07-14"
         },
         {
           "Nombre Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
@@ -445,7 +480,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 10804.65,
-          "Total _Prima_Pendiente": 10804.65
+          "Total _Prima_Pendiente": 10804.65,
+          "Fecha_Conexion": "2025-03-20"
         },
         {
           "Nombre Asesor": "PAULINA RODRIGUEZ DE LA MORA",
@@ -457,7 +493,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 3494.59,
-          "Total _Prima_Pendiente": 3494.59
+          "Total _Prima_Pendiente": 3494.59,
+          "Fecha_Conexion": "2022-07-21"
         },
         {
           "Nombre Asesor": "GERARDO DANIEL BARAJAS TORRES",
@@ -469,7 +506,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 0,
-          "Total _Prima_Pendiente": 0
+          "Total _Prima_Pendiente": 0,
+          "Fecha_Conexion": "2025-12-09"
         },
         {
           "Nombre Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
@@ -481,7 +519,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 0,
-          "Total _Prima_Pendiente": 0
+          "Total _Prima_Pendiente": 0,
+          "Fecha_Conexion": "2024-08-21"
         },
         {
           "Nombre Asesor": "ANA VERONICA GONZALEZ GAYTAN",
@@ -493,7 +532,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 3487.19,
-          "Total _Prima_Pendiente": 3487.19
+          "Total _Prima_Pendiente": 3487.19,
+          "Fecha_Conexion": "2025-11-25"
         },
         {
           "Nombre Asesor": "MARIA JOSE GUZMAN ZAMORA",
@@ -505,7 +545,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 1693.99,
-          "Total _Prima_Pendiente": 1693.99
+          "Total _Prima_Pendiente": 1693.99,
+          "Fecha_Conexion": "2025-09-30"
         },
         {
           "Nombre Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
@@ -517,7 +558,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 17425.73,
-          "Total _Prima_Pendiente": 17425.73
+          "Total _Prima_Pendiente": 17425.73,
+          "Fecha_Conexion": "2025-09-04"
         },
         {
           "Nombre Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
@@ -529,7 +571,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 12811.03,
-          "Total _Prima_Pendiente": 12811.03
+          "Total _Prima_Pendiente": 12811.03,
+          "Fecha_Conexion": "2023-10-02"
         }
       ],
       "pagado_pendiente_reclutas": [
@@ -543,7 +586,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 0,
-          "Total _Prima_Pendiente": 0
+          "Total _Prima_Pendiente": 0,
+          "Fecha_Conexion": "2026-06-29"
         },
         {
           "Nombre Asesor": "GUILLERMO JOSE RAMIREZ RAMIREZ",
@@ -555,7 +599,8 @@
           "Pólizas_Pendinetes": 1,
           "Recibo_Inicial_Pendiente": 2623.27,
           "Recibo_Ordinario_Pendiente": 0,
-          "Total _Prima_Pendiente": 2623.27
+          "Total _Prima_Pendiente": 2623.27,
+          "Fecha_Conexion": "2026-08-25"
         },
         {
           "Nombre Asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
@@ -567,7 +612,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 67181,
-          "Total _Prima_Pendiente": 67181
+          "Total _Prima_Pendiente": 67181,
+          "Fecha_Conexion": "2026-07-14"
         },
         {
           "Nombre Asesor": "OSCAR RAMIREZ RUIZ",
@@ -579,7 +625,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 36067.65,
-          "Total _Prima_Pendiente": 36067.65
+          "Total _Prima_Pendiente": 36067.65,
+          "Fecha_Conexion": "2026-06-29"
         },
         {
           "Nombre Asesor": "GUILLERMO JOSE RAMIREZ RAMIREZ",
@@ -591,7 +638,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 27369.85,
-          "Total _Prima_Pendiente": 27369.85
+          "Total _Prima_Pendiente": 27369.85,
+          "Fecha_Conexion": "2026-08-25"
         },
         {
           "Nombre Asesor": "GERARDO DANIEL BARAJAS TORRES",
@@ -603,7 +651,8 @@
           "Pólizas_Pendinetes": 0,
           "Recibo_Inicial_Pendiente": 0,
           "Recibo_Ordinario_Pendiente": 0,
-          "Total _Prima_Pendiente": 0
+          "Total _Prima_Pendiente": 0,
+          "Fecha_Conexion": "2025-12-09"
         }
       ],
       "asesores_sin_emision": {
@@ -660,6 +709,7 @@
             "Clave": 100677,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2023-03-14",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -676,6 +726,7 @@
             "Clave": 103982,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2023-10-17",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -692,6 +743,7 @@
             "Clave": 104343,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2023-10-02",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -708,6 +760,7 @@
             "Clave": 104718,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2023-12-04",
             "Emitido_Vida": 1,
             "Emitido_GMM": 0,
             "Pagado_Vida": 1,
@@ -721,6 +774,7 @@
             "Clave": 104750,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2023-11-06",
             "Emitido_Vida": 3,
             "Emitido_GMM": 0,
             "Pagado_Vida": 3,
@@ -734,6 +788,7 @@
             "Clave": 105696,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2023-12-19",
             "Emitido_Vida": 2,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -748,6 +803,7 @@
             "Clave": 106018,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2024-02-22",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -763,6 +819,7 @@
             "Clave": 108404,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2024-06-24",
             "Emitido_Vida": 2,
             "Emitido_GMM": 0,
             "Pagado_Vida": 2,
@@ -777,6 +834,7 @@
             "Clave": 110453,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2856,
+            "Fecha_Conexion": "2024-11-04",
             "Emitido_Vida": 2,
             "Emitido_GMM": 1,
             "Pagado_Vida": 2,
@@ -789,6 +847,7 @@
             "Clave": 110575,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2024-10-18",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -804,6 +863,7 @@
             "Clave": 111056,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2024-12-13",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -819,6 +879,7 @@
             "Clave": 113450,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2025-07-14",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -835,6 +896,7 @@
             "Clave": 115047,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2856,
+            "Fecha_Conexion": "2025-10-14",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 1,
@@ -849,6 +911,7 @@
             "Clave": 115404,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2025-11-25",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -865,6 +928,7 @@
             "Clave": 116876,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2856,
+            "Fecha_Conexion": "2026-03-30",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -880,6 +944,7 @@
             "Clave": 116883,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2856,
+            "Fecha_Conexion": "2026-04-14",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -895,6 +960,7 @@
             "Clave": 117440,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2026-05-07",
             "Emitido_Vida": 1,
             "Emitido_GMM": 0,
             "Pagado_Vida": 1,
@@ -909,6 +975,7 @@
             "Clave": 118069,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2856,
+            "Fecha_Conexion": "2026-06-19",
             "Emitido_Vida": 0,
             "Emitido_GMM": 1,
             "Pagado_Vida": 0,
@@ -922,6 +989,7 @@
             "Clave": 118246,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2026-08-05",
             "Emitido_Vida": 1,
             "Emitido_GMM": 1,
             "Pagado_Vida": 1,
@@ -934,6 +1002,7 @@
             "Clave": 118915,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2026-08-28",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -949,6 +1018,7 @@
             "Clave": 47116,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2022-02-24",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -965,6 +1035,7 @@
             "Clave": 59120,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2511,
+            "Fecha_Conexion": "2022-05-27",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -979,6 +1050,7 @@
             "Clave": 63441,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2511,
+            "Fecha_Conexion": "2022-06-21",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -995,6 +1067,7 @@
             "Clave": 80122,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2018-09-28",
             "Emitido_Vida": 3,
             "Emitido_GMM": 1,
             "Pagado_Vida": 2,
@@ -1007,6 +1080,7 @@
             "Clave": 80925,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2018-12-05",
             "Emitido_Vida": 0,
             "Emitido_GMM": 1,
             "Pagado_Vida": 0,
@@ -1021,6 +1095,7 @@
             "Clave": 81044,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2511,
+            "Fecha_Conexion": "2022-11-07",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -1035,6 +1110,7 @@
             "Clave": 87538,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2019-09-23",
             "Emitido_Vida": 2,
             "Emitido_GMM": 2,
             "Pagado_Vida": 2,
@@ -1047,6 +1123,7 @@
             "Clave": 90355,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2020-04-28",
             "Emitido_Vida": 0,
             "Emitido_GMM": 1,
             "Pagado_Vida": 0,
@@ -1060,6 +1137,7 @@
             "Clave": 94156,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2020-11-24",
             "Emitido_Vida": 0,
             "Emitido_GMM": 1,
             "Pagado_Vida": 0,
@@ -1073,6 +1151,7 @@
             "Clave": 95148,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2022-12-21",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -1089,6 +1168,7 @@
             "Clave": 98797,
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
+            "Fecha_Conexion": "2021-05-26",
             "Emitido_Vida": 0,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
@@ -1500,7 +1580,9 @@
         "individuals": [
           {
             "Nombre del Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+            "Clave": "47116",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2022-02-24",
             "Polizas_Pagadas_Año_Anterior": 23.5,
             "Polizas_Pagadas_Año_Actual": 13,
             "Crec_Polizas_Pagadas": -10.5,
@@ -1512,7 +1594,9 @@
           },
           {
             "Nombre del Asesor": "VALERIA AIDE IBAÑEZ MURGUIA",
+            "Clave": "49227",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2021-06-30",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": 0,
@@ -1524,7 +1608,9 @@
           },
           {
             "Nombre del Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
+            "Clave": "63441",
             "Sucursal": "2511",
+            "Fecha_Conexion": "2022-06-21",
             "Polizas_Pagadas_Año_Anterior": 3,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -3,
@@ -1536,7 +1622,9 @@
           },
           {
             "Nombre del Asesor": "PAULINA RODRIGUEZ DE LA MORA",
+            "Clave": "65046",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2022-07-21",
             "Polizas_Pagadas_Año_Anterior": 1.5,
             "Polizas_Pagadas_Año_Actual": 1,
             "Crec_Polizas_Pagadas": -0.5,
@@ -1548,7 +1636,9 @@
           },
           {
             "Nombre del Asesor": "MARIO ALFONSO SARMIENTO OROZCO",
+            "Clave": "69684",
             "Sucursal": "2511",
+            "Fecha_Conexion": "2022-07-29",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": 0,
@@ -1560,7 +1650,9 @@
           },
           {
             "Nombre del Asesor": "DESIREE DE LA PEÑA OROZCO",
+            "Clave": "80122",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2018-09-28",
             "Polizas_Pagadas_Año_Anterior": 25,
             "Polizas_Pagadas_Año_Actual": 19,
             "Crec_Polizas_Pagadas": -6,
@@ -1572,7 +1664,9 @@
           },
           {
             "Nombre del Asesor": "MARICELA ARREOLA LOPEZ",
+            "Clave": "80925",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2018-12-05",
             "Polizas_Pagadas_Año_Anterior": 7,
             "Polizas_Pagadas_Año_Actual": 5,
             "Crec_Polizas_Pagadas": -2,
@@ -1584,7 +1678,9 @@
           },
           {
             "Nombre del Asesor": "KAREN MUÑOZ GARCIA",
+            "Clave": "81044",
             "Sucursal": "2511",
+            "Fecha_Conexion": "2022-11-07",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": 0,
@@ -1596,7 +1692,9 @@
           },
           {
             "Nombre del Asesor": "ALEJANDRA IVETTE PEDROZA MACIAS",
+            "Clave": "81618",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2018-12-13",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": 0,
@@ -1608,7 +1706,9 @@
           },
           {
             "Nombre del Asesor": "SEGUROS MONTERREY NEW YORK LIFE SA DE CV",
+            "Clave": "83407",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2019-01-23",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": 0,
@@ -1620,7 +1720,9 @@
           },
           {
             "Nombre del Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+            "Clave": "87538",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2019-09-23",
             "Polizas_Pagadas_Año_Anterior": 23,
             "Polizas_Pagadas_Año_Actual": 18,
             "Crec_Polizas_Pagadas": -5,
@@ -1632,7 +1734,9 @@
           },
           {
             "Nombre del Asesor": "ANDREA CELESTE IBAÑEZ RINCON",
+            "Clave": "88234",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2019-11-25",
             "Polizas_Pagadas_Año_Anterior": 2,
             "Polizas_Pagadas_Año_Actual": 2,
             "Crec_Polizas_Pagadas": 0,
@@ -1644,7 +1748,9 @@
           },
           {
             "Nombre del Asesor": "JOCELYN URIBE VARGAS",
+            "Clave": "90177",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2020-04-28",
             "Polizas_Pagadas_Año_Anterior": 1,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -1,
@@ -1656,7 +1762,9 @@
           },
           {
             "Nombre del Asesor": "DARINKA UREÑA CASILLAS",
+            "Clave": "90355",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2020-04-28",
             "Polizas_Pagadas_Año_Anterior": 19,
             "Polizas_Pagadas_Año_Actual": 17,
             "Crec_Polizas_Pagadas": -2,
@@ -1668,7 +1776,9 @@
           },
           {
             "Nombre del Asesor": "MARIA TERESA ASENCIO LOZANO",
+            "Clave": "94156",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2020-11-24",
             "Polizas_Pagadas_Año_Anterior": 1,
             "Polizas_Pagadas_Año_Actual": 5,
             "Crec_Polizas_Pagadas": 4,
@@ -1680,7 +1790,9 @@
           },
           {
             "Nombre del Asesor": "JOSE ALBERTO CORONADO ROSAS",
+            "Clave": "94205",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2020-10-12",
             "Polizas_Pagadas_Año_Anterior": 2,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -2,
@@ -1692,7 +1804,9 @@
           },
           {
             "Nombre del Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
+            "Clave": "95148",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2022-12-21",
             "Polizas_Pagadas_Año_Anterior": 4,
             "Polizas_Pagadas_Año_Actual": 4,
             "Crec_Polizas_Pagadas": 0,
@@ -1704,7 +1818,9 @@
           },
           {
             "Nombre del Asesor": "FERNANDO JAVIER DAVALOS FLORES",
+            "Clave": "98797",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2021-05-26",
             "Polizas_Pagadas_Año_Anterior": 1,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -1,
@@ -1716,7 +1832,9 @@
           },
           {
             "Nombre del Asesor": "WENDY SUSANA SANCHEZ VAZQUEZ",
+            "Clave": "100323",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2023-04-26",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": 0,
@@ -1728,7 +1846,9 @@
           },
           {
             "Nombre del Asesor": "JULIANA RIASCOS VALENCIA",
+            "Clave": "100677",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2023-03-14",
             "Polizas_Pagadas_Año_Anterior": 11,
             "Polizas_Pagadas_Año_Actual": 2,
             "Crec_Polizas_Pagadas": -9,
@@ -1740,7 +1860,9 @@
           },
           {
             "Nombre del Asesor": "SAMUEL NUÑO RIVERA",
+            "Clave": "101640",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2023-06-27",
             "Polizas_Pagadas_Año_Anterior": 4,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -4,
@@ -1752,7 +1874,9 @@
           },
           {
             "Nombre del Asesor": "JOSE EDUARDO EZQUERRO BARQUERA",
+            "Clave": "102825",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2023-07-10",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 2,
             "Crec_Polizas_Pagadas": 2,
@@ -1764,7 +1888,9 @@
           },
           {
             "Nombre del Asesor": "MARIA FERNANDA RIOS BERNAL",
+            "Clave": "103982",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2023-10-17",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 3,
             "Crec_Polizas_Pagadas": 3,
@@ -1776,7 +1902,9 @@
           },
           {
             "Nombre del Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
+            "Clave": "104343",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2023-10-02",
             "Polizas_Pagadas_Año_Anterior": 8.5,
             "Polizas_Pagadas_Año_Actual": 2,
             "Crec_Polizas_Pagadas": -6.5,
@@ -1788,7 +1916,9 @@
           },
           {
             "Nombre del Asesor": "ROGELIO TORRES ORTIZ",
+            "Clave": "104718",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2023-12-04",
             "Polizas_Pagadas_Año_Anterior": 19,
             "Polizas_Pagadas_Año_Actual": 6,
             "Crec_Polizas_Pagadas": -13,
@@ -1800,7 +1930,9 @@
           },
           {
             "Nombre del Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+            "Clave": "104750",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2023-11-06",
             "Polizas_Pagadas_Año_Anterior": 10,
             "Polizas_Pagadas_Año_Actual": 13,
             "Crec_Polizas_Pagadas": 3,
@@ -1812,7 +1944,9 @@
           },
           {
             "Nombre del Asesor": "GABRIELA CASTAÑEDA SALAZAR",
+            "Clave": "105696",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2023-12-19",
             "Polizas_Pagadas_Año_Anterior": 8,
             "Polizas_Pagadas_Año_Actual": 9,
             "Crec_Polizas_Pagadas": 1,
@@ -1824,7 +1958,9 @@
           },
           {
             "Nombre del Asesor": "MIREYA LIZETTE TORRES GARCIA",
+            "Clave": "106018",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2024-02-22",
             "Polizas_Pagadas_Año_Anterior": 3,
             "Polizas_Pagadas_Año_Actual": 2,
             "Crec_Polizas_Pagadas": -1,
@@ -1836,7 +1972,9 @@
           },
           {
             "Nombre del Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
+            "Clave": "107488",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2024-05-28",
             "Polizas_Pagadas_Año_Anterior": 25,
             "Polizas_Pagadas_Año_Actual": 2,
             "Crec_Polizas_Pagadas": -23,
@@ -1848,7 +1986,9 @@
           },
           {
             "Nombre del Asesor": "ARMANDO JONATHAN DE LA CRUZ DIAZ",
+            "Clave": "107660",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2024-06-28",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": 0,
@@ -1860,7 +2000,9 @@
           },
           {
             "Nombre del Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+            "Clave": "108404",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2024-06-24",
             "Polizas_Pagadas_Año_Anterior": 13,
             "Polizas_Pagadas_Año_Actual": 7,
             "Crec_Polizas_Pagadas": -6,
@@ -1872,7 +2014,9 @@
           },
           {
             "Nombre del Asesor": "MARIA ELIZABETH LLAMAS LOPEZ",
+            "Clave": "108405",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2024-06-28",
             "Polizas_Pagadas_Año_Anterior": 10,
             "Polizas_Pagadas_Año_Actual": 1,
             "Crec_Polizas_Pagadas": -9,
@@ -1884,7 +2028,9 @@
           },
           {
             "Nombre del Asesor": "ROCIO IVON RUIZ GARCIA",
+            "Clave": "108658",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2024-07-24",
             "Polizas_Pagadas_Año_Anterior": 6,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -6,
@@ -1896,7 +2042,9 @@
           },
           {
             "Nombre del Asesor": "ANGELICA YADIRA ROMERO JAUREGUI",
+            "Clave": "108920",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2024-08-22",
             "Polizas_Pagadas_Año_Anterior": 3,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -3,
@@ -1908,7 +2056,9 @@
           },
           {
             "Nombre del Asesor": "ISAI ANTONIO ROJAS MARTINEZ",
+            "Clave": "109007",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2024-08-21",
             "Polizas_Pagadas_Año_Anterior": 3,
             "Polizas_Pagadas_Año_Actual": 1,
             "Crec_Polizas_Pagadas": -2,
@@ -1920,7 +2070,9 @@
           },
           {
             "Nombre del Asesor": "RODRIGO RAMON ALVAREZ JIMENEZ",
+            "Clave": "109141",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2024-06-10",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": 0,
@@ -1932,7 +2084,9 @@
           },
           {
             "Nombre del Asesor": "MIRIAM ROCIO LOMELI CHAVEZ",
+            "Clave": "109819",
             "Sucursal": "2856",
+            "Fecha_Conexion": "2024-09-27",
             "Polizas_Pagadas_Año_Anterior": 3,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -3,
@@ -1944,7 +2098,9 @@
           },
           {
             "Nombre del Asesor": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
+            "Clave": "109998",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2024-10-31",
             "Polizas_Pagadas_Año_Anterior": 6,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -6,
@@ -1956,7 +2112,9 @@
           },
           {
             "Nombre del Asesor": "ROCIO YANETH OCHOA IBARRA",
+            "Clave": "110105",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2024-09-25",
             "Polizas_Pagadas_Año_Anterior": 6,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -6,
@@ -1968,7 +2126,9 @@
           },
           {
             "Nombre del Asesor": "ANAIS LUA MORENO",
+            "Clave": "110453",
             "Sucursal": "2856",
+            "Fecha_Conexion": "2024-11-04",
             "Polizas_Pagadas_Año_Anterior": 22.5,
             "Polizas_Pagadas_Año_Actual": 16,
             "Crec_Polizas_Pagadas": -6.5,
@@ -1980,7 +2140,9 @@
           },
           {
             "Nombre del Asesor": "JOSE RENE DE ALBA MORALES",
+            "Clave": "110575",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2024-10-18",
             "Polizas_Pagadas_Año_Anterior": 4,
             "Polizas_Pagadas_Año_Actual": 2,
             "Crec_Polizas_Pagadas": -2,
@@ -1992,7 +2154,9 @@
           },
           {
             "Nombre del Asesor": "LUIS FERNANDO HERNANDEZ AYALA",
+            "Clave": "110740",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2024-11-20",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": 0,
@@ -2004,7 +2168,9 @@
           },
           {
             "Nombre del Asesor": "JORGE ANTONIO LUNA LARA",
+            "Clave": "111056",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2024-12-13",
             "Polizas_Pagadas_Año_Anterior": 5,
             "Polizas_Pagadas_Año_Actual": 3,
             "Crec_Polizas_Pagadas": -2,
@@ -2016,7 +2182,9 @@
           },
           {
             "Nombre del Asesor": "CLAUDIA VALERIA HERNANDEZ MACIAS",
+            "Clave": "111960",
             "Sucursal": "2856",
+            "Fecha_Conexion": "2025-02-19",
             "Polizas_Pagadas_Año_Anterior": 9,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -9,
@@ -2028,7 +2196,9 @@
           },
           {
             "Nombre del Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
+            "Clave": "112083",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2025-03-20",
             "Polizas_Pagadas_Año_Anterior": 6,
             "Polizas_Pagadas_Año_Actual": 1,
             "Crec_Polizas_Pagadas": -5,
@@ -2040,7 +2210,9 @@
           },
           {
             "Nombre del Asesor": "LAURA DOLORES MONTAÑO MONTAÑO",
+            "Clave": "112522",
             "Sucursal": "2856",
+            "Fecha_Conexion": "2025-04-29",
             "Polizas_Pagadas_Año_Anterior": 6,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -6,
@@ -2052,7 +2224,9 @@
           },
           {
             "Nombre del Asesor": "BRUNO BRAULIO MACIAS ALVAREZ",
+            "Clave": "113076",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2025-05-29",
             "Polizas_Pagadas_Año_Anterior": 5,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -5,
@@ -2064,7 +2238,9 @@
           },
           {
             "Nombre del Asesor": "ORLANDA JIMENA CERVANTES NUÑEZ",
+            "Clave": "113312",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2024-05-28",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": 0,
@@ -2076,7 +2252,9 @@
           },
           {
             "Nombre del Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
+            "Clave": "113450",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2025-07-14",
             "Polizas_Pagadas_Año_Anterior": 8,
             "Polizas_Pagadas_Año_Actual": 3,
             "Crec_Polizas_Pagadas": -5,
@@ -2088,7 +2266,9 @@
           },
           {
             "Nombre del Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
+            "Clave": "114100",
             "Sucursal": "2856",
+            "Fecha_Conexion": "2025-07-25",
             "Polizas_Pagadas_Año_Anterior": 8,
             "Polizas_Pagadas_Año_Actual": 1,
             "Crec_Polizas_Pagadas": -7,
@@ -2100,7 +2280,9 @@
           },
           {
             "Nombre del Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
+            "Clave": "114157",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2025-09-04",
             "Polizas_Pagadas_Año_Anterior": 5,
             "Polizas_Pagadas_Año_Actual": 1,
             "Crec_Polizas_Pagadas": -4,
@@ -2112,7 +2294,9 @@
           },
           {
             "Nombre del Asesor": "SANDRA CRISTINA PEDROZA CRUZ",
+            "Clave": "114249",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2025-06-12",
             "Polizas_Pagadas_Año_Anterior": 1,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -1,
@@ -2124,7 +2308,9 @@
           },
           {
             "Nombre del Asesor": "MARIA JOSE GUZMAN ZAMORA",
+            "Clave": "114431",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2025-09-30",
             "Polizas_Pagadas_Año_Anterior": 4,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -4,
@@ -2136,7 +2322,9 @@
           },
           {
             "Nombre del Asesor": "LINDA TANIA MIROSLAVA ENRIQUEZ PRECIADO",
+            "Clave": "114664",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2025-10-20",
             "Polizas_Pagadas_Año_Anterior": 2,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": -2,
@@ -2148,7 +2336,9 @@
           },
           {
             "Nombre del Asesor": "ANGELICA REYES CERON",
+            "Clave": "114838",
             "Sucursal": "2856",
+            "Fecha_Conexion": "2025-07-25",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": 0,
@@ -2160,7 +2350,9 @@
           },
           {
             "Nombre del Asesor": "VELIA PATRICIA BERNAL RAMOS",
+            "Clave": "115047",
             "Sucursal": "2856",
+            "Fecha_Conexion": "2025-10-14",
             "Polizas_Pagadas_Año_Anterior": 4,
             "Polizas_Pagadas_Año_Actual": 5,
             "Crec_Polizas_Pagadas": 1,
@@ -2172,7 +2364,9 @@
           },
           {
             "Nombre del Asesor": "ANA VERONICA GONZALEZ GAYTAN",
+            "Clave": "115404",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2025-11-25",
             "Polizas_Pagadas_Año_Anterior": 2,
             "Polizas_Pagadas_Año_Actual": 1,
             "Crec_Polizas_Pagadas": -1,
@@ -2184,7 +2378,9 @@
           },
           {
             "Nombre del Asesor": "LUVIA PATRICIA FIGUEROA CASTRO",
+            "Clave": "116060",
             "Sucursal": "2856",
+            "Fecha_Conexion": "2025-12-19",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 2,
             "Crec_Polizas_Pagadas": 2,
@@ -2196,7 +2392,9 @@
           },
           {
             "Nombre del Asesor": "GERARDO DANIEL BARAJAS TORRES",
+            "Clave": "116795",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2025-12-09",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": 0,
@@ -2208,7 +2406,9 @@
           },
           {
             "Nombre del Asesor": "PAULA ANGELICA LOMELI CAZARES",
+            "Clave": "116876",
             "Sucursal": "2856",
+            "Fecha_Conexion": "2026-03-30",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 8,
             "Crec_Polizas_Pagadas": 8,
@@ -2220,7 +2420,9 @@
           },
           {
             "Nombre del Asesor": "SOFIA CAMPILLO VASCONCELOS",
+            "Clave": "116883",
             "Sucursal": "2856",
+            "Fecha_Conexion": "2026-04-14",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 13,
             "Crec_Polizas_Pagadas": 13,
@@ -2232,7 +2434,9 @@
           },
           {
             "Nombre del Asesor": "MONSERRAT VELASCO SANTOS",
+            "Clave": "117440",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2026-05-07",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 12,
             "Crec_Polizas_Pagadas": 12,
@@ -2244,7 +2448,9 @@
           },
           {
             "Nombre del Asesor": "MARIO IVAN ROMERO GONZALEZ",
+            "Clave": "118069",
             "Sucursal": "2856",
+            "Fecha_Conexion": "2026-06-19",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 7,
             "Crec_Polizas_Pagadas": 7,
@@ -2256,7 +2462,9 @@
           },
           {
             "Nombre del Asesor": "JOSE ANTEMIO OLIVA SANTOS",
+            "Clave": "118246",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2026-08-05",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 6,
             "Crec_Polizas_Pagadas": 6,
@@ -2268,7 +2476,9 @@
           },
           {
             "Nombre del Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
+            "Clave": "118915",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2026-08-28",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 3,
             "Crec_Polizas_Pagadas": 3,
@@ -2280,7 +2490,9 @@
           },
           {
             "Nombre del Asesor": "OSCAR RAMIREZ RUIZ",
+            "Clave": "119223",
             "Sucursal": "2043",
+            "Fecha_Conexion": "2026-06-29",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 2,
             "Crec_Polizas_Pagadas": 2,
@@ -2292,7 +2504,9 @@
           },
           {
             "Nombre del Asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
+            "Clave": "119447",
             "Sucursal": "2856",
+            "Fecha_Conexion": "2026-07-14",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 3,
             "Crec_Polizas_Pagadas": 3,
@@ -2304,7 +2518,9 @@
           },
           {
             "Nombre del Asesor": "GUILLERMO JOSE RAMIREZ RAMIREZ",
+            "Clave": "120051",
             "Sucursal": "2856",
+            "Fecha_Conexion": "2026-08-25",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 1,
             "Crec_Polizas_Pagadas": 1,
@@ -2321,7 +2537,9 @@
           {
             "lugar": 97,
             "nombre": "ANAIS LUA MORENO",
+            "suc": "2856",
             "conexion": "04/11/24",
+            "conexion_iso": "2024-11-04",
             "prima_meta_ant": 1610962.41,
             "prima_meta_mes": 17874.36,
             "prima_meta_acum": 1628836.77,
@@ -2335,7 +2553,9 @@
           {
             "lugar": 164,
             "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
+            "suc": "2043",
             "conexion": "23/09/19",
+            "conexion_iso": "2019-09-23",
             "prima_meta_ant": 972759.53,
             "prima_meta_mes": 168167.51,
             "prima_meta_acum": 1140927.04,
@@ -2349,7 +2569,9 @@
           {
             "lugar": 300,
             "nombre": "DESIREE DE LA PEÑA OROZCO",
+            "suc": "2043",
             "conexion": "28/09/18",
+            "conexion_iso": "2018-09-28",
             "prima_meta_ant": 683248.66,
             "prima_meta_mes": 152202.48,
             "prima_meta_acum": 835451.14,
@@ -2363,7 +2585,9 @@
           {
             "lugar": 401,
             "nombre": "DARINKA UREÑA CASILLAS",
+            "suc": "2043",
             "conexion": "28/04/20",
+            "conexion_iso": "2020-04-28",
             "prima_meta_ant": 762254.61,
             "prima_meta_mes": 28974.35,
             "prima_meta_acum": 791228.96,
@@ -2377,7 +2601,9 @@
           {
             "lugar": 531,
             "nombre": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+            "suc": "2043",
             "conexion": "24/02/22",
+            "conexion_iso": "2022-02-24",
             "prima_meta_ant": 614640.71,
             "prima_meta_mes": 18033.59,
             "prima_meta_acum": 632674.3,
@@ -2393,7 +2619,9 @@
           {
             "lugar": 97,
             "nombre": "ANAIS LUA MORENO",
+            "suc": "2856",
             "conexion": "04/11/24",
+            "conexion_iso": "2024-11-04",
             "prima_meta_ant": 1610962.41,
             "prima_meta_mes": 17874.36,
             "prima_meta_acum": 1628836.77,
@@ -2407,7 +2635,9 @@
           {
             "lugar": 164,
             "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
+            "suc": "2043",
             "conexion": "23/09/19",
+            "conexion_iso": "2019-09-23",
             "prima_meta_ant": 972759.53,
             "prima_meta_mes": 168167.51,
             "prima_meta_acum": 1140927.04,
@@ -2421,7 +2651,9 @@
           {
             "lugar": 300,
             "nombre": "DESIREE DE LA PEÑA OROZCO",
+            "suc": "2043",
             "conexion": "28/09/18",
+            "conexion_iso": "2018-09-28",
             "prima_meta_ant": 683248.66,
             "prima_meta_mes": 152202.48,
             "prima_meta_acum": 835451.14,
@@ -2435,7 +2667,9 @@
           {
             "lugar": 401,
             "nombre": "DARINKA UREÑA CASILLAS",
+            "suc": "2043",
             "conexion": "28/04/20",
+            "conexion_iso": "2020-04-28",
             "prima_meta_ant": 762254.61,
             "prima_meta_mes": 28974.35,
             "prima_meta_acum": 791228.96,
@@ -2449,7 +2683,9 @@
           {
             "lugar": 531,
             "nombre": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+            "suc": "2043",
             "conexion": "24/02/22",
+            "conexion_iso": "2022-02-24",
             "prima_meta_ant": 614640.71,
             "prima_meta_mes": 18033.59,
             "prima_meta_acum": 632674.3,
@@ -2463,7 +2699,9 @@
           {
             "lugar": 879,
             "nombre": "JOSE RENE DE ALBA MORALES",
+            "suc": "2043",
             "conexion": "18/10/24",
+            "conexion_iso": "2024-10-18",
             "prima_meta_ant": 270186.27,
             "prima_meta_mes": 79762.29,
             "prima_meta_acum": 349948.56,
@@ -2477,7 +2715,9 @@
           {
             "lugar": 1578,
             "nombre": "MONSERRAT VELASCO SANTOS",
+            "suc": "2043",
             "conexion": "07/05/26",
+            "conexion_iso": "2026-05-07",
             "prima_meta_ant": 216703.43,
             "prima_meta_mes": 77573.88,
             "prima_meta_acum": 294277.31,
@@ -2491,7 +2731,9 @@
           {
             "lugar": 1986,
             "nombre": "JORGE ANTONIO LUNA LARA",
+            "suc": "2043",
             "conexion": "13/12/24",
+            "conexion_iso": "2024-12-13",
             "prima_meta_ant": 266628.11,
             "prima_meta_mes": 4615.24,
             "prima_meta_acum": 271243.35,
@@ -2505,7 +2747,9 @@
           {
             "lugar": 1589,
             "nombre": "PAULINA LIZBETH SOTO MUÑIZ",
+            "suc": "2043",
             "conexion": "06/11/23",
+            "conexion_iso": "2023-11-06",
             "prima_meta_ant": 178359.97,
             "prima_meta_mes": 79973.36,
             "prima_meta_acum": 258333.33,
@@ -2519,7 +2763,9 @@
           {
             "lugar": 1925,
             "nombre": "VELIA PATRICIA BERNAL RAMOS",
+            "suc": "2856",
             "conexion": "14/10/25",
+            "conexion_iso": "2025-10-14",
             "prima_meta_ant": 236279.26,
             "prima_meta_mes": 8133.01,
             "prima_meta_acum": 244412.27,
@@ -2533,7 +2779,9 @@
           {
             "lugar": 1859,
             "nombre": "ROGELIO TORRES ORTIZ",
+            "suc": "2043",
             "conexion": "04/12/23",
+            "conexion_iso": "2023-12-04",
             "prima_meta_ant": 215163.4,
             "prima_meta_mes": 15328.26,
             "prima_meta_acum": 230491.66,
@@ -2547,7 +2795,9 @@
           {
             "lugar": 2246,
             "nombre": "MARIA TERESA ASENCIO LOZANO",
+            "suc": "2043",
             "conexion": "24/11/20",
+            "conexion_iso": "2020-11-24",
             "prima_meta_ant": 220622.39,
             "prima_meta_mes": 7708.39,
             "prima_meta_acum": 228330.78,
@@ -2561,7 +2811,9 @@
           {
             "lugar": 1811,
             "nombre": "GABRIELA CASTAÑEDA SALAZAR",
+            "suc": "2043",
             "conexion": "19/12/23",
+            "conexion_iso": "2023-12-19",
             "prima_meta_ant": 194940.2,
             "prima_meta_mes": 13462.2,
             "prima_meta_acum": 208402.4,
@@ -2575,7 +2827,9 @@
           {
             "lugar": 2566,
             "nombre": "ANA LAURA CONTRERAS IÑIGUEZ",
+            "suc": "2043",
             "conexion": "14/07/25",
+            "conexion_iso": "2025-07-14",
             "prima_meta_ant": 192226.55,
             "prima_meta_mes": 1816.58,
             "prima_meta_acum": 194043.13,
@@ -2589,7 +2843,9 @@
           {
             "lugar": 2583,
             "nombre": "JULIANA RIASCOS VALENCIA",
+            "suc": "2043",
             "conexion": "14/03/23",
+            "conexion_iso": "2023-03-14",
             "prima_meta_ant": 160104.41,
             "prima_meta_mes": 20889.29,
             "prima_meta_acum": 180993.7,
@@ -2603,7 +2859,9 @@
           {
             "lugar": 2827,
             "nombre": "MARICELA ARREOLA LOPEZ",
+            "suc": "2043",
             "conexion": "05/12/18",
+            "conexion_iso": "2018-12-05",
             "prima_meta_ant": 133285.58,
             "prima_meta_mes": 31174.54,
             "prima_meta_acum": 164460.12,
@@ -2617,7 +2875,9 @@
           {
             "lugar": 2617,
             "nombre": "SOFIA CAMPILLO VASCONCELOS",
+            "suc": "2856",
             "conexion": "14/04/26",
+            "conexion_iso": "2026-04-14",
             "prima_meta_ant": 149328.44,
             "prima_meta_mes": 11756.49,
             "prima_meta_acum": 161084.93,
@@ -2631,7 +2891,9 @@
           {
             "lugar": 2674,
             "nombre": "MARIO IVAN ROMERO GONZALEZ",
+            "suc": "2856",
             "conexion": "19/06/26",
+            "conexion_iso": "2026-06-19",
             "prima_meta_ant": 134174.21,
             "prima_meta_mes": 19381.22,
             "prima_meta_acum": 153555.43,
@@ -2645,7 +2907,9 @@
           {
             "lugar": 3196,
             "nombre": "LILIANA IVETTE CASTILLO SANCHEZ",
+            "suc": "2043",
             "conexion": "24/06/24",
+            "conexion_iso": "2024-06-24",
             "prima_meta_ant": 132135.09,
             "prima_meta_mes": 6962.43,
             "prima_meta_acum": 139097.52,
@@ -2659,7 +2923,9 @@
           {
             "lugar": 3466,
             "nombre": "PAULA ANGELICA LOMELI CAZARES",
+            "suc": "2856",
             "conexion": "30/03/26",
+            "conexion_iso": "2026-03-30",
             "prima_meta_ant": 100243.51,
             "prima_meta_mes": 25239.15,
             "prima_meta_acum": 125482.66,
@@ -2673,7 +2939,9 @@
           {
             "lugar": 4202,
             "nombre": "ANA VERONICA GONZALEZ GAYTAN",
+            "suc": "2043",
             "conexion": "25/11/25",
+            "conexion_iso": "2025-11-25",
             "prima_meta_ant": 73315.56,
             "prima_meta_mes": 21094.78,
             "prima_meta_acum": 94410.34,
@@ -2687,7 +2955,9 @@
           {
             "lugar": 4151,
             "nombre": "MIREYA LIZETTE TORRES GARCIA",
+            "suc": "2043",
             "conexion": "22/02/24",
+            "conexion_iso": "2024-02-22",
             "prima_meta_ant": 75066.79,
             "prima_meta_mes": 8312.33,
             "prima_meta_acum": 83379.12,
@@ -2701,7 +2971,9 @@
           {
             "lugar": 4408,
             "nombre": "JORGE ALBERTO PRECIADO GONZALEZ",
+            "suc": "2043",
             "conexion": "02/10/23",
+            "conexion_iso": "2023-10-02",
             "prima_meta_ant": 73839.22,
             "prima_meta_mes": 3469.09,
             "prima_meta_acum": 77308.31,
@@ -2715,7 +2987,9 @@
           {
             "lugar": 5460,
             "nombre": "MARIA FERNANDA RIOS BERNAL",
+            "suc": "2043",
             "conexion": "17/10/23",
+            "conexion_iso": "2023-10-17",
             "prima_meta_ant": 56294.34,
             "prima_meta_mes": 6660.84,
             "prima_meta_acum": 62955.18,
@@ -2729,7 +3003,9 @@
           {
             "lugar": 5317,
             "nombre": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
+            "suc": "2043",
             "conexion": "21/12/22",
+            "conexion_iso": "2022-12-21",
             "prima_meta_ant": 42658.56,
             "prima_meta_mes": 7697.75,
             "prima_meta_acum": 50356.31,
@@ -2743,7 +3019,9 @@
           {
             "lugar": 5405,
             "nombre": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
+            "suc": "2043",
             "conexion": "28/08/26",
+            "conexion_iso": "2026-08-28",
             "prima_meta_ant": 0,
             "prima_meta_mes": 45600.73,
             "prima_meta_acum": 45600.73,
@@ -2757,7 +3035,9 @@
           {
             "lugar": 5807,
             "nombre": "JOSE ANTEMIO OLIVA SANTOS",
+            "suc": "2043",
             "conexion": "05/08/26",
+            "conexion_iso": "2026-08-05",
             "prima_meta_ant": 0,
             "prima_meta_mes": 36959.25,
             "prima_meta_acum": 36959.25,
@@ -2771,7 +3051,9 @@
           {
             "lugar": 7069,
             "nombre": "MARIA FERNANDA CARLOS VAZQUEZ",
+            "suc": "2511",
             "conexion": "21/06/22",
+            "conexion_iso": "2022-06-21",
             "prima_meta_ant": 11122.17,
             "prima_meta_mes": 1180.42,
             "prima_meta_acum": 12302.59,
@@ -2785,7 +3067,9 @@
           {
             "lugar": 7461,
             "nombre": "FERNANDO JAVIER DAVALOS FLORES",
+            "suc": "2043",
             "conexion": "26/05/21",
+            "conexion_iso": "2021-05-26",
             "prima_meta_ant": 0,
             "prima_meta_mes": 0,
             "prima_meta_acum": 0,
@@ -2799,7 +3083,9 @@
           {
             "lugar": 7717,
             "nombre": "KAREN MUÑOZ GARCIA",
+            "suc": "2511",
             "conexion": "07/11/22",
+            "conexion_iso": "2022-11-07",
             "prima_meta_ant": 0,
             "prima_meta_mes": 0,
             "prima_meta_acum": 0,
@@ -2817,7 +3103,9 @@
           {
             "lugar": 362,
             "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
+            "suc": "2043",
             "conexion": "23/09/19",
+            "conexion_iso": "2019-09-23",
             "polizas_iniciales": 15,
             "inicial": 702906.65,
             "renovacion": 3101811.04,
@@ -2826,7 +3114,9 @@
           {
             "lugar": 4156,
             "nombre": "JORGE ANTONIO LUNA LARA",
+            "suc": "2043",
             "conexion": "13/12/24",
+            "conexion_iso": "2024-12-13",
             "polizas_iniciales": 6,
             "inicial": 280092.25,
             "renovacion": 79167.48,
@@ -2835,7 +3125,9 @@
           {
             "lugar": 1472,
             "nombre": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+            "suc": "2043",
             "conexion": "24/02/22",
+            "conexion_iso": "2022-02-24",
             "polizas_iniciales": 4,
             "inicial": 244352.43,
             "renovacion": 1090506.51,
@@ -2844,7 +3136,9 @@
           {
             "lugar": 3531,
             "nombre": "PAULINA LIZBETH SOTO MUÑIZ",
+            "suc": "2043",
             "conexion": "06/11/23",
+            "conexion_iso": "2023-11-06",
             "polizas_iniciales": 4,
             "inicial": 220371.94,
             "renovacion": 242725.02,
@@ -2853,7 +3147,9 @@
           {
             "lugar": 2925,
             "nombre": "MARIA TERESA ASENCIO LOZANO",
+            "suc": "2043",
             "conexion": "24/11/20",
+            "conexion_iso": "2020-11-24",
             "polizas_iniciales": 12,
             "inicial": 148082.59,
             "renovacion": 466242.82,
@@ -2864,7 +3160,9 @@
           {
             "lugar": 484,
             "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
+            "suc": "2043",
             "conexion": "23/09/19",
+            "conexion_iso": "2019-09-23",
             "polizas_iniciales": 0,
             "inicial": 0,
             "renovacion": 3187537.54,
@@ -2873,7 +3171,9 @@
           {
             "lugar": 362,
             "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
+            "suc": "2043",
             "conexion": "23/09/19",
+            "conexion_iso": "2019-09-23",
             "polizas_iniciales": 15,
             "inicial": 702906.65,
             "renovacion": 3101811.04,
@@ -2882,7 +3182,9 @@
           {
             "lugar": 1749,
             "nombre": "DESIREE DE LA PEÑA OROZCO",
+            "suc": "2043",
             "conexion": "28/09/18",
+            "conexion_iso": "2018-09-28",
             "polizas_iniciales": 0,
             "inicial": 18265.21,
             "renovacion": 1113144.69,
@@ -2891,7 +3193,9 @@
           {
             "lugar": 1472,
             "nombre": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+            "suc": "2043",
             "conexion": "24/02/22",
+            "conexion_iso": "2022-02-24",
             "polizas_iniciales": 4,
             "inicial": 244352.43,
             "renovacion": 1090506.51,
@@ -2900,7 +3204,9 @@
           {
             "lugar": 2317,
             "nombre": "DARINKA UREÑA CASILLAS",
+            "suc": "2043",
             "conexion": "28/04/20",
+            "conexion_iso": "2020-04-28",
             "polizas_iniciales": 4,
             "inicial": 97907.38,
             "renovacion": 732610.12,
@@ -2911,7 +3217,9 @@
           {
             "lugar": 362,
             "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
+            "suc": "2043",
             "conexion": "23/09/19",
+            "conexion_iso": "2019-09-23",
             "polizas_iniciales": 15,
             "inicial": 702906.65,
             "renovacion": 3101811.04,
@@ -2920,7 +3228,9 @@
           {
             "lugar": 484,
             "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
+            "suc": "2043",
             "conexion": "23/09/19",
+            "conexion_iso": "2019-09-23",
             "polizas_iniciales": 0,
             "inicial": 0,
             "renovacion": 3187537.54,
@@ -2929,7 +3239,9 @@
           {
             "lugar": 1472,
             "nombre": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+            "suc": "2043",
             "conexion": "24/02/22",
+            "conexion_iso": "2022-02-24",
             "polizas_iniciales": 4,
             "inicial": 244352.43,
             "renovacion": 1090506.51,
@@ -2938,7 +3250,9 @@
           {
             "lugar": 1749,
             "nombre": "DESIREE DE LA PEÑA OROZCO",
+            "suc": "2043",
             "conexion": "28/09/18",
+            "conexion_iso": "2018-09-28",
             "polizas_iniciales": 0,
             "inicial": 18265.21,
             "renovacion": 1113144.69,
@@ -2947,7 +3261,9 @@
           {
             "lugar": 2317,
             "nombre": "DARINKA UREÑA CASILLAS",
+            "suc": "2043",
             "conexion": "28/04/20",
+            "conexion_iso": "2020-04-28",
             "polizas_iniciales": 4,
             "inicial": 97907.38,
             "renovacion": 732610.12,
@@ -2956,7 +3272,9 @@
           {
             "lugar": 2925,
             "nombre": "MARIA TERESA ASENCIO LOZANO",
+            "suc": "2043",
             "conexion": "24/11/20",
+            "conexion_iso": "2020-11-24",
             "polizas_iniciales": 12,
             "inicial": 148082.59,
             "renovacion": 466242.82,
@@ -2965,7 +3283,9 @@
           {
             "lugar": 3466,
             "nombre": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
+            "suc": "2043",
             "conexion": "18/06/15",
+            "conexion_iso": "2015-06-18",
             "polizas_iniciales": 0,
             "inicial": 0,
             "renovacion": 478617.05,
@@ -2974,7 +3294,9 @@
           {
             "lugar": 3468,
             "nombre": "MARICELA ARREOLA LOPEZ",
+            "suc": "2043",
             "conexion": "05/12/18",
+            "conexion_iso": "2018-12-05",
             "polizas_iniciales": 1,
             "inicial": 21339.92,
             "renovacion": 456601.3,
@@ -2983,7 +3305,9 @@
           {
             "lugar": 3531,
             "nombre": "PAULINA LIZBETH SOTO MUÑIZ",
+            "suc": "2043",
             "conexion": "06/11/23",
+            "conexion_iso": "2023-11-06",
             "polizas_iniciales": 4,
             "inicial": 220371.94,
             "renovacion": 242725.02,
@@ -2992,7 +3316,9 @@
           {
             "lugar": 3616,
             "nombre": "ANDREA CELESTE IBAÑEZ RINCON",
+            "suc": "2043",
             "conexion": "25/11/19",
+            "conexion_iso": "2019-11-25",
             "polizas_iniciales": 1,
             "inicial": 6424.02,
             "renovacion": 441583.71,
@@ -3001,7 +3327,9 @@
           {
             "lugar": 4086,
             "nombre": "GABRIELA CASTAÑEDA SALAZAR",
+            "suc": "2043",
             "conexion": "19/12/23",
+            "conexion_iso": "2023-12-19",
             "polizas_iniciales": 1,
             "inicial": 121069.67,
             "renovacion": 247041.94,
@@ -3010,7 +3338,9 @@
           {
             "lugar": 4095,
             "nombre": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
+            "suc": "2043",
             "conexion": "21/12/22",
+            "conexion_iso": "2022-12-21",
             "polizas_iniciales": 2,
             "inicial": 43314.93,
             "renovacion": 323460.96,
@@ -3019,7 +3349,9 @@
           {
             "lugar": 4156,
             "nombre": "JORGE ANTONIO LUNA LARA",
+            "suc": "2043",
             "conexion": "13/12/24",
+            "conexion_iso": "2024-12-13",
             "polizas_iniciales": 6,
             "inicial": 280092.25,
             "renovacion": 79167.48,
@@ -3028,7 +3360,9 @@
           {
             "lugar": 4521,
             "nombre": "ANAIS LUA MORENO",
+            "suc": "2856",
             "conexion": "04/11/24",
+            "conexion_iso": "2024-11-04",
             "polizas_iniciales": 1,
             "inicial": 123134.96,
             "renovacion": 183906.45,
@@ -3037,7 +3371,9 @@
           {
             "lugar": 4547,
             "nombre": "JOCELYN URIBE VARGAS",
+            "suc": "2043",
             "conexion": "28/04/20",
+            "conexion_iso": "2020-04-28",
             "polizas_iniciales": 1,
             "inicial": 21150.92,
             "renovacion": 282337.52,
@@ -3046,7 +3382,9 @@
           {
             "lugar": 4759,
             "nombre": "ORLANDA JIMENA CERVANTES NUÑEZ",
+            "suc": "2043",
             "conexion": "28/05/24",
+            "conexion_iso": "2024-05-28",
             "polizas_iniciales": 1,
             "inicial": 117357.5,
             "renovacion": 162615.33,
@@ -3055,7 +3393,9 @@
           {
             "lugar": 4861,
             "nombre": "JORGE ALBERTO PRECIADO GONZALEZ",
+            "suc": "2043",
             "conexion": "02/10/23",
+            "conexion_iso": "2023-10-02",
             "polizas_iniciales": 2,
             "inicial": 27645.65,
             "renovacion": 241968.27,
@@ -3064,7 +3404,9 @@
           {
             "lugar": 5082,
             "nombre": "JULIANA RIASCOS VALENCIA",
+            "suc": "2043",
             "conexion": "14/03/23",
+            "conexion_iso": "2023-03-14",
             "polizas_iniciales": 2,
             "inicial": 70965.06,
             "renovacion": 175661.85,
@@ -3073,7 +3415,9 @@
           {
             "lugar": 5567,
             "nombre": "SAMUEL NUÑO RIVERA",
+            "suc": "2043",
             "conexion": "27/06/23",
+            "conexion_iso": "2023-06-27",
             "polizas_iniciales": 0,
             "inicial": 9933.72,
             "renovacion": 194935.85,
@@ -3082,7 +3426,9 @@
           {
             "lugar": 5748,
             "nombre": "FERNANDO JAVIER DAVALOS FLORES",
+            "suc": "2043",
             "conexion": "26/05/21",
+            "conexion_iso": "2021-05-26",
             "polizas_iniciales": 0,
             "inicial": 4765.74,
             "renovacion": 187800.15,
@@ -3091,7 +3437,9 @@
           {
             "lugar": 5764,
             "nombre": "JOSE EDUARDO EZQUERRO BARQUERA",
+            "suc": "2043",
             "conexion": "10/07/23",
+            "conexion_iso": "2023-07-10",
             "polizas_iniciales": 2,
             "inicial": 32917.42,
             "renovacion": 158685.37,
@@ -3100,7 +3448,9 @@
           {
             "lugar": 6753,
             "nombre": "LILIANA IVETTE CASTILLO SANCHEZ",
+            "suc": "2043",
             "conexion": "24/06/24",
+            "conexion_iso": "2024-06-24",
             "polizas_iniciales": 1,
             "inicial": 99068.14,
             "renovacion": 35885.82,
@@ -3109,7 +3459,9 @@
           {
             "lugar": 7273,
             "nombre": "ROGELIO TORRES ORTIZ",
+            "suc": "2043",
             "conexion": "04/12/23",
+            "conexion_iso": "2023-12-04",
             "polizas_iniciales": 3,
             "inicial": 51004.28,
             "renovacion": 58830.06,
@@ -3118,7 +3470,9 @@
           {
             "lugar": 7385,
             "nombre": "PAULINA RODRIGUEZ DE LA MORA",
+            "suc": "2043",
             "conexion": "21/07/22",
+            "conexion_iso": "2022-07-21",
             "polizas_iniciales": 1,
             "inicial": 15641.06,
             "renovacion": 89766.21,
@@ -3127,7 +3481,9 @@
           {
             "lugar": 7519,
             "nombre": "MARIA ELIZABETH LLAMAS LOPEZ",
+            "suc": "2043",
             "conexion": "28/06/24",
+            "conexion_iso": "2024-06-28",
             "polizas_iniciales": 0,
             "inicial": 2982.24,
             "renovacion": 97047.69,
@@ -3136,7 +3492,9 @@
           {
             "lugar": 7697,
             "nombre": "MARIA FERNANDA RIOS BERNAL",
+            "suc": "2043",
             "conexion": "17/10/23",
+            "conexion_iso": "2023-10-17",
             "polizas_iniciales": 3,
             "inicial": 60493.92,
             "renovacion": 33289.2,
@@ -3145,7 +3503,9 @@
           {
             "lugar": 7885,
             "nombre": "MARIA FERNANDA CARLOS VAZQUEZ",
+            "suc": "2511",
             "conexion": "21/06/22",
+            "conexion_iso": "2022-06-21",
             "polizas_iniciales": 0,
             "inicial": 11046.42,
             "renovacion": 75975.86,
@@ -3154,7 +3514,9 @@
           {
             "lugar": 7927,
             "nombre": "MONICA ANDREA AMBRIZ GOMEZ",
+            "suc": "2043",
             "conexion": "23/09/19",
+            "conexion_iso": "2019-09-23",
             "polizas_iniciales": 0,
             "inicial": 0,
             "renovacion": 86019.47,
@@ -3163,7 +3525,9 @@
           {
             "lugar": 7989,
             "nombre": "KAREN MUÑOZ GARCIA",
+            "suc": "2511",
             "conexion": "07/11/22",
+            "conexion_iso": "2022-11-07",
             "polizas_iniciales": 0,
             "inicial": 21754.04,
             "renovacion": 61857.61,
@@ -3172,7 +3536,9 @@
           {
             "lugar": 7999,
             "nombre": "ORLANDA JIMENA CERVANTES NUÑEZ",
+            "suc": "2043",
             "conexion": "28/05/24",
+            "conexion_iso": "2024-05-28",
             "polizas_iniciales": 0,
             "inicial": 0,
             "renovacion": 83302.12,
@@ -3181,7 +3547,9 @@
           {
             "lugar": 8434,
             "nombre": "ANA VERONICA GONZALEZ GAYTAN",
+            "suc": "2043",
             "conexion": "25/11/25",
+            "conexion_iso": "2025-11-25",
             "polizas_iniciales": 4,
             "inicial": 67698.2,
             "renovacion": 2781.01,
@@ -3190,7 +3558,9 @@
           {
             "lugar": 9067,
             "nombre": "LUIS GUILLERMO OLGUIN FERNANDEZ",
+            "suc": "2043",
             "conexion": "20/03/25",
+            "conexion_iso": "2025-03-20",
             "polizas_iniciales": 0,
             "inicial": 15945.91,
             "renovacion": 40173.81,
@@ -3199,7 +3569,9 @@
           {
             "lugar": 9178,
             "nombre": "MARIO ALFONSO SARMIENTO OROZCO",
+            "suc": "2511",
             "conexion": "29/07/22",
+            "conexion_iso": "2022-07-29",
             "polizas_iniciales": 0,
             "inicial": 0,
             "renovacion": 53823.98,
@@ -3208,7 +3580,9 @@
           {
             "lugar": 9195,
             "nombre": "MIRIAM ROCIO LOMELI CHAVEZ",
+            "suc": "2856",
             "conexion": "27/09/24",
+            "conexion_iso": "2024-09-27",
             "polizas_iniciales": 0,
             "inicial": 0,
             "renovacion": 53366.62,
@@ -3217,7 +3591,9 @@
           {
             "lugar": 9406,
             "nombre": "HANA SOFIA LOPEZ QUIÑONEZ",
+            "suc": "2043",
             "conexion": "04/09/25",
+            "conexion_iso": "2025-09-04",
             "polizas_iniciales": 1,
             "inicial": 37398.46,
             "renovacion": 11540.56,
@@ -3226,7 +3602,9 @@
           {
             "lugar": 9606,
             "nombre": "VELIA PATRICIA BERNAL RAMOS",
+            "suc": "2856",
             "conexion": "14/10/25",
+            "conexion_iso": "2025-10-14",
             "polizas_iniciales": 3,
             "inicial": 44879.2,
             "renovacion": 0,
@@ -3235,7 +3613,9 @@
           {
             "lugar": 9644,
             "nombre": "ANA LAURA CONTRERAS IÑIGUEZ",
+            "suc": "2043",
             "conexion": "14/07/25",
+            "conexion_iso": "2025-07-14",
             "polizas_iniciales": 1,
             "inicial": 6605.67,
             "renovacion": 37798.63,
@@ -3244,7 +3624,9 @@
           {
             "lugar": 9719,
             "nombre": "MIGUEL ALEJANDRO NUÑEZ GONZALEZ",
+            "suc": "2043",
             "conexion": "02/03/21",
+            "conexion_iso": "2021-03-02",
             "polizas_iniciales": 0,
             "inicial": 0,
             "renovacion": 42804.3,
@@ -3253,7 +3635,9 @@
           {
             "lugar": 9723,
             "nombre": "TIARE DE LA CRUZ DZIB CABRERA",
+            "suc": "2511",
             "conexion": "27/05/22",
+            "conexion_iso": "2022-05-27",
             "polizas_iniciales": 0,
             "inicial": 0,
             "renovacion": 42675.05,
@@ -3262,7 +3646,9 @@
           {
             "lugar": 9776,
             "nombre": "ROCIO YANETH OCHOA IBARRA",
+            "suc": "2043",
             "conexion": "25/09/24",
+            "conexion_iso": "2024-09-25",
             "polizas_iniciales": 1,
             "inicial": 23446.54,
             "renovacion": 18159.54,
@@ -3271,7 +3657,9 @@
           {
             "lugar": 9980,
             "nombre": "SOFIA CAMPILLO VASCONCELOS",
+            "suc": "2856",
             "conexion": "14/04/26",
+            "conexion_iso": "2026-04-14",
             "polizas_iniciales": 2,
             "inicial": 37982.41,
             "renovacion": 0,
@@ -3280,7 +3668,9 @@
           {
             "lugar": 10449,
             "nombre": "JOSE ALBERTO CORONADO ROSAS",
+            "suc": "2043",
             "conexion": "12/10/20",
+            "conexion_iso": "2020-10-12",
             "polizas_iniciales": 0,
             "inicial": 0,
             "renovacion": 30391.86,
@@ -3289,7 +3679,9 @@
           {
             "lugar": 10617,
             "nombre": "MARIO IVAN ROMERO GONZALEZ",
+            "suc": "2856",
             "conexion": "19/06/26",
+            "conexion_iso": "2026-06-19",
             "polizas_iniciales": 4,
             "inicial": 28209.67,
             "renovacion": 0,
@@ -3298,7 +3690,9 @@
           {
             "lugar": 11156,
             "nombre": "ISAI ANTONIO ROJAS MARTINEZ",
+            "suc": "2043",
             "conexion": "21/08/24",
+            "conexion_iso": "2024-08-21",
             "polizas_iniciales": 0,
             "inicial": 21514.36,
             "renovacion": 0,
@@ -3307,7 +3701,9 @@
           {
             "lugar": 11454,
             "nombre": "JIMENA FLORES RUEDA",
+            "suc": "2043",
             "conexion": "24/02/26",
+            "conexion_iso": "2026-02-24",
             "polizas_iniciales": 2,
             "inicial": 18449.51,
             "renovacion": 0,
@@ -3316,7 +3712,9 @@
           {
             "lugar": 11772,
             "nombre": "BRUNO BRAULIO MACIAS ALVAREZ",
+            "suc": "2043",
             "conexion": "29/05/25",
+            "conexion_iso": "2025-05-29",
             "polizas_iniciales": 0,
             "inicial": 0,
             "renovacion": 15010.74,
@@ -3325,7 +3723,9 @@
           {
             "lugar": 11829,
             "nombre": "LUVIA PATRICIA FIGUEROA CASTRO",
+            "suc": "2856",
             "conexion": "19/12/25",
+            "conexion_iso": "2025-12-19",
             "polizas_iniciales": 1,
             "inicial": 14539.61,
             "renovacion": 0,
@@ -3334,7 +3734,9 @@
           {
             "lugar": 11870,
             "nombre": "ROCIO IVON RUIZ GARCIA",
+            "suc": "2043",
             "conexion": "24/07/24",
+            "conexion_iso": "2024-07-24",
             "polizas_iniciales": 0,
             "inicial": 14136.84,
             "renovacion": 0,
@@ -3343,7 +3745,9 @@
           {
             "lugar": 11871,
             "nombre": "ALEJANDRA IVETTE PEDROZA MACIAS",
+            "suc": "2043",
             "conexion": "13/12/18",
+            "conexion_iso": "2018-12-13",
             "polizas_iniciales": 0,
             "inicial": 0,
             "renovacion": 14126.28,
@@ -3352,7 +3756,9 @@
           {
             "lugar": 12236,
             "nombre": "ANTONIO ALEJANDRO CASTILLO MONTERO",
+            "suc": "2043",
             "conexion": "17/07/23",
+            "conexion_iso": "2023-07-17",
             "polizas_iniciales": 0,
             "inicial": 0,
             "renovacion": 10520.84,
@@ -3361,7 +3767,9 @@
           {
             "lugar": 12492,
             "nombre": "MARIA JOSE GUZMAN ZAMORA",
+            "suc": "2043",
             "conexion": "30/09/25",
+            "conexion_iso": "2025-09-30",
             "polizas_iniciales": 0,
             "inicial": 0,
             "renovacion": 7172.21,
@@ -3370,7 +3778,9 @@
           {
             "lugar": 12653,
             "nombre": "JOSE ANTEMIO OLIVA SANTOS",
+            "suc": "2043",
             "conexion": "05/08/26",
+            "conexion_iso": "2026-08-05",
             "polizas_iniciales": 1,
             "inicial": 4566.38,
             "renovacion": 0,
@@ -3379,7 +3789,9 @@
           {
             "lugar": 12675,
             "nombre": "CLAUDIA VALERIA HERNANDEZ MACIAS",
+            "suc": "2856",
             "conexion": "19/02/25",
+            "conexion_iso": "2025-02-19",
             "polizas_iniciales": 0,
             "inicial": 4247.76,
             "renovacion": 0,
@@ -3388,7 +3800,9 @@
           {
             "lugar": 12774,
             "nombre": "EVELYN CAROLINA VENEGAS IÑIGUEZ",
+            "suc": "2043",
             "conexion": "31/10/24",
+            "conexion_iso": "2024-10-31",
             "polizas_iniciales": 0,
             "inicial": 2615.19,
             "renovacion": 0,
@@ -3397,7 +3811,9 @@
           {
             "lugar": 12781,
             "nombre": "PAULA ANGELICA LOMELI CAZARES",
+            "suc": "2856",
             "conexion": "30/03/26",
+            "conexion_iso": "2026-03-30",
             "polizas_iniciales": 1,
             "inicial": 2565.18,
             "renovacion": 0,
@@ -3406,7 +3822,9 @@
           {
             "lugar": 12860,
             "nombre": "MIREYA LIZETTE TORRES GARCIA",
+            "suc": "2043",
             "conexion": "22/02/24",
+            "conexion_iso": "2024-02-22",
             "polizas_iniciales": 0,
             "inicial": 0,
             "renovacion": 1674.4,
@@ -3415,7 +3833,9 @@
           {
             "lugar": 12975,
             "nombre": "MARCO ANTONIO HERNANDEZ RAMIREZ",
+            "suc": "2043",
             "conexion": "08/08/25",
+            "conexion_iso": "2025-08-08",
             "polizas_iniciales": 1,
             "inicial": 0,
             "renovacion": 0,

@@ -55,6 +55,25 @@ const formatExcelDate = (val) => {
     return String(val || '').trim();
 };
 
+// Convierte un serial de fecha de Excel (o un string/Date ya legible) a
+// formato ISO (yyyy-mm-dd), para que el frontend pueda calcular antigüedad
+// en meses de forma consistente en todos los reportes administrativos.
+const toISODate = (val) => {
+    if (!val) return '';
+    if (typeof val === 'number') {
+        const d = XLSX.SSF.parse_date_code(val);
+        if (!d) return '';
+        const year = d.y < 100 ? (d.y < 30 ? 2000 + d.y : 1900 + d.y) : d.y;
+        return `${year}-${String(d.m).padStart(2, '0')}-${String(d.d).padStart(2, '0')}`;
+    }
+    if (val instanceof Date) {
+        return `${val.getFullYear()}-${String(val.getMonth() + 1).padStart(2, '0')}-${String(val.getDate()).padStart(2, '0')}`;
+    }
+    const str = String(val).trim();
+    if (/^\d{4}-\d{2}-\d{2}/.test(str)) return str.slice(0, 10);
+    return '';
+};
+
 const extractCutoffDate = (wb) => {
     // Buscamos en las primeras 5 hojas, primeras 35 filas
     for (let i = 0; i < Math.min(wb.SheetNames.length, 5); i++) {
@@ -909,7 +928,8 @@ const run = async () => {
                 'Pólizas_Pendinetes': Number(r[9] || 0),
                 'Recibo_Inicial_Pendiente': Number(r[10] || 0),
                 'Recibo_Ordinario_Pendiente': Number(r[11] || 0),
-                'Total _Prima_Pendiente': Number(r[12] || 0)
+                'Total _Prima_Pendiente': Number(r[12] || 0),
+                'Fecha_Conexion': r[13] || directoryFechas[String(r[0] || '').trim()] || ''
             }));
             fc.pagado_pendiente = extractCutoffDate(wb);
         }
@@ -964,7 +984,8 @@ const run = async () => {
                 'Pólizas_Pendinetes': Number(r[9] || 0),
                 'Recibo_Inicial_Pendiente': Number(r[10] || 0),
                 'Recibo_Ordinario_Pendiente': Number(r[11] || 0),
-                'Total _Prima_Pendiente': Number(r[12] || 0)
+                'Total _Prima_Pendiente': Number(r[12] || 0),
+                'Fecha_Conexion': r[13] || directoryFechas[String(r[0] || '').trim()] || ''
             }));
             fc.pagado_pendiente_reclutas = extractCutoffDate(wb);
         }
@@ -1016,22 +1037,26 @@ const run = async () => {
                             const sucId = String(r[4] || '').trim();
                             return SUCURSALES_ADMIN.includes(matId) || SUCURSALES_ADMIN.includes(sucId) || !!directory[claveStr];
                         })
-                        .map(r => ({
-                            Asesor: resolveName(r[6], r[7], directory),
-                            Clave: r[6],
-                            Sucursal: r[5],
-                            Suc: r[4],
-                            Emitido_Vida: Number(r[10] || 0),
-                            Emitido_GMM: Number(r[11] || 0),
-                            Pagado_Vida: Number(r[12] || 0),
-                            Pagado_GMM: Number(r[13] || 0),
-                            Prima_Pagada_Vida: Number(r[14] || 0),
-                            Prima_Pagada_GMM: Number(r[15] || 0),
-                            Sin_Emisión_Vida: r[16],
-                            Sin_Emisión_GMM: r[17],
-                            '3_Meses_Sin_Emisión_Vida': r[18],
-                            '3_Meses_Sin_Emisión_GMM': r[19]
-                        }));
+                        .map(r => {
+                            const claveStr = String(r[6] || '').trim();
+                            return {
+                                Asesor: resolveName(r[6], r[7], directory),
+                                Clave: r[6],
+                                Sucursal: r[5],
+                                Suc: r[4],
+                                Fecha_Conexion: toISODate(r[8]) || directoryFechas[claveStr] || '',
+                                Emitido_Vida: Number(r[10] || 0),
+                                Emitido_GMM: Number(r[11] || 0),
+                                Pagado_Vida: Number(r[12] || 0),
+                                Pagado_GMM: Number(r[13] || 0),
+                                Prima_Pagada_Vida: Number(r[14] || 0),
+                                Prima_Pagada_GMM: Number(r[15] || 0),
+                                Sin_Emisión_Vida: r[16],
+                                Sin_Emisión_GMM: r[17],
+                                '3_Meses_Sin_Emisión_Vida': r[18],
+                                '3_Meses_Sin_Emisión_GMM': r[19]
+                            };
+                        });
                 }
                 fc.asesores_sin_emision = extractCutoffDate(wb);
             }
@@ -1151,9 +1176,12 @@ const run = async () => {
                     })
                     .map(r => {
                         const sucId2 = String(r[isRaw ? 5 : 4] || '').trim();
+                        const claveStr2 = String(r[isRaw ? 7 : 5] || '').trim();
                         return {
                             'Nombre del Asesor': resolveName(r[isRaw ? 7 : 5], r[isRaw ? 8 : 6], directory),
+                            'Clave': claveStr2,
                             'Sucursal': sucId2,
+                            'Fecha_Conexion': (isRaw ? toISODate(r[10]) : '') || directoryFechas[claveStr2] || '',
                             'Polizas_Pagadas_Año_Anterior': Number(r[isRaw ? 17 : 15] || 0),
                             'Polizas_Pagadas_Año_Actual': Number(r[isRaw ? 18 : 16] || 0),
                             'Crec_Polizas_Pagadas': Number(r[isRaw ? 19 : 17] || 0),
@@ -1234,13 +1262,17 @@ const run = async () => {
                 if (!row) continue;
                 const mat = String(row[4] || '').trim();
                 const suc = String(row[5] || '').trim();
-                if (mat === '2043' || suc === '2043') {
+                // Antes solo se incluía matriz/suc 2043, dejando fuera 2856 y 2511 (también
+                // nuestra promotoría) — se amplía para que el filtro de Unidad tenga sentido.
+                if (SUCURSALES_ADMIN.includes(mat) || SUCURSALES_ADMIN.includes(suc)) {
                     const rawName = String(row[8] || '').trim();
                     if (!rawName) continue;
                     rows2043.push({
                         lugar: Number(row[0]) || 0,
                         nombre: cleanNameText(rawName),
+                        suc: suc || mat,
                         conexion: formatExcelDate(row[9]),
+                        conexion_iso: toISODate(row[9]),
                         prima_meta_ant: Number(row[11]) || 0,
                         prima_meta_mes: Number(row[12]) || 0,
                         prima_meta_acum: Number(row[13]) || 0,
@@ -1300,13 +1332,17 @@ const run = async () => {
                 if (!row) continue;
                 const mat = String(row[3] || '').trim();
                 const suc = String(row[4] || '').trim();
-                if (mat === '2043' || suc === '2043') {
+                // Antes solo se incluía matriz/suc 2043, dejando fuera 2856 y 2511 (también
+                // nuestra promotoría) — se amplía para que el filtro de Unidad tenga sentido.
+                if (SUCURSALES_ADMIN.includes(mat) || SUCURSALES_ADMIN.includes(suc)) {
                     const rawName = String(row[7] || '').trim();
                     if (!rawName) continue;
                     rows2043Gmm.push({
                         lugar: Number(row[0]) || 0,
                         nombre: cleanNameText(rawName),
+                        suc: suc || mat,
                         conexion: formatExcelDate(row[9]),
+                        conexion_iso: toISODate(row[9]),
                         polizas_iniciales: Number(row[10]) || 0,
                         inicial: Number(row[11]) || 0,
                         renovacion: Number(row[12]) || 0,

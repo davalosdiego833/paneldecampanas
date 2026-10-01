@@ -72,6 +72,46 @@ const SearchInput: React.FC<{ value: string; onChange: (v: string) => void; plac
     </div>
 );
 
+/* ========== Filtro genérico tipo select (unidad / antigüedad) ========== */
+export const FilterSelect: React.FC<{ label: string; value: string; onChange: (v: string) => void; options: { value: string; label: string }[] }> = ({ label, value, onChange, options }) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        <label style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, letterSpacing: '0.02em' }}>{label}</label>
+        <select
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            style={{ padding: '9px 12px', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--glass-border)', borderRadius: '10px', color: 'var(--text-primary)', fontSize: '0.82rem', outline: 'none', fontFamily: 'inherit', cursor: 'pointer', minWidth: '180px' }}
+        >
+            {options.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+        </select>
+    </div>
+);
+
+// Parsea una fecha ISO (yyyy-mm-dd) como fecha LOCAL, sin el corrimiento de
+// zona horaria que mete `new Date('yyyy-mm-dd')` (la interpreta como UTC).
+export const parseFechaLocal = (fecha: string | undefined): Date | null => {
+    if (!fecha) return null;
+    const m = String(fecha).match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (!m) {
+        const d = new Date(fecha);
+        return isNaN(d.getTime()) ? null : d;
+    }
+    return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+};
+
+// Meses transcurridos desde una fecha de conexión hasta hoy
+export const mesesDesdeConexion = (fecha: string | undefined): number | null => {
+    const d = parseFechaLocal(fecha);
+    if (!d) return null;
+    const now = new Date();
+    return (now.getFullYear() - d.getFullYear()) * 12 + (now.getMonth() - d.getMonth());
+};
+
+export const fmtFechaConexion = (fecha: string | undefined) => {
+    const d = parseFechaLocal(fecha);
+    if (!d) return '—';
+    return d.toLocaleDateString('es-MX', { day: '2-digit', month: 'short', year: 'numeric' });
+};
+
 
 const ResumenPromotoria: React.FC<Props> = ({ onBack, onLogout, themeMode, toggleTheme, sucursalFilter, gerenciaName }) => {
     const [section, setSection] = useState<Section>('pagado_pendiente');
@@ -407,15 +447,60 @@ const DataTable: React.FC<{ headers: string[]; rows: any[][]; highlightCol?: num
 );
 
 /* ========== Searchable Table Wrapper ========== */
-const SearchableTable: React.FC<{ title: string; headers: string[]; rows: any[][]; nameCol?: number; highlightCol?: number }> = ({ title, headers, rows, nameCol = 1, highlightCol }) => {
+export interface RowMeta { suc: string | number; fechaConexion?: string; }
+
+export const UNIDAD_OPTIONS = [
+    { value: 'todas', label: 'Todas las unidades' },
+    { value: '2043', label: 'Unidad 2043 (incl. 2511)' },
+    { value: '2856', label: 'Unidad 2856 (Karen)' },
+];
+export const ANTIGUEDAD_OPTIONS = [
+    { value: 'todas', label: 'Cualquier antigüedad' },
+    { value: 'junior', label: 'Dentro de sus 12 meses' },
+    { value: 'medio', label: 'Del mes 13 al 48' },
+    { value: 'senior', label: 'Más de 5 años' },
+];
+
+const SearchableTable: React.FC<{ title: string; headers: string[]; rows: any[][]; meta?: RowMeta[]; nameCol?: number; highlightCol?: number }> = ({ title, headers, rows, meta, nameCol = 1, highlightCol }) => {
     const [search, setSearch] = useState('');
-    const filtered = search ? rows.filter(r => String(r[nameCol] || '').toLowerCase().includes(search.toLowerCase())) : rows;
+    const [unidad, setUnidad] = useState('todas');
+    const [antiguedad, setAntiguedad] = useState('todas');
+
+    const filtered = rows.filter((r, i) => {
+        if (search && !String(r[nameCol] || '').toLowerCase().includes(search.toLowerCase())) return false;
+        if (meta && unidad !== 'todas') {
+            const suc = String(meta[i]?.suc ?? '').trim();
+            if (unidad === '2043' && suc !== '2043' && suc !== '2511') return false;
+            if (unidad === '2856' && suc !== '2856') return false;
+        }
+        if (meta && antiguedad !== 'todas') {
+            const m = mesesDesdeConexion(meta[i]?.fechaConexion);
+            if (m === null) return false;
+            if (antiguedad === 'junior' && m > 12) return false;
+            if (antiguedad === 'medio' && (m < 13 || m > 48)) return false;
+            if (antiguedad === 'senior' && m <= 60) return false;
+        }
+        return true;
+    });
+
+    const hayFiltrosActivos = !!search || unidad !== 'todas' || antiguedad !== 'todas';
+
     return (
         <div className="glass-card" style={{ padding: '24px' }}>
             <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '16px', color: 'var(--text-primary)' }}>{title}</h3>
-            <SearchInput value={search} onChange={setSearch} />
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'flex-end', marginBottom: '4px' }}>
+                <div style={{ flex: '1 1 220px', maxWidth: '320px' }}>
+                    <SearchInput value={search} onChange={setSearch} />
+                </div>
+                {meta && (
+                    <>
+                        <FilterSelect label="Unidad" value={unidad} onChange={setUnidad} options={UNIDAD_OPTIONS} />
+                        <FilterSelect label="Antigüedad" value={antiguedad} onChange={setAntiguedad} options={ANTIGUEDAD_OPTIONS} />
+                    </>
+                )}
+            </div>
             <DataTable headers={headers} rows={filtered} highlightCol={highlightCol} />
-            {search && <div style={{ marginTop: '8px', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{filtered.length} de {rows.length} asesores</div>}
+            {hayFiltrosActivos && <div style={{ marginTop: '8px', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{filtered.length} de {rows.length} asesores</div>}
         </div>
     );
 };
@@ -536,15 +621,17 @@ const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string; selectedDate:
     const topPendientes = [...data].filter(r => riPend(r) > 0).sort((a, b) => riPend(b) - riPend(a));
 
     // Tables
-    const pendHeaders = ['#', 'Asesor', 'Suc', 'Pólizas Pendientes', 'Recibo Inicial Pendiente'];
-    const pendRows = data.filter(r => polPend(r) > 0 || riPend(r) > 0)
-        .sort((a, b) => Math.abs(riPend(b)) - Math.abs(riPend(a)))
-        .map((r, i) => [i + 1, r['Nombre Asesor'], r.Sucursal, fmtNum(polPend(r)), fmt(riPend(r))]);
+    const pendHeaders = ['#', 'Asesor', 'Suc', 'Fecha Conexión', 'Pólizas Pendientes', 'Recibo Inicial Pendiente'];
+    const pendList = data.filter(r => polPend(r) > 0 || riPend(r) > 0)
+        .sort((a, b) => Math.abs(riPend(b)) - Math.abs(riPend(a)));
+    const pendRows = pendList.map((r, i) => [i + 1, r['Nombre Asesor'], r.Sucursal, fmtFechaConexion(r.Fecha_Conexion), fmtNum(polPend(r)), fmt(riPend(r))]);
+    const pendMeta: RowMeta[] = pendList.map(r => ({ suc: r.Sucursal, fechaConexion: r.Fecha_Conexion }));
 
-    const pagHeaders = ['#', 'Asesor', 'Suc', 'Pólizas Pagadas', 'Recibo Inicial Pagado'];
-    const pagRows = data.filter(r => polPag(r) > 0 || riPag(r) > 0)
-        .sort((a, b) => Math.abs(riPag(b)) - Math.abs(riPag(a)))
-        .map((r, i) => [i + 1, r['Nombre Asesor'], r.Sucursal, fmtNum(polPag(r)), fmt(riPag(r))]);
+    const pagHeaders = ['#', 'Asesor', 'Suc', 'Fecha Conexión', 'Pólizas Pagadas', 'Recibo Inicial Pagado'];
+    const pagList = data.filter(r => polPag(r) > 0 || riPag(r) > 0)
+        .sort((a, b) => Math.abs(riPag(b)) - Math.abs(riPag(a)));
+    const pagRows = pagList.map((r, i) => [i + 1, r['Nombre Asesor'], r.Sucursal, fmtFechaConexion(r.Fecha_Conexion), fmtNum(polPag(r)), fmt(riPag(r))]);
+    const pagMeta: RowMeta[] = pagList.map(r => ({ suc: r.Sucursal, fechaConexion: r.Fecha_Conexion }));
 
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
@@ -626,22 +713,24 @@ const PagadoPendiente: React.FC<{ data: any[]; fechaCorte: string; selectedDate:
             )}
 
             {/* ── TABLA: Asesores con Pólizas Pendientes ── */}
-            {pendRows.length > 0 && <SearchableTable title={`⚠️ Asesores con Pólizas Pendientes (${pendRows.length})`} headers={pendHeaders} rows={pendRows} />}
+            {pendRows.length > 0 && <SearchableTable title={`⚠️ Asesores con Pólizas Pendientes (${pendRows.length})`} headers={pendHeaders} rows={pendRows} meta={pendMeta} />}
 
             {/* ── TABLA: Asesores con Pólizas Pagadas ── */}
-            {pagRows.length > 0 && <SearchableTable title={`✅ Asesores con Pólizas Pagadas (${pagRows.length})`} headers={pagHeaders} rows={pagRows} />}
+            {pagRows.length > 0 && <SearchableTable title={`✅ Asesores con Pólizas Pagadas (${pagRows.length})`} headers={pagHeaders} rows={pagRows} meta={pagMeta} />}
 
             {/* ── TABLA: Asesores sin Actividad ── */}
             {(() => {
-                const sinActRows = data.filter(r => polPag(r) <= 0 && polPend(r) <= 0 && riPag(r) <= 0 && riPend(r) <= 0)
-                    .map((r, i) => [
-                        i + 1, 
-                        r['Nombre Asesor'], 
-                        r.Sucursal,
-                        <SinEmisionCopyButton fechaCorte={fechaCorte} asesorNombre={(r['Nombre Asesor'] || '').split(' ')[0]} />
-                    ]);
+                const sinActList = data.filter(r => polPag(r) <= 0 && polPend(r) <= 0 && riPag(r) <= 0 && riPend(r) <= 0);
+                const sinActRows = sinActList.map((r, i) => [
+                    i + 1,
+                    r['Nombre Asesor'],
+                    r.Sucursal,
+                    fmtFechaConexion(r.Fecha_Conexion),
+                    <SinEmisionCopyButton fechaCorte={fechaCorte} asesorNombre={(r['Nombre Asesor'] || '').split(' ')[0]} />
+                ]);
+                const sinActMeta: RowMeta[] = sinActList.map(r => ({ suc: r.Sucursal, fechaConexion: r.Fecha_Conexion }));
                 return sinActRows.length > 0 ? (
-                    <SearchableTable title={`⚪ Asesores sin Actividad (${sinActRows.length})`} headers={['#', 'Asesor', 'Suc', 'Acción']} rows={sinActRows} />
+                    <SearchableTable title={`⚪ Asesores sin Actividad (${sinActRows.length})`} headers={['#', 'Asesor', 'Suc', 'Fecha Conexión', 'Acción']} rows={sinActRows} meta={sinActMeta} />
                 ) : null;
             })()}
         </motion.div>
@@ -809,7 +898,7 @@ export const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selec
                         {/* TABLA 1: ASESORES CON EMISIÓN */}
                         <SearchableTable
                             title={`✅ Asesores CON EMISIÓN DE PÓLIZAS ${ramoMode === 'vida' ? '(Vida)' : ramoMode === 'gmm' ? '(GMM)' : '(Vida y GMM)'} (${conEmisionList.length})`}
-                            headers={['#', 'Asesor', 'Suc', 'Emitido Vida', 'Emitido GMM', 'Pagado Vida', 'Pagado GMM', 'Prima Vida', 'Prima GMM', 'Estatus Comercial']}
+                            headers={['#', 'Asesor', 'Suc', 'Fecha Conexión', 'Emitido Vida', 'Emitido GMM', 'Pagado Vida', 'Pagado GMM', 'Prima Vida', 'Prima GMM', 'Estatus Comercial']}
                             rows={conEmisionList.map((r: any, i: number) => {
                                 const pagVal = (Number(r.Pagado_Vida) || 0) + (Number(r.Pagado_GMM) || 0);
                                 const status = pagVal > 0 ? '✅ Emitido y Pagado' : '⏳ Emitido (Pendiente de Cobro)';
@@ -817,6 +906,7 @@ export const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selec
                                     i + 1,
                                     r.Asesor,
                                     r.Suc,
+                                    fmtFechaConexion(r.Fecha_Conexion),
                                     fmtNum(r.Emitido_Vida),
                                     fmtNum(r.Emitido_GMM),
                                     fmtNum(r.Pagado_Vida),
@@ -826,12 +916,14 @@ export const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selec
                                     status
                                 ];
                             })}
+                            meta={conEmisionList.map((r: any) => ({ suc: r.Suc, fechaConexion: r.Fecha_Conexion }))}
                         />
 
                         {/* TABLA 2: ASESORES SIN EMISIÓN */}
                         <SearchableTable
                             title={`⚪ Asesores SIN EMISIÓN DE PÓLIZAS ${ramoMode === 'vida' ? '(Vida)' : ramoMode === 'gmm' ? '(GMM)' : '(Vida y GMM)'} (${sinEmisionList.length})`}
-                            headers={isAdvisorView ? ['#', 'Asesor', 'Suc', 'Prima Vida', 'Prima GMM', 'Estatus'] : ['#', 'Asesor', 'Suc', 'Prima Vida', 'Prima GMM', 'Estatus', 'Acción']}
+                            headers={isAdvisorView ? ['#', 'Asesor', 'Suc', 'Fecha Conexión', 'Prima Vida', 'Prima GMM', 'Estatus'] : ['#', 'Asesor', 'Suc', 'Fecha Conexión', 'Prima Vida', 'Prima GMM', 'Estatus', 'Acción']}
+                            meta={sinEmisionList.map((r: any) => ({ suc: r.Suc, fechaConexion: r.Fecha_Conexion }))}
                             rows={sinEmisionList.map((r: any, i: number) => {
                                 const firstName = (r.Asesor || '').split(' ')[0];
                                 const isCritVida = r['3_Meses_Sin_Emisión_Vida'] === 'i' || r['3_Meses_Sin_Emisión_Vida'] === 'x';
@@ -860,6 +952,7 @@ export const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selec
                                     i + 1,
                                     r.Asesor,
                                     r.Suc,
+                                    fmtFechaConexion(r.Fecha_Conexion),
                                     fmt(r.Prima_Pagada_Vida),
                                     fmt(r.Prima_Pagada_GMM),
                                     status
@@ -876,11 +969,13 @@ export const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selec
                         {/* TABLA 3: ASESORES CON PÓLIZAS PAGADAS */}
                         <SearchableTable
                             title={`✅ Asesores CON PÓLIZAS PAGADAS ${ramoMode === 'vida' ? '(Vida)' : ramoMode === 'gmm' ? '(GMM)' : '(Vida y GMM)'} (${conPagosList.length})`}
-                            headers={['#', 'Asesor', 'Suc', 'Pagado Vida', 'Pagado GMM', 'Prima Vida', 'Prima GMM']}
+                            headers={['#', 'Asesor', 'Suc', 'Fecha Conexión', 'Pagado Vida', 'Pagado GMM', 'Prima Vida', 'Prima GMM']}
+                            meta={conPagosList.map((r: any) => ({ suc: r.Suc, fechaConexion: r.Fecha_Conexion }))}
                             rows={conPagosList.map((r: any, i: number) => [
                                 i + 1,
                                 r.Asesor,
                                 r.Suc,
+                                fmtFechaConexion(r.Fecha_Conexion),
                                 fmtNum(r.Pagado_Vida),
                                 fmtNum(r.Pagado_GMM),
                                 fmt(r.Prima_Pagada_Vida),
@@ -891,7 +986,8 @@ export const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selec
                         {/* TABLA 4: ASESORES SIN PÓLIZAS PAGADAS */}
                         <SearchableTable
                             title={`⚪ Asesores SIN PÓLIZAS PAGADAS ${ramoMode === 'vida' ? '(Vida)' : ramoMode === 'gmm' ? '(GMM)' : '(Vida y GMM)'} (${sinPagosList.length})`}
-                            headers={isAdvisorView ? ['#', 'Asesor', 'Suc', 'Prima Vida', 'Prima GMM', 'Estatus'] : ['#', 'Asesor', 'Suc', 'Prima Vida', 'Prima GMM', 'Estatus', 'Acción']}
+                            headers={isAdvisorView ? ['#', 'Asesor', 'Suc', 'Fecha Conexión', 'Prima Vida', 'Prima GMM', 'Estatus'] : ['#', 'Asesor', 'Suc', 'Fecha Conexión', 'Prima Vida', 'Prima GMM', 'Estatus', 'Acción']}
+                            meta={sinPagosList.map((r: any) => ({ suc: r.Suc, fechaConexion: r.Fecha_Conexion }))}
                             rows={sinPagosList.map((r: any, i: number) => {
                                 const firstName = (r.Asesor || '').split(' ')[0];
                                 const isCritVida = r['3_Meses_Sin_Emisión_Vida'] === 'i' || r['3_Meses_Sin_Emisión_Vida'] === 'x';
@@ -920,6 +1016,7 @@ export const AsesoresSinEmision: React.FC<{ data: any; fechaCorte: string; selec
                                     i + 1,
                                     r.Asesor,
                                     r.Suc,
+                                    fmtFechaConexion(r.Fecha_Conexion),
                                     fmt(r.Prima_Pagada_Vida),
                                     fmt(r.Prima_Pagada_GMM),
                                     status
@@ -1110,6 +1207,8 @@ export const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDat
         return row;
     });
 
+    const proactivosMeta: RowMeta[] = sortedData.map((r: any) => ({ suc: r.SUC, fechaConexion: r.Fecha_Conexion && r.Fecha_Conexion !== 'N/A' ? r.Fecha_Conexion : undefined }));
+
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px' }}>
@@ -1182,7 +1281,7 @@ export const Proactivos: React.FC<{ data: any[]; fechaCorte: string; selectedDat
                 </div>
             </div>
 
-            <SearchableTable title="📋 Detalle Completo" headers={headers} rows={rows} />
+            <SearchableTable title="📋 Detalle Completo" headers={headers} rows={rows} meta={proactivosMeta} nameCol={1} />
         </motion.div>
     );
 };
@@ -1245,11 +1344,12 @@ export const ComparativoVida: React.FC<{ data: any; fechaCorte: string; isGerenc
     const trendPie = [{ name: 'Creciendo', value: crecientes, fill: '#00E676' }, { name: 'Decreciendo', value: decrecientes, fill: '#FF6B6B' }, { name: 'Sin cambio', value: sinCambio, fill: '#9E9E9E' }];
 
     const sorted = [...enhancedIndividuals].sort((a: any, b: any) => (Number(b.Crec_Prima_Pagada) || 0) - (Number(a.Crec_Prima_Pagada) || 0));
-    const headers = ['#', 'Asesor', 'Suc', 'Pól. Anterior', 'Pól. Actual', 'Crec. Pól.', '% Crec. Pól.', 'Prima Anterior', 'Prima Actual', 'Crec. Prima', '% Crec. Prima'];
+    const headers = ['#', 'Asesor', 'Suc', 'Fecha Conexión', 'Pól. Anterior', 'Pól. Actual', 'Crec. Pól.', '% Crec. Pól.', 'Prima Anterior', 'Prima Actual', 'Crec. Prima', '% Crec. Prima'];
     const rows = sorted.map((r: any, i: number) => [
-        i + 1, r['Nombre del Asesor'] || r.Asesor, r.Sucursal, fmtNum(r.Polizas_Pagadas_Año_Anterior), fmtNum(r.Polizas_Pagadas_Año_Actual), fmtNum(r.Crec_Polizas_Pagadas), pct(r['%_Crec_Polizas_Pagadas']),
+        i + 1, r['Nombre del Asesor'] || r.Asesor, r.Sucursal, fmtFechaConexion(r.Fecha_Conexion), fmtNum(r.Polizas_Pagadas_Año_Anterior), fmtNum(r.Polizas_Pagadas_Año_Actual), fmtNum(r.Crec_Polizas_Pagadas), pct(r['%_Crec_Polizas_Pagadas']),
         fmt(r.Prima_Pagada_Año_Anterior), fmt(r.Prima_Pagada_Año_Actual || r.Prima_Pagada_Añoa_Actual), fmt(r.Crec_Prima_Pagada), pct(r['%_Crec_Prima_Pagada']),
     ]);
+    const comparativoMeta: RowMeta[] = sorted.map((r: any) => ({ suc: r.Sucursal, fechaConexion: r.Fecha_Conexion }));
 
     // Chart helpers
     const maxPrima = Math.max(primaAnt, primaAct, 1);
@@ -1386,7 +1486,8 @@ export const ComparativoVida: React.FC<{ data: any; fechaCorte: string; isGerenc
                 title="📋 Detalle Comparativo por Asesor"
                 headers={headers}
                 rows={rows}
-                highlightCol={10}
+                meta={comparativoMeta}
+                highlightCol={11}
             />
         </motion.div>
     );
