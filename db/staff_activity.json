@@ -329,6 +329,21 @@
           "tareas_actividades": 57,
           "observaciones": "Fer Carlos registra una sólida actividad comercial en el área de Desarrollo con **31 Citas Iniciales** y **8 Citas de Cierre**. En el acompañamiento de equipo, acumula **23 Sesiones 1:1**, **6 Sesiones de Negocios** y **8 Arranques Rápidos**, junto con **57 Tareas / Actividades** completadas en su bitácora.\n\nÁrea de mejora: Excelente ritmo de acompañamiento y sesiones individuales. La prioridad en este periodo es avanzar en la conversión de las 8 Citas de Cierre para formalizar firmas de contratos y emisiones de pólizas cobradas."
         }
+      },
+      {
+        "date": "2026-09-30",
+        "type": "lunes_cierre",
+        "data": {
+          "citas_iniciales": 55,
+          "citas_cierre": 20,
+          "polizas": 0,
+          "contratos_firmados": 0,
+          "sesiones_11": 23,
+          "sesiones_negocios": 6,
+          "arranque_rapido": 15,
+          "tareas_actividades": 57,
+          "observaciones": "Fernanda cierra el mes de septiembre con un espectacular sprint final en su embudo de Desarrollo, alcanzando **55 Citas Iniciales** (+24 en el cierre) y **20 Citas de Cierre** (+12). En el desarrollo de equipo logra un sólido impulso acumulando **15 Arranques Rápidos** (+7), manteniendo un sobresaliente acompañamiento con **23 Sesiones 1:1**, **6 Sesiones de Negocios** y **57 Tareas / Actividades** completadas en su bitácora.\n\nÁrea de mejora: Cierre mensual muy potente en volumen de prospección y acompañamiento de equipo. De cara a octubre, el objetivo prioritario será enfocar la máxima conversión en esas 20 Citas de Cierre para lograr emisiones de pólizas cobradas y contratos firmados."
+        }
       }
     ],
     "goals": {
