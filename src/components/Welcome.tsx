@@ -222,10 +222,11 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                 </button>
             </div>
 
-            {/* Executive Notice Center (Abanico Desplegable) */}
+            {/* Executive Notice Center (Abanico Desplegable) — oculto temporalmente; quitar display:'none' para volver a mostrarlo */}
             <div
                 className="glass-card"
                 style={{
+                    display: 'none',
                     textAlign: 'left',
                     borderLeft: `4px solid ${theme?.colores?.acentos || 'var(--accent-gold)'}`,
                     padding: '20px 24px',
@@ -350,11 +351,11 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                                     <div style={{ flex: 1 }}>
                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
                                             <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>⚡ Campaña Impulso 10K (Nuevos Asesores)</strong>
-                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(255, 152, 0, 0.15)', color: '#FFB74D' }}>SEPTIEMBRE 2026</span>
+                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(255, 152, 0, 0.15)', color: '#FFB74D' }}>OCTUBRE 2026</span>
                                         </div>
-                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>¡Únete en septiembre y recibe un <span style={{ color: '#FF6B6B', fontWeight: 700 }}>Bono de Bienvenida de $10,000 MXN</span> al lograr tu conexión con SMNYL! Cortes semanales los viernes con depósito los lunes directamente a tu estado de cuenta.</p>
+                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>¡Únete en octubre y recibe un <span style={{ color: '#FF6B6B', fontWeight: 700 }}>Bono de Bienvenida de $10,000 MXN</span> al lograr tu conexión con SMNYL! Cortes semanales los viernes con depósito los lunes directamente a tu estado de cuenta.</p>
                                         <button 
-                                            onClick={() => setSelectedPdf({ title: 'Campaña Impulso 10K Sep 2026', path: '/bases_campanas/Impulso%2010k/Campa%C3%B1a%20Impulso%2010k%20Sep%202026.pdf' })}
+                                            onClick={() => setSelectedPdf({ title: 'Campaña Impulso 10K Oct 2026', path: '/bases_campanas/Impulso%2010k/Campa%C3%B1a%20Impulso%2010k%202026.pdf' })}
                                             style={{ marginTop: '10px', display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '8px', background: 'rgba(255, 152, 0, 0.15)', border: '1px solid rgba(255, 152, 0, 0.4)', color: '#FFB74D', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer' }}
                                         >
                                             <Eye size={14} /> 📄 Ver PDF Oficial

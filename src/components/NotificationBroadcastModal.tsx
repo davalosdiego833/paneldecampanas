@@ -20,9 +20,9 @@ const PRESET_DESTINATIONS = [
     { label: '🏆 Sección de Campañas', value: '/campanas' },
     { label: '📊 Resumen de Asesores', value: '/resumen-asesores' },
     { label: '🎯 Meta Anual 2026', value: '/meta-anual' },
-    { label: '📄 PDF Campañas Vigentes Septiembre 2026', value: '/bases_campanas/Campanas%20Septiembre%202026/Campa%C3%B1as%20vigentes%20Septiembre%202026.pdf' },
+    { label: '📄 PDF Campañas Vigentes Octubre 2026', value: '/bases_campanas/Campanas%20Octubre%202026/Campa%C3%B1as%20vigentes%20Octubre%202026.pdf' },
     { label: '📄 PDF Conduce tu Éxito 2026', value: '/bases_campanas/Conduce%20Tu%20Exito%202026/Campa%C3%B1a%20Conduce%20Tu%20%C3%89xito%202026.pdf' },
-    { label: '📄 PDF Impulso 10K Sep 2026', value: '/bases_campanas/Impulso%2010k/Campa%C3%B1a%20Impulso%2010k%20Sep%202026.pdf' },
+    { label: '📄 PDF Impulso 10K Oct 2026', value: '/bases_campanas/Impulso%2010k/Campa%C3%B1a%20Impulso%2010k%202026.pdf' },
     { label: '📄 PDF Momentum Eur3ka 2026', value: '/bases_campanas/MOMENTUM/Campa%C3%B1a%20Momentum%20Eur3ka%202026.pdf' },
     { label: '📄 PDF Vida Mujer (Fuerza de Ventas)', value: '/bases_campanas/El%20Poder%20de%20Elegirte/Campa%C3%B1a%20El%20Poder%20de%20Elegirte%20(Fuerza%20de%20Ventas).pdf' },
     { label: '📄 PDF Vida Mujer (Clientes)', value: '/bases_campanas/El%20Poder%20de%20Elegirte/Campa%C3%B1a%20El%20Poder%20de%20Elegirte%20(Clientes).pdf' },
@@ -33,8 +33,9 @@ const PRESET_DESTINATIONS = [
     { label: '📄 PDF Bases Camino a la Cumbre', value: '/bases_campanas/Camino%20a%20la%20cumbre/Bases%20Camino%20a%20la%20Cumbre_2026.pdf' },
     { label: '📄 PDF Bases Legión Centurión', value: '/bases_campanas/Legion/Legio%CC%81n%20Centurio%CC%81n%20Asesores%202026.pdf' },
     { label: '📄 PDF Bono de Conexión', value: '/bases_campanas/Bono%20de%20conexion/Campa%C3%B1a%20%2B%20Bono%20de%20Conexi%C3%B3n%202026.pdf' },
-    { label: '📄 PDF MSI Iniciales GMM', value: '/bases_campanas/MSI%20Iniciales/MSI%20Iniciales%20(jul-sep26.pdf' },
-    { label: '📄 PDF MSI Renovación GMM', value: '/bases_campanas/MSI%20RENOVACION/Renovaci%C3%B3n%20GMM%20MSI%20(jul-sep26).pdf' },
+    { label: '📄 PDF MSI Iniciales GMM', value: '/bases_campanas/MSI%20Iniciales/MSI%20Iniciales%20(oct-dic26).pdf' },
+    { label: '📄 PDF MSI Renovación GMM', value: '/bases_campanas/MSI%20RENOVACION/Renovaci%C3%B3n%20GMM%20MSI%20(oct-dic26).pdf' },
+    { label: '📄 PDF Altamar 2027 (Asesores)', value: '/bases_campanas/Altamar%202027/Altamar%202027%20-%20Asesores.pdf' },
     { label: '🔗 Enlace Externo o Personalizado', value: 'custom' },
 ];
 
