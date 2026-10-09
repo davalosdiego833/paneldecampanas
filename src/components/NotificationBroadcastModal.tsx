@@ -36,6 +36,7 @@ const PRESET_DESTINATIONS = [
     { label: '📄 PDF MSI Iniciales GMM', value: '/bases_campanas/MSI%20Iniciales/MSI%20Iniciales%20(oct-dic26).pdf' },
     { label: '📄 PDF MSI Renovación GMM', value: '/bases_campanas/MSI%20RENOVACION/Renovaci%C3%B3n%20GMM%20MSI%20(oct-dic26).pdf' },
     { label: '📄 PDF Altamar 2027 (Asesores)', value: '/bases_campanas/Altamar%202027/Altamar%202027%20-%20Asesores.pdf' },
+    { label: '📄 PDF Comisiones Asesores', value: '/bases_campanas/Comisiones%20Asesores/Comisiones%20Asesores.pdf' },
     { label: '🔗 Enlace Externo o Personalizado', value: 'custom' },
 ];
 
