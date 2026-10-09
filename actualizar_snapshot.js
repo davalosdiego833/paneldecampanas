@@ -1364,7 +1364,10 @@ const run = async () => {
                         const month = match[1];
                         const year = match[2];
                         const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1).toLowerCase();
-                        gmmCutoff = `31 de ${capitalizedMonth} de ${year}`;
+                        const mesesEs = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+                        const mIdx = mesesEs.indexOf(month.toLowerCase());
+                        const ultimoDia = mIdx >= 0 ? new Date(Number(year), mIdx + 1, 0).getDate() : 31;
+                        gmmCutoff = `${ultimoDia} de ${capitalizedMonth} de ${year}`;
                     }
                 }
             }

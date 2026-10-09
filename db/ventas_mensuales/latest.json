@@ -1,199 +1,181 @@
 {
-  "mes": "AGOSTO",
-  "mesLabel": "Agosto 2026",
-  "generadoEn": "2026-09-03T20:28:55.323Z",
+  "mes": "SEPTIEMBRE",
+  "mesLabel": "Septiembre 2026",
+  "generadoEn": "2026-10-09T16:09:39.386Z",
   "tabla": [
     {
-      "asesor": "DESIREE DE LA PEÑA OROZCO",
-      "polizas": 2,
-      "vida": 2,
-      "primaVida": 163000.16845350998,
-      "gmm": 0,
-      "primaGmm": 0,
-      "primaTotal": 163000.16845350998
-    },
-    {
       "asesor": "PAULINA LIZBETH SOTO MUÑIZ",
-      "polizas": 2.5,
-      "vida": 2,
-      "primaVida": 64137.03144217,
-      "gmm": 0.5,
-      "primaGmm": 26627.46,
-      "primaTotal": 90764.49144217
-    },
-    {
-      "asesor": "JOSE RENE DE ALBA MORALES",
-      "polizas": 1,
-      "vida": 1,
-      "primaVida": 90033.45425668,
+      "polizas": 3,
+      "vida": 3,
+      "primaVida": 134288.94553399002,
       "gmm": 0,
       "primaGmm": 0,
-      "primaTotal": 90033.45425668
+      "primaTotal": 134288.94553399002
     },
     {
       "asesor": "MONICA ANDREA AMBRIZ GOMEZ",
       "polizas": 2.5,
       "vida": 2,
-      "primaVida": 86047.3999781774,
+      "primaVida": 69402.4902800239,
       "gmm": 0.5,
-      "primaGmm": 2305.19,
-      "primaTotal": 88352.5899781774
+      "primaGmm": 26031.2,
+      "primaTotal": 95433.6902800239
     },
     {
-      "asesor": "MONSERRAT VELASCO SANTOS",
-      "polizas": 1,
-      "vida": 1,
-      "primaVida": 58335.86210191999,
-      "gmm": 0,
-      "primaGmm": 0,
-      "primaTotal": 58335.86210191999
-    },
-    {
-      "asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
-      "polizas": 1,
-      "vida": 1,
-      "primaVida": 33322.85476690999,
-      "gmm": 0,
-      "primaGmm": 0,
-      "primaTotal": 33322.85476690999
-    },
-    {
-      "asesor": "MARIO IVAN ROMERO GONZALEZ",
-      "polizas": 1.5,
-      "vida": 1,
-      "primaVida": 18377.59324875,
+      "asesor": "ANAIS LUA MORENO",
+      "polizas": 2.5,
+      "vida": 2,
+      "primaVida": 65399.92533736,
       "gmm": 0.5,
-      "primaGmm": 2026.22,
-      "primaTotal": 20403.81324875
+      "primaGmm": 9718.79,
+      "primaTotal": 75118.71533736
     },
     {
-      "asesor": "PAULA ANGELICA LOMELI CAZARES",
-      "polizas": 1,
-      "vida": 1,
-      "primaVida": 16404.630299279997,
+      "asesor": "DESIREE DE LA PEÑA OROZCO",
+      "polizas": 3.5,
+      "vida": 3,
+      "primaVida": 43496.1056338275,
+      "gmm": 0.5,
+      "primaGmm": 26147.4,
+      "primaTotal": 69643.5056338275
+    },
+    {
+      "asesor": "MARICELA ARREOLA LOPEZ",
+      "polizas": 0.5,
+      "vida": 0,
+      "primaVida": 0,
+      "gmm": 0.5,
+      "primaGmm": 32731.99,
+      "primaTotal": 32731.99
+    },
+    {
+      "asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+      "polizas": 2,
+      "vida": 2,
+      "primaVida": 31168.9652963592,
       "gmm": 0,
       "primaGmm": 0,
-      "primaTotal": 16404.630299279997
+      "primaTotal": 31168.9652963592
     },
     {
       "asesor": "DARINKA UREÑA CASILLAS",
-      "polizas": 2,
-      "vida": 2,
-      "primaVida": 14722.244738280298,
-      "gmm": 0,
-      "primaGmm": 0,
-      "primaTotal": 14722.244738280298
-    },
-    {
-      "asesor": "JOSE ANTEMIO OLIVA SANTOS",
-      "polizas": 1.5,
-      "vida": 1,
-      "primaVida": 1965.0347711552001,
+      "polizas": 0.5,
+      "vida": 0,
+      "primaVida": 0,
       "gmm": 0.5,
-      "primaGmm": 5451.7,
-      "primaTotal": 7416.7347711552
-    },
-    {
-      "asesor": "JORGE ANTONIO LUNA LARA",
-      "polizas": 1,
-      "vida": 1,
-      "primaVida": 6092.73195629,
-      "gmm": 0,
-      "primaGmm": 0,
-      "primaTotal": 6092.73195629
+      "primaGmm": 31083.59,
+      "primaTotal": 31083.59
     },
     {
       "asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
       "polizas": 2,
       "vida": 2,
-      "primaVida": 4798.5596049,
+      "primaVida": 29121.770186639995,
       "gmm": 0,
       "primaGmm": 0,
-      "primaTotal": 4798.5596049
+      "primaTotal": 29121.770186639995
     },
     {
       "asesor": "OSCAR RAMIREZ RUIZ",
-      "polizas": 1,
+      "polizas": 1.5,
       "vida": 1,
-      "primaVida": 2397.1862700000006,
-      "gmm": 0,
-      "primaGmm": 0,
-      "primaTotal": 2397.1862700000006
-    },
-    {
-      "asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
-      "polizas": 1,
-      "vida": 1,
-      "primaVida": 1960.61589912,
-      "gmm": 0,
-      "primaGmm": 0,
-      "primaTotal": 1960.61589912
-    },
-    {
-      "asesor": "VELIA PATRICIA BERNAL RAMOS",
-      "polizas": 0.5,
-      "vida": 0,
-      "primaVida": 0,
+      "primaVida": 12065.353902699999,
       "gmm": 0.5,
-      "primaGmm": 717.69,
-      "primaTotal": 717.69
+      "primaGmm": 16207.97,
+      "primaTotal": 28273.323902699998
+    },
+    {
+      "asesor": "GABRIELA CASTAÑEDA SALAZAR",
+      "polizas": 2,
+      "vida": 2,
+      "primaVida": 5186.565501,
+      "gmm": 0,
+      "primaGmm": 0,
+      "primaTotal": 5186.565501
+    },
+    {
+      "asesor": "JOSE ANTEMIO OLIVA SANTOS",
+      "polizas": 1.5,
+      "vida": 1,
+      "primaVida": 1873.9501372799998,
+      "gmm": 0.5,
+      "primaGmm": 2707.88,
+      "primaTotal": 4581.83013728
+    },
+    {
+      "asesor": "GUILLERMO JOSE RAMIREZ RAMIREZ",
+      "polizas": 1,
+      "vida": 1,
+      "primaVida": 2488.16850403,
+      "gmm": 0,
+      "primaGmm": 0,
+      "primaTotal": 2488.16850403
+    },
+    {
+      "asesor": "MONSERRAT VELASCO SANTOS",
+      "polizas": 1,
+      "vida": 1,
+      "primaVida": 2387.8006195699995,
+      "gmm": 0,
+      "primaGmm": 0,
+      "primaTotal": 2387.8006195699995
     }
   ],
   "totales": {
-    "primaVida": 561595.3677871427,
-    "polizasVida": 19,
-    "primaGmm": 37128.26,
-    "polizasGmm": 2.5,
-    "primaTotal": 598723.6277871428,
-    "polizasTotal": 21.5
+    "primaVida": 396880.0409327806,
+    "polizasVida": 20,
+    "primaGmm": 144628.82,
+    "polizasGmm": 3.5,
+    "primaTotal": 541508.8609327807,
+    "polizasTotal": 23.5
   },
   "campeones": [
     {
       "key": "polizasVida",
       "categoria": "Pólizas Vida",
       "novato": {
-        "nombre": "MONSERRAT VELASCO SANTOS",
-        "raw": "MONSE"
+        "nombre": "LUIS ANTONIO SALAZAR ESPINOSA",
+        "raw": "LUIS SALAZAR"
       },
       "profesional": {
-        "nombre": "DESIREE DE LA PEÑA OROZCO",
-        "raw": "DESI"
+        "nombre": "PAULINA LIZBETH SOTO MUÑIZ",
+        "raw": "PAU SOTO"
       }
     },
     {
       "key": "primaVida",
       "categoria": "Prima Vida",
       "novato": {
-        "nombre": "MONSERRAT VELASCO SANTOS",
-        "raw": "MONSE"
+        "nombre": "LUIS ANTONIO SALAZAR ESPINOSA",
+        "raw": "LUIS SALAZAR"
       },
       "profesional": {
-        "nombre": "DESIREE DE LA PEÑA OROZCO",
-        "raw": "DESI"
+        "nombre": "PAULINA LIZBETH SOTO MUÑIZ",
+        "raw": "PAU SOTO"
       }
     },
     {
       "key": "polizasGmm",
       "categoria": "Pólizas GMM",
       "novato": {
-        "nombre": "JOSE ANTEMIO OLIVA SANTOS",
-        "raw": "ANTEMIO"
+        "nombre": "OSCAR RAMIREZ RUIZ",
+        "raw": "OSCAR"
       },
       "profesional": {
-        "nombre": "PAULINA LIZBETH SOTO MUÑIZ",
-        "raw": "PAU SOTO"
+        "nombre": "MARICELA ARREOLA LOPEZ",
+        "raw": "MARICELA"
       }
     },
     {
       "key": "primaGmm",
       "categoria": "Prima GMM",
       "novato": {
-        "nombre": "JOSE ANTEMIO OLIVA SANTOS",
-        "raw": "ANTEMIO"
+        "nombre": "OSCAR RAMIREZ RUIZ",
+        "raw": "OSCAR"
       },
       "profesional": {
-        "nombre": "PAULINA LIZBETH SOTO MUÑIZ",
-        "raw": "PAU SOTO"
+        "nombre": "MARICELA ARREOLA LOPEZ",
+        "raw": "MARICELA"
       }
     }
   ]

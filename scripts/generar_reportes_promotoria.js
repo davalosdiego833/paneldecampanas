@@ -1,5 +1,5 @@
 // Genera los 3 Excels de seguimiento manual que Diego mandaba a mano
-// (Legión Centurión, Convenciones, MDRT) a partir del snapshot actual del panel.
+// (Legión Centurión, Convenciones, MDRT y MDRT Aspirantes) a partir del snapshot actual del panel.
 // Uso: node scripts/generar_reportes_promotoria.js [carpeta_salida]
 import ExcelJS from 'exceljs';
 import fs from 'fs';
@@ -175,21 +175,36 @@ async function buildConvenciones() {
 // 3. MDRT
 // ============================================================
 const META_MDRT_MIEMBRO = 1810400;
+// Aspirantes (asesores primerizos) ganan el evento llegando al 50% de la meta MDRT.
+const META_MDRT_ASPIRANTE = META_MDRT_MIEMBRO * 0.5;
+const CLAVES_ASPIRANTES = [
+    '118246', // Antemio Oliva
+    '105696', // Gabriela Castañeda
+    '118915', // Humberto Sandoval
+    '111056', // Jorge Luna
+    '94156',  // María Teresa Asencio
+    '117440', // Monserrat Velasco
+    '103982', // Fernanda Ríos
+    '118069', // Iván Romero
+    '110575', // René de Alba
+    '116883', // Sofía Campillo
+    '104750', // Paulina Soto
+];
 
-async function buildMdrt() {
+async function buildMdrt({ claves = null, meta = META_MDRT_MIEMBRO, titulo = 'MESA DEL MILLÓN DE DÓLARES — PRIMA INICIAL ANUALIZADA', etiquetaMeta = 'META MIEMBRO MDRT', etiquetaNivel = 'MDRT', hojaNombre = 'MDRT', archivo = 'MDRT_Promotoria.xlsx' } = {}) {
     const wb = new ExcelJS.Workbook();
-    const ws = wb.addWorksheet('MDRT', { views: [{ showGridLines: false }] });
+    const ws = wb.addWorksheet(hojaNombre, { views: [{ showGridLines: false }] });
     ws.columns = [{ width: 4 }, { width: 6 }, { width: 32 }, { width: 10 }, { width: 16 }, { width: 16 }, { width: 18 }, { width: 10 }];
 
     await addLogo(wb, ws, 'mdrt.png', 'B2:D6');
 
     ws.mergeCells('E2:H2');
-    ws.getCell('E2').value = 'MESA DEL MILLÓN DE DÓLARES — PRIMA INICIAL ANUALIZADA';
+    ws.getCell('E2').value = titulo;
     ws.getCell('E2').font = { bold: true, size: 12, color: { argb: NAVY } };
     ws.getCell('E2').alignment = { horizontal: 'center', wrapText: true };
 
     ws.mergeCells('E4:H4');
-    ws.getCell('E4').value = `META MIEMBRO MDRT: $${META_MDRT_MIEMBRO.toLocaleString('es-MX')}`;
+    ws.getCell('E4').value = `${etiquetaMeta}: $${meta.toLocaleString('es-MX')}`;
     ws.getCell('E4').font = { bold: true, color: { argb: NAVY } };
     ws.mergeCells('E5:H5');
     ws.getCell('E5').value = `Meses restantes del año (incluye ${MESES_NOMBRES[MES_ACTUAL-1]}): ${MESES_RESTANTES}`;
@@ -200,34 +215,43 @@ async function buildMdrt() {
     ws.getCell('B9').value = `Avance al ${fechaCorte}`;
     ws.getCell('B9').font = { italic: true, size: 10, color: { argb: 'FF555555' } };
 
-    const headers = ['Lugar', 'Asesor', 'Clave', 'Total Prima', 'Faltante MDRT', 'Faltante Prom./Mes', 'Nivel'];
+    const headers = ['Lugar', 'Asesor', 'Clave', 'Total Prima', `Faltante ${etiquetaNivel}`, 'Faltante Prom./Mes', 'Nivel'];
     headerRow(ws, 11, headers, NAVY);
 
-    const rows = [...(data.campaigns.mdrt || [])].sort((a,b) => (b.PA_Acumulada||0) - (a.PA_Acumulada||0));
+    const rows = [...(data.campaigns.mdrt || [])].filter(r => !claves || claves.includes(String(r.Clave))).sort((a,b) => (b.PA_Acumulada||0) - (a.PA_Acumulada||0));
     rows.forEach((r, i) => {
         const rowIdx = 12 + i;
         const row = ws.getRow(rowIdx);
         const prima = Number(r.PA_Acumulada || 0);
-        const faltante = Math.max(0, META_MDRT_MIEMBRO - prima);
+        const faltante = Math.max(0, meta - prima);
         const faltanteProm = faltante > 0 ? faltante / MESES_RESTANTES : 0;
-        const logrado = prima >= META_MDRT_MIEMBRO;
+        const logrado = prima >= meta;
         row.getCell(1).value = i + 1;
         row.getCell(2).value = r.Asesor;
         row.getCell(3).value = r.Clave;
         row.getCell(4).value = prima; row.getCell(4).numFmt = '$#,##0';
         row.getCell(5).value = logrado ? 0 : faltante; row.getCell(5).numFmt = '$#,##0';
         row.getCell(6).value = logrado ? 0 : faltanteProm; row.getCell(6).numFmt = '$#,##0';
-        row.getCell(7).value = logrado ? 'MDRT' : '';
+        row.getCell(7).value = logrado ? etiquetaNivel : '';
         row.getCell(7).font = { bold: true, color: { argb: GREEN } };
         [1,2,3,4,5,6,7].forEach(c => { borderAll(row.getCell(c)); if (c===1 || c>=4) row.getCell(c).alignment = { horizontal: 'center' }; });
         if (logrado) [1,2,3,4,5,6,7].forEach(c => row.getCell(c).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: LIGHTGREEN } });
     });
 
-    await wb.xlsx.writeFile(path.join(OUT_DIR, 'MDRT_Promotoria.xlsx'));
-    console.log('✅ MDRT generado —', rows.length, 'asesores');
+    await wb.xlsx.writeFile(path.join(OUT_DIR, archivo));
+    console.log(`✅ ${hojaNombre} generado —`, rows.length, 'asesores');
 }
 
 await buildLegion();
 await buildConvenciones();
 await buildMdrt();
+await buildMdrt({
+    claves: CLAVES_ASPIRANTES,
+    meta: META_MDRT_ASPIRANTE,
+    titulo: 'MDRT ASPIRANTES — 50% DE LA META',
+    etiquetaMeta: 'META ASPIRANTE (50% MDRT)',
+    etiquetaNivel: 'ASPIRANTE',
+    hojaNombre: 'MDRT Aspirantes',
+    archivo: 'MDRT_Aspirantes_Promotoria.xlsx',
+});
 console.log('\nListo. Archivos en:', OUT_DIR);
