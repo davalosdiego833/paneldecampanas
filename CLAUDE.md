@@ -25,8 +25,12 @@ agregada en sesión aparte (proyecto hermano: "ESTATUS DE POLIZAS" en el Escrito
    paso manual (2-3 segundos).
 4. Tras login exitoso, corre automáticamente `descargar_premios.js` con la
    lista de claves de asesores (`104750, 110453, 116876, 116883, 117440,
-   118069, 118246, 47116, 80122, 87538, 90355, 94156, --promotoria`) y luego
+   118069, 118246, 47116, 80122, 87538, 90355, 94156, 119447, 118915, --promotoria`) y luego
    `sincronizar_premios.sh` (publica los datos al sitio real vía rsync/ssh).
+   - **Solo algunas claves:** `node correr_premios_automatico.js 119447` procesa ÚNICAMENTE esas
+     claves (sin Promotoría/Karen) con el mismo login y sincronización. Sin argumentos = flujo completo.
+     Para agregar un asesor nuevo: ponerlo en `CLAVES_TODAS` del script (el nombre sale del
+     `administrador/directorio_asesores.xlsx`; `119447` = Luis Antonio Salazar Espinosa y `118915` = Humberto Emmanuel Sandoval Molins, agregados 2026-10-14).
 
 ## ⚠️ Gotcha importante: NO uses `source archivo.env` para leer credenciales
 
@@ -157,6 +161,39 @@ sin tocar `rg`/dashboards del panel — Ranking Promotores NO aparece en
 ninguna vista del sitio, solo se descarga y se archiva. Si en el futuro se
 quiere mostrar en el panel, es un trabajo aparte (parsear columnas reales del
 archivo, que no se ha visto todavía).
+
+## Tercera automatización: solo Pagado / Pendiente (agregado 2026-10-09)
+
+Consulta ÚNICAMENTE el reporte Pagado y Emitido (PagPend + PagPendReclutas, carpeta
+"Pagado Pendiente" del portal) sin correr toda la rutina de campañas/admin.
+- **`correr_pagado_automatico.js`** + ícono `/Users/diego/Desktop/Correr Reporte Pagado y Emitido.command`.
+  Mismo login (Llavero + captcha manual, puerto 9222; si el Chrome ya traía sesión vigente ni pide captcha).
+- Descarga a `tmp_pagado/`, lee la fecha de corte SIN escribir nada
+  (`scripts/process_pagado_pendiente.py --solo-fecha`, desencripta con VelvetSweatshop) y la compara
+  contra `fechas_corte` del snapshot. Avisa en terminal **y** con notificación de macOS si hay novedad o no.
+- Si hay novedad: respalda estado → copia archivos → `actualizar_snapshot.js` (silencioso) →
+  `deploy_datos.sh administrador/pagado_emitido` con reintentos → `actualizar_snapshot.js --notify` →
+  **verifica contra `/api/comunicados/history` que el aviso sí llegó** → archiva (`archivar_historial_mensual.js --solo=pagado_emitido`).
+  Si la publicación falla, regresa TODO a como estaba (no deja datos locales sin publicar ni avisos perdidos).
+  Si los datos se publican pero el aviso no llega, deja listo el estado para reenviarlo con `node actualizar_snapshot.js --notify`.
+- Si el portal trae un corte MÁS VIEJO que la app, no lo aplica. No hace commit ni push a git (igual que las otras).
+- Flags: `--solo-consultar` (nunca cambia ni publica nada) y `--desde-carpeta=/ruta` (usa archivos ya
+  descargados a mano, sin portal ni captcha). Códigos de salida: 0 ok, 1 error/revertido, 2 servidor caído,
+  3 archivo no encontrado/ilegible, 4 publicado pero el aviso no llegó.
+- Funciones puras (fechas, respaldo/restauración, verificación de avisos) en `lib_pagado.js`.
+
+⚠️ Probado: lectura de fecha, comparación (nuevo/igual/más viejo/ilegible), respaldo-restauración, modos
+`--solo-consultar` y `--desde-carpeta`. **No** se ha corrido aún contra el portal real ni con una publicación real:
+la primera corrida real conviene hacerla con `--solo-consultar`.
+
+## Trampa de avisos (aprendida 2026-09/10)
+
+`actualizar_snapshot.js` decide avisar comparando contra `db/resumen_snapshot_prev.json`, que se reescribe en
+CADA corrida. `descargar_campanas.js` corre primero silencioso y luego `--notify` tras desplegar; si el
+despliegue falla (servidor caído) se aborta antes del `--notify` y la comparación se pierde: los datos quedan
+locales y el aviso nunca sale. Además `sendPush` no reporta si el POST al servidor falló. Siempre verificar
+contra `https://panel.ambrizydavalos.com/api/comunicados/history`, no contra `db/notified_dates.json`.
+El Buzón de Avisos del perfil Asesor oculta por diseño los avisos de grupo `admin`.
 
 ## Proyecto hermano
 

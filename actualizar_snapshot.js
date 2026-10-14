@@ -102,6 +102,22 @@ const extractCutoffDate = (wb) => {
     return '';
 };
 
+// Copia local de lib_fechas.js (fechaDeAvanceEnHoja). No se importa a propósito: deploy.sh sube este
+// archivo al servidor y allá no existe lib_fechas.js. Si cambias una, cambia la otra.
+const fechaDeAvanceEnHoja = (ws, XLSXlib) => {
+    if (!ws) return null;
+    const AVANCE = /avance[\s\S]*?\bal\s+(\d{1,2})\s+(?:de\s+)?([a-záéíóúñ]{3,}),?\s+(?:de\s+)?(\d{4})/i;
+    const filas = XLSXlib.utils.sheet_to_json(ws, { header: 1, range: 0 });
+    for (let r = 0; r < Math.min(filas.length, 35); r++) {
+        for (const celda of filas[r] || []) {
+            if (typeof celda !== 'string' || !/avance/i.test(celda)) continue;
+            const m = celda.match(AVANCE);
+            if (m) return `${m[1]} de ${m[2]} de ${m[3]}`;
+        }
+    }
+    return null;
+};
+
 const readExcelSheetMemorySafe = (filePath, sheetSelector) => {
     const tempWb = XLSX.readFile(filePath, { bookSheets: true });
     let targetSheets = [];
@@ -242,7 +258,9 @@ const run = async () => {
                             Lugar: Number(r[32] || 9999), Lugar_495: limit495, Lugar_480: limit495, Lugar_228: c228, Lugar_108: c108, Lugar_28: c28,
                             Comision_Vida: Number(r[11] || 0), RDA: Number(r[18] || 0)
                         }));
-                        campaignDates.convenciones = extractCutoffDate(wb);
+                        // "Avance ... al 07 de octubre, 2026." manda; el escáner genérico no lee esa coma y caería
+                        // en "IGC Y LIMRA al 30 de septiembre" (solo cierre de mes).
+                        campaignDates.convenciones = fechaDeAvanceEnHoja(ws, XLSX) || extractCutoffDate(wb);
                         wb = null; ws = null; data = null;
                     }
                 } catch(e) { console.warn('⚠️ Convenciones skip:', e.message); }
@@ -432,6 +450,15 @@ const run = async () => {
                             fechaCorte = dateMatch ? dateMatch[1].replace(/\.\s*$/, '').trim() : String(b17.v).trim();
                         }
 
+                        // B17 solo trae la fecha de IGC/LIMRA (cierre de mes). El corte real de las
+                        // comisiones viene en el nombre del archivo (B16), ej. "...07-OCT-2026 .xlsx".
+                        const b16 = ws['B16'];
+                        const mesesAbbr = { ENE:'enero', FEB:'febrero', MAR:'marzo', ABR:'abril', MAY:'mayo', JUN:'junio', JUL:'julio', AGO:'agosto', SEP:'septiembre', OCT:'octubre', NOV:'noviembre', DIC:'diciembre' };
+                        const fileDate = b16 && b16.v ? String(b16.v).match(/(\d{1,2})-([A-Za-z]{3})-(\d{4})/) : null;
+                        if (fileDate && mesesAbbr[fileDate[2].toUpperCase()]) {
+                            fechaCorte = `${Number(fileDate[1])} de ${mesesAbbr[fileDate[2].toUpperCase()]} ${fileDate[3]}`;
+                        }
+
                         campaigns.convenciones_promotores = {
                             fecha_corte: fechaCorte,
                             promotoria: promo ? {
@@ -505,8 +532,16 @@ const run = async () => {
                         const mat2 = data2.find(r => String(r[4]) === '2043');
 
                         // Find 1er Lugar in each Camino
-                        const topC1Row = data1.slice().sort((a, b) => (Number(b[11]) || 0) - (Number(a[11]) || 0))[0];
-                        const topC1Val = Number(topC1Row?.[11]) || 0;
+                        // Camino 1: "Total Asesores 12 Mes" (L, idx 11) debe ser >= "Asesores 12 Meses" (I, idx 8).
+                        // Si viene menor (Excel roto, visto en el corte del 7-oct-2026) se usa M (idx 12), que es
+                        // la columna por la que el propio Excel ordena el ranking del 1er Camino.
+                        const totalC1 = (r) => {
+                            const l = Number(r[11]) || 0;
+                            const base = Number(r[8]) || 0;
+                            return (l > 0 && l >= base) ? l : (Number(r[12]) || 0);
+                        };
+                        const topC1Row = data1.slice().sort((a, b) => totalC1(b) - totalC1(a))[0];
+                        const topC1Val = topC1Row ? totalC1(topC1Row) : 0;
 
                         const topC2Row = data1.slice().sort((a, b) => (Number(b[15]) || 0) - (Number(a[15]) || 0))[0];
                         const topC2Val = Number(topC2Row?.[15]) || 0;
@@ -527,7 +562,7 @@ const run = async () => {
                                 mat: '2043',
                                 suc: '2856',
                                 // Camino 1 (Comisiones Asesores 12 Meses): L=Total Asesores 12 Mes, Q=1er Camino (ranking)
-                                c1_total: Number(mat1[11] || 0),
+                                c1_total: totalC1(mat1),
                                 c1_ranking: Number(mat1[16] || mat1[1] || 0),
                                 // Camino 2 (Comisiones Nueva Organización): P=Total Nueva Organización, R=2do Camino (ranking)
                                 c2_total: Number(mat1[15] || 0),

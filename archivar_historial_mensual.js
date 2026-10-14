@@ -69,6 +69,11 @@ function copiarArchivo(origenAbs, destinoCarpetaAbs, nombreDestinoSinExt) {
     return destinoPath;
 }
 
+// `--solo=<texto>` archiva únicamente las entradas cuya carpeta origen contenga
+// ese texto (ej. --solo=pagado_emitido); sin el flag archiva todo, como siempre.
+const soloArg = process.argv.find(a => a.startsWith('--solo='));
+const SOLO = soloArg ? soloArg.slice('--solo='.length).toLowerCase() : null;
+
 function main() {
     const { campaignDates, fechas_corte } = cargarSnapshot();
     console.log(`\n🗄️  Archivando en "AVANCE DE CAMPAÑAS" (usando la fecha de cierre real de cada reporte)...\n`);
@@ -91,6 +96,7 @@ function main() {
     ];
 
     for (const item of MAPEO) {
+        if (SOLO && !item.origen.toLowerCase().includes(SOLO)) continue;
         const mesInfo = extraerMesAnio(item.claveFecha);
         if (!mesInfo) {
             console.log(`   ⏸️  ${item.origen} — sin fecha de cierre reconocible (valor: ${item.claveFecha || 'ninguno'}), no se archiva`);
@@ -108,7 +114,9 @@ function main() {
 
     // --- Convenciones: Asesores y Promotoría, cada una con SU PROPIA fecha de cierre ---
     const convencionesDir = path.join(__dirname, 'convenciones');
-    if (fs.existsSync(convencionesDir)) {
+    if (SOLO) {
+        // modo dirigido: no se toca Convenciones
+    } else if (fs.existsSync(convencionesDir)) {
         const archivos = fs.readdirSync(convencionesDir).filter(f => !f.startsWith('.') && !f.startsWith('~$'));
         const promotor = archivos.find(f => /promotor/i.test(f));
         const asesor = archivos.find(f => !/promotor/i.test(f));

@@ -1,22 +1,22 @@
 {
   "clave": "118246",
-  "timestamp": "2026-10-01T17:08:21.915Z",
-  "urlDashboard": "https://hojameta.mnyl.com.mx/front/agentes?fecha=24-09-2026&numeroAgente=118246",
+  "timestamp": "2026-10-14T15:46:33.327Z",
+  "urlDashboard": "https://hojameta.mnyl.com.mx/front/agentes?fecha=30-09-2026&numeroAgente=118246",
   "resumen": {
     "cabecera": {
       "_raw": [
         "Asesor: JOSE ANTEMIO OLIVA SANTOS",
         "Clave: 118246",
-        "Avance Al: 24-09-2026",
+        "Avance Al: 30-09-2026",
         "Fecha Concurso: 05/08/2026",
         "Tipo: Training Allowance",
         "Pólizas Vida",
-        "5",
-        "Pólizas VI + GMMI",
         "6",
+        "Pólizas VI + GMMI",
+        "7",
         "Comisión Meta",
-        "$16,571",
-        "Pólizas Prom Trim",
+        "$17,127",
+        "Pólizas Bimestre",
         "0",
         "LIMRA",
         "75.5%",
@@ -36,15 +36,15 @@
         "Nov",
         "Dic",
         "Historico de Bono 2026",
-        "$15,239",
-        "$13,715",
-        "$12,191",
-        "$10,667",
-        "$9,143",
-        "$7,619",
-        "$6,095",
-        "$4,572",
-        "$3,048"
+        "$15,211",
+        "$13,690",
+        "$12,169",
+        "$10,648",
+        "$9,127",
+        "$7,605",
+        "$6,084",
+        "$4,563",
+        "$3,042"
       ]
     },
     "resumenBonos": [
@@ -57,15 +57,15 @@
       ],
       [
         "Bono TA",
-        "$1,965.26",
-        "$16,571.89",
+        "$2,521.16",
+        "$17,127.79",
         "",
         ""
       ],
       [
         "Bono Bimestral por Pólizas",
-        "",
-        "",
+        "$0.00",
+        "$0.00",
         "",
         ""
       ],
@@ -92,21 +92,21 @@
       ],
       [
         "Total",
-        "$1,965.26",
-        "$16,571.89",
+        "$2,521.16",
+        "$17,127.79",
         "",
         ""
       ]
     ],
-    "todoElTexto": " Asesor: JOSE ANTEMIO OLIVA SANTOS\n Clave: 118246\n Avance Al: 24-09-2026\n Fecha Concurso: 05/08/2026\n Tipo: Training Allowance\n Pólizas Vida\n5\n Pólizas VI + GMMI\n6\n Comisión Meta\n$16,571\n Pólizas Prom Trim\n0\n LIMRA\n75.5%\n IGC\n91%\nHistórico de Bonos\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2026\n$15,239\n$13,715\n$12,191\n$10,667\n$9,143\n$7,619\n$6,095\n$4,572\n$3,048\n$1,524\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nTabla de Acumulados\nBonos\tBono Mes\tBono Acumulado\tGana Bono\t\nBono TA\t$1,965.26\t$16,571.89\t\t\nBono Beneficios\t$0.00\t$0.00\t\t\nBono Conexión\t$0.00\t$0.00\t\t\nBono Desarrollo\t$0.00\t$0.00\t\t\nTotal\t$1,965.26\t$16,571.89\t \t \nIngresos por Bonos\nCopyright © 2024 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información"
+    "todoElTexto": " Asesor: JOSE ANTEMIO OLIVA SANTOS\n Clave: 118246\n Avance Al: 30-09-2026\n Fecha Concurso: 05/08/2026\n Tipo: Training Allowance\n Pólizas Vida\n6\n Pólizas VI + GMMI\n7\n Comisión Meta\n$17,127\n Pólizas Bimestre\n0\n LIMRA\n75.5%\n IGC\n91%\nHistórico de Bonos\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2026\n$15,211\n$13,690\n$12,169\n$10,648\n$9,127\n$7,605\n$6,084\n$4,563\n$3,042\n$1,521\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nTabla de Acumulados\nBonos\tBono Mes\tBono Acumulado\tGana Bono\t\nBono TA\t$2,521.16\t$17,127.79\t\t\nBono Bimestral por Pólizas\t$0.00\t$0.00\t\t\nBono Beneficios\t$0.00\t$0.00\t\t\nBono Conexión\t$0.00\t$0.00\t\t\nBono Desarrollo\t$0.00\t$0.00\t\t\nTotal\t$2,521.16\t$17,127.79\t \t \nIngresos por Bonos\nCopyright © 2024 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información"
   },
   "pareceVacio": false,
-  "detalleModalTexto": " Asesor: JOSE ANTEMIO OLIVA SANTOS\n Clave: 118246\n Avance Al: 24-09-2026\n Fecha Concurso: 05/08/2026\n Tipo: Training Allowance\n Pólizas Vida\n5\n Pólizas VI + GMMI\n6\n Comisión Meta\n$16,571\n Pólizas Prom Trim\n0\n LIMRA\n75.5%\n IGC\n91%\nHistórico de Bonos\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2026\n$15,239\n$13,715\n$12,191\n$10,667\n$9,143\n$7,619\n$6,095\n$4,572\n$3,048\n$1,524\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nTabla de Acumulados\nBonos\tBono Mes\tBono Acumulado\tGana Bono\t\nBono TA\t$1,965.26\t$16,571.89\t\t\nBono Beneficios\t$0.00\t$0.00\t\t\nBono Conexión\t$0.00\t$0.00\t\t\nBono Desarrollo\t$0.00\t$0.00\t\t\nTotal\t$1,965.26\t$16,571.89\t \t \nIngresos por Bonos\nBono Training Allowance\n×\nResumen Bonos TA\nBono\tReal\tMeta\tCumple\n Mes\t2\t\t\n Bono TA\t\t\t\n Pólizas Mes VI\t0.00\t\t\n Pólizas Mes GMMI\t0.50\t\t\n Pólizas Sem VI\t5.00\t2.00\t\n Pólizas Sem VI+GMMI\t6.00\t6.00\t\n Comisión Meta Mes\t$1,965\t\t\n Comisión Meta Sem\t$16,572\t$15,000\t\n Comisión Pago Sem\t$16,572\t\t\n % Bono Inicial\t100.00%\t\t\n Bono Calculado\t$16,572\t \t \n Bono Tope\t$56,000\t \t \n Excedente\t$0\t \t \n % Bono Excedente\t35.00%\t \t \n  Bono Excedente\t$0\t \t \n Bono TA\t$16,572\n Bono Semestral\t$0\n Bonos Anticipados\t$14,607\n Bono a Pagar\t$1,965\n \tVer Detalle Bonos\nHistoria de Meses Ganados\n1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11\t12\n\t\nBonos Anticipados\nAgo/2026\nSep/2026\n$16,000.00\n$12,000.00\n$8,000.00\n$4,000.00\n$0.00\nDownload SVG\nDownload PNG\nDownload CSV\nResumen Bonos TA [Mes 2] Sep/2026\nPólizas Vida\nMeta:2\n6\n5\n4\n3\n2\n1\n0\nAvance: 5\nDownload SVG\nDownload PNG\nDownload CSV\nPólizas Vida + GMMI\nMeta:6\n8\n6\n4\n2\n0\nAvance: 6\nDownload SVG\nDownload PNG\nDownload CSV\nComisión Vida + GMMI\nMeta:$15,000\n$20,000\n$16,000\n$12,000\n$8,000\n$4,000\n$0\nAvance: $16,572\nDownload SVG\nDownload PNG\nDownload CSV\nCopyright © 2024 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información",
+  "detalleModalTexto": " Asesor: JOSE ANTEMIO OLIVA SANTOS\n Clave: 118246\n Avance Al: 30-09-2026\n Fecha Concurso: 05/08/2026\n Tipo: Training Allowance\n Pólizas Vida\n6\n Pólizas VI + GMMI\n7\n Comisión Meta\n$17,127\n Pólizas Bimestre\n0\n LIMRA\n75.5%\n IGC\n91%\nHistórico de Bonos\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2026\n$15,211\n$13,690\n$12,169\n$10,648\n$9,127\n$7,605\n$6,084\n$4,563\n$3,042\n$1,521\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nTabla de Acumulados\nBonos\tBono Mes\tBono Acumulado\tGana Bono\t\nBono TA\t$2,521.16\t$17,127.79\t\t\nBono Bimestral por Pólizas\t$0.00\t$0.00\t\t\nBono Beneficios\t$0.00\t$0.00\t\t\nBono Conexión\t$0.00\t$0.00\t\t\nBono Desarrollo\t$0.00\t$0.00\t\t\nTotal\t$2,521.16\t$17,127.79\t \t \nIngresos por Bonos\nBono Training Allowance\n×\nResumen Bonos TA\nBono\tReal\tMeta\tCumple\n Mes\t2\t\t\n Bono TA\t\t\t\n Pólizas Mes VI\t1.00\t\t\n Pólizas Mes GMMI\t0.50\t\t\n Pólizas Sem VI\t6.00\t2.00\t\n Pólizas Sem VI+GMMI\t7.00\t6.00\t\n Comisión Meta Mes\t$2,521\t\t\n Comisión Meta Sem\t$17,128\t$15,000\t\n Comisión Pago Sem\t$17,128\t\t\n % Bono Inicial\t100.00%\t\t\n Bono Calculado\t$17,128\t \t \n Bono Tope\t$56,000\t \t \n Excedente\t$0\t \t \n % Bono Excedente\t35.00%\t \t \n  Bono Excedente\t$0\t \t \n Bono TA\t$17,128\n Bono Semestral\t$0\n Bonos Anticipados\t$14,607\n Bono a Pagar\t$2,521\n \tVer Detalle Bonos\nHistoria de Meses Ganados\n1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11\t12\n\t\nBonos Anticipados\nAgo/2026\nSep/2026\n$16,000.00\n$12,000.00\n$8,000.00\n$4,000.00\n$0.00\nDownload SVG\nDownload PNG\nDownload CSV\nResumen Bonos TA [Mes 2] Sep/2026\nPólizas Vida\nMeta:2\n8\n6\n4\n2\n0\nAvance: 6\nDownload SVG\nDownload PNG\nDownload CSV\nPólizas Vida + GMMI\nMeta:6\n8\n6\n4\n2\n0\nAvance: 7\nDownload SVG\nDownload PNG\nDownload CSV\nComisión Vida + GMMI\nMeta:$15,000\n$20,000\n$16,000\n$12,000\n$8,000\n$4,000\n$0\nAvance: $17,128\nDownload SVG\nDownload PNG\nDownload CSV\nCopyright © 2024 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información",
   "intentos": 1,
   "indicesAnteriores": {
     "limra": 75.5,
     "igc": 91,
-    "fecha": "2026-10-01T15:25:39.364Z"
+    "fecha": "2026-10-01T17:08:21.915Z"
   },
   "anticiposDesglosados": null
 }

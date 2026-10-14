@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import AdmZip from 'adm-zip';
 import { execSync } from 'child_process';
 import XLSX from 'xlsx';
+import { fechaDeAvanceEnHoja } from './lib_fechas.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -152,6 +153,12 @@ const extractCutoffDate = (regla, filePath) => {
         if (regla.dateFrom === 'convenciones_promotores_b17') return extractConvencionesPromotoresDate(filePath);
         if (regla.campaignKey === 'qsq_gmm') return extractQsqGmmDate(filePath);
         const wb = XLSX.readFile(filePath);
+        // Convenciones Asesores: el corte real está en "Avance ... al 07 de octubre, 2026." (con coma, que el
+        // escáner genérico no lee) y la línea de abajo, "IGC Y LIMRA al 30 de septiembre", solo es el cierre de mes.
+        if (regla.campaignKey === 'convenciones') {
+            const avance = fechaDeAvanceEnHoja(wb.Sheets[wb.SheetNames[0]], XLSX);
+            if (avance) return avance;
+        }
         return extractCutoffDateGeneric(wb);
     } catch (e) {
         console.log(`      ⚠️ No se pudo leer fecha de corte: ${e.message}`);

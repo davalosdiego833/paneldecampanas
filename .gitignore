@@ -14,3 +14,4 @@ db/push_subscriptions.json
 # Capturas/dumps de debug del scraper de Premios (solo data.json debe versionarse)
 premios/*/*.png
 premios/*/*.txt
+tmp_pagado/

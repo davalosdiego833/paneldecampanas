@@ -15,8 +15,14 @@ const TARGET_URL = 'https://www.asesordeseguros.com.mx/Acceso/tabid/220/Default.
 
 // Claves de asesores a descargar (mismas que ya se venían procesando en premios/).
 // Edita esta lista si quieres agregar o quitar asesores.
-const CLAVES = ['104750', '110453', '116876', '116883', '117440', '118069', '118246',
-                 '47116', '80122', '87538', '90355', '94156'];
+const CLAVES_TODAS = ['104750', '110453', '116876', '116883', '117440', '118069', '118246',
+                 '47116', '80122', '87538', '90355', '94156', '119447', '118915'];
+
+// Si pasas claves al correr el script (ej. `node correr_premios_automatico.js 119447`),
+// procesa SOLO esas y se salta Promotoría/Karen. Sin argumentos corre el flujo completo.
+const CLAVES_ARGV = process.argv.slice(2).filter(a => /^\d+$/.test(a));
+const SOLO_ALGUNAS = CLAVES_ARGV.length > 0;
+const CLAVES = SOLO_ALGUNAS ? CLAVES_ARGV : CLAVES_TODAS;
 
 // Selectores del formulario de login (idénticos al portal de pólizas: mismo sitio).
 const BASE_ID = 'dnn_ctr706_Login_PAsesores_Login_PAsesores';
@@ -91,8 +97,8 @@ async function main() {
     // igual que hacías manualmente antes.
     browser.disconnect();
 
-    console.log(`\n📥 Descargando premios de ${CLAVES.length} asesores...\n`);
-    await correrComando('node', ['descargar_premios.js', ...CLAVES, '--promotoria']);
+    console.log(`\n📥 Descargando premios de ${CLAVES.length} asesor(es)${SOLO_ALGUNAS ? ` (solo: ${CLAVES.join(', ')})` : ''}...\n`);
+    await correrComando('node', ['descargar_premios.js', ...CLAVES, ...(SOLO_ALGUNAS ? [] : ['--promotoria'])]);
 
     console.log('\n📤 Sincronizando con el servidor real...\n');
     await correrComando('bash', ['sincronizar_premios.sh']);

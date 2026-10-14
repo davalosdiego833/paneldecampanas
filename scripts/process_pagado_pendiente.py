@@ -5,15 +5,10 @@ import xlrd
 import openpyxl
 import re
 
-def process_file(xls_path):
-    print(f"[PROCESS] Recibido archivo para procesar: {xls_path}")
-    if not os.path.exists(xls_path):
-        print(f"[PROCESS] Error: El archivo no existe en {xls_path}")
-        return False
-        
+def decrypt_to_temp(xls_path):
+    """Desencripta (VelvetSweatshop) a un archivo temporal junto al original.
+    Devuelve la ruta del temporal, o None si falla."""
     decrypted_path = xls_path.replace(".xls", "_decrypted_temp.xls")
-    
-    # 1. Desencriptar usando VelvetSweatshop
     print("[PROCESS] Desencriptando PagPend.xls...")
     try:
         with open(xls_path, "rb") as f:
@@ -22,36 +17,77 @@ def process_file(xls_path):
             with open(decrypted_path, "wb") as f_dec:
                 office_file.decrypt(f_dec)
         print("[PROCESS] Desencriptación exitosa.")
+        return decrypted_path
     except Exception as e:
         print(f"[PROCESS] Error al desencriptar: {e}")
         if os.path.exists(decrypted_path):
             os.remove(decrypted_path)
+        return None
+
+
+def extract_cutoff_date(wb):
+    """Fecha de corte desde la hoja Resumen, ej. '29 de septiembre de 2026'."""
+    cutoff_date_str = ""
+    if 'Resumen' in wb.sheet_names():
+        res_sheet = wb.sheet_by_name('Resumen')
+        for r in range(min(50, res_sheet.nrows)):
+            for c in range(res_sheet.ncols):
+                val = res_sheet.cell_value(r, c)
+                if val:
+                    val_str = str(val).strip()
+                    if re.search(r'(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)', val_str, re.IGNORECASE):
+                        match = re.search(r'([a-zA-ZáéíóúñÁÉÍÓÚÑ]+),?\s+(\d{1,2}),?\s+(\d{4})', val_str)
+                        if match:
+                            month = match.group(1).lower()
+                            day = int(match.group(2))
+                            year = match.group(3)
+                            cutoff_date_str = f"{day} de {month} de {year}"
+                            break
+            if cutoff_date_str:
+                break
+    return cutoff_date_str
+
+
+def read_cutoff_only(xls_path):
+    """Modo consulta: solo lee la fecha de corte. No escribe nada en las carpetas
+    finales (a diferencia de process_file). Imprime 'FECHA_CORTE=<fecha>' al final."""
+    if not os.path.exists(xls_path):
+        print(f"[PROCESS] Error: El archivo no existe en {xls_path}")
         return False
-        
+    decrypted_path = decrypt_to_temp(xls_path)
+    if not decrypted_path:
+        return False
+    try:
+        wb = xlrd.open_workbook(decrypted_path)
+        cutoff = extract_cutoff_date(wb)
+        print(f"FECHA_CORTE={cutoff}")
+        return bool(cutoff)
+    except Exception as e:
+        print(f"[PROCESS] Error al leer fecha de corte: {e}")
+        return False
+    finally:
+        if os.path.exists(decrypted_path):
+            os.remove(decrypted_path)
+
+
+def process_file(xls_path):
+    print(f"[PROCESS] Recibido archivo para procesar: {xls_path}")
+    if not os.path.exists(xls_path):
+        print(f"[PROCESS] Error: El archivo no existe en {xls_path}")
+        return False
+
+    # 1. Desencriptar usando VelvetSweatshop
+    decrypted_path = decrypt_to_temp(xls_path)
+    if not decrypted_path:
+        return False
+
     # 2. Leer con xlrd y filtrar
     print("[PROCESS] Leyendo y filtrando datos...")
     try:
         wb = xlrd.open_workbook(decrypted_path)
-        
+
         # Extraer fecha de corte desde la hoja Resumen
-        cutoff_date_str = ""
-        if 'Resumen' in wb.sheet_names():
-            res_sheet = wb.sheet_by_name('Resumen')
-            for r in range(min(50, res_sheet.nrows)):
-                for c in range(res_sheet.ncols):
-                    val = res_sheet.cell_value(r, c)
-                    if val:
-                        val_str = str(val).strip()
-                        if re.search(r'(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)', val_str, re.IGNORECASE):
-                            match = re.search(r'([a-zA-ZáéíóúñÁÉÍÓÚÑ]+),?\s+(\d{1,2}),?\s+(\d{4})', val_str)
-                            if match:
-                                month = match.group(1).lower()
-                                day = int(match.group(2))
-                                year = match.group(3)
-                                cutoff_date_str = f"{day} de {month} de {year}"
-                                break
-                if cutoff_date_str:
-                    break
+        cutoff_date_str = extract_cutoff_date(wb)
         print(f"[PROCESS] Fecha de corte extraída: {cutoff_date_str}")
 
         # Detectar si es un archivo de Reclutas
@@ -210,9 +246,11 @@ def process_file(xls_path):
             os.remove(decrypted_path)
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print("Uso: python process_pagado_pendiente.py <ruta_a_PagPend.xls>")
+    args = [a for a in sys.argv[1:] if a != '--solo-fecha']
+    solo_fecha = '--solo-fecha' in sys.argv[1:]
+    if len(args) < 1:
+        print("Uso: python process_pagado_pendiente.py [--solo-fecha] <ruta_a_PagPend.xls>")
         sys.exit(1)
-    
-    success = process_file(sys.argv[1])
+
+    success = read_cutoff_only(args[0]) if solo_fecha else process_file(args[0])
     sys.exit(0 if success else 1)

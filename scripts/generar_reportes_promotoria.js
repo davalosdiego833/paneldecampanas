@@ -140,6 +140,30 @@ async function buildConvenciones() {
         [1,2].forEach(c => borderAll(row.getCell(c)));
     });
 
+    // Créditos que tiene hoy el ÚLTIMO lugar de cada convención (mismos datos que el panel)
+    const conv0 = (data.campaigns.convenciones || [])[0] || {};
+    const ultimos = [
+        ['1 Diamante · Los Cabos (#495)', Number(conv0.Lugar_495 || conv0.Lugar_480 || 0)],
+        ['2 Diamantes · Vancouver (#228)', Number(conv0.Lugar_228 || 0)],
+        ['3 Diamantes · Estambul (#108)', Number(conv0.Lugar_108 || 0)],
+        ['Gran Diamante · Japón (#28)', Number(conv0.Lugar_28 || 0)],
+    ];
+    ws.mergeCells('D3:E3'); ws.mergeCells('F3:G3');
+    [['D3', 'ÚLTIMO LUGAR POR CONVENCIÓN'], ['F3', 'Créditos del último lugar']].forEach(([c, v]) => {
+        const cell = ws.getCell(c); cell.value = v;
+        cell.font = { bold: true, color: { argb: 'FFFFFFFF' }, size: 10 };
+        cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: NAVY } };
+        cell.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true };
+    });
+    ultimos.forEach(([label, val], i) => {
+        const r = 4 + i;
+        ws.mergeCells(`D${r}:E${r}`); ws.mergeCells(`F${r}:G${r}`);
+        const a = ws.getCell(`D${r}`), b = ws.getCell(`F${r}`);
+        a.value = label; a.font = { bold: true, size: 10 };
+        b.value = val; b.numFmt = '$#,##0'; b.alignment = { horizontal: 'center' }; b.font = { bold: true, color: { argb: NAVY } };
+        [`D${r}`, `E${r}`, `F${r}`, `G${r}`].forEach(c => borderAll(ws.getCell(c)));
+    });
+
     const fechaCorte = data.campaignDates?.convenciones || '';
     ws.mergeCells('B9:G9');
     ws.getCell('B9').value = `Avance al ${fechaCorte}`;
