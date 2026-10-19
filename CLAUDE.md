@@ -31,6 +31,30 @@ agregada en sesión aparte (proyecto hermano: "ESTATUS DE POLIZAS" en el Escrito
      claves (sin Promotoría/Karen) con el mismo login y sincronización. Sin argumentos = flujo completo.
      Para agregar un asesor nuevo: ponerlo en `CLAVES_TODAS` del script (el nombre sale del
      `administrador/directorio_asesores.xlsx`; `119447` = Luis Antonio Salazar Espinosa y `118915` = Humberto Emmanuel Sandoval Molins, agregados 2026-10-14).
+   - **Revisa primero si hay corte nuevo (agregado 2026-10-16, SIN PROBAR contra el portal real):** sin argumentos,
+     tras el login corre `descargar_premios.js --solo-fecha`, que lee el "Avance Al" del dashboard de la
+     Promotoría (no baja ni guarda nada) y lo compara (`lib_premios.js`) contra el corte MÁS VIEJO guardado en
+     `premios/*/data.json` (asesores + PROMOTORIA + GA_KAREN). Si el portal trae uno más nuevo —o falta algún
+     `data.json`— corre el trabajo completo; si no, avisa "No hay actualización" (terminal + notificación de macOS)
+     y cierra Chrome sin descargar. Si el portal no da fecha válida (está actualizando) tampoco descarga (sale con código 3).
+     Flags: `--forzar` (descarga todo sin revisar), `--solo-consultar` (nunca descarga), `<claves>` (solo esas, sin revisar),
+     `--promotoria` (con claves: las suma; sin claves: SOLO Promotoría/Karen; nunca revisa la fecha).
+     Si hay capturas con `pareceVacio` pendientes lo avisa y da el comando para reintentarlas (no las reintenta solo).
+     La primera corrida real conviene hacerla con `--solo-consultar`.
+   - **Reintento por asesor (2026-10-19, SIN PROBAR contra el portal real):** `descargar_premios.js` repite el recorrido
+     completo de un asesor una vez si falla. Causa que se vio dos veces (corridas del 1 y del 19 de octubre; 8 de 14 la 1ª vez):
+     la búsqueda encuentra la fila pero el clic en el ícono ↗ no abre la ventana del asesor (queda en `3_busqueda`).
+   - **Desglose Inicial/Renovación del anticipado (`anticiposDesglosados` en cada data.json de Bono Vida):** el portal solo da el
+     "Bonos Anticipados" combinado; lo reconstruimos. Cuando sube (hubo pago), a cada bono se le asigna lo que tenía PENDIENTE
+     en el corte anterior (calculado − anticipado de ese bono), o sea que su anticipado queda igual a lo que el reporte calculaba
+     en ese cierre (ej. Desi, septiembre: Inicial $43,122 + Renovación $79,650 = $122,772). Confirmado por Diego con la foto del
+     portal. Se muestra TAL CUAL el reporte: si luego el Inicial calculado baja (bajó de grupo y se recalculó), no se maquilla nada.
+   - **Promotoría en $0 NO es error:** en el corte 13-10 hojameta mismo muestra la Promotoría con Bono Vida/Subsidios $0 y
+     Total $0 / $10,000 (los bonos del mes nuevo aún no se generan). Confirmado contra la captura del portal.
+   - **Promotoría/Karen ya no se sobreescriben con datos vacíos:** el 2026-10-16 hojameta entregó la Promotoría con
+     "Avance Al: -" y todo en 0 y el script lo guardó encima de lo bueno (y guardó la página de la Promotoría como si
+     fuera la de Karen). Ahora `procesarPromotoria` espera a que cargue, y si no llega fecha de corte válida lanza
+     error SIN escribir; GA_KAREN solo se escribe si el dashboard es realmente el de Karen (clave distinta de 2043).
 
 ## ⚠️ Gotcha importante: NO uses `source archivo.env` para leer credenciales
 
@@ -88,6 +112,10 @@ panel de campañas/
   2. `run_admin_download.js` — descarga Proactivos / Sin Emisión / Comparativo
      Vida a `administrador/*`. Este NO se auto-despliega solo, así que el
      script corre `deploy_datos.sh` después con esas 3 carpetas.
+     Solo baja esos 3 (filtro por `CARPETAS_DESTINO`, 2026-10-16): con `pageSize=100` la lista de
+     "Informativos" trae además filas de otras carpetas (Eureka, Legión Centurión, MENTORES MDRT...) y
+     antes cada una gastaba 60 s esperando una descarga que nunca llegaba (~11 min de más).
+     Si un reporte no aparece avisa "No apareció en el portal" (por si cambió de nombre).
 - Ícono de doble clic: `/Users/diego/Desktop/Correr Reporte Campañas y Admin.command`
 - Mismas credenciales del Llavero (`asesores-portal-smnyl`) que pólizas/premios.
 

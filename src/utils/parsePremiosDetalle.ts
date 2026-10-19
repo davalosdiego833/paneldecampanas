@@ -26,7 +26,10 @@ export interface CabeceraPremios {
 
 export function parseCabecera(raw: string[]): CabeceraPremios {
     const cab: CabeceraPremios = { asesor: '', clave: '', avanceAl: '', fechaConcurso: '', tipo: '', indicadores: {} };
-    let i = 0;
+    // A veces hojameta pinta un texto suelto antes del nombre (ej. "portal-[]") y la captura lo trae como
+    // primera línea; si no lo saltamos, el reporte entero sale sin tipo, sin corte y con el semestre equivocado.
+    const inicio = raw.findIndex(l => /^Asesor:/.test(l));
+    let i = inicio > 0 ? inicio : 0;
     for (; i < raw.length; i++) {
         const linea = raw[i];
         const m = linea.match(/^(Asesor|Clave|Avance Al|Fecha Concurso|Tipo):\s*(.*)$/);

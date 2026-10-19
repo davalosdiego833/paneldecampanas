@@ -164,7 +164,19 @@ function calcularAnticiposDesglosados({ anterior, montoBonoInicialActual, montoB
         const baseInicial = anteriorEsMismoSemestre ? (anterior.montoBonoInicial || 0) : montoBonoInicialActual;
         const baseRenovacion = anteriorEsMismoSemestre ? (anterior.montoBonoRenovacion || 0) : montoBonoRenovacionActual;
         const baseTotal = baseInicial + baseRenovacion;
-        const deltaInicial = baseTotal > 0 ? delta * (baseInicial / baseTotal) : delta / 2;
+        // Lo que un pago cubre es lo PENDIENTE de cada bono en ese corte (calculado menos lo que
+        // ya se le había anticipado de ESE bono), no el calculado completo: si ya había un anticipo
+        // previo, repartir proporcional al calculado se desvía unos cientos de pesos. Cuando el pago
+        // coincide con la suma de lo pendiente (el caso normal), a cada bono se le asigna exactamente
+        // lo que le faltaba, y el anticipado de cada uno queda igual al calculado de ese corte.
+        const pendInicial = Math.max(0, baseInicial - inicialAcum);
+        const pendRenovacion = Math.max(0, baseRenovacion - renovacionAcum);
+        const pendTotal = pendInicial + pendRenovacion;
+        let deltaInicial;
+        if (Math.abs(pendTotal - delta) <= 2) deltaInicial = pendInicial;
+        else if (pendTotal > 0) deltaInicial = delta * (pendInicial / pendTotal);
+        else if (baseTotal > 0) deltaInicial = delta * (baseInicial / baseTotal);
+        else deltaInicial = delta / 2;
         inicialAcum += deltaInicial;
         renovacionAcum += (delta - deltaInicial);
     } else if (delta < -0.5) {
@@ -315,7 +327,10 @@ async function extraerResumenAsesor(page) {
         // (Asesor, Clave, Avance Al, Fecha Concurso, Tipo, Pólizas Vida, Prima Meta Vida, etc.)
         const cabecera = {};
         const lineas = bodyText.split('\n').map(l => l.trim()).filter(Boolean);
-        cabecera._raw = lineas.slice(0, 40);
+        // Si hojameta pinta un texto suelto antes del nombre (se vio "portal-[]" el 2026-10-19 y dejó
+        // el reporte de Desi sin encabezado), la cabecera guardada arranca desde "Asesor:".
+        const idxAsesor = lineas.findIndex(l => /^Asesor:/.test(l));
+        cabecera._raw = lineas.slice(idxAsesor > 0 ? idxAsesor : 0).slice(0, 40);
 
         // Tabla "Resumen de Bonos"
         const tablas = Array.from(document.querySelectorAll('table'));
@@ -410,6 +425,56 @@ async function extraerResumenGeneral(page) {
     });
 }
 
+// ¿El dashboard ya trae su fecha de corte real? Mientras hojameta termina de cargar
+// (o está refrescando su información) muestra "Avance Al: -" con todo en ceros.
+const fechaCorteValida = (resumen) =>
+    /\d{1,2}[-/]\d{1,2}[-/]\d{4}/.test(extraerCampoCabecera(resumen?.cabecera?._raw, 'Avance Al') || '');
+
+// Lee el resumen esperando (reintentando unos segundos) a que el dashboard cargue de verdad.
+// Si nunca carga devuelve la última lectura y el que llama decide (fechaCorteValida = false).
+async function leerResumenCargado(page, { intentos = 5, esperaMs = 3000 } = {}) {
+    let resumen = await extraerResumenGeneral(page);
+    for (let i = 1; i < intentos && !fechaCorteValida(resumen); i++) {
+        await delay(esperaMs);
+        resumen = await extraerResumenGeneral(page);
+    }
+    return resumen;
+}
+
+// Solo lee la fecha de corte ("Avance Al") que trae el portal en el dashboard de la
+// Promotoría, sin bajar ni guardar nada. La usa correr_premios_automatico.js para
+// decidir si vale la pena correr el trabajo completo. Imprime FECHA_CORTE_PORTAL=dd-mm-yyyy.
+// (Repite los primeros pasos de procesarPromotoria: Premios > AMBRIZ Y DAVALOS SC > Aceptar.)
+async function leerFechaCortePortal(browser) {
+    const pages = await browser.pages();
+    const page = pages.find(p => p.url().includes('lineamonterrey') || p.url().includes('asesordeseguros'));
+    if (!page) throw new Error('No se encontró una pestaña logueada en el portal. Abre el portal e inicia sesión.');
+    page.removeAllListeners('dialog');
+    page.on('dialog', async (d) => { await d.dismiss().catch(() => {}); });
+
+    let popup;
+    try {
+        console.log('   🔗 Navegando a Reportes > Premios...');
+        await page.goto('https://www.lineamonterrey.com.mx/AsesoresWeb/Reportes/Premios/Promotor/PremiosPromotor.aspx', { waitUntil: 'domcontentloaded', timeout: 60000 });
+        await delay(2500);
+        if (!(await clickPorTexto(page, 'AMBRIZ Y DAVALOS SC', { tag: 'a' }))) throw new Error('No se encontró el link de "AMBRIZ Y DAVALOS SC"');
+        await delay(2000);
+        const esperaPopup = esperarNuevaPagina(browser);
+        if (!(await clickPorTexto(page, 'Aceptar'))) throw new Error('No se encontró el botón "Aceptar"');
+        await delay(1500);
+        popup = await esperaPopup;
+        await delay(2500);
+
+        const resumen = await leerResumenCargado(popup, { intentos: 6, esperaMs: 3000 });
+        const fecha = extraerCampoCabecera(resumen.cabecera._raw, 'Avance Al');
+        if (!fechaCorteValida(resumen)) throw new Error(`El portal no mostró una fecha de corte válida (Avance Al: "${fecha}"). Puede estar actualizando su información.`);
+        console.log(`FECHA_CORTE_PORTAL=${fecha}`);
+        return fecha;
+    } finally {
+        await popup?.close().catch(() => {});
+    }
+}
+
 // Descarga el Reporte de Premios de la Promotoría (Bono Vida + Subsidios) y,
 // desde ahí, el de la Gerente de Agencia (Bono Inicial + Apoyo).
 async function procesarPromotoria(browser) {
@@ -450,7 +515,11 @@ async function procesarPromotoria(browser) {
         await volcarDebug(popupPromotor, '1_dashboard_promotoria', carpetaPromotoria);
 
         // --- Resumen general de la Promotoría (cabecera + Resumen de Bonos) ---
-        resultado.promotoria.resumen = await extraerResumenGeneral(popupPromotor);
+        resultado.promotoria.resumen = await leerResumenCargado(popupPromotor);
+        if (!fechaCorteValida(resultado.promotoria.resumen)) {
+            // Antes esto se guardaba igual y pisaba lo bueno con guiones y ceros.
+            throw new Error('La Promotoría llegó vacía (sin fecha de corte; hojameta no terminó de cargar o está actualizando). No se sobreescribe nada de lo ya guardado.');
+        }
 
         // --- Bono Vida ---
         console.log('   🖱️ Clic en fila "Bono Vida"...');
@@ -550,7 +619,18 @@ async function procesarPromotoria(browser) {
             await volcarDebug(paginaGA, '5_dashboard_ga', carpetaGA);
             console.log(`   ✅ Reporte de GA en: ${paginaGA.url()}`);
 
-            resultado.gerenteAgencia.resumen = await extraerResumenGeneral(paginaGA);
+            resultado.gerenteAgencia.resumen = await leerResumenCargado(paginaGA);
+
+            // Si el ícono de Karen no abrió su dashboard, paginaGA cae de regreso a la
+            // página de la Promotoría: eso NO es el reporte de Karen y no debe guardarse
+            // como tal (antes se guardaba igual, con la clave 2043 en vez de la de Karen).
+            const claveGA = extraerCampoCabecera(resultado.gerenteAgencia.resumen.cabecera._raw, 'Clave');
+            if (!popupGA || !fechaCorteValida(resultado.gerenteAgencia.resumen) || claveGA === CLAVE_PROMOTORIA) {
+                console.log('   ⚠️ No se pudo abrir/cargar el dashboard de la Gerente de Agencia (llegó vacío o cayó en la Promotoría). No se sobreescribe premios/GA_KAREN/data.json.');
+                resultado.gerenteAgencia = {};
+                if (popupGA) await popupGA.close().catch(() => {});
+                return resultado;
+            }
 
             // --- Bono Inicial (GA) ---
             console.log('   🖱️ Clic en fila "Bono Inicial"...');
@@ -585,8 +665,12 @@ async function procesarPromotoria(browser) {
             if (popupGA) await popupGA.close().catch(() => {});
         }
 
-        fs.writeFileSync(path.join(carpetaGA, 'data.json'), JSON.stringify(resultado.gerenteAgencia, null, 2));
-        console.log('   💾 Guardado en premios/GA_KAREN/data.json');
+        if (resultado.gerenteAgencia.resumen) {
+            fs.writeFileSync(path.join(carpetaGA, 'data.json'), JSON.stringify(resultado.gerenteAgencia, null, 2));
+            console.log('   💾 Guardado en premios/GA_KAREN/data.json');
+        } else {
+            console.log('   ⚠️ No hubo reporte de la Gerente de Agencia en esta corrida: se conserva premios/GA_KAREN/data.json anterior.');
+        }
 
         return resultado;
     } finally {
@@ -800,6 +884,26 @@ async function procesarAsesor(browser, clave, intento = 1) {
 }
 
 async function main() {
+    // Modo consulta: solo lee la fecha de corte del portal (no baja ni guarda nada).
+    if (CLAVES.includes('--solo-fecha')) {
+        let browserFecha;
+        try {
+            browserFecha = await puppeteer.connect({ browserURL: 'http://127.0.0.1:9223', defaultViewport: null });
+        } catch (e) {
+            console.error('❌ No se pudo conectar al navegador. Asegúrate de ejecutar: node lanzar_navegador_premios.js e iniciar sesión.');
+            process.exit(1);
+        }
+        try {
+            await leerFechaCortePortal(browserFecha);
+            browserFecha.disconnect();
+            process.exit(0);
+        } catch (err) {
+            console.error('❌ No se pudo leer la fecha de corte del portal:', err.message);
+            browserFecha.disconnect();
+            process.exit(3);
+        }
+    }
+
     const soloPromotoria = CLAVES.includes('--promotoria');
     const clavesAsesores = CLAVES.filter(c => c !== '--promotoria');
 
@@ -840,7 +944,19 @@ async function main() {
             if (r.pareceVacio) fallidos.push(clave);
         } catch (err) {
             console.error(`   ❌ Error con clave ${clave}:`, err.message);
-            fallidos.push(clave);
+            // Falla intermitente real (2026-10-01 y 2026-10-19): la búsqueda sí encuentra la fila del
+            // asesor pero el clic en su ícono ↗ no abre la ventana. Repetir todo el recorrido
+            // (nueva sesión de Promotor desde cero) casi siempre lo resuelve; solo se reintenta una vez.
+            console.log(`   🔁 Reintentando la clave ${clave} una vez más desde cero...`);
+            await delay(4000);
+            try {
+                const r = await procesarAsesor(browser, clave, 2);
+                resultados.push(r);
+                if (r.pareceVacio) fallidos.push(clave);
+            } catch (err2) {
+                console.error(`   ❌ Error con clave ${clave} también en el reintento:`, err2.message);
+                fallidos.push(clave);
+            }
         }
         await delay(2000);
     }

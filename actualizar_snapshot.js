@@ -821,6 +821,8 @@ const run = async () => {
                                     const matVal = strRow[3] || strRow[2] || '';
                                     const sucVal = strRow[4] || strRow[3] || '';
                                     const claveVal = strRow[5] || strRow[4] || '';
+                                    // Col 14 = observación de la compañía (ej. "Prima menor a 25,000"): esa póliza NO gana kit.
+                                    if (strRow[14]) continue;
                                     if (SUCURSALES_PROMO.includes(matVal) || SUCURSALES_PROMO.includes(sucVal) || (claveVal && directory[claveVal])) {
                                         if (!clientesKitsPorAsesor[claveVal]) clientesKitsPorAsesor[claveVal] = [];
                                         clientesKitsPorAsesor[claveVal].push({

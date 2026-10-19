@@ -12,7 +12,9 @@ const CARPETAS_DESTINO = {
     'Informativos': [
         { regex: /proactivo/i, dir: path.join('administrador', 'proactivos'), hist: 'Proactivos' },
         { regex: /sin emisi/i, dir: path.join('administrador', 'asesores_sin_emision'), hist: 'Asesores sin emision' },
-        { regex: /comparativo/i, dir: path.join('administrador', 'comparativo_vida'), hist: 'Comparativo Vida' }
+        // Solo "Comparativo Vida": con /comparativo/ a secas, "Comparativo GMM" también entraba y, como al mover
+        // cada archivo se borra lo que hubiera en la carpeta destino, podía llevarse el de Vida.
+        { regex: /comparativo.*vida/i, dir: path.join('administrador', 'comparativo_vida'), hist: 'Comparativo Vida' }
     ]
 };
 
@@ -91,7 +93,20 @@ async function main() {
             continue;
         }
 
-        for (const archivo of archivos) {
+        // Solo se bajan los reportes que de verdad se usan (los de CARPETAS_DESTINO). Antes se bajaba TODO lo que
+        // listara la página y Python descartaba el resto; con pageSize=100 la lista trae filas de otras carpetas
+        // (Eureka, Legión Centurión, MENTORES MDRT...) y cada una gastaba 60 s esperando una descarga que no llegaba.
+        const reglasCarpeta = CARPETAS_DESTINO[nombreCarpeta];
+        const aDescargar = archivos.filter(a => reglasCarpeta.some(r => r.regex.test(a.name)));
+        const ignorados = archivos.filter(a => !aDescargar.includes(a)).map(a => a.name);
+        if (ignorados.length) console.log(`   ⏭️ No se descargan (no se usan): ${ignorados.join(', ')}`);
+        for (const regla of reglasCarpeta) {
+            if (!aDescargar.some(a => regla.regex.test(a.name))) {
+                console.log(`   ⚠️ No apareció en el portal: ${regla.hist}. Revisa si cambió de nombre.`);
+            }
+        }
+
+        for (const archivo of aDescargar) {
             console.log(`   ⬇️ Seleccionando archivo: ${archivo.name}`);
             
             await page.evaluate((rowId) => {
