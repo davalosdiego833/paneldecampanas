@@ -2,8 +2,7 @@
 // asesores (Bono Vida y Bono TA), no depende de datos del asesor. Les dice cuándo
 // corta cada reporte (semanal/mensual), cuándo se publica, y en los cortes
 // mensuales, cuándo se integra al Estado de Cuenta y cuándo cae el pago.
-// La compañía lo publica por TRIMESTRE completo, por eso se muestra agrupado así
-// (un bloque con encabezado por trimestre) en vez de una sola tabla larga.
+// La compañía lo publica por TRIMESTRE completo; se muestra solo el vigente (con su encabezado).
 import React, { useMemo } from 'react';
 import { TRIMESTRES_CALENDARIO_PAGOS, CALENDARIO_PAGOS_PREMIOS, FilaCalendarioPagos, parseFechaDDMMYYYY } from '../../utils/calendarioPagosPremios';
 
@@ -45,7 +44,7 @@ export const PestanaCalendarioPagos: React.FC = () => {
                 )}
             </div>
 
-            {TRIMESTRES_CALENDARIO_PAGOS.map(trimestre => (
+            {[...TRIMESTRES_CALENDARIO_PAGOS].reverse().map(trimestre => (
                 <div key={trimestre.label} className="glass-card" style={{ padding: '20px' }}>
                     <h4 style={{ fontSize: '0.9rem', fontWeight: 700, marginBottom: '12px' }}>{trimestre.label}</h4>
                     <div style={{ overflowX: 'auto' }}>
@@ -71,7 +70,7 @@ export const PestanaCalendarioPagos: React.FC = () => {
                                             background: esProxima ? 'rgba(212,175,55,0.12)' : esMensual ? 'rgba(255,255,255,0.04)' : 'transparent',
                                             fontWeight: esMensual ? 700 : 400,
                                         }}>
-                                            <td style={celda}>{f.fechaCorte}</td>
+                                            <td style={celda}>{f.fechaCorte}{f.marcada ? ' **' : ''}</td>
                                             <td style={celda}>{f.tipoProceso}</td>
                                             <td style={celda}>{f.fechaPublicacion}</td>
                                             <td style={{ ...celda, color: 'var(--text-secondary)' }}>{f.fechaIntegracionEstadoCuenta || '—'}</td>
@@ -84,7 +83,8 @@ export const PestanaCalendarioPagos: React.FC = () => {
                     </div>
                     <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: '10px' }}>
                         Los cortes "Mensual" (fin de mes) son los que se integran al Estado de Cuenta y traen fecha de pago — los cortes "Semanal" son solo el avance de esa semana.
-                        {trimestre.label === ultimoTrimestre.label && ' En cuanto se publique el siguiente trimestre, se agrega aquí como un bloque nuevo.'}
+                        {trimestre.filas.some(f => f.marcada) && ' ** Fecha de publicación especial.'}
+                        {trimestre.label === ultimoTrimestre.label && ' En cuanto se publique el siguiente trimestre, se actualiza aquí.'}
                     </p>
                 </div>
             ))}
