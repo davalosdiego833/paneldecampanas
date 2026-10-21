@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import AdmZip from 'adm-zip';
+import crypto from 'crypto';
 import { execSync } from 'child_process';
 import XLSX from 'xlsx';
 import { fechaDeAvanceEnHoja, fechaDeNombreArchivo } from './lib_fechas.js';
@@ -36,6 +37,11 @@ const REGLAS = [
     { regex: /mdrt.*asesor/i, dir: 'mdrt', campaignKey: 'mdrt', label: 'MDRT' },
     { regex: /convenciones.*promotor/i, dir: 'convenciones', rename: 'convenciones_promotores.xlsx', campaignKey: 'convenciones_promotores', label: 'Convención Promotoría', dateFrom: 'convenciones_promotores_b17' },
     { regex: /convenciones.*asesor/i, dir: 'convenciones', campaignKey: 'convenciones', label: 'Convención Asesores' },
+    // Altamar (agregada 2026-10-21, SIN PROBAR contra el portal real): en el portal es "ALTAMAR Promotores.zip".
+    // Todavía no tiene lectura en actualizar_snapshot.js ni dashboard, así que `ledger: true` lleva su propia
+    // fecha de corte en db/fechas_solo_descarga.json (si no, cada corrida la vería como "cambio" y la bajaría de nuevo).
+    // `rename` sin extensión = conserva la del Excel que venga dentro del zip.
+    { regex: /altamar/i, dir: 'altamar', rename: 'Altamar', campaignKey: 'altamar', label: 'Altamar', ledger: true },
     { regex: /poder.*elegirte.*convenci/i, dir: 'poder_elegirte', rename: 'El poder de elegirte Convenciones.xlsx', campaignKey: 'poder_elegirte', label: 'El Poder de Elegirte (Convenciones)' },
     { regex: /poder.*elegirte.*client/i, dir: 'poder_elegirte', rename: 'El Poder De Elegirte Clientes.xlsx', campaignKey: 'poder_elegirte', label: 'El Poder de Elegirte (Clientes)' },
     { regex: /pagpendrecluta|recluta.*temp/i, dir: path.join('administrador', 'pagado_emitido'), rename: 'PagPendReclutas.xls', campaignKey: 'pagado_pendiente_reclutas', label: 'Pagado/Pendiente (Reclutas)', dateFrom: 'skip' },
@@ -168,15 +174,28 @@ const extractCutoffDate = (regla, filePath) => {
     }
 };
 
+// Campañas con `ledger: true` (aún sin lectura en el snapshot): su último corte descargado vive aquí.
+// Si el snapshot ya trae esa llave, el snapshot manda.
+const LEDGER_PATH = path.join(__dirname, 'db', 'fechas_solo_descarga.json');
+const leerLedger = () => {
+    try { return JSON.parse(fs.readFileSync(LEDGER_PATH, 'utf-8')); } catch (e) { return {}; }
+};
+const guardarLedger = (clave, valor) => {
+    const l = leerLedger();
+    l[clave] = valor;
+    fs.writeFileSync(LEDGER_PATH, JSON.stringify(l, null, 2) + '\n');
+};
+
 const getLiveDates = () => {
     const snapPath = path.join(__dirname, 'db', 'resumen_snapshot.json');
-    if (!fs.existsSync(snapPath)) return {};
+    const ledger = leerLedger();
+    if (!fs.existsSync(snapPath)) return ledger;
     try {
         const snap = JSON.parse(fs.readFileSync(snapPath, 'utf-8'));
         const data = snap.data || snap;
-        return { ...(data.campaignDates || {}), ...(data.fechas_corte || {}) };
+        return { ...ledger, ...(data.campaignDates || {}), ...(data.fechas_corte || {}) };
     } catch (e) {
-        return {};
+        return ledger;
     }
 };
 
@@ -309,7 +328,7 @@ async function main() {
 
             const finalDir = path.join(__dirname, regla.dir);
             if (!fs.existsSync(finalDir)) fs.mkdirSync(finalDir, { recursive: true });
-            const finalName = regla.rename || actualFileName;
+            const finalName = regla.rename ? (path.extname(regla.rename) ? regla.rename : regla.rename + path.extname(actualFileName)) : actualFileName;
             const newPath = path.join(finalDir, finalName);
 
             if (regla.dateFrom === 'skip') {
@@ -320,11 +339,16 @@ async function main() {
                 continue;
             }
 
-            const nuevaFecha = extractCutoffDate(regla, fileToProcessPath);
+            let nuevaFecha = extractCutoffDate(regla, fileToProcessPath);
+            // Sin lectura de fecha conocida (archivo nuevo, formato sin ver): si no se halla fecha, se compara por contenido
+            if (regla.ledger && !nuevaFecha) {
+                nuevaFecha = 'archivo ' + crypto.createHash('md5').update(fs.readFileSync(fileToProcessPath)).digest('hex').slice(0, 8);
+            }
             const fechaActual = liveDates[regla.campaignKey] || '';
 
             if (nuevaFecha && !fechasIguales(nuevaFecha, fechaActual)) {
                 fs.copyFileSync(fileToProcessPath, newPath);
+                if (regla.ledger) guardarLedger(regla.campaignKey, nuevaFecha);
                 cambios.push({ campaignKey: regla.campaignKey, label: regla.label, oldDate: fechaActual || '(sin dato previo)', newDate: nuevaFecha });
                 console.log(`   ✅ ACTUALIZADO: ${regla.label} — ${fechaActual || 'sin dato previo'} → ${nuevaFecha}`);
             } else {

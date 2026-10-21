@@ -243,3 +243,13 @@ El Buzón de Avisos del perfil Asesor oculta por diseño los avisos de grupo `ad
 `/Users/diego/Desktop/ESTATUS DE POLIZAS` — mismo patrón (login automático +
 captcha manual), pero para el reporte de cambios de estatus de pólizas, con
 su propio `CLAUDE.md`/`README.md`. Comparten credenciales en el Llavero.
+
+## Campaña Altamar (agregada 2026-10-21, SIN PROBAR contra el portal real)
+
+En el portal está como `ALTAMAR Promotores.zip` (carpeta "Campañas"). `descargar_campanas.js` ya la consulta: regla `/altamar/i` →
+`altamar/Altamar.<ext del Excel del zip>`, y si cambia se despliega la carpeta `altamar` con `deploy_datos.sh`.
+- Como `actualizar_snapshot.js` todavía NO la lee (ni hay dashboard), su último corte se lleva en `db/fechas_solo_descarga.json`
+  (regla con `ledger: true`). Si el snapshot algún día trae `campaignDates.altamar`, ese manda. Si no se encuentra fecha dentro del
+  archivo, se compara por contenido (md5), así que cualquier cambio del Excel cuenta como actualización.
+- Pendiente cuando se arme el diseño: leerla en `actualizar_snapshot.js` (+ `CAMPAIGN_NAMES` para el aviso), `archivar_historial_mensual.js`
+  si se quiere archivo mensual, y quitar `ledger: true` de la regla. La primera corrida real conviene revisarla: no se ha visto el contenido del zip.

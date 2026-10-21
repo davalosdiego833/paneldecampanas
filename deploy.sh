@@ -52,6 +52,7 @@ mkdir -p db_temp_tmp 2>/dev/null || true
 rsync -avz -e "ssh $SSH_OPTS" db/resumen_snapshot.json $SERVER_USER@$SERVER_IP:$PARENT_DIR/db/resumen_snapshot.json 2>/dev/null || true
 rsync -avz -e "ssh $SSH_OPTS" administrador/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/administrador/
 rsync -avz -e "ssh $SSH_OPTS" camino_cumbre/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/camino_cumbre/
+rsync -avz -e "ssh $SSH_OPTS" altamar/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/altamar/
 rsync -avz -e "ssh $SSH_OPTS" convenciones/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/convenciones/
 rsync -avz -e "ssh $SSH_OPTS" graduacion/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/graduacion/
 rsync -avz -e "ssh $SSH_OPTS" legion_centurion/ $SERVER_USER@$SERVER_IP:$PARENT_DIR/nodejs/legion_centurion/

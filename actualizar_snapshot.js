@@ -357,6 +357,37 @@ const run = async () => {
                         wb = null; ws = null; data = null;
                     }
                 } catch(e) { console.warn('⚠️ Camino Cumbre skip:', e.message); }
+            } else if (step === 'altamar') {
+                try {
+                    console.log('Processing altamar');
+                    const amPath = path.join(BASE_PATH, 'altamar');
+                    const amFile = fs.existsSync(amPath) ? getMostRecentFile(amPath) : null;
+                    if (amFile) {
+                        // Pestaña "Asesores" (cabecera en fila 11, datos desde fila 13). Solo Camino 1 por ahora.
+                        let wb = XLSX.readFile(path.join(amPath, amFile), { sheets: ['Asesores'] });
+                        let ws = wb.Sheets['Asesores'];
+                        const raw = XLSX.utils.sheet_to_json(ws, { header: 1, defval: null });
+                        const avance = raw[9] && typeof raw[9][1] === 'number' ? raw[9][1] : null;
+                        campaigns.altamar = raw.slice(12)
+                            .filter(r => r && SUCURSALES_PROMO.includes(String(r[3] || '').trim()) && r[5])
+                            .map(r => {
+                                const clave = String(r[5]).trim();
+                                const tipoRaw = String(r[11] || '').trim().toUpperCase();
+                                return {
+                                    Asesor: resolveName(clave, null, directory),
+                                    Clave: clave,
+                                    Suc: String(r[4] || ''),
+                                    Conexion: toISODate(r[6]) || directoryFechas[clave] || '',
+                                    Mes_Asesor: Number(r[8] || 0),
+                                    Tipo_Asesor: tipoRaw.startsWith('CONS') ? 'CONSOLIDADO' : (tipoRaw.startsWith('NVA') ? 'NUEVA_ORGANIZACION' : ''),
+                                    Polizas: Number(r[12] || 0),
+                                    Comisiones: Number(r[14] || 0)
+                                };
+                            });
+                        if (avance) campaignDates.altamar = formatExcelDate(avance).toLowerCase();
+                        wb = null; ws = null;
+                    }
+                } catch(e) { console.warn('⚠️ Altamar skip:', e.message); }
             } else if (step === 'graduacion') {
                 try {
                     console.log('Processing graduacion');
@@ -772,7 +803,7 @@ const run = async () => {
         if (SOLO_PAGADO) console.log('⚡ Modo rápido: solo Pagado/Pendiente; campañas y demás reportes se reutilizan del snapshot actual.');
         const clonar = (o) => JSON.parse(JSON.stringify(o));
 
-        const steps = ['mdrt', 'convenciones', 'legion_centurion', 'camino_cumbre', 'graduacion', 'convenciones_promotores', 'convenciones_gerente', 'poder_elegirte'];
+        const steps = ['mdrt', 'convenciones', 'legion_centurion', 'camino_cumbre', 'graduacion', 'convenciones_promotores', 'convenciones_gerente', 'poder_elegirte', 'altamar'];
         if (SOLO_PAGADO) {
             Object.assign(campaigns, clonar(baseSnap.data.campaigns));
             Object.assign(campaignDates, clonar(baseSnap.data.campaignDates));
@@ -1355,7 +1386,8 @@ const run = async () => {
                 legion_centurion: 'Legión Centurión',
                 camino_cumbre: 'Camino a la Cumbre',
                 graduacion: 'Graduación',
-                poder_elegirte: 'El Poder de Elegirte'
+                poder_elegirte: 'El Poder de Elegirte',
+                altamar: 'Altamar 2027'
             };
 
             const ADMIN_REPORT_NAMES = {

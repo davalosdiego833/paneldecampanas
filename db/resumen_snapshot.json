@@ -1251,7 +1251,7 @@
           "Fecha_Conexion": "2022-05-26"
         },
         {
-          "ASESOR": "Asesor 21615",
+          "ASESOR": "SELINA JANET LEMUS MIRAMONTES",
           "SUC": 2043,
           "Polizas_Acumuladas_Mes_Ant.": 0,
           "Polizas_Del_mes": 0,
@@ -3927,7 +3927,7 @@
           "PA_Acumulada": 2363.5
         },
         {
-          "Asesor": "Asesor 21615",
+          "Asesor": "SELINA JANET LEMUS MIRAMONTES",
           "Clave": "21615",
           "PA_Acumulada": 0
         },
@@ -4373,7 +4373,7 @@
           "RDA": 0
         },
         {
-          "Asesor": "Asesor 21615",
+          "Asesor": "SELINA JANET LEMUS MIRAMONTES",
           "Clave": "21615",
           "PA_Total": 0,
           "Polizas": 0,
@@ -4635,7 +4635,7 @@
           "EnMeta": false
         },
         {
-          "Asesor": "Asesor 21615",
+          "Asesor": "SELINA JANET LEMUS MIRAMONTES",
           "Clave": "21615",
           "Total_Polizas": 0,
           "Mes_Actual": 10,
@@ -10822,6 +10822,338 @@
           "Kits_Ganados_Nacional": 508,
           "Kits_Restantes_Nacional": 492
         }
+      ],
+      "altamar": [
+        {
+          "Asesor": "DESIREE DE LA PEÑA OROZCO",
+          "Clave": "80122",
+          "Suc": "2043",
+          "Conexion": "2018-09-28",
+          "Mes_Asesor": 98,
+          "Tipo_Asesor": "CONSOLIDADO",
+          "Polizas": 6,
+          "Comisiones": 23444.83
+        },
+        {
+          "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+          "Clave": "108404",
+          "Suc": "2043",
+          "Conexion": "2024-06-24",
+          "Mes_Asesor": 29,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 1,
+          "Comisiones": 14936.69
+        },
+        {
+          "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
+          "Clave": "104750",
+          "Suc": "2043",
+          "Conexion": "2023-11-06",
+          "Mes_Asesor": 36,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 1,
+          "Comisiones": 13652.9
+        },
+        {
+          "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+          "Clave": "87538",
+          "Suc": "2043",
+          "Conexion": "2019-09-23",
+          "Mes_Asesor": 86,
+          "Tipo_Asesor": "CONSOLIDADO",
+          "Polizas": 1.5,
+          "Comisiones": 11957.42
+        },
+        {
+          "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
+          "Clave": "118246",
+          "Suc": "2043",
+          "Conexion": "2026-08-05",
+          "Mes_Asesor": 3,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 1,
+          "Comisiones": 9531.91
+        },
+        {
+          "Asesor": "JORGE ANTONIO LUNA LARA",
+          "Clave": "111056",
+          "Suc": "2043",
+          "Conexion": "2024-12-13",
+          "Mes_Asesor": 23,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0.5,
+          "Comisiones": 4788.56
+        },
+        {
+          "Asesor": "ANAIS LUA MORENO",
+          "Clave": "110453",
+          "Suc": "2856",
+          "Conexion": "2024-11-04",
+          "Mes_Asesor": 24,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 1,
+          "Comisiones": 1606.55
+        },
+        {
+          "Asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
+          "Clave": "119447",
+          "Suc": "2856",
+          "Conexion": "2026-09-30",
+          "Mes_Asesor": 2,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 1,
+          "Comisiones": 1322.42
+        },
+        {
+          "Asesor": "MONSERRAT VELASCO SANTOS",
+          "Clave": "117440",
+          "Suc": "2043",
+          "Conexion": "2026-05-07",
+          "Mes_Asesor": 6,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 1,
+          "Comisiones": 1219.16
+        },
+        {
+          "Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
+          "Clave": "118915",
+          "Suc": "2043",
+          "Conexion": "2026-08-28",
+          "Mes_Asesor": 3,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 1,
+          "Comisiones": 1146.42
+        },
+        {
+          "Asesor": "JULIANA RIASCOS VALENCIA",
+          "Clave": "100677",
+          "Suc": "2043",
+          "Conexion": "2023-03-14",
+          "Mes_Asesor": 44,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "ROGELIO TORRES ORTIZ",
+          "Clave": "104718",
+          "Suc": "2043",
+          "Conexion": "2023-12-04",
+          "Mes_Asesor": 35,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
+          "Clave": "104343",
+          "Suc": "2043",
+          "Conexion": "2023-10-02",
+          "Mes_Asesor": 37,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "SELINA JANET LEMUS MIRAMONTES",
+          "Clave": "21615",
+          "Suc": "2043",
+          "Conexion": "2021-07-30",
+          "Mes_Asesor": 64,
+          "Tipo_Asesor": "CONSOLIDADO",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
+          "Clave": "113450",
+          "Suc": "2043",
+          "Conexion": "2025-07-14",
+          "Mes_Asesor": 16,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
+          "Clave": "115404",
+          "Suc": "2043",
+          "Conexion": "2025-11-25",
+          "Mes_Asesor": 12,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
+          "Clave": "95148",
+          "Suc": "2043",
+          "Conexion": "2022-12-21",
+          "Mes_Asesor": 47,
+          "Tipo_Asesor": "CONSOLIDADO",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "MARICELA ARREOLA LOPEZ",
+          "Clave": "80925",
+          "Suc": "2043",
+          "Conexion": "2018-12-05",
+          "Mes_Asesor": 95,
+          "Tipo_Asesor": "CONSOLIDADO",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "MARIA FERNANDA RIOS BERNAL",
+          "Clave": "103982",
+          "Suc": "2043",
+          "Conexion": "2023-10-17",
+          "Mes_Asesor": 37,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+          "Clave": "47116",
+          "Suc": "2043",
+          "Conexion": "2022-02-24",
+          "Mes_Asesor": 57,
+          "Tipo_Asesor": "CONSOLIDADO",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "DARINKA UREÑA CASILLAS",
+          "Clave": "90355",
+          "Suc": "2043",
+          "Conexion": "2020-04-28",
+          "Mes_Asesor": 79,
+          "Tipo_Asesor": "CONSOLIDADO",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "GABRIELA CASTAÑEDA SALAZAR",
+          "Clave": "105696",
+          "Suc": "2043",
+          "Conexion": "2023-12-19",
+          "Mes_Asesor": 35,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "JOSE RENE DE ALBA MORALES",
+          "Clave": "110575",
+          "Suc": "2043",
+          "Conexion": "2024-10-18",
+          "Mes_Asesor": 25,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
+          "Clave": "98797",
+          "Suc": "2043",
+          "Conexion": "2021-05-26",
+          "Mes_Asesor": 66,
+          "Tipo_Asesor": "CONSOLIDADO",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "MIREYA LIZETTE TORRES GARCIA",
+          "Clave": "106018",
+          "Suc": "2043",
+          "Conexion": "2024-02-22",
+          "Mes_Asesor": 33,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "MARIA TERESA ASENCIO LOZANO",
+          "Clave": "94156",
+          "Suc": "2043",
+          "Conexion": "2020-11-24",
+          "Mes_Asesor": 72,
+          "Tipo_Asesor": "CONSOLIDADO",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "VELIA PATRICIA BERNAL RAMOS",
+          "Clave": "115047",
+          "Suc": "2856",
+          "Conexion": "2025-10-14",
+          "Mes_Asesor": 13,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
+          "Clave": "116883",
+          "Suc": "2856",
+          "Conexion": "2026-04-14",
+          "Mes_Asesor": 7,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "PAULA ANGELICA LOMELI CAZARES",
+          "Clave": "116876",
+          "Suc": "2856",
+          "Conexion": "2026-03-30",
+          "Mes_Asesor": 8,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "MARIO IVAN ROMERO GONZALEZ",
+          "Clave": "118069",
+          "Suc": "2856",
+          "Conexion": "2026-06-19",
+          "Mes_Asesor": 5,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
+          "Clave": "63441",
+          "Suc": "2511",
+          "Conexion": "2022-06-21",
+          "Mes_Asesor": 53,
+          "Tipo_Asesor": "CONSOLIDADO",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "KAREN MUÑOZ GARCIA",
+          "Clave": "81044",
+          "Suc": "2511",
+          "Conexion": "2022-11-07",
+          "Mes_Asesor": 48,
+          "Tipo_Asesor": "CONSOLIDADO",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
+          "Clave": "59120",
+          "Suc": "2511",
+          "Conexion": "2022-05-27",
+          "Mes_Asesor": 54,
+          "Tipo_Asesor": "CONSOLIDADO",
+          "Polizas": 0,
+          "Comisiones": 0
+        }
       ]
     },
     "campaignDates": {
@@ -10832,7 +11164,8 @@
       "graduacion": "16 de octubre de 2026",
       "convenciones_promotores": "14 de octubre 2026",
       "convenciones_gerente": "14 de octubre 2026",
-      "poder_elegirte": "16 de octubre de 2026"
+      "poder_elegirte": "16 de octubre de 2026",
+      "altamar": "16 de octubre de 2026"
     },
     "historico_metas": {
       "2026": {

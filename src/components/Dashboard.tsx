@@ -7,6 +7,7 @@ import Convenciones from './Dashboards/Convenciones';
 import CaminoCumbre from './Dashboards/CaminoCumbre';
 import Graduacion from './Dashboards/Graduacion';
 import PoderDeElegirte from './Dashboards/PoderDeElegirte';
+import Altamar from './Dashboards/Altamar';
 import BonoPremios from './Dashboards/BonoPremios';
 
 
@@ -71,6 +72,7 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor, themeMode }) => {
             case 'camino_cumbre': return <CaminoCumbre data={data} />;
             case 'graduacion': return <Graduacion data={data} />;
             case 'poder_elegirte': return <PoderDeElegirte data={data} />;
+            case 'altamar': return <Altamar data={data} />;
             default: return (
                 <div style={{
                     display: 'grid',
@@ -152,7 +154,7 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor, themeMode }) => {
                 </div>
                 <div>
                     <h1 style={{ fontSize: '2.5rem', fontWeight: 800, lineHeight: 1.1, textTransform: 'uppercase', marginBottom: '8px' }}>
-                        {campaign.replace(/_/g, ' ')}
+                        {campaign === 'altamar' ? 'Altamar 2027' : campaign.replace(/_/g, ' ')}
                     </h1>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
                         {data.Fecha_Corte && (

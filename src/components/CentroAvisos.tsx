@@ -31,6 +31,7 @@ const campaignLabels: Record<string, { label: string; icon: string }> = {
     mdrt: { label: 'MDRT', icon: '🏆' },
     convenciones: { label: 'Convenciones', icon: '🏛️' },
     camino_cumbre: { label: 'Camino a la Cumbre', icon: '⛰️' },
+    altamar: { label: 'Altamar 2027', icon: '🚢' },
     legion_centurion: { label: 'Legión Centurión', icon: '🛡️' },
     graduacion: { label: 'Graduación', icon: '🎓' },
 };
