@@ -28,8 +28,6 @@ const PRESET_DESTINATIONS = [
     { label: '📄 PDF Vida Mujer (Clientes)', value: '/bases_campanas/El%20Poder%20de%20Elegirte/Campa%C3%B1a%20El%20Poder%20de%20Elegirte%20(Clientes).pdf' },
     { label: '📄 PDF Convenciones Asesores 2027', value: '/bases_campanas/Convenciones/Convenciones%20Asesores%20LP%202027.pdf' },
     { label: '📄 PDF Bono 15 MDRT', value: '/bases_campanas/BONO%2015%20MDRT/Bases%20Campa%C3%B1a%20Bono%2015%20MDRT.pdf' },
-    { label: '📄 PDF Educar Es Creer (Asesores)', value: '/bases_campanas/EDUCAR%20ES%20CREER%20ASESORES/Campa%C3%B1a%20Educar%20Es%20Creer%20Asesores.pdf' },
-    { label: '📄 PDF Educar Es Creer (Clientes)', value: '/bases_campanas/EDUCAR%20ES%20CREER%20CLIENTES/Campa%C3%B1a%20Educar%20Es%20Creer%20(Clientes).pdf' },
     { label: '📄 PDF Bases Camino a la Cumbre', value: '/bases_campanas/Camino%20a%20la%20cumbre/Bases%20Camino%20a%20la%20Cumbre_2026.pdf' },
     { label: '📄 PDF Bases Legión Centurión', value: '/bases_campanas/Legion/Legio%CC%81n%20Centurio%CC%81n%20Asesores%202026.pdf' },
     { label: '📄 PDF Bono de Conexión', value: '/bases_campanas/Bono%20de%20conexion/Campa%C3%B1a%20%2B%20Bono%20de%20Conexi%C3%B3n%202026.pdf' },

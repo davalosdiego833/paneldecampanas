@@ -430,23 +430,6 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                                         </button>
                                     </div>
                                 </div>
-                                {/* Item 7: Educar es Creer */}
-                                <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(66, 165, 245, 0.15)', color: '#42A5F5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><GraduationCap size={20} /></div>
-                                    <div style={{ flex: 1 }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
-                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>Campaña Educar Es Creer — Segubeca</strong>
-                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(66, 165, 245, 0.15)', color: '#42A5F5' }}>1 AGO – 30 SEP 2026</span>
-                                        </div>
-                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>¡En este regreso a clases Segubeca vale más! <br/> • Asesores: Doble ponderación para Convenciones.<br/> • Clientes: Kit de Regreso a Clases para las primeras 1,000 pólizas.</p>
-                                        <button 
-                                            onClick={() => setSelectedPdf({ title: 'Educar Es Creer Asesores', path: '/bases_campanas/EDUCAR%20ES%20CREER%20ASESORES/Campa%C3%B1a%20Educar%20Es%20Creer%20Asesores.pdf' })}
-                                            style={{ marginTop: '10px', display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '8px', background: 'rgba(66, 165, 245, 0.15)', border: '1px solid rgba(66, 165, 245, 0.4)', color: '#42A5F5', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer' }}
-                                        >
-                                            <Eye size={14} /> 📄 Ver PDF Oficial
-                                        </button>
-                                    </div>
-                                </div>
                                 {/* Item 8: Bono 15 MDRT */}
                                 <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                                     <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(156, 39, 176, 0.15)', color: '#BA68C8', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Plane size={20} /></div>
