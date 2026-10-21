@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 import AdmZip from 'adm-zip';
 import { execSync } from 'child_process';
 import XLSX from 'xlsx';
-import { fechaDeAvanceEnHoja } from './lib_fechas.js';
+import { fechaDeAvanceEnHoja, fechaDeNombreArchivo } from './lib_fechas.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -36,8 +36,6 @@ const REGLAS = [
     { regex: /mdrt.*asesor/i, dir: 'mdrt', campaignKey: 'mdrt', label: 'MDRT' },
     { regex: /convenciones.*promotor/i, dir: 'convenciones', rename: 'convenciones_promotores.xlsx', campaignKey: 'convenciones_promotores', label: 'Convención Promotoría', dateFrom: 'convenciones_promotores_b17' },
     { regex: /convenciones.*asesor/i, dir: 'convenciones', campaignKey: 'convenciones', label: 'Convención Asesores' },
-    { regex: /educar.*convenci/i, dir: 'educar_es_creer', rename: 'Educar es Crecer Convenciones.xlsx', campaignKey: 'educar_es_creer', label: 'Educar es Creer (Convenciones)' },
-    { regex: /educar.*(segubeca|client)/i, dir: 'educar_es_creer', rename: 'Educar es Crecer Segubeca Clientes.xlsx', campaignKey: 'educar_es_creer', label: 'Educar es Creer (Clientes)' },
     { regex: /poder.*elegirte.*convenci/i, dir: 'poder_elegirte', rename: 'El poder de elegirte Convenciones.xlsx', campaignKey: 'poder_elegirte', label: 'El Poder de Elegirte (Convenciones)' },
     { regex: /poder.*elegirte.*client/i, dir: 'poder_elegirte', rename: 'El Poder De Elegirte Clientes.xlsx', campaignKey: 'poder_elegirte', label: 'El Poder de Elegirte (Clientes)' },
     { regex: /pagpendrecluta|recluta.*temp/i, dir: path.join('administrador', 'pagado_emitido'), rename: 'PagPendReclutas.xls', campaignKey: 'pagado_pendiente_reclutas', label: 'Pagado/Pendiente (Reclutas)', dateFrom: 'skip' },
@@ -122,6 +120,10 @@ const extractConvencionesPromotoresDate = (filePath) => {
     const wb = XLSX.readFile(filePath, { sheets: ['Lineas Personales'] });
     const ws = wb.Sheets['Lineas Personales'];
     if (!ws) return '';
+    // El corte real está en el nombre del archivo de B16 (igual que en actualizar_snapshot.js). Antes se leía solo
+    // B17 ("IGC Y LIMRA al 13 de octubre"), que es otra fecha: salía un "cambio" falso (14 -> 13) en cada corrida.
+    const deB16 = fechaDeNombreArchivo(ws['B16'] && ws['B16'].v);
+    if (deB16) return deB16;
     const b17 = ws['B17'];
     if (b17 && b17.v) {
         const m = String(b17.v).match(/al\s+(.+)/i);

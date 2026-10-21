@@ -65,7 +65,11 @@ function copiarArchivo(origenAbs, destinoCarpetaAbs, nombreDestinoSinExt) {
     const ext = path.extname(origenAbs);
     fs.mkdirSync(destinoCarpetaAbs, { recursive: true });
     const destinoPath = path.join(destinoCarpetaAbs, `${nombreDestinoSinExt}${ext}`);
-    fs.copyFileSync(origenAbs, destinoPath);
+    // Se copia a un archivo aparte y luego se renombra: antes copyFileSync vaciaba el destino y, si iCloud
+    // (el Escritorio está sincronizado) se trababa a media copia, el archivo del mes quedaba en 0 bytes.
+    const parcial = `${destinoPath}.parcial`;
+    fs.copyFileSync(origenAbs, parcial);
+    fs.renameSync(parcial, destinoPath);
     return destinoPath;
 }
 

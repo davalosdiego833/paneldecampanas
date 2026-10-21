@@ -12,6 +12,17 @@ export function fechaDeAvance(texto) {
     return m ? `${m[1]} de ${m[2]} de ${m[3]}` : null;
 }
 
+const MESES_ABBR = { ENE: 'enero', FEB: 'febrero', MAR: 'marzo', ABR: 'abril', MAY: 'mayo', JUN: 'junio', JUL: 'julio', AGO: 'agosto', SEP: 'septiembre', OCT: 'octubre', NOV: 'noviembre', DIC: 'diciembre' };
+
+/** Convenciones Promotores: el corte real viene en el nombre del archivo que aparece en B16
+ *  ("U:\...\10 Convenciones Promotores 14-OCT-2026 .xlsx" -> "14 de octubre 2026"; mismo formato que
+ *  usa actualizar_snapshot.js). B17 ("IGC Y LIMRA al 13 de octubre") es solo el cierre de IGC/LIMRA. */
+export function fechaDeNombreArchivo(texto) {
+    const m = String(texto || '').match(/(\d{1,2})-([A-Za-z]{3})-(\d{4})/);
+    const mes = m && MESES_ABBR[m[2].toUpperCase()];
+    return mes ? `${Number(m[1])} de ${mes} ${m[3]}` : null;
+}
+
 /** Busca la línea de "Avance" en las primeras 35 filas de una hoja (objeto de SheetJS). */
 export function fechaDeAvanceEnHoja(ws, XLSX) {
     if (!ws) return null;

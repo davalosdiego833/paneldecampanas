@@ -158,8 +158,9 @@ Mapeo carpeta origen → destino (nombres exactos ya acordados con Diego):
   procesado `pagado_emitido.xlsx` que también vive en esa carpeta).
 - `administrador/QsQ Vida` → `PROMO/QsQ asesores/<año>/<MES>.ext`
 - `administrador/QsQ GMM` → `PROMO/QSQ GMM/<año>/<MES>.ext`
-- `educar_es_creer`, `poder_elegirte`, y `pagado_pendiente_reclutas` — **NO se
-  archivan** (decisión explícita, no un olvido).
+- `poder_elegirte` y `pagado_pendiente_reclutas` — **NO se archivan** (decisión explícita, no un olvido).
+- **Educar es Creer: ELIMINADA el 2026-10-21** (la campaña terminó). Se quitó de descargas, snapshot, selector y dashboard,
+  y se borró la carpeta `educar_es_creer/` (sigue en el historial de git). Quedan solo las tarjetas/PDF informativos de bases.
 
 ## Quién es Quién (agregado 2026-09-18, SIN PROBAR contra el portal real)
 
@@ -207,7 +208,21 @@ Consulta ÚNICAMENTE el reporte Pagado y Emitido (PagPend + PagPendReclutas, car
 - Si el portal trae un corte MÁS VIEJO que la app, no lo aplica. No hace commit ni push a git (igual que las otras).
 - Flags: `--solo-consultar` (nunca cambia ni publica nada) y `--desde-carpeta=/ruta` (usa archivos ya
   descargados a mano, sin portal ni captcha). Códigos de salida: 0 ok, 1 error/revertido, 2 servidor caído,
-  3 archivo no encontrado/ilegible, 4 publicado pero el aviso no llegó.
+  3 archivo no encontrado/ilegible, 4 publicado pero el aviso no llegó, 5 todo bien pero el archivado mensual falló.
+  El archivado tiene tope de 2 min (el 2026-10-20 se trabó 28 min copiando a `AVANCE DE CAMPAÑAS`, que está en iCloud, y dejó
+  `OCTUBRE.xls` en 0 bytes); `archivar_historial_mensual.js` ahora copia a `.parcial` y renombra para no vaciar el destino.
+  `actualizar_snapshot.js` reconstruye TODO el snapshot (campañas incluidas, ~97 MB de Excel, ~90-100 s por corrida), así que este
+  script usa su **modo rápido `--solo-pagado`** (2026-10-20): reutiliza todo lo ya calculado en `db/resumen_snapshot.json` y solo recalcula
+  Pagado/Pendiente (+ Reclutas) — 0 s. Probado: rápido == completo == snapshot publicado, campo por campo. Si no hay un snapshot completo
+  previo cae solo a la reconstrucción completa. Se puede usar a mano: `node actualizar_snapshot.js --solo-pagado [--notify]`.
+
+## ⚠️ iCloud también "evicta" node_modules (visto 2026-10-20)
+
+`node_modules/xlsx/dist/cpexcel.js` quedó `compressed,dataless` (movido a la nube) y entonces `XLSX.readFile` de cualquier `.xls` viejo
+(p. ej. `Asesores sin Emision.xls`) falla con `Cannot read properties of undefined (reading 'decode')`; `actualizar_snapshot.js` captura el error
+("⚠️ Asesores sin emisión skip") y **publica el snapshot SIN esa sección**. Diagnóstico: `ls -laTO node_modules/xlsx/dist/cpexcel.js` (si dice `dataless`)
+y arreglo inmediato: `brctl download "$PWD/node_modules/xlsx/dist/cpexcel.js"`. Había ~19,500 archivos dataless en `node_modules`. Antes de una
+reconstrucción completa conviene revisar que `Asesores sin Emisión` salga en el snapshot (o usar la corrida solo-Pagado, que no relee esos Excel).
 - Funciones puras (fechas, respaldo/restauración, verificación de avisos) en `lib_pagado.js`.
 
 ⚠️ Probado: lectura de fecha, comparación (nuevo/igual/más viejo/ilegible), respaldo-restauración, modos

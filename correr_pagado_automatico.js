@@ -310,7 +310,9 @@ async function aplicar(nuevos) {
     try {
         for (const r of nuevos) fs.copyFileSync(r.ruta, path.join(__dirname, DATOS_DIR, r.destino));
         console.log('\n🔄 Reconstruyendo el snapshot...');
-        correr('node', ['actualizar_snapshot.js']); // el aviso va DESPUÉS de publicar, para no avisar de algo que no llegó
+        // --solo-pagado: modo rápido (recalcula solo Pagado/Pendiente y reutiliza el resto del snapshot; segundos en vez de minutos).
+        // El aviso va DESPUÉS de publicar, para no avisar de algo que no llegó.
+        correr('node', ['actualizar_snapshot.js', '--solo-pagado']);
         const hoy = fechasDeLaApp();
         for (const r of nuevos) {
             if (evaluarCambio(r.fechaPortal, hoy[r.key]) !== 'igual') {
@@ -336,7 +338,7 @@ async function aplicar(nuevos) {
     const idAntes = antes ? ultimoIdComunicado(antes) : null;
     let avisoOk = null; // true / false / null = no se pudo verificar
     try {
-        correr('node', ['actualizar_snapshot.js', '--notify']);
+        correr('node', ['actualizar_snapshot.js', '--solo-pagado', '--notify']);
         await delay(2000);
         const despues = await leerHistorial();
         if (idAntes !== null && despues) avisoOk = comunicadosNuevos(despues, idAntes, /pagado/i).length > 0;
@@ -357,15 +359,19 @@ async function aplicar(nuevos) {
     }
 
     try {
-        correr('node', ['archivar_historial_mensual.js', '--solo=pagado_emitido']);
+        // Con tope de tiempo: el archivo va a una carpeta de iCloud y una vez se trabó 28 minutos.
+        execFileSync('node', ['archivar_historial_mensual.js', '--solo=pagado_emitido'], { stdio: 'inherit', cwd: __dirname, timeout: 120000 });
     } catch (e) {
-        console.error(`⚠️ No se pudo archivar el histórico mensual: ${e.message}`);
+        archivadoOk = false;
+        console.error(`⚠️ No se pudo archivar el histórico mensual (${e.code === 'ETIMEDOUT' ? 'se trabó más de 2 minutos' : e.message}).`);
+        console.error('   Lo demás ya quedó publicado y avisado. Para reintentar solo el archivado:  node archivar_historial_mensual.js --solo=pagado_emitido');
     }
     return avisoOk !== false;
 }
 
 // ---- Principal ----------------------------------------------------------------------------------
 let conservarTmp = false;
+let archivadoOk = true;
 
 async function main() {
     console.log('🔎 Consulta de Pagado / Pendiente (Pagado y Emitido)');
@@ -428,8 +434,11 @@ async function main() {
 
         const ok = await aplicar(nuevos);
         if (ok) {
-            console.log('\n🎉 Listo: Pagado / Pendiente actualizado, publicado, avisado y archivado.');
-            avisoMac('Pagado / Pendiente actualizado', `${cuales}. Ya está en la app.`);
+            console.log(archivadoOk
+                ? '\n🎉 Listo: Pagado / Pendiente actualizado, publicado, avisado y archivado.'
+                : '\n✅ Pagado / Pendiente actualizado, publicado y avisado. ⚠️ El archivado mensual NO se hizo (ver arriba).');
+            avisoMac('Pagado / Pendiente actualizado', `${cuales}. Ya está en la app.${archivadoOk ? '' : ' (Archivado mensual pendiente.)'}`);
+            if (!archivadoOk) process.exitCode = 5;
         }
     } finally {
         if (sesion) {

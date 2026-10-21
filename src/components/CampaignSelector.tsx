@@ -7,7 +7,7 @@ interface Props {
 }
 
 const CampaignSelector: React.FC<Props> = ({ advisor, onCampaignSelect }) => {
-    const campaignOrder = ["premios", "legion_centurion", "mdrt", "convenciones", "camino_cumbre", "graduacion", "educar_es_creer", "poder_elegirte"];
+    const campaignOrder = ["premios", "legion_centurion", "mdrt", "convenciones", "camino_cumbre", "graduacion", "poder_elegirte"];
     const [campaigns, setCampaigns] = useState<string[]>(campaignOrder);
     const [dates, setDates] = useState<Record<string, string>>({});
 
@@ -18,7 +18,6 @@ const CampaignSelector: React.FC<Props> = ({ advisor, onCampaignSelect }) => {
         "convenciones": "/assets/logos/campanas/convenciones.png",
         "camino_cumbre": "/assets/logos/campanas/camino_cumbre.png",
         "graduacion": "/assets/logos/campanas/graduacion.png",
-        "educar_es_creer": "/assets/logos/campanas/educar_es_creer.png?v=3",
         "poder_elegirte": "/assets/logos/campanas/poder_elegirte.png"
     };
 

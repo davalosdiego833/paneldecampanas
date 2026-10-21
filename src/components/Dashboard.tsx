@@ -6,7 +6,6 @@ import LegionCenturion from './Dashboards/LegionCenturion';
 import Convenciones from './Dashboards/Convenciones';
 import CaminoCumbre from './Dashboards/CaminoCumbre';
 import Graduacion from './Dashboards/Graduacion';
-import EducarEsCreer from './Dashboards/EducarEsCreer';
 import PoderDeElegirte from './Dashboards/PoderDeElegirte';
 import BonoPremios from './Dashboards/BonoPremios';
 
@@ -71,7 +70,6 @@ const Dashboard: React.FC<Props> = ({ campaign, advisor, themeMode }) => {
             case 'convenciones': return <Convenciones data={data} />;
             case 'camino_cumbre': return <CaminoCumbre data={data} />;
             case 'graduacion': return <Graduacion data={data} />;
-            case 'educar_es_creer': return <EducarEsCreer data={data} />;
             case 'poder_elegirte': return <PoderDeElegirte data={data} />;
             default: return (
                 <div style={{
