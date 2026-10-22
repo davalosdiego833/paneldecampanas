@@ -1,5 +1,5 @@
 {
-  "updatedAt": "22/10/2026, 11:14:23 a.m.",
+  "updatedAt": "22/10/2026, 1:51:42 p.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -688,16 +688,16 @@
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
             "Agentes": 24,
-            "Asesores_con_Emisión_Vida": 9,
-            "%_Asesores_con_Emisión_Vida": 0.375,
+            "Asesores_con_Emisión_Vida": 11,
+            "%_Asesores_con_Emisión_Vida": 0.4583,
             "Asesores_con_Emisión_GMM": 3,
             "%_Asesores_con_Emisión_GMM": 0.125,
             "Asesores_con_pol_Pagada_Vida": 7,
             "%_Asesores_con_pol_Pagada_Vida": 0.2917,
-            "Asesores_con_pol_Pagada_GMM": 3,
-            "%_Asesores_con_pol_Pagada_GMM": 0.125,
-            "Prima_Pagada_Vida": 449152.43,
-            "Prima_Pagada_GMM": 116277
+            "Asesores_con_pol_Pagada_GMM": 4,
+            "%_Asesores_con_pol_Pagada_GMM": 0.1667,
+            "Prima_Pagada_Vida": 471035.72,
+            "Prima_Pagada_GMM": 158042
           },
           {
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
@@ -726,7 +726,7 @@
             "%_Asesores_con_pol_Pagada_Vida": 0.3333,
             "Asesores_con_pol_Pagada_GMM": 0,
             "%_Asesores_con_pol_Pagada_GMM": 0,
-            "Prima_Pagada_Vida": 74545.45,
+            "Prima_Pagada_Vida": 76293.01,
             "Prima_Pagada_GMM": 3877
           }
         ],
@@ -775,7 +775,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 10358.06,
+            "Prima_Pagada_Vida": 12845.39,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
@@ -820,7 +820,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 15549.5,
+            "Prima_Pagada_Vida": 18431.98,
             "Prima_Pagada_GMM": 1367,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -836,7 +836,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 220.85,
+            "Prima_Pagada_Vida": 6198.8,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -907,15 +907,13 @@
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
             "Fecha_Conexion": "2025-07-14",
-            "Emitido_Vida": 0,
+            "Emitido_Vida": 1,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 0,
+            "Prima_Pagada_Vida": 2077.78,
             "Prima_Pagada_GMM": 5450,
-            "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
-            "3_Meses_Sin_Emisión_Vida": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
@@ -991,9 +989,9 @@
             "Fecha_Conexion": "2026-05-07",
             "Emitido_Vida": 2,
             "Emitido_GMM": 0,
-            "Pagado_Vida": 1,
+            "Pagado_Vida": 2,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 17284.97,
+            "Prima_Pagada_Vida": 23407.17,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
@@ -1024,7 +1022,7 @@
             "Pagado_Vida": 1,
             "Pagado_GMM": 0,
             "Prima_Pagada_Vida": 32186.14,
-            "Prima_Pagada_GMM": 2708,
+            "Prima_Pagada_GMM": 8160,
             "Sin_Emisión_GMM": "i"
           },
           {
@@ -1052,7 +1050,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 1,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 6835.73,
+            "Prima_Pagada_Vida": 8583.29,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_GMM": "i",
             "3_Meses_Sin_Emisión_GMM": "i"
@@ -1063,13 +1061,12 @@
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
             "Suc": 2043,
             "Fecha_Conexion": "2021-07-30",
-            "Emitido_Vida": 0,
+            "Emitido_Vida": 1,
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
             "Prima_Pagada_Vida": 0,
             "Prima_Pagada_GMM": 0,
-            "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i"
           },
           {
@@ -1128,9 +1125,9 @@
             "Emitido_Vida": 6,
             "Emitido_GMM": 1,
             "Pagado_Vida": 6,
-            "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 146576.61,
-            "Prima_Pagada_GMM": 0
+            "Pagado_GMM": 1,
+            "Prima_Pagada_Vida": 146596.57,
+            "Prima_Pagada_GMM": 36313
           },
           {
             "Asesor": "MARICELA ARREOLA LOPEZ",
@@ -1201,7 +1198,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 0,
+            "Prima_Pagada_Vida": 2315.59,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -1312,7 +1309,7 @@
           "Pólizas_Faltantes": 10,
           "Proactivo_a_Dic": "NO",
           "Pólizas_Faltantes_Para_Dic": 12,
-          "Fecha_Conexion": "N/A"
+          "Fecha_Conexion": "2021-07-29"
         },
         {
           "ASESOR": "JOSE RENE DE ALBA MORALES",
@@ -3808,7 +3805,7 @@
     "fechas_corte": {
       "pagado_pendiente": "21 de octubre de 2026",
       "pagado_pendiente_reclutas": "21 de octubre de 2026",
-      "asesores_sin_emision": "19 de OCT de 2026",
+      "asesores_sin_emision": "21 de OCT de 2026",
       "proactivos": "19 de octubre de 2026",
       "comparativo_vida": "16 de octubre de 2026",
       "qsq_vida": "30 de septiembre de 2026",
@@ -10068,10 +10065,10 @@
           "Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
           "Clave": "118915",
           "Mes_Asesor": 3,
-          "Polizas_Totales": 3,
+          "Polizas_Totales": 4,
           "Mes_1_Prod": 3,
           "Mes_2_Prod": 0,
-          "Mes_3_Prod": 0
+          "Mes_3_Prod": 1
         }
       ],
       "graduacion": [
@@ -10300,6 +10297,15 @@
         }
       },
       "poder_elegirte": [
+        {
+          "Asesor": "SELINA JANET LEMUS MIRAMONTES",
+          "Clave": "21615",
+          "Puntos_Doble": 0,
+          "Polizas_Detalle": [],
+          "Clientes_Kits": [],
+          "Kits_Ganados_Nacional": 508,
+          "Kits_Restantes_Nacional": 492
+        },
         {
           "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
           "Clave": "47116",
@@ -11212,7 +11218,7 @@
       "mdrt": "09 de octubre de 2026",
       "convenciones": "14 de octubre de 2026",
       "legion_centurion": "16 de octubre de 2026",
-      "camino_cumbre": "14 de octubre de 2026",
+      "camino_cumbre": "16 de octubre de 2026",
       "graduacion": "16 de octubre de 2026",
       "convenciones_promotores": "14 de octubre 2026",
       "convenciones_gerente": "14 de octubre 2026",
