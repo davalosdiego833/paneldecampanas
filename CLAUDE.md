@@ -244,12 +244,13 @@ El Buzón de Avisos del perfil Asesor oculta por diseño los avisos de grupo `ad
 captcha manual), pero para el reporte de cambios de estatus de pólizas, con
 su propio `CLAUDE.md`/`README.md`. Comparten credenciales en el Llavero.
 
-## Campaña Altamar (agregada 2026-10-21, SIN PROBAR contra el portal real)
+## Campaña Altamar (agregada 2026-10-21, SIN PROBAR descarga contra el portal real)
 
-En el portal está como `ALTAMAR Promotores.zip` (carpeta "Campañas"). `descargar_campanas.js` ya la consulta: regla `/altamar/i` →
-`altamar/Altamar.<ext del Excel del zip>`, y si cambia se despliega la carpeta `altamar` con `deploy_datos.sh`.
-- Como `actualizar_snapshot.js` todavía NO la lee (ni hay dashboard), su último corte se lleva en `db/fechas_solo_descarga.json`
-  (regla con `ledger: true`). Si el snapshot algún día trae `campaignDates.altamar`, ese manda. Si no se encuentra fecha dentro del
-  archivo, se compara por contenido (md5), así que cualquier cambio del Excel cuenta como actualización.
-- Pendiente cuando se arme el diseño: leerla en `actualizar_snapshot.js` (+ `CAMPAIGN_NAMES` para el aviso), `archivar_historial_mensual.js`
-  si se quiere archivo mensual, y quitar `ledger: true` de la regla. La primera corrida real conviene revisarla: no se ha visto el contenido del zip.
+En el portal es `ALTAMAR Promotores.zip` (carpeta "Campañas"). `descargar_campanas.js` la consulta: regla `/altamar/i` →
+`altamar/Altamar.<ext del Excel del zip>`; si cambia el corte se despliega la carpeta `altamar` con `deploy_datos.sh` y se avisa
+("Altamar 2027", `CAMPAIGN_NAMES` de `actualizar_snapshot.js`). Ya tiene lectura en `actualizar_snapshot.js` (pestaña "Asesores",
+cabecera fila 11, datos desde fila 13; solo Camino 1 por ahora) y dashboard `Dashboards/Altamar.tsx`.
+- El corte sale de la pestaña "Asesores", celda `raw[9][1]` de `sheet_to_json(header:1)` ("Avance al :" + fecha como número de Excel); `extractAltamarDate` la lee igual que el
+  snapshot (no el escáner genérico: las líneas de reglas de arriba traen números que lo confundirían).
+- **NO se archiva por mes** (decisión de Diego, 2026-10-21; no está en `archivar_historial_mensual.js`, no es un olvido).
+- `deploy.sh` ya sube la carpeta `altamar/`.

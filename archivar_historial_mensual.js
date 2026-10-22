@@ -155,7 +155,7 @@ function main() {
     }
 
     console.log(`\n📁 Archivado en: ${DESTINO_BASE}`);
-    console.log('   (Educar es Creer y El Poder de Elegirte NO se archivan por ahora, según lo acordado)');
+    console.log('   (El Poder de Elegirte y Altamar NO se archivan, según lo acordado)');
 }
 
 main();

@@ -1,25 +1,25 @@
 {
   "clave": "80122",
-  "timestamp": "2026-10-19T19:29:23.204Z",
-  "urlDashboard": "https://hojameta.mnyl.com.mx/front/agentes?fecha=13-10-2026&numeroAgente=80122",
+  "timestamp": "2026-10-21T19:41:23.990Z",
+  "urlDashboard": "https://hojameta.mnyl.com.mx/front/agentes?fecha=16-10-2026&numeroAgente=80122",
   "resumen": {
     "cabecera": {
       "_raw": [
         "Asesor: DESIREE DE LA PE�A OROZCO",
         "Clave: 80122",
-        "Avance Al: 13-10-2026",
+        "Avance Al: 16-10-2026",
         "Fecha Concurso: 28/09/2018",
         "Tipo: Nuevo Profesional",
         "Pólizas Vida",
-        "12",
+        "17",
         "Prima Meta Vida",
-        "$238,750",
+        "$376,931",
         "Prima Renov Vida",
-        "$4,011,886",
+        "$4,045,840",
         "Pólizas GMMI",
         "0",
         "Primas Iniciales GMMI",
-        "$0",
+        "$25,721",
         "Primas Renov GMMI",
         "$15,100",
         "LIMRA",
@@ -43,7 +43,8 @@
         "Dic",
         "Historico de Bono 2025,2026",
         "$383,235",
-        "$344,911"
+        "$344,911",
+        "$306,588"
       ]
     },
     "resumenBonos": [
@@ -56,8 +57,8 @@
       ],
       [
         "Bono Vida",
-        "$13,337.40",
-        "$591,829.06",
+        "$158,675.12",
+        "$737,166.75",
         "",
         ""
       ],
@@ -91,27 +92,27 @@
       ],
       [
         "Total",
-        "$ 13,337.40",
-        "$ 655,622.90",
+        "$ 158,675.12",
+        "$ 800,960.56",
         "",
         ""
       ]
     ],
-    "todoElTexto": "portal-[]\n Asesor: DESIREE DE LA PE�A OROZCO\n Clave: 80122\n Avance Al: 13-10-2026\n Fecha Concurso: 28/09/2018\n Tipo: Nuevo Profesional\n Pólizas Vida\n12\n Prima Meta Vida\n$238,750\n Prima Renov Vida\n$4,011,886\n Pólizas GMMI\n0\n Primas Iniciales GMMI\n$0\n Primas Renov GMMI\n$15,100\n LIMRA\n100%\n IGC\n99.3%\nHistórico de Bonos\n2025\n2026\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2025,2026\n$383,235\n$344,911\n$306,588\n$268,264\n$229,941\n$191,617\n$153,294\n$114,970\n$76,647\n$38,323\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nResumen de Bonos\nBonos\tBono Mes\tBono Acumulado\tGana\t\nBono Vida\t$13,337.40\t$591,829.06\t\t\nBono GMMI\t$0.00\t$0.00\t\t\nBono Beneficios\t$ 0.00\t$ 63,793.82\t\t\nBono Conexión\t$ 0.00\t$ 0.00\t\t\nBono Desarrollo\t$ 0.00\t$ 0.00\t\t\nTotal\t$ 13,337.40\t$ 655,622.90\t \t \nIngresos por Bonos\nCopyright © 2023 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información"
+    "todoElTexto": " Asesor: DESIREE DE LA PE�A OROZCO\n Clave: 80122\n Avance Al: 16-10-2026\n Fecha Concurso: 28/09/2018\n Tipo: Nuevo Profesional\n Pólizas Vida\n17\n Prima Meta Vida\n$376,931\n Prima Renov Vida\n$4,045,840\n Pólizas GMMI\n0\n Primas Iniciales GMMI\n$25,721\n Primas Renov GMMI\n$15,100\n LIMRA\n100%\n IGC\n99.3%\nHistórico de Bonos\n2025\n2026\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2025,2026\n$383,235\n$344,911\n$306,588\n$268,264\n$229,941\n$191,617\n$153,294\n$114,970\n$76,647\n$38,323\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nResumen de Bonos\nBonos\tBono Mes\tBono Acumulado\tGana\t\nBono Vida\t$158,675.12\t$737,166.75\t\t\nBono GMMI\t$0.00\t$0.00\t\t\nBono Beneficios\t$ 0.00\t$ 63,793.82\t\t\nBono Conexión\t$ 0.00\t$ 0.00\t\t\nBono Desarrollo\t$ 0.00\t$ 0.00\t\t\nTotal\t$ 158,675.12\t$ 800,960.56\t \t \nIngresos por Bonos\nCopyright © 2023 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información"
   },
   "pareceVacio": false,
-  "detalleModalTexto": "portal-[]\n Asesor: DESIREE DE LA PE�A OROZCO\n Clave: 80122\n Avance Al: 13-10-2026\n Fecha Concurso: 28/09/2018\n Tipo: Nuevo Profesional\n Pólizas Vida\n12\n Prima Meta Vida\n$238,750\n Prima Renov Vida\n$4,011,886\n Pólizas GMMI\n0\n Primas Iniciales GMMI\n$0\n Primas Renov GMMI\n$15,100\n LIMRA\n100%\n IGC\n99.3%\nHistórico de Bonos\n2025\n2026\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2025,2026\n$383,235\n$344,911\n$306,588\n$268,264\n$229,941\n$191,617\n$153,294\n$114,970\n$76,647\n$38,323\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nResumen de Bonos\nBonos\tBono Mes\tBono Acumulado\tGana\t\nBono Vida\t$13,337.40\t$591,829.06\t\t\nBono GMMI\t$0.00\t$0.00\t\t\nBono Beneficios\t$ 0.00\t$ 63,793.82\t\t\nBono Conexión\t$ 0.00\t$ 0.00\t\t\nBono Desarrollo\t$ 0.00\t$ 0.00\t\t\nTotal\t$ 13,337.40\t$ 655,622.90\t \t \nIngresos por Bonos\nBono Vida\n×\nResumen Bonos Vida\nBonos\tReal\tMeta\tCumple\n Bono Inicial\t$35,813\t \t\n Póliza Mes\t3.00\t1.00\t\n Pólizas Semestre\t12.00\t8.00\t\n Pólizas Anual\t34.00\t20.00\t\n Prima Meta Mes\t$11,793\t \t\n Prima Meta Sem\t$238,750\t \t\n Grupo Calculado\t15\t \t \n Grupo Tope\t12\t \t \n LIMRA\t100.00%\t \t \n Prima Pago Sem\t$238,751\t \t \n % Bono Inicial\t15.00%\t \t \n \t \t \t \n Bono Renovación\t$100,297\t \t\n Bono Inicial\t \t \t\n IGC\t99.30%\t \t\n Prima Renovación Sem\t$4,011,886\t \t \n % Bono Renovación\t2.50%\t \t \n \t \t \t \n Bono Semestral\t$136,110\n Bonos Anticipados\t$122,772\n Bonos a Pagar\t$13,337\n\nVer Detalle Pólizas MSI\n\t\nVer Detalle Bonos\n\n \t \nBonos Anticipados\nJulio\nAgosto\nSeptiembre\nOctubre\nNoviembre\n$100,000.00\n$80,000.00\n$60,000.00\n$40,000.00\n$20,000.00\n$0.00\nDownload SVG\nDownload PNG\nDownload CSV\nLIMRA\n 100%\n84.5%\t87.5%\t89.5%\t91.5%\t95.5%\nIGC\n 99.3%\n91%\t92.5%\t95%\t95.75%\nPrima Meta Acum(Gpo)\nPrima Meta Acum: $238,751\nMínimo Pólizas\nMeta: 8\n15\n12\n9\n6\n3\n0\nPolizas Acum: 12\nDownload SVG\nDownload PNG\nDownload CSV\nPrima Faltante\nGrupo/Mes\tJul\tAgo\tSep\tOct\tNov\tDic\t% Bono\n1\t\t\t\t$1,586,249\t$2,041,249\t$2,496,249\t45.00%\n2\t\t\t\t$1,431,249\t$1,851,249\t$2,266,249\t43.00%\n3\t\t\t\t$1,181,249\t$1,536,249\t$1,886,249\t40.00%\n4\t\t\t\t$1,051,249\t$1,376,249\t$1,706,249\t37.00%\n5\t\t\t\t$976,249\t$1,276,249\t$1,581,249\t35.00%\n6\t\t\t\t$876,249\t$1,161,249\t$1,436,249\t33.00%\n7\t\t\t\t$761,249\t$1,006,249\t$1,256,249\t31.00%\n8\t\t\t\t$621,249\t$836,249\t$1,051,249\t29.00%\n9\t\t\t\t$501,249\t$691,249\t$876,249\t27.00%\n10\t\t\t\t$401,249\t$551,249\t$711,249\t25.00%\n11\t\t\t\t$251,249\t$376,249\t$496,249\t23.00%\n12\t\t\t\t$111,249\t$201,249\t$286,249\t21.00%\n13\t\t\t\t$41,249\t$116,249\t$181,249\t19.00%\n14\t\t\t\t$21,249\t$81,249\t$146,249\t17.00%\n15\t\t\t\t\t$36,249\t$91,249\t15.00%\n16\t\t\t\t\t\t$36,249\t14.00%\nGpo Tope Ant.\nGpo Tope Alc.\nCopyright © 2023 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información\nNo hay rangos para Prima Meta",
-  "intentos": 2,
+  "detalleModalTexto": " Asesor: DESIREE DE LA PE�A OROZCO\n Clave: 80122\n Avance Al: 16-10-2026\n Fecha Concurso: 28/09/2018\n Tipo: Nuevo Profesional\n Pólizas Vida\n17\n Prima Meta Vida\n$376,931\n Prima Renov Vida\n$4,045,840\n Pólizas GMMI\n0\n Primas Iniciales GMMI\n$25,721\n Primas Renov GMMI\n$15,100\n LIMRA\n100%\n IGC\n99.3%\nHistórico de Bonos\n2025\n2026\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2025,2026\n$383,235\n$344,911\n$306,588\n$268,264\n$229,941\n$191,617\n$153,294\n$114,970\n$76,647\n$38,323\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nResumen de Bonos\nBonos\tBono Mes\tBono Acumulado\tGana\t\nBono Vida\t$158,675.12\t$737,166.75\t\t\nBono GMMI\t$0.00\t$0.00\t\t\nBono Beneficios\t$ 0.00\t$ 63,793.82\t\t\nBono Conexión\t$ 0.00\t$ 0.00\t\t\nBono Desarrollo\t$ 0.00\t$ 0.00\t\t\nTotal\t$ 158,675.12\t$ 800,960.56\t \t \nIngresos por Bonos\nBono Vida\n×\nResumen Bonos Vida\nBonos\tReal\tMeta\tCumple\n Bono Inicial\t$79,156\t \t\n Póliza Mes\t8.00\t1.00\t\n Pólizas Semestre\t17.00\t8.00\t\n Pólizas Anual\t39.00\t20.00\t\n Prima Meta Mes\t$149,973\t \t\n Prima Meta Sem\t$376,931\t \t\n Grupo Calculado\t12\t \t \n Grupo Tope\t12\t \t \n LIMRA\t100.00%\t \t \n Prima Pago Sem\t$376,931\t \t \n % Bono Inicial\t21.00%\t \t \n \t \t \t \n Bono Renovación\t$202,292\t \t\n Bono Inicial\t \t \t\n IGC\t99.30%\t \t\n Prima Renovación Sem\t$4,045,840\t \t \n % Bono Renovación\t5.00%\t \t \n \t \t \t \n Bono Semestral\t$281,448\n Bonos Anticipados\t$122,772\n Bonos a Pagar\t$158,675\n\nVer Detalle Pólizas MSI\n\t\nVer Detalle Bonos\n\n \t \nBonos Anticipados\nJulio\nAgosto\nSeptiembre\nOctubre\nNoviembre\n$100,000.00\n$80,000.00\n$60,000.00\n$40,000.00\n$20,000.00\n$0.00\nDownload SVG\nDownload PNG\nDownload CSV\nLIMRA\n 100%\n84.5%\t87.5%\t89.5%\t91.5%\t95.5%\nIGC\n 99.3%\n91%\t92.5%\t95%\t95.75%\nPrima Meta Acum(Gpo)\nPrima Meta Acum: $376,931\nMínimo Pólizas\nMeta: 8\n20\n16\n12\n8\n4\n0\nPolizas Acum: 17\nDownload SVG\nDownload PNG\nDownload CSV\nPrima Faltante\nGrupo/Mes\tJul\tAgo\tSep\tOct\tNov\tDic\t% Bono\n1\t\t\t\t$1,448,069\t$1,903,069\t$2,358,069\t45.00%\n2\t\t\t\t$1,293,069\t$1,713,069\t$2,128,069\t43.00%\n3\t\t\t\t$1,043,069\t$1,398,069\t$1,748,069\t40.00%\n4\t\t\t\t$913,069\t$1,238,069\t$1,568,069\t37.00%\n5\t\t\t\t$838,069\t$1,138,069\t$1,443,069\t35.00%\n6\t\t\t\t$738,069\t$1,023,069\t$1,298,069\t33.00%\n7\t\t\t\t$623,069\t$868,069\t$1,118,069\t31.00%\n8\t\t\t\t$483,069\t$698,069\t$913,069\t29.00%\n9\t\t\t\t$363,069\t$553,069\t$738,069\t27.00%\n10\t\t\t\t$263,069\t$413,069\t$573,069\t25.00%\n11\t\t\t\t$113,069\t$238,069\t$358,069\t23.00%\n12\t\t\t\t\t$63,069\t$148,069\t21.00%\n13\t\t\t\t\t\t$43,069\t19.00%\n14\t\t\t\t\t\t$8,069\t17.00%\n15\t\t\t\t\t\t\t15.00%\n16\t\t\t\t\t\t\t14.00%\nGpo Tope Ant.\nGpo Tope Alc.\nCopyright © 2023 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información\nNo hay rangos para Prima Meta",
+  "intentos": 1,
   "indicesAnteriores": {
     "limra": 100,
-    "igc": 99.24,
-    "fecha": "2026-10-14T15:48:00.536Z"
+    "igc": 99.3,
+    "fecha": "2026-10-19T19:29:23.204Z"
   },
   "anticiposDesglosados": {
     "semestreKey": "2026-S2",
     "inicialAnticipadoAcumulado": 43122,
     "renovacionAnticipadoAcumulado": 79650,
     "anticipadosCombinadoUltimoCorte": 122772,
-    "actualizadoEn": "2026-10-19T19:45:47.874Z"
+    "actualizadoEn": "2026-10-21T19:41:23.986Z"
   }
 }
