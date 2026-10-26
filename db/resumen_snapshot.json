@@ -1,5 +1,5 @@
 {
-  "updatedAt": "22/10/2026, 1:51:42 p.m.",
+  "updatedAt": "26/10/2026, 9:56:29 a.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -1651,15 +1651,29 @@
       "comparativo_vida": {
         "generalSummary": {
           "Polizas_Pagadas_Año_Anterior": 389,
-          "Polizas_Pagadas_Año_Actual": 247,
-          "Crec_Polizas_Pagadas": -142,
-          "%_Crec_Polizas_Pagadas": -0.36503856041131105,
+          "Polizas_Pagadas_Año_Actual": 250,
+          "Crec_Polizas_Pagadas": -139,
+          "%_Crec_Polizas_Pagadas": -0.35732647814910024,
           "Prima_Pagada_Año_Anterior": 17154.36,
-          "Prima_Pagada_Añoa_Actual": 12215.910000000002,
-          "Crec_Prima_Pagada": -4938.449999999999,
-          "%_Crec_Prima_Pagada": -0.28788308045301597
+          "Prima_Pagada_Añoa_Actual": 12374.100000000004,
+          "Crec_Prima_Pagada": -4780.259999999997,
+          "%_Crec_Prima_Pagada": -0.2786615181213404
         },
         "individuals": [
+          {
+            "Nombre del Asesor": "SELINA JANET LEMUS MIRAMONTES",
+            "Clave": "21615",
+            "Sucursal": "2043",
+            "Fecha_Conexion": "2021-07-30",
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 0,
+            "Crec_Polizas_Pagadas": 0,
+            "%_Crec_Polizas_Pagadas": 0,
+            "Prima_Pagada_Año_Anterior": 0,
+            "Prima_Pagada_Año_Actual": 0,
+            "Crec_Prima_Pagada": 0,
+            "%_Crec_Prima_Pagada": 0
+          },
           {
             "Nombre del Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
             "Clave": "47116",
@@ -1740,8 +1754,8 @@
             "Crec_Polizas_Pagadas": -1,
             "%_Crec_Polizas_Pagadas": -0.037,
             "Prima_Pagada_Año_Anterior": 1795.39,
-            "Prima_Pagada_Año_Actual": 1157.24,
-            "Crec_Prima_Pagada": -638.15,
+            "Prima_Pagada_Año_Actual": 1157.26,
+            "Crec_Prima_Pagada": -638.13,
             "%_Crec_Prima_Pagada": -0.3554
           },
           {
@@ -1754,9 +1768,9 @@
             "Crec_Polizas_Pagadas": -2,
             "%_Crec_Polizas_Pagadas": -0.2857,
             "Prima_Pagada_Año_Anterior": 265.2,
-            "Prima_Pagada_Año_Actual": 201.16,
-            "Crec_Prima_Pagada": -64.04,
-            "%_Crec_Prima_Pagada": -0.2415
+            "Prima_Pagada_Año_Actual": 206.15,
+            "Crec_Prima_Pagada": -59.05,
+            "%_Crec_Prima_Pagada": -0.2227
           },
           {
             "Nombre del Asesor": "KAREN MUÑOZ GARCIA",
@@ -1852,9 +1866,9 @@
             "Crec_Polizas_Pagadas": -2,
             "%_Crec_Polizas_Pagadas": -0.1053,
             "Prima_Pagada_Año_Anterior": 1008.75,
-            "Prima_Pagada_Año_Actual": 790.28,
-            "Crec_Prima_Pagada": -218.47,
-            "%_Crec_Prima_Pagada": -0.2166
+            "Prima_Pagada_Año_Actual": 792.65,
+            "Crec_Prima_Pagada": -216.1,
+            "%_Crec_Prima_Pagada": -0.2142
           },
           {
             "Nombre del Asesor": "MARIA TERESA ASENCIO LOZANO",
@@ -1866,9 +1880,9 @@
             "Crec_Polizas_Pagadas": 4,
             "%_Crec_Polizas_Pagadas": 4,
             "Prima_Pagada_Año_Anterior": 48.19,
-            "Prima_Pagada_Año_Actual": 216.36,
-            "Crec_Prima_Pagada": 168.17,
-            "%_Crec_Prima_Pagada": 3.4897
+            "Prima_Pagada_Año_Actual": 218.68,
+            "Crec_Prima_Pagada": 170.49,
+            "%_Crec_Prima_Pagada": 3.5379
           },
           {
             "Nombre del Asesor": "JOSE ALBERTO CORONADO ROSAS",
@@ -1964,9 +1978,9 @@
             "Crec_Polizas_Pagadas": 2,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 3.09,
-            "Prima_Pagada_Año_Actual": 61.94,
-            "Crec_Prima_Pagada": 58.85,
-            "%_Crec_Prima_Pagada": 19.0453
+            "Prima_Pagada_Año_Actual": 64.46,
+            "Crec_Prima_Pagada": 61.37,
+            "%_Crec_Prima_Pagada": 19.8608
           },
           {
             "Nombre del Asesor": "MARIA FERNANDA RIOS BERNAL",
@@ -1992,9 +2006,9 @@
             "Crec_Polizas_Pagadas": -8.5,
             "%_Crec_Polizas_Pagadas": -0.8095,
             "Prima_Pagada_Año_Anterior": 469.07,
-            "Prima_Pagada_Año_Actual": 93.25,
-            "Crec_Prima_Pagada": -375.82,
-            "%_Crec_Prima_Pagada": -0.8012
+            "Prima_Pagada_Año_Actual": 95.74,
+            "Crec_Prima_Pagada": -373.33,
+            "%_Crec_Prima_Pagada": -0.7959
           },
           {
             "Nombre del Asesor": "ROGELIO TORRES ORTIZ",
@@ -2006,9 +2020,9 @@
             "Crec_Polizas_Pagadas": -13,
             "%_Crec_Polizas_Pagadas": -0.65,
             "Prima_Pagada_Año_Anterior": 688.92,
-            "Prima_Pagada_Año_Actual": 290.46,
-            "Crec_Prima_Pagada": -398.46,
-            "%_Crec_Prima_Pagada": -0.5784
+            "Prima_Pagada_Año_Actual": 293.35,
+            "Crec_Prima_Pagada": -395.57,
+            "%_Crec_Prima_Pagada": -0.5742
           },
           {
             "Nombre del Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
@@ -2034,9 +2048,9 @@
             "Crec_Polizas_Pagadas": 3,
             "%_Crec_Polizas_Pagadas": 0.375,
             "Prima_Pagada_Año_Anterior": 238.83,
-            "Prima_Pagada_Año_Actual": 252.6,
-            "Crec_Prima_Pagada": 13.77,
-            "%_Crec_Prima_Pagada": 0.0577
+            "Prima_Pagada_Año_Actual": 269.29,
+            "Crec_Prima_Pagada": 30.46,
+            "%_Crec_Prima_Pagada": 0.1275
           },
           {
             "Nombre del Asesor": "MIREYA LIZETTE TORRES GARCIA",
@@ -2048,9 +2062,9 @@
             "Crec_Polizas_Pagadas": -3,
             "%_Crec_Polizas_Pagadas": -0.6,
             "Prima_Pagada_Año_Anterior": 125.13,
-            "Prima_Pagada_Año_Actual": 97.8,
-            "Crec_Prima_Pagada": -27.33,
-            "%_Crec_Prima_Pagada": -0.2184
+            "Prima_Pagada_Año_Actual": 104,
+            "Crec_Prima_Pagada": -21.13,
+            "%_Crec_Prima_Pagada": -0.1689
           },
           {
             "Nombre del Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
@@ -2076,9 +2090,9 @@
             "Crec_Polizas_Pagadas": -27,
             "%_Crec_Polizas_Pagadas": -0.931,
             "Prima_Pagada_Año_Anterior": 824.33,
-            "Prima_Pagada_Año_Actual": 292.69,
-            "Crec_Prima_Pagada": -531.64,
-            "%_Crec_Prima_Pagada": -0.6449
+            "Prima_Pagada_Año_Actual": 297.71,
+            "Crec_Prima_Pagada": -526.62,
+            "%_Crec_Prima_Pagada": -0.6388
           },
           {
             "Nombre del Asesor": "ARMANDO JONATHAN DE LA CRUZ DIAZ",
@@ -2272,9 +2286,9 @@
             "Crec_Polizas_Pagadas": -3,
             "%_Crec_Polizas_Pagadas": -0.5,
             "Prima_Pagada_Año_Anterior": 183.65,
-            "Prima_Pagada_Año_Actual": 270.17,
-            "Crec_Prima_Pagada": 86.52,
-            "%_Crec_Prima_Pagada": 0.4711
+            "Prima_Pagada_Año_Actual": 276.29,
+            "Crec_Prima_Pagada": 92.64,
+            "%_Crec_Prima_Pagada": 0.5044
           },
           {
             "Nombre del Asesor": "CLAUDIA VALERIA HERNANDEZ MACIAS",
@@ -2356,9 +2370,9 @@
             "Crec_Polizas_Pagadas": -5,
             "%_Crec_Polizas_Pagadas": -0.625,
             "Prima_Pagada_Año_Anterior": 188.88,
-            "Prima_Pagada_Año_Actual": 193.17,
-            "Crec_Prima_Pagada": 4.29,
-            "%_Crec_Prima_Pagada": 0.0227
+            "Prima_Pagada_Año_Actual": 195.25,
+            "Crec_Prima_Pagada": 6.37,
+            "%_Crec_Prima_Pagada": 0.0337
           },
           {
             "Nombre del Asesor": "ADRIANA ALEJANDRA JOYA MARTINEZ",
@@ -2370,9 +2384,9 @@
             "Crec_Polizas_Pagadas": -8,
             "%_Crec_Polizas_Pagadas": -0.8889,
             "Prima_Pagada_Año_Anterior": 124.26,
-            "Prima_Pagada_Año_Actual": 172.63,
-            "Crec_Prima_Pagada": 48.37,
-            "%_Crec_Prima_Pagada": 0.3893
+            "Prima_Pagada_Año_Actual": 174.77,
+            "Crec_Prima_Pagada": 50.51,
+            "%_Crec_Prima_Pagada": 0.4065
           },
           {
             "Nombre del Asesor": "HANA SOFIA LOPEZ QUIÑONEZ",
@@ -2384,9 +2398,9 @@
             "Crec_Polizas_Pagadas": -4,
             "%_Crec_Polizas_Pagadas": -0.8,
             "Prima_Pagada_Año_Anterior": 32.87,
-            "Prima_Pagada_Año_Actual": 76.82,
-            "Crec_Prima_Pagada": 43.95,
-            "%_Crec_Prima_Pagada": 1.3371
+            "Prima_Pagada_Año_Actual": 78.53,
+            "Crec_Prima_Pagada": 45.66,
+            "%_Crec_Prima_Pagada": 1.3891
           },
           {
             "Nombre del Asesor": "SANDRA CRISTINA PEDROZA CRUZ",
@@ -2482,9 +2496,9 @@
             "Crec_Polizas_Pagadas": 1,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 13.18,
-            "Prima_Pagada_Año_Actual": 141.2,
-            "Crec_Prima_Pagada": 128.02,
-            "%_Crec_Prima_Pagada": 9.7132
+            "Prima_Pagada_Año_Actual": 142.98,
+            "Crec_Prima_Pagada": 129.8,
+            "%_Crec_Prima_Pagada": 9.8483
           },
           {
             "Nombre del Asesor": "GERARDO DANIEL BARAJAS TORRES",
@@ -2496,8 +2510,8 @@
             "Crec_Polizas_Pagadas": 0,
             "%_Crec_Polizas_Pagadas": 0,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 14.36,
-            "Crec_Prima_Pagada": 14.36,
+            "Prima_Pagada_Año_Actual": 15.97,
+            "Crec_Prima_Pagada": 15.97,
             "%_Crec_Prima_Pagada": 1
           },
           {
@@ -2534,12 +2548,12 @@
             "Sucursal": "2043",
             "Fecha_Conexion": "2026-05-07",
             "Polizas_Pagadas_Año_Anterior": 0,
-            "Polizas_Pagadas_Año_Actual": 14,
-            "Crec_Polizas_Pagadas": 14,
+            "Polizas_Pagadas_Año_Actual": 15,
+            "Crec_Polizas_Pagadas": 15,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 332.51,
-            "Crec_Prima_Pagada": 332.51,
+            "Prima_Pagada_Año_Actual": 343.84,
+            "Crec_Prima_Pagada": 343.84,
             "%_Crec_Prima_Pagada": 1
           },
           {
@@ -2590,12 +2604,12 @@
             "Sucursal": "2043",
             "Fecha_Conexion": "2026-06-29",
             "Polizas_Pagadas_Año_Anterior": 0,
-            "Polizas_Pagadas_Año_Actual": 2,
-            "Crec_Polizas_Pagadas": 2,
+            "Polizas_Pagadas_Año_Actual": 3,
+            "Crec_Polizas_Pagadas": 3,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 16.9,
-            "Crec_Prima_Pagada": 16.9,
+            "Prima_Pagada_Año_Actual": 95.57,
+            "Crec_Prima_Pagada": 95.57,
             "%_Crec_Prima_Pagada": 1
           },
           {
@@ -2608,8 +2622,8 @@
             "Crec_Polizas_Pagadas": 5,
             "%_Crec_Polizas_Pagadas": 1,
             "Prima_Pagada_Año_Anterior": 0,
-            "Prima_Pagada_Año_Actual": 42.52,
-            "Crec_Prima_Pagada": 42.52,
+            "Prima_Pagada_Año_Actual": 47.34,
+            "Crec_Prima_Pagada": 47.34,
             "%_Crec_Prima_Pagada": 1
           },
           {
@@ -2631,6 +2645,20 @@
             "Clave": "120596",
             "Sucursal": "2043",
             "Fecha_Conexion": "2026-10-06",
+            "Polizas_Pagadas_Año_Anterior": 0,
+            "Polizas_Pagadas_Año_Actual": 1,
+            "Crec_Polizas_Pagadas": 1,
+            "%_Crec_Polizas_Pagadas": 1,
+            "Prima_Pagada_Año_Anterior": 0,
+            "Prima_Pagada_Año_Actual": 2.42,
+            "Crec_Prima_Pagada": 2.42,
+            "%_Crec_Prima_Pagada": 1
+          },
+          {
+            "Nombre del Asesor": "BRUNO PADILLA SALDATE",
+            "Clave": "120704",
+            "Sucursal": "2043",
+            "Fecha_Conexion": "2026-10-13",
             "Polizas_Pagadas_Año_Anterior": 0,
             "Polizas_Pagadas_Año_Actual": 0,
             "Crec_Polizas_Pagadas": 0,
@@ -3807,7 +3835,7 @@
       "pagado_pendiente_reclutas": "21 de octubre de 2026",
       "asesores_sin_emision": "21 de OCT de 2026",
       "proactivos": "19 de octubre de 2026",
-      "comparativo_vida": "16 de octubre de 2026",
+      "comparativo_vida": "21 de octubre de 2026",
       "qsq_vida": "30 de septiembre de 2026",
       "qsq_gmm": "30 de Septiembre de 2026",
       "convenciones_promotores": "14 de octubre 2026",
@@ -3818,47 +3846,47 @@
         {
           "Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
           "Clave": "87538",
-          "PA_Acumulada": 2506817.09
+          "PA_Acumulada": 2554391.33
         },
         {
           "Asesor": "ANAIS LUA MORENO",
           "Clave": "110453",
-          "PA_Acumulada": 1943085.07
+          "PA_Acumulada": 2007761.75
         },
         {
           "Asesor": "DESIREE DE LA PEÑA OROZCO",
           "Clave": "80122",
-          "PA_Acumulada": 1215420.75
+          "PA_Acumulada": 1560678.36
         },
         {
           "Asesor": "DARINKA UREÑA CASILLAS",
           "Clave": "90355",
-          "PA_Acumulada": 961283.61
-        },
-        {
-          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
-          "Clave": "47116",
-          "PA_Acumulada": 669273.92
+          "PA_Acumulada": 991282.17
         },
         {
           "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
           "Clave": "104750",
-          "PA_Acumulada": 621599.14
+          "PA_Acumulada": 672697.66
         },
         {
-          "Asesor": "JORGE ANTONIO LUNA LARA",
-          "Clave": "111056",
-          "PA_Acumulada": 489275.5
+          "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
+          "Clave": "47116",
+          "PA_Acumulada": 669918.96
         },
         {
           "Asesor": "MONSERRAT VELASCO SANTOS",
           "Clave": "117440",
-          "PA_Acumulada": 462633.45
+          "PA_Acumulada": 565715.57
+        },
+        {
+          "Asesor": "JORGE ANTONIO LUNA LARA",
+          "Clave": "111056",
+          "PA_Acumulada": 512491.72
         },
         {
           "Asesor": "MARIA TERESA ASENCIO LOZANO",
           "Clave": "94156",
-          "PA_Acumulada": 436918.49
+          "PA_Acumulada": 437497.01
         },
         {
           "Asesor": "SOFIA CAMPILLO VASCONCELOS",
@@ -3866,9 +3894,14 @@
           "PA_Acumulada": 383849.43
         },
         {
+          "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
+          "Clave": "108404",
+          "PA_Acumulada": 354219.19
+        },
+        {
           "Asesor": "GABRIELA CASTAÑEDA SALAZAR",
           "Clave": "105696",
-          "PA_Acumulada": 342477.31
+          "PA_Acumulada": 329159.02
         },
         {
           "Asesor": "MARICELA ARREOLA LOPEZ",
@@ -3888,12 +3921,12 @@
         {
           "Asesor": "MARIO IVAN ROMERO GONZALEZ",
           "Clave": "118069",
-          "PA_Acumulada": 275966.64
+          "PA_Acumulada": 275968.63
         },
         {
-          "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
-          "Clave": "108404",
-          "PA_Acumulada": 261373.73
+          "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
+          "Clave": "118246",
+          "PA_Acumulada": 232780.71
         },
         {
           "Asesor": "VELIA PATRICIA BERNAL RAMOS",
@@ -3911,11 +3944,6 @@
           "PA_Acumulada": 211947.83
         },
         {
-          "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
-          "Clave": "118246",
-          "PA_Acumulada": 202495.94
-        },
-        {
           "Asesor": "MARIA FERNANDA RIOS BERNAL",
           "Clave": "103982",
           "PA_Acumulada": 173632.09
@@ -3923,12 +3951,22 @@
         {
           "Asesor": "JULIANA RIASCOS VALENCIA",
           "Clave": "100677",
-          "PA_Acumulada": 156695.28
+          "PA_Acumulada": 157112.95
+        },
+        {
+          "Asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
+          "Clave": "119447",
+          "PA_Acumulada": 147436.3
+        },
+        {
+          "Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
+          "Clave": "118915",
+          "PA_Acumulada": 136401.6
         },
         {
           "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
           "Clave": "104343",
-          "PA_Acumulada": 112919.33
+          "PA_Acumulada": 113936.59
         },
         {
           "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
@@ -3936,19 +3974,9 @@
           "PA_Acumulada": 109571.08
         },
         {
-          "Asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
-          "Clave": "119447",
-          "PA_Acumulada": 105897.63
-        },
-        {
           "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
           "Clave": "95148",
           "PA_Acumulada": 103923.64
-        },
-        {
-          "Asesor": "HUMBERTO EMMANUEL SANDOVAL MOLINS",
-          "Clave": "118915",
-          "PA_Acumulada": 98864.88
         },
         {
           "Asesor": "MIREYA LIZETTE TORRES GARCIA",
@@ -3961,19 +3989,19 @@
           "PA_Acumulada": 45849.8
         },
         {
+          "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
+          "Clave": "63441",
+          "PA_Acumulada": 16127.26
+        },
+        {
           "Asesor": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
           "Clave": "64502",
           "PA_Acumulada": 8705.04
         },
         {
-          "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
-          "Clave": "63441",
-          "PA_Acumulada": 4127.27
-        },
-        {
           "Asesor": "KAREN MUÑOZ GARCIA",
           "Clave": "81044",
-          "PA_Acumulada": 2363.5
+          "PA_Acumulada": 2364.25
         },
         {
           "Asesor": "SELINA JANET LEMUS MIRAMONTES",
@@ -9993,7 +10021,7 @@
           "Asesor": "MONSERRAT VELASCO SANTOS",
           "Clave": "117440",
           "Mes_Asesor": 6,
-          "Polizas_Totales": 15,
+          "Polizas_Totales": 16,
           "Mes_1_Prod": 7,
           "Mes_2_Prod": 2,
           "Mes_3_Prod": 3
@@ -11215,14 +11243,14 @@
       ]
     },
     "campaignDates": {
-      "mdrt": "09 de octubre de 2026",
+      "mdrt": "21 de octubre de 2026",
       "convenciones": "14 de octubre de 2026",
       "legion_centurion": "16 de octubre de 2026",
-      "camino_cumbre": "16 de octubre de 2026",
+      "camino_cumbre": "21 de octubre de 2026",
       "graduacion": "16 de octubre de 2026",
       "convenciones_promotores": "14 de octubre 2026",
       "convenciones_gerente": "14 de octubre 2026",
-      "poder_elegirte": "16 de octubre de 2026",
+      "poder_elegirte": "21 de octubre de 2026",
       "altamar": "16 de octubre de 2026"
     },
     "historico_metas": {
