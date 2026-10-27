@@ -40,7 +40,7 @@ const REGLAS = [
     // NO se archiva por mes (decisión de Diego, no un olvido).
     { regex: /altamar/i, dir: 'altamar', rename: 'Altamar', campaignKey: 'altamar', label: 'Altamar 2027' },
     { regex: /poder.*elegirte.*convenci/i, dir: 'poder_elegirte', rename: 'El poder de elegirte Convenciones.xlsx', campaignKey: 'poder_elegirte', label: 'El Poder de Elegirte (Convenciones)' },
-    { regex: /poder.*elegirte.*client/i, dir: 'poder_elegirte', rename: 'El Poder De Elegirte Clientes.xlsx', campaignKey: 'poder_elegirte', label: 'El Poder de Elegirte (Clientes)' },
+    { regex: /poder.*elegirte.*client/i, dir: 'poder_elegirte', rename: 'El Poder De Elegirte Clientes.xlsx', campaignKey: 'poder_elegirte', label: 'El Poder de Elegirte (Clientes)', fechaPropia: true },
     { regex: /pagpendrecluta|recluta.*temp/i, dir: path.join('administrador', 'pagado_emitido'), rename: 'PagPendReclutas.xls', campaignKey: 'pagado_pendiente_reclutas', label: 'Pagado/Pendiente (Reclutas)', dateFrom: 'skip' },
     { regex: /pagpend/i, dir: path.join('administrador', 'pagado_emitido'), rename: 'PagPend.xls', campaignKey: 'pagado_pendiente', label: 'Pagado/Pendiente', dateFrom: 'skip' },
     { regex: /proactivo/i, dir: path.join('administrador', 'proactivos'), campaignKey: 'proactivos', label: 'Proactivos' },
@@ -139,6 +139,7 @@ const extractConvencionesPromotoresDate = (filePath) => {
 // que por coincidencia cae en el rango de fecha de Excel (44000-50000), así que el
 // escáner genérico lo confunde con una fecha real y nunca detecta cambios de verdad.
 // Buscamos el texto "Al cierre de <mes> de <año>" igual que actualizar_snapshot.js.
+const MESES_ES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 const extractQsqGmmDate = (filePath) => {
     const wb = XLSX.readFile(filePath);
     const ws = wb.Sheets['Prima Comisión Asesores'] || wb.Sheets[wb.SheetNames[0]];
@@ -147,7 +148,13 @@ const extractQsqGmmDate = (filePath) => {
         const cellText = String(data[r]?.[0] || data[r]?.[1] || '').trim();
         if (cellText.toLowerCase().includes('cierre de')) {
             const m = cellText.match(/cierre de ([a-záéíóúñ]+) de (\d{4})/i);
-            if (m) return `31 de ${m[1].charAt(0).toUpperCase() + m[1].slice(1).toLowerCase()} de ${m[2]}`;
+            if (m) {
+                // Último día REAL del mes (igual que actualizar_snapshot.js). Antes iba fijo "31" y salía "31 de Septiembre",
+                // que no existe y nunca coincide con el "30 de Septiembre" del snapshot: cambio falso en cada corrida.
+                const mIdx = MESES_ES.indexOf(m[1].toLowerCase());
+                const ultimoDia = mIdx >= 0 ? new Date(Number(m[2]), mIdx + 1, 0).getDate() : 31;
+                return `${ultimoDia} de ${m[1].charAt(0).toUpperCase() + m[1].slice(1).toLowerCase()} de ${m[2]}`;
+            }
         }
     }
     return '';
@@ -336,7 +343,13 @@ async function main() {
             }
 
             const nuevaFecha = extractCutoffDate(regla, fileToProcessPath);
-            const fechaActual = liveDates[regla.campaignKey] || '';
+            // `fechaPropia`: dos archivos comparten campaignKey (Poder de Elegirte) y el snapshot guarda solo UNA fecha (la de
+            // Convenciones). Clientes suele ir unos días atrás; contra esa fecha salía "cambio" falso en cada corrida y se
+            // reconstruía/desplegaba todo para nada. Aquí se compara contra la fecha del archivo que ya tenemos de ese mismo reporte.
+            let fechaActual = liveDates[regla.campaignKey] || '';
+            if (regla.fechaPropia) {
+                fechaActual = fs.existsSync(newPath) ? (extractCutoffDate(regla, newPath) || '') : '';
+            }
 
             if (nuevaFecha && !fechasIguales(nuevaFecha, fechaActual)) {
                 fs.copyFileSync(fileToProcessPath, newPath);
