@@ -25,12 +25,12 @@ agregada en sesión aparte (proyecto hermano: "ESTATUS DE POLIZAS" en el Escrito
    paso manual (2-3 segundos).
 4. Tras login exitoso, corre automáticamente `descargar_premios.js` con la
    lista de claves de asesores (`104750, 110453, 116876, 116883, 117440,
-   118069, 118246, 47116, 80122, 87538, 90355, 94156, 119447, 118915, --promotoria`) y luego
+   118069, 118246, 47116, 80122, 87538, 90355, 94156, 119447, 118915, 119223, --promotoria`) y luego
    `sincronizar_premios.sh` (publica los datos al sitio real vía rsync/ssh).
    - **Solo algunas claves:** `node correr_premios_automatico.js 119447` procesa ÚNICAMENTE esas
      claves (sin Promotoría/Karen) con el mismo login y sincronización. Sin argumentos = flujo completo.
      Para agregar un asesor nuevo: ponerlo en `CLAVES_TODAS` del script (el nombre sale del
-     `administrador/directorio_asesores.xlsx`; `119447` = Luis Antonio Salazar Espinosa y `118915` = Humberto Emmanuel Sandoval Molins, agregados 2026-10-14).
+     `administrador/directorio_asesores.xlsx`; `119447` = Luis Antonio Salazar Espinosa y `118915` = Humberto Emmanuel Sandoval Molins, agregados 2026-10-14; `119223` = Oscar Ramírez Ruiz, agregado 2026-10-28).
    - **Revisa primero si hay corte nuevo (agregado 2026-10-16, SIN PROBAR contra el portal real):** sin argumentos,
      tras el login corre `descargar_premios.js --solo-fecha`, que lee el "Avance Al" del dashboard de la
      Promotoría (no baja ni guarda nada) y lo compara (`lib_premios.js`) contra el corte MÁS VIEJO guardado en
@@ -44,6 +44,23 @@ agregada en sesión aparte (proyecto hermano: "ESTATUS DE POLIZAS" en el Escrito
    - **Reintento por asesor (2026-10-19, SIN PROBAR contra el portal real):** `descargar_premios.js` repite el recorrido
      completo de un asesor una vez si falla. Causa que se vio dos veces (corridas del 1 y del 19 de octubre; 8 de 14 la 1ª vez):
      la búsqueda encuentra la fila pero el clic en el ícono ↗ no abre la ventana del asesor (queda en `3_busqueda`).
+   - **Fallas del 2026-10-28 (corte 23-10) y sus arreglos, PROBADOS en la corrida real:** la 1ª corrida bajó Promotoría pero 0 de 15 asesores,
+     y aun así sincronizó y dijo "Todo listo". Causas y arreglos en `descargar_premios.js`:
+     (1) *Esperas fijas*: hojameta a veces tarda; el script seguía de largo con la página en "Cargando…" (todo en 0, `undefined%`, sin buscador
+     de tabla) o abría la ventana de Promotoría con la cabecera vacía ("Clave: -", "PORTAL-[-1]"), y el reintento heredaba el mismo problema.
+     Ahora `esperarCarga()` espera (hasta 45 s) la cabecera con Clave/"Avance Al" tras abrir Promotoría, el detalle LIMRA sin "Cargando"/`undefined`
+     y con Asesores > 0 tras el tile LIMRA, y el buscador (20 s) tras "Ver Detalle Asesores".
+     (2) *Clic del ícono ↗*: antes se clicaba el centro de la CELDA (`closest('td')`) de la 1ª `<tr>` que contuviera la clave; ahora se elige la `<tr>`
+     más interna cuya 1ª celda ES la clave y se clica el ÍCONO mismo (`<i class="fa fa-external-link">`), con 3 intentos (clic real → clic JS →
+     abrir el `href` si lo hay) y logs `(debug) ícono a clicar / rect / fin de la fila` para diagnosticar si vuelve a fallar.
+     (3) *Caída del proceso*: `esperarNuevaPagina` rechazaba su promesa por timeout mientras el código aún no hacía `await` (p. ej. dentro de
+     `volcarDebug`) → rechazo sin manejar → Node mataba TODO el script en la clave 90355 sin reintentar. Ahora la promesa se marca como manejada.
+     (4) *Fallo total ≠ éxito*: si no baja NI UN asesor, `descargar_premios.js` sale con código 2 y el orquestador NO sincroniza ni avisa éxito.
+     Con fallas parciales sigue sincronizando (lista "Necesitan revisión manual").
+     Para reintentar solo algunas claves sin repetir las demás: `node correr_premios_automatico.js 90355 94156 ...` (sincroniza todo `premios/`).
+     Ojo: correr desde la carpeta del proyecto (`cd "/Users/diego/Desktop/panel de campañas"`), no desde `~`.
+   - **Oscar Ramírez Ruiz (119223)**: agregado a `CLAVES_TODAS` el 2026-10-28; es Training Allowance (se conectó 22/10/2026), ya bajado y publicado al corte 23-10.
+     Mientras una clave configurada no tenga `data.json`, la revisión de corte (`decidirAccion`, motivo `faltan_datos`) descarga todo aunque no haya corte nuevo.
    - **Desglose Inicial/Renovación del anticipado (`anticiposDesglosados` en cada data.json de Bono Vida):** el portal solo da el
      "Bonos Anticipados" combinado; lo reconstruimos. Cuando sube (hubo pago), a cada bono se le asigna lo que tenía PENDIENTE
      en el corte anterior (calculado − anticipado de ese bono), o sea que su anticipado queda igual a lo que el reporte calculaba
@@ -250,7 +267,11 @@ En el portal es `ALTAMAR Promotores.zip` (carpeta "Campañas"). `descargar_campa
 `altamar/Altamar.<ext del Excel del zip>`; si cambia el corte se despliega la carpeta `altamar` con `deploy_datos.sh` y se avisa
 ("Altamar 2027", `CAMPAIGN_NAMES` de `actualizar_snapshot.js`). Ya tiene lectura en `actualizar_snapshot.js` (pestaña "Asesores",
 cabecera fila 11, datos desde fila 13; solo Camino 1 por ahora) y dashboard `Dashboards/Altamar.tsx`.
-- El corte sale de la pestaña "Asesores", celda `raw[9][1]` de `sheet_to_json(header:1)` ("Avance al :" + fecha como número de Excel); `extractAltamarDate` la lee igual que el
+- El corte sale de la pestaña "Asesores", fila "Avance al :" + fecha como número de Excel (columna B); `extractAltamarDate` la lee igual que el
   snapshot (no el escáner genérico: las líneas de reglas de arriba traen números que lo confundirían).
+  **Ojo (2026-11-09):** el portal agregó una fila arriba y el archivo se recorrió un renglón (antes "Avance al" en `raw[9]`, cabecera "Dir. Vta" en la fila 11; ahora `raw[10]` y fila 12).
+  La corrida del 9-nov no lo bajó porque no encontró la fecha y lo trató como "sin cambios" EN SILENCIO. Arreglado: ahora se busca la fila por texto
+  ("Avance al" y "Dir. Vta") en `descargar_campanas.js` y `actualizar_snapshot.js`, y si un archivo se descarga sin fecha legible se avisa en pantalla
+  ("NO SE PUDO LEER LA FECHA DE CORTE") y en el resumen, en vez de decir "Sin cambios".
 - **NO se archiva por mes** (decisión de Diego, 2026-10-21; no está en `archivar_historial_mensual.js`, no es un olvido).
 - `deploy.sh` ya sube la carpeta `altamar/`.

@@ -363,12 +363,15 @@ const run = async () => {
                     const amPath = path.join(BASE_PATH, 'altamar');
                     const amFile = fs.existsSync(amPath) ? getMostRecentFile(amPath) : null;
                     if (amFile) {
-                        // Pestaña "Asesores" (cabecera en fila 11, datos desde fila 13). Solo Camino 1 por ahora.
+                        // Pestaña "Asesores". Solo Camino 1 por ahora. Las filas "Avance al :" y la cabecera ("Dir. Vta") se buscan por texto:
+                        // el 2026-11-09 el portal agregó una fila arriba y todo se recorrió un renglón (antes: cabecera en la fila 11, datos desde la 13).
                         let wb = XLSX.readFile(path.join(amPath, amFile), { sheets: ['Asesores'] });
                         let ws = wb.Sheets['Asesores'];
                         const raw = XLSX.utils.sheet_to_json(ws, { header: 1, defval: null });
-                        const avance = raw[9] && typeof raw[9][1] === 'number' ? raw[9][1] : null;
-                        campaigns.altamar = raw.slice(12)
+                        const iAvance = raw.slice(0, 30).findIndex(r => r && typeof r[0] === 'string' && /avance\s*al/i.test(r[0]));
+                        const avance = iAvance >= 0 && typeof raw[iAvance][1] === 'number' ? raw[iAvance][1] : null;
+                        const iCab = raw.slice(0, 30).findIndex(r => r && String(r[0] || '').trim().toLowerCase() === 'dir. vta');
+                        campaigns.altamar = raw.slice(iCab >= 0 ? iCab + 1 : 12)
                             .filter(r => r && SUCURSALES_PROMO.includes(String(r[3] || '').trim()) && r[5])
                             .map(r => {
                                 const clave = String(r[5]).trim();

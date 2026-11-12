@@ -18,7 +18,7 @@ const TARGET_URL = 'https://www.asesordeseguros.com.mx/Acceso/tabid/220/Default.
 // Claves de asesores a descargar (mismas que ya se venían procesando en premios/).
 // Edita esta lista si quieres agregar o quitar asesores.
 const CLAVES_TODAS = ['104750', '110453', '116876', '116883', '117440', '118069', '118246',
-                 '47116', '80122', '87538', '90355', '94156', '119447', '118915'];
+                 '47116', '80122', '87538', '90355', '94156', '119447', '118915', '119223'];
 
 // Cómo correrlo:
 //   node correr_premios_automatico.js                  revisa PRIMERO la fecha de corte del portal; solo si hay

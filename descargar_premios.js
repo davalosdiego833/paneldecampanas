@@ -201,10 +201,19 @@ function calcularAnticiposDesglosados({ anterior, montoBonoInicialActual, montoB
     };
 }
 
+// Espera (polling) a que la condición se cumpla dentro de la página; si no, lanza error con el motivo.
+async function esperarCarga(page, condicion, timeout, descripcion) {
+    try {
+        await page.waitForFunction(condicion, { timeout, polling: 500 });
+    } catch (e) {
+        throw new Error(`Timeout (${Math.round(timeout / 1000)}s) esperando ${descripcion}`);
+    }
+}
+
 // Espera a que se abra una ventana/pestaña nueva (window.open / target=_blank)
 // y regresa la Page correspondiente ya cargada.
 function esperarNuevaPagina(browser, timeout = 20000) {
-    return new Promise((resolve, reject) => {
+    const espera = new Promise((resolve, reject) => {
         const timer = setTimeout(() => {
             browser.off('targetcreated', onTarget);
             reject(new Error('Timeout esperando nueva pestaña/ventana emergente'));
@@ -225,6 +234,11 @@ function esperarNuevaPagina(browser, timeout = 20000) {
 
         browser.on('targetcreated', onTarget);
     });
+    // 2026-10-28: si el timeout vencía mientras el código aún no hacía `await` (p. ej. dentro de volcarDebug), la
+    // promesa rechazada quedaba sin manejar y Node mataba TODO el proceso (cayó en la clave 90355 y no hubo reintento).
+    // Marcarla como manejada no cambia nada: el `await` posterior sigue lanzando el error y entra al reintento.
+    espera.catch(() => {});
+    return espera;
 }
 
 // Busca en la página un elemento cuyo texto (trim, exacto o "contiene") coincida,
@@ -720,6 +734,10 @@ async function procesarAsesor(browser, clave, intento = 1) {
         popupPromotor = await esperaPromotor;
         console.log(`   ✅ Ventana Promotor abierta: ${popupPromotor.url()}`);
         await delay(2000);
+        // 2026-10-28: hojameta a veces abre la ventana con la cabecera vacía ("Clave: -", "PORTAL-[-1]") o tarda en
+        // cargar; las esperas fijas seguían de largo y todo fallaba en cascada. Esperamos a que de verdad cargue.
+        await esperarCarga(popupPromotor, () => /Clave:\s*\d+/.test(document.body.innerText) && /Avance Al:\s*\d{2}-\d{2}-\d{4}/.test(document.body.innerText),
+            45000, 'la cabecera de la Promotoría (Clave / Avance Al)');
         await volcarDebug(popupPromotor, '1_promotor', carpetaAsesor);
 
         // 4. Clic en el tile "LIMRA"
@@ -727,6 +745,11 @@ async function procesarAsesor(browser, clave, intento = 1) {
         const clickLimra = await clickPorTexto(popupPromotor, 'LIMRA');
         if (!clickLimra) throw new Error('No se encontró el tile "LIMRA"');
         await delay(1500);
+        // El detalle LIMRA se llena por AJAX: mientras carga muestra "Cargando", ceros y "undefined%".
+        await esperarCarga(popupPromotor, () => {
+            const t = document.body.innerText;
+            return !/undefined/.test(t) && !/Cargando/i.test(t) && /Asesores\s*\n?\s*[1-9]\d*/.test(t);
+        }, 45000, 'el detalle LIMRA (sigue "Cargando"/undefined)');
         await volcarDebug(popupPromotor, '1b_post_limra', carpetaAsesor);
 
         // 5. Clic en "Ver Detalle Asesores"
@@ -747,6 +770,7 @@ async function procesarAsesor(browser, clave, intento = 1) {
 
         // 6. Buscar la clave en el buscador de la tabla (DataTables) para filtrar
         console.log(`   🔎 Buscando clave ${clave} en la tabla de asesores...`);
+        await popupPromotor.waitForSelector('input[type="search"]', { timeout: 20000 }).catch(() => {});
         const searchInput = await popupPromotor.$('input[type="search"]');
         if (!searchInput) throw new Error('No se encontró el campo de búsqueda de la tabla de asesores');
         await searchInput.click({ clickCount: 3 });
@@ -756,28 +780,69 @@ async function procesarAsesor(browser, clave, intento = 1) {
 
         // 7. Clic en el ícono ↗ de la fila resultante -> se abre ventana emergente del asesor
         console.log('   🖱️ Clic en el ícono de detalle del asesor...');
-        const esperaAsesor = esperarNuevaPagina(browser);
+        // 2026-10-28: los 15 asesores fallaron aquí (clic "exitoso" pero sin ventana nueva, ni un targetcreated).
+        // Antes se clicaba el centro de la CELDA (closest 'td'), que puede caer junto al ícono y no sobre él, y se
+        // tomaba la 1a fila que contuviera la clave (podía ser un <tr> contenedor). Ahora: fila = la <tr> más interna
+        // cuya 1a celda ES la clave, y se clica el ÍCONO mismo (el último de la fila, el ↗ está a la derecha).
         const marcaIcono = `mcp-icono-${Date.now()}`;
-        const iconoEncontrado = await popupPromotor.evaluate((claveBuscada, marca) => {
-            const filas = Array.from(document.querySelectorAll('tr')).filter(tr => tr.innerText.includes(claveBuscada));
-            for (const fila of filas) {
-                const link = fila.querySelector('a, svg, i, [class*="icon"]');
-                const clicable = link?.closest('a, button, td');
-                if (clicable) { clicable.setAttribute('data-mcp-target', marca); return true; }
-            }
-            return false;
+        const infoIcono = await popupPromotor.evaluate((claveBuscada, marca) => {
+            const filas = Array.from(document.querySelectorAll('tr'))
+                .filter(tr => !tr.querySelector('tr') && tr.innerText.includes(claveBuscada));
+            const exacta = filas.find(tr => (tr.querySelector('td')?.innerText || '').trim() === claveBuscada) || filas[0];
+            if (!exacta) return null;
+            const iconos = Array.from(exacta.querySelectorAll('a, svg, i, [class*="icon"]'));
+            const icono = iconos.find(el => el.tagName === 'A' && (el.target === '_blank' || /^https?:/.test(el.href || '')))
+                || iconos[iconos.length - 1];
+            if (!icono) return null;
+            const objetivo = icono.closest('a, button') || icono;
+            objetivo.setAttribute('data-mcp-target', marca);
+            const r = objetivo.getBoundingClientRect();
+            return {
+                html: objetivo.outerHTML.slice(0, 300),
+                filaHtml: exacta.innerHTML.replace(/\s+/g, ' ').slice(-400),
+                rect: { x: Math.round(r.x), y: Math.round(r.y), w: Math.round(r.width), h: Math.round(r.height) },
+                href: objetivo.tagName === 'A' ? (objetivo.href || '') : '',
+                viewport: { w: window.innerWidth, h: window.innerHeight },
+            };
         }, clave, marcaIcono);
-        if (!iconoEncontrado) throw new Error('No se encontró el ícono ↗ en la fila del asesor');
+        if (!infoIcono) throw new Error('No se encontró el ícono ↗ en la fila del asesor');
+        console.log(`      (debug) ícono a clicar: ${infoIcono.html}`);
+        console.log(`      (debug) rect=${JSON.stringify(infoIcono.rect)} viewport=${JSON.stringify(infoIcono.viewport)} href=${infoIcono.href || '-'}`);
+        console.log(`      (debug) fin de la fila: ${infoIcono.filaHtml}`);
         const handleIcono = await popupPromotor.$(`[data-mcp-target="${marcaIcono}"]`);
         if (!handleIcono) throw new Error('No se pudo obtener el handle del ícono del asesor');
-        await handleIcono.evaluate(el => el.scrollIntoView({ block: 'center' })).catch(() => {});
+        await handleIcono.evaluate(el => el.scrollIntoView({ block: 'center', inline: 'center' })).catch(() => {});
+        await delay(300);
+
+        // Intento 1: clic real de mouse sobre el ícono. Intento 2: clic JS. Intento 3: abrir el href nosotros.
+        popupAsesor = null;
+        let esperaAsesor = esperarNuevaPagina(browser, 12000);
+        esperaAsesor.catch(() => {});
         try {
             await handleIcono.click();
         } catch (e) {
             console.log(`   ⚠️ Clic real falló ("${e.message}"), usando clic JS de respaldo...`);
             await handleIcono.evaluate(el => el.click());
         }
-        popupAsesor = await esperaAsesor;
+        try {
+            popupAsesor = await esperaAsesor;
+        } catch (e1) {
+            console.log('   ⚠️ El clic real no abrió la ventana; probando clic JS sobre el ícono...');
+            esperaAsesor = esperarNuevaPagina(browser, 12000);
+            esperaAsesor.catch(() => {});
+            await handleIcono.evaluate(el => el.click()).catch(() => {});
+            try {
+                popupAsesor = await esperaAsesor;
+            } catch (e2) {
+                if (infoIcono.href && /^https?:/.test(infoIcono.href)) {
+                    console.log(`   ⚠️ Tampoco abrió; abriendo el enlace directo: ${infoIcono.href}`);
+                    popupAsesor = await browser.newPage();
+                    await popupAsesor.goto(infoIcono.href, { waitUntil: 'networkidle2', timeout: 30000 }).catch(() => {});
+                } else {
+                    throw new Error('Timeout esperando nueva pestaña/ventana emergente (clic real, clic JS y sin href)');
+                }
+            }
+        }
         console.log(`   ✅ Ventana Asesor abierta: ${popupAsesor.url()}`);
         // Damos tiempo de sobra a que hojameta termine de traer los datos por AJAX
         // (a veces tarda y si leemos muy pronto todo sale en 0).
@@ -826,7 +891,27 @@ async function procesarAsesor(browser, clave, intento = 1) {
         if (!detalleAbierto) detalleAbierto = await clickPorTexto(popupAsesor, 'Bono TA');
         if (!detalleAbierto) detalleAbierto = await clickPorTexto(popupAsesor, 'Bono Training Allowance', { exact: false });
         await delay(2000);
+        // 2026-10-28 (Mónica, 87538): el clic en "Bono Vida" no abrió el detalle y se guardó la captura SIN pólizas/grupo
+        // (883 caracteres), lo que además reseteó su anticiposDesglosados a 0. Esperamos a que el modal cargue de verdad
+        // (Vida: "Grupo Calculado"; TA: "Pólizas Sem VI") y, si no, repetimos el clic una vez.
+        const detalleCargado = () => popupAsesor.evaluate(() => /Grupo Calculado|Pólizas Sem VI/.test(document.body.innerText)).catch(() => false);
+        const esperarDetalle = async (ms) => { const t0 = Date.now(); while (Date.now() - t0 < ms) { if (await detalleCargado()) return true; await delay(500); } return false; };
+        let detalleOk = await esperarDetalle(10000);
+        if (!detalleOk) {
+            console.log('   ⚠️ El detalle del bono no cargó; repitiendo el clic en "Bono Vida / TA"...');
+            let r2 = await clickPorTexto(popupAsesor, 'Bono Vida');
+            if (!r2) r2 = await clickPorTexto(popupAsesor, 'Bono TA');
+            if (!r2) r2 = await clickPorTexto(popupAsesor, 'Bono Training Allowance', { exact: false });
+            detalleOk = await esperarDetalle(15000);
+        }
         await volcarDebug(popupAsesor, '5_detalle_bono', carpetaAsesor);
+        if (!detalleOk && intento < MAX_INTENTOS) {
+            console.log('   ⚠️ Sigue sin cargar el detalle del bono. Reintentando todo el recorrido...');
+            await popupAsesor.close().catch(() => {});
+            await popupPromotor.close().catch(() => {});
+            await delay(4000);
+            return await procesarAsesor(browser, clave, intento + 1);
+        }
 
         const detalleModal = await popupAsesor.evaluate(() => document.body.innerText);
 
@@ -838,7 +923,10 @@ async function procesarAsesor(browser, clave, intento = 1) {
         const tipoCab = extraerCampoCabecera(resumen.cabecera._raw, 'Tipo') || '';
         const esBonoVida = tipoCab && !/training/i.test(tipoCab);
         let anticiposDesglosados = null;
-        if (esBonoVida) {
+        if (esBonoVida && !detalleOk) {
+            // Sin detalle no se puede calcular el desglose: conservamos el anterior en vez de resetearlo a 0.
+            try { anticiposDesglosados = JSON.parse(fs.readFileSync(rutaDataJson, 'utf8')).anticiposDesglosados || null; } catch (e) {}
+        } else if (esBonoVida) {
             const avanceAlCab = extraerCampoCabecera(resumen.cabecera._raw, 'Avance Al');
             const semestreKeyActual = calcularSemestreKey(avanceAlCab);
             if (semestreKeyActual) {
@@ -859,7 +947,7 @@ async function procesarAsesor(browser, clave, intento = 1) {
             timestamp: new Date().toISOString(),
             urlDashboard: popupAsesor.url(),
             resumen,
-            pareceVacio,
+            pareceVacio: pareceVacio || !detalleOk,
             detalleModalTexto: detalleModal,
             intentos: intento,
             indicesAnteriores,
@@ -968,6 +1056,12 @@ async function main() {
     }
 
     browser.disconnect();
+    // Si no se pudo bajar NI UN asesor (2026-10-28: 0/15 y aun así se publicó y dijo "Todo listo"),
+    // salimos con error para que el orquestador no sincronice ni avise éxito.
+    if (clavesAsesores.length > 0 && resultados.length === 0) {
+        console.error('\n❌ No se pudo descargar ningún asesor. No se publica nada.');
+        process.exit(2);
+    }
     process.exit(0);
 }
 

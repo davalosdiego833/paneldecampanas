@@ -167,7 +167,10 @@ const extractAltamarDate = (filePath) => {
     const ws = wb.Sheets['Asesores'];
     if (!ws) return '';
     const raw = XLSX.utils.sheet_to_json(ws, { header: 1, defval: null });
-    const v = raw[9] && raw[9][1];
+    // La fila "Avance al :" NO está siempre en el mismo renglón (el 2026-11-09 el portal agregó una fila arriba y pasó del 10 al 11):
+    // se busca por su texto en lugar de por posición fija.
+    const fila = raw.slice(0, 30).find(r => r && typeof r[0] === 'string' && /avance\s*al/i.test(r[0]));
+    const v = fila && fila[1];
     return typeof v === 'number' ? formatExcelDate(v) : '';
 };
 
@@ -237,6 +240,7 @@ async function main() {
     const cambios = []; // { campaignKey, label, oldDate, newDate }
     const sinCambios = [];
     const sinRegla = [];
+    const sinFecha = []; // descargados pero sin fecha de corte legible (formato distinto)
     const noComparables = []; // dateFrom === 'skip' (siempre se copian, el propio actualizar_snapshot.js decide si notifica)
 
     for (const nombreCarpeta of CARPETAS_PORTAL) {
@@ -355,6 +359,10 @@ async function main() {
                 fs.copyFileSync(fileToProcessPath, newPath);
                 cambios.push({ campaignKey: regla.campaignKey, label: regla.label, oldDate: fechaActual || '(sin dato previo)', newDate: nuevaFecha });
                 console.log(`   ✅ ACTUALIZADO: ${regla.label} — ${fechaActual || 'sin dato previo'} → ${nuevaFecha}`);
+            } else if (!nuevaFecha) {
+                // Antes caía en "Sin cambios" en silencio: si el archivo cambia de formato, nunca nos enterábamos de que no se leyó.
+                sinFecha.push(regla.label);
+                console.log(`   ⚠️ NO SE PUDO LEER LA FECHA DE CORTE de ${regla.label} (¿cambió el formato del archivo?). NO se actualizó; revísalo.`);
             } else {
                 sinCambios.push({ label: regla.label, fecha: fechaActual || nuevaFecha || '(sin fecha)' });
                 console.log(`   ⏸️ Sin cambios: ${regla.label} (sigue en ${fechaActual || nuevaFecha || 'fecha desconocida'}). Se borra la descarga.`);
@@ -383,6 +391,9 @@ async function main() {
     }
     if (sinCambios.length > 0) {
         console.log(`\n⏸️ ${sinCambios.length} sin cambios (se borraron): ${sinCambios.map(s => s.label).join(', ')}`);
+    }
+    if (sinFecha.length > 0) {
+        console.log(`\n⚠️ ${sinFecha.length} archivo(s) descargados SIN fecha de corte legible (NO se actualizaron): ${sinFecha.join(', ')}`);
     }
     if (sinRegla.length > 0) {
         console.log(`\n⏭️ ${sinRegla.length} archivo(s) del portal ignorados (sin regla / campaña descontinuada): ${sinRegla.join(', ')}`);

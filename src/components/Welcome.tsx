@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ThemeConfig } from '../types';
-import { Search, ChevronDown, Check, X, Bell, Shield, GraduationCap, Plane, Users, Smartphone, TrendingUp, Stethoscope, Award, BarChart3, Car, Zap, Gift, Heart, FileText, Eye, Trophy, ArrowLeft } from 'lucide-react';
+import { Search, ChevronDown, Check, X, Bell, Shield, GraduationCap, Plane, Users, Smartphone, Stethoscope, BarChart3, Car, Gift, Heart, CreditCard, FileText, Eye, Trophy, ArrowLeft } from 'lucide-react';
 import { BasesCampanasExplorer } from './BasesCampanasExplorer';
 import { AdvisorReportModal, REPORT_CONFIGS, ReportKey } from './AdvisorReportModal';
 import { PdfViewerModal } from './PdfViewerModal';
@@ -345,18 +345,52 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                                         </button>
                                     </div>
                                 </div>
-                                {/* Item 2: Impulso 10K */}
+                                {/* Item 2: Tú Primero Noviembre 2026 */}
                                 <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(255, 152, 0, 0.15)', color: '#FFB74D', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Zap size={20} /></div>
+                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(41, 182, 246, 0.15)', color: '#4FC3F7', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Heart size={20} /></div>
                                     <div style={{ flex: 1 }}>
                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
-                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>⚡ Campaña Impulso 10K (Nuevos Asesores)</strong>
-                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(255, 152, 0, 0.15)', color: '#FFB74D' }}>OCTUBRE 2026</span>
+                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>💙 Campaña Tú Primero — Pólizas Personales</strong>
+                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(41, 182, 246, 0.15)', color: '#4FC3F7' }}>1 – 30 NOV 2026</span>
                                         </div>
-                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>¡Únete en octubre y recibe un <span style={{ color: '#FF6B6B', fontWeight: 700 }}>Bono de Bienvenida de $10,000 MXN</span> al lograr tu conexión con SMNYL! Cortes semanales los viernes con depósito los lunes directamente a tu estado de cuenta.</p>
-                                        <button 
-                                            onClick={() => setSelectedPdf({ title: 'Campaña Impulso 10K Oct 2026', path: '/bases_campanas/Impulso%2010k/Campa%C3%B1a%20Impulso%2010k%202026.pdf' })}
-                                            style={{ marginTop: '10px', display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '8px', background: 'rgba(255, 152, 0, 0.15)', border: '1px solid rgba(255, 152, 0, 0.4)', color: '#FFB74D', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer' }}
+                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>Tus pólizas personales con forma de pago <span style={{ color: '#4FC3F7', fontWeight: 700 }}>semestral o anual</span> cuentan para Cuaderno de Concursos, Reconocimientos, Camino a la Cumbre y Convenciones. Vida Individual con prima recibo anualizada de <span style={{ fontWeight: 700 }}>$30,000+</span> (1-48 meses de concurso) o <span style={{ fontWeight: 700 }}>$40,000+</span> (49 meses en adelante), y GMM con prima comisión anualizada de <span style={{ fontWeight: 700 }}>$15,000+</span>. *No aplica con otras campañas vigentes.*</p>
+                                        <button
+                                            onClick={() => setSelectedPdf({ title: 'Campaña Tú Primero Noviembre 2026', path: '/bases_campanas/Tu%20Primero%20Noviembre%202026/T%C3%BA%20Primero%20Noviembre%202026.pdf' })}
+                                            style={{ marginTop: '10px', display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '8px', background: 'rgba(41, 182, 246, 0.15)', border: '1px solid rgba(41, 182, 246, 0.4)', color: '#4FC3F7', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer' }}
+                                        >
+                                            <Eye size={14} /> 📄 Ver PDF Oficial
+                                        </button>
+                                    </div>
+                                </div>
+                                {/* Item 2b: Buen Fin 2026 */}
+                                <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(233, 30, 99, 0.15)', color: '#F06292', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><CreditCard size={20} /></div>
+                                    <div style={{ flex: 1 }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
+                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>🛍️ SMNYL con el Buen Fin</strong>
+                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(233, 30, 99, 0.15)', color: '#F06292' }}>13 – 17 NOV 2026</span>
+                                        </div>
+                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>Tus clientes con tarjeta de crédito <span style={{ fontWeight: 700 }}>BBVA</span> pagan en una sola exhibición y obtienen <span style={{ color: '#F06292', fontWeight: 700 }}>3 meses sin intereses</span> pagando hasta marzo 2027 (compra mínima $3,500, por Pago Express, Pago en Línea o Mail Order; el cliente debe inscribirse en la app del 3 al 12 de noviembre). Si no desean la promoción de BBVA, SMNYL sigue ofreciendo <span style={{ fontWeight: 700 }}>6 MSI</span> por Mail Order y Pago en Línea.</p>
+                                        <button
+                                            onClick={() => setSelectedPdf({ title: 'Campaña Buen Fin 2026', path: '/bases_campanas/Buen%20Fin%202026/Campa%C3%B1a%20Buen%20Fin%202026.pdf' })}
+                                            style={{ marginTop: '10px', display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '8px', background: 'rgba(233, 30, 99, 0.15)', border: '1px solid rgba(233, 30, 99, 0.4)', color: '#F06292', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer' }}
+                                        >
+                                            <Eye size={14} /> 📄 Ver PDF Oficial
+                                        </button>
+                                    </div>
+                                </div>
+                                {/* Item 2c: Visión Proactiva 2027 */}
+                                <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(63, 81, 181, 0.2)', color: '#7986CB', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Trophy size={20} /></div>
+                                    <div style={{ flex: 1 }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
+                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>👁️ Visión Proactiva 2027 — Campaña Asesores</strong>
+                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(63, 81, 181, 0.2)', color: '#7986CB' }}>1 NOV 2026 – 31 MAR 2027</span>
+                                        </div>
+                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>Gana tu lugar para el evento en la Ciudad de México (julio 2027): acumula <span style={{ color: '#7986CB', fontWeight: 700 }}>10 pólizas</span> de Vida Individual (prima mínima $17,000) o GMM Individual (prima comisión mínima $15,000), conteo 1 a 1, emitidas y pagadas en la vigencia; o <span style={{ color: '#7986CB', fontWeight: 700 }}>1 póliza</span> nueva de Experiencia Global de Grupo y Colectivo (prima mínima $50,000). Asesores conectados de diciembre 2026 a marzo 2027 tienen meta proporcional. *Incluye la entrada individual; no incluye hospedaje ni traslado.*</p>
+                                        <button
+                                            onClick={() => setSelectedPdf({ title: 'Visión Proactiva 2027 — Asesores', path: '/bases_campanas/Vision%20Proactiva%202027/Visi%C3%B3n%20Proactiva%20Asesores%202027.pdf' })}
+                                            style={{ marginTop: '10px', display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '8px', background: 'rgba(63, 81, 181, 0.2)', border: '1px solid rgba(63, 81, 181, 0.5)', color: '#7986CB', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer' }}
                                         >
                                             <Eye size={14} /> 📄 Ver PDF Oficial
                                         </button>
@@ -374,40 +408,6 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                                         <button 
                                             onClick={() => setSelectedPdf({ title: 'Campaña Momentum Eur3ka 2026', path: '/bases_campanas/MOMENTUM/Campa%C3%B1a%20Momentum%20Eur3ka%202026.pdf' })}
                                             style={{ marginTop: '10px', display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '8px', background: 'rgba(156, 39, 176, 0.15)', border: '1px solid rgba(156, 39, 176, 0.4)', color: '#BA68C8', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer' }}
-                                        >
-                                            <Eye size={14} /> 📄 Ver PDF Oficial
-                                        </button>
-                                    </div>
-                                </div>
-                                {/* Item 4: Vida Mujer Asesores */}
-                                <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(233, 30, 99, 0.15)', color: '#F06292', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><TrendingUp size={20} /></div>
-                                    <div style={{ flex: 1 }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
-                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>🌺 Campaña El Poder de Elegirte — Vida Mujer (Asesores)</strong>
-                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(233, 30, 99, 0.15)', color: '#F06292' }}>1 SEP – 31 OCT 2026</span>
-                                        </div>
-                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>¡Vida Mujer vale más! En Cuaderno de Concursos para Prima Meta y Pago, la producción en Dólares y UDIS incrementa su ponderación al <span style={{ color: '#FF6B6B', fontWeight: 700 }}>150%</span>. Además, para Convenciones pondera al <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>DOBLE (200%)</span>.</p>
-                                        <button 
-                                            onClick={() => setSelectedPdf({ title: 'Vida Mujer (Fuerza de Ventas)', path: '/bases_campanas/El%20Poder%20de%20Elegirte/Campa%C3%B1a%20El%20Poder%20de%20Elegirte%20(Fuerza%20de%20Ventas).pdf' })}
-                                            style={{ marginTop: '10px', display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '8px', background: 'rgba(233, 30, 99, 0.15)', border: '1px solid rgba(233, 30, 99, 0.4)', color: '#F06292', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer' }}
-                                        >
-                                            <Eye size={14} /> 📄 Ver PDF Oficial
-                                        </button>
-                                    </div>
-                                </div>
-                                {/* Item 5: Vida Mujer Clientes */}
-                                <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(0, 188, 212, 0.15)', color: '#4DD0E1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Heart size={20} /></div>
-                                    <div style={{ flex: 1 }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
-                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>🕯️ Campaña El Poder de Elegirte — Vida Mujer (Clientes)</strong>
-                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(0, 188, 212, 0.15)', color: '#4DD0E1' }}>1,000 PÓLIZAS NACIONALES</span>
-                                        </div>
-                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>Tus clientas que contraten una póliza de Vida Mujer (prima anualizada ≥ $30,000 MXN) recibirán un <span style={{ color: '#4DD0E1', fontWeight: 700 }}>Kit de Velas aromáticas de regalo</span> para regalarse un momento de calma y conexión. *Limitado a las primeras 1,000 pólizas.*</p>
-                                        <button 
-                                            onClick={() => setSelectedPdf({ title: 'Vida Mujer (Clientes)', path: '/bases_campanas/El%20Poder%20de%20Elegirte/Campa%C3%B1a%20El%20Poder%20de%20Elegirte%20(Clientes).pdf' })}
-                                            style={{ marginTop: '10px', display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '8px', background: 'rgba(0, 188, 212, 0.15)', border: '1px solid rgba(0, 188, 212, 0.4)', color: '#4DD0E1', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer' }}
                                         >
                                             <Eye size={14} /> 📄 Ver PDF Oficial
                                         </button>
@@ -441,23 +441,6 @@ const Welcome: React.FC<Props> = ({ theme, onAdvisorSelect }) => {
                                         <button 
                                             onClick={() => setSelectedPdf({ title: 'Bono 15 MDRT 2026', path: '/bases_campanas/BONO%2015%20MDRT/Bases%20Campa%C3%B1a%20Bono%2015%20MDRT.pdf' })}
                                             style={{ marginTop: '10px', display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '8px', background: 'rgba(156, 39, 176, 0.15)', border: '1px solid rgba(156, 39, 176, 0.4)', color: '#BA68C8', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer' }}
-                                        >
-                                            <Eye size={14} /> 📄 Ver PDF Oficial
-                                        </button>
-                                    </div>
-                                </div>
-                                {/* Item 9: Bono de Conexión */}
-                                <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                                    <div style={{ padding: '10px', borderRadius: '10px', background: 'rgba(255, 152, 0, 0.15)', color: '#FFB74D', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Award size={20} /></div>
-                                    <div style={{ flex: 1 }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
-                                            <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)', fontWeight: 700 }}>Bono de Conexión — Referidos</strong>
-                                            <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '3px 10px', borderRadius: '6px', background: 'rgba(255, 152, 0, 0.15)', color: '#FFB74D' }}>VIGENTE</span>
-                                        </div>
-                                        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>¡Obtén <span style={{ color: '#FF6B6B', fontWeight: 700 }}>$10,000 MXN adicionales</span> de Bono de Conexión por cada Asesor referido conectado!</p>
-                                        <button 
-                                            onClick={() => setSelectedPdf({ title: 'Bono de Conexión 2026', path: '/bases_campanas/Bono%20de%20conexion/Campa%C3%B1a%20%2B%20Bono%20de%20Conexi%C3%B3n%202026.pdf' })}
-                                            style={{ marginTop: '10px', display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '8px', background: 'rgba(255, 152, 0, 0.15)', border: '1px solid rgba(255, 152, 0, 0.4)', color: '#FFB74D', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer' }}
                                         >
                                             <Eye size={14} /> 📄 Ver PDF Oficial
                                         </button>

@@ -4,21 +4,21 @@
       "_raw": [
         "ALEJANDRA GABRIELA AMBRIZ GOME",
         "Clave: 2043",
-        "Avance Al: 16-10-2026",
+        "Avance Al: 23-10-2026",
         "Fecha Conex: 12-11-2018",
         "Tipo: Nuevo Consolidado",
         "Asesores",
-        "95",
+        "96",
         "Prima Nva Org.",
-        "$1,933,723",
+        "$2,087,327",
         "Prima Cons",
-        "$1,207,752",
+        "$1,229,181",
         "Prima Renov",
-        "$10,940,608",
+        "$11,470,196",
         "LIMRA",
-        "92.56%",
+        "92.67%",
         "IGC",
-        "91.82%",
+        "91.81%",
         "GA",
         "1",
         "Histórico Bonos",
@@ -37,11 +37,11 @@
         "Nov",
         "Dic",
         "Historico de Bono 2025,2026",
-        "$822,349",
-        "$740,114",
-        "$657,879",
-        "$575,644",
-        "$493,409"
+        "$821,972",
+        "$739,775",
+        "$657,578",
+        "$575,380",
+        "$493,183"
       ]
     },
     "resumenBonos": [
@@ -54,8 +54,8 @@
       ],
       [
         "Bono Vida",
-        "$0",
-        "$87,010",
+        "$11,528",
+        "$104,992",
         "",
         ""
       ],
@@ -89,32 +89,32 @@
       ],
       [
         "Bono Desarrollo",
-        "$0",
-        "$10,000",
+        "$2,500",
+        "$12,500",
         "",
         ""
       ],
       [
         "Subsidios",
-        "$78,449",
-        "$807,008",
+        "$80,993",
+        "$809,551",
         "",
         ""
       ],
       [
         "Total",
-        "$78,449",
-        "$904,019",
+        "$95,021",
+        "$927,044",
         "",
         ""
       ]
     ],
-    "todoElTexto": " ALEJANDRA GABRIELA AMBRIZ GOME\n Clave: 2043\n Avance Al: 16-10-2026\n Fecha Conex: 12-11-2018\n Tipo: Nuevo Consolidado\n Asesores\n95\n Prima Nva Org.\n$1,933,723\n Prima Cons\n$1,207,752\n Prima Renov\n$10,940,608\n LIMRA\n92.56%\n IGC\n91.82%\n GA\n1\nHistórico Bonos\n2025\n2026\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2025,2026\n$822,349\n$740,114\n$657,879\n$575,644\n$493,409\n$411,174\n$328,939\n$246,704\n$164,469\n$82,234\n$0\nResúmen de Bonos\nBonos\tBono Mes\tBono Acumulado\tGana\t\nBono Vida\t$0\t$87,010\t\n\t\nBono GMMI\t$0\t$0\t\n\t\nBono Beneficios\t$0\t$0\t\n\t\nBono Conexión\t$0\t$0\t\n\t\nBono Desarrollo\t$0\t$10,000\t\n\t\nSubsidios\t$78,449\t$807,008\t\n\t\nTotal\t$78,449\t$904,019\t\t\nIngresos por Bonos\nCopyright © 2026 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información"
+    "todoElTexto": " ALEJANDRA GABRIELA AMBRIZ GOME\n Clave: 2043\n Avance Al: 23-10-2026\n Fecha Conex: 12-11-2018\n Tipo: Nuevo Consolidado\n Asesores\n96\n Prima Nva Org.\n$2,087,327\n Prima Cons\n$1,229,181\n Prima Renov\n$11,470,196\n LIMRA\n92.67%\n IGC\n91.81%\n GA\n1\nHistórico Bonos\n2025\n2026\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2025,2026\n$821,972\n$739,775\n$657,578\n$575,380\n$493,183\n$410,986\n$328,789\n$246,591\n$164,394\n$82,197\n$0\nResúmen de Bonos\nBonos\tBono Mes\tBono Acumulado\tGana\t\nBono Vida\t$11,528\t$104,992\t\n\t\nBono GMMI\t$0\t$0\t\n\t\nBono Beneficios\t$0\t$0\t\n\t\nBono Conexión\t$0\t$0\t\n\t\nBono Desarrollo\t$2,500\t$12,500\t\n\t\nSubsidios\t$80,993\t$809,551\t\n\t\nTotal\t$95,021\t$927,044\t\t\nIngresos por Bonos\nCopyright © 2026 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información"
   },
-  "bonoVidaTexto": " ALEJANDRA GABRIELA AMBRIZ GOME\n Clave: 2043\n Avance Al: 16-10-2026\n Fecha Conex: 12-11-2018\n Tipo: Nuevo Consolidado\n Asesores\n95\n Prima Nva Org.\n$1,933,723\n Prima Cons\n$1,207,752\n Prima Renov\n$10,940,608\n LIMRA\n92.56%\n IGC\n91.82%\n GA\n1\n×\nBono Vida\nResumen Bono Vida Mes 96\nBonos\tReal\tMin\tCumple\n Bono Inicial\t$87,010\t\t\nPrima Meta Asesores Nueva Organización Mes\t$262,514\t\t\nPrima Meta Asesores Nueva Organización Sem\t$1,933,723\tGpo: 17\t\nGanadores TA\t5.00\t3.00\t\nLIMRA\t92.56%\t\t\nPrima Pago Asesores Nueva Organización Sem\t$1,933,723\t\t\nPrima Pago Asesores Consolidados Sem\t$1,207,752\t\t\n% Bono Inicial Nueva Organización\t4.00%\t\t\n% Bono Inicial Consolidados\t0.80%\t\t\n Bono Crecimiento\t$0\t\t\nPrima Meta Asesores Nva Organización Semestre Año Ant\t$5,384,682\t\t\nPrima Meta Asesores Nva Organización Semestre Año Act\t$1,933,723\t\t\nCrecimiento Prima Meta Nva Organización\t-64.09%\t\t\nAltas del Semestre Actual\t3\t\t\n% del Bono de Crecimiento\t0%\t\t\n Bono Renovación\t$0\t\t\nBono Inicial (Gpo 1 al 14)\t\t\t\nIGC\t91.82%\t\t\nPrima Pago Renovación Nva Org Sem\t$2,497,802\t\t\nPrima Pago Renovación Cons Sem\t$8,442,805\t\t\n% Bono Renovación Nva Org\t0.00%\t\t\n% Bono Renovación Cons\t0.00%\t\t\n Bono Semestral\t$87,010\n Bonos Anticipados\t$93,464\n Bonos a Pagar\t$0\n\t\nVer detalle bono\nPrima Asesores Nueva Organización\n1 \t \t 20.0%\n2 \t \t 18.0%\n3 \t \t 16.0%\n4 \t \t 14.0%\n5 \t \t 13.0%\n6 \t \t 12.0%\n7 \t \t 11.0%\n8 \t \t 10.0%\n9 \t \t 9.0%\n10 \t \t 8.0%\n11 \t \t 7.0%\n12 \t \t 6.5%\n13 \t \t 6.0%\n14 \t \t 5.5%\n15 \t \t 5.0%\n16 \t \t 4.5%\n17 \t \t 4.0%\nVer Prima Faltante Nva Org.\nLIMRA\n92.56%\n86%\t87.5%\t88.75%\t93.25%\nIGC\n91.82%\n89.75%\t94%\t95%\nMeta Ganadores TA\nActual\nFalta\nMeta:3\n5\n4\n3\n2\n1\n0\nBonos Anticipados\nJul\nAgo\nSep\n-\n-\n-\n$50000\n$40000\n$30000\n$20000\n$10000\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nCopyright © 2026 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información",
+  "bonoVidaTexto": " ALEJANDRA GABRIELA AMBRIZ GOME\n Clave: 2043\n Avance Al: 23-10-2026\n Fecha Conex: 12-11-2018\n Tipo: Nuevo Consolidado\n Asesores\n96\n Prima Nva Org.\n$2,087,327\n Prima Cons\n$1,229,181\n Prima Renov\n$11,470,196\n LIMRA\n92.67%\n IGC\n91.81%\n GA\n1\n×\nBono Vida\nResumen Bono Vida Mes 96\nBonos\tReal\tMin\tCumple\n Bono Inicial\t$104,992\t\t\nPrima Meta Asesores Nueva Organización Mes\t$416,118\t\t\nPrima Meta Asesores Nueva Organización Sem\t$2,087,327\tGpo: 16\t\nGanadores TA\t6.00\t3.00\t\nLIMRA\t92.67%\t\t\nPrima Pago Asesores Nueva Organización Sem\t$2,087,327\t\t\nPrima Pago Asesores Consolidados Sem\t$1,229,181\t\t\n% Bono Inicial Nueva Organización\t4.50%\t\t\n% Bono Inicial Consolidados\t0.90%\t\t\n Bono Crecimiento\t$0\t\t\nPrima Meta Asesores Nva Organización Semestre Año Ant\t$5,384,682\t\t\nPrima Meta Asesores Nva Organización Semestre Año Act\t$2,087,327\t\t\nCrecimiento Prima Meta Nva Organización\t-61.24%\t\t\nAltas del Semestre Actual\t4\t\t\n% del Bono de Crecimiento\t0%\t\t\n Bono Renovación\t$0\t\t\nBono Inicial (Gpo 1 al 14)\t\t\t\nIGC\t91.81%\t\t\nPrima Pago Renovación Nva Org Sem\t$2,664,868\t\t\nPrima Pago Renovación Cons Sem\t$8,805,327\t\t\n% Bono Renovación Nva Org\t0.00%\t\t\n% Bono Renovación Cons\t0.00%\t\t\n Bono Semestral\t$104,992\n Bonos Anticipados\t$93,464\n Bonos a Pagar\t$11,528\n\t\nVer detalle bono\nPrima Asesores Nueva Organización\n1 \t \t 20.0%\n2 \t \t 18.0%\n3 \t \t 16.0%\n4 \t \t 14.0%\n5 \t \t 13.0%\n6 \t \t 12.0%\n7 \t \t 11.0%\n8 \t \t 10.0%\n9 \t \t 9.0%\n10 \t \t 8.0%\n11 \t \t 7.0%\n12 \t \t 6.5%\n13 \t \t 6.0%\n14 \t \t 5.5%\n15 \t \t 5.0%\n16 \t \t 4.5%\n17 \t \t 4.0%\nVer Prima Faltante Nva Org.\nLIMRA\n92.67%\n86%\t87.5%\t88.75%\t93.25%\nIGC\n91.81%\n89.75%\t94%\t95%\nMeta Ganadores TA\nActual\nFalta\nMeta:3\n6\n5\n4\n2\n1\n0\nBonos Anticipados\nJul\nAgo\nSep\n-\n-\n-\n$50000\n$40000\n$30000\n$20000\n$10000\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nCopyright © 2026 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información",
   "bonoVidaTablas": [
     {
-      "headerHint": "Bonos Bono Mes Bono Acumulado Gana Bono Vida $0 $87,010 Bono ",
+      "headerHint": "Bonos Bono Mes Bono Acumulado Gana Bono Vida $11,528 $104,992 ",
       "filas": [
         [
           "Bonos",
@@ -125,8 +125,8 @@
         ],
         [
           "Bono\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tVida",
-          "$0",
-          "$87,010",
+          "$11,528",
+          "$104,992",
           "",
           ""
         ],
@@ -160,29 +160,29 @@
         ],
         [
           "Bono Desarrollo",
-          "$0",
-          "$10,000",
+          "$2,500",
+          "$12,500",
           "",
           ""
         ],
         [
           "Subsidios",
-          "$78,449",
-          "$807,008",
+          "$80,993",
+          "$809,551",
           "",
           ""
         ],
         [
           "Total",
-          "$78,449",
-          "$904,019",
+          "$95,021",
+          "$927,044",
           "",
           ""
         ]
       ]
     },
     {
-      "headerHint": "Bonos Real Min Cumple Bono Inicial $87,010 Prima Meta Asesores Nueva Organiza",
+      "headerHint": "Bonos Real Min Cumple Bono Inicial $104,992 Prima Meta Asesores Nueva Organiz",
       "filas": [
         [
           "Bonos",
@@ -192,55 +192,55 @@
         ],
         [
           "Bono Inicial",
-          "$87,010",
+          "$104,992",
           "",
           ""
         ],
         [
           "Prima Meta Asesores Nueva Organización Mes",
-          "$262,514",
+          "$416,118",
           "",
           ""
         ],
         [
           "Prima Meta Asesores Nueva Organización Sem",
-          "$1,933,723",
-          "Gpo: 17",
+          "$2,087,327",
+          "Gpo: 16",
           ""
         ],
         [
           "Ganadores TA",
-          "5.00",
+          "6.00",
           "3.00",
           ""
         ],
         [
           "LIMRA",
-          "92.56%",
+          "92.67%",
           "",
           ""
         ],
         [
           "Prima Pago Asesores Nueva Organización Sem",
-          "$1,933,723",
+          "$2,087,327",
           "",
           ""
         ],
         [
           "Prima Pago Asesores Consolidados Sem",
-          "$1,207,752",
+          "$1,229,181",
           "",
           ""
         ],
         [
           "% Bono Inicial Nueva Organización",
-          "4.00%",
+          "4.50%",
           "",
           ""
         ],
         [
           "% Bono Inicial Consolidados",
-          "0.80%",
+          "0.90%",
           "",
           ""
         ],
@@ -258,19 +258,19 @@
         ],
         [
           "Prima Meta Asesores Nva Organización Semestre Año Act",
-          "$1,933,723",
+          "$2,087,327",
           "",
           ""
         ],
         [
           "Crecimiento Prima Meta Nva Organización",
-          "-64.09%",
+          "-61.24%",
           "",
           ""
         ],
         [
           "Altas del Semestre Actual",
-          "3",
+          "4",
           "",
           ""
         ],
@@ -294,19 +294,19 @@
         ],
         [
           "IGC",
-          "91.82%",
+          "91.81%",
           "",
           ""
         ],
         [
           "Prima Pago Renovación Nva Org Sem",
-          "$2,497,802",
+          "$2,664,868",
           "",
           ""
         ],
         [
           "Prima Pago Renovación Cons Sem",
-          "$8,442,805",
+          "$8,805,327",
           "",
           ""
         ],
@@ -325,11 +325,11 @@
       ]
     },
     {
-      "headerHint": " Bono Semestral $87,010 Bonos Anticipados $93,464 Bonos a Pagar $0 Ver detal",
+      "headerHint": " Bono Semestral $104,992 Bonos Anticipados $93,464 Bonos a Pagar $11,528 Ver",
       "filas": [
         [
           "Bono Semestral",
-          "$87,010"
+          "$104,992"
         ],
         [
           "Bonos Anticipados",
@@ -337,7 +337,7 @@
         ],
         [
           "Bonos a Pagar",
-          "$0"
+          "$11,528"
         ],
         [
           "",
@@ -614,7 +614,7 @@
   ],
   "primaFaltanteTablas": [
     {
-      "headerHint": "Bonos Bono Mes Bono Acumulado Gana Bono Vida $0 $87,010 Bono ",
+      "headerHint": "Bonos Bono Mes Bono Acumulado Gana Bono Vida $11,528 $104,992 ",
       "filas": [
         [
           "Bonos",
@@ -625,8 +625,8 @@
         ],
         [
           "Bono\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tVida",
-          "$0",
-          "$87,010",
+          "$11,528",
+          "$104,992",
           "",
           ""
         ],
@@ -660,29 +660,29 @@
         ],
         [
           "Bono Desarrollo",
-          "$0",
-          "$10,000",
+          "$2,500",
+          "$12,500",
           "",
           ""
         ],
         [
           "Subsidios",
-          "$78,449",
-          "$807,008",
+          "$80,993",
+          "$809,551",
           "",
           ""
         ],
         [
           "Total",
-          "$78,449",
-          "$904,019",
+          "$95,021",
+          "$927,044",
           "",
           ""
         ]
       ]
     },
     {
-      "headerHint": "Bonos Real Min Cumple Bono Inicial $87,010 Prima Meta Asesores Nueva Organiza",
+      "headerHint": "Bonos Real Min Cumple Bono Inicial $104,992 Prima Meta Asesores Nueva Organiz",
       "filas": [
         [
           "Bonos",
@@ -692,55 +692,55 @@
         ],
         [
           "Bono Inicial",
-          "$87,010",
+          "$104,992",
           "",
           ""
         ],
         [
           "Prima Meta Asesores Nueva Organización Mes",
-          "$262,514",
+          "$416,118",
           "",
           ""
         ],
         [
           "Prima Meta Asesores Nueva Organización Sem",
-          "$1,933,723",
-          "Gpo: 17",
+          "$2,087,327",
+          "Gpo: 16",
           ""
         ],
         [
           "Ganadores TA",
-          "5.00",
+          "6.00",
           "3.00",
           ""
         ],
         [
           "LIMRA",
-          "92.56%",
+          "92.67%",
           "",
           ""
         ],
         [
           "Prima Pago Asesores Nueva Organización Sem",
-          "$1,933,723",
+          "$2,087,327",
           "",
           ""
         ],
         [
           "Prima Pago Asesores Consolidados Sem",
-          "$1,207,752",
+          "$1,229,181",
           "",
           ""
         ],
         [
           "% Bono Inicial Nueva Organización",
-          "4.00%",
+          "4.50%",
           "",
           ""
         ],
         [
           "% Bono Inicial Consolidados",
-          "0.80%",
+          "0.90%",
           "",
           ""
         ],
@@ -758,19 +758,19 @@
         ],
         [
           "Prima Meta Asesores Nva Organización Semestre Año Act",
-          "$1,933,723",
+          "$2,087,327",
           "",
           ""
         ],
         [
           "Crecimiento Prima Meta Nva Organización",
-          "-64.09%",
+          "-61.24%",
           "",
           ""
         ],
         [
           "Altas del Semestre Actual",
-          "3",
+          "4",
           "",
           ""
         ],
@@ -794,19 +794,19 @@
         ],
         [
           "IGC",
-          "91.82%",
+          "91.81%",
           "",
           ""
         ],
         [
           "Prima Pago Renovación Nva Org Sem",
-          "$2,497,802",
+          "$2,664,868",
           "",
           ""
         ],
         [
           "Prima Pago Renovación Cons Sem",
-          "$8,442,805",
+          "$8,805,327",
           "",
           ""
         ],
@@ -825,11 +825,11 @@
       ]
     },
     {
-      "headerHint": " Bono Semestral $87,010 Bonos Anticipados $93,464 Bonos a Pagar $0 Ver detal",
+      "headerHint": " Bono Semestral $104,992 Bonos Anticipados $93,464 Bonos a Pagar $11,528 Ver",
       "filas": [
         [
           "Bono Semestral",
-          "$87,010"
+          "$104,992"
         ],
         [
           "Bonos Anticipados",
@@ -837,7 +837,7 @@
         ],
         [
           "Bonos a Pagar",
-          "$0"
+          "$11,528"
         ],
         [
           "",
@@ -957,7 +957,7 @@
       ]
     },
     {
-      "headerHint": "Grupo Jul Ago Sep Oct Nov Dic % Bono 1 $4,941,276 $6,666,276 $8,381,276 20.00",
+      "headerHint": "Grupo Jul Ago Sep Oct Nov Dic % Bono 1 $4,787,672 $6,512,672 $8,227,672 20.00",
       "filas": [
         [
           "Grupo",
@@ -974,9 +974,9 @@
           "",
           "",
           "",
-          "$4,941,276",
-          "$6,666,276",
-          "$8,381,276",
+          "$4,787,672",
+          "$6,512,672",
+          "$8,227,672",
           "20.00%"
         ],
         [
@@ -984,9 +984,9 @@
           "",
           "",
           "",
-          "$4,176,276",
-          "$5,701,276",
-          "$7,226,276",
+          "$4,022,672",
+          "$5,547,672",
+          "$7,072,672",
           "18.00%"
         ],
         [
@@ -994,9 +994,9 @@
           "",
           "",
           "",
-          "$3,716,276",
-          "$5,131,276",
-          "$6,546,276",
+          "$3,562,672",
+          "$4,977,672",
+          "$6,392,672",
           "16.00%"
         ],
         [
@@ -1004,9 +1004,9 @@
           "",
           "",
           "",
-          "$3,256,276",
-          "$4,556,276",
-          "$5,851,276",
+          "$3,102,672",
+          "$4,402,672",
+          "$5,697,672",
           "14.00%"
         ],
         [
@@ -1014,9 +1014,9 @@
           "",
           "",
           "",
-          "$2,806,276",
-          "$3,991,276",
-          "$5,176,276",
+          "$2,652,672",
+          "$3,837,672",
+          "$5,022,672",
           "13.00%"
         ],
         [
@@ -1024,9 +1024,9 @@
           "",
           "",
           "",
-          "$2,776,276",
-          "$3,956,276",
-          "$5,126,276",
+          "$2,622,672",
+          "$3,802,672",
+          "$4,972,672",
           "12.00%"
         ],
         [
@@ -1034,9 +1034,9 @@
           "",
           "",
           "",
-          "$2,156,276",
-          "$3,181,276",
-          "$4,196,276",
+          "$2,002,672",
+          "$3,027,672",
+          "$4,042,672",
           "11.00%"
         ],
         [
@@ -1044,9 +1044,9 @@
           "",
           "",
           "",
-          "$1,671,276",
-          "$2,586,276",
-          "$3,481,276",
+          "$1,517,672",
+          "$2,432,672",
+          "$3,327,672",
           "10.00%"
         ],
         [
@@ -1054,9 +1054,9 @@
           "",
           "",
           "",
-          "$1,521,276",
-          "$2,391,276",
-          "$3,246,276",
+          "$1,367,672",
+          "$2,237,672",
+          "$3,092,672",
           "9.00%"
         ],
         [
@@ -1064,9 +1064,9 @@
           "",
           "",
           "",
-          "$1,371,276",
-          "$2,186,276",
-          "$3,016,276",
+          "$1,217,672",
+          "$2,032,672",
+          "$2,862,672",
           "8.00%"
         ],
         [
@@ -1074,9 +1074,9 @@
           "",
           "",
           "",
-          "$1,206,276",
-          "$2,001,276",
-          "$2,791,276",
+          "$1,052,672",
+          "$1,847,672",
+          "$2,637,672",
           "7.00%"
         ],
         [
@@ -1084,9 +1084,9 @@
           "",
           "",
           "",
-          "$1,081,276",
-          "$1,836,276",
-          "$2,586,276",
+          "$927,672",
+          "$1,682,672",
+          "$2,432,672",
           "6.50%"
         ],
         [
@@ -1094,9 +1094,9 @@
           "",
           "",
           "",
-          "$761,276",
-          "$1,441,276",
-          "$2,111,276",
+          "$607,672",
+          "$1,287,672",
+          "$1,957,672",
           "6.00%"
         ],
         [
@@ -1104,9 +1104,9 @@
           "",
           "",
           "",
-          "$616,276",
-          "$1,241,276",
-          "$1,876,276",
+          "$462,672",
+          "$1,087,672",
+          "$1,722,672",
           "5.50%"
         ],
         [
@@ -1114,9 +1114,9 @@
           "",
           "",
           "",
-          "$286,276",
-          "$836,276",
-          "$1,386,276",
+          "$132,672",
+          "$682,672",
+          "$1,232,672",
           "5.00%"
         ],
         [
@@ -1124,9 +1124,9 @@
           "",
           "",
           "",
-          "$126,276",
-          "$646,276",
-          "$1,166,276",
+          "",
+          "$492,672",
+          "$1,012,672",
           "4.50%"
         ],
         [
@@ -1135,8 +1135,8 @@
           "",
           "",
           "",
-          "$451,276",
-          "$921,276",
+          "$297,672",
+          "$767,672",
           "4.00%"
         ]
       ]
@@ -1297,10 +1297,10 @@
       ]
     }
   ],
-  "subsidiosTexto": " ALEJANDRA GABRIELA AMBRIZ GOME\n Clave: 2043\n Avance Al: 16-10-2026\n Fecha Conex: 12-11-2018\n Tipo: Nuevo Consolidado\n Asesores\n95\n Prima Nva Org.\n$1,933,723\n Prima Cons\n$1,207,752\n Prima Renov\n$10,940,608\n LIMRA\n92.56%\n IGC\n91.82%\n GA\n1\n×\nSubsidio de Renta\nLista de Promotores\nSucursal Inmueble:\nSeleccionar...\n2043\nLoading...\nResumen Subdisio Rentas\nRENTA MES\t\nMetros Cuadrados\t\n138.45\n\nCosto m2\t\n$ 585\n\nMoneda\t\nPeso \n\nTipo Cambio\t\n$ 1.00\n\nFactor Cobro\t\n100.00\n\nRenta Mensual\t\n$80,993\nSUBSIDIO\t\nAsesores Proactivos Sem Ant\t\n14\n\nPrima Meta Recluta (6 meses)\t\n$1,224,965\n\n% Subsidio\t\n9.00%\n\nPrima Pago Nva Org (6 meses)\t\n$5,229,989\n\nProm Prima Pago Nva Org\t\n$871,664\n\nAsesores Proactivos Mes\t\n10\nSubsidio Renta\n$78,449\n% Subsidio vs Renta\n96.85%\n\nVer detalle bono\n\nAsesores Proactivos Mes\nMeta: 5\n12\n9\n6\n3\n0\nActual: 10\n% Subsidio\n\t%\n\t25%\n\t23%\n\t21%\n\t17%\n\t14%\n\t11%\n\t9%\n\t6%\nHistórico Subsidio de Renta\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\n100.00\n90.00\n80.00\n70.00\n60.00\n50.00\n40.00\n30.00\n20.00\n10.00\n0.00\n% Subsidio vs Renta Mes\n96.85%\nCopyright © 2026 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información",
+  "subsidiosTexto": " ALEJANDRA GABRIELA AMBRIZ GOME\n Clave: 2043\n Avance Al: 23-10-2026\n Fecha Conex: 12-11-2018\n Tipo: Nuevo Consolidado\n Asesores\n96\n Prima Nva Org.\n$2,087,327\n Prima Cons\n$1,229,181\n Prima Renov\n$11,470,196\n LIMRA\n92.67%\n IGC\n91.81%\n GA\n1\n×\nSubsidio de Renta\nLista de Promotores\nSucursal Inmueble:\nSeleccionar...\nLoading...\nResumen Subdisio Rentas\nRENTA MES\t\nMetros Cuadrados\t\n138.45\n\nCosto m2\t\n$ 585\n\nMoneda\t\nPeso \n\nTipo Cambio\t\n$ 1.00\n\nFactor Cobro\t\n100.00\n\nRenta Mensual\t\n$80,993\nSUBSIDIO\t\nAsesores Proactivos Sem Ant\t\n14\n\nPrima Meta Recluta (6 meses)\t\n$1,342,497\n\n% Subsidio\t\n9.00%\n\nPrima Pago Nva Org (6 meses)\t\n$5,401,740\n\nProm Prima Pago Nva Org\t\n$900,290\n\nAsesores Proactivos Mes\t\n12\nSubsidio Renta\n$80,993\n% Subsidio vs Renta\n100.00%\n\nVer detalle bono\n\nAsesores Proactivos Mes\nMeta: 5\n15\n12\n9\n6\n3\n0\nActual: 12\n% Subsidio\n\t%\n\t25%\n\t23%\n\t21%\n\t17%\n\t14%\n\t11%\n\t9%\n\t6%\nHistórico Subsidio de Renta\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\n100.00\n90.00\n80.00\n70.00\n60.00\n50.00\n40.00\n30.00\n20.00\n10.00\n0.00\n% Subsidio vs Renta Mes\n100.00%\nCopyright © 2026 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información",
   "subsidiosTablas": [
     {
-      "headerHint": "Bonos Bono Mes Bono Acumulado Gana Bono Vida $0 $87,010 Bono ",
+      "headerHint": "Bonos Bono Mes Bono Acumulado Gana Bono Vida $11,528 $104,992 ",
       "filas": [
         [
           "Bonos",
@@ -1311,8 +1311,8 @@
         ],
         [
           "Bono\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tVida",
-          "$0",
-          "$87,010",
+          "$11,528",
+          "$104,992",
           "",
           ""
         ],
@@ -1346,22 +1346,22 @@
         ],
         [
           "Bono Desarrollo",
-          "$0",
-          "$10,000",
+          "$2,500",
+          "$12,500",
           "",
           ""
         ],
         [
           "Subsidios",
-          "$78,449",
-          "$807,008",
+          "$80,993",
+          "$809,551",
           "",
           ""
         ],
         [
           "Total",
-          "$78,449",
-          "$904,019",
+          "$95,021",
+          "$927,044",
           "",
           ""
         ]
@@ -1401,7 +1401,7 @@
       ]
     },
     {
-      "headerHint": "SUBSIDIO Asesores Proactivos Sem Ant 14 Prima Meta Recluta (6 meses) $1,224,",
+      "headerHint": "SUBSIDIO Asesores Proactivos Sem Ant 14 Prima Meta Recluta (6 meses) $1,342,",
       "filas": [
         [
           "SUBSIDIO",
@@ -1413,7 +1413,7 @@
         ],
         [
           "Prima Meta Recluta (6 meses)",
-          "$1,224,965"
+          "$1,342,497"
         ],
         [
           "% Subsidio",
@@ -1421,15 +1421,15 @@
         ],
         [
           "Prima Pago Nva Org (6 meses)",
-          "$5,229,989"
+          "$5,401,740"
         ],
         [
           "Prom Prima Pago Nva Org",
-          "$871,664"
+          "$900,290"
         ],
         [
           "Asesores Proactivos Mes",
-          "10"
+          "12"
         ]
       ]
     },
