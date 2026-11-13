@@ -59,6 +59,12 @@ agregada en sesión aparte (proyecto hermano: "ESTATUS DE POLIZAS" en el Escrito
      Con fallas parciales sigue sincronizando (lista "Necesitan revisión manual").
      Para reintentar solo algunas claves sin repetir las demás: `node correr_premios_automatico.js 90355 94156 ...` (sincroniza todo `premios/`).
      Ojo: correr desde la carpeta del proyecto (`cd "/Users/diego/Desktop/panel de campañas"`), no desde `~`.
+   - **Mónica (87538), corte 23-10 (2026-10-28/11-05):** su captura salió SIN el detalle del bono (hojameta no cargó "Ver Detalle Bonos"; sin pólizas/grupo/Prima Faltante)
+     y se guardó con `anticiposDesglosados` en 0. Ahora `descargar_premios.js` espera el detalle (`Grupo Calculado|Pólizas Sem VI`), repite el clic, reintenta el asesor
+     completo si no carga, conserva los anticipos previos y marca `pareceVacio` si aun así falta. Reintento: `node correr_premios_automatico.js 87538`.
+   - **`sincronizar_premios.sh` estricto (2026-11-12):** el 12-nov el servidor aceptó la llave SSH y cerró la sesión (bloqueo temporal; se arregló solo/en Hostinger),
+     `rsync` falló y el script igual imprimió "✅ actualizados". Ahora reintenta 3 veces, sale con código 1 si no sube, y al final compara byte a byte el `data.json` de
+     cada clave contra lo que SIRVE el sitio (`/premios/<clave>/data.json`); solo dice ✅ si coinciden todas (si no, código 2). El orquestador ya aborta con código ≠ 0.
    - **Oscar Ramírez Ruiz (119223)**: agregado a `CLAVES_TODAS` el 2026-10-28; es Training Allowance (se conectó 22/10/2026), ya bajado y publicado al corte 23-10.
      Mientras una clave configurada no tenga `data.json`, la revisión de corte (`decidirAccion`, motivo `faltan_datos`) descarga todo aunque no haya corte nuevo.
    - **Desglose Inicial/Renovación del anticipado (`anticiposDesglosados` en cada data.json de Bono Vida):** el portal solo da el

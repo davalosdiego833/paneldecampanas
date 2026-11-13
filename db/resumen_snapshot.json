@@ -1,5 +1,5 @@
 {
-  "updatedAt": "12/11/2026, 10:19:12 a.m.",
+  "updatedAt": "12/11/2026, 10:04:39 p.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -43,6 +43,71 @@
           "Fecha_Conexion": "2020-04-28"
         },
         {
+          "Nombre Asesor": "JORGE ROBERTO HERNANDEZ REGALADO",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 30312.58,
+          "Recibo_Ordinario_Pagado": 0,
+          "Total _Prima_Pagada": 30312.58,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 0,
+          "Total _Prima_Pendiente": 0,
+          "Fecha_Conexion": "2026-09-15"
+        },
+        {
+          "Nombre Asesor": "ANAIS LUA MORENO",
+          "Sucursal": "2856",
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 2437.24,
+          "Recibo_Ordinario_Pagado": 9698.02,
+          "Total _Prima_Pagada": 12135.26,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 88392.51,
+          "Total _Prima_Pendiente": 88392.51,
+          "Fecha_Conexion": "2024-11-04"
+        },
+        {
+          "Nombre Asesor": "SOFIA CAMPILLO VASCONCELOS",
+          "Sucursal": "2856",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 11277.22,
+          "Total _Prima_Pagada": 11277.22,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 64608.19,
+          "Total _Prima_Pendiente": 64608.19,
+          "Fecha_Conexion": "2026-04-14"
+        },
+        {
+          "Nombre Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 9904.09,
+          "Total _Prima_Pagada": 9904.09,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 133777.09,
+          "Total _Prima_Pendiente": 133777.09,
+          "Fecha_Conexion": "2019-09-23"
+        },
+        {
+          "Nombre Asesor": "JULIANA RIASCOS VALENCIA",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 8901.67,
+          "Total _Prima_Pagada": 8901.67,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 0,
+          "Total _Prima_Pendiente": 0,
+          "Fecha_Conexion": "2023-03-14"
+        },
+        {
           "Nombre Asesor": "ANDREA CELESTE IBAÑEZ RINCON",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -54,19 +119,6 @@
           "Recibo_Ordinario_Pendiente": 0,
           "Total _Prima_Pendiente": 0,
           "Fecha_Conexion": "2019-11-25"
-        },
-        {
-          "Nombre Asesor": "ANAIS LUA MORENO",
-          "Sucursal": "2856",
-          "Pólizas-Pagadas": 1,
-          "Recibo_Inicial_Pagado": 2437.24,
-          "Recibo_Ordinario_Pagado": 3828.39,
-          "Total _Prima_Pagada": 6265.63,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 94262.13,
-          "Total _Prima_Pendiente": 94262.13,
-          "Fecha_Conexion": "2024-11-04"
         },
         {
           "Nombre Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
@@ -82,6 +134,19 @@
           "Fecha_Conexion": "2023-11-06"
         },
         {
+          "Nombre Asesor": "GABRIELA CASTAÑEDA SALAZAR",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 4882.11,
+          "Total _Prima_Pagada": 4882.11,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 140386,
+          "Total _Prima_Pendiente": 140386,
+          "Fecha_Conexion": "2023-12-19"
+        },
+        {
           "Nombre Asesor": "MARIA TERESA ASENCIO LOZANO",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -93,19 +158,6 @@
           "Recibo_Ordinario_Pendiente": 2326.26,
           "Total _Prima_Pendiente": 2326.26,
           "Fecha_Conexion": "2020-11-24"
-        },
-        {
-          "Nombre Asesor": "SOFIA CAMPILLO VASCONCELOS",
-          "Sucursal": "2856",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 4035.26,
-          "Total _Prima_Pagada": 4035.26,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 77993.57,
-          "Total _Prima_Pendiente": 77993.57,
-          "Fecha_Conexion": "2026-04-14"
         },
         {
           "Nombre Asesor": "JOSE ANTEMIO OLIVA SANTOS",
@@ -147,6 +199,19 @@
           "Fecha_Conexion": "2018-12-05"
         },
         {
+          "Nombre Asesor": "OSCAR RAMIREZ RUIZ",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 0,
+          "Recibo_Inicial_Pagado": 0,
+          "Recibo_Ordinario_Pagado": 1935.63,
+          "Total _Prima_Pagada": 1935.63,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 53268.98,
+          "Total _Prima_Pendiente": 53268.98,
+          "Fecha_Conexion": "2026-10-22"
+        },
+        {
           "Nombre Asesor": "LUIS GUILLERMO OLGUIN FERNANDEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -184,19 +249,6 @@
           "Recibo_Ordinario_Pendiente": 84744.73,
           "Total _Prima_Pendiente": 86556.37,
           "Fecha_Conexion": "2026-09-30"
-        },
-        {
-          "Nombre Asesor": "GABRIELA CASTAÑEDA SALAZAR",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 1750.14,
-          "Total _Prima_Pagada": 1750.14,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 143517.97,
-          "Total _Prima_Pendiente": 143517.97,
-          "Fecha_Conexion": "2023-12-19"
         },
         {
           "Nombre Asesor": "ROGELIO TORRES ORTIZ",
@@ -244,10 +296,10 @@
           "Recibo_Inicial_Pagado": 0,
           "Recibo_Ordinario_Pagado": 0,
           "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 43737.72,
-          "Total _Prima_Pendiente": 43737.72,
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 23693.73,
+          "Recibo_Ordinario_Pendiente": 67431.45,
+          "Total _Prima_Pendiente": 91125.18,
           "Fecha_Conexion": "2026-10-13"
         },
         {
@@ -257,10 +309,10 @@
           "Recibo_Inicial_Pagado": 0,
           "Recibo_Ordinario_Pagado": 0,
           "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 26785.23,
-          "Total _Prima_Pendiente": 26785.23,
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 2579.24,
+          "Recibo_Ordinario_Pendiente": 55156.86,
+          "Total _Prima_Pendiente": 57736.1,
           "Fecha_Conexion": "2026-10-06"
         },
         {
@@ -275,19 +327,6 @@
           "Recibo_Ordinario_Pendiente": 63622.49,
           "Total _Prima_Pendiente": 63622.49,
           "Fecha_Conexion": "2026-08-25"
-        },
-        {
-          "Nombre Asesor": "OSCAR RAMIREZ RUIZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 55204.61,
-          "Total _Prima_Pendiente": 55204.61,
-          "Fecha_Conexion": "2026-10-22"
         },
         {
           "Nombre Asesor": "MARIO IVAN ROMERO GONZALEZ",
@@ -485,19 +524,6 @@
           "Fecha_Conexion": "2023-07-10"
         },
         {
-          "Nombre Asesor": "JULIANA RIASCOS VALENCIA",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 5493.64,
-          "Total _Prima_Pendiente": 5493.64,
-          "Fecha_Conexion": "2023-03-14"
-        },
-        {
           "Nombre Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
           "Sucursal": "2043",
           "Pólizas-Pagadas": 0,
@@ -509,19 +535,6 @@
           "Recibo_Ordinario_Pendiente": 29461.33,
           "Total _Prima_Pendiente": 29461.33,
           "Fecha_Conexion": "2022-12-21"
-        },
-        {
-          "Nombre Asesor": "MONICA ANDREA AMBRIZ GOMEZ",
-          "Sucursal": "2043",
-          "Pólizas-Pagadas": 0,
-          "Recibo_Inicial_Pagado": 0,
-          "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 143681.21,
-          "Total _Prima_Pendiente": 143681.21,
-          "Fecha_Conexion": "2019-09-23"
         },
         {
           "Nombre Asesor": "SELINA JANET LEMUS MIRAMONTES",
@@ -554,15 +567,28 @@
         {
           "Nombre Asesor": "OLGA SOFIA GAXIOLA IBARRA",
           "Sucursal": "2043",
-          "Pólizas-Pagadas": 1,
-          "Recibo_Inicial_Pagado": 6468.97,
+          "Pólizas-Pagadas": 2,
+          "Recibo_Inicial_Pagado": 8444.77,
           "Recibo_Ordinario_Pagado": 0,
-          "Total _Prima_Pagada": 6468.97,
-          "Pólizas_Pendinetes": 2,
-          "Recibo_Inicial_Pendiente": 29954.44,
+          "Total _Prima_Pagada": 8444.77,
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 27978.64,
           "Recibo_Ordinario_Pendiente": 0,
-          "Total _Prima_Pendiente": 29954.44,
+          "Total _Prima_Pendiente": 27978.64,
           "Fecha_Conexion": "2026-10-06"
+        },
+        {
+          "Nombre Asesor": "JORGE ROBERTO HERNANDEZ REGALADO",
+          "Sucursal": "2043",
+          "Pólizas-Pagadas": 1,
+          "Recibo_Inicial_Pagado": 30312.58,
+          "Recibo_Ordinario_Pagado": 0,
+          "Total _Prima_Pagada": 30312.58,
+          "Pólizas_Pendinetes": 0,
+          "Recibo_Inicial_Pendiente": 0,
+          "Recibo_Ordinario_Pendiente": 0,
+          "Total _Prima_Pendiente": 0,
+          "Fecha_Conexion": "2026-09-15"
         },
         {
           "Nombre Asesor": "BRUNO PADILLA SALDATE",
@@ -571,10 +597,10 @@
           "Recibo_Inicial_Pagado": 0,
           "Recibo_Ordinario_Pagado": 0,
           "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 43737.72,
-          "Total _Prima_Pendiente": 43737.72,
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 23693.73,
+          "Recibo_Ordinario_Pendiente": 67431.45,
+          "Total _Prima_Pendiente": 91125.18,
           "Fecha_Conexion": "2026-10-13"
         },
         {
@@ -584,10 +610,10 @@
           "Recibo_Inicial_Pagado": 0,
           "Recibo_Ordinario_Pagado": 0,
           "Total _Prima_Pagada": 0,
-          "Pólizas_Pendinetes": 0,
-          "Recibo_Inicial_Pendiente": 0,
-          "Recibo_Ordinario_Pendiente": 26785.23,
-          "Total _Prima_Pendiente": 26785.23,
+          "Pólizas_Pendinetes": 1,
+          "Recibo_Inicial_Pendiente": 2579.24,
+          "Recibo_Ordinario_Pendiente": 55156.86,
+          "Total _Prima_Pendiente": 57736.1,
           "Fecha_Conexion": "2026-10-06"
         },
         {
@@ -618,8 +644,8 @@
             "%_Asesores_con_pol_Pagada_Vida": 0.0833,
             "Asesores_con_pol_Pagada_GMM": 1,
             "%_Asesores_con_pol_Pagada_GMM": 0.0417,
-            "Prima_Pagada_Vida": 163204.53,
-            "Prima_Pagada_GMM": 10090
+            "Prima_Pagada_Vida": 187077.89,
+            "Prima_Pagada_GMM": 12960
           },
           {
             "Sucursal": "ALEJANDRA GABRIELA AMBRIZ GOMEZ",
@@ -648,7 +674,7 @@
             "%_Asesores_con_pol_Pagada_Vida": 0.1667,
             "Asesores_con_pol_Pagada_GMM": 1,
             "%_Asesores_con_pol_Pagada_GMM": 0.1667,
-            "Prima_Pagada_Vida": 12056.53,
+            "Prima_Pagada_Vida": 25168.12,
             "Prima_Pagada_GMM": 14005
           }
         ],
@@ -660,13 +686,15 @@
             "Suc": 2043,
             "Fecha_Conexion": "2023-03-14",
             "Emitido_Vida": 0,
-            "Emitido_GMM": 1,
+            "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 0,
-            "Prima_Pagada_GMM": 0,
+            "Prima_Pagada_Vida": 8901.67,
+            "Prima_Pagada_GMM": 2870,
             "Sin_Emisión_Vida": "i",
-            "3_Meses_Sin_Emisión_Vida": "i"
+            "Sin_Emisión_GMM": "i",
+            "3_Meses_Sin_Emisión_Vida": "i",
+            "3_Meses_Sin_Emisión_GMM": "i"
           },
           {
             "Asesor": "MARIA FERNANDA RIOS BERNAL",
@@ -742,7 +770,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 1750.14,
+            "Prima_Pagada_Vida": 4882.11,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -791,7 +819,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 1,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 6265.63,
+            "Prima_Pagada_Vida": 12135.26,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i"
@@ -903,7 +931,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 4035.26,
+            "Prima_Pagada_Vida": 11277.22,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -965,7 +993,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 0,
+            "Prima_Pagada_Vida": 1935.63,
             "Prima_Pagada_GMM": 0,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i",
@@ -1102,7 +1130,7 @@
             "Emitido_GMM": 0,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
-            "Prima_Pagada_Vida": 0,
+            "Prima_Pagada_Vida": 9904.09,
             "Prima_Pagada_GMM": 2289,
             "Sin_Emisión_Vida": "i",
             "Sin_Emisión_GMM": "i"
@@ -1162,13 +1190,12 @@
             "Suc": 2043,
             "Fecha_Conexion": "2021-05-26",
             "Emitido_Vida": 0,
-            "Emitido_GMM": 0,
+            "Emitido_GMM": 1,
             "Pagado_Vida": 0,
             "Pagado_GMM": 0,
             "Prima_Pagada_Vida": 0,
             "Prima_Pagada_GMM": 0,
-            "Sin_Emisión_Vida": "i",
-            "Sin_Emisión_GMM": "i"
+            "Sin_Emisión_Vida": "i"
           }
         ]
       },
@@ -3781,9 +3808,9 @@
       }
     },
     "fechas_corte": {
-      "pagado_pendiente": "9 de noviembre de 2026",
-      "pagado_pendiente_reclutas": "9 de noviembre de 2026",
-      "asesores_sin_emision": "09 de NOV de 2026",
+      "pagado_pendiente": "11 de noviembre de 2026",
+      "pagado_pendiente_reclutas": "11 de noviembre de 2026",
+      "asesores_sin_emision": "11 de NOV de 2026",
       "proactivos": "09 de noviembre de 2026",
       "comparativo_vida": "31 de octubre de 2026",
       "qsq_vida": "31 de octubre de 2026",

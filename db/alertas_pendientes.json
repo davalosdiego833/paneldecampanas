@@ -1,5 +1,36 @@
 {
-  "generatedAt": "12/11/2026, 10:19:18 a.m.",
-  "totalNew": 0,
-  "alerts": []
+  "generatedAt": "12/11/2026, 10:04:46 p.m.",
+  "totalNew": 3,
+  "alerts": [
+    {
+      "id": "1bc339c2-d2db-4491-8431-84ce32c0b9ec",
+      "asesor": "JORGE ROBERTO HERNANDEZ REGALADO",
+      "firstName": "Jorge",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza pagada!",
+      "message": "Hola Jorge, ¿cómo estás? 👋\n¡Felicidades! 🎉\n\nAl revisar nuestro reporte más reciente, noté que ya tienes *1 póliza(s) pagada(s)* (¡subiste desde tu corte anterior!).\n\n¡Gran esfuerzo, sigue así, vas con todo! 🚀\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "6804e831-ddac-4be6-ae44-e32e7b67930c",
+      "asesor": "BRUNO PADILLA SALDATE",
+      "firstName": "Bruno",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Bruno, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    },
+    {
+      "id": "6b6150f6-9d98-4d5e-8858-16e0606f9df3",
+      "asesor": "OLGA SOFIA GAXIOLA IBARRA",
+      "firstName": "Olga",
+      "campaign": "pagado_emitido",
+      "type": "positive",
+      "event": "¡Nueva póliza emitida (pendiente de pago)!",
+      "message": "Hola Olga, ¿cómo estás? 👋\n¡Oye, muy bien! 🎉\n\nAcabo de revisar el reporte más reciente y noté que acabas de emitir póliza(s). Ahora figuras con *1 póliza(s) pendiente(s) de pago*.\n\n¡Excelente trabajo! Vamos a darle seguimiento para que quede pagada pronto. 💪\n\ndéjame un pulgarcito arriba de enterad@ 🙂",
+      "sent": false
+    }
+  ]
 }

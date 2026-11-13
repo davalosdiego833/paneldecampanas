@@ -1,31 +1,31 @@
 {
   "clave": "104750",
-  "timestamp": "2026-10-28T22:22:20.220Z",
-  "urlDashboard": "https://hojameta.mnyl.com.mx/front/agentes?fecha=23-10-2026&numeroAgente=104750",
+  "timestamp": "2026-11-13T02:17:48.176Z",
+  "urlDashboard": "https://hojameta.mnyl.com.mx/front/agentes?fecha=31-10-2026&numeroAgente=104750",
   "resumen": {
     "cabecera": {
       "_raw": [
         "Asesor: PAULINA LIZBETH SOTO MU�IZ",
         "Clave: 104750",
-        "Avance Al: 23-10-2026",
+        "Avance Al: 31-10-2026",
         "Fecha Concurso: 06/11/2023",
         "Tipo: Nuevo Profesional",
         "Pólizas Vida",
-        "6",
+        "8",
         "Prima Meta Vida",
-        "$311,746",
+        "$337,034",
         "Prima Renov Vida",
-        "$264,552",
+        "$299,809",
         "Pólizas GMMI",
         "0",
         "Primas Iniciales GMMI",
         "$1,301",
         "Primas Renov GMMI",
-        "$27,763",
+        "$33,725",
         "LIMRA",
         "93.6%",
         "IGC",
-        "92.56%",
+        "92.35%",
         "Histórico de Bonos",
         "2025",
         "2026",
@@ -42,9 +42,9 @@
         "Nov",
         "Dic",
         "Historico de Bono 2025,2026",
-        "$10,196",
-        "$9,176",
-        "$8,156"
+        "$56,251",
+        "$50,626",
+        "$45,001"
       ]
     },
     "resumenBonos": [
@@ -57,8 +57,8 @@
       ],
       [
         "Bono Vida",
-        "$0.00",
-        "$0.00",
+        "$56,251.53",
+        "$56,251.53",
         "",
         ""
       ],
@@ -92,27 +92,27 @@
       ],
       [
         "Total",
-        "$ 0.00",
-        "$ 0.00",
+        "$ 56,251.53",
+        "$ 56,251.53",
         "",
         ""
       ]
     ],
-    "todoElTexto": " Asesor: PAULINA LIZBETH SOTO MU�IZ\n Clave: 104750\n Avance Al: 23-10-2026\n Fecha Concurso: 06/11/2023\n Tipo: Nuevo Profesional\n Pólizas Vida\n6\n Prima Meta Vida\n$311,746\n Prima Renov Vida\n$264,552\n Pólizas GMMI\n0\n Primas Iniciales GMMI\n$1,301\n Primas Renov GMMI\n$27,763\n LIMRA\n93.6%\n IGC\n92.56%\nHistórico de Bonos\n2025\n2026\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2025,2026\n$10,196\n$9,176\n$8,156\n$7,137\n$6,117\n$5,098\n$4,078\n$3,058\n$2,039\n$1,019\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nResumen de Bonos\nBonos\tBono Mes\tBono Acumulado\tGana\t\nBono Vida\t$0.00\t$0.00\t\t\nBono GMMI\t$0.00\t$0.00\t\t\nBono Beneficios\t$ 0.00\t$ 0.00\t\t\nBono Conexión\t$ 0.00\t$ 0.00\t\t\nBono Desarrollo\t$ 0.00\t$ 0.00\t\t\nTotal\t$ 0.00\t$ 0.00\t \t \nIngresos por Bonos\nCopyright © 2023 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información"
+    "todoElTexto": " Asesor: PAULINA LIZBETH SOTO MU�IZ\n Clave: 104750\n Avance Al: 31-10-2026\n Fecha Concurso: 06/11/2023\n Tipo: Nuevo Profesional\n Pólizas Vida\n8\n Prima Meta Vida\n$337,034\n Prima Renov Vida\n$299,809\n Pólizas GMMI\n0\n Primas Iniciales GMMI\n$1,301\n Primas Renov GMMI\n$33,725\n LIMRA\n93.6%\n IGC\n92.35%\nHistórico de Bonos\n2025\n2026\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2025,2026\n$56,251\n$50,626\n$45,001\n$39,376\n$33,750\n$28,125\n$22,500\n$16,875\n$11,250\n$5,625\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nResumen de Bonos\nBonos\tBono Mes\tBono Acumulado\tGana\t\nBono Vida\t$56,251.53\t$56,251.53\t\t\nBono GMMI\t$0.00\t$0.00\t\t\nBono Beneficios\t$ 0.00\t$ 0.00\t\t\nBono Conexión\t$ 0.00\t$ 0.00\t\t\nBono Desarrollo\t$ 0.00\t$ 0.00\t\t\nTotal\t$ 56,251.53\t$ 56,251.53\t \t \nIngresos por Bonos\nCopyright © 2023 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información"
   },
   "pareceVacio": false,
-  "detalleModalTexto": " Asesor: PAULINA LIZBETH SOTO MU�IZ\n Clave: 104750\n Avance Al: 23-10-2026\n Fecha Concurso: 06/11/2023\n Tipo: Nuevo Profesional\n Pólizas Vida\n6\n Prima Meta Vida\n$311,746\n Prima Renov Vida\n$264,552\n Pólizas GMMI\n0\n Primas Iniciales GMMI\n$1,301\n Primas Renov GMMI\n$27,763\n LIMRA\n93.6%\n IGC\n92.56%\nHistórico de Bonos\n2025\n2026\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2025,2026\n$10,196\n$9,176\n$8,156\n$7,137\n$6,117\n$5,098\n$4,078\n$3,058\n$2,039\n$1,019\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nResumen de Bonos\nBonos\tBono Mes\tBono Acumulado\tGana\t\nBono Vida\t$0.00\t$0.00\t\t\nBono GMMI\t$0.00\t$0.00\t\t\nBono Beneficios\t$ 0.00\t$ 0.00\t\t\nBono Conexión\t$ 0.00\t$ 0.00\t\t\nBono Desarrollo\t$ 0.00\t$ 0.00\t\t\nTotal\t$ 0.00\t$ 0.00\t \t \nIngresos por Bonos\nBono Vida\n×\nResumen Bonos Vida\nBonos\tReal\tMeta\tCumple\n Bono Inicial\t$0\t \t\n Póliza Mes\t1.00\t1.00\t\n Pólizas Semestre\t6.00\t8.00\t\n Pólizas Anual\t14.00\t20.00\t\n Prima Meta Mes\t$55,623\t \t\n Prima Meta Sem\t$311,746\t \t\n Grupo Calculado\t13\t \t \n Grupo Tope\t13\t \t \n LIMRA\t93.60%\t \t \n Prima Pago Sem\t$311,747\t \t \n % Bono Inicial\t15.00%\t \t \n \t \t \t \n Bono Renovación\t$0\t \t\n Bono Inicial\t \t \t\n IGC\t92.56%\t \t\n Prima Renovación Sem\t$264,552\t \t \n % Bono Renovación\t2.40%\t \t \n \t \t \t \n Bono Semestral\t$0\n Bonos Anticipados\t$0\n Bonos a Pagar\t$0\n\nVer Detalle Pólizas MSI\n\t\nVer Detalle Bonos\n\n \t \nBonos Anticipados\nJulio\nAgosto\nSeptiembre\nOctubre\nNoviembre\n$2.00\n$1.60\n$1.20\n$0.80\n$0.40\n$0.00\nDownload SVG\nDownload PNG\nDownload CSV\nLIMRA\n 93.6%\n80.5%\t87.5%\t89.5%\t91.5%\t95.5%\nIGC\n 92.56%\n91%\t92.5%\t95%\t95.75%\nPrima Meta Acum(Gpo)\nPrima Meta Acum: $311,747\nMínimo Pólizas\nMeta: 8\n10\n8\n6\n4\n2\n0\nPolizas Acum: 6\nFalta: 2\nDownload SVG\nDownload PNG\nDownload CSV\nPrima Faltante\nGrupo/Mes\tJul\tAgo\tSep\tOct\tNov\tDic\t% Bono\n1\t\t\t\t$1,513,253\t$1,968,253\t$2,423,253\t36.00%\n2\t\t\t\t$1,358,253\t$1,778,253\t$2,193,253\t34.00%\n3\t\t\t\t$1,108,253\t$1,463,253\t$1,813,253\t32.00%\n4\t\t\t\t$978,253\t$1,303,253\t$1,633,253\t30.00%\n5\t\t\t\t$903,253\t$1,203,253\t$1,508,253\t28.00%\n6\t\t\t\t$803,253\t$1,088,253\t$1,363,253\t26.00%\n7\t\t\t\t$688,253\t$933,253\t$1,183,253\t25.00%\n8\t\t\t\t$548,253\t$763,253\t$978,253\t23.00%\n9\t\t\t\t$428,253\t$618,253\t$803,253\t22.00%\n10\t\t\t\t$328,253\t$478,253\t$638,253\t20.00%\n11\t\t\t\t$178,253\t$303,253\t$423,253\t18.00%\n12\t\t\t\t$38,253\t$128,253\t$213,253\t17.00%\n13\t\t\t\t\t$43,253\t$108,253\t15.00%\n14\t\t\t\t\t$8,253\t$73,253\t14.00%\n15\t\t\t\t\t\t$18,253\t12.00%\n16\t\t\t\t\t\t\t11.00%\nGpo Tope Ant.\nGpo Tope Alc.\nCopyright © 2023 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información\nNo hay rangos para Prima Meta",
+  "detalleModalTexto": " Asesor: PAULINA LIZBETH SOTO MU�IZ\n Clave: 104750\n Avance Al: 31-10-2026\n Fecha Concurso: 06/11/2023\n Tipo: Nuevo Profesional\n Pólizas Vida\n8\n Prima Meta Vida\n$337,034\n Prima Renov Vida\n$299,809\n Pólizas GMMI\n0\n Primas Iniciales GMMI\n$1,301\n Primas Renov GMMI\n$33,725\n LIMRA\n93.6%\n IGC\n92.35%\nHistórico de Bonos\n2025\n2026\nEne\nFeb\nMar\nAbr\nMay\nJun\nJul\nAgo\nSep\nOct\nNov\nDic\nHistorico de Bono 2025,2026\n$56,251\n$50,626\n$45,001\n$39,376\n$33,750\n$28,125\n$22,500\n$16,875\n$11,250\n$5,625\n$0\nDownload SVG\nDownload PNG\nDownload CSV\nResumen de Bonos\nBonos\tBono Mes\tBono Acumulado\tGana\t\nBono Vida\t$56,251.53\t$56,251.53\t\t\nBono GMMI\t$0.00\t$0.00\t\t\nBono Beneficios\t$ 0.00\t$ 0.00\t\t\nBono Conexión\t$ 0.00\t$ 0.00\t\t\nBono Desarrollo\t$ 0.00\t$ 0.00\t\t\nTotal\t$ 56,251.53\t$ 56,251.53\t \t \nIngresos por Bonos\nBono Vida\n×\nResumen Bonos Vida\nBonos\tReal\tMeta\tCumple\n Bono Inicial\t$50,555\t \t\n Póliza Mes\t3.00\t1.00\t\n Pólizas Semestre\t8.00\t8.00\t\n Pólizas Anual\t16.00\t20.00\t\n Prima Meta Mes\t$80,910\t \t\n Prima Meta Sem\t$337,034\t \t\n Grupo Calculado\t13\t \t \n Grupo Tope\t13\t \t \n LIMRA\t93.60%\t \t \n Prima Pago Sem\t$337,034\t \t \n % Bono Inicial\t15.00%\t \t \n \t \t \t \n Bono Renovación\t$5,696\t \t\n Bono Inicial\t \t \t\n IGC\t92.35%\t \t\n Prima Renovación Sem\t$299,809\t \t \n % Bono Renovación\t1.90%\t \t \n \t \t \t \n Bono Semestral\t$56,252\n Bonos Anticipados\t$0\n Bonos a Pagar\t$56,252\n\nVer Detalle Pólizas MSI\n\t\nVer Detalle Bonos\n\n \t \nBonos Anticipados\nJulio\nAgosto\nSeptiembre\nOctubre\nNoviembre\n$2.00\n$1.60\n$1.20\n$0.80\n$0.40\n$0.00\nDownload SVG\nDownload PNG\nDownload CSV\nLIMRA\n 93.6%\n80.5%\t87.5%\t89.5%\t91.5%\t95.5%\nIGC\n 92.35%\n91%\t92.5%\t95%\t95.75%\nPrima Meta Acum(Gpo)\nPrima Meta Acum: $337,034\nMínimo Pólizas\nMeta: 8\n10\n8\n6\n4\n2\n0\nPolizas Acum: 8\nDownload SVG\nDownload PNG\nDownload CSV\nPrima Faltante\nGrupo/Mes\tJul\tAgo\tSep\tOct\tNov\tDic\t% Bono\n1\t\t\t\t$1,487,966\t$1,942,966\t$2,397,966\t36.00%\n2\t\t\t\t$1,332,966\t$1,752,966\t$2,167,966\t34.00%\n3\t\t\t\t$1,082,966\t$1,437,966\t$1,787,966\t32.00%\n4\t\t\t\t$952,966\t$1,277,966\t$1,607,966\t30.00%\n5\t\t\t\t$877,966\t$1,177,966\t$1,482,966\t28.00%\n6\t\t\t\t$777,966\t$1,062,966\t$1,337,966\t26.00%\n7\t\t\t\t$662,966\t$907,966\t$1,157,966\t25.00%\n8\t\t\t\t$522,966\t$737,966\t$952,966\t23.00%\n9\t\t\t\t$402,966\t$592,966\t$777,966\t22.00%\n10\t\t\t\t$302,966\t$452,966\t$612,966\t20.00%\n11\t\t\t\t$152,966\t$277,966\t$397,966\t18.00%\n12\t\t\t\t$12,966\t$102,966\t$187,966\t17.00%\n13\t\t\t\t\t$17,966\t$82,966\t15.00%\n14\t\t\t\t\t\t$47,966\t14.00%\n15\t\t\t\t\t\t\t12.00%\n16\t\t\t\t\t\t\t11.00%\nGpo Tope Ant.\nGpo Tope Alc.\nCopyright © 2023 SMNYL All rights reserved.\nby Dirección de Tecnologías de la Información\nNo hay rangos para Prima Meta",
   "intentos": 1,
   "indicesAnteriores": {
     "limra": 93.6,
     "igc": 92.56,
-    "fecha": "2026-10-21T19:08:02.624Z"
+    "fecha": "2026-10-28T22:22:20.220Z"
   },
   "anticiposDesglosados": {
     "semestreKey": "2026-S2",
     "inicialAnticipadoAcumulado": 0,
     "renovacionAnticipadoAcumulado": 0,
     "anticipadosCombinadoUltimoCorte": 0,
-    "actualizadoEn": "2026-10-28T22:22:20.218Z"
+    "actualizadoEn": "2026-11-13T02:17:48.174Z"
   }
 }
