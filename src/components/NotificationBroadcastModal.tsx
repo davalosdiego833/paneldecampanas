@@ -20,7 +20,6 @@ const PRESET_DESTINATIONS = [
     { label: '🏆 Sección de Campañas', value: '/campanas' },
     { label: '📊 Resumen de Asesores', value: '/resumen-asesores' },
     { label: '🎯 Meta Anual 2026', value: '/meta-anual' },
-    { label: '📄 PDF Campañas Vigentes Octubre 2026', value: '/bases_campanas/Campanas%20Octubre%202026/Campa%C3%B1as%20vigentes%20Octubre%202026.pdf' },
     { label: '📄 PDF Conduce tu Éxito 2026', value: '/bases_campanas/Conduce%20Tu%20Exito%202026/Campa%C3%B1a%20Conduce%20Tu%20%C3%89xito%202026.pdf' },
     { label: '📄 PDF Tú Primero Noviembre 2026', value: '/bases_campanas/Tu%20Primero%20Noviembre%202026/T%C3%BA%20Primero%20Noviembre%202026.pdf' },
     { label: '📄 PDF Buen Fin 2026', value: '/bases_campanas/Buen%20Fin%202026/Campa%C3%B1a%20Buen%20Fin%202026.pdf' },
