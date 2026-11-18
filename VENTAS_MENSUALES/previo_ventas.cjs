@@ -26,7 +26,7 @@ const border = { bottom: { style: 'thin', color: { argb: 'FFD9DEE8' } } };
 const hdr = (c, t) => { c.value = t; c.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: NAVY } }; c.font = { bold: true, color: { argb: 'FFFFFFFF' }, size: 10 }; c.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true }; };
 const fill = (c, a) => c.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: a } };
 const sp = s => { const m = s.match(/^(.*?)\s+(\d+)$/); return { nombre: m[1], clave: +m[2] }; };
-const ramoDe = f => /^(DG00|VM35)VD/.test(f) ? 'VIDA' : /^(DG00|VM35)GM/.test(f) ? 'GMM' : '?';
+const ramoDe = f => /^[A-Z]{2}\d{2}VD/.test(f) ? 'VIDA' : /^[A-Z]{2}\d{2}GM/.test(f) ? 'GMM' : '?'; // prefijos vistos: DG00, VM35, VG41
 const div = f => f === 'MENSUAL' ? 12 : f === 'TRIMESTRAL' ? 4 : f === 'SEMESTRAL' ? 2 : 1;
 const MIN_VIDA = 17000, MIN_GMM = 10000;
 const puntosVidaCC = pea => pea >= 190000 ? 3 : pea >= 65000 ? 2 : pea >= MIN_VIDA ? 1 : 0;

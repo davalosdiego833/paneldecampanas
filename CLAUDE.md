@@ -281,3 +281,9 @@ cabecera fila 11, datos desde fila 13; solo Camino 1 por ahora) y dashboard `Das
   ("NO SE PUDO LEER LA FECHA DE CORTE") y en el resumen, en vez de decir "Sin cambios".
 - **NO se archiva por mes** (decisión de Diego, 2026-10-21; no está en `archivar_historial_mensual.js`, no es un olvido).
 - `deploy.sh` ya sube la carpeta `altamar/`.
+
+## El Poder de Elegirte: TERMINADA (2026-11-17)
+
+Por decisión de Diego la campaña ya no se descarga: se quitaron sus 2 reglas de `descargar_campanas.js` (quedan comentadas con cómo reactivarlas).
+Los últimos archivos (corte 31-oct) siguen en `poder_elegirte/`, `actualizar_snapshot.js` los sigue leyendo y el panel los muestra (no se borró nada).
+Si el portal aún la lista, aparece en "ignorados (sin regla / campaña descontinuada)". No se archivaba por mes.

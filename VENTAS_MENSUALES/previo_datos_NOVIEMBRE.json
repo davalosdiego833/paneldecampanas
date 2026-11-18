@@ -1,0 +1,268 @@
+{
+  "mes": "NOVIEMBRE",
+  "anio": 2026,
+  "corte": "avance al 18-nov (NO es el cierre). 5 pólizas marcadas PAGADA por confirmación de los asesores (pagadas el 17-nov); aún no aparecen así en el reporte oficial",
+  "columnas": [
+    "partner",
+    "asesor_con_clave",
+    "folio",
+    "cliente",
+    "forma_pago",
+    "pea",
+    "estatus"
+  ],
+  "filas": [
+    [
+      "ALE AMBRIZ",
+      "BRUNO PADILLA SALDATE 120704",
+      "DG00VDNCFC26D10012",
+      "XIMENA PADILLA SALDATE",
+      "SEMESTRAL",
+      47521.12,
+      "ACEPTADA"
+    ],
+    [
+      "ALE AMBRIZ",
+      "DESIREE DE LA PEÑA OROZCO 80122",
+      "DG00VDNCCN26D0100S",
+      "YOLANDA YAZMIN PRECIADO GOMEZ",
+      "ANUAL",
+      74204.99,
+      "PAGADA"
+    ],
+    [
+      "ALE AMBRIZ",
+      "DESIREE DE LA PEÑA OROZCO 80122",
+      "DG00VDNCCN26D01013",
+      "CELIA SOFIA LIZARRAGA CORREA",
+      "ANUAL",
+      37189.36,
+      "PAGADA"
+    ],
+    [
+      "ALE AMBRIZ",
+      "DESIREE DE LA PEÑA OROZCO 80122",
+      "DG00VDNCCN26D12022",
+      "ABRAHAM CORNEJO MIRANDA",
+      "MENSUAL",
+      100641.81,
+      "ACEPTADA"
+    ],
+    [
+      "ALE AMBRIZ",
+      "FERNANDO JAVIER DAVALOS FLORES 98797",
+      "DG00GMNCIN26D1005G",
+      "CARLOS REFUGIO HERNANDEZ FLORES",
+      "ANUAL",
+      33709.33,
+      "ACEPTADA"
+    ],
+    [
+      "ALE AMBRIZ",
+      "JORGE ALBERTO PRECIADO GONZALEZ 104343",
+      "DG00VDNCCN26D12069",
+      "CAROLINA GARCIA HERNANDEZ",
+      "TRIMESTRAL",
+      27371.02,
+      "PAGADA"
+    ],
+    [
+      "ALE AMBRIZ",
+      "JORGE ALBERTO PRECIADO GONZALEZ 104343",
+      "DG00VDNCCN26D1206F",
+      "CAROLINA GARCIA HERNANDEZ",
+      "TRIMESTRAL",
+      35235.59,
+      "PAGADA"
+    ],
+    [
+      "ALE AMBRIZ",
+      "JORGE ANTONIO LUNA LARA 111056",
+      "DG00VDNCCN26A21097",
+      "CRISTINA BUSTOS GRIMALDO",
+      "SEMESTRAL",
+      37281.85,
+      "ACEPTADA"
+    ],
+    [
+      "ALE AMBRIZ",
+      "JORGE ROBERTO HERNANDEZ REGALADO 120353",
+      "DG00VDNCFC26D1006W",
+      "RODRIGO ARROYO GARCIA",
+      "ANUAL",
+      30398.08,
+      "PAGADA"
+    ],
+    [
+      "ALE AMBRIZ",
+      "JORGE ROBERTO HERNANDEZ REGALADO 120353",
+      "DG00VDNCFC26D12001",
+      "Guadalupe Del Rocio Meza Gutierrez",
+      "ANUAL",
+      29291.31,
+      "PAGADA"
+    ],
+    [
+      "ALE AMBRIZ",
+      "JULIANA RIASCOS VALENCIA 100677",
+      "DG00GMNCIN26D0409I",
+      "EDER DAVID RAMIREZ SALAZAR",
+      "ANUAL",
+      61044.57,
+      "PAGADA"
+    ],
+    [
+      "ALE AMBRIZ",
+      "MONICA ANDREA AMBRIZ GOMEZ 87538",
+      "DG00GMNCIN26917083",
+      "OSCAR EDUARDO MORELOS CHAVEZ",
+      "ANUAL",
+      -19082.93,
+      "ANULADA"
+    ],
+    [
+      "ALE AMBRIZ",
+      "OLGA SOFIA GAXIOLA IBARRA 120596",
+      "DG00VDNCFC26A1901Z",
+      "HECTOR AURELIO ZAZUETA GUZMAN",
+      "MENSUAL",
+      31038.17,
+      "ACEPTADA"
+    ],
+    [
+      "ALE AMBRIZ",
+      "OLGA SOFIA GAXIOLA IBARRA 120596",
+      "VG41GMTSIN26D05020",
+      "LINA GUADALUPE VALDEZ LLITERAS",
+      "MENSUAL",
+      23709.6,
+      "PAGADA"
+    ],
+    [
+      "ALE AMBRIZ",
+      "JORGE ALBERTO PRECIADO GONZALEZ 104343",
+      "DG00VDNCCN26A0300K",
+      "ANDREA GENOVEVA VELAZQUEZ MICHEL",
+      "ANUAL",
+      20273.89,
+      "ACEPTADA NT"
+    ],
+    [
+      "ALE AMBRIZ",
+      "JOSE RENE DE ALBA MORALES 110575",
+      "DG00VDNCCN2693007C",
+      "RUBEN GARCIA BECERRA",
+      "ANUAL",
+      165631.76,
+      "ACEPTADA NT"
+    ],
+    [
+      "ALE AMBRIZ",
+      "MARIA TERESA ASENCIO LOZANO 94156",
+      "DG00GMNCIN2692405H",
+      "JORGE CARLOS LOPEZ MORENO",
+      "MENSUAL",
+      29836.44,
+      "ACEPTADA NT"
+    ],
+    [
+      "ALE AMBRIZ",
+      "OLGA SOFIA GAXIOLA IBARRA 120596",
+      "DG00GMNCFC26A16035",
+      "GUADALUPE PAULINA DEL REAL GUZMAN",
+      "ANUAL",
+      6468.97,
+      "PAGADA MP"
+    ],
+    [
+      "ALE AMBRIZ",
+      "OLGA SOFIA GAXIOLA IBARRA 120596",
+      "DG00GMNCFC26A3002X",
+      "MARTIN DEL REAL GUZMAN",
+      "ANUAL",
+      27978.64,
+      "ACEPTADA NT"
+    ],
+    [
+      "ALE AMBRIZ",
+      "PAULINA LIZBETH SOTO MUÑIZ 104750",
+      "DG00GMNCIN26A2608A",
+      "FATIMA PEREZ CRUZ",
+      "MENSUAL",
+      33034.92,
+      "PAGADA MP"
+    ],
+    [
+      "ALE AMBRIZ",
+      "SELINA JANET LEMUS MIRAMONTES 21615",
+      "DG00VDNCCN26A2806K",
+      "EDUARDO FERNANDEZ DE SALES",
+      "MENSUAL",
+      8379.35,
+      "PAGADA MP"
+    ],
+    [
+      "KAREN",
+      "GUILLERMO JOSE RAMIREZ RAMIREZ 120051",
+      "DG00VDNCFC26D1308X",
+      "ANGEL ZADKIEL FUENTES AYALA",
+      "MENSUAL",
+      22479.18,
+      "PAGADA"
+    ],
+    [
+      "KAREN",
+      "GUILLERMO JOSE RAMIREZ RAMIREZ 120051",
+      "DG00VDNCFC26D13094",
+      "GUILLERMO ALATORRE DE ALBA",
+      "SEMESTRAL",
+      21699.31,
+      "ACEPTADA"
+    ],
+    [
+      "KAREN",
+      "LUIS ANTONIO SALAZAR ESPINOSA 119447",
+      "DG00GMNCIN26D040A4",
+      "GLADYS YAZARET CAMPA ESTRADA",
+      "ANUAL",
+      94997.2,
+      "PAGADA"
+    ],
+    [
+      "KAREN",
+      "MARIO IVAN ROMERO GONZALEZ 118069",
+      "DG00GMNCIN26826017",
+      "DARIAN CASILLAS GALLARDO",
+      "ANUAL",
+      -22978.19,
+      "ANULADA"
+    ],
+    [
+      "KAREN",
+      "MARIO IVAN ROMERO GONZALEZ 118069",
+      "DG00VDNCCN26D0202K",
+      "MELISA MORA ALMANZA",
+      "MENSUAL",
+      36860.02,
+      "PAGADA"
+    ],
+    [
+      "KAREN",
+      "LUIS ANTONIO SALAZAR ESPINOSA 119447",
+      "DG00VDNCFC26A0509J",
+      "CITLALLI GUADALUPE CALDERA MEJIA",
+      "MENSUAL",
+      21668.1,
+      "ACEPTADA NT"
+    ],
+    [
+      "KAREN",
+      "LUIS ANTONIO SALAZAR ESPINOSA 119447",
+      "DG00GMNCFC26A3002B",
+      "CLAUDIA TERESA REYNOSO RODRIGUEZ",
+      "SEMESTRAL",
+      28010.26,
+      "PAGADA MP"
+    ]
+  ]
+}

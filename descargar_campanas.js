@@ -39,8 +39,10 @@ const REGLAS = [
     // Altamar (2026-10-21): en el portal es "ALTAMAR Promotores.zip". `rename` sin extensión = conserva la del Excel del zip.
     // NO se archiva por mes (decisión de Diego, no un olvido).
     { regex: /altamar/i, dir: 'altamar', rename: 'Altamar', campaignKey: 'altamar', label: 'Altamar 2027' },
-    { regex: /poder.*elegirte.*convenci/i, dir: 'poder_elegirte', rename: 'El poder de elegirte Convenciones.xlsx', campaignKey: 'poder_elegirte', label: 'El Poder de Elegirte (Convenciones)' },
-    { regex: /poder.*elegirte.*client/i, dir: 'poder_elegirte', rename: 'El Poder De Elegirte Clientes.xlsx', campaignKey: 'poder_elegirte', label: 'El Poder de Elegirte (Clientes)', fechaPropia: true },
+    // El Poder de Elegirte: TERMINÓ (decisión de Diego, 2026-11-17) y ya no se descarga. Sus últimos archivos (corte 31-oct) siguen en poder_elegirte/
+    // y el panel los sigue mostrando. Si el portal aún los lista caen en "sin regla / ignorados". Para reactivarla, restaura estas 2 reglas (en git: fd531c4):
+    //   { regex: /poder.*elegirte.*convenci/i, dir: 'poder_elegirte', rename: 'El poder de elegirte Convenciones.xlsx', campaignKey: 'poder_elegirte', label: 'El Poder de Elegirte (Convenciones)' },
+    //   { regex: /poder.*elegirte.*client/i, dir: 'poder_elegirte', rename: 'El Poder De Elegirte Clientes.xlsx', campaignKey: 'poder_elegirte', label: 'El Poder de Elegirte (Clientes)', fechaPropia: true },
     { regex: /pagpendrecluta|recluta.*temp/i, dir: path.join('administrador', 'pagado_emitido'), rename: 'PagPendReclutas.xls', campaignKey: 'pagado_pendiente_reclutas', label: 'Pagado/Pendiente (Reclutas)', dateFrom: 'skip' },
     { regex: /pagpend/i, dir: path.join('administrador', 'pagado_emitido'), rename: 'PagPend.xls', campaignKey: 'pagado_pendiente', label: 'Pagado/Pendiente', dateFrom: 'skip' },
     { regex: /proactivo/i, dir: path.join('administrador', 'proactivos'), campaignKey: 'proactivos', label: 'Proactivos' },
