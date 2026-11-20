@@ -1,5 +1,5 @@
 {
-  "updatedAt": "18/11/2026, 9:39:42 a.m.",
+  "updatedAt": "20/11/2026, 4:02:26 a.m.",
   "data": {
     "resumen_general": {
       "historico_metas": {
@@ -3845,17 +3845,17 @@
         {
           "Asesor": "DESIREE DE LA PEÑA OROZCO",
           "Clave": "80122",
-          "PA_Acumulada": 1643386.72
+          "PA_Acumulada": 1684848.01
         },
         {
           "Asesor": "DARINKA UREÑA CASILLAS",
           "Clave": "90355",
-          "PA_Acumulada": 1048102.71
+          "PA_Acumulada": 1051464.04
         },
         {
           "Asesor": "PAULINA LIZBETH SOTO MUÑIZ",
           "Clave": "104750",
-          "PA_Acumulada": 741757.19
+          "PA_Acumulada": 743830.08
         },
         {
           "Asesor": "RAFAEL ALBERTO SUAREZ BAQUEDANO",
@@ -3865,7 +3865,7 @@
         {
           "Asesor": "MONSERRAT VELASCO SANTOS",
           "Clave": "117440",
-          "PA_Acumulada": 615122.41
+          "PA_Acumulada": 587068.49
         },
         {
           "Asesor": "JORGE ANTONIO LUNA LARA",
@@ -3885,7 +3885,7 @@
         {
           "Asesor": "MARICELA ARREOLA LOPEZ",
           "Clave": "80925",
-          "PA_Acumulada": 371437.6
+          "PA_Acumulada": 373776.63
         },
         {
           "Asesor": "GABRIELA CASTAÑEDA SALAZAR",
@@ -3910,12 +3910,17 @@
         {
           "Asesor": "MARIO IVAN ROMERO GONZALEZ",
           "Clave": "118069",
-          "PA_Acumulada": 275968.63
+          "PA_Acumulada": 265968.63
         },
         {
           "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
           "Clave": "118246",
           "PA_Acumulada": 255399.39
+        },
+        {
+          "Asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
+          "Clave": "119447",
+          "PA_Acumulada": 253477.22
         },
         {
           "Asesor": "ANA LAURA CONTRERAS IÑIGUEZ",
@@ -3933,19 +3938,14 @@
           "PA_Acumulada": 215703.54
         },
         {
+          "Asesor": "JULIANA RIASCOS VALENCIA",
+          "Clave": "100677",
+          "PA_Acumulada": 209838.64
+        },
+        {
           "Asesor": "MARIA FERNANDA RIOS BERNAL",
           "Clave": "103982",
           "PA_Acumulada": 173632.09
-        },
-        {
-          "Asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
-          "Clave": "119447",
-          "PA_Acumulada": 171583.08
-        },
-        {
-          "Asesor": "JULIANA RIASCOS VALENCIA",
-          "Clave": "100677",
-          "PA_Acumulada": 157214.01
         },
         {
           "Asesor": "OSCAR RAMIREZ RUIZ",
@@ -3995,7 +3995,7 @@
         {
           "Asesor": "KAREN MUÑOZ GARCIA",
           "Clave": "81044",
-          "PA_Acumulada": 2467.11
+          "PA_Acumulada": 2689.9
         },
         {
           "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
@@ -11458,8 +11458,8 @@
           "Conexion": "2018-09-28",
           "Mes_Asesor": 99,
           "Tipo_Asesor": "CONSOLIDADO",
-          "Polizas": 4.5,
-          "Comisiones": 66916.4
+          "Polizas": 5.5,
+          "Comisiones": 80652.91
         },
         {
           "Asesor": "OSCAR RAMIREZ RUIZ",
@@ -11480,6 +11480,16 @@
           "Tipo_Asesor": "NUEVA_ORGANIZACION",
           "Polizas": 3.5,
           "Comisiones": 22764.34
+        },
+        {
+          "Asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
+          "Clave": "119447",
+          "Suc": "2856",
+          "Conexion": "2026-09-30",
+          "Mes_Asesor": 3,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 1,
+          "Comisiones": 20113.75
         },
         {
           "Asesor": "LILIANA IVETTE CASTILLO SANCHEZ",
@@ -11522,6 +11532,16 @@
           "Comisiones": 11957.42
         },
         {
+          "Asesor": "JULIANA RIASCOS VALENCIA",
+          "Clave": "100677",
+          "Suc": "2043",
+          "Conexion": "2023-03-14",
+          "Mes_Asesor": 45,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0.5,
+          "Comisiones": 11203.42
+        },
+        {
           "Asesor": "JOSE ANTEMIO OLIVA SANTOS",
           "Clave": "118246",
           "Suc": "2043",
@@ -11560,16 +11580,6 @@
           "Tipo_Asesor": "NUEVA_ORGANIZACION",
           "Polizas": 1,
           "Comisiones": 3785.29
-        },
-        {
-          "Asesor": "LUIS ANTONIO SALAZAR ESPINOSA",
-          "Clave": "119447",
-          "Suc": "2856",
-          "Conexion": "2026-09-30",
-          "Mes_Asesor": 3,
-          "Tipo_Asesor": "NUEVA_ORGANIZACION",
-          "Polizas": 0.5,
-          "Comisiones": 2471.04
         },
         {
           "Asesor": "ANAIS LUA MORENO",
@@ -11612,21 +11622,21 @@
           "Comisiones": 0
         },
         {
-          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
-          "Clave": "116883",
-          "Suc": "2856",
-          "Conexion": "2026-04-14",
-          "Mes_Asesor": 8,
-          "Tipo_Asesor": "NUEVA_ORGANIZACION",
-          "Polizas": 0,
-          "Comisiones": 0
-        },
-        {
           "Asesor": "MARIO IVAN ROMERO GONZALEZ",
           "Clave": "118069",
           "Suc": "2856",
           "Conexion": "2026-06-19",
           "Mes_Asesor": 6,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "SOFIA CAMPILLO VASCONCELOS",
+          "Clave": "116883",
+          "Suc": "2856",
+          "Conexion": "2026-04-14",
+          "Mes_Asesor": 8,
           "Tipo_Asesor": "NUEVA_ORGANIZACION",
           "Polizas": 0,
           "Comisiones": 0
@@ -11642,31 +11652,11 @@
           "Comisiones": 0
         },
         {
-          "Asesor": "MIREYA LIZETTE TORRES GARCIA",
-          "Clave": "106018",
-          "Suc": "2043",
-          "Conexion": "2024-02-22",
-          "Mes_Asesor": 34,
-          "Tipo_Asesor": "NUEVA_ORGANIZACION",
-          "Polizas": 0,
-          "Comisiones": 0
-        },
-        {
           "Asesor": "ENRIQUE ADRIAN GUTIERREZ JIMENEZ",
           "Clave": "95148",
           "Suc": "2043",
           "Conexion": "2022-12-21",
           "Mes_Asesor": 48,
-          "Tipo_Asesor": "CONSOLIDADO",
-          "Polizas": 0,
-          "Comisiones": 0
-        },
-        {
-          "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
-          "Clave": "98797",
-          "Suc": "2043",
-          "Conexion": "2021-05-26",
-          "Mes_Asesor": 67,
           "Tipo_Asesor": "CONSOLIDADO",
           "Polizas": 0,
           "Comisiones": 0
@@ -11682,22 +11672,12 @@
           "Comisiones": 0
         },
         {
-          "Asesor": "MARIA TERESA ASENCIO LOZANO",
-          "Clave": "94156",
+          "Asesor": "FERNANDO JAVIER DAVALOS FLORES",
+          "Clave": "98797",
           "Suc": "2043",
-          "Conexion": "2020-11-24",
-          "Mes_Asesor": 73,
+          "Conexion": "2021-05-26",
+          "Mes_Asesor": 67,
           "Tipo_Asesor": "CONSOLIDADO",
-          "Polizas": 0,
-          "Comisiones": 0
-        },
-        {
-          "Asesor": "JULIANA RIASCOS VALENCIA",
-          "Clave": "100677",
-          "Suc": "2043",
-          "Conexion": "2023-03-14",
-          "Mes_Asesor": 45,
-          "Tipo_Asesor": "NUEVA_ORGANIZACION",
           "Polizas": 0,
           "Comisiones": 0
         },
@@ -11707,26 +11687,6 @@
           "Suc": "2043",
           "Conexion": "2024-10-18",
           "Mes_Asesor": 26,
-          "Tipo_Asesor": "NUEVA_ORGANIZACION",
-          "Polizas": 0,
-          "Comisiones": 0
-        },
-        {
-          "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
-          "Clave": "115404",
-          "Suc": "2043",
-          "Conexion": "2025-11-25",
-          "Mes_Asesor": 13,
-          "Tipo_Asesor": "NUEVA_ORGANIZACION",
-          "Polizas": 0,
-          "Comisiones": 0
-        },
-        {
-          "Asesor": "MARIA FERNANDA RIOS BERNAL",
-          "Clave": "103982",
-          "Suc": "2043",
-          "Conexion": "2023-10-17",
-          "Mes_Asesor": 38,
           "Tipo_Asesor": "NUEVA_ORGANIZACION",
           "Polizas": 0,
           "Comisiones": 0
@@ -11742,12 +11702,52 @@
           "Comisiones": 0
         },
         {
+          "Asesor": "MARIA FERNANDA RIOS BERNAL",
+          "Clave": "103982",
+          "Suc": "2043",
+          "Conexion": "2023-10-17",
+          "Mes_Asesor": 38,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
           "Asesor": "JORGE ALBERTO PRECIADO GONZALEZ",
           "Clave": "104343",
           "Suc": "2043",
           "Conexion": "2023-10-02",
           "Mes_Asesor": 38,
           "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "ANA VERONICA GONZALEZ GAYTAN",
+          "Clave": "115404",
+          "Suc": "2043",
+          "Conexion": "2025-11-25",
+          "Mes_Asesor": 13,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "MIREYA LIZETTE TORRES GARCIA",
+          "Clave": "106018",
+          "Suc": "2043",
+          "Conexion": "2024-02-22",
+          "Mes_Asesor": 34,
+          "Tipo_Asesor": "NUEVA_ORGANIZACION",
+          "Polizas": 0,
+          "Comisiones": 0
+        },
+        {
+          "Asesor": "MARIA TERESA ASENCIO LOZANO",
+          "Clave": "94156",
+          "Suc": "2043",
+          "Conexion": "2020-11-24",
+          "Mes_Asesor": 73,
+          "Tipo_Asesor": "CONSOLIDADO",
           "Polizas": 0,
           "Comisiones": 0
         },
@@ -11762,16 +11762,6 @@
           "Comisiones": 0
         },
         {
-          "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
-          "Clave": "63441",
-          "Suc": "2511",
-          "Conexion": "2022-06-21",
-          "Mes_Asesor": 54,
-          "Tipo_Asesor": "CONSOLIDADO",
-          "Polizas": 0,
-          "Comisiones": 0
-        },
-        {
           "Asesor": "TIARE DE LA CRUZ DZIB CABRERA",
           "Clave": "59120",
           "Suc": "2511",
@@ -11780,11 +11770,21 @@
           "Tipo_Asesor": "CONSOLIDADO",
           "Polizas": 0,
           "Comisiones": 0
+        },
+        {
+          "Asesor": "MARIA FERNANDA CARLOS VAZQUEZ",
+          "Clave": "63441",
+          "Suc": "2511",
+          "Conexion": "2022-06-21",
+          "Mes_Asesor": 54,
+          "Tipo_Asesor": "CONSOLIDADO",
+          "Polizas": 0,
+          "Comisiones": 0
         }
       ]
     },
     "campaignDates": {
-      "mdrt": "11 de noviembre de 2026",
+      "mdrt": "13 de noviembre de 2026",
       "convenciones": "11 de noviembre de 2026",
       "legion_centurion": "11 de noviembre de 2026",
       "camino_cumbre": "11 de noviembre de 2026",
@@ -11792,7 +11792,7 @@
       "convenciones_promotores": "11 de noviembre 2026",
       "convenciones_gerente": "11 de noviembre 2026",
       "poder_elegirte": "31 de octubre de 2026",
-      "altamar": "11 de noviembre de 2026"
+      "altamar": "13 de noviembre de 2026"
     },
     "historico_metas": {
       "2026": {
